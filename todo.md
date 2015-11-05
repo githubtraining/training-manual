@@ -1,0 +1,3 @@
+- [ ] update atlas.json with GH for Devs manual contents
+- [ ] update gh-for-devs-manual.asc with book contents
+- [ ] update status.json with book contents
