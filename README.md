@@ -1,1 +1,0 @@
-# GitHub Training Manual
