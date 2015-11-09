@@ -1,6 +1,7 @@
 - [ ] update atlas.json with final GH for Devs manual contents
 - [ ] update gh-for-devs-manual.asc with final book contents
 - [ ] finish introduction.asc once sections have been added
+- [ ] add publishing themes
 
 ### Formatting elements
 
