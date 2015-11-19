@@ -4,6 +4,7 @@
 - [ ] add publishing themes
 - [ ] check for consistency in formatting
 - [ ] check for consistency in indexes
+- [ ] add more explore options
 
 
 ### Formatting elements
