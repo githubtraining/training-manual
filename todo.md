@@ -2,6 +2,9 @@
 - [ ] update gh-for-devs-manual.asc with final book contents
 - [ ] finish introduction.asc once sections have been added
 - [ ] add publishing themes
+- [ ] check for consistency in formatting
+- [ ] check for consistency in indexes
+
 
 ### Formatting elements
 
