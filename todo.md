@@ -40,3 +40,14 @@ This is the warning text.
 #### Add an item to the index
 
 (((git commands, config)))
+
+## Homeless content
+
+- Oops, I forgot to create a branch
+  - **DEMO:** Modify file before creating branch
+    - Create branch
+    - Add file to staging area
+- Same file in staging and working
+    - Make more changes
+    - `git status`
+    - **LAB:** Learner completes same steps to prepare for diff
