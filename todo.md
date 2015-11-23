@@ -1,12 +1,12 @@
-- [ ] update atlas.json with final GH for Devs manual contents
-- [ ] update gh-for-devs-manual.asc with final book contents
+- [x] update atlas.json with final GH for Devs manual contents
+- [x] update gh-for-devs-manual.asc with final book contents
 - [ ] finish introduction.asc once sections have been added
 - [ ] add publishing themes
 - [ ] check for consistency in formatting
 - [ ] check for consistency in indexes
 - [ ] add more explore options
 - [ ] add summary for each section
-- [ ] add license statement to doc
+- [x] add license statement to doc
 
 ### Formatting elements
 
