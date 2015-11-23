@@ -13,7 +13,7 @@
 #### Insert image
 
 .Displayed image description.
-image::images/areas.png["Alt text goes here."]
+image::book/images/areas.png["Alt text goes here."]
 
 #### Insert command line text
 
