@@ -3,13 +3,13 @@
 
 In this section, we will discuss the collaborative workflow enabled by GitHub.
 
-include::03a-basic-github-flow.asc[]
+include::03a-basic-github-flow.adoc[]
 
 === Summary
 
 Summary text
 
-include::03a-exploring.asc[]
+include::03a-exploring.adoc[]
 
 ### Resetting
 

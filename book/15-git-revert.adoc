@@ -3,8 +3,8 @@
 
 In this section, we will learn about commands that re-write history and understand when you should or shouldn't use them.
 
-include::15a-how-commits-are-made.asc[]
+include::15a-how-commits-are-made.adoc[]
 
-include::15a-safe-operations.asc[]
+include::15a-safe-operations.adoc[]
 
-include::15a-git-revert.asc[]
+include::15a-git-revert.adoc[]

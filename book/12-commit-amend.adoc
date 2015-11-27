@@ -3,10 +3,10 @@
 
 In this section, we will begin to explore some of the ways Git and GitHub can help us shape our project history.
 
-include::12a-commit-amend.asc[]
+include::12a-commit-amend.adoc[]
 
 === Summary
 
 Summary text
 
-include::12a-exploring.asc[]
+include::12a-exploring.adoc[]

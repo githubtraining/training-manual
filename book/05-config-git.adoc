@@ -3,20 +3,20 @@
 
 In this section, we will prepare your local environment to work with Git and GitHub.
 
-include::05a-config-levels.asc[]
+include::05a-config-levels.adoc[]
 
-include::05a-config-list.asc[]
+include::05a-config-list.adoc[]
 
-include::05a-config-name.asc[]
+include::05a-config-name.adoc[]
 
-include::05a-config-editor.asc[]
+include::05a-config-editor.adoc[]
 
-include::05a-config-autocrlf.asc[]
+include::05a-config-autocrlf.adoc[]
 
-include::05a-config-push.asc[]
+include::05a-config-push.adoc[]
 
 === Summary
 
 We will revisit our configuration setting throughout the class; right now we are only setting the essentials to get us started.
 
-include::05a-exploring.asc[]
+include::05a-exploring.adoc[]

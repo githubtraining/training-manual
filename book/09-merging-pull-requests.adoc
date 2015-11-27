@@ -3,14 +3,14 @@
 
 Now that you have made the requested changes, your pull request should be ready to merge.
 
-include::09a-merge-explained.asc[]
+include::09a-merge-explained.adoc[]
 
-include::09a-merge-PR.asc[]
+include::09a-merge-PR.adoc[]
 
-include::09a-branch-cleanup.asc[]
+include::09a-branch-cleanup.adoc[]
 
 === Summary
 
 Summary text
 
-include::09a-exploring.asc[]
+include::09a-exploring.adoc[]

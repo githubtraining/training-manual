@@ -3,14 +3,14 @@
 
 This section will help you get prepared for the GitHub for Developer class. While you are waiting for the class to begin, please take a moment to complete each of these steps for a smooth class experience.
 
-include::01a-github-account.asc[]
+include::01a-github-account.adoc[]
 
-include::01a-install-git.asc[]
+include::01a-install-git.adoc[]
 
-include::01a-text-editor.asc[]
+include::01a-text-editor.adoc[]
 
 === Summary
 
 If you have finished the steps above, you should now have a working version of Git on your system that is configured with your personal identity and a default text editor.
 
-include::01a-exploring.asc[]
+include::01a-exploring.adoc[]

@@ -3,12 +3,12 @@
 
 Merge conflicts can be intimidating, but resolving them is actually quite easy. In this section you will learn how!
 
-include::16a-local-merge-conflicts.asc[]
+include::16a-local-merge-conflicts.adoc[]
 
-include::16a-remote-merge-conflicts.asc[]
+include::16a-remote-merge-conflicts.adoc[]
 
 === Summary
 
 Summary text
 
-include::16a-exploring.asc[]
+include::16a-exploring.adoc[]

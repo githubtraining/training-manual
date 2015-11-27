@@ -3,10 +3,10 @@
 
 Now that you are familiar with the basic workflow, let's explore some of the powerful Git and GitHub features that will help you work with your code.
 
-include::10a-git-diff.asc[]
+include::10a-git-diff.adoc[]
 
 === Summary
 
 Summary text
 
-include::10a-exploring.asc[]
+include::10a-exploring.adoc[]

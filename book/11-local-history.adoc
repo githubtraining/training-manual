@@ -1,0 +1,12 @@
+[[_local_history]]
+== Viewing Project History
+
+In this section, you will discover commands for viewing the history of your project.
+
+include::11a-git-log.adoc[]
+
+=== Summary
+
+Summary text
+
+include::11a-exploring.adoc[]

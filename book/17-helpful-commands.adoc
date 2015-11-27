@@ -3,6 +3,6 @@
 
 In this section, we will explore some helpful Git commands.
 
-include::17a-git-mv.asc[]
+include::17a-git-mv.adoc[]
 
-include::17a-git-hunks.asc[]
+include::17a-git-hunks.adoc[]

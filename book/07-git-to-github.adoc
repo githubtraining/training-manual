@@ -3,16 +3,16 @@
 
 Now that you have made some changes in the project locally, let's learn how to push your changes back to the shared class repository for collaboration.
 
-include::07a-git-push.asc[]
+include::07a-git-push.adoc[]
 
-include::07a-create-pull-request.asc[]
+include::07a-create-pull-request.adoc[]
 
-include::07a-exploring-pull-request.asc[]
+include::07a-exploring-pull-request.adoc[]
 
-include::07a-pull-request-activity.asc[]
+include::07a-pull-request-activity.adoc[]
 
 === Summary
 
 Summary text
 
-include::07a-exploring.asc[]
+include::07a-exploring.adoc[]

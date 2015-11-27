@@ -3,12 +3,12 @@
 
 In this section, we will create a branch to separate our feature work from the master branch.
 
-include::04a-branching-defined.asc[]
+include::04a-branching-defined.adoc[]
 
-include::04a-create-branch-activity.asc[]
+include::04a-create-branch-activity.adoc[]
 
 === Summary
 
 In this section, we reviewed branches and learned how to create a branch on GitHub.
 
-include::04a-exploring.asc[]
+include::04a-exploring.adoc[]

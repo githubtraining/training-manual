@@ -3,20 +3,20 @@
 
 If you prefer to work on the command line, you can easily integrate GitHub into your current workflow. In this section, we will discuss how to combine the collaborative features of GitHub with the tools you know and love!
 
-include::06a-git-clone.asc[]
+include::06a-git-clone.adoc[]
 
-include::06a-git-status.asc[]
+include::06a-git-status.adoc[]
 
-include::06a-git-branch.asc[]
+include::06a-git-branch.adoc[]
 
-include::06a-git-checkout.asc[]
+include::06a-git-checkout.adoc[]
 
-include::06a-file-creation-activity.asc[]
+include::06a-file-creation-activity.adoc[]
 
-include::06a-two-stage-commit.asc[]
+include::06a-two-stage-commit.adoc[]
 
 === Summary
 
 Summary text
 
-include::06a-exploring.asc[]
+include::06a-exploring.adoc[]
