@@ -15,4 +15,6 @@ image::book/images/commit-and-tree.png["Git's basic data structure."]
 Each commit also contains the commit ID of its parent commit.
 
 .Parents and Children.
-image::book/images/github-repositories.png["Relationship between commits."]
+image::book/images/commit-parent.png["Relationship between commits."]
+
+Image source: ProGit v2 by Scott Chacon

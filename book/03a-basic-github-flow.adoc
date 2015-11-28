@@ -2,7 +2,7 @@
 === The Essential GitHub Workflow
 
 .GitHub Workflow.
-image::book/images/github-workflow.jpg["GitHub Workflow"]
+image::book/images/github-workflow.png["GitHub Workflow"]
 
 The GitHub flow is a lightweight workflow that allows you to experiment with new ideas safely, without fear of compromising a project.
 
