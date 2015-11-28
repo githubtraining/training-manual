@@ -1,15 +1,11 @@
-[[_github_flow]]
-== Understanding the GitHub Flow
+[[_git_cherry_pick]]
+== Merge Strategies: Cherry Pick
 
 In this section, we will discuss the collaborative workflow enabled by GitHub.
 
-include::03a-basic-github-flow.adoc[]
+include::19a-cherry-pick.adoc[]
 
-=== Summary
-
-Summary text
-
-include::03a-exploring.adoc[]
+include::19a-exploring.adoc[]
 
 ### Cherry-picking
 

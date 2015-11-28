@@ -11,8 +11,4 @@ include::02a-using-issues.adoc[]
 
 include::02a-create-issue-activity.adoc[]
 
-=== Summary
-
-Summary text
-
 include::02a-exploring.adoc[]

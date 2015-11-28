@@ -5,8 +5,4 @@ So far we have learned quite a few commands. Some, like the log commands, can be
 
 include::13a-common-aliases.adoc[]
 
-=== Summary
-
-Summary text
-
 include::13a-exploring.adoc[]

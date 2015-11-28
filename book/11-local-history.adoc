@@ -5,8 +5,4 @@ In this section, you will discover commands for viewing the history of your proj
 
 include::11a-git-log.adoc[]
 
-=== Summary
-
-Summary text
-
 include::11a-exploring.adoc[]

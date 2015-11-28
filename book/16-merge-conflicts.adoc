@@ -7,8 +7,4 @@ include::16a-local-merge-conflicts.adoc[]
 
 include::16a-remote-merge-conflicts.adoc[]
 
-=== Summary
-
-Summary text
-
 include::16a-exploring.adoc[]

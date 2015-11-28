@@ -7,8 +7,4 @@ include::04a-branching-defined.adoc[]
 
 include::04a-create-branch-activity.adoc[]
 
-=== Summary
-
-In this section, we reviewed branches and learned how to create a branch on GitHub.
-
 include::04a-exploring.adoc[]

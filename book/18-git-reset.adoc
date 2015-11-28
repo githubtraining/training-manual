@@ -1,15 +1,17 @@
-[[_github_flow]]
-== Understanding the GitHub Flow
+[[_git_reset]]
+== Rewriting History with Git Reset
 
 In this section, we will discuss the collaborative workflow enabled by GitHub.
 
-include::03a-basic-github-flow.adoc[]
+include::18a-reset-modes.adoc[]
 
-=== Summary
+include::18a-reset-soft.adoc[]
 
-Summary text
+include::18a-reset-mixed.adoc[]
 
-include::03a-exploring.adoc[]
+include::18a-reset-hard.adoc[]
+
+include::18a-exploring.adoc[]
 
 ### Resetting
 

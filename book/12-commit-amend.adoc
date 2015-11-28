@@ -5,8 +5,4 @@ In this section, we will begin to explore some of the ways Git and GitHub can he
 
 include::12a-commit-amend.adoc[]
 
-=== Summary
-
-Summary text
-
 include::12a-exploring.adoc[]

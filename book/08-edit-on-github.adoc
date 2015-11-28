@@ -9,8 +9,4 @@ include::08a-commit-file-github.adoc[]
 
 include::08a-edit-file-activity.adoc[]
 
-=== Summary
-
-Summary text
-
 include::08a-exploring.adoc[]

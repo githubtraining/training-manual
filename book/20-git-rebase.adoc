@@ -1,15 +1,13 @@
 [[_git_rebase]]
-== Using Git Rebase
+== Merge Strategies: Rebase
 
 In this section, we will discuss //
 
-include::03a-basic-github-flow.adoc[]
+include::20a-rebase-defined.adoc[]
 
-=== Summary
+include::20a-rebase-interactive.adoc[]
 
-Summary text
-
-include::03a-exploring.adoc[]
+include::20a-exploring.adoc[]
 
 ### Rebasing
 

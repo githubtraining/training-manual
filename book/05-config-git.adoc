@@ -15,8 +15,4 @@ include::05a-config-autocrlf.adoc[]
 
 include::05a-config-push.adoc[]
 
-=== Summary
-
-We will revisit our configuration setting throughout the class; right now we are only setting the essentials to get us started.
-
 include::05a-exploring.adoc[]

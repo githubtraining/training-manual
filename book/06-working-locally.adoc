@@ -15,8 +15,4 @@ include::06a-file-creation-activity.adoc[]
 
 include::06a-two-stage-commit.adoc[]
 
-=== Summary
-
-Summary text
-
 include::06a-exploring.adoc[]

@@ -11,8 +11,4 @@ include::07a-exploring-pull-request.adoc[]
 
 include::07a-pull-request-activity.adoc[]
 
-=== Summary
-
-Summary text
-
 include::07a-exploring.adoc[]
