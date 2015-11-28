@@ -21,20 +21,3 @@ Use the following instructions to create your first Pull Request:
 ====
 When you navigate to the class repository, you should see a banner at the top of the page indicating you have recently pushed branches, along with a button that reads *Compare & pull request*. This helpful button will automatically start the pull request process between your branch and the repository's default branch.
 ====
-
-
-
-
-      steps:
-        - description: "Use the command line to push your changes to the remote."
-          id: CONT-CLI-05-push
-        - description:  "Go to the GitHub repo and create a new pull request."
-          id: CONT-CLI-05-pull-request
-          verifications:
-            - verification-type: pull-request
-              id: CONT-CLI-05-pull-request-verification
-              success-message: "Great job - you created a pull request"
-              failure-message: "It looks like you haven't created a pull request. Want to try again?"
-additional-labs:
-additional-questions:
-resources:

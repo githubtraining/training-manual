@@ -1,7 +1,7 @@
 [[_exploring]]
 === Summary
 
-If you have finished the steps above, you should now have a working version of Git on your system that is configured with your personal identity and a default text editor. If you still have some time before class begins, here are some interesting things you can check out:
+If you have finished the steps above, you should now have a working version of Git and a text editor on your system. If you still have some time before class begins, here are some interesting things you can check out:
 
 1. *github.com/explore* Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.
 2. *training.github.com/kit* The Training Kit is GitHub's open source training content. The kit contains additional resources you may find helpful later when reviewing what you have learned in class!

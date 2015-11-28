@@ -7,7 +7,7 @@ include::14a-teams-and-collaborators.adoc[]
 
 include::14a-forking-defined.adoc[]
 
-include::14a-forking-workflow.adoc
+include::14a-forking-workflow.adoc[]
 
 include::14a-github-pages.adoc[]
 
