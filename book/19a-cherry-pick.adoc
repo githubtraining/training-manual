@@ -1,0 +1,32 @@
+[[_cherry-pick]]
+=== You Just Want That One Commit
+
+Cherry picking allows you to pick up a commit from one branch of the project and move it to your current branch. Right now, your file directory and log should look like this:
+
+[source,console]
+----
+$ ls
+README.md
+$ git lol
+84nqdkq initializing repo with README
+----
+
+Let's try it:
+
+1. Create and checkout to a new branch named `cherry-picking`.
+2. Using the reflog, find the commit ID where you added file2.md.
+3. Type `git cherry-pick <SHA>`.
+
+Now when you view your directory and log, you should see:
+
+[source,console]
+----
+$ ls
+file2.md
+README.md
+$ git lol
+eanu482 init file 2
+84nqdkq initializing repo with README
+----
+
+Is the commit ID the same as the one you used in the cherry pick command? Why or why not?

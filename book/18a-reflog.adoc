@@ -1,0 +1,11 @@
+[[_git_reflog]]
+=== Does Gone Really Mean Gone?
+
+The answer: It depends!
+
+Type the command `git reflog`.
+
+The reflog is a record of every place HEAD has been. In a few minutes we will see how the reflog can be helpful in allowing us to retrieve changes we didn't mean to discard. But first, we need to be aware of some of the reflog's limitations:
+
+1. The reflog only includes your local history. In other words, you can't see the reflog for someone else's local commits and they can't see yours.
+2. The reflog is a limited time offer. By default, reachable commits are held in the reflog for 90 days, but unreachable commits (meaning commits that are not attached to a branch) are only kept for 30 days.

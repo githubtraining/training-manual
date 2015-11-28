@@ -1,0 +1,40 @@
+[[_reset_soft]]
+=== Reset Soft
+
+To prepare for this activity, you will need to create four files and commit each separately so your file directory looks like this:
+
+[source,console]
+----
+$ ls
+file1.md
+file2.md
+file3.md
+file4.md
+README.md
+----
+
+And your history looks like this:
+
+[source,console]
+----
+$ git log --oneline
+fj8weq4 init file 4
+3487nio init file 3
+39dj58s init file 2
+dke03md init file 1
+84nqdkq initializing repo with README
+----
+
+Now that your repository is set up, let's try our first reset.
+
+1. Use the log alias we created earlier to look at the history of our project.
+2. Identify the current location of `HEAD`.
+3. We want to go back two commits in our history so we will type `git reset --soft HEAD~2`
+4. Type `git status`. The changes we made in the last two commits should be in the staging area waiting to be committed.
+5. Using the log command, we can see that the `HEAD` is now sitting two commits earlier than it was before we used git reset.
+6. Go ahead and re-commit these changes with `git commit -m "grouping commits for cleaner history"`
+
+[NOTE]
+====
+In this example, the tilde tells git we want to reset to two commits before the current location of `HEAD`. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset HEAD.
+====

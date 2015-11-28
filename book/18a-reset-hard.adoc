@@ -1,0 +1,14 @@
+[[_reset_hard]]
+=== Reset Hard
+
+Last but not least, let's try a hard reset.
+
+1. Start by viewing the history of our project.
+2. This time we reset to the point in time where the only file that existed was the README.md. Type `git reset --hard <SHA>`.
+3. Type `git status`. Notice your working directory is clean.
+4. Viewing the history of your project will reveal a single commit.
+
+[WARNING]
+====
+Remember, `git reset --hard` is a destructive command. Don't use it unless you really want to discard your changes.
+====

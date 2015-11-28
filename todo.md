@@ -4,7 +4,7 @@
 - [ ] add publishing themes
 - [ ] check for consistency in formatting
 - [ ] check for consistency in indexes
-- [ ] add more explore options
+- [ ] add more summary/explore options
 - [x] add license statement to doc
 
 ### Formatting elements
@@ -47,6 +47,14 @@ This is the warning text.
     - Create branch
     - Add file to staging area
 - Same file in staging and working
-    - Make more changes
-    - `git status`
-    - **LAB:** Learner completes same steps to prepare for diff
+  - Make more changes
+  - `git status`
+  - **LAB:** Learner completes same steps to prepare for diff
+
+- Unstaging Files
+  - **DEMO:** Create a file, stage it, then unstage it
+  - **LAB:** Learner creates a file, stages it, then unstages it
+
+- Discarding Changes in Modified Files
+  - **DEMO:** Create a file, commit, make some changes, `git checkout --`
+  - **LAB:** Learner makes changes to a file and then discards the changes.

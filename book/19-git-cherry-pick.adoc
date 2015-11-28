@@ -1,14 +1,6 @@
 [[_git_cherry_pick]]
-== Merge Strategies: Cherry Pick
+== Cherry Picking
 
-In this section, we will discuss the collaborative workflow enabled by GitHub.
+We just learned how reflog can help us find local changes that have been discarded. So what if:
 
 include::19a-cherry-pick.adoc[]
-
-include::19a-exploring.adoc[]
-
-### Cherry-picking
-
-- **DEMO:** Show git reflog
-- **DEMO:** Show `git cherry-pick` for one of the files
-- **LAB:** Learner creates a branch and cherry-picks the other two files

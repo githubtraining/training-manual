@@ -1,9 +1,11 @@
 [[_git_reset]]
 == Rewriting History with Git Reset
 
-In this section, we will discuss the collaborative workflow enabled by GitHub.
+In this section, you will learn how to re-write history with Git.
 
 include::18a-reset-modes.adoc[]
+
+include::18a-create-repo.adoc[]
 
 include::18a-reset-soft.adoc[]
 
@@ -11,24 +13,6 @@ include::18a-reset-mixed.adoc[]
 
 include::18a-reset-hard.adoc[]
 
+include::18a-reflog.adoc[]
+
 include::18a-exploring.adoc[]
-
-### Resetting
-
-- **LAB:** Learner creates four throw away files and commits them separately
-- Unstaging Files
-  - **DEMO:** Create a file, stage it, then unstage it
-  - **LAB:** Learner creates a file, stages it, then unstages it
-- Resetting History
-  - Understanding reset
-  - Git reset modes
-  - **DEMO:** soft reset
-  - **LAB:** Learner soft resets the last three commits
-  - **DEMO:** mixed reset
-  - **LAB:** Learner mixed resets the last commit
-  - **DEMO:** hard reset
-  - **LAB:** Learner hard resets the last commit
-
-  - Discarding Changes in Modified Files
-    - **DEMO:** Create a file, commit, make some changes, `git checkout --`
-    - **LAB:** Learner makes changes to a file and then discards the changes.
