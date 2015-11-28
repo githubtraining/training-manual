@@ -34,26 +34,3 @@ If you need additional assistance installing Git, you can find more information 
 If you just installed Git on your Windows machine, now is a good time to create a shortcut to the command line application you will want to use with Git. You can use `PowerShell` or `Git Bash` which is installed with the Git package.
 
 Once you find it, go ahead and open it!
-
-==== First Time Set Up
-
-While you are in your terminal window, let's take care of a few configuration tasks.
-
-(((git commands, config)))Git allows you to set certain configuration variables that control how Git will look and function. These variables are stored at three different levels:
-
-.Git Configuration options.
-image::book/images/config-levels.jpg["Git Configuration options."]
-
-* Variables set at the `--system` level will apply to all users on the system.
-* Variables set at the `--global` level will apply to your specific user account.
-* Variables set at the `--local` level will only apply to the repository you are in when you set that variable.
-
-Let's go ahead and set two of these configuration options now to match your public GitHub.com account settings:
-
-[source,console]
-----
-$ git config --global user.name "Your Name"
-$ git config --global user.email "Your Email"
-----
-
-That is enough to get us started, let's move on to the next step.
