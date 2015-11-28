@@ -10,4 +10,7 @@ Git allows you to set configuration options at three different levels.
 *--global* - These are the user level configurations. They only apply to your user account.
 *--local* - These are the repository level configurations. They only apply to the specific repository where they are set.
 
-The default value for git config is --local.
+[NOTE]
+====
+The default value for git config is `--local`.
+====

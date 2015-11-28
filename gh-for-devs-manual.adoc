@@ -1,5 +1,5 @@
 = GitHub for Developers: Training Manual
-@crichID <crichID@github.com>
+@crichID
 :doctype: book
 :source-highlighter: coderay
 :listing-caption: Listing
