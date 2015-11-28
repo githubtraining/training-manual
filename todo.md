@@ -5,7 +5,6 @@
 - [ ] check for consistency in formatting
 - [ ] check for consistency in indexes
 - [ ] add more explore options
-- [ ] add summary for each section
 - [x] add license statement to doc
 
 ### Formatting elements
