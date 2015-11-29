@@ -1,5 +1,5 @@
 [[_github_defined]]
-=== Introduction to GitHub
+=== What is GitHub?
 
 .GitHub's beloved Octocat logo.
 image::book/images/github-icon.jpg["The beloved Octocat logo."]
@@ -9,9 +9,9 @@ GitHub is a collaboration platform built on top of a distributed version control
 .Key GitHub Features.
 image::book/images/collaboration-features.jpg["GitHub Collaboration Features"]
 
-In addition to being a place to host and share your Git projects, GitHub provides a number of features to help your team collaborate including issues for discussing features and bugs and pull requests for discussing and reviewing new features your team is working on.
+In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively.
 
 .The GitHub Ecosystem.
 image::book/images/github-ecosystem.jpg["The GitHub Ecosystem"]
 
-You can also use all of your favorite tools with GitHub. Indispensable tools like continuous integration and continuous deployment help you and your team build software better, together.
+Unlike other VCSs that try to force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. You may even find some new, indispensable tools like continuous integration and continuous deployment to help you and your team build software better, together.

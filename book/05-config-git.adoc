@@ -14,5 +14,3 @@ include::05a-config-editor.adoc[]
 include::05a-config-autocrlf.adoc[]
 
 include::05a-config-push.adoc[]
-
-include::05a-exploring.adoc[]

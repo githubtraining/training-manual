@@ -8,5 +8,3 @@ include::08a-edit-file-github.adoc[]
 include::08a-commit-file-github.adoc[]
 
 include::08a-edit-file-activity.adoc[]
-
-include::08a-exploring.adoc[]

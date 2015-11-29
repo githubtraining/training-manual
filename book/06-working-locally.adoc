@@ -14,5 +14,3 @@ include::06a-git-checkout.adoc[]
 include::06a-file-creation-activity.adoc[]
 
 include::06a-two-stage-commit.adoc[]
-
-include::06a-exploring.adoc[]

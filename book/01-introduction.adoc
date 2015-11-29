@@ -1,7 +1,7 @@
 [[_getting_ready]]
 == Getting Ready for Class
 
-This section will help you get your local work environment set up for the GitHub for Developer class. Please take a moment to complete each of these steps for a smooth class experience.
+While you are waiting for class to begin, take a few minutes to set up your local work environment. Please take a moment to complete each of these steps for a smoother class experience.
 
 include::01a-github-account.adoc[]
 
