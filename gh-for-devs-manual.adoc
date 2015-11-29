@@ -3,6 +3,7 @@
 :doctype: book
 :source-highlighter: coderay
 :listing-caption: Listing
+:icons:
 :toc:
 :toclevels: 2
 :front-cover-image: image:book/cover.png[width=1050,height=1600]
