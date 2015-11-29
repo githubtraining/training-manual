@@ -1,7 +1,7 @@
 [[_texteditor_setup]]
-=== Setting Up Your Text Editor
+=== Step 3: Set Up Your Text Editor
 
-For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the Command Line.
+For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command line.
 
 ==== Pick Your Editor
 
@@ -12,24 +12,15 @@ You can use almost any text editor, but we have the best success with the follow
 * Sublime
 * Notepad or Notepad++
 
-If you do not already have a text editor installed, download and install one!
+If you do not already have a text editor installed, go ahead and download and install one of the above editors now!
 
 ==== Your Editor on the Command Line
 
-Once you have installed an editor, confirm you can open it from the command line. This requires you to have Shell Commands installed on atom. For example, for atom, you would type the following to open the current directory in atom:
+After you have install an editor, confirm you can open it from the command line. If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+
+If installed properly, the following command will open the atom text editor:
 
 [source,console]
 ----
 $ atom .
 ----
-
-==== Editor Configuration
-
-(((git commands, config)))Finally, let's configure your favorite text editor to work with Git.
-
-[source,console]
-----
-$ git config --global core.editor "atom --wait"
-----
-
-Just in case atom isn't your favorite, this help article contains instructions for several other editors: https://help.github.com/articles/associating-text-editors-with-git/[]

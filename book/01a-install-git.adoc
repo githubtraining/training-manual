@@ -1,7 +1,7 @@
 [[_setup_git]]
-=== Setting Up Git
+=== Step 2: Install Git
 
-Git is the open source application that GitHub uses to version control your content. You will need Git installed in order to work with your files locally on the Command Line.
+Git is the open source application GitHub uses to version control your content. You will need Git installed in order to work with your files locally.
 
 You may already have Git installed so let's check! Open Terminal if you are on a Mac, or Powershell if you are on a Windows machine, and type:
 
@@ -10,7 +10,7 @@ You may already have Git installed so let's check! Open Terminal if you are on a
 $ git --version
 ----
 
-You should get something like this:
+You should see something like this:
 
 [source,console]
 ----
@@ -20,7 +20,7 @@ git version 2.6.3
 
 Anything over 1.9.5 will work for this class!
 
-==== Installing Git
+==== Downloading and Installing Git
 
 If you don't already have Git installed, you have two options:
 
@@ -29,8 +29,11 @@ If you don't already have Git installed, you have two options:
 
 If you need additional assistance installing Git, you can find more information in this ProGit chapter on http://git-scm.com/book/en/v2/Getting-Started-Installing-Git[installing Git].
 
-==== Finding Your Shell
+==== Where is Your Shell?
 
-If you just installed Git on your Windows machine, now is a good time to create a shortcut to the command line application you will want to use with Git. You can use `PowerShell` or `Git Bash` which is installed with the Git package.
+Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
-Once you find it, go ahead and open it!
+* If you are working on Windows, you can use `PowerShell` or `Git Bash` which is installed with the Git package.
+* If you are working on a Mac or other Unix based system, you can use the terminal application.
+
+Go ahead and open your command line application now!
