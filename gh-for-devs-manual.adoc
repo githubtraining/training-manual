@@ -7,12 +7,6 @@
 :toclevels: 2
 :front-cover-image: image:book/cover.png[width=1050,height=1600]
 
-=== License
-
-The prose, course text, slide layouts, class outlines, diagrams, HTML, CSS, and Markdown code in the set of educational materials located in this repository are licensed as http://creativecommons.org/licenses/by/4.0/legalcode[CC BY 4.0]. The Octocat, GitHub logo and other already-copyrighted and already-reserved trademarks and images are not covered by this license.
-
-For more information, visit: http://creativecommons.org/licenses/by/4.0/
-
 include::book/01-introduction.adoc[]
 
 include::book/02-getting-started.adoc[]
