@@ -1,35 +1,17 @@
-# GitHub for Developers Training Manual
+= GitHub for Developers Training Manual
 
 Welcome to the first edition of the GitHub for Developers Training Manual.
 
-You can find this book online at: ??
-
-This project uses the Asciidoc format for the text of the manual.
-We are also hoping to use O'Reilly's https://atlas.oreilly.com[Atlas platform] for generating continuous builds of the book.
+This project uses the Asciidoc format for the text of the manual. The manuals are generated using the `asciidoctor-pdf` project.
 
 == How To Generate the Manual
 
-There are two ways to generate e-book content from this source code.
+Each manual supports two versions, a student version and a facilitator version. Select the version of the file you would like to generate by designating the appropriate theme and book as follows:
 
-The easiest way is simply to let us do it.
-A robot is standing by to look for new work on the main branch and automatically build it for everyone.
+==== Student Manual
 
-You can find the current builds on ?? and more information about the builds available at ??.
+`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=student gh-for-devs-manual.adoc`
 
-The other way to generate e-book files is to do so manually with Asciidoctor.
-If you run the following you _may_ actually get HTML, Epub, Mobi and PDF output files:
+==== Facilitator Manual
 
-----
-$ bundle install
-$ bundle exec rake book:build
-Converting to HTML...
- -- HTML output at gh-for-devs-manual.html
-Converting to EPub...
- -- Epub output at gh-for-devs-manual.epub
-Converting to Mobi (kf8)...
- -- Mobi output at gh-for-devs-manual.mobi
-Converting to PDF...
- -- PDF  output at gh-for-devs-manual.pdf
-----
-
-This uses the `asciidoctor`, `asciidoctor-pdf` and `asciidoctor-epub` projects.
+`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=facilitator gh-for-devs-manual.adoc`
