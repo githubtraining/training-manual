@@ -1,9 +1,10 @@
 = GitHub for Developers: Training Manual
 @crichID
+v0.1 2015-11-29
 :doctype: book
 :source-highlighter: coderay
 :listing-caption: Listing
-:icons:
+:icons: font
 :toc:
 :toclevels: 2
 :front-cover-image: image:book/cover.png[width=1050,height=1600]

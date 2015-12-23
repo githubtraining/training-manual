@@ -6,6 +6,8 @@
 - [ ] check for consistency in indexes
 - [ ] add more summary/explore options
 - [x] add license statement to doc
+- [x] Icons are enabled by setting the icons attribute on the document.
+- [ ] add :imagesdir: book/images
 
 ### Formatting elements
 
