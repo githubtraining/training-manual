@@ -23,6 +23,6 @@ The three modes for git reset are: `--soft`, `--mixed`, and `--hard`. For these 
 With the `--mixed` option, Git makes `<my-branch>` *and* the staging area look like the `<other-commit>` snapshot. This is the default mode: if you don't include a mode flag, Git will assume you want `--mixed`. `--mixed` is useful if you want to keep all of your changes in the working directory, but change whether and how you commit those changes.
 
 ==== Reset --hard
-`--hard` is the most drastic option. With this, Git will now make all 3 snapshots -- `<my-branch>`, the staging area, *and* your working directory -- look like they did at `<other-commit>`. This can be dangerous! We've assumed so far that our working directory is clean. If it is not, and you have uncommited changes, `git reset --hard` will *delete all of those changes*. Even with a clean working directory, use `--hard` only if you're sure you want to completely undo earlier changes.
+`--hard` is the most drastic option. With this, Git will now make all 3 snapshots, `<my-branch>`, the staging area, *and* your working directory, look like they did at `<other-commit>`. This can be dangerous! We've assumed so far that our working directory is clean. If it is not, and you have uncommited changes, `git reset --hard` will *delete all of those changes*. Even with a clean working directory, use `--hard` only if you're sure you want to completely undo earlier changes.
 
 Next we will try out each of these options.
