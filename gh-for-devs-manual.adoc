@@ -5,6 +5,7 @@ v0.1 2015-11-29
 :source-highlighter: coderay
 :listing-caption: Listing
 :icons: font
+:icon-set: octicon
 :toc:
 :toclevels: 2
 :front-cover-image: image:book/cover.png[width=1050,height=1600]
