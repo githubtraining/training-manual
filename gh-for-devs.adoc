@@ -10,6 +10,10 @@ v0.1 2015-11-29
 :toclevels: 2
 :front-cover-image: image:book/cover.png[width=1050,height=1600]
 
+ifdef::fac-notes[]
+include::book/preparing-to-teach.adoc[]
+endif::fac-notes[]
+
 include::book/01-introduction.adoc[]
 
 include::book/02-getting-started.adoc[]
