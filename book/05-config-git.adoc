@@ -1,7 +1,7 @@
 [[_git_config]]
 == Local Git Configuration
 
-In this section, we will prepare your local environment to work with Git and GitHub.
+In this section, we will prepare your local environment to work with Git.
 
 include::05a-config-levels.adoc[]
 
