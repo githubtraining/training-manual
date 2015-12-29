@@ -1,7 +1,7 @@
 [[_setup_git]]
 === Step 2: Install Git
 
-Git is the open source application GitHub uses to version control your content. You will need Git installed in order to work with your files locally.
+Git is an open source version control application. You will need Git installed for this class.
 
 You may already have Git installed so let's check! Open Terminal if you are on a Mac, or Powershell if you are on a Windows machine, and type:
 
