@@ -2,10 +2,7 @@ output
 .DS_Store
 
 # build artifacts
-gh-for-devs-manual.html
-gh-for-devs-manual.pdf
-gh-for-devs-manual.pdfmarks
-gh-for-devs-manual.epub
-gh-for-devs-manual-kf8.epub
-gh-for-devs-manual.mobi
+gh-for-devs.pdf
+git-only.pdf
+gh-with-eclipse.pdf
 /images/
