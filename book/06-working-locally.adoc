@@ -1,7 +1,7 @@
 [[_work_local]]
-== Working Locally with Git and GitHub
+== Working Locally with Git
 
-If you prefer to work on the command line, you can easily integrate GitHub into your current workflow. In this section, we will discuss how to combine the collaborative features of GitHub with the tools you know and love!
+If you prefer to work on the command line, you can easily integrate Git into your current workflow.
 
 include::06a-git-clone.adoc[]
 

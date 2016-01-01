@@ -6,7 +6,14 @@
 $ git branch
 ----
 
-If you type `git branch` you will see a list of local branches. Notice that the branch you created before you cloned the repository doesn't show up here.
+If you type `git branch` you will see a list of local branches.
+
+ifdef::fac-notes[]
+[NOTE]
+====
+Facilitator Note: Note that any branches created before the repo has been cloned do not appear with `git branch`.
+====
+endif::fac-notes[]
 
 [source,console]
 ----
