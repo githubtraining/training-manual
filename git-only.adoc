@@ -50,4 +50,8 @@ include::book/18-git-reset.adoc[]
 
 include::book/19-git-cherry-pick.adoc[]
 
+include::book/20-git-rebase.adoc[]
+
 include::book/A-workflow-discuss.adoc[]
+
+include::book/B-learn-more.adoc[]

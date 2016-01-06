@@ -21,9 +21,9 @@ $ git branch --all
 $ git branch -a
 ----
 
-If you want to see all of the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`
+If you want to see all of the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`.
 
 [NOTE]
 ====
-The `--all` and `-a` are actually synonyms in Git. Git often provides a verbose and a short option.
+The `--all` and `-a` are actually synonyms in Git. Git often provides a verbose and a short option. 
 ====

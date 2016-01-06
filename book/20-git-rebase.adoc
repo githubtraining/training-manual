@@ -1,13 +1,11 @@
 [[_git_rebase]]
 == Merge Strategies: Rebase
 
-In this section, we will discuss //
+In this section, we will discuss another popular merge strategy, rebasing.
 
 include::20a-rebase-defined.adoc[]
 
 include::20a-rebase-interactive.adoc[]
-
-include::20a-exploring.adoc[]
 
 ### Rebasing
 
