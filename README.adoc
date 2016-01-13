@@ -4,7 +4,7 @@ Welcome to the GitHub Training Manual repo. In this repo, you will find the cont
 
 | Course | Manual File
 | ====================
-| GitHub for Developers             | `gh-for-devs.adoc` 
+| GitHub for Developers             | `gh-for-devs.adoc`
 | GitHub for Developers w/Eclipse   | `gh-with-eclipse.adoc`
 | Git Essentials                    | `git-only.adoc`
 | ====================
@@ -17,8 +17,8 @@ Each manual supports two versions, a student version and a facilitator version. 
 
 ==== Student Manual
 
-`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual `
+`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual <manual.adoc>`
 
 ==== Facilitator Manual
 
-`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual -a fac-notes <<manual.adoc>>`
+`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual -a fac-notes <manual.adoc>`
