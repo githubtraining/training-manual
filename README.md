@@ -3,7 +3,7 @@
 Welcome to the GitHub Training Manual repo. In this repo, you will find the content for all of the materials used by GitHub trainers during our official training courses. This includes:
 
 | Course | Manual File |
-| ===== | ============= |
+| ------ | ---------- |
 | GitHub for Developers             | `gh-for-devs.adoc` |
 | GitHub for Developers w/Eclipse   | `gh-with-eclipse.adoc` |
 | Git Essentials                    | `git-only.adoc` |
