@@ -1,4 +1,4 @@
-= GitHub Training Manuals
+# GitHub Training Manuals
 
 Welcome to the GitHub Training Manual repo. In this repo, you will find the content for all of the materials used by GitHub trainers during our official training courses. This includes:
 
@@ -10,14 +10,14 @@ Welcome to the GitHub Training Manual repo. In this repo, you will find the cont
 
 This project uses the Asciidoc format for the text of the manual. The manuals are generated using the `asciidoctor-pdf` project.
 
-== How To Generate the Manuals
+## How To Generate the Manuals
 
 Each manual supports two versions, a student version and a facilitator version. Select the version of the file you would like to generate by designating the appropriate theme and book as follows:
 
-==== Student Manual
+#### Student Manual
 
 `asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual <manual.adoc>`
 
-==== Facilitator Manual
+#### Facilitator Manual
 
 `asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual -a fac-notes <manual.adoc>`
