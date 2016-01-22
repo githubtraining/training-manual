@@ -1,5 +1,0 @@
-=== Summary
-
-Here are some interesting things you can check out while you are waiting for others to finish the activity:
-
-1. *github.com/integrations* Take a look at the integrations supported by GitHub!
