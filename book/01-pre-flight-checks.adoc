@@ -1,9 +1,11 @@
 [[_getting_ready]]
 == Getting Ready for Class
 
+ifdef::fac-notes[]
 include::01f-section-notes.adoc
+endif::fac-notes[]
 
-While you are waiting for class to begin, take a few minutes to set up your local work environment. Please take a moment to complete each of these steps for a smoother class experience.
+While you are waiting for class to begin, please take a few minutes to set up your local work environment.
 
 include::01a-github-account.adoc[]
 

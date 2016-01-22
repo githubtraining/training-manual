@@ -15,7 +15,7 @@ include::book/preparing-to-teach-gitonly.adoc[]
 include::book/git-only-demo.adoc[]
 endif::fac-notes[]
 
-include::book/01-introduction-gitonly.adoc[]
+include::book/01-introduction.adoc[]
 
 include::book/02-getting-started-gitonly.adoc[]
 

@@ -1,6 +1,4 @@
-ifdef::fac-notes[]
 [NOTE]
 ====
 Facilitator Note: Direct participants to complete this section as they arrive for class. You should ensure everyone has successfully completed these steps before you begin.
 ====
-endif::fac-notes[]
