@@ -9,7 +9,7 @@ $ git branch
 If you type `git branch` you will see a list of local branches.
 
 ifdef::fac-notes[]
-[NOTE]
+[IMPORTANT]
 ====
 Facilitator Note: Note that any branches created before the repo has been cloned do not appear with `git branch`.
 ====

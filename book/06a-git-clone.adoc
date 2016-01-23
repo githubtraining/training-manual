@@ -11,12 +11,8 @@ When you clone a repository you are creating a copy of everything in that reposi
 Let's go ahead and clone the class repository to your local desktop.
 
 .Activity Instructions
-[cols="1,4",options="header"]
-|================================
-| Step    | Description
-| 1       | Navigate to the *class repository* on GitHub
-| 2       | Copy the *clone URL*
-| 3       | Open the CLI
-| 4       | Type `git clone <URL>`
-| 5       | Type `cd <repo-name>`
-|================================
+. Navigate to the *class repository* on GitHub
+. Copy the *clone URL*
+. Open the CLI
+. Type `git clone <URL>`
+. Type `cd <repo-name>`

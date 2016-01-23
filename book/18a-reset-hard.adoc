@@ -3,10 +3,10 @@
 
 Last but not least, let's try a hard reset.
 
-1. Start by viewing the history of our project.
-2. This time we reset to the point in time where the only file that existed was the README.md. Type `git reset --hard <SHA>`.
-3. Type `git status`. Notice your working directory is clean.
-4. Viewing the history of your project will reveal a single commit.
+. Start by viewing the history of our project.
+. This time we reset to the point in time where the only file that existed was the README.md. Type `git reset --hard <SHA>`.
+. Type `git status`. Notice your working directory is clean.
+. Viewing the history of your project will reveal a single commit.
 
 [WARNING]
 ====

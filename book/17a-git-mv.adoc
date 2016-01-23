@@ -2,13 +2,9 @@
 ### Moving and Renaming Files with Git
 
 .Activity Instructions
-[cols="1,4",options="header"]
-|================================
-| Step    | Description
-| 1       | Create a new branch named `slow-down`.
-| 2       | Change the background url to (images/texture.jpg)
-| 3       | Change the timing for the game to speed it up or slow it down.
-| 4       | Type `git status`
-| 5       | Type `mkdir images`
-| 6       | Type `git mv texture.jpg images/texture.jpg`
-|================================
+. Create a new branch named `slow-down`.
+. Change the background url to (images/texture.jpg)
+. Change the timing for the game to speed it up or slow it down.
+. Type `git status`
+. Type `mkdir images`
+. Type `git mv texture.jpg images/texture.jpg`

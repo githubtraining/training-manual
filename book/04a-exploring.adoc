@@ -2,4 +2,4 @@
 
 Here are some interesting things you can check out later:
 
-1. *https://youtu.be/H5GJfcp3p4Q* A GitHub Training Video on branching.
+- *https://youtu.be/H5GJfcp3p4Q* A GitHub Training Video on branching.

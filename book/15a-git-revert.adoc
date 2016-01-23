@@ -3,11 +3,7 @@
 To get your game working, you will need to reverse the commit that incorrectly renames `index.html`.
 
 .Activity Instructions
-[cols="1,4",options="header"]
-|================================
-| Step    | Description
-| 1       | Use `git log` to find the commit where the rename occurred
-| 2       | Type `git revert <SHA>`
-| 3       | Type a commit message
-| 4       | Push your changes to GitHub.
-|================================
+. Use `git log` to find the commit where the rename occurred
+. Type `git revert <SHA>`
+. Type a commit message
+. Push your changes to GitHub.

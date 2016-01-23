@@ -2,4 +2,4 @@
 
 Here are some interesting things you can check out later:
 
-1. *//* What is it?
+- *//* What is it?

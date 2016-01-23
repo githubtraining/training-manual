@@ -6,16 +6,12 @@ Pull Requests are used to propose changes to the project files. A pull request i
 Use the following instructions to create your first Pull Request:
 
 .Activity Instructions
-[cols="1,4",options="header"]
-|================================
-| Step    | Description
-| 1       | Click the Pull Request icon.
-| 2       | Click New Pull Request.
-| 3       | In the *base* dropdown, choose `master`
-| 4       | In the *compare* dropdown, choose your branch.
-| 5       | Type a subject line and enter a comment.
-| 6       | Click Create Pull Request.
-|================================
+. Click the Pull Request icon.
+. Click New Pull Request.
+. In the *base* dropdown, choose `master`
+. In the *compare* dropdown, choose your branch.
+. Type a subject line and enter a comment.
+. Click Create Pull Request.
 
 [NOTE]
 ====

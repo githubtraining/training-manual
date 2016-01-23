@@ -2,10 +2,6 @@
 ### Creating a Fork
 
 .Activity Instructions
-[cols="1,4",options="header"]
-|================================
-| Step    | Description
-| 1       | Navigate to the repo `githubschool/github-games`
-| 2       | Click *Fork*
-| 3       | Select the account you would like the fork to reside.
-|================================
+. Navigate to the repo `githubschool/github-games`
+. Click *Fork*
+. Select the account you would like the fork to reside.
