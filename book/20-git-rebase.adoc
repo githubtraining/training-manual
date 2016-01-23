@@ -1,5 +1,5 @@
 [[_git_rebase]]
-== Merge Strategies: Rebase
+## Merge Strategies: Rebase
 
 In this section, we will discuss another popular merge strategy, rebasing.
 

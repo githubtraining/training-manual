@@ -1,5 +1,5 @@
 [[_config_name]]
-=== Configuring Your User Name and Email
+### Configuring Your User Name and Email
 
 [source,console]
 ----

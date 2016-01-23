@@ -1,5 +1,5 @@
 [[_editing_pull_request]]
-== Editing Files on GitHub
+## Editing Files on GitHub
 
 Since you created the pull request, you will be notified when someone adds a comment. In this case, the comment will tell you  to make a change to the file you created locally. Let's see how GitHub makes this easy.
 

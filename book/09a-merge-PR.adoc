@@ -1,4 +1,4 @@
-=== Merging Your Pull Request
+### Merging Your Pull Request
 
 Let's take a look at how you can merge the pull request.
 

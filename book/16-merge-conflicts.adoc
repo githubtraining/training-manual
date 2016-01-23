@@ -1,5 +1,5 @@
 [[_merge_conflict]]
-== Resolving Merge Conflicts
+## Resolving Merge Conflicts
 
 Merge conflicts can be intimidating, but resolving them is actually quite easy. In this section you will learn how!
 

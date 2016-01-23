@@ -1,5 +1,5 @@
 [[_local_history]]
-== Viewing Project History
+## Viewing Project History
 
 In this section, you will discover commands for viewing the history of your project.
 

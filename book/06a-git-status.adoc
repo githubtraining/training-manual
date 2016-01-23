@@ -1,5 +1,5 @@
 [[_git_status]]
-=== Our Favorite Git command
+### Our Favorite Git command
 
 [source,console]
 ----

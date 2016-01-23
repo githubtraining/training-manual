@@ -1,5 +1,5 @@
 [[_reset_soft]]
-=== Reset Soft
+### Reset Soft
 
 To prepare for this activity, you will need to create four files and commit each separately so your file directory looks like this:
 

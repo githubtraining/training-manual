@@ -1,5 +1,5 @@
 [[_local_diffs]]
-== Viewing Local Changes
+## Viewing Local Changes
 
 Now that you are familiar with the basic workflow, let's explore some of the powerful Git and GitHub features that will help you work with your code.
 

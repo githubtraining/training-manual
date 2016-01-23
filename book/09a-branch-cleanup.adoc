@@ -1,5 +1,5 @@
 [[_delete_branches]]
-=== Cleaning Up Your Branches
+### Cleaning Up Your Branches
 
 When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically delete your local copy of the branch. Let's go back to our Terminal and do some cleanup.
 

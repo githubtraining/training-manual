@@ -1,4 +1,4 @@
-=== Activity: Creating a Pull Request
+### Activity: Creating a Pull Request
 
 Follow these steps to create a Pull Request in the class repository:
 

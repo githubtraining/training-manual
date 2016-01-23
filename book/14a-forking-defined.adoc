@@ -1,4 +1,4 @@
 [[_fork_defined]]
-=== What is a Fork?
+### What is a Fork?
 
 A fork is a full copy of a repository that resides on a different account. They are easiest to understand in the context of Open Source, but are also commonly used in organizations to control who can merge a pull request. Essentially, you will use a fork to make changes to a repository when you do not have write access. At the moment you create the fork, it is an exact duplicate of the parent repository.

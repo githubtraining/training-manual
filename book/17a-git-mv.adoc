@@ -1,5 +1,5 @@
 [[_git_move]]
-=== Moving and Renaming Files with Git
+### Moving and Renaming Files with Git
 
 .Activity Instructions
 [cols="1,4",options="header"]

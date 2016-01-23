@@ -1,4 +1,4 @@
-=== Reverting Commits
+### Reverting Commits
 
 To get your game working, you will need to reverse the commit that incorrectly renames `index.html`.
 

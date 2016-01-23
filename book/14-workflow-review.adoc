@@ -1,5 +1,5 @@
 [[_project_flow]]
-== Project: GitHub Games
+## Project: GitHub Games
 
 In this section, we will complete a project using the GitHub Flow.
 

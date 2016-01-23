@@ -1,4 +1,4 @@
-=== Activity: Creating A Branch with GitHub
+### Activity: Creating A Branch with GitHub
 
 Earlier you created an issue to add a file about your home town. Let's create a branch that you will use to add your file.
 

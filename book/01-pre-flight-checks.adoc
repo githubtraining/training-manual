@@ -1,5 +1,5 @@
 [[_getting_ready]]
-== Getting Ready for Class
+## Getting Ready for Class
 
 ifdef::fac-notes[]
 include::01f-section-notes.adoc

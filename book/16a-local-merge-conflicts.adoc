@@ -1,4 +1,4 @@
-=== Local Merge Conflicts
+### Local Merge Conflicts
 
 To practice merge conflicts, we first need to create one. Complete the following:
 

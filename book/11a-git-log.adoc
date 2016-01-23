@@ -1,5 +1,5 @@
 [[_git_log]]
-=== Using Git Log
+### Using Git Log
 
 When you clone a repository, you receive more than just the files in that the repository. You also receive the history of all of the commits made in that repository.
 

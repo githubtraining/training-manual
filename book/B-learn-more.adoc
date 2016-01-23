@@ -1,5 +1,5 @@
 [[_learn_more]]
-== Appendix B: Digging Deeper
+## Appendix B: Digging Deeper
 
 include::App-b-learn-more-git.adoc[]
 

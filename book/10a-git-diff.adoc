@@ -1,5 +1,5 @@
 [[_git_diff]]
-=== Different Lenses for Viewing Changes
+### Different Lenses for Viewing Changes
 
 .Git Diff Options.
 image::book/images/diff-options.jpg["Available options for git diff"]

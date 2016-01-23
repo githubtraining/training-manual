@@ -1,5 +1,5 @@
 [[_config_push]]
-=== Configuring Default Push Behavior
+### Configuring Default Push Behavior
 
 [source,console]
 ----

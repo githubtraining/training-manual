@@ -1,5 +1,5 @@
 [[_setup_git]]
-=== Step 2: Install Git
+### Step 2: Install Git
 
 Git is an open source version control application. You will need Git installed for this class.
 
@@ -20,20 +20,20 @@ git version 2.6.3
 
 Anything over 1.9.5 will work for this class!
 
-==== Downloading and Installing Git
+#### Downloading and Installing Git
 
 If you don't already have Git installed, you have two options:
 
-1. Download and install Git at www.git-scm.com.
-2. Install it as part of the GitHub Desktop package found at desktop.github.com.
+. Download and install Git at www.git-scm.com.
+. Install it as part of the GitHub Desktop package found at desktop.github.com.
 
 If you need additional assistance installing Git, you can find more information in this ProGit chapter on http://git-scm.com/book/en/v2/Getting-Started-Installing-Git[installing Git].
 
-==== Where is Your Shell?
+#### Where is Your Shell?
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
-* If you are working on Windows, you can use `PowerShell` or `Git Bash` which is installed with the Git package.
-* If you are working on a Mac or other Unix based system, you can use the terminal application.
+- If you are working on Windows, you can use `PowerShell` or `Git Shell` which is installed with the Git package.
+- If you are working on a Mac or other Unix based system, you can use the terminal application.
 
 Go ahead and open your command line application now!

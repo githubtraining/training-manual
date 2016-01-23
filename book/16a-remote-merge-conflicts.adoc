@@ -1,4 +1,4 @@
-=== Remote Merge Conflicts
+### Remote Merge Conflicts
 
 .Activity Instructions
 [cols="1,4",options="header"]

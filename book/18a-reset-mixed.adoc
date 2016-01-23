@@ -1,5 +1,5 @@
 [[_reset_mixed]]
-=== Reset Mixed
+### Reset Mixed
 
 After the soft reset, your file directory should still look like this:
 
@@ -28,11 +28,11 @@ dke03md init file 1
 
 Next we will try the mixed reset:
 
-1. Once again, we will start by viewing the history of our project.
-2. This time we only want to go back one commit in history so we will type `git reset HEAD~` OR `git reset <SHA>`.
-3. Type `git status`. The changes we made in the last commit have been moved back to the working directory.
-4. This time, we will need to `git add` the files to the staging area before we can commit them.
-5. Go ahead and re-commit the files with `git commit -m "another reset example"`
+. Once again, we will start by viewing the history of our project.
+. This time we only want to go back one commit in history so we will type `git reset HEAD~` OR `git reset <SHA>`.
+. Type `git status`. The changes we made in the last commit have been moved back to the working directory.
+. This time, we will need to `git add` the files to the staging area before we can commit them.
+. Go ahead and re-commit the files with `git commit -m "another reset example"`
 
 [NOTE]
 ====

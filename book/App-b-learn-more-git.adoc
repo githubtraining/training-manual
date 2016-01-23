@@ -1,2 +1,2 @@
 [[_learn_git]]
-=== Learn More About Git
+### Learn More About Git

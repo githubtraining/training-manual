@@ -1,5 +1,5 @@
 [[_create_repo_local]]
-=== Creating a Local Repository
+### Creating a Local Repository
 
 Since `git reset` rewrites history, you should avoid using it on commits that have already been made public (e.g. pushed to the repository on GitHub).
 

@@ -1,5 +1,5 @@
 [[_git_push]]
-=== Pushing Your Changes to GitHub
+### Pushing Your Changes to GitHub
 
 .Pushing to GitHub.
 image::book/images/push-pull.jpg["Pushing to GitHub."]

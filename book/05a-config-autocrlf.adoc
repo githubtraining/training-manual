@@ -1,5 +1,5 @@
 [[_config_autocrlf]]
-=== Configuring autocrlf
+### Configuring autocrlf
 
 [source,console]
 ----

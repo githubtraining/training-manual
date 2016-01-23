@@ -1,10 +1,10 @@
 [[_commit_amend]]
-=== Changing Commits
+### Changing Commits
 
 Commit amend allows us to fix mistakes in our last commit. Two of the most common uses are:
 
-* Re-writing commit messages
-* Adding files to the commit
+- Re-writing commit messages
+- Adding files to the commit
 
 When you are adding files to the previous commit, the files to be added should be in the staging area when you type the `git commit --amend` command.
 

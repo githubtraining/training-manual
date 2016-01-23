@@ -1,5 +1,5 @@
 [[_config_editor]]
-=== Configuring a Default Text Editor
+### Configuring a Default Text Editor
 
 [source,console]
 ----

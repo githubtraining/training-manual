@@ -1,5 +1,5 @@
 [[_getting_started]]
-== Getting Started With Git
+## Getting Started With Git
 
 ifdef::fac-notes[]
 include::02f-git-demo.adoc

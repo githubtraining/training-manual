@@ -1,5 +1,5 @@
 [[_two_stage_commit]]
-=== Making Your First commit
+### Making Your First commit
 
 After you have finished making your changes, it is time to commit them. When working from the command line, you will need to be familiar with the idea of the two stage commit.
 
@@ -33,10 +33,10 @@ $ git commit
 
 When you type the commit command without any options, Git will open your default text editor to request a commit message. Simply type your message on the top line of the file. Any line without a # will be included in the commit message.
 
-==== Tips for Good Commit Messages
+#### Tips for Good Commit Messages
 
 Good commit messages should:
 
-* Be short. ~50 characters is ideal.
-* Describe the change introduced by the commit.
-* Tell the story of how your project has evolved.
+- Be short. ~50 characters is ideal.
+- Describe the change introduced by the commit.
+- Tell the story of how your project has evolved.

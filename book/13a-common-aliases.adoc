@@ -1,5 +1,5 @@
 [[_config_alias]]
-=== Creating Custom Aliases
+### Creating Custom Aliases
 
 An alias allows you to type a shortened command to represent a long string on the command line.
 
@@ -23,7 +23,7 @@ $ git config --global alias.lol "log --oneline --graph --decorate --all"
 $ git lol
 ----
 
-=== Other Common Aliases
+#### Other Common Aliases
 
 [source,console]
 ----

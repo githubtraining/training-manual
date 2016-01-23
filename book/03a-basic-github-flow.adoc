@@ -1,5 +1,5 @@
 [[_basic_github_flow]]
-=== The Essential GitHub Workflow
+### The Essential GitHub Workflow
 
 .GitHub Workflow.
 image::book/images/github-workflow.png["GitHub Workflow"]

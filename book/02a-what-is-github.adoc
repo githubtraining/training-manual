@@ -1,5 +1,5 @@
 [[_github_defined]]
-=== What is GitHub?
+### What is GitHub?
 
 .GitHub's beloved Octocat logo.
 image::book/images/github-icon.jpg["The beloved Octocat logo."]

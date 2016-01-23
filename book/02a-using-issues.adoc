@@ -1,12 +1,12 @@
 [[_using_issues]]
-=== Using GitHub Issues
+### Using GitHub Issues
 
 Use GitHub issues to record and discuss ideas, enhancements, tasks, and bugs. They make collaboration easier in a variety of ways, by:
 
-* Replacing email for project discussions, ensuring everyone on the team has the complete story.
-* Allowing you to cross-link to other issues and pull requests.
-* Creating a single, comprehensive record of how and why you made certain decisions.
-* Allowing you to easily pull the right people into a conversation.
+- Replacing email for project discussions, ensuring everyone on the team has the complete story.
+- Allowing you to cross-link to other issues and pull requests.
+- Creating a single, comprehensive record of how and why you made certain decisions.
+- Allowing you to easily pull the right people into a conversation.
 
 GitHub uses a syntax called (((Markdown)))Markdown to help you add basic text formatting to issues.
 

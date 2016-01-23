@@ -1,5 +1,5 @@
 [[_edit_file]]
-=== Editing Pull Request Files
+### Editing Pull Request Files
 
 To edit a pull request file, you will need to access the *files changed* view.
 

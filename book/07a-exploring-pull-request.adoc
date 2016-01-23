@@ -1,17 +1,9 @@
-=== Exploring a Pull Request
+### Exploring a Pull Request
 
 The Pull Request is the heart of the collaboration process. Let's take a look at a few of the features you will use:
 
-==== Conversation view
-
-Similar to the discussion thread on an Issue, a Pull Request creates a discussion about the changes being made to the repository. This discussion is found in the Conversation tab.
-
-==== Commits view
-
-The commits view contains information about who has made changes to the files. Each commit is an updated view of the repository, allowing us to see how changes have happened from commit to commit.
-
-==== Files changed view
-
-The Files changed view allows you to see the change that is being proposed. We call this the `diff`. Notice that some of the text is highlighted in red. This is what has been removed. The green text is what has been added.
+Conversation view:: Similar to the discussion thread on an Issue, a Pull Request creates a discussion about the changes being made to the repository. This discussion is found in the Conversation tab.
+Commits view:: The commits view contains information about who has made changes to the files. Each commit is an updated view of the repository, allowing us to see how changes have happened from commit to commit.
+Files changed view:: The Files changed view allows you to see the change that is being proposed. We call this the `diff`. Notice that some of the text is highlighted in red. This is what has been removed. The green text is what has been added.
 
 In the files changed view, you can enter a *line comment*. Line level comments are a great way to give additional context on recommended changes. These comments will also be displayed in the conversation view.

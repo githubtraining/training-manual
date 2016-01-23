@@ -1,5 +1,5 @@
 [[_git_clone]]
-=== Creating a Local Copy of the repo
+### Creating a Local Copy of the repo
 
 .Cloning a repository.
 image::book/images/clone-diagram.jpg["Cloning a repository."]

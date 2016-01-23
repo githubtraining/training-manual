@@ -1,5 +1,5 @@
 [[_using_branches]]
-== Branching on GitHub
+## Branching on GitHub
 
 In this section, we will create a branch to separate our feature work from the master branch.
 

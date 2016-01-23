@@ -1,10 +1,10 @@
-=== Keeping It Safe
+### Keeping It Safe
 
 Git's data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the integrity of the data that has been shared.
 
 If an operation will change a commit ID that has already been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.
 
-.Activity Instructions
+.Guidelines for Common Commands
 [cols="1,4",options="header"]
 |================================
 | Command        | Cautions

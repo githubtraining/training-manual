@@ -1,5 +1,5 @@
 [[_github_pages]]
-=== Introduction to GitHub Pages
+### Introduction to GitHub Pages
 
 GitHub Pages enable you to host a free, static web page directly from your GitHub repository. The `github-games` project will use GitHub Pages. We will barely scratch the surface in this class, but there are a few things you need to know:
 

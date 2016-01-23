@@ -1,4 +1,4 @@
-=== Activity: Creating a New File
+### Activity: Creating a New File
 
 .Activity Instructions
 [cols="1,4",options="header"]

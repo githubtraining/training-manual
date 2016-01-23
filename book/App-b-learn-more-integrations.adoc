@@ -1,4 +1,4 @@
 [[_learn_integrations]]
-=== Learn More About GitHub Integrations
+### Learn More About GitHub Integrations
 
-1. *github.com/integrations* Take a look at the integrations supported by GitHub!
+- *github.com/integrations* Take a look at the integrations supported by GitHub!

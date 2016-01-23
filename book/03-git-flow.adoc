@@ -1,5 +1,5 @@
 [[_git_flow]]
-== Understanding the Git Flow
+## Understanding the Git Flow
 
 In this section, we will discuss the essential workflow enabled by Git.
 

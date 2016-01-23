@@ -1,5 +1,5 @@
 [[_merge_defined]]
-=== What Happens When You Merge?
+### What Happens When You Merge?
 
 .Merge visual.
 image::book/images/merge-visual.jpg["A simplified version of what happens when you merge."]

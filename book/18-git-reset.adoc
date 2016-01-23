@@ -1,5 +1,5 @@
 [[_git_reset]]
-== Rewriting History with Git Reset
+## Rewriting History with Git Reset
 
 In this section, you will learn how to re-write history with Git.
 
