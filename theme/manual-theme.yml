@@ -5,7 +5,7 @@ page:
 base:
   font:
     color: #333333
-    family: Times-Roman
+    family: Arial
     size: 12
   line:
     height_length: 17
