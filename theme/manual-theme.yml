@@ -4,15 +4,15 @@ page:
   size: Letter
 font:
   catalog:
-    ApexNew:
-      normal: ApexNew-normal.otf
-      italic: ApexNew-italic.otf
-      bold: ApexNew-bold.otf
-      bold_italic: ApexNew-bold_italic.otf
+    consola:
+      normal: consola-normal.ttf
+      italic: consola-italic.ttf
+      bold: consola-bold.ttf
+      bold_italic: consola-bold_italic.ttf
 base:
   font:
     color: #333333
-    family: ApexNew
+    family: consola
     size: 12
   line:
     height_length: 17
