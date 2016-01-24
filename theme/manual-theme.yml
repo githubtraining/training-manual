@@ -2,10 +2,17 @@ page:
   layout: portrait
   margin: [0.75in, 1in, 0.75in, 2in]
   size: Letter
+font:
+  catalog:
+    ApexNew:
+      normal: ApexNew-normal.otf
+      italic: ApexNew-italic.otf
+      bold: ApexNew-bold.otf
+      bold_italic: ApexNew-bold_italic.otf
 base:
   font:
     color: #333333
-    family: Times-Roman
+    family: ApexNew
     size: 12
   line:
     height_length: 17
