@@ -4,6 +4,11 @@ page:
   size: Letter
 font:
   catalog:
+    roboto:
+      normal: Roboto-normal.ttf
+      italic: Roboto-italic.ttf
+      bold: Roboto-bold.ttf
+      bold-italic: Roboto-bold_italic.ttf
     consola:
       normal: consola-normal.ttf
       italic: consola-italic.ttf
