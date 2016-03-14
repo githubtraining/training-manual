@@ -25,7 +25,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 
 - Overview of the GitHub Flow (guides.github.com)
 
-### Create Issue and Branch on GitHub
+### Create Branch on GitHub
 
 - Using Branches
   - **DEMO:** Creating a Branch on GitHub
