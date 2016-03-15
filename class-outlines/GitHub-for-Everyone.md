@@ -1,6 +1,6 @@
 # GitHub for Everyone
 
-This guide is intended to provide a cliff notes style overview of the GitHub for Everyone curriculum. For details on the content of each section, refer to the [Certify modules](https://github.com/certify/curriculum-github).
+This guide is intended to provide a cliff notes style overview of the GitHub for Everyone curriculum. 
 
 ### Getting Started with Collaboration
 
