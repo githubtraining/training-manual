@@ -27,6 +27,7 @@ In order to make a file part of the version controlled directory we will first d
 
 [source,console]
 ----
+$ git status
 $ git add my-file.md
 $ git commit
 ----
