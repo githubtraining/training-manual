@@ -16,8 +16,8 @@ Each manual supports two versions, a student version and a facilitator version. 
 
 #### Student Manual
 
-`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual <manual.adoc>`
+`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts <manual.adoc>`
 
 #### Facilitator Manual
 
-`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual -a fac-notes <manual.adoc>`
+`asciidoctor-pdf -a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -a fac-notes <manual.adoc>`
