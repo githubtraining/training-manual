@@ -24,11 +24,7 @@ include::book/03-git-flow.adoc[]
 
 include::book/06-working-locally.adoc[]
 
-include::book/07-git-to-github.adoc[]
-
-include::book/08-edit-on-github.adoc[]
-
-include::book/09-merging-pull-requests.adoc[]
+include::book/07a-git-push.adoc[]
 
 include::book/10-local-diffs.adoc[]
 
