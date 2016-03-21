@@ -1,8 +1,4 @@
 output
 .DS_Store
-
-# build artifacts
-gh-for-devs.pdf
-git-only.pdf
-gh-with-eclipse.pdf
-/images/
+*.pdf
+images/
