@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# script/bootstrap: Resolve all dependencies required to produce manuals
+
+set -e
+
+if [ -z "$(rbenv version-name 2>/dev/null)" ]; then
+echo "==> Installing Ruby..."
+rbenv install --skip-existing
+which bundle >/dev/null 2>&1  || {
+  gem install bundler
+  rbenv rehash
+}
+fi
+
+echo "==> Installing gem dependencies..."
+bundle check --path vendor/gems >/dev/null 2>&1  || {
+  bundle install --path vendor/gems --quiet --without production
+}
