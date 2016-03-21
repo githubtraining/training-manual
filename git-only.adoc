@@ -34,8 +34,6 @@ include::book/12-commit-amend.adoc[]
 
 include::book/13-create-alias.adoc[]
 
-include::book/14-workflow-review.adoc[]
-
 include::book/15-git-revert.adoc[]
 
 include::book/16-merge-conflicts.adoc[]
