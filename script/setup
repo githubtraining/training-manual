@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# script/setup: produce manuals for all classes
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+for file in *; do
+  eval script/generate-manual $file 2>/dev/null || true
+done
+
+echo "==> All manuals created!\n"
