@@ -1,6 +1,6 @@
 # GitHub for Everyone
 
-This guide is intended to provide a cliff notes style overview of the GitHub for Everyone curriculum. 
+This guide is intended to provide a cliff notes style overview of the GitHub for Everyone curriculum.
 
 ### Getting Started with Collaboration
 
@@ -21,7 +21,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
   - Describe Issues
   - DEMO: Using Issues
     - Navigate to the issue `Class Goals`
-    - Demonstrate markdown for headers, checkboxes and emoji.
+    - Demonstrate markdown for headers, checkboxes and emoji
     - @mention any co-teachers
     - `Preview`
     - Issue attachment
@@ -29,10 +29,10 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
   - **DEMO:** Using Issues
     - `Assign` the issue to the co-teacher
     - Add a `label`
-  - **LAB:** Create an Issue to add your bio to the repo.
+  - **LAB:** Create an Issue to add your bio to the repo
 - Social Features of GitHub
   - Explain how to control the flood of email by:
-    - Unsubscribing to threads 
+    - Unsubscribing to threads
     - Watching (un-watching) repositories
     - Notification settings
     - Notification center
@@ -43,12 +43,12 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 - Using Branches
   - **DEMO:** Creating a Branch
     - Create a branch named 'firstname-lastname-intro'
-  - **LAB:** Learners create their own branch.
+  - **LAB:** Learners create their own branch
 - Creating Files on GitHub
   - **DEMO:** Create a file on GitHub
     - Name the file `<firstname-lastname>.md`
     - Commit the file to the branch
-  - **LAB:** Learner creates a bio file and commits it to their branch.
+  - **LAB:** Learner creates a bio file and commits it to their branch
 - Creating Pull Requests
   - Understanding Pull Requests
   - **DEMO:** Creating a Pull Request on GitHub
@@ -59,7 +59,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
     - Create line comment
     - Add a general comment to the discussion
     - Add :+1: emoji
-  - **LAB:** Learner creates a pull request and then comments on someone else's pull request.
+  - **LAB:** Learner creates a pull request and then comments on someone else's pull request
 
 ===== PACE CHECK =====
 
@@ -70,7 +70,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
   - **LAB:** Learner edits their file based on comments in the pull request
 - Merging Pull Requests
   - What happens when we merge Pull Requests
-  - **DEMO:** Merge the pull request, closing the issue in the merge commit.
+  - **DEMO:** Merge the pull request, closing the issue in the merge commit
     - Delete the branch
     - Show the closed issue
   - **LAB:** Learner merges their pull request, closes the issue, and deletes the branch

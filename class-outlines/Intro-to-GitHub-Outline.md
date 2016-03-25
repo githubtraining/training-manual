@@ -18,17 +18,17 @@
 - GitHub workflows
 
 ### What is GitHub?
-- GitHub is a collaboration platform that allows you to share your development projects with others.
-- It provides a social connector with your fellow developers around the world.
-- It enables code review and code management.
-- It helps you plan and organize the work to be completed on your project.
+- GitHub is a collaboration platform that allows you to share your development projects with others
+- It provides a social connector with your fellow developers around the world
+- It enables code review and code management
+- It helps you plan and organize the work to be completed on your project
 
 ### What is Git?
-- Git is an open source version control system.
-- Specifically it is called a distributed version control system.
+- Git is an open source version control system
+- Specifically it is called a distributed version control system
 
 ### What is Distributed Version Control?
-- Enables everyone to have a complete local copy of the repository and all of it's history.
+- Enables everyone to have a complete local copy of the repository and all of it's history
 
 ### Logging in to GitHub
 - You will need a GitHub login to participate in this Class
@@ -36,7 +36,7 @@
 - Log in to GitHub as `githubteacher`
 
 ### Tour of the Dashboard
-- This is the dashboard that shows your repos, activity on your repos, and repos owned by others that you have contributed to.
+- This is the dashboard that shows your repos, activity on your repos, and repos owned by others that you have contributed to
 
 ### Tour of a repository
 - open the class repository (paste link in chat)

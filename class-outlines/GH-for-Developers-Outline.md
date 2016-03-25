@@ -82,5 +82,5 @@
 
 ### Workflow Application
 
-- Using what you have learned in your day-to-day work.
-- Discussing workflows and best practices.
+- Using what you have learned in your day-to-day work
+- Discussing workflows and best practices

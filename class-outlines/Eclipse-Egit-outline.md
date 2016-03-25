@@ -46,7 +46,7 @@
 
 ### Synchronize View
 
-- Understanding the synchronize view and how it works with Git.
+- Understanding the synchronize view and how it works with Git
 
 ### Things That We Find Easier on the Command Line
 

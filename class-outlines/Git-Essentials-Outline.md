@@ -10,7 +10,7 @@
 
 ## Git by Yourself
 
-- Working locally with Git.
+- Working locally with Git
 
 ### Git Setup and Configuration
 
@@ -54,7 +54,7 @@
 
 ### Creating Shortcuts for your Workflow
 
-- Creating shortcuts for long commands (aliases).
+- Creating shortcuts for long commands (aliases)
 - Automatically prune the remote tracking branches
 
 ### Project 2: Fixing Common Problems
@@ -105,5 +105,5 @@
 
 ### Workflow Application
 
-- Using what you have learned in your day-to-day work.
-- Discussing workflows and best practices.
+- Using what you have learned in your day-to-day work
+- Discussing workflows and best practices
