@@ -1,125 +1,54 @@
 ## Using Eclipse with GitHub
 
-### Preparation
-
-- Ensure you have the latest version of Eclipse which comes with eGit pre-installed.
-- For students with older versions of Eclipse, [this tutorial will help them get the plugin installed](http://eclipsesource.com/blogs/tutorials/egit-tutorial/)
-- For a past recording of this class, see: https://www.youtube.com/watch?v=aZMA39BVd8c
-
 ### Introduction
 
-- Assumptions we are making:
- - You know a little Git
- - You know a little more Eclipse
- - You want to use more Git inside of Eclipse
-- The fundamental goal of the eGit plugin was to create a tool where you could interact with version control inside Eclipse in familiar ways.
+- Goals of the eGit plugin
 
 ### Activating Perspectives and Configuring Git
 
-- Window > Perspective > Open Perspective > Java
-- Window > Perspective > Open Perspective > Other > Git
-- Eclipse > Preferences > Team > Git > configuration
-- show _User Settings_, _System Settings_, _Repository Settings_
-- Set config for `user.name`, `user.email`
-
-#### Keeping it in one perspective
-
-With Eclipse, you can customize each perspective to show the tabs and windows you want. Many users will customize their Java perspective to include the relevant Git views:
-
-- Git
- - Repository
- - Staging
- - Reflog
-- Team
- - History
- - Synchronize
-
-### Creating an Eclipse project
-
-Let's create a basic Hello World Project:
-
-- Open `Java` perspective
-- Window > Show View > `Project Explorer`
-- `New Project` > Java Project > MyHelloWorld
-- In `src` --> New > Package 'hello'
-- In 'hello' --> New > Class "helloworld"
-- Add code:
-
-```Java
-package hello;
-
-public class helloworld {
-  public static void main (String [ ] args){
-
-    System.out.println("Hello World");
-  }
-}
-```
-- Click `Run`
-
-At this point, we have a basic project, but no version control.
+- Opening the Git and Team perspectives
+- Configuring eGit
+- Keeping it in one perspective
+ - Customizing the Java perspective to include the relevant Git and Team views
 
 ### Initializing Version control
 
-- In `Java` perspective, right click `HelloWorld`
-- Select `Team` > `Share project...`
-- Click `Use or create repository in parent folder of project`
-- Select project > Finish
-- Show _HelloWorld NO-HEAD_
-- Switch to `Git` perspective
-- `Git Staging` tab
-- Show `unstaged changes`
-- Drag to `staged changes`
-- Commit message
-- `Commit` (not Commit and Push)
-- Show _HelloWorld master_
+- Creating a simple Java project
+- Initializing version control
+- Making the first commit
 
-### Getting Our Project on GitHub
+### Getting Your Project on GitHub
 
-- Create MyHelloWorld Repo on GitHub (no README, .gitignore, or LICENSE)
-- Copy URL
-- R-click project > `Push Branch master ...`
-- Repo set up dialog
-- Push branch master
-- Check _Configure upstream for push and pull_
-- What do these options mean?
+- Create a repository on GitHub
+- Adding the remote information to your project in Eclipse
+- Choosing the right options for the remote
 
-### Adding a README
+### Adding a new file to your project
 
-Let's follow the advice and add a README.md file to our project.
-
-- Create a branch `add-readme`
-- Switch to `Java` perspective _show that branch persists_
-- New > File > README.md
-- Add README text
-- Show markdown preview
-- Stage changes
-- Clicking the file will bring up a diff view - this is a semantic diff
-- Finish commit
-- Push branch
-- Go back over to GitHub - compare and pull request
+- Using the GitHub flow with Eclipse
+- Creating a branch
+- Creating a new file
+- Staging changes
+ - Viewing semantic diffs
+- Finishing the commit
+- Pushing the branch to GitHub
+- Creating a pull request
 - Make a change on GitHub
-- Go back to Eclipse > pull
-- Show changes added to file
+- Keeping your local project in sync with the remote
 
 ### Viewing Project History
-- Show `History` of project
-- Show `History` of a specific file
+
+- Viewing the commit history
+- Viewing the file history
 - Searching History
-- Reverting commits - literally one click
-
-### Viewing Reflog
-
-- Show `Reflog` - what is the difference between Reflog and History?
-- Click a commit to see the diff
+- Reverting commits
+- Understanding the Reflog
 
 ### Synchronize View
 
-This view is the common denominator across all version control systems with Git. For some VCS, this is the only screen they use. With Git they have the added staging step.
+- Understanding the synchronize view and how it works with Git.
 
-- Clicking a file here will bring it up in the Eclipse Diff view.
-- The remote file is actually the last commit.
+### Things That We Find Easier on the Command Line
 
-### Things Eclipse Doesn't Do Well
-
-- Staging Hunks
+- Resolving merge conflicts
+- Staging hunks
