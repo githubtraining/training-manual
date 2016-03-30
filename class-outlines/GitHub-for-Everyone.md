@@ -6,6 +6,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 
 - Introducing GitHub
   - Version Control Poll
+  - Ask class to make sure they have Desktop installed, desktop.github.com
   - What is GitHub?
   - Key GitHub Features
   - The GitHub Ecosystem
@@ -77,7 +78,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 
 ### Using GitHub Locally
 
-- Basic GitHub Desktop Configuration: Ask class to make sure they have Desktop installed, desktop.github.com
+- Basic GitHub Desktop Configuration
   - Git Configuration Levels
   - **DEMO + ACTIVITY:** Set basic config
 - Cloning a Repository
