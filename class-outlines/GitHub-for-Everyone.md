@@ -77,7 +77,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 
 ### Using GitHub Locally
 
-- Basic GitHub Desktop Configuration
+- Basic GitHub Desktop Configuration: Ask class to make sure they have Desktop installed, desktop.github.com
   - Git Configuration Levels
   - **DEMO + ACTIVITY:** Set basic config
 - Cloning a Repository
