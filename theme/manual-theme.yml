@@ -17,7 +17,7 @@ font:
 base:
   font:
     color: #333333
-    family: consola
+    family: roboto
     size: 12
   line:
     height_length: 17
