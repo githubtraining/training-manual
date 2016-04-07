@@ -6,6 +6,8 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+script/bootstrap
+
 for file in *; do
   eval script/generate-manual $file 2>/dev/null || true
 done
