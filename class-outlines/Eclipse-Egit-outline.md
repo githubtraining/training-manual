@@ -1,5 +1,7 @@
 ## Using Eclipse with GitHub
 
+**Important Note:** _This is the "customer friendly" version of the outline, for the more detailed facilitator outline please reference [this version of the document](https://github.com/github/training-manual/blob/022424c2c0e9d11c7e47287d25c502c8626ed4e6/class-outlines/Eclipse-Egit-outline.md)._
+
 ### Introduction
 
 - Goals of the eGit plugin
