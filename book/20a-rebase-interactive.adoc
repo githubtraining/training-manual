@@ -3,9 +3,9 @@
 .Activity Instructions
 . Type `git checkout -b rebase-me`
 . Create and commit three new files using `touch`, `git add`, and `git commit` 
-. Change history using cherrypick by running `git cherry-pick <one-of-your-files> <another-one-of-your-files>`
+. Change history using cherrypick by typing `git cherry-pick <one-of-your-files> <another-one-of-your-files>`
 . Type `git checkout`
-. Rebase by running `git rebase -i master`
-. See your cool changes by running `git log --oneline` or `git lol`
-. Go back to master by running `git checkout master`
-. Merge the rebase by running `git merge rebase-me`
+. Rebase by typing `git rebase -i master`
+. See your cool changes by typing `git log --oneline` or `git lol`
+. Go back to master by typing `git checkout master`
+. Merge the rebase by typing `git merge rebase-me`
