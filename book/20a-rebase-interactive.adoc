@@ -1,10 +1,10 @@
 ### Git Rebase Practice
 
 .Activity Instructions
-. Run `git checkout -b rebase-me` to create a new branch and checkout to that branch in one step
+. Type `git checkout -b rebase-me`
 . Create and commit three new files using `touch`, `git add`, and `git commit` 
 . Change history using cherrypick by running `git cherry-pick <one-of-your-files> <another-one-of-your-files>`
-. Run `git checkout`
+. Type `git checkout`
 . Rebase by running `git rebase -i master`
 . See your cool changes by running `git log --oneline` or `git lol`
 . Go back to master by running `git checkout master`
