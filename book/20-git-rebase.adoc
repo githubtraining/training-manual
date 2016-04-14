@@ -6,8 +6,3 @@ In this section, we will discuss another popular merge strategy, rebasing.
 include::20a-rebase-defined.adoc[]
 
 include::20a-rebase-interactive.adoc[]
-
-### Rebasing
-
-- **DEMO:** Checkout to `master` and add two more files, then checkout branch and rebase onto master
-- **LAB:** Learner repeats demo
