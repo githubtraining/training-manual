@@ -10,6 +10,7 @@ As the training-kit has gone away with the new iteration of training.github.com,
 - Presentation keynotes could be utilized, shared, and updated 
 - Materials could be organized different ways, such as only seeing keynotes or by only seeing 'GitHub for Developers' content
 
-#### UX
+#### Examples
 - [Outlearn](https://www.outlearn.com/learn/jonathanfmills/advanced-js) has a UX that is smooth and organized, showing current topics in small chunks while still giving users an idea of larger scale of module, unit, and course
+- [Docker](https://training.docker.com/self-paced-training) offers a self paced training page that offers similar content, but in a more flexible manner
 
