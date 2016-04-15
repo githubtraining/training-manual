@@ -13,6 +13,6 @@ If you do not see a git version listed or this command returns an error, you may
 
 [NOTE]
 ====
-To check the latest version of Git, you can go to www.git-scm.com.
+To see what the latest version of Git is, visit www.git-scm.com.
 ====
 
