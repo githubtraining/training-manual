@@ -12,7 +12,7 @@ Typically, you would use `git rebase -i` to:
 
 [WARNING]
 ====
-Because changing your commit history can make things difficult for everyone else using the repository, it's considered bad practice to rebase commits when you've already pushed to a repository.
+Because changing your commit history can make things difficult for everyone else using the repository, it's considered bad practice to rebase commits you've already pushed to a repository.
 ====
 
 #### Rebasing commits against a branch
