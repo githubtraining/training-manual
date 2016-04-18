@@ -1,8 +1,8 @@
 ### About Git rebase
 
-The `git rebase` command allows you to easily change a series of commits, modifying the history of your repository. You can reorder, edit, or squash commits together.
+The `rebase` command enables you to modify your commit history in a variety of ways. For example, you can use it to reorder commits, edit them, squash multiple commits into one, and much else.
 
-Different flags are added to the rebase command, like `git rebase --interactive` or `git rebase --onto`. For these examples and activities, please stick with `git rebase -i`, the shorter version of `git rebase --interactive`.  
+To enable all of this, `rebase` comes in several forms. For today's class, we'll be using interactive rebase: `git rebase --interactive`, or `git rebase -i` for short.  
 
 Typically, you would use `git rebase -i` to:
 
