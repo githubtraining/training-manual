@@ -6,6 +6,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 
 - Introducing GitHub
   - Version Control Poll
+  - Ask class to make sure they have Desktop installed, desktop.github.com
   - What is GitHub?
   - Key GitHub Features
   - The GitHub Ecosystem
@@ -83,7 +84,7 @@ This guide is intended to provide a cliff notes style overview of the GitHub for
 - Cloning a Repository
   - Why we clone
   - **DEMO:** Clone the repository
-    - Create branch on GitHub before cloning
+    - Create branch on Desktop called githubteacher-desktop
   - **LAB:** Learner clones the repo and switches to their branch
 - Editing Local Files
   - **DEMO:** Make and commit changes on the branch
