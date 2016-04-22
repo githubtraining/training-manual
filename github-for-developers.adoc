@@ -24,32 +24,32 @@ include::book/05-local-git-configs.adoc[]
 
 include::book/06-working-locally.adoc[]
 
-include::book/07-git-to-github.adoc[]
+include::book/07-collaborating-on-code.adoc[]
 
 include::book/08-edit-on-github.adoc[]
 
 include::book/09-merging-pull-requests.adoc[]
 
-include::book/10-local-diffs.adoc[]
+include::book/10-view-local-changes.adoc[]
 
 include::book/11-local-history.adoc[]
 
-include::book/12-commit-amend.adoc[]
+include::book/12-fixing-commit-mistakes.adoc[]
 
-include::book/13-create-alias.adoc[]
+include::book/13-streamline-workflow-with-aliases.adoc[]
 
-include::book/14-workflow-review.adoc[]
+include::book/14-workflow-review-project-github-games.adoc[]
 
-include::book/15-git-revert.adoc[]
+include::book/15-reverting-commits.adoc[]
 
-include::book/16-merge-conflicts.adoc[]
+include::book/16-resolving-merge-conflicts.adoc[]
 
-include::book/17-helpful-commands.adoc[]
+include::book/17-helpful-git-commands.adoc[]
 
-include::book/18-git-reset.adoc[]
+include::book/18-rewriting-history-git-reset.adoc[]
 
 include::book/19-git-cherry-pick.adoc[]
 
-include::book/20-git-rebase.adoc[]
+include::book/20-merge-strategies-rebase.adoc[]
 
 include::book/A-workflow-discuss.adoc[]
