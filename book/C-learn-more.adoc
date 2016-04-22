@@ -1,0 +1,12 @@
+[[_learn_more]]
+## Appendix C: Digging Deeper
+
+include::App-c-learn-more-git.adoc[]
+
+include::App-c-learn-more-github.adoc[]
+
+include::App-c-learn-more-workflow.adoc[]
+
+include::App-c-learn-more-api.adoc[]
+
+include::App-c-learn-more-integrations.adoc[]
