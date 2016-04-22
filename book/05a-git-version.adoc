@@ -10,3 +10,9 @@ $ git version 2.7.0
 ----
 
 If you do not see a git version listed or this command returns an error, you may need to reinstall Git.
+
+[NOTE]
+====
+To see what the latest version of Git is, visit www.git-scm.com.
+====
+

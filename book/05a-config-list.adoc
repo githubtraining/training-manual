@@ -1,18 +1,4 @@
 [[_config_list]]
-### Checking Your Git Version
-
-[source,console]
-----
-$ git --version
-----
-
-First, let's check the version of Git currently installed on your system.
-
-[NOTE]
-====
-To check the latest version of Git, you can go to www.git-scm.com.
-====
-
 ### Viewing Your Configurations
 
 [source,console]

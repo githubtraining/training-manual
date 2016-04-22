@@ -11,7 +11,7 @@ Use GitHub issues to record and discuss ideas, enhancements, tasks, and bugs. Th
 GitHub uses a syntax called (((Markdown)))Markdown to help you add basic text formatting to issues.
 
 .Commonly Used Markdown Syntax
-`# Header`:: The `#` indicates a Header. # = Header 1, ## = Header 2, etc.
+`# Header`:: The `# ` indicates a Header. # = Header 1, ##  = Header 2, etc.
 `* List item`:: A single `*` followed by a space will create a bulleted list. You can also use a `-`.
 `**Bold item**`:: Two asterix `**` on either side of a string will make that text bold.
 `- [ ] Checklist`:: A `-` followed by a space and `[ ]` will create a handy checklist in your issue or pull request.

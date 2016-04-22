@@ -1,0 +1,31 @@
+### About Git rebase
+
+The `rebase` command enables you to modify your commit history in a variety of ways. For example, you can use it to reorder commits, edit them, squash multiple commits into one, and much else.
+
+To enable all of this, `rebase` comes in several forms. For today's class, we'll be using interactive rebase: `git rebase --interactive`, or `git rebase -i` for short.  
+
+Typically, you would use `git rebase -i` to:
+
+- Edit previous commit messages
+- Combine multiple commits into one
+- Delete or revert commits that are no longer necessary
+
+[WARNING]
+====
+Because changing your commit history can make things difficult for everyone else using the repository, it's considered bad practice to rebase commits you've already pushed to a repository.
+====
+
+#### Rebasing commits against a branch
+
+To rebase all the commits between another branch and the current branch state, you can enter the following command in your shell (either the command prompt for Windows, or the terminal for Mac and Linux):
+
+`git rebase --interactive other_branch_name`
+
+#### Rebasing commits against a point in time
+
+To rebase the last few commits in your current branch, you can enter the following command in your shell:
+
+`git rebase --interactive HEAD~7`
+
+.Git Rebase.
+image::book/images/git-rebase.png["The branch before and after rebase."]
