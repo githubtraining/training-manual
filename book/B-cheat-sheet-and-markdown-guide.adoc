@@ -1,5 +1,5 @@
 [[_cheat_sheet_and_markdown_guide]]
-## Cheat Sheet and Markdown Guide
+## Appendix B: Cheat Sheet and Markdown Guide
 
 include::App-b-cheat-sheet.adoc[]
 
