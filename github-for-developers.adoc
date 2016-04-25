@@ -18,7 +18,7 @@ include::book/02-getting-started.adoc[]
 
 include::book/03-github-flow.adoc[]
 
-include::book/04-branching-on-github.adoc[]
+include::book/04-branching-with-git.adoc[]
 
 include::book/05-local-git-configs.adoc[]
 
