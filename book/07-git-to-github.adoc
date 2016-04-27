@@ -9,6 +9,4 @@ include::07a-create-pull-request.adoc[]
 
 include::07a-exploring-pull-request.adoc[]
 
-include::07a-pull-request-activity.adoc[]
-
 include::07a-exploring.adoc[]
