@@ -12,7 +12,7 @@ ifdef::fac-notes[]
 include::book/preparing-to-teach-github-for-developers.adoc[]
 endif::fac-notes[]
 
-include::book/01-pre-flight-checks.adoc[]
+include::book/01-getting-ready-for-class-intro-to-github.adoc[]
 
 include::book/02-getting-started.adoc[]
 
