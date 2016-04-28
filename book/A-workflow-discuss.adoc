@@ -2,3 +2,9 @@
 ## Talking About Workflows
 
 include::App-a-workflow-guide.adoc[]
+
+.Git Cheatsheet Page 1.
+image::book/images/github-git-cheat-sheet_Page_1.png["Helpful Git commands in one place."]
+
+.Git Cheatsheet Page 2.
+image::book/images/github-git-cheat-sheet_Page_2.png["Helpful Git commands in one place."]
