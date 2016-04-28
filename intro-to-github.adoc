@@ -20,9 +20,9 @@ include::book/03-github-flow.adoc[]
 
 include::book/04-using-branches.adoc[]
 
-include::book/08-edit-on-github.adoc[]
-
 include::book/07-git-to-github.adoc[]
+
+include::book/08-edit-on-github.adoc[]
 
 include::book/09-merging-pull-requests.adoc[]
 
