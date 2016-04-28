@@ -7,6 +7,6 @@ endif::fac-notes[]
 
 While you are waiting for class to begin, please take a few minutes to set up your GitHub account.
 
-include::01a-set-up-your-github-account.adoc[]
+include::01a-github-account.adoc[]
 
 include::01a-exploring.adoc[]
