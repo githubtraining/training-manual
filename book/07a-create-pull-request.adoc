@@ -6,7 +6,6 @@ Pull Requests are used to propose changes to the project files. A pull request i
 Follow these steps to create a Pull Request in the class repository:
 
 .Activity Instructions
-. If you haven't already, push your local changes to GitHub with `git push -u origin <branch-name>`.
 . Click the Pull Request icon.
 . Click New Pull Request.
 . In the *base* dropdown, choose `master`
