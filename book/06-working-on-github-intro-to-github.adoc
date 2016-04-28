@@ -1,0 +1,7 @@
+[[_work_local]]
+## Working on GitHub
+
+You can follow the workflow using the command line, but first let's finish the workflow on GitHub.com. 
+
+include::06a-create-file-intro-to-github.adoc[]
+
