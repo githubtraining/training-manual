@@ -7,10 +7,10 @@ include::06a-create-local-copy.adoc[]
 
 include::06a-favorite-git-command-git-status.adoc[]
 
-include::06a-using-branches-locally.adocc[]
+include::06a-using-branches-locally.adoc[]
 
 include::06a-switching-branches.adoc[]
 
-include::06a-activity-create-file.adocc[]
+include::06a-activity-create-file.adoc[]
 
 include::06a-two-stage-commit.adoc[]
