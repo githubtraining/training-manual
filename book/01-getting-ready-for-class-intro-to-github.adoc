@@ -1,12 +1,6 @@
 [[_getting_ready]]
 ## Getting Ready for Class
 
-ifdef::fac-notes[]
-include::01f-facilitator-note.adoc
-endif::fac-notes[]
-
-While you are waiting for class to begin, please take a few minutes to set up your GitHub account.
-
 include::01a-github-account.adoc[]
 
 include::01a-exploring.adoc[]
