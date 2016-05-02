@@ -5,6 +5,6 @@ Since you created the pull request, you will be notified when someone adds a com
 
 include::08a-edit-file-github.adoc[]
 
-include::08a-commit-file-github.adoc[]
+include::08a-commit-change-github.adoc[]
 
-include::08a-edit-file-activity.adoc[]
+include::08a-activity-edit-file-pull-request.adoc[]

@@ -1,8 +1,8 @@
 [[_using_branches]]
-## Branching on GitHub
+## Branching with Git
 
 In this section, we will create a branch to separate our feature work from the master branch.
 
 include::04a-branching-defined.adoc[]
 
-include::04a-create-branch-activity.adoc[]
+include::04a-activity-create-branch.adoc[]

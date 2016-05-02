@@ -7,4 +7,4 @@ include::09a-merge-explained.adoc[]
 
 include::09a-merge-PR.adoc[]
 
-include::09a-branch-cleanup.adoc[]
+include::09a-cleanup-branches.adoc[]

@@ -3,14 +3,14 @@
 
 If you prefer to work on the command line, you can easily integrate Git into your current workflow.
 
-include::06a-git-clone.adoc[]
+include::06a-create-local-copy.adoc[]
 
-include::06a-git-status.adoc[]
+include::06a-favorite-git-command-git-status.adoc[]
 
-include::06a-git-branch.adoc[]
+include::06a-using-branches-locally.adoc[]
 
-include::06a-git-checkout.adoc[]
+include::06a-switching-branches.adoc[]
 
-include::06a-file-creation-activity.adoc[]
+include::06a-activity-create-file.adoc[]
 
 include::06a-two-stage-commit.adoc[]
