@@ -1,10 +1,5 @@
 [[_cheat_sheet_and_markdown_guide]]
-### Discussion Guide: Team Workflows
-
----
-title: Basic writing and formatting syntax
-intro: {{ site.data.guides.dotcom-writing-on-github.shortdesc.basic-writing-and-formatting-syntax }}
----
+## Markdown Guide
 
 ### Headings
 
