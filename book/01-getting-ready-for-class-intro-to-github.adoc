@@ -2,5 +2,3 @@
 ## Getting Ready for Class
 
 include::01a-github-account.adoc[]
-
-include::01a-exploring.adoc[]
