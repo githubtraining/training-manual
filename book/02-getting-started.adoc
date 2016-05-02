@@ -7,8 +7,8 @@ include::02a-what-is-github.adoc[]
 
 include::02a-what-is-git.adoc[]
 
-include::02a-exploring-repo.adoc[]
+include::02a-exploring-github-repo.adoc[]
 
-include::02a-using-issues.adoc[]
+include::02a-using-github-issues.adoc[]
 
-include::02a-create-issue-activity.adoc[]
+include::02a-activity-create-github-issue.adoc[]
