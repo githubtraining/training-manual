@@ -1,8 +1,0 @@
-[[_cheat_sheet_and_markdown_guide]]
-## Appendix B: Cheat Sheet
-
-.Git Cheatsheet Page 1.
-image::book/images/github-git-cheat-sheet_Page_1.png["Helpful Git commands in one place."]
-
-.Git Cheatsheet Page 2.
-image::book/images/github-git-cheat-sheet_Page_2.png["Helpful Git commands in one place."]
