@@ -1,0 +1,10 @@
+[[_cheat_sheet_and_markdown_guide]]
+## Appendix C: Markdown Guide
+
+image::book/images/github-markdown-title.png["GitHub Markdown"]
+
+.Markdown Syntax.
+image::book/images/markdown-syntax.png["Helpful syntax shortcuts"]
+
+.GitHub Flavored Markdown.
+image::book/images/github-flavored-markdown.png["Use Markdown on GitHub"]
