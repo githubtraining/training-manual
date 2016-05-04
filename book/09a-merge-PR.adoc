@@ -5,11 +5,10 @@ Let's take a look at how you can merge the pull request.
 First, let's use some emoji to indicate we have checked over the Pull Request and it looks good to merge. We like to use :+1: :ship: or :shipit:.
 
 .Activity Instructions
-. Open the `pull request` to be merged.
-. Open the `Conversation` view.
-. Scroll to the bottom of the Pull Request and click the *Merge pull request* button.
-. Type your merge commit message.
-. Click *Confirm merge*.
-. Click *Delete branch*.
-. Assign the Pull Request to yourself.
-. Click *Issues* and confirm your original issue has been closed.
+. Open the Pull Request to be merged
+. Open the *Conversation* view
+. Scroll to the bottom of the Pull Request and click the *Merge pull request* button
+. Type your merge commit message
+. Click *Confirm merge*
+. Click *Delete branch*
+. Click *Issues* and confirm your original issue has been closed
