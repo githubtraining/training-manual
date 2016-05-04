@@ -1,0 +1,14 @@
+[[_project_flow]]
+## Workflow Review Project: GitHub Games
+
+In this section, we will complete a project using the GitHub Flow.
+
+include::14a-user-vs-organization-accounts.adoc[]
+
+include::14a-what-is-a-fork.adoc[]
+
+include::14a-create-fork-activity.adoc[]
+
+include::14a-intro-to-github-pages.adoc[]
+
+include::14a-workflow-review-activity.adoc[]

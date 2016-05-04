@@ -5,7 +5,7 @@ First, let's practice the GitHub Flow from beginning to end by updating the link
 
 We have intentionally left these steps very high level since they are a review. If you need help with any of these steps, refer to the earlier section of this manual:
 
-.Workflow Review
+.Workflow Review Activity
 . Clone your fork of the repository locally.
 . Create a new branch called `readme-update`
 . Make changes to the README.md

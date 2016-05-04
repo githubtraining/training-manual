@@ -3,4 +3,4 @@
 
 In this section, we will discuss the essential workflow enabled by Git.
 
-include::03a-basic-git-flow.adoc[]
+include::03a-essential-git-flow.adoc[]
