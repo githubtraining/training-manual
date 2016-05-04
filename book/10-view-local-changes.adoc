@@ -3,4 +3,4 @@
 
 Now that you are familiar with the basic workflow, let's explore some of the powerful Git and GitHub features that will help you work with your code.
 
-include::10a-git-diff.adoc[]
+include::10a-different-commands-for-viewing-changes.adoc[]

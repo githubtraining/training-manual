@@ -1,6 +1,6 @@
 # GitHub for Developers
 
-**Important Note:** _This is the "customer friendly" version of the outline, for the more detailed facilitator outline please reference [this version of the document](https://github.com/github/training-manual/blob/caf087f4a5e3f77bfe49998097b48ca4fb3a4e80/class-outlines/GH-for-Developers-Outline.md)._
+**Important Note:** _This is the "customer friendly" version of the outline that we typically copy and paste for customers. For the more detailed outline **while teaching** please reference [this version of the document](https://github.com/github/training-manual/blob/caf087f4a5e3f77bfe49998097b48ca4fb3a4e80/class-outlines/GH-for-Developers-Outline.md)._
 
 ### Getting Started with Collaboration
 

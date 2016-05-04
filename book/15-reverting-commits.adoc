@@ -7,4 +7,4 @@ include::15a-how-commits-are-made.adoc[]
 
 include::15a-safe-operations.adoc[]
 
-include::15a-git-revert.adoc[]
+include::15a-reverting-commits-with-git-revert.adoc[]

@@ -3,4 +3,4 @@
 
 In this section, we will discuss the collaborative workflow enabled by GitHub.
 
-include::03a-basic-github-flow.adoc[]
+include::03a-essential-github-flow.adoc[]
