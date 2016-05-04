@@ -1,8 +1,18 @@
 [[_cheat_sheet_and_markdown_guide]]
-## Appendix B: Cheat Sheet
+## Appendix B: Cheat Sheet & Markdown Guide
 
 .Git Cheatsheet Page 1.
 image::book/images/github-git-cheat-sheet_Page_1.png["Helpful Git commands in one place."]
 
 .Git Cheatsheet Page 2.
 image::book/images/github-git-cheat-sheet_Page_2.png["Helpful Git commands in one place."]
+
+<<<
+
+image::book/images/github-markdown-title.png["GitHub Markdown"]
+
+.Markdown Syntax.
+image::book/images/markdown-syntax.png["Helpful syntax shortcuts"]
+
+.GitHub Flavored Markdown.
+image::book/images/github-flavored-markdown.png["Use Markdown on GitHub"]
