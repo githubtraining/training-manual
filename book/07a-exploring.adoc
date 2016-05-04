@@ -1,5 +1,5 @@
 ### Summary
 
-Here are some interesting things you can check out while you wait for others to finish the activity:
+Here are some additional resources you may find helpful:
 
 - *guides.github.com/features/mastering-markdown/* An interactive guide on using Markdown on GitHub.

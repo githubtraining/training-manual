@@ -1,7 +1,7 @@
 [[_git_push]]
 ## Collaborating on Your Code
 
-Now that you have made some changes in the project on your branch, let's create a pull request to the shared class repository for collaboration.
+Now that you have made some changes on your branch, let's create a Pull Request.
 
 include::07a-create-pull-request.adoc[]
 
