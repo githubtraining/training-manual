@@ -1,6 +1,6 @@
 ## Using Eclipse with GitHub
 
-**Important Note:** _This is the "customer friendly" version of the outline, for the more detailed facilitator outline please reference [this version of the document](https://github.com/github/training-manual/blob/022424c2c0e9d11c7e47287d25c502c8626ed4e6/class-outlines/Eclipse-Egit-outline.md)._
+**Important Note:** _This is the "customer friendly" version of the outline that we typically copy and paste for customers. For the more detailed outline **while teaching** please reference [this version of the document](https://github.com/github/training-manual/blob/022424c2c0e9d11c7e47287d25c502c8626ed4e6/class-outlines/Eclipse-Egit-outline.md)._
 
 ### Introduction
 
