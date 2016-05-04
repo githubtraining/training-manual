@@ -1,5 +1,5 @@
 [[_config_levels]]
-### Understanding Git Configuration Levels
+### Git Configuration Levels
 
 .Git Configuration Levels.
 image::book/images/config-levels.jpg["Git can be configured at the repo, user, and system level."]

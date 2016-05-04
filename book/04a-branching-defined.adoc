@@ -1,5 +1,5 @@
 [[_branch]]
-### Digging Deeper Into Branches
+### Branching Defined
 
 .GitHub Workflow.
 image::book/images/github-workflow.png["GitHub Workflow"]

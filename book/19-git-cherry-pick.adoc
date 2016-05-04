@@ -3,4 +3,4 @@
 
 We just learned how reflog can help us find local changes that have been discarded. So what if:
 
-include::19a-cherry-pick.adoc[]
+include::19a-you-just-want-that-one-commit.adoc[]

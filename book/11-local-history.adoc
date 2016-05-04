@@ -1,6 +1,6 @@
 [[_local_history]]
-## Viewing Project History
+## Viewing Local Project History
 
 In this section, you will discover commands for viewing the history of your project.
 
-include::11a-git-log.adoc[]
+include::11a-using-git-log.adoc[]
