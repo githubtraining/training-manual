@@ -1,0 +1,4 @@
+[[_cheat_sheet_and_markdown_guide]]
+## Appendix B: Cheat Sheet
+
+include::App-b-cheat-sheet.adoc[]
