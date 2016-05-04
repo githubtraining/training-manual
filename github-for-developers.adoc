@@ -53,3 +53,7 @@ include::book/19-git-cherry-pick.adoc[]
 include::book/20-merge-strategies-rebase.adoc[]
 
 include::book/A-workflow-discuss.adoc[]
+
+include::book/B-cheat-sheet.adoc[]
+
+include::book/C-markdown-guide.adoc[]
