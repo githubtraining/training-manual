@@ -12,3 +12,5 @@ include::02a-exploring-repo.adoc[]
 include::02a-using-issues.adoc[]
 
 include::02a-create-issue-activity.adoc[]
+
+include::02a-using-markdown.adoc[]
