@@ -20,7 +20,7 @@ include::book/03-github-flow.adoc[]
 
 include::book/04-using-branches.adoc[]
 
-include::book/06-working-on-github-intro-to-github.adoc[]
+include::book/06-working-on-github.adoc[]
 
 include::book/07-collaborating-on-code-intro-to-github.adoc[]
 
