@@ -3,10 +3,10 @@
 To practice merge conflicts, we first need to create one. Complete the following:
 
 .Activity Instructions
-. Type `git checkout -b stats-update origin/stats-update`
-. Type `git diff —color-words gh-pages..stats-update`
-. Check out the gh-pages branch
-. Merge the stats-update branch into gh-pages
+. Type `git checkout -b stats-update origin/stats-update`.
+. Type `git diff —color-words gh-pages..stats-update`.
+. Check out the gh-pages branch.
+. Merge the stats-update branch into gh-pages.
 
 You should receive a conflict message similar to the one shown below:
 
@@ -34,10 +34,10 @@ Some more text
 ----
 
 .Activity Instructions
-. Choose which version of the code you would like to keep
-. Remove the conflict markers
-. Save the file
-. Close the text editor
-. Type `git status`
-. Type `git add index.html`
-. Type `git commit -m "resolving merge conflict"`
+. Choose which version of the code you would like to keep.
+. Remove the conflict markers.
+. Save the file.
+. Close the text editor.
+. Type `git status`.
+. Type `git add index.html`.
+. Type `git commit -m "resolving merge conflict"`.
