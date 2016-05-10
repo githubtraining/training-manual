@@ -7,6 +7,6 @@ To avoid teaching you bad habits, we will create a practice repository. This tim
 
 .Activity Instructions
 . Navigate to the directory where you will place your practice repo.
-. Type `git init practice-repo`
-. Type `cd practice-repo`
+. Type `git init practice-repo`.
+. Type `cd practice-repo`.
 . Create a README.md file and use it as your initial commit.
