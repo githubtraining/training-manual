@@ -31,3 +31,5 @@ When you create a new branch in Git, you are actually just creating a pointer th
 #### Git is Explicit
 
 Which brings us to our final point for now; Git is very explicit. It does not do anything until you tell it to. No auto-saves or auto-syncing with the remote, Git waits for you to tell it when to take a snapshot and when to send that snapshot to the remote.
+
+<<<
