@@ -7,8 +7,8 @@ We have intentionally left these steps very high level since they are a review. 
 
 .Workflow Review Activity
 . Clone your fork of the repository locally.
-. Create a new branch called `readme-update`
-. Make changes to the README.md
+. Create a new branch called `readme-update`.
+. Make changes to the README.md.
 . Commit the changes to your branch.
 . Push your branch to GitHub.
 . Create a Pull Request *in your repository*.
