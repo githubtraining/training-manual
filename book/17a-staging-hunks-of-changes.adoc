@@ -4,9 +4,9 @@
 Crafting atomic commits is an important part of creating a readable and informative history of the project.
 
 .Activity Instructions
-. Type `git status`
-. Type `git add -p`
-. Stage the hunk related to the image move
-. Commit your changes
+. Type `git status`.
+. Type `git add -p`.
+. Stage the hunk related to the image move.
+. Commit your changes.
 . Stage and commit the speed change.
 . Push your changes to GitHub.

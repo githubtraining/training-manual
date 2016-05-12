@@ -32,7 +32,7 @@ Next we will try the mixed reset:
 . This time we only want to go back one commit in history so we will type `git reset HEAD~` OR `git reset <SHA>`.
 . Type `git status`. The changes we made in the last commit have been moved back to the working directory.
 . This time, we will need to `git add` the files to the staging area before we can commit them.
-. Go ahead and re-commit the files with `git commit -m "another reset example"`
+. Go ahead and re-commit the files with `git commit -m "another reset example"`.
 
 [NOTE]
 ====

@@ -29,10 +29,11 @@ eanu482 init file 2
 84nqdkq initializing repo with README
 ----
 
-Is the commit ID the same as the one you used in the cherry pick command? Why or why not?
-
 [WARNING]
 ====
-Remember, when using any commands that change history, it's important to make these changes to your commits before pushing to GitHub. Any time you change the commit ID of something in shared history, you risk creating problems. Others working with the same repository won't have the re-written history. 
+Remember, when using any commands that change history, it's important to make these changes to your commits before pushing to GitHub. Any time you change the commit ID of something in shared history, you risk creating problems. Others working with the same repository won't have the re-written history.
 ====
 
+Is the commit ID the same as the one you used in the cherry pick command? Why or why not?
+
+<<<
