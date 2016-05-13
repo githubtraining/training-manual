@@ -1,7 +1,8 @@
 [[_introduce_git]]
 ### What is Git?
 
-Git is:
+**Git is:**
+
 - a distributed version control system or DVCS.
 - free and open source.
 - designed to handle everything from small to very large projects with speed and efficiency.
@@ -30,3 +31,5 @@ When you create a new branch in Git, you are actually just creating a pointer th
 #### Git is Explicit
 
 Which brings us to our final point for now; Git is very explicit. It does not do anything until you tell it to. No auto-saves or auto-syncing with the remote, Git waits for you to tell it when to take a snapshot and when to send that snapshot to the remote.
+
+<<<

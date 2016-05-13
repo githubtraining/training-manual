@@ -1,21 +1,21 @@
 ### Activity: Git Rebase Practice
 
 .Activity Set Up Instructions
-. Type `git checkout -b rebase-me`
-. Create 2-3 new files on your branch (HINT: you can use `touch file1.md file2.md file3.md`)
+. Type `git checkout -b rebase-me`.
+. Create 2-3 new files on your branch (HINT: you can use `touch file1.md file2.md file3.md`).
 . `Add` and `commit` each file seperately.
-. Type `git checkout master`
-. Create 2-3 new files on master (e.g. `touch file4.md file5.md file6.md`)
-. Take a look at your history by typing `git log --oneline --graph --decorate --all`
+. Type `git checkout master`.
+. Create 2-3 new files on master (e.g. `touch file4.md file5.md file6.md`).
+. Take a look at your history by typing `git log --oneline --graph --decorate --all`.
 
 .Begin the Rebase
-. Type `git checkout rebase-me`
-. Start the merge by typing `git rebase -i master`
-. Your text editor will open, allowing you to see the commits to be rebased
-. Save and close the `rebase-todo`
-. Watch your rebase happen on the Command Line
+. Type `git checkout rebase-me`.
+. Start the merge by typing `git rebase -i master`.
+. Your text editor will open, allowing you to see the commits to be rebased.
+. Save and close the `rebase-todo`.
+. Watch your rebase happen on the Command Line.
 
 .Check it Out
-. See your cool changes by typing `git log --oneline --graph --decorate --all`
-. Go back to master by typing `git checkout master`
-. Merge your changes in to master by typing `git merge rebase-me`
+. See your cool changes by typing `git log --oneline --graph --decorate --all`.
+. Go back to master by typing `git checkout master`.
+. Merge your changes in to master by typing `git merge rebase-me`.
