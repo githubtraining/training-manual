@@ -7,6 +7,7 @@ For this class, we will use a basic text editor to interact with our code. Let's
 
 You can use almost any text editor, but we have the best success with the following:
 
+- GitPad
 - https://atom.io/[atom]
 - Vi or Vim
 - Sublime
