@@ -1,0 +1,18 @@
+[[_git_reset]]
+## Rewriting History with Git Reset
+
+In this section, you will learn how to re-write history with Git.
+
+include::18a-understanding-reset.adoc[]
+
+include::18a-create-local-repo.adoc[]
+
+include::18a-reset-soft.adoc[]
+
+include::18a-reset-mixed.adoc[]
+
+include::18a-reset-hard.adoc[]
+
+include::18a-does-gone-really-mean-gone.adoc[]
+
+include::18a-exploring.adoc[]

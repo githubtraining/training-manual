@@ -1,0 +1,12 @@
+[[_create_repo_local]]
+### Creating a Local Repository
+
+Since `git reset` rewrites history, you should avoid using it on commits that have already been made public (e.g. pushed to the repository on GitHub).
+
+To avoid teaching you bad habits, we will create a practice repository. This time, we will start the repository locally, from the command line.
+
+.Activity Instructions
+. Navigate to the directory where you will place your practice repo.
+. Type `git init practice-repo`.
+. Type `cd practice-repo`.
+. Create a README.md file and use it as your initial commit.

@@ -1,0 +1,16 @@
+[[_config_list]]
+### Viewing Your Configurations
+
+[source,console]
+----
+$ git config --list
+----
+
+If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the storage containers for config settings and list them.
+
+[source,console]
+----
+$ git config --global --list
+----
+
+You can also narrow the list to a specific configuration level by including it before the list option.

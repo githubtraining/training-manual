@@ -1,8 +1,8 @@
 ### Remote Merge Conflicts
 
 .Activity Instructions
-. Checkout a local copy of the shape-colors branch
+. Checkout a local copy of the shape-colors branch.
 . Go to lines 115-121 of the index file and change around some of the colors.
-. Stage and commit the changes
-. Push to GitHub and create a Pull Request
+. Stage and commit the changes.
+. Push to GitHub and create a Pull Request.
 . Use the command line instructions shown on GitHub to resolve the conflict.

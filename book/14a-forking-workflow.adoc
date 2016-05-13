@@ -1,7 +1,0 @@
-[[_create_fork]]
-### Creating a Fork
-
-.Activity Instructions
-. Navigate to the repo `githubschool/github-games`
-. Click *Fork*
-. Select the account you would like the fork to reside.

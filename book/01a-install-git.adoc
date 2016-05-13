@@ -27,7 +27,7 @@ If you don't already have Git installed, you have two options:
 . Download and install Git at www.git-scm.com.
 . Install it as part of the GitHub Desktop package found at desktop.github.com.
 
-If you need additional assistance installing Git, you can find more information in this ProGit chapter on http://git-scm.com/book/en/v2/Getting-Started-Installing-Git[installing Git].
+If you need additional assistance installing Git, you can find more information in the ProGit chapter on installing Git: `http://git-scm.com/book/en/v2/Getting-Started-Installing-Git`.
 
 #### Where is Your Shell?
 

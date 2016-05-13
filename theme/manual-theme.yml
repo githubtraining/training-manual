@@ -17,7 +17,7 @@ font:
 base:
   font:
     color: #333333
-    family: consola
+    family: roboto
     size: 12
   line:
     height_length: 17
@@ -34,3 +34,10 @@ link:
   font_color: #002FA7
 outline_list:
   indent: $base_font_size * 1.5
+footer:
+  height: 0.75in
+  line_height: 1
+  recto_content:
+    right: '{section-or-chapter-title} | *{page-number}*'
+  verso_content:
+    left: '*{page-number}* | {chapter-title}'

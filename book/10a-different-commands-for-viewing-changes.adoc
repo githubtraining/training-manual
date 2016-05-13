@@ -1,0 +1,15 @@
+[[_git_diff]]
+### Different Commands for Viewing Changes
+
+.Git Diff Options.
+image::book/images/diff-options.jpg["Available options for git diff"]
+
+The `git diff` command allows you to see the difference between files in the working and staging directories and what is in your history.
+
+[source,console]
+----
+$ git diff
+$ git diff --staged
+$ git diff HEAD
+$ git diff --color-words
+----

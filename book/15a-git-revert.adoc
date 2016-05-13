@@ -1,9 +1,0 @@
-### Reverting Commits
-
-To get your game working, you will need to reverse the commit that incorrectly renames `index.html`.
-
-.Activity Instructions
-. Use `git log` to find the commit where the rename occurred
-. Type `git revert <SHA>`
-. Type a commit message
-. Push your changes to GitHub.

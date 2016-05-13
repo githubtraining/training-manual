@@ -1,0 +1,18 @@
+[[_git_clone]]
+### Creating a Local Copy of the repo
+
+.Cloning a repository.
+image::book/images/clone-diagram.jpg["Cloning a repository."]
+
+Before we can work locally, we will need to create a clone of the repository.
+
+When you clone a repository you are creating a copy of everything in that repository, including its history. This is one of the benefits of a DVCS like git - rather than being required to query a slow centralized server to review the commit history, queries are run locally and are lightning fast.
+
+Let's go ahead and clone the class repository to your local desktop.
+
+.Activity Instructions
+. Navigate to the *class repository* on GitHub.
+. Copy the *clone URL*.
+. Open the CLI.
+. Type `git clone <URL>`.
+. Type `cd <repo-name>`.

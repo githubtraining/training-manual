@@ -1,0 +1,8 @@
+[[_git_rebase]]
+## Merge Strategies: Rebase
+
+In this section, we will discuss another popular merge strategy, rebasing.
+
+include::20a-about-git-rebase.adoc[]
+
+include::20a-activity-git-rebase-practice.adoc[]
