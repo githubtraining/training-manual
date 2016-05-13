@@ -1,6 +1,7 @@
 [[_introduce_git]]
 ### What is Git?
 
+
 **Git is:**
 
 - a distributed version control system or DVCS.
@@ -8,11 +9,12 @@
 - designed to handle everything from small to very large projects with speed and efficiency.
 - easy to learn and has a tiny footprint with lightning fast performance.
 
+
 Git outclasses many other SCM tools with features like cheap local branching, convenient staging areas, and multiple workflows.
 
 As we begin to discuss Git (and what makes it special) it would be helpful if you could forget everything you know about other version control systems (VCSs) for just a moment. Git stores and thinks about information very differently than other VCSs.
 
-We will learn more about how Git thinks about information as we go through this class, but the first thing you will need to understand is how Git works with your content.
+We will learn more about how Git stores your code as we go through this class, but the first thing you will need to understand is how Git works with your content.
 
 #### Snapshots, not Deltas
 

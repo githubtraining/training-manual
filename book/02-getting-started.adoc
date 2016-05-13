@@ -12,3 +12,5 @@ include::02a-exploring-github-repo.adoc[]
 include::02a-using-github-issues.adoc[]
 
 include::02a-activity-create-github-issue.adoc[]
+
+include::02a-using-markdown.adoc[]
