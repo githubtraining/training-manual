@@ -1,4 +1,5 @@
 = GitHub for Developers: Training Manual
+-v1.0
 :doctype: book
 :source-highlighter: coderay
 :listing-caption: Listing
