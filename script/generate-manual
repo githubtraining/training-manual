@@ -9,6 +9,9 @@ cd "$(dirname "$0")/.."
 
 # script/bootstrap
 
+_asciidoctor="./bin/asciidoctor"
+_asciidoctor_pdf="./bin/asciidoctor-pdf"
+
 if [[ ! $1 = *.adoc ]] || [ ! -f $1 ]; then
   echo "bad argument!" >&2
   exit 1;
@@ -17,7 +20,7 @@ student="${1%.adoc}-student-manual"
 facilitator="${1%.adoc}-facilitator-manual"
 
 echo "==> Generating student and facilitator manuals from $1"
-eval asciidoctor "-o $student.html $1"
-eval asciidoctor "-o $facilitator.html $1"
-eval asciidoctor-pdf "-a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -o $student.pdf $1"
-eval asciidoctor-pdf "-a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -a fac-notes -o $facilitator.pdf $1"
+eval "$_asciidoctor -o $student.html $1"
+eval "$_asciidoctor -o $facilitator.html $1"
+eval "$_asciidoctor_pdf -a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -o $student.pdf $1"
+eval "$_asciidoctor_pdf -a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -a fac-notes -o $facilitator.pdf $1"
