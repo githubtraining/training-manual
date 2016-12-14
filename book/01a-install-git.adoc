@@ -18,7 +18,7 @@ $ git --version
 git version 2.6.3
 ----
 
-Anything over 1.9.5 will work for this class!
+Anything over 2.0 will work for this class!
 
 #### Downloading and Installing Git
 
