@@ -3,8 +3,7 @@
 To practice merge conflicts, we first need to create one. Complete the following:
 
 .Activity Instructions
-. Type `git checkout -b stats-update origin/stats-update`.
-. Type `git diff —color-words gh-pages..stats-update`.
+. Type `git checkout stats-update`.
 . Check out the gh-pages branch.
 . Merge the stats-update branch into gh-pages.
 
