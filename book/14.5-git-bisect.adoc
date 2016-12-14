@@ -1,0 +1,8 @@
+[[_git_bisect]]
+## Search and Test: `git bisect`
+
+In this section, we will practice a command called `git bisect` to find which commit broke our repository.
+
+include::14.5a-what-is-git-bisect.adoc[]
+
+include::14.5a-use-git-bisect.adoc[]

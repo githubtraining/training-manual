@@ -1,0 +1,6 @@
+[[_github_bisect]]
+### What is `git bisect`?
+
+If you realize that something is broken in your repository but you aren't sure which commit introduced the bug, `git bisect` can help.
+
+Using a binary search, this command will allow you to test your repository at different points in time to help you figure out which commit introduced a problem.

@@ -1,0 +1,12 @@
+### Git Bisect
+
+.Activity Instructions
+. Initiate the binary search: `git bisect start`.
+. Specify the commit where you noticed the code was broken: `git bisect bad <SHA>`.
+. Specify the commit where you knew things were working: `git bisect good <SHA`.
+. As it starts the search, run a test. Our test is to see if an `index.html` file exists, type `ls`.
+. If the game is still broken (and there's no `index.html` file), type: `git bisect bad`.
+. If the game works (and there *is* an `index.html` file), type: `git bisect good`.
+. Exit the bisect process: `git bisect reset`.
+
+*You can also run this test automatically*. Instead of typing `ls`, try typing `git bisect run ls index.html`. 
