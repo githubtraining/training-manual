@@ -13,7 +13,7 @@ If an operation will change a commit ID that has already been pushed to the remo
 | revert
 | Generally safe since it creates a new commit.
 
-| amend
+| commit --amend
 | Only use on local commits.
 
 | reset
