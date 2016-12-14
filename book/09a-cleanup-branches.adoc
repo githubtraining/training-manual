@@ -6,11 +6,13 @@ When you merged your Pull Request, you deleted the branch on GitHub, but this wi
 [source,console]
 ----
 $ git checkout master
-$ git pull # <1>
-$ git branch --all # <2>
+$ git pull
+$ git branch --all
 ----
-<1> retrieves all of the changes from GitHub and brings them down to your local machine.
-<2> shows you all of the branches that exist locally, both ones you can work with and the read-only copies of the remote tracking branches.
+
+`git pull`: _Retrieves all of the changes from GitHub and brings them down to your local machine._
+
+`git branch --all`: _Shows you all of the branches that exist locally, both ones you can work with and the read-only copies of the remote tracking branches._
 
 You will probably see that your branch is still there, both as a local branch and as a read-only remote tracking branch.
 
