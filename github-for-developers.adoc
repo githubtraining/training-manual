@@ -39,9 +39,9 @@ include::book/13-streamline-workflow-with-aliases.adoc[]
 
 include::book/14-workflow-review-project-github-games.adoc[]
 
-include::book/15-reverting-commits.adoc[]
-
 include::book/16-resolving-merge-conflicts.adoc[]
+
+include::book/15-reverting-commits.adoc[]
 
 include::book/17-helpful-git-commands.adoc[]
 
