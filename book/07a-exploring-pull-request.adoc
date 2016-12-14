@@ -12,3 +12,4 @@ To provide feedback on proposed changes, GitHub offers two levels of commenting:
 
 General Conversation:: You can provide general comments on the Pull Request within the *Conversation* tab.
 Line Comments:: In the files changed view, you can hover over a line to see a blue `+` icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the conversation view.
+Review:: When you are making line comments, you can also choose to *Start a Review*. When you create a review, you can group many line comments together with a general message: Comments, Approve, or Request Changes. 
