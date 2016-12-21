@@ -4,6 +4,11 @@ Earlier you created an issue about the file you would like to introduce into the
 
 Follow these steps to create a new branch in the class repository:
 
+[WARNING]
+====
+You will need to have collaborator access on the class repository before you can create a branch on GitHub.
+====
+
 .Activity Instructions
 . Navigate to *Code* tab of the class repository.
 . Click the *Master* dropdown.
