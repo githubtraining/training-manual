@@ -11,6 +11,4 @@ include::05a-viewing-your-configs.adoc[]
 
 include::05a-config-name-and-email.adoc[]
 
-include::05a-config-default-text-editor.adoc[]
-
 include::05a-config-autocrlf.adoc[]
