@@ -18,7 +18,7 @@ You will need to have collaborator access on the class repository before you can
 
 When you create a new branch on GitHub, you are automatically switched to your branch. Now, any changes you make to the files in the repository will be applied to this new branch.
 
-[WARNING]
+[NOTE]
 ====
-A word of caution. When you return to the repository or click the top level repository link, notice that GitHub automatically assumes you want to see the items on the master branch. If you want to continue working on your branch, you will need to reselect it using the branch dropdown.
+A word of caution. When you return to the repository or click the top level repository link, notice that GitHub automatically assumes you want to see the items on the master branch. If you want to continue working on a feature branch, you will need to reselect it using the branch dropdown.
 ====
