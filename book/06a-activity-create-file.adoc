@@ -1,8 +1,11 @@
 ### Activity: Creating a New File
 
+Now it is time to create the skeleton of your recommendation file:
+
 .Activity Instructions
-. Clone the class repository to your local desktop.
-. Check out your branch.
-. Create a file named after your home town with the `.md` extension.
-. Save the file.
-. Close your text editor.
+. Create a new file with the following file name `YOUR-USERNAME-YOUR-HOMETOWN.md`. For example, `githubteacher-san-francisco.md`.
+
+[NOTE]
+====
+Git doesn't care how you work with your files locally. You can work in your favorite IDE or text editor, or you can create the file on the command line with `touch FILENAME.md` or `echo "Starter content" > FILENAME.md`.
+====
