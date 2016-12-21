@@ -4,6 +4,11 @@ Now it is time to create the skeleton of your recommendation file:
 
 .Activity Instructions
 . Create a new file with the following file name `YOUR-USERNAME-YOUR-HOMETOWN.md`. For example, `githubteacher-san-francisco.md`.
+. Add a skeleton for your file with the following lines:
+. `# HOMETOWN recommendations`
+. `## Great Places to Eat`
+. `## Fun Things to Do`
+. *Save* your file.
 
 [NOTE]
 ====
