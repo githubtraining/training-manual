@@ -5,8 +5,3 @@ Follow these steps to create an issue in the class repository:
 .Activity Instructions
 . Click the Issues tab.
 . Click *New Issue*.
-. Type a subject line for the issue.
-. A `-` followed by a space and `[ ]` will create a handy checklist in your issue or pull request.
-. When you @mention someone in an issue, they will receive a notification - even if they are not currently subscribed to the issue or watching the repository.
-. A `#` followed by the number of an issue or pull request (without a space) in the same repository will create a cross-link.
-. Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji id with `:`.
