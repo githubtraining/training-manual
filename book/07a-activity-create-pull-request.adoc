@@ -6,17 +6,16 @@ Pull Requests are used to propose changes to the project files. A pull request i
 Now that you have created a file, you will open a pull request to discuss the file with your team mates. Follow these steps to create a Pull Request in the class repository:
 
 .Activity Instructions
-. Click the *Pull Request* icon.
+. Click the *Pull Request* tab.
 . Click *New Pull Request*.
 . In the *base* dropdown, choose `master`
 . In the *compare* dropdown, choose your branch.
 . Type a subject line and enter a comment.
 . Use markdown formatting to add a header and a checklist to your Pull Request.
-. @mention the teacher.
-. Use one of the keywords `closes`, `fixes`, or `resolves` to note which Issue the Pull Request resolves.
-. Use *Preview* to see how your Pull Request will look.
+. Include one of the keywords: `closes`, `fixes`, or `resolves` followed by the issue number you created earlier to note which Issue the Pull Request should close. Example: `This resolves #3`
+. Click *Preview* to see how your Pull Request will look.
 . Assign the Pull Request to yourself.
-. Click *Create Pull Request*.
+. Click *Create pull request*.
 
 [NOTE]
 ====
