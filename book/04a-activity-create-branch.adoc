@@ -1,13 +1,13 @@
 ### Activity: Creating A Branch with GitHub
 
-Earlier you created an issue about a change you would like to introduce into the project. Let's create a branch that you will use to add your file.
+Earlier you created an issue about the file you would like to introduce into the project. Let's create the branch you will use to add your file.
 
 Follow these steps to create a new branch in the class repository:
 
 .Activity Instructions
-. Navigate to the `class repository`.
-. Click the branch dropdown.
-. Enter the branch name 'firstname-lastname-hometown'.
+. Navigate to *Code* tab of the class repository.
+. Click the *Master* dropdown.
+. Enter the branch name 'github-username-hometown'.
 . Press `Enter`.
 
 
