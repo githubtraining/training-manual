@@ -9,4 +9,4 @@ include::07a-activity-create-pull-request.adoc[]
 
 include::07a-exploring-pull-request.adoc[]
 
-include::07a-exploring.adoc[]
+include::07a-submitting-a-review.adoc[]
