@@ -1,27 +1,35 @@
 [[_delete_branches]]
-### Cleaning Up Your Branches
+### Updating Your Local Repository
 
-When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically delete your local copy of the branch. Let's go back to our Terminal and do some cleanup.
+When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically update your local copy of the repository. Let's go back to our command line application and get everything in sync.
+
+First, we need to get the changes we made on GitHub into our local copy of the repository:
 
 [source,console]
 ----
 $ git checkout master
 $ git pull
+----
+
+`git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
+
+### Cleaning Up the Unneeded Branches
+
+Next, let's get rid of those extra branches.
+
+[source,console]
+----
 $ git branch --all
 ----
 
-`git pull`: _Retrieves all of the changes from GitHub and brings them down to your local machine._
-
-`git branch --all`: _Shows you all of the branches that exist locally, both ones you can work with and the read-only copies of the remote tracking branches._
-
-You will probably see that your branch is still there, both as a local branch and as a read-only remote tracking branch.
+You will probably see that your branch is still there, both as a local branch and as a read-only remote tracking branch. First, let's get rid of the local branch.
 
 [source,console]
 ----
 $ git branch --merged
 ----
 
-Adding the `--merged` option to the `git branch` command allows you to see which branches have history equivalent to the history on the checked out branch. In this case, since we are checked out to master, we will use this command to ensure all of the changes on our feature branch have been merged to master before we delete the branch.
+Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to master, we will use this command to ensure all of the changes on our feature branch have been merged to master before we delete the branch.
 
 To delete the local branch, type the following command:
 
