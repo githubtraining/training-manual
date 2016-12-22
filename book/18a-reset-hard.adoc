@@ -3,12 +3,14 @@
 
 Last but not least, let's try a hard reset.
 
-. Start by viewing the history of our project.
-. This time we reset to the point in time where the only file that existed was the README.md. Type `git reset --hard <SHA>`.
+.Activity Instructions
+. Start by viewing the history of our project with `git lol`
+. This time we will reset to the point in time where the only file that existed was the README.md. Type `git reset --hard <SHA>`.
+. Type `git lol` to see that all of the commits are gone.
 . Type `git status`. Notice your working directory is clean.
-. Viewing the history of your project will reveal a single commit.
+. Use `ls` to see that the only file in your repository is the README.md.
 
 [WARNING]
 ====
-Remember, `git reset --hard` is a destructive command. Don't use it unless you really want to discard your changes.
+Remember, `git reset --hard` overwrites your working directory, staging area, and history. This means that uncommitted changes you have made to your files will be completely lost. Don't use it unless you really want to discard your changes.
 ====
