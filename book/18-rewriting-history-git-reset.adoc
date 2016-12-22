@@ -12,5 +12,3 @@ include::18a-reset-mixed.adoc[]
 include::18a-reset-hard.adoc[]
 
 include::18a-does-gone-really-mean-gone.adoc[]
-
-include::18a-exploring.adoc[]
