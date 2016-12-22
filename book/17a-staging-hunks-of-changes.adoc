@@ -6,7 +6,10 @@ Crafting atomic commits is an important part of creating a readable and informat
 .Activity Instructions
 . Type `git status`.
 . Type `git add -p`.
-. Stage the hunk related to the image move.
-. Commit your changes.
-. Stage and commit the speed change.
-. Push your changes to GitHub.
+. Type `y` to stage the hunk related to the image move.
+. Type `n` to leave the hunk related to the speed change in the working area.
+
+[NOTE]
+====
+Wondering what all of those other options are for the hunks? Use the `?` to see a list of options above the hunk.
+====
