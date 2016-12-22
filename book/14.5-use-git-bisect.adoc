@@ -1,12 +1,23 @@
-### Git Bisect
+### Finding the Bug in Our Project
+
+#### The Long Way
 
 .Activity Instructions
 . Initiate the binary search: `git bisect start`.
 . Specify the commit where you noticed the code was broken: `git bisect bad <SHA>`.
 . Specify the commit where you knew things were working: `git bisect good <SHA`.
-. As it starts the search, run a test. Our test is to see if an `index.html` file exists, type `ls`.
-. If the game is still broken (and there's no `index.html` file), type: `git bisect bad`.
+. Bisect will check you out to the midpoint between good and bad.
+. Run a test to see if the game would work at this point. Our test is to use `ls` to see if an `index.html` file exists.
+. If the game is still broken (there *is no* `index.html` file), type: `git bisect bad`.
 . If the game works (and there *is* an `index.html` file), type: `git bisect good`.
-. Exit the bisect process: `git bisect reset`.
+. Git will bisect again and wait for you to test. This will happen until Git has enough information to pinpoint the first bad commit.
+. When Git has detected the error, it will provide a message that `SHA is the first bad commit.`
+. To exit the bisect process: `git bisect reset`.
 
-*You can also run this test automatically*. Instead of typing `ls`, try typing `git bisect run ls index.html`. 
+#### The Short Way
+
+Bisect can also run the tests on your code automatically. Let's try it again using a shortcut command and a test:
+
+.Activity Instructions
+. `git bisect start <bad-SHA> <good-SHA>`
+. `git bisect run ls index.html`
