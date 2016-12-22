@@ -4,7 +4,7 @@
 Last but not least, let's try a hard reset.
 
 .Activity Instructions
-. Start by viewing the history of our project with `git lol`
+. Start by viewing the history of our project with `git lol`.
 . This time we will reset to the point in time where the only file that existed was the README.md. Type `git reset --hard <SHA>`.
 . Type `git lol` to see that all of the commits are gone.
 . Type `git status`. Notice your working directory is clean.
