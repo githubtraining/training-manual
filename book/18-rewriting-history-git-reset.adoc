@@ -5,8 +5,6 @@ In this section, you will learn how to re-write history with Git.
 
 include::18a-understanding-reset.adoc[]
 
-include::18a-create-local-repo.adoc[]
-
 include::18a-reset-soft.adoc[]
 
 include::18a-reset-mixed.adoc[]
