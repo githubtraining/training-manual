@@ -49,9 +49,9 @@ include::book/17-helpful-git-commands.adoc[]
 
 include::book/10-view-local-changes.adoc[]
 
-include::book/12-fixing-commit-mistakes.adoc[]
-
 include::book/18-create-local-repo.adoc[]
+
+include::book/12-fixing-commit-mistakes.adoc[]
 
 include::book/18-rewriting-history-git-reset.adoc[]
 

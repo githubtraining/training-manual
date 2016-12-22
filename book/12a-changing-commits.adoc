@@ -1,17 +1,16 @@
 [[_commit_amend]]
-### Changing Commits
+### Revising Your Last Commit
 
-Commit amend allows us to fix mistakes in our last commit. Two of the most common uses are:
+`git commit --amend` allows us to make changes to the commit that HEAD is currently pointing to. Two of the most common uses are:
 
 - Re-writing commit messages
 - Adding files to the commit
 
-When you are adding files to the previous commit, the files to be added should be in the staging area when you type the `git commit --amend` command.
-
-[source,console]
-----
-$ git commit --amend
-----
+.Activity Instructions
+. Type `touch file7.txt` to create a new file.
+. When you are adding files to the previous commit, they should be in the staging area. Type `git add file7.txt`. 
+. Type `git commit --amend`.
+. The text editor will open, allowing you to edit your commit message.
 
 [NOTE]
 ====

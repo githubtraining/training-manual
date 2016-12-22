@@ -1,6 +1,6 @@
 ### Understanding Reset
 
-Sometimes we are working on a branch and we decide things aren't going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history. We can do that with `git reset`.
+Sometimes we are working on a branch and we decide things aren't going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history.
 
 .Git Reset Before and After.
 image::book/images/reset-visual.jpg["The branch before and after reset."]

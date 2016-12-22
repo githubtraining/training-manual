@@ -1,7 +1,7 @@
 [[_git_reset]]
 ## Rewriting History with Git Reset
 
-In this section, you will learn how to re-write history with Git.
+When you want to make changes to commits further back in history, you will need to use a more powerful command: `git reset`.
 
 include::18a-understanding-reset.adoc[]
 
