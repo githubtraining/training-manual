@@ -14,8 +14,8 @@ $ git lol
 Let's cherry pick the commit where we added file 4:
 
 .Activity Instructions
-. Using `git reflog`, find the commit ID where you added file4.md.
-. Type `git cherry-pick <SHA>`.
+. Find the commit ID where you added file4.md: `git reflog`
+. Cherry-pick that commit: `git cherry-pick <SHA>`
 
 Now when you view your directory and log, you should see:
 

@@ -4,12 +4,12 @@
 Next we will try the default mode of reset, `reset --mixed`:
 
 .Activity Instructions
-. Once again, we will start by viewing the history of our project with `git lol`.
-. This time we only want to go back one commit in history so we will type `git reset HEAD~`.
-. Type `git lol` to see that the tip of branch is not pointing at the commit where we added file 4 again.
-. Type `git status`. The changes we made in the last commit have been moved back to the working directory.
-. This time, we will need to `git add` the files to the staging area before we can commit them.
-. Go ahead and re-commit the files with `git commit -m "re-add file 5 and 6"`.
+. Once again, we will start by viewing the history of our project: `git log --oneline`
+. Go back one commit in history: `git reset HEAD~`
+. See where the tip of the branch is pointing: `git log --oneline`
+. The changes we made in the last commit have been moved back to the working directory: `git status`
+. Move the files to the staging area before we can commit them: `git add file5.md file6.md`
+. Re-commit the files: `git commit -m "re-add file 5 and 6"`
 
 
 [NOTE]

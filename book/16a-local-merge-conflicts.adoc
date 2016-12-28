@@ -17,7 +17,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ----
 
 .Activity Instructions
-. Type `git status` to determine which file(s) are in conflict.
+. Determine which file(s) are in conflict: `git status`
 . Open the file(s) listed under **Unmerged Paths:** in your text editor.
 . Look for the merge conflict markers (shown below).
 
@@ -35,9 +35,9 @@ Some more text
 . Remove the conflict markers.
 . Save the file.
 . Close the text editor.
-. Type `git status`.
-. Type `git add index.html`.
-. Type `git commit`.
+. Check to see what git is tracking: `git status`
+. Add the corrected file(s) to the staging area: `git add index.html`
+. Commit the resolved file(s): `git commit`
 . Save the default commit message.
 
 [NOTE]
