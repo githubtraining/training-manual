@@ -23,10 +23,11 @@ $ git config --global alias.lol "log --oneline --graph --decorate --all"
 $ git lol
 ----
 
-#### Other Common Aliases
+#### Other Helpful Aliases
 
 [source,console]
 ----
 $ git config --global alias.co "checkout -b"
 $ git config --global alias.ss "status -s"
+$ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 ----
