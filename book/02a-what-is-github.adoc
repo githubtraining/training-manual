@@ -10,6 +10,7 @@ In addition to being a place to host and share your Git projects, GitHub provide
 
 * Issues
 * Pull Requests
+* Projects
 * Organizations and Teams
 
 .Key GitHub Features.
