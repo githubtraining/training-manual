@@ -4,7 +4,7 @@
 Using the practice repository we created earlier, let's try a `reset --soft`.
 
 .Activity Instructions
-. View the history of our project: `git log --oneline --decorate
+. View the history of our project: `git log --oneline --decorate`
 . Identify the current location of `HEAD`.
 . Go back two commits in history: `git reset --soft HEAD~2`
 . See the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before: `git log --oneline --decorate`
