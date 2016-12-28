@@ -8,7 +8,7 @@ Sometimes, you `git reset --hard` a little further than intended and want to res
 . Reset to the point in time where the original `file6.md` was created: `git reset --hard <SHA>`
 . See your restored history: `git log --oneline`
 
-Take a look at the commit IDs in `git lol` compared to `git reflog`. What do you notice?
+Take a look at the commit IDs in `git log --oneline` compared to `git reflog`. What do you notice?
 
 [NOTE]
 ====
