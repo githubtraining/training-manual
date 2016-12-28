@@ -17,5 +17,5 @@ In the real world, changes will continue to happen on the original project as ne
 
 [NOTE]
 ====
-If you would like to keep things tidy, you can use `git remote remote upstream` once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.
+If you would like to keep things tidy, you can use `git remote remove upstream` once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.
 ====
