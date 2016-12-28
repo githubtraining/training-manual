@@ -5,45 +5,29 @@ When you merged your Pull Request, you deleted the branch on GitHub, but this wi
 
 First, we need to get the changes we made on GitHub into our local copy of the repository:
 
-[source,console]
-----
-$ git checkout master
-$ git pull
-----
+.Activity Instructions
+. Start by switching back to your default branch: `git checkout master`
+. Retrieve all of the changes from GitHub: `git pull`
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
 
 ### Cleaning Up the Unneeded Branches
 
-Next, let's get rid of those extra branches.
+If you type `git branch --all` you will probably see that, even though you deleted your branch on the remote, it is still listed in your local copy of the repository, both as a local branch and as a read-only remote tracking branch. Let's get rid of those extra branches.
 
-[source,console]
-----
-$ git branch --all
-----
 
-You will probably see that your branch is still there, both as a local branch and as a read-only remote tracking branch. First, let's get rid of the local branch.
+.Activity Instructions
+. Take a look at your local branches: `git branch --all`
+. Let's see which branches are safe to delete: `git branch --merged`
+. Delete the local branch: `git branch -d <branch-name>`
+. Take another look at the list: `git branch --all`
+. Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: `git pull --prune`
 
-[source,console]
-----
-$ git branch --merged
-----
 
+[NOTE]
+====
 Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to master, we will use this command to ensure all of the changes on our feature branch have been merged to master before we delete the branch.
-
-To delete the local branch, type the following command:
-
-[source,console]
-----
-$ git branch -d <branch-name>
-----
-
-If you type `git branch --all` again, you will see that your local branch is gone but the remote tracking branch is still there. To delete the remote tracking branch, type:
-
-[source,console]
-----
-$ git pull --prune
-----
+====
 
 [NOTE]
 ====
