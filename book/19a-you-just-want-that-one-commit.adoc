@@ -7,7 +7,7 @@ Cherry picking allows you to pick up a commit from your reflog or another branch
 ----
 $ ls
 README.md
-$ git lol
+$ git log --oneline
 84nqdkq initializing repo with README
 ----
 
@@ -24,7 +24,7 @@ Now when you view your directory and log, you should see:
 $ ls
 file4.md
 README.md
-$ git lol
+$ git log --oneline
 eanu482 adding file 4
 84nqdkq initializing repo with README
 ----
