@@ -4,10 +4,10 @@
 Using the practice repository we created earlier, let's try a `reset --soft`.
 
 .Activity Instructions
-. View the history of our project: `git log --oneline`
+. View the history of our project: `git log --oneline --decorate
 . Identify the current location of `HEAD`.
 . Go back two commits in history: `git reset --soft HEAD~2`
-. See the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before: `git log --oneline`
+. See the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before: `git log --oneline --decorate`
 . The changes we made in the last two commits should be in the staging area: `git status`
 . Re-commit these changes: `git commit -m "re-add file 5 and 6"`
 
