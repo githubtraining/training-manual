@@ -15,5 +15,5 @@ Let's go ahead and clone the class repository to your local desktop.
 . Click *Clone or download*.
 . Copy the *clone URL* to your clipboard.
 . Open your command line application.
-. `git clone <CLONE-URL>`
-. `cd <REPOSITORY-NAME>`
+. Retrieve a full copy of the repository from GitHub: `git clone <CLONE-URL>`
+. Once the clone is complete, cd into the new directory created by the clone operation: `cd <REPOSITORY-NAME>`
