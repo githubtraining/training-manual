@@ -5,9 +5,9 @@ Let's create a local repository that we can use to practice the next set of comm
 
 .Activity Instructions
 . Navigate to the directory where you will place your practice repo (`cd ..` to get back to the parent folder).
-. Type `git init practice-repo`.
-. Type `cd practice-repo`.
-. Type `touch README.md`
+. Create a new directory and initialize it as a git repository: `git init practice-repo`
+. CD into your new repository: `cd practice-repo`
+. Create an empty new file named `README.md`: `touch README.md`
 . Add and commit the README.md file.
 
 Since we will be using this as our practice repository, we need to generate some files and commits. Here are some scripts to make this easier:

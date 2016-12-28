@@ -4,12 +4,12 @@
 Using the practice repository we created earlier, let's try a `reset --soft`.
 
 .Activity Instructions
-. Use the log alias `git lol` to look at the history of our project.
+. View the history of our project: `git log --oneline --decorate`
 . Identify the current location of `HEAD`.
-. We want to go back two commits in our history so we will type `git reset --soft HEAD~2`.
-. Using `git lol`, we can see the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before.
-. Type `git status`. The changes we made in the last two commits should be in the staging area.
-. Go ahead and re-commit these changes with `git commit -m "re-add file 5 and 6"`.
+. Go back two commits in history: `git reset --soft HEAD~2`
+. See the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before: `git log --oneline --decorate`
+. The changes we made in the last two commits should be in the staging area: `git status`
+. Re-commit these changes: `git commit -m "re-add file 5 and 6"`
 
 [NOTE]
 ====

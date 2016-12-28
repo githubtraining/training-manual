@@ -8,6 +8,6 @@ Before you reverse the commit, it is a good idea to make sure you will not be in
 ====
 
 .Activity Instructions
-. Type `git revert <SHA>`.
+. Initialize the revert: `git revert <SHA>`
 . Type a commit message.
 . Push your changes to GitHub.

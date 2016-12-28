@@ -7,9 +7,9 @@
 - Adding files to the commit
 
 .Activity Instructions
-. Type `touch file7.txt` to create a new file.
-. When you are adding files to the previous commit, they should be in the staging area. Type `git add file7.txt`. 
-. Type `git commit --amend`.
+. Create a new file: `touch file7.txt`
+. When you are adding files to the previous commit, they should be in the staging area. Move your file to the staging area: `git add file7.txt`
+. `git commit --amend`
 . The text editor will open, allowing you to edit your commit message.
 
 [NOTE]

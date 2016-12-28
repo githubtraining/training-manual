@@ -12,7 +12,7 @@
 . If the game works (and there *is* an `index.html` file), type: `git bisect good`.
 . Git will bisect again and wait for you to test. This will happen until Git has enough information to pinpoint the first bad commit.
 . When Git has detected the error, it will provide a message that `SHA is the first bad commit.`
-. To exit the bisect process: `git bisect reset`.
+. Exit the bisect process: `git bisect reset`.
 
 #### The Short Way
 
