@@ -6,7 +6,7 @@ One of the best ways to ensure code quality is to make peer reviews a part of ev
 . Click the *Pull Request* tab.
 . Use the *Author* drop down to locate your partner's pull request.
 . Click *Files Changed*.
-. Hover over a single line in the file to see the blue *+*. Click the *+* to add a line comment.
+. Hover over a single line in the file to see the blue +. Click the + to add a line comment.
 . Comment on the line and click *Start review*.
 . Repeat these steps to add 2-3 comments on the file.
 . Click *Review* in the top right corner.
