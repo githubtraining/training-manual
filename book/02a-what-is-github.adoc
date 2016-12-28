@@ -16,7 +16,11 @@ In addition to being a place to host and share your Git projects, GitHub provide
 .Key GitHub Features.
 image::book/images/collaboration-features.jpg["GitHub Collaboration Features"]
 
-Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. You may even find some new, indispensable tools like continuous integration and continuous deployment to help you and your team build software better, together.
+### The GitHub Ecosystem
+
+Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations.
+
+You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.
 
 .The GitHub Ecosystem.
 image::book/images/github-ecosystem.jpg["The GitHub Ecosystem"]
