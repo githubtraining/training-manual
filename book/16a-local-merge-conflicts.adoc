@@ -3,8 +3,8 @@
 To practice merge conflicts, have made changes to the same line, in the same file, on two different branches. Let's try to merge these two branches together and see what happens:
 
 .Activity Instructions
-. Type `git checkout stats-update` to create a branch from the existing `remotes/origin/stats-update`.
-. Type `git merge gh-pages` to merge the gh-pages branch into the stats-update branch.
+. Create a branch from the existing `remotes/origin/stats-update` branch: `git checkout stats-update`.
+. Merge the gh-pages branch into the stats-update branch you just created: `git merge gh-pages`.
 
 You should receive a conflict message similar to the one shown below:
 
@@ -32,12 +32,12 @@ Some more text
 
 .Activity Instructions
 . Choose which version of the code you would like to keep.
-. Remove the conflict markers.
+. Delete the conflict markers.
 . Save the file.
 . Close the text editor.
 . Check to see what git is tracking: `git status`
-. Add the corrected file(s) to the staging area: `git add index.html`
-. Commit the resolved file(s): `git commit`
+. Mark the file as resolved: `git add index.html`
+. Complete the merge: `git commit`
 . Save the default commit message.
 
 [NOTE]
