@@ -35,13 +35,9 @@ In order to make a file part of the version controlled directory we will first d
 . Git will open your default text editor to request a commit message. Simply type your message on the top line of the file. Any line without a # will be included in the commit message.
 . Save and close the commit message
 . Let's take another look at our repository status: `git status`
-----
-
 
 [NOTE]
 ====
-## Tips for Good Commit Messages
-
 Good commit messages should:
 
 - Be short. ~50 characters is ideal.
