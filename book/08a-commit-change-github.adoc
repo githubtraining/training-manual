@@ -3,11 +3,8 @@
 
 Once you have made some changes to your file, you will need to create a new commit.
 
-Remember, a good commit message should describe what was changed in the present tense. For example, Add favorite color.
-
-Since we accessed our file through the pull request, GitHub helpfully directs us to commit our changes to the same branch. Choose the option to *Commit directly to your branch* and click *Commit changes*.
-
-[NOTE]
-====
-If you want to see what was changed in a specific commit, you can go to the Commits tab and click on the Commit ID you would like to view.
-====
+.Activity Instructions
+. Scroll to the bottom of the page to find the *Commit changes* dialog box.
+. Type a *Commit message*.
+. Choose the option to *Commit directly to your branch*.
+. Click *Commit changes*.

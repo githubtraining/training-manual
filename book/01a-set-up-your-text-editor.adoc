@@ -17,7 +17,12 @@ If you do not already have a text editor installed, go ahead and download and in
 
 #### Your Editor on the Command Line
 
-After you have install an editor, confirm you can open it from the command line. If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+After you have installed an editor, confirm you can open it from the command line.
+
+[NOTE]
+====
+If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+====
 
 If installed properly, the following command will open the atom text editor:
 

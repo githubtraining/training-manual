@@ -3,14 +3,15 @@
 
 Every commit in Git is a unique snapshot of the project at that point in time. It contains the following information:
 
-- The version of every blob in the repository
-- The author of the commit
-- The author's email
-- The date and time of the commit
-- The commit message
+- Pointers to the current objects in the repository
+- Commit author and email (from your config settings)
+- Commit date and time
+- Commit message
 
 .Commit and tree structure.
 image::book/images/commit-and-tree.png["Git's basic data structure."]
+
+<<<
 
 Each commit also contains the commit ID of its parent commit.
 

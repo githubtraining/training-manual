@@ -26,19 +26,21 @@ include::book/06-working-locally.adoc[]
 
 include::book/07a-git-push.adoc[]
 
-include::book/10-local-diffs.adoc[]
-
 include::book/11-local-history.adoc[]
-
-include::book/12-commit-amend.adoc[]
 
 include::book/13-create-alias.adoc[]
 
-include::book/15-git-revert.adoc[]
-
 include::book/16-merge-conflicts.adoc[]
 
+include::book/14.5-git-bisect.adoc[]
+
+include::book/15-git-revert.adoc[]
+
 include::book/17-helpful-commands.adoc[]
+
+include::book/10-local-diffs.adoc[]
+
+include::book/12-commit-amend.adoc[]
 
 include::book/18-git-reset.adoc[]
 

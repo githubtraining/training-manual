@@ -11,7 +11,7 @@ If you type `git branch` you will see a list of local branches.
 ifdef::fac-notes[]
 [IMPORTANT]
 ====
-Facilitator Note: Note that any branches created before the repo has been cloned do not appear with `git branch`.
+Facilitator Note: Show that any branches created before the repo has been cloned do not appear with `git branch`.
 ====
 endif::fac-notes[]
 
@@ -25,5 +25,5 @@ If you want to see all of the branches, including the read-only copies of your r
 
 [NOTE]
 ====
-The `--all` and `-a` are actually synonyms in Git. Git often provides a verbose and a short option.
+The `--all` and `-a` are actually synonyms for the branch command. Git often provides a verbose and a short option.
 ====

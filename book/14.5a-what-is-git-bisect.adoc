@@ -1,0 +1,17 @@
+[[_github_bisect]]
+### What is `git bisect`?
+
+Using a binary search, `git bisect` can help us detect specific events in our code. For example, you could use bisect to locate the commit where:
+
+- a bug was introduced.
+- a new feature was added.
+- a benchmark’s performance improved.
+
+#### How it works
+
+`git bisect` works by cutting the history between two points in half and then checking you out to that commit. You then check whether the bug/feature exists at that point and tell Git the result. From there, Git will do another division, etc until you have located the desired commit.
+
+[WARNING]
+====
+When you are doing a bisect, you are essentially in a detached head state. It is important to remember to end the bisect with `git bisect reset` before attempting to perform other operations with Git.
+====

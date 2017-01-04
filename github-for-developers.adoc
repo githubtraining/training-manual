@@ -1,5 +1,4 @@
 = GitHub for Developers: Training Manual
--v1.0
 :doctype: book
 :source-highlighter: coderay
 :listing-caption: Listing
@@ -33,21 +32,25 @@ include::book/08-edit-on-github.adoc[]
 
 include::book/09-merging-pull-requests.adoc[]
 
-include::book/10-view-local-changes.adoc[]
-
 include::book/11-local-history.adoc[]
-
-include::book/12-fixing-commit-mistakes.adoc[]
 
 include::book/13-streamline-workflow-with-aliases.adoc[]
 
 include::book/14-workflow-review-project-github-games.adoc[]
 
-include::book/15-reverting-commits.adoc[]
-
 include::book/16-resolving-merge-conflicts.adoc[]
 
+include::book/14.5-git-bisect.adoc[]
+
+include::book/15-reverting-commits.adoc[]
+
 include::book/17-helpful-git-commands.adoc[]
+
+include::book/10-view-local-changes.adoc[]
+
+include::book/18-create-local-repo.adoc[]
+
+include::book/12-fixing-commit-mistakes.adoc[]
 
 include::book/18-rewriting-history-git-reset.adoc[]
 

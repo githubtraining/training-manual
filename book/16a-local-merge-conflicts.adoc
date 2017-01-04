@@ -1,28 +1,25 @@
 ### Local Merge Conflicts
 
-To practice merge conflicts, we first need to create one. Complete the following:
+To practice merge conflicts, have made changes to the same line, in the same file, on two different branches. Let's try to merge these two branches together and see what happens:
 
 .Activity Instructions
-. Type `git checkout -b stats-update origin/stats-update`.
-. Type `git diff —color-words gh-pages..stats-update`.
-. Check out the gh-pages branch.
-. Merge the stats-update branch into gh-pages.
+. Create a branch from the existing `remotes/origin/stats-update` branch: `git checkout stats-update`.
+. Merge the gh-pages branch into the stats-update branch you just created: `git merge gh-pages`.
 
 You should receive a conflict message similar to the one shown below:
 
 [source,console]
 ----
-$ git checkout gh-pages
-Switched to branch 'gh-pages'
-$ git merge stats-update
+$ git merge gh-pages
 Auto-merging index.html
 CONFLICT (content): Merge conflict in index.html
 Automatic merge failed; fix conflicts and then commit the result.
 ----
 
-Use `git status` to determine which file(s) are in conflict.
-
-Open the conflicting file in your text editor.
+.Activity Instructions
+. Determine which file(s) are in conflict: `git status`
+. Open the file(s) listed under **Unmerged Paths:** in your text editor.
+. Look for the merge conflict markers (shown below).
 
 [source,console]
 ----
@@ -33,11 +30,19 @@ Some more text
 >>>>>>>>> stats-update
 ----
 
+<<<
+
 .Activity Instructions
 . Choose which version of the code you would like to keep.
-. Remove the conflict markers.
+. Delete the conflict markers.
 . Save the file.
 . Close the text editor.
-. Type `git status`.
-. Type `git add index.html`.
-. Type `git commit -m "resolving merge conflict"`.
+. Check to see what git is tracking: `git status`
+. Mark the file as resolved: `git add index.html`
+. Complete the merge: `git commit`
+. Save the default commit message.
+
+[NOTE]
+====
+What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
+====

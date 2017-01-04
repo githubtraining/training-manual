@@ -9,8 +9,7 @@
 - designed to handle everything from small to very large projects with speed and efficiency.
 - easy to learn and has a tiny footprint with lightning fast performance.
 
-
-Git outclasses many other SCM tools with features like cheap local branching, convenient staging areas, and multiple workflows.
+Git features cheap local branching, convenient staging areas, and multiple workflows.
 
 As we begin to discuss Git (and what makes it special) it would be helpful if you could forget everything you know about other version control systems (VCSs) for just a moment. Git stores and thinks about information very differently than other VCSs.
 
@@ -23,6 +22,8 @@ One of the first ideas you will need understand is that Git does not store your 
 #### Optimized for Local Operations
 
 Git is optimized for local operation. When you clone a copy of a repository to your local machine, you receive a copy of the entire repository and its history. This means you can work on the plane, on the train, or anywhere else your adventures find you!
+
+<<<
 
 #### Branches are Lightweight and Cheap
 
