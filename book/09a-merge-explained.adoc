@@ -13,3 +13,5 @@ Many project teams have established rules about who should merge a pull request.
 
 This is a discussion you should have with the other members of your team.
 ====
+
+<<<

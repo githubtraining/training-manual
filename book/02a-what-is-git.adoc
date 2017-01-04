@@ -23,6 +23,8 @@ One of the first ideas you will need understand is that Git does not store your 
 
 Git is optimized for local operation. When you clone a copy of a repository to your local machine, you receive a copy of the entire repository and its history. This means you can work on the plane, on the train, or anywhere else your adventures find you!
 
+<<<
+
 #### Branches are Lightweight and Cheap
 
 Branches are an essential concept in Git.

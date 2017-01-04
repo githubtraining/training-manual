@@ -11,6 +11,8 @@ First, we need to get the changes we made on GitHub into our local copy of the r
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
 
+<<<
+
 ### Cleaning Up the Unneeded Branches
 
 If you type `git branch --all` you will probably see that, even though you deleted your branch on the remote, it is still listed in your local copy of the repository, both as a local branch and as a read-only remote tracking branch. Let's get rid of those extra branches.

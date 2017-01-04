@@ -19,3 +19,5 @@ A fork is a static copy of the parent repository. As such, here are some best pr
 - Once your Pull Request has been merged to the parent repository, delete your fork of the repository. If you would like to make additional changes, create a new fork.
 - If you want to keep your fork around for a long period of time, set a second, upstream remote to easily manage updates (we will cover this a little later.)
 ====
+
+<<<
