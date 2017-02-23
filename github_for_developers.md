@@ -1,61 +1,53 @@
-= GitHub for Developers: Training Manual
-:doctype: book
-:source-highlighter: coderay
-:listing-caption: Listing
-:icons: font
-:icon-set: octicon
-:toc:
-:toclevels: 2
-:front-cover-image: image:book/cover.png[width=1050,height=1600]
+# GitHub for Developers: Training Manual
 
-ifdef::fac-notes[]
-include::book/preparing-to-teach-github-for-developers.adoc[]
-endif::fac-notes[]
+// ifdef::fac_notes[]
+{% include 'book/preparing_to_teach_github_for_developers' %}
+// endif::fac_notes[]
 
-include::book/introduction.adoc[]
+{% include 'book/introduction' %}
 
-include::book/01-getting-ready-for-class.adoc[]
+{% include 'book/01_getting_ready_for_class' %}
 
-include::book/02-getting-started.adoc[]
+{% include 'book/02_getting_started' %}
 
-include::book/03-github-flow.adoc[]
+{% include 'book/03_github_flow' %}
 
-include::book/04-branching-with-git.adoc[]
+{% include 'book/04_branching_with_git' %}
 
-include::book/05-local-git-configs.adoc[]
+{% include 'book/05_local_git_configs' %}
 
-include::book/06-working-locally.adoc[]
+{% include 'book/06_working_locally' %}
 
-include::book/07-collaborating-on-code.adoc[]
+{% include 'book/07_collaborating_on_code' %}
 
-include::book/08-edit-on-github.adoc[]
+{% include 'book/08_edit_on_github' %}
 
-include::book/09-merging-pull-requests.adoc[]
+{% include 'book/09_merging_pull_requests' %}
 
-include::book/11-local-history.adoc[]
+{% include 'book/11_local_history' %}
 
-include::book/13-streamline-workflow-with-aliases.adoc[]
+{% include 'book/13_streamline_workflow_with_aliases' %}
 
-include::book/14-workflow-review-project-github-games.adoc[]
+{% include 'book/14_workflow_review_project_github_games' %}
 
-include::book/16-resolving-merge-conflicts.adoc[]
+{% include 'book/16_resolving_merge_conflicts' %}
 
-include::book/14.5-git-bisect.adoc[]
+{% include 'book/14.5_git_bisect' %}
 
-include::book/15-reverting-commits.adoc[]
+{% include 'book/15_reverting_commits' %}
 
-include::book/17-helpful-git-commands.adoc[]
+{% include 'book/17_helpful_git_commands' %}
 
-include::book/10-view-local-changes.adoc[]
+{% include 'book/10_view_local_changes' %}
 
-include::book/18-create-local-repo.adoc[]
+{% include 'book/18_create_local_repo' %}
 
-include::book/12-fixing-commit-mistakes.adoc[]
+{% include 'book/12_fixing_commit_mistakes' %}
 
-include::book/18-rewriting-history-git-reset.adoc[]
+{% include 'book/18_rewriting_history_git_reset' %}
 
-include::book/19-git-cherry-pick.adoc[]
+{% include 'book/19_git_cherry_pick' %}
 
-include::book/20-merge-strategies-rebase.adoc[]
+{% include 'book/20_merge_strategies_rebase' %}
 
-include::book/A-workflow-discuss.adoc[]
+{% include 'book/A_workflow_discuss' %}

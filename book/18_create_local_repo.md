@@ -6,4 +6,4 @@ With Git and GitHub, we have several options for starting a new version controll
 - Locally creating a new folder
 - Locally by initializing an existing project
 
-{ % include 'book/18a_create_local_repo' % }
+{% include 'book/18a_create_local_repo' %}

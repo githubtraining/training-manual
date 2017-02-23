@@ -2,4 +2,4 @@
 
 In this section, we will discuss the essential workflow enabled by Git.
 
-{ % include 'book/03a_essential_git_flow' % }
+{% include 'book/03a_essential_git_flow' %}
