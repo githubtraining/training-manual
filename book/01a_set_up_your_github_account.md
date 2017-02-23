@@ -8,6 +8,6 @@ For this class, we will use a public account on GitHub.com. We do this for a few
 If you already have a github.com account you can skip this step. Otherwise, you can set up your free account by following these steps:
 
 1. Access GitHub.com and click Sign up.
-- Choose the free account.
-- You will receive a verification email at the address provided.
-- Click the link to complete the verification process.
+1. Choose the free account.
+1.You will receive a verification email at the address provided.
+1. Click the link to complete the verification process.
