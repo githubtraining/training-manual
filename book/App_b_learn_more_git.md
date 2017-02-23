@@ -1,2 +1,1 @@
-[[_learn_git]]
 ### Learn More About Git

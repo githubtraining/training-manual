@@ -1,4 +1,3 @@
-[[_commit_structure]]
 ### How Commits Are Made
 
 Every commit in Git is a unique snapshot of the project at that point in time. It contains the following information:
@@ -10,8 +9,6 @@ Every commit in Git is a unique snapshot of the project at that point in time. I
 
 .Commit and tree structure.
 image::book/images/commit-and-tree.png["Git's basic data structure."]
-
-<<<
 
 Each commit also contains the commit ID of its parent commit.
 

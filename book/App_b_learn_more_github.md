@@ -1,2 +1,1 @@
-[[_learn_github]]
 ### Learn More About GitHub

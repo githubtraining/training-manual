@@ -1,14 +1,13 @@
-[[_git_config]]
 ## Local Git Configuration
 
 In this section, we will prepare your local environment to work with Git.
 
-include::05a-checking-git-version.adoc[]
+{ % include 'book/05a_checking_git_version' % }
 
-include::05a-git-config-levels.adoc[]
+{ % include 'book/05a_git_config_levels' % }
 
-include::05a-viewing-your-configs.adoc[]
+{ % include 'book/05a_viewing_your_configs' % }
 
-include::05a-config-name-and-email.adoc[]
+{ % include 'book/05a_config_name_and_email' % }
 
-include::05a-config-autocrlf.adoc[]
+{ % include 'book/05a_config_autocrlf' % }

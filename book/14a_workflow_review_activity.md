@@ -1,4 +1,3 @@
-[[_update_readme]]
 ### Workflow Review: Updating the README.md
 
 Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.

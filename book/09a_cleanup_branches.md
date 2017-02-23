@@ -1,4 +1,3 @@
-[[_delete_branches]]
 ### Updating Your Local Repository
 
 When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically update your local copy of the repository. Let's go back to our command line application and get everything in sync.
@@ -10,8 +9,6 @@ First, we need to get the changes we made on GitHub into our local copy of the r
 . Retrieve all of the changes from GitHub: `git pull`
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
-
-<<<
 
 ### Cleaning Up the Unneeded Branches
 

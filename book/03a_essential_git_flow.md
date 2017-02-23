@@ -1,4 +1,3 @@
-[[_basic_git_flow]]
 ### The Essential Git Workflow
 
 .Git Workflow.

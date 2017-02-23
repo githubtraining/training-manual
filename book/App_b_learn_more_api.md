@@ -1,4 +1,3 @@
-[[_learn_api]]
 ### GitHub API
 
 - https://developer.github.com/v3/[GitHub API Developer Documentation]

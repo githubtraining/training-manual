@@ -21,5 +21,3 @@ YOUR-USERNAME will add recommendations for things to do in YOUR-CITY.
 - [ ] Get an approval
 - [ ] Merge the Pull Request
 ----
-
-<<<

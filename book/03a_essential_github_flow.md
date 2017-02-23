@@ -1,4 +1,3 @@
-[[_basic_github_flow]]
 ### The Essential GitHub Workflow
 
 .GitHub Workflow.

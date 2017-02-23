@@ -1,4 +1,3 @@
-[[_cherry-pick]]
 ### You Just Want That One Commit
 
 Cherry picking allows you to pick up a commit from your reflog or another branch of your project and move it to your current branch. Right now, your file directory and log should look like this:

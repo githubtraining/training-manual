@@ -1,4 +1,3 @@
-[[_reset_soft]]
 ### Reset Soft
 
 Using the practice repository we created earlier, let's try a `reset --soft`.

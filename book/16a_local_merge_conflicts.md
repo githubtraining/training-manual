@@ -30,7 +30,6 @@ Some more text
 >>>>>>>>> stats-update
 ----
 
-<<<
 
 .Activity Instructions
 . Choose which version of the code you would like to keep.

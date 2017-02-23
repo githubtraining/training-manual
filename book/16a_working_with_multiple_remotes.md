@@ -1,4 +1,3 @@
-[[_multiple_remotes]]
 ## Working with Multiple Remotes
 
 When we created our fork, we discussed the fact that a fork is a static copy of the repository at the point in time when we clicked the fork button.

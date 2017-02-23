@@ -1,8 +1,7 @@
-[[_helpful_commands]]
 ## Helpful Git Commands
 
 In this section, we will explore some helpful Git commands.
 
-include::17a-moving-renaming-files-with-git.adoc[]
+{ % include 'book/17a_moving_renaming_files_with_git' % }
 
-include::17a-staging-hunks-of-changes.adoc[]
+{ % include 'book/17a_staging_hunks_of_changes' % }

@@ -1,4 +1,3 @@
-[[_git_log]]
 ### Using Git Log
 
 When you clone a repository, you receive the history of all of the commits made in that repository. The log command allows us to view that history on our local machine.

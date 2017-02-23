@@ -1,4 +1,3 @@
-[[_config_alias]]
 ### Creating Custom Aliases
 
 An alias allows you to type a shortened command to represent a long string on the command line.

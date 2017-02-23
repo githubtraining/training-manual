@@ -1,4 +1,3 @@
-[[_commit_GitHub]]
 ### Committing Changes on GitHub
 
 Once you have made some changes to your file, you will need to create a new commit.

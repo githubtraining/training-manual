@@ -1,4 +1,3 @@
-[[_commit_amend]]
 ### Revising Your Last Commit
 
 `git commit --amend` allows us to make changes to the commit that HEAD is currently pointing to. Two of the most common uses are:

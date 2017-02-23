@@ -1,12 +1,11 @@
-[[_learn_more]]
 ## Appendix B: Digging Deeper
 
-include::App-b-learn-more-git.adoc[]
+{ % include 'book/App_b_learn_more_git' % }
 
-include::App-b-learn-more-github.adoc[]
+{ % include 'book/App_b_learn_more_github' % }
 
-include::App-b-learn-more-workflow.adoc[]
+{ % include 'book/App_b_learn_more_workflow' % }
 
-include::App-b-learn-more-api.adoc[]
+{ % include 'book/App_b_learn_more_api' % }
 
-include::App-b-learn-more-integrations.adoc[]
+{ % include 'book/App_b_learn_more_integrations' % }

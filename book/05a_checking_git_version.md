@@ -1,4 +1,3 @@
-[[_git_version]]
 ### Checking Your Git Version
 
 First, let's confirm your https://git-scm.com/downloads[Git Installation]:

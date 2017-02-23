@@ -1,4 +1,3 @@
-[[_reset_hard]]
 ### Reset Hard
 
 Last but not least, let's try a hard reset.

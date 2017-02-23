@@ -1,4 +1,3 @@
-[[_git_clone]]
 ### Creating a Local Copy of the repo
 
 .Cloning a repository.

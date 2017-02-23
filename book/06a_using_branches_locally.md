@@ -1,4 +1,3 @@
-[[_git_branch]]
 ### Using Branches locally
 
 [source,console]

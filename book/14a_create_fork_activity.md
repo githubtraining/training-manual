@@ -1,4 +1,3 @@
-[[_create_fork]]
 ### Creating a Fork
 
 .Activity Instructions

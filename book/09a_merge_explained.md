@@ -1,4 +1,3 @@
-[[_merge_defined]]
 ### Merge Explained
 
 When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `master` branch.
@@ -13,5 +12,3 @@ Many project teams have established rules about who should merge a pull request.
 
 This is a discussion you should have with the other members of your team.
 ====
-
-<<<

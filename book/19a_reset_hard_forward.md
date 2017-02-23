@@ -1,4 +1,3 @@
-[[_reset_hard]]
 ### Oops, I Didn't Mean to Reset
 
 Sometimes, you `git reset --hard` a little further than intended and want to restore that work. The good news is, that `git reset --hard` doesn't just work by going back in time, it can also go forward:

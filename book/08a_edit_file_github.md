@@ -1,4 +1,3 @@
-[[_edit_file]]
 ### Editing a File on GitHub
 
 To edit a pull request file, you will need to access the *Files Changed* view.

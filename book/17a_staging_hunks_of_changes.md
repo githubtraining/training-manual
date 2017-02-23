@@ -1,4 +1,3 @@
-[[_git_add_p]]
 ### Staging Hunks of Changes
 
 Crafting atomic commits is an important part of creating a readable and informative history of the project.

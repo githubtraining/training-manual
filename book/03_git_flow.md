@@ -1,6 +1,5 @@
-[[_git_flow]]
 ## Understanding the Git Flow
 
 In this section, we will discuss the essential workflow enabled by Git.
 
-include::03a-essential-git-flow.adoc[]
+{ % include 'book/03a_essential_git_flow' % }

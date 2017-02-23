@@ -1,4 +1,3 @@
-[[_git_push]]
 ### Pushing Your Changes to GitHub
 
 .Pushing to GitHub.

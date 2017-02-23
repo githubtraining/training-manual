@@ -1,10 +1,9 @@
-[[_getting_started]]
 ## Getting Started With Git
 
-ifdef::fac-notes[]
-include::02f-git-demo.adoc
-endif::fac-notes[]
+// ifdef::fac_notes[]
+{ % include 'book/02f_git_demo' % }
+// endif::fac_notes[]
 
 Let's get started by answering the question, what is Git?
 
-include::02a-what-is-git.adoc[]
+{ % include 'book/02a_what_is_git' % }

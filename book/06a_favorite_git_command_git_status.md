@@ -1,4 +1,3 @@
-[[_git_status]]
 ### Our Favorite Git command: `git status`
 
 [source,console]

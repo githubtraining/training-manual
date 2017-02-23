@@ -1,4 +1,3 @@
-[[_texteditor_setup]]
 ### Step 3: Set Up Your Text Editor
 
 For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command line.

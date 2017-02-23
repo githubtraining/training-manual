@@ -1,4 +1,3 @@
-[[_config_list]]
 ### Viewing Your Configurations
 
 If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the three config files and list the setting they contain.

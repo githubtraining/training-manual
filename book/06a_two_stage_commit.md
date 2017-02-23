@@ -1,4 +1,3 @@
-[[_two_stage_commit]]
 ### The Two Stage Commit
 
 After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.

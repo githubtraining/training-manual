@@ -1,10 +1,9 @@
-[[_git_revert]]
 ## Reverting Commits
 
 In this section, we will learn about commands that re-write history and understand when you should or shouldn't use them.
 
-include::15a-how-commits-are-made.adoc[]
+{ % include 'book/15a_how_commits_are_made' % }
 
-include::15a-safe-operations.adoc[]
+{ % include 'book/15a_safe_operations' % }
 
-include::15a-reverting-commits-with-git-revert.adoc[]
+{ % include 'book/15a_reverting_commits_with_git_revert' % }

@@ -7,4 +7,4 @@
 . Add the file to a directory named after your GitHub username
 . Enter a short and descriptive commit message
 . Select *commit directly to the `<your-new-branch>` branch*
-. Click *Commit New File* 
+. Click *Commit New File*

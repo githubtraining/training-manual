@@ -1,4 +1,3 @@
-[[_config_levels]]
 ### Git Configuration Levels
 
 .Git Configuration Levels.

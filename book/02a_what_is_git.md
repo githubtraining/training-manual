@@ -1,4 +1,3 @@
-[[_introduce_git]]
 ### What is Git?
 
 
@@ -23,8 +22,6 @@ One of the first ideas you will need understand is that Git does not store your 
 
 Git is optimized for local operation. When you clone a copy of a repository to your local machine, you receive a copy of the entire repository and its history. This means you can work on the plane, on the train, or anywhere else your adventures find you!
 
-<<<
-
 #### Branches are Lightweight and Cheap
 
 Branches are an essential concept in Git.
@@ -34,5 +31,3 @@ When you create a new branch in Git, you are actually just creating a pointer th
 #### Git is Explicit
 
 Which brings us to our final point for now; Git is very explicit. It does not do anything until you tell it to. No auto-saves or auto-syncing with the remote, Git waits for you to tell it when to take a snapshot and when to send that snapshot to the remote.
-
-<<<

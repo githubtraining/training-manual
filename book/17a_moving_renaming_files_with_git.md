@@ -1,4 +1,3 @@
-[[_git_move]]
 ### Moving and Renaming Files with Git
 
 .Activity Instructions

@@ -18,5 +18,3 @@ GitHub offers three different merge strategies for Pull Requests:
 - *Squash and merge:* This option will take all of the commits on your branch and compress them into a single commit. The commit messages will be preserved in the extended commit message for the commit, but the individual commits will be lost.
 - *Rebase and merge:* This option will take all of the commits and replay them as if they just happened. This allows GitHub to perform a fast forward merge (and avoids the addition of the merge commit).
 ====
-
-<<<

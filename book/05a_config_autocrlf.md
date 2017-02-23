@@ -1,4 +1,3 @@
-[[_config_autocrlf]]
 ### Configuring autocrlf
 
 [source,console]

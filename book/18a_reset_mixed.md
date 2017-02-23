@@ -1,4 +1,3 @@
-[[_reset_mixed]]
 ### Reset Mixed
 
 Next we will try the default mode of reset, `reset --mixed`:

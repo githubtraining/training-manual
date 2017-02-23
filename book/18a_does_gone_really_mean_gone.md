@@ -1,4 +1,3 @@
-[[_git_reflog]]
 ### Does Gone Really Mean Gone?
 
 The answer: It depends!

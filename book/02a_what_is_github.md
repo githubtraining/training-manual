@@ -1,4 +1,3 @@
-[[_github_defined]]
 ### What is GitHub?
 
 GitHub is a collaboration platform built on top of a distributed version control system called Git.

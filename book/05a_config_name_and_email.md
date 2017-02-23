@@ -1,4 +1,3 @@
-[[_config_name]]
 ### Configuring Your User Name and Email
 
 Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:

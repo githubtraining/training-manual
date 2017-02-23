@@ -1,8 +1,7 @@
-[[_create_alias]]
 ## Streamlining Your Workflow with Aliases
 
 So far we have learned quite a few commands. Some, like the log commands, can be long and tedious to type. In this section, you will learn how to create custom shortcuts for Git commands.
 
-include::13a-create-custom-aliases.adoc[]
+{ % include 'book/13a_create_custom_aliases' % }
 
-include::13a-exploring.adoc[]
+{ % include 'book/13a_exploring' % }

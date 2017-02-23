@@ -1,4 +1,3 @@
-[[_branch]]
 ### Branching Defined
 
 .GitHub Workflow.
@@ -9,5 +8,3 @@ When you create a branch, you are essentially creating an identical copy of the 
 This keeps your the code on your master branch safe while you experiment and fix issues.
 
 Let's learn how you can create a new branch.
-
-<<<

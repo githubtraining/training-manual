@@ -1,16 +1,15 @@
-[[_work_local]]
 ## Working Locally with Git
 
 Using the command line, you can easily integrate Git into your current workflow.
 
-include::06a-create-local-copy.adoc[]
+{ % include 'book/06a_create_local_copy' % }
 
-include::06a-favorite-git-command-git-status.adoc[]
+{ % include 'book/06a_favorite_git_command_git_status' % }
 
-include::06a-using-branches-locally.adoc[]
+{ % include 'book/06a_using_branches_locally' % }
 
-include::06a-switching-branches.adoc[]
+{ % include 'book/06a_switching_branches' % }
 
-include::06a-activity-create-file.adoc[]
+{ % include 'book/06a_activity_create_file' % }
 
-include::06a-two-stage-commit.adoc[]
+{ % include 'book/06a_two_stage_commit' % }

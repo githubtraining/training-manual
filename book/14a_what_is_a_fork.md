@@ -1,4 +1,3 @@
-[[_fork_defined]]
 ### What is a Fork?
 
 Instead of giving you collaborator access to this repository, we are going to use a different workflow we like to call *Fork & Pull*.

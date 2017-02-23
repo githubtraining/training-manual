@@ -1,5 +1,3 @@
-[[_git_checkout]]
-
 ### Switching Branches
 [source,console]
 ----

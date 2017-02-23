@@ -1,4 +1,3 @@
-[[_using_markdown]]
 ### Using Markdown
 
 GitHub uses a syntax called (((Markdown)))Markdown to help you add basic text formatting to Issues, Pull Requests, and files with the `.md` extension.
