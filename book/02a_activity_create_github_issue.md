@@ -3,9 +3,9 @@
 Follow these steps to create an issue in the class repository:
 
 1. Click the *Issues* tab.
-- Click *New Issue*.
-- Type the following in the Subject line: `YOUR-USERNAME Recommendations`
-- In the body of the issue, include the text below:
+1. Click *New Issue*.
+1. Type the following in the Subject line: `YOUR-USERNAME Recommendations`
+1. In the body of the issue, include the text below:
 
 ```sh
 YOUR-USERNAME will add recommendations for things to do in YOUR-CITY.

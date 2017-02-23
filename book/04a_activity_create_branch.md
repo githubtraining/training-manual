@@ -8,9 +8,9 @@ Follow these steps to create a new branch in the class repository:
 > **Warning:** You will need to have collaborator access on the class repository before you can create a branch on GitHub.
 
 1. Navigate to *Code* tab of the class repository.
-- Click the *Master* dropdown.
-- Enter the branch name 'github-username-hometown'.
-- Press `Enter`.
+1. Click the *Master* dropdown.
+1. Enter the branch name 'github-username-hometown'.
+1. Press `Enter`.
 
 When you create a new branch on GitHub, you are automatically switched to your branch. Now, any changes you make to the files in the repository will be applied to this new branch.
 
