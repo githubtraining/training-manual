@@ -1,6 +1,6 @@
 ### Pushing Your Changes to GitHub
 
-![Pushing to GitHub](/book/images/push-pull.jpg)
+![Pushing to GitHub](book/images/push-pull.jpg)
 
 In this case, our remote is GitHub.com, but this could also be your company's internal instance of GitHub Enterprise.
 

@@ -4,7 +4,7 @@ A repository is the most basic element of GitHub. It is easiest to imagine as a 
 
 A repository contains all of the project files (including documentation), and stores each file's revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!
 
-![GitHub Repositories](/book/images/repository-intro.jpg)
+![GitHub Repositories](book/images/repository-intro.jpg)
 
 ### Repository Navigation
 #### Code

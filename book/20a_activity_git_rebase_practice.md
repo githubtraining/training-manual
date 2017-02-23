@@ -2,7 +2,7 @@
 
 One of the most common uses of rebase is to eliminate recursive merges and create a more linear history. In this activity, we will learn how it is done.
 
-![Git Rebase](/book/images/git-rebase.png)
+![Git Rebase](book/images/git-rebase.png)
 
 #### Set Up
 1. Find the SHA of the initial commit: `git log --oneline`

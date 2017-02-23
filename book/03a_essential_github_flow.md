@@ -1,6 +1,6 @@
 ### The Essential GitHub Workflow
 
-![GitHub Workflow](/book/images/github-workflow.png)
+![GitHub Workflow](book/images/github-workflow.png)
 
 
 The GitHub flow is a lightweight workflow that allows you to experiment with new ideas safely, without fear of compromising a project.

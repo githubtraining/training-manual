@@ -1,6 +1,6 @@
 ### Git Configuration Levels
 
-![Git Configuration Levels](/book/images/config-levels.jpg)
+![Git Configuration Levels](book/images/config-levels.jpg)
 
 Git allows you to set configuration options at three different levels.
 

@@ -1,6 +1,6 @@
 ### Creating a Local Copy of the repo
 
-![Cloning a repository](/book/images/clone-diagram.jpg)
+![Cloning a repository](book/images/clone-diagram.jpg)
 
 Before we can work locally, we will need to create a clone of the repository.
 
