@@ -1,10 +1,9 @@
-[[_git_push]]
 ## Collaborating on Your Code
 
 Now that you have made some changes on your branch, let's create a Pull Request.
 
-include::07a-activity-create-pull-request.adoc[]
+{% include 'book/07a_activity_create_pull_request.md' %}
 
-include::07a-exploring-pull-request.adoc[]
+{% include 'book/07a_exploring_pull_request.md' %}
 
-include::07a-exploring.adoc[]
+{% include 'book/07a_exploring.md' %}

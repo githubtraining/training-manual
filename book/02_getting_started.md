@@ -1,16 +1,15 @@
-[[_getting_started]]
 ## Getting Started With Collaboration
 
 We will start by introducing you to Git, GitHub, and the collaboration features we will use throughout the class. Even if you have used GitHub in the past, we hope this information will provide a baseline understanding of how to use it to build better software!
 
-include::02a-what-is-github.adoc[]
+{% include 'book/02a_what_is_github.md' %}
 
-include::02a-what-is-git.adoc[]
+{% include 'book/02a_what_is_git.md' %}
 
-include::02a-exploring-github-repo.adoc[]
+{% include 'book/02a_exploring_github_repo.md' %}
 
-include::02a-using-github-issues.adoc[]
+{% include 'book/02a_using_github_issues.md' %}
 
-include::02a-activity-create-github-issue.adoc[]
+{% include 'book/02a_activity_create_github_issue.md' %}
 
-include::02a-using-markdown.adoc[]
+{% include 'book/02a_using_markdown.md' %}

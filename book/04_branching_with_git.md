@@ -1,8 +1,7 @@
-[[_using_branches]]
 ## Branching with Git
 
 The first step in the GitHub Workflow is to create a branch. This will allow us to separate our work from the master branch.
 
-include::04a-branching-defined.adoc[]
+{% include 'book/04a_branching_defined.md' %}
 
-include::04a-activity-create-branch.adoc[]
+{% include 'book/04a_activity_create_branch.md' %}
