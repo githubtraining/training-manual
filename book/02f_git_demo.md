@@ -1,6 +1,4 @@
-[IMPORTANT]
-====
-*Facilitator Demo: Beginning with the End*
+> ## Facilitator Demo: Beginning with the End
 
 This meant to be a very quick demo of how easy it is to use Git. It is the beautiful soufflé we pull out of the oven to show the end result.
 
@@ -35,4 +33,3 @@ Now I can pull down their changes and take a look:
 - `git push`
 
 Finally, show the change in the game on GitHub Pages!
-====

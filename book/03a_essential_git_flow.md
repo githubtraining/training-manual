@@ -1,7 +1,6 @@
 ### The Essential Git Workflow
 
-.Git Workflow.
-image::book/images/git-workflow.png["Git Workflow"]
+![Git Workflow](/book/images/git-workflow.png)
 
 The Git flow is a lightweight workflow that allows you to experiment with new ideas safely, without fear of compromising a project.
 

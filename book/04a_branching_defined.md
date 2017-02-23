@@ -1,7 +1,6 @@
 ### Branching Defined
 
-.GitHub Workflow.
-image::book/images/github-workflow.png["GitHub Workflow"]
+![GitHub Workflow](/book/images/github-workflow.png)
 
 When you create a branch, you are essentially creating an identical copy of the project at that point in time that is completely separate from the master branch.
 

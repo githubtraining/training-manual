@@ -4,18 +4,16 @@ Git is an open source version control application. You will need Git installed f
 
 You may already have Git installed so let's check! Open Terminal if you are on a Mac, or PowerShell if you are on a Windows machine, and type:
 
-[source,console]
-----
+```sh
 $ git --version
-----
+```
 
 You should see something like this:
 
-[source,console]
-----
+```sh
 $ git --version
 git version 2.11.0
-----
+```
 
 Anything over 2.0 will work for this class!
 
