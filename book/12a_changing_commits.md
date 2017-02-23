@@ -5,13 +5,10 @@
 - Re-writing commit messages
 - Adding files to the commit
 
-.Activity Instructions
-. Create a new file: `touch file7.txt`
-. When you are adding files to the previous commit, they should be in the staging area. Move your file to the staging area: `git add file7.txt`
-. `git commit --amend`
-. The text editor will open, allowing you to edit your commit message.
 
-[NOTE]
-====
-You can actually amend any data stored by the last commit such as commit author, email, etc.
-====
+1. Create a new file: `touch file7.txt`
+- When you are adding files to the previous commit, they should be in the staging area. Move your file to the staging area: `git add file7.txt`
+- `git commit --amend`
+- The text editor will open, allowing you to edit your commit message.
+
+>**Note:** You can actually amend any data stored by the last commit such as commit author, email, etc.

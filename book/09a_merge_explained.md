@@ -2,8 +2,6 @@
 
 When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `master` branch.
 
-[NOTE]
-====
 Many project teams have established rules about who should merge a pull request.
 
 - Some say it should be the person who created the pull request since they will be the ones to deal with any issues resulting from the merge.
@@ -11,4 +9,3 @@ Many project teams have established rules about who should merge a pull request.
 - Still others say it can be anyone other than the person who created the pull request to ensure at least one review has taken place.
 
 This is a discussion you should have with the other members of your team.
-====

@@ -10,13 +10,7 @@ Each contributor will Fork the repository, making a copy on their user account. 
 
 When they are done, they can submit a Pull Request to the original repository, but they cannot merge it. Only those with write access to your repository will be able to merge the Pull Request.
 
-[WARNING]
-====
-A fork is a static copy of the parent repository. As such, here are some best practices for working with forks:
-
+> **Warning:** A fork is a static copy of the parent repository. As such, here are some best practices for working with forks:
 - Treat your fork like a branch, keep your work short lived and focused.
 - Once your Pull Request has been merged to the parent repository, delete your fork of the repository. If you would like to make additional changes, create a new fork.
 - If you want to keep your fork around for a long period of time, set a second, upstream remote to easily manage updates (we will cover this a little later.)
-====
-
-<<<
