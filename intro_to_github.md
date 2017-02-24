@@ -1,6 +1,8 @@
 # Intro to GitHub: Training Manual
 
-{% include 'book/preparing_to_teach_github_for_developers' %}
+{% if user == 'facilitator' %}
+  {% include 'book/preparing_to_teach_github_for_developers' %}
+{% endif %}
 
 {% include 'book/01_getting_ready_for_class_intro_to_github' %}
 
