@@ -12,8 +12,6 @@ BANNER
 
 facilitator = false
 
-#filename = ARGV[0]
-
 ARGV << '-h' if ARGV.empty?
 
 ARGV.options do |opts|
@@ -33,10 +31,6 @@ basedir = File.expand_path(File.dirname(filename))
 Liquid::Template.file_system = \
     Liquid::LocalFileSystem.new(basedir, pattern="%s.md".freeze)
 
-if facilitator
-  template = Liquid::Template.parse("{% assign user = 'facilitator' %}" + IO.read(filename))
-else
-  template = Liquid::Template.parse("{% assign user = 'student' %}" + IO.read(filename))
-end
+template = Liquid::Template.parse(IO.read(filename))
 
-puts template.render
+puts template.render( 'context' => { 'facilitator' => facilitator } )

@@ -1,4 +1,9 @@
-# Hello World
+{% if context.facilitator %}
 
-{% include 'book/include' %}
-{% include 'book/another_include' %}
+hi facilitator
+
+{% else %}
+
+hi student
+
+{% endif %}
