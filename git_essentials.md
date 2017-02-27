@@ -10,9 +10,9 @@ v0.9 2016-01-13
 :toclevels: 2
 :front-cover-image: image:book/cover.png[width=1050,height=1600]
 
-ifdef::fac-notes[]
+{% if context.facilitator %}
 include::book/preparing-to-teach-gitonly.adoc[]
-endif::fac-notes[]
+{% endif %}
 
 include::book/01-pre-flight-checks.adoc[]
 

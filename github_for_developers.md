@@ -1,8 +1,8 @@
 # GitHub for Developers: Training Manual
 
-// ifdef::fac_notes[]
+{% if context.facilitator %}
 {% include 'book/preparing_to_teach_github_for_developers' %}
-// endif::fac_notes[]
+{% endif %}
 
 {% include 'book/introduction' %}
 

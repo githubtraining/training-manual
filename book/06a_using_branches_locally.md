@@ -6,9 +6,9 @@ $ git branch
 
 If you type `git branch` you will see a list of local branches.
 
-ifdef::fac-notes[]
+{% if context.facilitator %}
 > **Facilitator Note:** Show that any branches created before the repo has been cloned do not appear with `git branch`.
-endif::fac-notes[]
+{% endif %}
 
 ```sh
 $ git branch --all

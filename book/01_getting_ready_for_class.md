@@ -1,10 +1,8 @@
 ## Getting Ready for Class
 
-// not sure how to put this with new liquid template
-ifdef::fac_notes[]
+{% if context.facilitator %}
 {% include 'book/01f_facilitator_note' %}
-// not sure how to put this with new liquid template
-endif::fac_notes[]
+{% endif %}
 
 While you are waiting for class to begin, please take a few minutes to set up your local work environment.
 

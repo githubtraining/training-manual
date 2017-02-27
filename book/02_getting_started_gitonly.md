@@ -1,8 +1,8 @@
 ## Getting Started With Git
 
-// ifdef::fac_notes[]
+{% if context.facilitator %}
 {% include 'book/02f_git_demo' %}
-// endif::fac_notes[]
+{% endif %}
 
 Let's get started by answering the question, what is Git?
 
