@@ -7,20 +7,17 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-# script/bootstrap
-
-_asciidoctor="./bin/asciidoctor"
-_asciidoctor_pdf="./bin/asciidoctor-pdf"
-
-if [[ ! $1 = *.adoc ]] || [ ! -f $1 ]; then
+if [[ ! $1 = *.md ]] || [ ! -f $1 ]; then
   echo "bad argument!" >&2
   exit 1;
 fi
-student="${1%.adoc}-student-manual"
-facilitator="${1%.adoc}-facilitator-manual"
+student="${1%.md}-student-manual"
+facilitator="${1%.md}-facilitator-manual"
 
 echo "==> Generating student and facilitator manuals from $1"
-eval "$_asciidoctor -o $student.html $1"
-eval "$_asciidoctor -o $facilitator.html $1"
-eval "$_asciidoctor_pdf -a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -o $student.pdf $1"
-eval "$_asciidoctor_pdf -a pdf-stylesdir=theme -a pdf-style=manual -a pdf-fontsdir=fonts -a fac-notes -o $facilitator.pdf $1"
+bundle exec script/render.rb -s "$1" > "${student}".md
+bundle exec script/render.rb -f "$1" > "${facilitator}".md
+pandoc -f markdown_github -t html5 -o "${student}".html "${student}".md
+pandoc -f markdown_github -t html5 -o "${student}".html "${facilitator}".md
+pdfify "${student}".md
+pdfify "${facilitator}".md

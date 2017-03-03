@@ -14,3 +14,5 @@ gem 'pygments.rb'
 gem 'thread_safe'
 gem 'epubcheck'
 gem 'kindlegen'
+
+gem 'liquid', '>= 4.0.0'
