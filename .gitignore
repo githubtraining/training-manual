@@ -9,3 +9,7 @@
 /.bundle
 /bin
 /vendor/gems
+
+# Jekyll stuff
+_site
+.sass-cache
