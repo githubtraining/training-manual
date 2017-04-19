@@ -23,12 +23,12 @@ Let's go ahead and clone the class repository to your local desktop.
 
 ```sh
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch gh-pages
+Your branch is up-to-date with 'origin/gh-pages'.
 nothing to commit, working tree clean
 ```
 
-`git status` is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch master, everything is up to date with origin/master and our working tree is clean.
+`git status` is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch gh-pages, everything is up to date with origin/gh-pages and our working tree is clean.
 
 ### Using Branches locally
 
@@ -88,12 +88,12 @@ When we are satisfied with the unit of work we have assembled, we will take a sn
 In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let's do it now.
 
 1. First, let's check the status of our working tree: `git status`
-- Move the file from the working tree to the staging area: `git add my-file.md`
-- Let's see what happened: `git status`
-- Now let's take our first snapshot: `git commit`
-- Git will open your default text editor to request a commit message. Simply type your message on the top line of the file. Any line without a # will be included in the commit message.
-- Save and close the commit message
-- Let's take another look at our repository status: `git status`
+1. Move the file from the working tree to the staging area: `git add my-file.md`
+1. Let's see what happened: `git status`
+1. Now let's take our first snapshot: `git commit`
+1. Git will open your default text editor to request a commit message. Simply type your message on the top line of the file. Any line without a # will be included in the commit message.
+1. Save and close the commit message
+1. Let's take another look at our repository status: `git status`
 
 > **Note:** Good commit messages should:
 - Be short. ~50 characters is ideal.

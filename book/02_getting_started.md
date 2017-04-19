@@ -66,6 +66,15 @@ A repository contains all of the project files (including documentation), and st
 
 ![GitHub Repositories](book/images/repository-intro.jpg)
 
+### User Accounts vs. Organization Accounts
+
+There are two account types in GitHub, user accounts and organization accounts. While there are many differences in these account types, on of the more notable differences is how you handle permissions.
+
+#### User Accounts
+When you signed up for GitHub, you were automatically given a user account. Permissions for a user account are simple, you add people as collaborators to specific repositories to give them full read-write access to the project.
+#### Organization Accounts
+Organization accounts provide more granular control over repository permissions. In an organization account you create teams of people and then give those teams access to specific repositories. Permissions can be assigned at the team level (e.g, read, write, or admin).
+
 ### Repository Navigation
 #### Code
 The code view is where you will find the files included in the repository. These files may contain the project code, documentation, and other important files. We also call this view the root of the project. Any changes to these files will be tracked via Git version control.
@@ -87,6 +96,15 @@ The README.md is a special file that we recommend all repositories contain. GitH
 The CONTRIBUTING.md is another special file that is used to describe the process for collaborating on the repository. The link to the CONTRIBUTING.md file is shown when a user attempts to create a new issue or pull request.
 #### ISSUE_TEMPLATE.md
 The ISSUE_TEMPLATE.md (and its twin the pull request template) are used to generate templated starter text for your project issues. Any time someone opens an issue, the content in the template will be pre-populated in the issue body.
+
+### Introduction to GitHub Pages
+
+GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. Several of the projects we use in class will use GitHub Pages as the deployment strategy. We will barely scratch the surface in this class, but there are a few things you need to know:
+
+- You can create two types of websites, a user/organization site or a project site. We will be working with project websites.
+- For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a `master` or `gh-pages` branch, or a `/docs` folder on the `master` branch.
+- The rendered sites for our projects will appear at `githubschool.github.io/repo-name`.
+
 
 ### Using GitHub Issues
 
