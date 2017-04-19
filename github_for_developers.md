@@ -13,7 +13,6 @@
 {% include 'book/01_getting_ready_for_class' %}
 {% include 'book/02_getting_started' %}
 {% include 'book/03_github_flow' %}
-{% include 'book/03a_essential_github_flow' %}
 {% include 'book/04_branching_with_git' %}
 {% include 'book/04a_branching_defined' %}
 {% include 'book/04a_activity_create_branch' %}
