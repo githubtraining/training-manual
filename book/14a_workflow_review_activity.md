@@ -2,7 +2,7 @@
 
 Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.
 
-> **Note:** Remember, your copy of the website will be rendered at `https://YOUR-USERNAME.github.io/github-games`.
+> **Note:** Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-username`.
 
 > This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.
 
@@ -10,7 +10,7 @@ Now you will practice the GitHub Flow from beginning to end by updating the link
 
 Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
 
-1. Clone your fork of the repository: `git clone https://github.com/YOUR-USERNAME/github-games.git`
+1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`
 - Create a new branch called `readme-update`: `git checkout -b readme-update`
 - Edit the URL in the README.md.
 - Commit the changes to your branch.
