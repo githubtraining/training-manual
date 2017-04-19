@@ -64,6 +64,7 @@
 {% include 'book/13a_exploring' %}
 {% include 'book/14_workflow_review_project_github_games' %}
 {% include 'book/14a_workflow_review_activity' %}
+{% include 'book/16f_setting_up_remote_conflict.md' %}
 {% include 'book/16a_working_with_multiple_remotes' %}
 {% include 'book/16a_exploring' %}
 {% include 'book/14.5_git_bisect' %}
