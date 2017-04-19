@@ -23,12 +23,6 @@
 {% include 'book/13_streamline_workflow_with_aliases' %}
 {% include 'book/14_workflow_review_project_github_games' %}
 {% include 'book/16_resolving_merge_conflicts' %}
-{% include 'book/16a_local_merge_conflicts' %}
-{% if context.facilitator %}
-{% include 'book/16f_setting_up_remote_conflict' %}
-{% endif %}
-{% include 'book/16a_working_with_multiple_remotes' %}
-{% include 'book/16a_exploring' %}
 {% include 'book/14_5_git_bisect' %}
 {% include 'book/15_reverting_commits' %}
 {% include 'book/17_helpful_git_commands' %}
