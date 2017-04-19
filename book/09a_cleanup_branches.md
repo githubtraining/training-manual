@@ -4,8 +4,8 @@ When you merged your Pull Request, you deleted the branch on GitHub, but this wi
 
 First, we need to get the changes we made on GitHub into our local copy of the repository:
 
-1. Start by switching back to your default branch: `git checkout master`
-- Retrieve all of the changes from GitHub: `git pull`
+1. Start by switching back to your default branch: `git checkout gh-pages`
+1. Retrieve all of the changes from GitHub: `git pull`
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
 
@@ -21,6 +21,6 @@ If you type `git branch --all` you will probably see that, even though you delet
 - Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: `git pull --prune`
 
 
-> **Note:** Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to master, we will use this command to ensure all of the changes on our feature branch have been merged to master before we delete the branch.
+> **Note:** Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to gh-pages, we will use this command to ensure all of the changes on our feature branch have been merged to production before we delete the branch.
 
 If you would like pruning of the remote tracking branches to be set as your default behavior when you pull, you can use the following configuration option: `git config --global fetch.prune true`.
