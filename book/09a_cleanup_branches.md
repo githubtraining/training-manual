@@ -15,10 +15,10 @@ If you type `git branch --all` you will probably see that, even though you delet
 
 
 1. Take a look at your local branches: `git branch --all`
-- Let's see which branches are safe to delete: `git branch --merged`
-- Delete the local branch: `git branch -d <branch-name>`
-- Take another look at the list: `git branch --all`
-- Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: `git pull --prune`
+1. Let's see which branches are safe to delete: `git branch --merged`
+1. Delete the local branch: `git branch -d <branch-name>`
+1. Take another look at the list: `git branch --all`
+1. Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: `git pull --prune`
 
 
 > **Note:** Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to gh-pages, we will use this command to ensure all of the changes on our feature branch have been merged to production before we delete the branch.
