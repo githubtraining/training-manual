@@ -91,5 +91,5 @@
 {% include 'book/20a_git_merge_strategies' %}
 {% include 'book/20a_activity_git_rebase_practice' %}
 {% include 'book/A_workflow_discuss' %}
-{% include 'book/14a_what_is_a_fork' %}
-{% include 'book/14a_create_fork_activity' %}
+{% include 'book/App_a_workflow_guide' %}
+{% include 'book/App_b_fork_workflows' %}

@@ -1,6 +1,6 @@
 ### What is a Fork?
 
-Instead of giving you collaborator access to this repository, we are going to use a different workflow we like to call *Fork & Pull*.
+Instead of giving individuals collaborator access to a repository, GitHub also offers a different workflow we like to call *Fork & Pull*.
 
 A fork is a full copy of a repository that is owned by a different user or organization account. They are easiest to understand in the context of Open Source.
 
