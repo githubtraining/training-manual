@@ -13,7 +13,7 @@ YOUR-USERNAME will add recommendations for things to do in YOUR-CITY.
 - [ ] Create a branch
 - [ ] Add the file
 - [ ] Commit the changes
-- [ ] Create a Pull Request (base: `master`, compare: `YOUR-BRANCH-NAME`)
+- [ ] Create a Pull Request
 - [ ] Request a Review
 - [ ] Make more changes
 - [ ] Get an approval
