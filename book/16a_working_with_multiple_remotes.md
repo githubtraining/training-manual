@@ -11,6 +11,6 @@ In the real world, changes will continue to happen on the original project as ne
 - See the difference between your branch and the upstream branch: `git diff shape-colors upstream/shape-colors`
 - Merge in the changes from the upstream fork's `shape-colors` branch: `git merge upstream/shape-colors`
 - Update your remote fork with your local changes: `git push`
-- Create a Pull Request in your repository.
+- Create a Pull Request *in your repository*. (base: `gh-pages`, compare: `shape-colors`)
 
 > **Note:** If you would like to keep things tidy, you can use `git remote remove upstream` once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.
