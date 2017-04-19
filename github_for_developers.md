@@ -66,7 +66,9 @@
 {% include 'book/14a_workflow_review_activity' %}
 {% include 'book/16_resolving_merge_conflicts' %}
 {% include 'book/16a_local_merge_conflicts' %}
+{% if context.facilitator %}
 {% include 'book/16f_setting_up_remote_conflict' %}
+{% endif %}
 {% include 'book/16a_working_with_multiple_remotes' %}
 {% include 'book/16a_remote_merge_conflicts' %}
 {% include 'book/16a_exploring' %}
