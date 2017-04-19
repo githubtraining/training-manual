@@ -11,17 +11,7 @@
 {% endif %}
 
 {% include 'book/01_getting_ready_for_class' %}
-{% include 'book/01a_set_up_your_github_account' %}
-{% include 'book/01a_install_git' %}
-{% include 'book/01a_set_up_your_text_editor' %}
-{% include 'book/01a_exploring' %}
 {% include 'book/02_getting_started' %}
-{% include 'book/02a_what_is_github' %}
-{% include 'book/02a_what_is_git' %}
-{% include 'book/02a_exploring_github_repo' %}
-{% include 'book/02a_using_github_issues' %}
-{% include 'book/02a_activity_create_github_issue' %}
-{% include 'book/02a_using_markdown' %}
 {% include 'book/03_github_flow' %}
 {% include 'book/03a_essential_github_flow' %}
 {% include 'book/04_branching_with_git' %}
