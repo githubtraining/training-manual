@@ -6,7 +6,7 @@ Now that you have created a file, you will open a pull request to discuss the fi
 
 1. Click the *Pull Request* tab.
 1. Click *New Pull Request*.
-1. In the *base* dropdown, choose `master`
+1. In the *base* dropdown, choose `gh-pages`
 1. In the *compare* dropdown, choose your branch.
 1. Type a subject line and enter a comment.
 1. Use markdown formatting to add a header and a checklist to your Pull Request.
