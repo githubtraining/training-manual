@@ -1,4 +1,6 @@
-### Step 1: Set Up Your GitHub.com Account
+---
+title: Step 1 Set Up Your GitHub.com Account
+---
 
 For this class, we will use a public account on GitHub.com. We do this for a few reasons:
 

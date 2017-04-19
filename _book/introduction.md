@@ -1,3 +1,6 @@
+---
+layout: docs
+---
 ## Welcome to GitHub for Developers
 
 Today you will embark on an exciting new adventure: learning how to use Git and GitHub.

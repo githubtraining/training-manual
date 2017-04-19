@@ -1,4 +1,7 @@
 ---
-
+layout: docs
 ---
-test
+
+# test
+
+A body

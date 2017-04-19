@@ -1,4 +1,6 @@
-### Step 2: Install Git
+---
+title: Step 2 Install Git
+---
 
 Git is an open source version control application. You will need Git installed for this class.
 
