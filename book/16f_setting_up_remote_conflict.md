@@ -1,5 +1,5 @@
 > ## Facilitator Note
 
-> The remote merge conflict in this section is already set up. There will be a conflict even if you do not change anything on the upstream repository.
+> The remote merge conflict in this section is **not** already set up. For this activity to work, the facilitator will need to make changes to the code on the `shape-colors` branch in `index.html`.
 
-> This is because the conflict is built into the `shape-colors` branch. There would be a merge conflict if you work with this branch from `origin` remote, as well as from the `upstream` remote.
+> Make these changes before adding the remote in class. If you are going to skip the remote portion, the entire class will need to go through making changes on `shape-colors` in their own individual repositories.
