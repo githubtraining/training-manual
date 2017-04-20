@@ -4,7 +4,7 @@ Now that you have made some changes in the project locally, let's learn how to p
 
 ### Pushing Your Changes to GitHub
 
-![Pushing to GitHub](book/images/push-pull.jpg)
+![Pushing to GitHub](/img/push-pull.jpg)
 
 In this case, our remote is GitHub.com, but this could also be your company's internal instance of GitHub Enterprise.
 
