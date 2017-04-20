@@ -55,3 +55,4 @@ exclude:
   - Gemfile.lock
   - vendor
   - github_for_developers.md
+  - book

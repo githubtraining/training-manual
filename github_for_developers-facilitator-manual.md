@@ -1,5 +1,5 @@
 ---
-layout: docs
+layout: facilitator
 toc: true
 permalink: /facilitator/
 ---
