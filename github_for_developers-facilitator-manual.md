@@ -36,6 +36,7 @@ For more information, visit: http://creativecommons.org/licenses/by/4.0/
 
 
 
+# Getting Started
 ## Getting Ready for Class
 
 While you are waiting for class to begin, please take a few minutes to set up your local work environment.
@@ -108,7 +109,8 @@ If you do not already have a text editor installed, go ahead and download and in
 
 After you have installed an editor, confirm you can open it from the command line.
 
-> If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+{: .note}
 
 If installed properly, the following command will open the Atom text editor:
 
@@ -310,6 +312,8 @@ Here are some interesting things you can check out later:
 
 - *guides.github.com/introduction/flow/* An interactive review of the GitHub Workflow.
 
+
+# Project 1: Caption This
 ## Branching with Git
 
 The first step in the GitHub Workflow is to create a branch. This will allow us to experiment with new features without accidentally introducing untested changes on our production branch.
@@ -757,50 +761,8 @@ Check out this resource for a list of common aliases:
 
 - *git-scm.com/book/en/v2/Git-Basics-Git-Aliases* A helpful overview of some of the most common git aliases.
 
-## Project: GitHub Games
 
-In this section, we will work on a project repository called `github-games`.
-
-A `github-games` repository has been created for you in the githubschool organization. You can access the repository at `https://github.com/githubschool/github-games-username`.
-
-### Creating a Fork
-
-1. Navigate to the repo `githubschool/github-games`.
-- Click *Fork*.
-- Select the account where you would like the fork to reside.
-
-> **Note:** You may not see this step if you only have one GitHub account.
-
-### Workflow Review: Updating the README.md
-
-Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.
-
-> **Note:** Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-username`.
-
-> This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.
-
-> If you click the link, you will get a 404. We have intentionally broken this repository so we can fix it together.
-
-Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
-
-1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`
-- Create a new branch called `readme-update`: `git checkout -b readme-update`
-- Edit the URL in the README.md.
-- Commit the changes to your branch.
-- Push your branch to GitHub: `git push -u origin readme-update`
-- Create a Pull Request *in your repository* (base: `gh-pages`, compare: `readme-update`)
-- Merge your Pull Request.
-- Delete the branch on GitHub.
-- Update your local copy of the repository: `git pull --prune`
-
-`git checkout -b readme-update` is a shortcut command that allows you to combine the creation of the branch (`git branch readme-update`) and checking out to that branch (`git checkout readme-update`). The `-b` tells Git to create a new branch.
-
-> **Note:** `git push -u origin readme-update` is the slightly longer version of the push command that should be used when you push a new branch for the first time.
-
-> The `-u` is the short version of the option `--set-upstream`. This option tells Git to create a relationship between our local branch and a remote tracking branch of the same name.
-
-> You only need to use this long command the first time you push a new branch. After that, you can simply use `git push`.
-
+# Project 2: Merge Conflicts
 ## Resolving Merge Conflicts
 
 When you work with a team (and even sometimes when you are working alone) you will occasionally create merge conflicts. At first, merge conflicts can be intimidating, but resolving them is actually quite easy. In this section you will learn how!
@@ -896,6 +858,52 @@ When you created the Pull Request, you should have had a merge conflict. This is
 Finished and want to do more? Here are some things you can do:
 
 - Add a new background to the game and submit it via Pull Request to githubschool.
+
+
+# Project 3: GitHub Games
+## Project: GitHub Games
+
+In this section, we will work on a project repository called `github-games`.
+
+A `github-games` repository has been created for you in the githubschool organization. You can access the repository at `https://github.com/githubschool/github-games-username`.
+
+### Creating a Fork
+
+1. Navigate to the repo `githubschool/github-games`.
+- Click *Fork*.
+- Select the account where you would like the fork to reside.
+
+> **Note:** You may not see this step if you only have one GitHub account.
+
+### Workflow Review: Updating the README.md
+
+Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.
+
+> **Note:** Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-username`.
+
+> This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.
+
+> If you click the link, you will get a 404. We have intentionally broken this repository so we can fix it together.
+
+Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
+
+1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`
+- Create a new branch called `readme-update`: `git checkout -b readme-update`
+- Edit the URL in the README.md.
+- Commit the changes to your branch.
+- Push your branch to GitHub: `git push -u origin readme-update`
+- Create a Pull Request *in your repository* (base: `gh-pages`, compare: `readme-update`)
+- Merge your Pull Request.
+- Delete the branch on GitHub.
+- Update your local copy of the repository: `git pull --prune`
+
+`git checkout -b readme-update` is a shortcut command that allows you to combine the creation of the branch (`git branch readme-update`) and checking out to that branch (`git checkout readme-update`). The `-b` tells Git to create a new branch.
+
+> **Note:** `git push -u origin readme-update` is the slightly longer version of the push command that should be used when you push a new branch for the first time.
+
+> The `-u` is the short version of the option `--set-upstream`. This option tells Git to create a relationship between our local branch and a remote tracking branch of the same name.
+
+> You only need to use this long command the first time you push a new branch. After that, you can simply use `git push`.
 
 ## Searching for Events in Your Code
 
@@ -1039,6 +1047,8 @@ $ git diff 2710 b745
 
 > **Note:** Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to <REF-1> starting at <REF-2>" or "see what is *not* in <REF-1> but *is* in <REF-2>".
 
+
+# Project 4: Local Repository
 ### Initializing a New Local Repository
 
 Let's create a local repository that we can use to practice the next set of commands.
@@ -1161,7 +1171,7 @@ The reflog is a record of every place HEAD has been. In a few minutes we will se
 - **The reflog is only local.** It is not pushed to the remote and only includes your local history. In other words, you can't see the reflog for someone else's commits and they can't see yours.
 - **The reflog is a limited time offer.** By default, reachable commits are displayed in the reflog for 90 days, but unreachable commits (meaning commits that are not attached to a branch) are only displayed for 30 days.
 
-## Getting it Back
+## Getting it Back: `git cherry-pick`
 
 We just learned how reflog can help us find local changes that have been discarded. So what if:
 
