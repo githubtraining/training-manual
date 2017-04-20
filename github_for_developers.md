@@ -10,6 +10,7 @@
 {% include 'book/01f_facilitator_note' %}
 {% endif %}
 
+# Project 1
 {% include 'book/01_getting_ready_for_class' %}
 {% include 'book/02_getting_started' %}
 {% include 'book/03_github_flow' %}
@@ -21,12 +22,18 @@
 {% include 'book/09_merging_pull_requests' %}
 {% include 'book/11_local_history' %}
 {% include 'book/13_streamline_workflow_with_aliases' %}
-{% include 'book/14_workflow_review_project_github_games' %}
+
+# Project 2
 {% include 'book/16_resolving_merge_conflicts' %}
+
+# Project 3
+{% include 'book/14_workflow_review_project_github_games' %}
 {% include 'book/14_5_git_bisect' %}
 {% include 'book/15_reverting_commits' %}
 {% include 'book/17_helpful_git_commands' %}
 {% include 'book/10_view_local_changes' %}
+
+# Project 4
 {% include 'book/18_create_local_repo' %}
 {% include 'book/12_fixing_commit_mistakes' %}
 {% include 'book/18_rewriting_history_git_reset' %}
