@@ -1,0 +1,3639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<title>GitHub for Developers: Training Manual</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+body{-webkit-font-smoothing:antialiased}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+body{tab-size:4}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
+</head>
+<body class="book">
+<div id="header">
+<h1>GitHub for Developers: Training Manual</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_welcome_to_github_for_developers">Welcome to GitHub for Developers</a>
+<ul class="sectlevel2">
+<li><a href="#_license">License</a></li>
+</ul>
+</li>
+<li><a href="#_getting_ready">Getting Ready for Class</a>
+<ul class="sectlevel2">
+<li><a href="#_setup_github">Step 1: Set Up Your GitHub.com Account</a></li>
+<li><a href="#_setup_git">Step 2: Install Git</a></li>
+<li><a href="#_texteditor_setup">Step 3: Set Up Your Text Editor</a></li>
+<li><a href="#_exploring">Exploring</a></li>
+</ul>
+</li>
+<li><a href="#_getting_started">Getting Started With Collaboration</a>
+<ul class="sectlevel2">
+<li><a href="#_github_defined">What is GitHub?</a></li>
+<li><a href="#_the_github_ecosystem">The GitHub Ecosystem</a></li>
+<li><a href="#_introduce_git">What is Git?</a></li>
+<li><a href="#_explore_repo">Exploring a GitHub Repository</a></li>
+<li><a href="#_using_issues">Using GitHub Issues</a></li>
+<li><a href="#_activity_creating_a_github_issue">Activity: Creating A GitHub Issue</a></li>
+<li><a href="#_using_markdown">Using Markdown</a></li>
+</ul>
+</li>
+<li><a href="#_github_flow">Understanding the GitHub Flow</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_github_flow">The Essential GitHub Workflow</a></li>
+</ul>
+</li>
+<li><a href="#_using_branches">Branching with Git</a>
+<ul class="sectlevel2">
+<li><a href="#_branch">Branching Defined</a></li>
+<li><a href="#_activity_creating_a_branch_with_github">Activity: Creating A Branch with GitHub</a></li>
+</ul>
+</li>
+<li><a href="#_git_config">Local Git Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_git_version">Checking Your Git Version</a></li>
+<li><a href="#_config_levels">Git Configuration Levels</a></li>
+<li><a href="#_config_list">Viewing Your Configurations</a></li>
+<li><a href="#_config_name">Configuring Your User Name and Email</a></li>
+<li><a href="#_config_autocrlf">Configuring autocrlf</a></li>
+</ul>
+</li>
+<li><a href="#_work_local">Working Locally with Git</a>
+<ul class="sectlevel2">
+<li><a href="#_git_clone">Creating a Local Copy of the repo</a></li>
+<li><a href="#_git_status">Our Favorite Git command: <code>git status</code></a></li>
+<li><a href="#_git_branch">Using Branches locally</a></li>
+<li><a href="#_git_checkout">Switching Branches</a></li>
+<li><a href="#_activity_creating_a_new_file">Activity: Creating a New File</a></li>
+<li><a href="#_two_stage_commit">The Two Stage Commit</a></li>
+</ul>
+</li>
+<li><a href="#_git_push">Collaborating on Your Code</a>
+<ul class="sectlevel2">
+<li><a href="#_git_push">Pushing Your Changes to GitHub</a></li>
+<li><a href="#_pull_request">Activity: Creating a Pull Request</a></li>
+<li><a href="#_exploring_a_pull_request">Exploring a Pull Request</a></li>
+<li><a href="#_activity_code_review">Activity: Code Review</a></li>
+</ul>
+</li>
+<li><a href="#_editing_pull_request">Editing Files on GitHub</a>
+<ul class="sectlevel2">
+<li><a href="#_edit_file">Editing a File on GitHub</a></li>
+<li><a href="#_commit_GitHub">Committing Changes on GitHub</a></li>
+</ul>
+</li>
+<li><a href="#_merging_PR">Merging Pull Requests</a>
+<ul class="sectlevel2">
+<li><a href="#_merge_defined">Merge Explained</a></li>
+<li><a href="#_merging_your_pull_request">Merging Your Pull Request</a></li>
+<li><a href="#_delete_branches">Updating Your Local Repository</a></li>
+<li><a href="#_cleaning_up_the_unneeded_branches">Cleaning Up the Unneeded Branches</a></li>
+</ul>
+</li>
+<li><a href="#_local_history">Viewing Local Project History</a>
+<ul class="sectlevel2">
+<li><a href="#_git_log">Using Git Log</a></li>
+</ul>
+</li>
+<li><a href="#_create_alias">Streamlining Your Workflow with Aliases</a>
+<ul class="sectlevel2">
+<li><a href="#_config_alias">Creating Custom Aliases</a></li>
+</ul>
+</li>
+<li><a href="#_project_flow">Workflow Review Project: GitHub Games</a>
+<ul class="sectlevel2">
+<li><a href="#_user_permissions">User Accounts vs. Organization Accounts</a></li>
+<li><a href="#_github_pages">Introduction to GitHub Pages</a></li>
+<li><a href="#_fork_defined">What is a Fork?</a></li>
+<li><a href="#_create_fork">Creating a Fork</a></li>
+<li><a href="#_update_readme">Workflow Review: Updating the README.md</a></li>
+</ul>
+</li>
+<li><a href="#_merge_conflict">Resolving Merge Conflicts</a>
+<ul class="sectlevel2">
+<li><a href="#_local_merge_conflicts">Local Merge Conflicts</a></li>
+</ul>
+</li>
+<li><a href="#_multiple_remotes">Working with Multiple Remotes</a>
+<ul class="sectlevel2">
+<li><a href="#_remote_merge_conflicts">Remote Merge Conflicts</a></li>
+<li><a href="#_exploring_2">Exploring</a></li>
+</ul>
+</li>
+<li><a href="#_git_bisect">Searching for Events in Your Code</a>
+<ul class="sectlevel2">
+<li><a href="#_github_bisect">What is <code>git bisect</code>?</a></li>
+<li><a href="#_finding_the_bug_in_our_project">Finding the Bug in Our Project</a></li>
+</ul>
+</li>
+<li><a href="#_git_revert">Reverting Commits</a>
+<ul class="sectlevel2">
+<li><a href="#_commit_structure">How Commits Are Made</a></li>
+<li><a href="#_safe_operations">Safe Operations</a></li>
+<li><a href="#_reverting_commits">Reverting Commits</a></li>
+</ul>
+</li>
+<li><a href="#_helpful_commands">Helpful Git Commands</a>
+<ul class="sectlevel2">
+<li><a href="#_git_move">Moving and Renaming Files with Git</a></li>
+<li><a href="#_git_add_p">Staging Hunks of Changes</a></li>
+</ul>
+</li>
+<li><a href="#_local_diffs">Viewing Local Changes</a>
+<ul class="sectlevel2">
+<li><a href="#_git_diff">Comparing Changes within the Repository</a></li>
+</ul>
+</li>
+<li><a href="#_git_init">Creating a New Local Repository</a>
+<ul class="sectlevel2">
+<li><a href="#_create_repo_local">Initializing a New Local Repository</a></li>
+</ul>
+</li>
+<li><a href="#_commit_amend">Fixing Commit Mistakes</a>
+<ul class="sectlevel2">
+<li><a href="#_commit_amend">Revising Your Last Commit</a></li>
+</ul>
+</li>
+<li><a href="#_git_reset">Rewriting History with Git Reset</a>
+<ul class="sectlevel2">
+<li><a href="#_understanding_reset">Understanding Reset</a></li>
+<li><a href="#_reset_modes">Reset Modes</a></li>
+<li><a href="#_reset_soft">Reset Soft</a></li>
+<li><a href="#_reset_mixed">Reset Mixed</a></li>
+<li><a href="#_reset_hard">Reset Hard</a></li>
+<li><a href="#_git_reflog">Does Gone Really Mean Gone?</a></li>
+</ul>
+</li>
+<li><a href="#_git_cherry_pick">Getting it Back</a>
+<ul class="sectlevel2">
+<li><a href="#_cherry-pick">You Just Want That One Commit</a></li>
+<li><a href="#_reset_hard">Oops, I Didn&#8217;t Mean to Reset</a></li>
+</ul>
+</li>
+<li><a href="#_git_rebase">Merge Strategies: Rebase</a>
+<ul class="sectlevel2">
+<li><a href="#_about_git_rebase">About Git rebase</a></li>
+<li><a href="#_understanding_git_merge_strategies">Understanding Git Merge Strategies</a></li>
+<li><a href="#_creating_a_linear_history">Creating a Linear History</a></li>
+</ul>
+</li>
+<li><a href="#_workflow_discussion">Appendix A: Talking About Workflows</a>
+<ul class="sectlevel2">
+<li><a href="#_workflow_discussion">Discussion Guide: Team Workflows</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_welcome_to_github_for_developers">Welcome to GitHub for Developers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Today you will embark on an exciting new adventure: learning how to use Git and GitHub.</p>
+</div>
+<div class="paragraph">
+<p>As we move through today&#8217;s materials, please keep in mind: this class is for you! Be sure to follow along, try the activities, and ask lots of questions!</p>
+</div>
+<div class="sect2">
+<h3 id="_license">License</h3>
+<div class="paragraph">
+<p>The prose, course text, slide layouts, class outlines, diagrams, HTML, CSS, and Markdown code in the set of educational materials located in this repository are licensed as <a href="http://creativecommons.org/licenses/by/4.0/legalcode">CC BY 4.0</a>. The Octocat, GitHub logo and other already-copyrighted and already-reserved trademarks and images are not covered by this license.</p>
+</div>
+<div class="paragraph">
+<p>For more information, visit: <a href="http://creativecommons.org/licenses/by/4.0/" class="bare">http://creativecommons.org/licenses/by/4.0/</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_ready">Getting Ready for Class</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>While you are waiting for class to begin, please take a few minutes to set up your local work environment.</p>
+</div>
+<div class="sect2">
+<h3 id="_setup_github">Step 1: Set Up Your GitHub.com Account</h3>
+<div class="paragraph">
+<p>For this class, we will use a public account on GitHub.com. We do this for a few reasons:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We don&#8217;t want you to "practice" in repositories that contain real code.</p>
+</li>
+<li>
+<p>We are going to break some things so we can teach you how to fix them. (therefore, refer to the bullet above)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you already have a github.com account you can skip this step. Otherwise, you can set up your free account by following these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Access GitHub.com and click Sign up.</p>
+</li>
+<li>
+<p>Choose the free account.</p>
+</li>
+<li>
+<p>You will receive a verification email at the address provided.</p>
+</li>
+<li>
+<p>Click the link to complete the verification process.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_setup_git">Step 2: Install Git</h3>
+<div class="paragraph">
+<p>Git is an open source version control application. You will need Git installed for this class.</p>
+</div>
+<div class="paragraph">
+<p>You may already have Git installed so let&#8217;s check! Open Terminal if you are on a Mac, or PowerShell if you are on a Windows machine, and type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git --version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git --version
+git version 2.11.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Anything over 2.0 will work for this class!</p>
+</div>
+<div class="sect3">
+<h4 id="_downloading_and_installing_git">Downloading and Installing Git</h4>
+<div class="paragraph">
+<p>If you don&#8217;t already have Git installed, you can download Git at www.git-scm.com.</p>
+</div>
+<div class="paragraph">
+<p>If you need additional assistance installing Git, you can find more information in the ProGit chapter on installing Git: <code><a href="http://git-scm.com/book/en/v2/Getting-Started-Installing-Git" class="bare">http://git-scm.com/book/en/v2/Getting-Started-Installing-Git</a></code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_where_is_your_shell">Where is Your Shell?</h4>
+<div class="paragraph">
+<p>Now is a good time to create a shortcut to the command line application you will want to use with Git:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you are working on Windows, you can use <code>Git Bash</code> which is installed with the Git package or <code>Git Shell</code> which is installed with GitHub Desktop.</p>
+</li>
+<li>
+<p>If you are working on a Mac or other Unix based system, you can use the terminal application.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Go ahead and open your command line application now!</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_texteditor_setup">Step 3: Set Up Your Text Editor</h3>
+<div class="paragraph">
+<p>For this class, we will use a basic text editor to interact with our code. Let&#8217;s make sure you have one installed and ready to work from the command line.</p>
+</div>
+<div class="sect3">
+<h4 id="_pick_your_editor">Pick Your Editor</h4>
+<div class="paragraph">
+<p>You can use almost any text editor, but we have the best success with the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>GitPad</p>
+</li>
+<li>
+<p><a href="https://atom.io/">atom</a></p>
+</li>
+<li>
+<p>Vi or Vim</p>
+</li>
+<li>
+<p>Sublime</p>
+</li>
+<li>
+<p>Notepad or Notepad++</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you do not already have a text editor installed, go ahead and download and install one of the above editors now!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_your_editor_on_the_command_line">Your Editor on the Command Line</h4>
+<div class="paragraph">
+<p>After you have installed an editor, confirm you can open it from the command line.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If installed properly, the following command will open the atom text editor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ atom .</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exploring">Exploring</h3>
+<div class="paragraph">
+<p>Congratulations! You should now have a working version of Git and a text editor on your system. If you still have some time before class begins, here are some interesting resources you can check out:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>github.com/explore</strong> Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.</p>
+</li>
+<li>
+<p><strong>services.github.com/on-demand</strong> Our On Demand Training courses are GitHub&#8217;s open source training materials. The site contains additional resources you may find helpful when reviewing what you have learned in class! You can even make contributions to the materials or open issues if you would like us to explain something in greater detail. Find the open source repository here: <code><a href="https://github.com/github/training-kit" class="bare">https://github.com/github/training-kit</a></code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_started">Getting Started With Collaboration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We will start by introducing you to Git, GitHub, and the collaboration features we will use throughout the class. Even if you have used GitHub in the past, we hope this information will provide a baseline understanding of how to use it to build better software!</p>
+</div>
+<div class="sect2">
+<h3 id="_github_defined">What is GitHub?</h3>
+<div class="paragraph">
+<p>GitHub is a collaboration platform built on top of a distributed version control system called Git.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/github-icon.jpg" alt="The beloved Octocat logo.">
+</div>
+<div class="title">Figure 1. GitHub&#8217;s beloved Octocat logo.</div>
+</div>
+<div class="paragraph">
+<p>In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Issues</p>
+</li>
+<li>
+<p>Pull Requests</p>
+</li>
+<li>
+<p>Projects</p>
+</li>
+<li>
+<p>Organizations and Teams</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/collaboration-features.jpg" alt="GitHub Collaboration Features">
+</div>
+<div class="title">Figure 2. Key GitHub Features.</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_github_ecosystem">The GitHub Ecosystem</h3>
+<div class="paragraph">
+<p>Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out <a href="https://github.com/integrations" class="bare">https://github.com/integrations</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/github-ecosystem.png" alt="The GitHub Integrations Directory">
+</div>
+<div class="title">Figure 3. The GitHub Integrations Directory.</div>
+</div>
+<div class="paragraph">
+<p>You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_introduce_git">What is Git?</h3>
+<div class="paragraph">
+<p><strong>Git is:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a distributed version control system or DVCS.</p>
+</li>
+<li>
+<p>free and open source.</p>
+</li>
+<li>
+<p>designed to handle everything from small to very large projects with speed and efficiency.</p>
+</li>
+<li>
+<p>easy to learn and has a tiny footprint with lightning fast performance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Git features cheap local branching, convenient staging areas, and multiple workflows.</p>
+</div>
+<div class="paragraph">
+<p>As we begin to discuss Git (and what makes it special) it would be helpful if you could forget everything you know about other version control systems (VCSs) for just a moment. Git stores and thinks about information very differently than other VCSs.</p>
+</div>
+<div class="paragraph">
+<p>We will learn more about how Git stores your code as we go through this class, but the first thing you will need to understand is how Git works with your content.</p>
+</div>
+<div class="sect3">
+<h4 id="_snapshots_not_deltas">Snapshots, not Deltas</h4>
+<div class="paragraph">
+<p>One of the first ideas you will need understand is that Git does not store your information as series of changes. Instead Git takes a snapshot of your repository at a given point in time. This snapshot is called a commit.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_optimized_for_local_operations">Optimized for Local Operations</h4>
+<div class="paragraph">
+<p>Git is optimized for local operation. When you clone a copy of a repository to your local machine, you receive a copy of the entire repository and its history. This means you can work on the plane, on the train, or anywhere else your adventures find you!</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect3">
+<h4 id="_branches_are_lightweight_and_cheap">Branches are Lightweight and Cheap</h4>
+<div class="paragraph">
+<p>Branches are an essential concept in Git.</p>
+</div>
+<div class="paragraph">
+<p>When you create a new branch in Git, you are actually just creating a pointer that corresponds to the most recent snapshot in a line of work. Git keeps the snapshots for each branch separate until you explicitly tell it to merge those snapshots into the main line of work.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_git_is_explicit">Git is Explicit</h4>
+<div class="paragraph">
+<p>Which brings us to our final point for now; Git is very explicit. It does not do anything until you tell it to. No auto-saves or auto-syncing with the remote, Git waits for you to tell it when to take a snapshot and when to send that snapshot to the remote.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_explore_repo">Exploring a GitHub Repository</h3>
+<div class="paragraph">
+<p>A repository is the most basic element of GitHub. It is easiest to imagine as a project&#8217;s folder. However, unlike an ordinary folder on your laptop, a GitHub repository offers simple yet powerful tools for collaborating with others. A repository contains all of the project files (including documentation), and stores each file&#8217;s revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/repository-intro.jpg" alt="GitHub Repositories">
+</div>
+<div class="title">Figure 4. GitHub Repositories.</div>
+</div>
+<div class="dlist">
+<div class="title">Repository Navigation</div>
+<dl>
+<dt class="hdlist1">Code</dt>
+<dd>
+<p>The code view is where you will find the files included in the repository. These files may contain the project code, documentation, and other important files. We also call this view the root of the project. Any changes to these files will be tracked via Git version control.</p>
+</dd>
+<dt class="hdlist1">Issues</dt>
+<dd>
+<p>Issues are used to track bugs and feature requests. Issues can be assigned to specific team members and are designed to encourage discussion and collaboration.</p>
+</dd>
+<dt class="hdlist1">Pull Requests</dt>
+<dd>
+<p>A Pull Request represents a change, such as adding, modifying, or deleting files, which the author would like to make to the repository. Pull Requests help you write better software by facilitating code review and showing the status of any automated tests.</p>
+</dd>
+<dt class="hdlist1">Projects</dt>
+<dd>
+<p>Projects allow you to visualize your work with Kanban style boards. Projects can be created at the repository or organization level.</p>
+</dd>
+<dt class="hdlist1">Wiki</dt>
+<dd>
+<p>Wikis in GitHub can be used to communicate project details, display user documentation, or almost anything your heart desires. And of course, GitHub helps you keep track of the edits to your Wiki!</p>
+</dd>
+<dt class="hdlist1">Pulse</dt>
+<dd>
+<p>Pulse is your project&#8217;s dash board. It contains information on the work that has been completed and the work in progress.</p>
+</dd>
+<dt class="hdlist1">Graphs</dt>
+<dd>
+<p>Graphs provide a more granular view into the repository activity, including who has contributed, when the work is being done, and who has forked the repository.</p>
+</dd>
+<dt class="hdlist1">README.md</dt>
+<dd>
+<p>The README.md is a special file that we recommend all repositories contain. GitHub looks for this file and helpfully displays it below the repository. The README should explain the project and point readers to helpful information within the project.</p>
+</dd>
+<dt class="hdlist1">CONTRIBUTING.md</dt>
+<dd>
+<p>The CONTRIBUTING.md is another special file that is used to describe the process for collaborating on the repository. The link to the CONTRIBUTING.md file is shown when a user attempts to create a new issue or pull request.</p>
+</dd>
+<dt class="hdlist1">ISSUE_TEMPLATE.md</dt>
+<dd>
+<p>The ISSUE_TEMPLATE.md (and its twin the pull request template) are used to generate templated starter text for your project issues. Any time someone opens an issue, the content in the template will be pre-populated in the issue body.</p>
+</dd>
+</dl>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_using_issues">Using GitHub Issues</h3>
+<div class="paragraph">
+<p>In GitHub, you will use issues to record and discuss ideas, enhancements, tasks, and bugs. Issues make collaboration easier by:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replacing email for project discussions, ensuring everyone on the team has the complete story, both now and in the future.</p>
+</li>
+<li>
+<p>Allowing you to cross-link to related issues and pull requests.</p>
+</li>
+<li>
+<p>Creating a single, comprehensive record of how and why you made certain decisions.</p>
+</li>
+<li>
+<p>Allowing you to easily pull the right people into a conversation with @ mentions and team mentions.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activity_creating_a_github_issue">Activity: Creating A GitHub Issue</h3>
+<div class="paragraph">
+<p>Follow these steps to create an issue in the class repository:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Issues</strong> tab.</p>
+</li>
+<li>
+<p>Click <strong>New Issue</strong>.</p>
+</li>
+<li>
+<p>Type the following in the Subject line: <code>YOUR-USERNAME Recommendations</code></p>
+</li>
+<li>
+<p>In the body of the issue, include the text below:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">YOUR-USERNAME will add recommendations for things to do in YOUR-CITY.
+
+- [ ] Create a branch
+- [ ] Add the file
+- [ ] Commit the changes
+- [ ] Create a Pull Request
+- [ ] Request a Review
+- [ ] Make more changes
+- [ ] Get an approval
+- [ ] Merge the Pull Request</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_using_markdown">Using Markdown</h3>
+<div class="paragraph">
+<p>GitHub uses a syntax called Markdown to help you add basic text formatting to Issues, Pull Requests, and files with the <code>.md</code> extension.</p>
+</div>
+<div class="dlist">
+<div class="title">Commonly Used Markdown Syntax</div>
+<dl>
+<dt class="hdlist1"><code># Header</code></dt>
+<dd>
+<p>The `# ` indicates a Header. # = Header 1, ##  = Header 2, etc.</p>
+</dd>
+<dt class="hdlist1"><code>* List item</code></dt>
+<dd>
+<p>A single <code>*</code> or <code>-</code> followed by a space will create a bulleted list.</p>
+</dd>
+<dt class="hdlist1"><code><strong>Bold item</strong></code></dt>
+<dd>
+<p>Two asterix <code>**</code> on either side of a string will make that text bold.</p>
+</dd>
+<dt class="hdlist1"><code>- [ ] Checklist</code></dt>
+<dd>
+<p>A <code>-</code> followed by a space and <code>[ ]</code> will create a handy checklist in your issue or pull request.</p>
+</dd>
+<dt class="hdlist1"><code>@mention</code></dt>
+<dd>
+<p>When you @mention someone in an issue, they will receive a notification - even if they are not currently subscribed to the issue or watching the repository.</p>
+</dd>
+<dt class="hdlist1"><code>#975</code></dt>
+<dd>
+<p>A <code>#</code> followed by the number of an issue or pull request (without a space) in the same repository will create a cross-link.</p>
+</dd>
+<dt class="hdlist1"><code>:smiley:</code></dt>
+<dd>
+<p>Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji id with <code>:</code>.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_flow">Understanding the GitHub Flow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will discuss the collaborative workflow enabled by GitHub.</p>
+</div>
+<div class="sect2">
+<h3 id="_basic_github_flow">The Essential GitHub Workflow</h3>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/github-workflow.png" alt="GitHub Workflow">
+</div>
+<div class="title">Figure 5. GitHub Workflow.</div>
+</div>
+<div class="paragraph">
+<p>The GitHub flow is a lightweight workflow that allows you to experiment with new ideas safely, without fear of compromising a project.</p>
+</div>
+<div class="paragraph">
+<p>Branching is a key concept you will need to understand. Everything in GitHub lives on a branch. By convention, the "blessed" or "canonical" version of your project lives on a branch called <code>master</code>.</p>
+</div>
+<div class="paragraph">
+<p>When you are ready to experiment with a new feature or fix an issue, you create a new branch of the project. The branch will look exactly like <code>master</code> at first, but any changes you make will only be reflected in your branch. Such a new branch is often called a "feature" branch.</p>
+</div>
+<div class="paragraph">
+<p>As you make changes to the files within the project, you will commit your changes to the feature branch.</p>
+</div>
+<div class="paragraph">
+<p>When you are ready to start a discussion about your changes, you will open a pull request. A pull request doesn&#8217;t need to be a perfect work of art - it is meant to be a starting point that will be further refined and polished through the efforts of the project team.</p>
+</div>
+<div class="paragraph">
+<p>When the changes contained in the pull request are approved, the feature branch is merged onto the master branch. In the next section, you will learn how to put this GitHub workflow into practice.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_branches">Branching with Git</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first step in the GitHub Workflow is to create a branch. This will allow us to separate our work from the master branch.</p>
+</div>
+<div class="sect2">
+<h3 id="_branch">Branching Defined</h3>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/github-workflow.png" alt="GitHub Workflow">
+</div>
+<div class="title">Figure 6. GitHub Workflow.</div>
+</div>
+<div class="paragraph">
+<p>When you create a branch, you are essentially creating an identical copy of the project at that point in time that is completely separate from the master branch.</p>
+</div>
+<div class="paragraph">
+<p>This keeps your the code on your master branch safe while you experiment and fix issues.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s learn how you can create a new branch.</p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_activity_creating_a_branch_with_github">Activity: Creating A Branch with GitHub</h3>
+<div class="paragraph">
+<p>Earlier you created an issue about the file you would like to introduce into the project. Let&#8217;s create the branch you will use to add your file.</p>
+</div>
+<div class="paragraph">
+<p>Follow these steps to create a new branch in the class repository:</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You will need to have collaborator access on the class repository before you can create a branch on GitHub.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Navigate to <strong>Code</strong> tab of the class repository.</p>
+</li>
+<li>
+<p>Click the <strong>Master</strong> dropdown.</p>
+</li>
+<li>
+<p>Enter the branch name 'github-username-hometown'.</p>
+</li>
+<li>
+<p>Press <code>Enter</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>When you create a new branch on GitHub, you are automatically switched to your branch. Now, any changes you make to the files in the repository will be applied to this new branch.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A word of caution. When you return to the repository or click the top level repository link, notice that GitHub automatically assumes you want to see the items on the master branch. If you want to continue working on a feature branch, you will need to reselect it using the branch dropdown.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_config">Local Git Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will prepare your local environment to work with Git.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_version">Checking Your Git Version</h3>
+<div class="paragraph">
+<p>First, let&#8217;s confirm your <a href="https://git-scm.com/downloads">Git Installation</a>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git --version
+$ git version 2.11.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you do not see a git version listed or this command returns an error, you may need to install Git.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To get the latest version of Git, visit www.git-scm.com.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_config_levels">Git Configuration Levels</h3>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/config-levels.jpg" alt="Git can be configured at the repo, user, and system level.">
+</div>
+<div class="title">Figure 7. Git Configuration Levels.</div>
+</div>
+<div class="paragraph">
+<p>Git allows you to set configuration options at three different levels.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">--system</dt>
+<dd>
+<p>These are system-wide configurations. They apply to all users on this computer.</p>
+</dd>
+<dt class="hdlist1">--global</dt>
+<dd>
+<p>These are the user level configurations. They only apply to your user account.</p>
+</dd>
+<dt class="hdlist1">--local</dt>
+<dd>
+<p>These are the repository level configurations. They only apply to the specific repository where they are set.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The default value for git config is <code>--local</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_config_list">Viewing Your Configurations</h3>
+<div class="paragraph">
+<p>If you would like to see which config settings have been added automatically, you can type <code>git config --list</code>. This will automatically read from each of the three config files and list the setting they contain.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git config --list</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also narrow the list to a specific configuration level by including it before the list option.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git config --global --list</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_config_name">Configuring Your User Name and Email</h3>
+<div class="paragraph">
+<p>Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can&#8217;t create commits without these settings:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git config --global user.name &quot;First Last&quot;
+$ git config --global user.email &quot;you@email.com&quot;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_config_autocrlf">Configuring autocrlf</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ //for Windows users
+$ git config --global core.autocrlf true
+$ //for Mac or Linux users
+$ git config --global core.autocrlf input</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Different systems handle line endings and line breaks differently. If you open a file created on another system and do not have this config option set, git will think you made changes to the file based on the way your system handles this type of file.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Memory Tip: <code>autocrlf</code> stands for auto carriage return line feed.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_work_local">Working Locally with Git</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the command line, you can easily integrate Git into your current workflow.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_clone">Creating a Local Copy of the repo</h3>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/clone-diagram.jpg" alt="Cloning a repository.">
+</div>
+<div class="title">Figure 8. Cloning a repository.</div>
+</div>
+<div class="paragraph">
+<p>Before we can work locally, we will need to create a clone of the repository.</p>
+</div>
+<div class="paragraph">
+<p>When you clone a repository you are creating a copy of everything in that repository, including its history. This is one of the benefits of a DVCS like git - rather than being required to query a slow centralized server to review the commit history, queries are run locally and are lightning fast.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s go ahead and clone the class repository to your local desktop.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the <strong>Code</strong> tab of the class repository on GitHub.</p>
+</li>
+<li>
+<p>Click <strong>Clone or download</strong>.</p>
+</li>
+<li>
+<p>Copy the <strong>clone URL</strong> to your clipboard.</p>
+</li>
+<li>
+<p>Open your command line application.</p>
+</li>
+<li>
+<p>Retrieve a full copy of the repository from GitHub: <code>git clone &lt;CLONE-URL&gt;</code></p>
+</li>
+<li>
+<p>Once the clone is complete, cd into the new directory created by the clone operation: <code>cd &lt;REPOSITORY-NAME&gt;</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_status">Our Favorite Git command: <code>git status</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>git status</code> is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch master, everything is up to date with origin/master and our working tree is clean.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_branch">Using Branches locally</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git branch</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you type <code>git branch</code> you will see a list of local branches.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git branch --all
+$ git branch -a</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to see all of the branches, including the read-only copies of your remote branches, you can add the <code>--all</code> option or just <code>-a</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>--all</code> and <code>-a</code> are actually synonyms for the branch command. Git often provides a verbose and a short option.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_checkout">Switching Branches</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git checkout &lt;BRANCH-NAME&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To checkout the branch you created online, type git checkout and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You do not need to type <code>remotes/origin</code> in front of the branch - only the branch name. Typing <code>remotes/origin</code> in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activity_creating_a_new_file">Activity: Creating a New File</h3>
+<div class="paragraph">
+<p>Now it is time to create the skeleton of your recommendation file:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Create a new file with the following file name <code>YOUR-USERNAME-YOUR-HOMETOWN.md</code>. For example, <code>githubteacher-san-francisco.md</code>.</p>
+</li>
+<li>
+<p>Add a skeleton for your file with the following lines:</p>
+</li>
+<li>
+<p><code># HOMETOWN recommendations</code></p>
+</li>
+<li>
+<p><code>## Great Places to Eat</code></p>
+</li>
+<li>
+<p><code>## Fun Things to Do</code></p>
+</li>
+<li>
+<p><strong>Save</strong> your file.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Git doesn&#8217;t care how you work with your files locally. You can work in your favorite IDE or text editor, or you can create the file on the command line with <code>touch FILENAME.md</code> or <code>echo "Starter content" &gt; FILENAME.md</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_two_stage_commit">The Two Stage Commit</h3>
+<div class="paragraph">
+<p>After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/two-stage-commit-a.jpg" alt="The two stage commit part 1.">
+</div>
+<div class="title">Figure 9. The Two Stage Commit - Part 1.</div>
+</div>
+<div class="paragraph">
+<p>When you work locally, your files exist in one of four states. They are either untracked, modified, staged, or committed.</p>
+</div>
+<div class="paragraph">
+<p>An untracked file is a new file that has never been committed.</p>
+</div>
+<div class="paragraph">
+<p>Git tracks these files, and keeps track of your history by organizing your files and changes in three working trees. They are Working, Staging (also called Index), and History. When we are actively making changes to files, this is happening in the working tree.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/two-stage-commit-b.jpg" alt="The two stage commit part 2.">
+</div>
+<div class="title">Figure 10. The Two Stage Commit - Part 2.</div>
+</div>
+<div class="paragraph">
+<p>To add these files to version control, you will create a collection of files that represent a discrete unit of work. We build this unit in the staging area.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/two-stage-commit-c.jpg" alt="The two stage commit part 3.">
+</div>
+<div class="title">Figure 11. The Two Stage Commit - Part 3.</div>
+</div>
+<div class="paragraph">
+<p>When we are satisfied with the unit of work we have assembled, we will take a snapshot of everything in the staging area. This is called a commit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/two-stage-commit-d.jpg" alt="The two stage commit part 4.">
+</div>
+<div class="title">Figure 12. The Two Stage Commit - Part 4.</div>
+</div>
+<div class="paragraph">
+<p>In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let&#8217;s do it now.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>First, let&#8217;s check the status of our working tree: <code>git status</code></p>
+</li>
+<li>
+<p>Move the file from the working tree to the staging area: <code>git add my-file.md</code></p>
+</li>
+<li>
+<p>Let&#8217;s see what happened: <code>git status</code></p>
+</li>
+<li>
+<p>Now let&#8217;s take our first snapshot: <code>git commit</code></p>
+</li>
+<li>
+<p>Git will open your default text editor to request a commit message. Simply type your message on the top line of the file. Any line without a # will be included in the commit message.</p>
+</li>
+<li>
+<p>Save and close the commit message</p>
+</li>
+<li>
+<p>Let&#8217;s take another look at our repository status: <code>git status</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Good commit messages should:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Be short. ~50 characters is ideal.</p>
+</li>
+<li>
+<p>Describe the change introduced by the commit.</p>
+</li>
+<li>
+<p>Tell the story of how your project has evolved.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_push">Collaborating on Your Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have made some changes in the project locally, let&#8217;s learn how to push your changes back to the shared class repository for collaboration.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_push">Pushing Your Changes to GitHub</h3>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/push-pull.jpg" alt="Pushing to GitHub.">
+</div>
+<div class="title">Figure 13. Pushing to GitHub.</div>
+</div>
+<div class="paragraph">
+<p>In this case, our remote is GitHub.com, but this could also be your company&#8217;s internal instance of GitHub Enterprise.</p>
+</div>
+<div class="paragraph">
+<p>To push your changes to GitHub, you will use the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git push</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you push, you will be asked to enter your GitHub username and password. If you would like Git to remember your credentials on this computer, you can cache your credentials using:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>WINDOWS:</strong> <code>git config --global credential.helper wincred</code></p>
+</li>
+<li>
+<p><strong>MAC:</strong> <code>git config --global credential.helper osxkeychain</code></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pull_request">Activity: Creating a Pull Request</h3>
+<div class="paragraph">
+<p>Pull Requests are used to propose changes to the project files. A pull request introduces an action that addresses an Issue. A Pull Request is considered a "work in progress" until it is merged into the project.</p>
+</div>
+<div class="paragraph">
+<p>Now that you have created a file, you will open a pull request to discuss the file with your team mates. Follow these steps to create a Pull Request in the class repository:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Pull Request</strong> tab.</p>
+</li>
+<li>
+<p>Click <strong>New Pull Request</strong>.</p>
+</li>
+<li>
+<p>In the <strong>base</strong> dropdown, choose <code>master</code></p>
+</li>
+<li>
+<p>In the <strong>compare</strong> dropdown, choose your branch.</p>
+</li>
+<li>
+<p>Type a subject line and enter a comment.</p>
+</li>
+<li>
+<p>Use markdown formatting to add a header and a checklist to your Pull Request.</p>
+</li>
+<li>
+<p>Include one of the keywords: <code>closes</code>, <code>fixes</code>, or <code>resolves</code> followed by the issue number you created earlier to note which Issue the Pull Request should close. Example: <code>This resolves #3</code></p>
+</li>
+<li>
+<p>Click <strong>Preview</strong> to see how your Pull Request will look.</p>
+</li>
+<li>
+<p>Assign the Pull Request to yourself.</p>
+</li>
+<li>
+<p>Click <strong>Create pull request</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you navigate to the class repository, you should see a banner at the top of the page indicating you have recently pushed branches, along with a button that reads <strong>Compare &amp; pull request</strong>. This helpful button will automatically start the pull request process between your branch and the repository&#8217;s default branch.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exploring_a_pull_request">Exploring a Pull Request</h3>
+<div class="paragraph">
+<p>Now that we have created a Pull Request, let&#8217;s explore a few of the features that make Pull Requests the center of collaboration:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Conversation view</dt>
+<dd>
+<p>Similar to the discussion thread on an Issue, a Pull Request contains a discussion about the changes being made to the repository. This discussion is found in the Conversation tab and also includes a record of all of the commits made on the branch as well as assignments, labels and reviews that have been applied to the pull request.</p>
+</dd>
+<dt class="hdlist1">Commits view</dt>
+<dd>
+<p>The commits view contains more detailed information about who has made changes to the files. Clicking each commit ID will allow you to see the changes applied in that specific commit.</p>
+</dd>
+<dt class="hdlist1">Files changed view</dt>
+<dd>
+<p>The Files changed view allows you to see cumulative effect of all the changes made on the branch. We call this the <code>diff</code>. Our diff isn&#8217;t very interesting yet, but as we make changes your diff will become very colorful.</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_code_review_in_pull_requests">Code Review in Pull Requests</h4>
+<div class="paragraph">
+<p>To provide feedback on proposed changes, GitHub offers three levels of commenting:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">General Conversation</dt>
+<dd>
+<p>You can provide general comments on the Pull Request within the <strong>Conversation</strong> tab.</p>
+</dd>
+<dt class="hdlist1">Line Comments</dt>
+<dd>
+<p>In the files changed view, you can hover over a line to see a blue <code>+</code> icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the conversation view.</p>
+</dd>
+<dt class="hdlist1">Review</dt>
+<dd>
+<p>When you are making line comments, you can also choose to <strong>Start a Review</strong>. When you create a review, you can group many line comments together with a general message: Comments, Approve, or Request Changes. Reviews have special power in GitHub when used in conjunction with protected branches.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_activity_code_review">Activity: Code Review</h3>
+<div class="paragraph">
+<p>One of the best ways to ensure code quality is to make peer reviews a part of every Pull Request. Let&#8217;s review your partner&#8217;s code now:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>Pull Request</strong> tab.</p>
+</li>
+<li>
+<p>Use the <strong>Author</strong> drop down to locate your partner&#8217;s pull request.</p>
+</li>
+<li>
+<p>Click <strong>Files Changed</strong>.</p>
+</li>
+<li>
+<p>Hover over a single line in the file to see the blue +. Click the + to add a line comment.</p>
+</li>
+<li>
+<p>Comment on the line and click <strong>Start review</strong>.</p>
+</li>
+<li>
+<p>Repeat these steps to add 2-3 comments on the file.</p>
+</li>
+<li>
+<p>Click <strong>Review</strong> in the top right corner.</p>
+</li>
+<li>
+<p>Choose whether to <strong>Approve</strong> or <strong>Request changes</strong></p>
+</li>
+<li>
+<p>Enter a general comment for the review.</p>
+</li>
+<li>
+<p>Click <strong>Submit review</strong></p>
+</li>
+<li>
+<p>Click the <strong>Conversation</strong> view to check out your completed review.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_editing_pull_request">Editing Files on GitHub</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since you created the pull request, you will be notified when someone adds a comment or a review. Sometimes, the reviewer will ask you to make a change to the file you just created. Let&#8217;s see how GitHub makes this easy.</p>
+</div>
+<div class="sect2">
+<h3 id="_edit_file">Editing a File on GitHub</h3>
+<div class="paragraph">
+<p>To edit a pull request file, you will need to access the <strong>Files Changed</strong> view.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Click the <strong>pencil icon</strong> in the top right corner of the diff to edit the file using the GitHub file editor.</p>
+</li>
+<li>
+<p>Add recommendations to the file based on the comments from your reviewer or your personal experience.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_commit_GitHub">Committing Changes on GitHub</h3>
+<div class="paragraph">
+<p>Once you have made some changes to your file, you will need to create a new commit.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Scroll to the bottom of the page to find the <strong>Commit changes</strong> dialog box.</p>
+</li>
+<li>
+<p>Type a <strong>Commit message</strong>.</p>
+</li>
+<li>
+<p>Choose the option to <strong>Commit directly to your branch</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Commit changes</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_merging_PR">Merging Pull Requests</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have made the requested changes, your pull request should be ready to merge.</p>
+</div>
+<div class="sect2">
+<h3 id="_merge_defined">Merge Explained</h3>
+<div class="paragraph">
+<p>When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the <code>master</code> branch.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Many project teams have established rules about who should merge a pull request.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Some say it should be the person who created the pull request since they will be the ones to deal with any issues resulting from the merge.</p>
+</li>
+<li>
+<p>Others say it should be a single person within the project team to ensure consistency.</p>
+</li>
+<li>
+<p>Still others say it can be anyone other than the person who created the pull request to ensure at least one review has taken place.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is a discussion you should have with the other members of your team.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_merging_your_pull_request">Merging Your Pull Request</h3>
+<div class="paragraph">
+<p>Let&#8217;s take a look at how you can merge the pull request.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Navigate to your Pull Request (HINT: Use the Author or Assignee drop downs to find your Pull Request quickly)</p>
+</li>
+<li>
+<p>Click <strong>Conversation</strong></p>
+</li>
+<li>
+<p>Scroll to the bottom of the Pull Request and click the <strong>Merge pull request</strong> button</p>
+</li>
+<li>
+<p>Click <strong>Confirm merge</strong></p>
+</li>
+<li>
+<p>Click <strong>Delete branch</strong></p>
+</li>
+<li>
+<p>Click <strong>Issues</strong> and confirm your original issue has been closed</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>GitHub offers three different merge strategies for Pull Requests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Create a merge commit:</strong> This is the traditional option that will perform a standard recursive merge. A new commit will be added that shows the point when the two branches were merged together.</p>
+</li>
+<li>
+<p><strong>Squash and merge:</strong> This option will take all of the commits on your branch and compress them into a single commit. The commit messages will be preserved in the extended commit message for the commit, but the individual commits will be lost.</p>
+</li>
+<li>
+<p><strong>Rebase and merge:</strong> This option will take all of the commits and replay them as if they just happened. This allows GitHub to perform a fast forward merge (and avoids the addition of the merge commit).</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_delete_branches">Updating Your Local Repository</h3>
+<div class="paragraph">
+<p>When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically update your local copy of the repository. Let&#8217;s go back to our command line application and get everything in sync.</p>
+</div>
+<div class="paragraph">
+<p>First, we need to get the changes we made on GitHub into our local copy of the repository:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Start by switching back to your default branch: <code>git checkout master</code></p>
+</li>
+<li>
+<p>Retrieve all of the changes from GitHub: <code>git pull</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>git pull</code> is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are <code>git fetch</code> and <code>git merge</code></p>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_cleaning_up_the_unneeded_branches">Cleaning Up the Unneeded Branches</h3>
+<div class="paragraph">
+<p>If you type <code>git branch --all</code> you will probably see that, even though you deleted your branch on the remote, it is still listed in your local copy of the repository, both as a local branch and as a read-only remote tracking branch. Let&#8217;s get rid of those extra branches.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Take a look at your local branches: <code>git branch --all</code></p>
+</li>
+<li>
+<p>Let&#8217;s see which branches are safe to delete: <code>git branch --merged</code></p>
+</li>
+<li>
+<p>Delete the local branch: <code>git branch -d &lt;branch-name&gt;</code></p>
+</li>
+<li>
+<p>Take another look at the list: <code>git branch --all</code></p>
+</li>
+<li>
+<p>Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: <code>git pull --prune</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Adding the <code>--merged</code> option to the <code>git branch</code> command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to master, we will use this command to ensure all of the changes on our feature branch have been merged to master before we delete the branch.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you would like pruning of the remote tracking branches to be set as your default behavior when you pull, you can use the following configuration option: <code>git config --global fetch.prune true</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_local_history">Viewing Local Project History</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, you will discover commands for viewing the history of your project.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_log">Using Git Log</h3>
+<div class="paragraph">
+<p>When you clone a repository, you receive the history of all of the commits made in that repository. The log command allows us to view that history on our local machine.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s take a look at some of the option switches you can use to customize your view of the project history.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git log
+$ git log --oneline
+$ git log --oneline --graph
+$ git log --oneline --graph --decorate
+$ git log --oneline --graph --decorate --all
+$ git log --stat
+$ git log --patch</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Use the up and down arrows or press enter to view additional log entries. Type q to quit viewing the log and return to the command prompt.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_create_alias">Streamlining Your Workflow with Aliases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So far we have learned quite a few commands. Some, like the log commands, can be long and tedious to type. In this section, you will learn how to create custom shortcuts for Git commands.</p>
+</div>
+<div class="sect2">
+<h3 id="_config_alias">Creating Custom Aliases</h3>
+<div class="paragraph">
+<p>An alias allows you to type a shortened command to represent a long string on the command line.</p>
+</div>
+<div class="paragraph">
+<p>For example, let&#8217;s create an alias for the log command we learned earlier.</p>
+</div>
+<div class="paragraph">
+<p><strong>Original Command</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git log --oneline --graph --decorate --all</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Creating the Alias</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git config --global alias.lol &quot;log --oneline --graph --decorate --all&quot;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Using the Alias</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git lol</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_other_helpful_aliases">Other Helpful Aliases</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git config --global alias.co &quot;checkout -b&quot;
+$ git config --global alias.ss &quot;status -s&quot;
+$ git config alias.dlb '!git checkout &lt;DEFAULT-BRANCH&gt; &amp;&amp; git pull --prune &amp;&amp; git branch --merged | grep -v &quot;\*&quot; | xargs -n 1 git branch -d'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_explore">Explore</h4>
+<div class="paragraph">
+<p>Check out this resource for a list of common aliases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>git-scm.com/book/en/v2/Git-Basics-Git-Aliases</strong> A helpful overview of some of the most common git aliases.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_flow">Workflow Review Project: GitHub Games</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will work on a project repository called <code>github-games</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can access the class repository at <code><a href="https://github.com/githubschool/github-games" class="bare">https://github.com/githubschool/github-games</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>First, let&#8217;s compare and contrast this project with the one we used in the previous activity:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This repository is owned by an organization called githubschool</p>
+</li>
+<li>
+<p>This repository will be rendered as a website by GitHub Pages</p>
+</li>
+<li>
+<p>This repository does not have a master branch. Instead, it has a default branch called gh-pages.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_user_permissions">User Accounts vs. Organization Accounts</h3>
+<div class="paragraph">
+<p>There are two account types in GitHub, user accounts and organization accounts. While there are many differences in these account types, on of the more notable differences is how you handle permissions.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">User Accounts</dt>
+<dd>
+<p>Our first class repository was owned by a user account for GitHub Teacher. Permissions for a user account are simple, you add people as collaborators to give them full read-write access to the project.</p>
+</dd>
+<dt class="hdlist1">Organization Accounts</dt>
+<dd>
+<p>Organization accounts provide more granular control over repository permissions. In an organization account you create teams of people and then give those teams access to specific repositories. Permissions can be assigned at the team level (e.g, read, write, or admin).</p>
+</dd>
+</dl>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_github_pages">Introduction to GitHub Pages</h3>
+<div class="paragraph">
+<p>GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. The <code>github-games</code> project will use GitHub Pages. We will barely scratch the surface in this class, but there are a few things you need to know:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You can create two types of websites, a user/organization site or a project site. We are creating a project website.</p>
+</li>
+<li>
+<p>For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a <code>master</code> or <code>gh-pages</code> branch, or a <code>/docs</code> folder on the <code>master</code> branch.</p>
+</li>
+<li>
+<p>The rendered site for your fork will appear at <code>username.github.io/github-games</code>.</p>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_fork_defined">What is a Fork?</h3>
+<div class="paragraph">
+<p>Instead of giving you collaborator access to this repository, we are going to use a different workflow we like to call <strong>Fork &amp; Pull</strong>.</p>
+</div>
+<div class="paragraph">
+<p>A fork is a full copy of a repository that is owned by a different user or organization account. They are easiest to understand in the context of Open Source.</p>
+</div>
+<div class="paragraph">
+<p>If you own an open source project, you may receive hundreds of Pull Requests from contributors you have never met. It would be impractical to give all of these contributors write access to your project, so GitHub allows for a Fork &amp; Pull workflow.</p>
+</div>
+<div class="paragraph">
+<p>Each contributor will Fork the repository, making a copy on their user account. Since they have full access to that copy, they can make changes, test, etc.</p>
+</div>
+<div class="paragraph">
+<p>When they are done, they can submit a Pull Request to the original repository, but they cannot merge it. Only those with write access to your repository will be able to merge the Pull Request.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>A fork is a static copy of the parent repository. As such, here are some best practices for working with forks:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Treat your fork like a branch, keep your work short lived and focused.</p>
+</li>
+<li>
+<p>Once your Pull Request has been merged to the parent repository, delete your fork of the repository. If you would like to make additional changes, create a new fork.</p>
+</li>
+<li>
+<p>If you want to keep your fork around for a long period of time, set a second, upstream remote to easily manage updates (we will cover this a little later.)</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_create_fork">Creating a Fork</h3>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the repo <code>githubschool/github-games</code>.</p>
+</li>
+<li>
+<p>Click <strong>Fork</strong>.</p>
+</li>
+<li>
+<p>Select the account where you would like the fork to reside. <strong>Note:</strong> you may not see this step if you only have one GitHub account.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_update_readme">Workflow Review: Updating the README.md</h3>
+<div class="paragraph">
+<p>Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember, your copy of the website will be rendered at <code><a href="https://YOUR-USERNAME.github.io/github-games" class="bare">https://YOUR-USERNAME.github.io/github-games</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you click the link, you will get a 404. We have intentionally broken this repository so we can fix it together.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Review Activity</div>
+<ol class="arabic">
+<li>
+<p>Clone your fork of the repository: <code>git clone <a href="https://github.com/YOUR-USERNAME/github-games.git" class="bare">https://github.com/YOUR-USERNAME/github-games.git</a></code></p>
+</li>
+<li>
+<p>Create a new branch called <code>readme-update</code>: <code>git checkout -b readme-update</code></p>
+</li>
+<li>
+<p>Edit the URL in the README.md.</p>
+</li>
+<li>
+<p>Commit the changes to your branch.</p>
+</li>
+<li>
+<p>Push your branch to GitHub: <code>git push -u origin readme-update</code></p>
+</li>
+<li>
+<p>Create a Pull Request <strong>in your repository</strong>.</p>
+</li>
+<li>
+<p>Merge your Pull Request.</p>
+</li>
+<li>
+<p>Delete the branch on GitHub.</p>
+</li>
+<li>
+<p>Update your local copy of the repository: <code>git pull --prune</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>git checkout -b readme-update</code> is a shortcut command that allows you to combine the creation of the branch (<code>git branch readme-update</code>) and checking out to that branch (<code>git checkout readme-update</code>). The <code>-b</code> tells Git to create a new branch.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>git push -u origin readme-update</code> is the slightly longer version of the push command that should be used when you push a new branch for the first time.</p>
+</div>
+<div class="paragraph">
+<p>The <code>-u</code> is the short version of the option <code>--set-upstream</code>. This option tells Git to create a relationship between our local branch and a remote tracking branch of the same name.</p>
+</div>
+<div class="paragraph">
+<p>You only need to use this long command the first time you push a new branch. After that, you can simply use <code>git push</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_merge_conflict">Resolving Merge Conflicts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this project, we have embedded several merge conflicts. At first, merge conflicts can be intimidating, but resolving them is actually quite easy. In this section you will learn how!</p>
+</div>
+<div class="sect2">
+<h3 id="_local_merge_conflicts">Local Merge Conflicts</h3>
+<div class="paragraph">
+<p>To practice merge conflicts, have made changes to the same line, in the same file, on two different branches. Let&#8217;s try to merge these two branches together and see what happens:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Create a branch from the existing <code>remotes/origin/stats-update</code> branch: <code>git checkout stats-update</code>.</p>
+</li>
+<li>
+<p>Merge the gh-pages branch into the stats-update branch you just created: <code>git merge gh-pages</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You should receive a conflict message similar to the one shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git merge gh-pages
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Determine which file(s) are in conflict: <code>git status</code></p>
+</li>
+<li>
+<p>Open the file(s) listed under <strong>Unmerged Paths:</strong> in your text editor.</p>
+</li>
+<li>
+<p>Look for the merge conflict markers (shown below).</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Some text
+=========
+Some more text
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; stats-update</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Choose which version of the code you would like to keep.</p>
+</li>
+<li>
+<p>Delete the conflict markers.</p>
+</li>
+<li>
+<p>Save the file.</p>
+</li>
+<li>
+<p>Close the text editor.</p>
+</li>
+<li>
+<p>Check to see what git is tracking: <code>git status</code></p>
+</li>
+<li>
+<p>Mark the file as resolved: <code>git add index.html</code></p>
+</li>
+<li>
+<p>Complete the merge: <code>git commit</code></p>
+</li>
+<li>
+<p>Save the default commit message.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git&#8217;s merge strategies a little later.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_multiple_remotes">Working with Multiple Remotes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When we created our fork, we discussed the fact that a fork is a static copy of the repository at the point in time when we clicked the fork button.</p>
+</div>
+<div class="paragraph">
+<p>In the real world, changes will continue to happen on the original project as new features are added and bugs are fixed. How can we pull these changes made to the original repository into our copy? Let&#8217;s find out.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Add a new remote from the upstream fork: <code>git remote add upstream <a href="https://github.com/githubschool/github-games.git" class="bare">https://github.com/githubschool/github-games.git</a></code></p>
+</li>
+<li>
+<p>Confirm your remote settings: <code>git remote -v</code></p>
+</li>
+<li>
+<p>Pull down the remote tracking branches from the upstream fork: <code>git fetch upstream</code></p>
+</li>
+<li>
+<p>Create a local branch called <code>shape-colors</code> based on the <code>shape-colors</code> branch in your remote fork of the repository: <code>git checkout -b shape-colors origin/shape-colors</code></p>
+</li>
+<li>
+<p>See the difference between your branch and the upstream branch: <code>git diff shape-colors upstream/shape-colors</code></p>
+</li>
+<li>
+<p>Merge in the changes from the upstream fork&#8217;s <code>shape-colors</code> branch: <code>git merge upstream/shape-colors</code></p>
+</li>
+<li>
+<p>Update your remote fork with your local changes: <code>git push</code></p>
+</li>
+<li>
+<p>Create a Pull Request in your repository.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you would like to keep things tidy, you can use <code>git remote remove upstream</code> once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_remote_merge_conflicts">Remote Merge Conflicts</h3>
+<div class="paragraph">
+<p>When you created the Pull Request, you should have had a merge conflict. This is because the colors of the shapes had also been changed on gh-pages. Let&#8217;s use the GitHub Merge Conflicts UI to solve this conflict.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Click <strong>Resolve conflict</strong></p>
+</li>
+<li>
+<p>Use <strong>Next</strong> to locate the conflict.</p>
+</li>
+<li>
+<p>Decide which version of the colors you will keep.</p>
+</li>
+<li>
+<p>Delete the second set of colors and the conflict markers.</p>
+</li>
+<li>
+<p>Click <strong>Mark as resolved</strong></p>
+</li>
+<li>
+<p>Click <strong>Commit changes</strong></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Some merge conflicts are too complex to be resolved using the GitHub.com UI. In these cases, the Resolve conflict button will be inactive.</p>
+</div>
+<div class="paragraph">
+<p>The <strong>Command line instructions</strong> in the merge dialog box will give you some helpful pointers for how to resolve the conflict locally. <strong>A word of caution</strong>, the command line instructions assume you are ready to merge and close the pull request, so only complete Step 1 of the instructions if you are still collaborating on the changes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exploring_2">Exploring</h3>
+<div class="paragraph">
+<p>Finished and want to do more? Here are some things you can do:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Add a new background to the game and submit it via Pull Request to githubschool.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_bisect">Searching for Events in Your Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will learn how we can use <code>git bisect</code> to find the commit that introduced a bug into our repository.</p>
+</div>
+<div class="sect2">
+<h3 id="_github_bisect">What is <code>git bisect</code>?</h3>
+<div class="paragraph">
+<p>Using a binary search, <code>git bisect</code> can help us detect specific events in our code. For example, you could use bisect to locate the commit where:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a bug was introduced.</p>
+</li>
+<li>
+<p>a new feature was added.</p>
+</li>
+<li>
+<p>a benchmark’s performance improved.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_how_it_works">How it works</h4>
+<div class="paragraph">
+<p><code>git bisect</code> works by cutting the history between two points in half and then checking you out to that commit. You then check whether the bug/feature exists at that point and tell Git the result. From there, Git will do another division, etc until you have located the desired commit.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When you are doing a bisect, you are essentially in a detached head state. It is important to remember to end the bisect with <code>git bisect reset</code> before attempting to perform other operations with Git.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_finding_the_bug_in_our_project">Finding the Bug in Our Project</h3>
+<div class="sect3">
+<h4 id="_the_long_way">The Long Way</h4>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Initiate the binary search: <code>git bisect start</code>.</p>
+</li>
+<li>
+<p>Specify the commit where you noticed the code was broken: <code>git bisect bad &lt;SHA&gt;</code>.</p>
+</li>
+<li>
+<p>Specify the commit where you knew things were working: <code>git bisect good &lt;SHA</code>.</p>
+</li>
+<li>
+<p>Bisect will check you out to the midpoint between good and bad.</p>
+</li>
+<li>
+<p>Run a test to see if the game would work at this point. Our test is to use <code>ls</code> to see if an <code>index.html</code> file exists.</p>
+</li>
+<li>
+<p>If the game is still broken (there <strong>is no</strong> <code>index.html</code> file), type: <code>git bisect bad</code>.</p>
+</li>
+<li>
+<p>If the game works (and there <strong>is</strong> an <code>index.html</code> file), type: <code>git bisect good</code>.</p>
+</li>
+<li>
+<p>Git will bisect again and wait for you to test. This will happen until Git has enough information to pinpoint the first bad commit.</p>
+</li>
+<li>
+<p>When Git has detected the error, it will provide a message that <code>SHA is the first bad commit.</code></p>
+</li>
+<li>
+<p>Exit the bisect process: <code>git bisect reset</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_short_way">The Short Way</h4>
+<div class="paragraph">
+<p>Bisect can also run the tests on your code automatically. Let&#8217;s try it again using a shortcut command and a test:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p><code>git bisect start &lt;bad-SHA&gt; &lt;good-SHA&gt;</code></p>
+</li>
+<li>
+<p><code>git bisect run ls index.html</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_revert">Reverting Commits</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will learn about commands that re-write history and understand when you should or shouldn&#8217;t use them.</p>
+</div>
+<div class="sect2">
+<h3 id="_commit_structure">How Commits Are Made</h3>
+<div class="paragraph">
+<p>Every commit in Git is a unique snapshot of the project at that point in time. It contains the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pointers to the current objects in the repository</p>
+</li>
+<li>
+<p>Commit author and email (from your config settings)</p>
+</li>
+<li>
+<p>Commit date and time</p>
+</li>
+<li>
+<p>Commit message</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/commit-and-tree.png" alt="Git's basic data structure.">
+</div>
+<div class="title">Figure 14. Commit and tree structure.</div>
+</div>
+<div style="page-break-after: always;"></div>
+<div class="paragraph">
+<p>Each commit also contains the commit ID of its parent commit.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/commit-parent.png" alt="Relationship between commits.">
+</div>
+<div class="title">Figure 15. Parents and Children.</div>
+</div>
+<div class="paragraph">
+<p>Image source: ProGit v2 by Scott Chacon</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_safe_operations">Safe Operations</h3>
+<div class="paragraph">
+<p>Git&#8217;s data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the the commits that have already been shared.</p>
+</div>
+<div class="paragraph">
+<p>If an operation will change a commit ID that has been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Guidelines for Common Commands</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Cautions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">revert</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generally safe since it creates a new commit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">commit --amend</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only use on local commits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only use on local commits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cherry-pick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only use on local commits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rebase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only use on local commits.</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+<div class="sect2">
+<h3 id="_reverting_commits">Reverting Commits</h3>
+<div class="paragraph">
+<p>To get your game working, you will need to reverse the commit that incorrectly renames <code>index.html</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before you reverse the commit, it is a good idea to make sure you will not be inadvertently reversing other changes that were lumped into the same commit. To see what was changed in the commit, use <code>git show SHA</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Initialize the revert: <code>git revert &lt;SHA&gt;</code></p>
+</li>
+<li>
+<p>Type a commit message.</p>
+</li>
+<li>
+<p>Push your changes to GitHub.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_helpful_commands">Helpful Git Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will explore some helpful Git commands.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_move">Moving and Renaming Files with Git</h3>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Create a new branch named <code>slow-down</code>.</p>
+</li>
+<li>
+<p>On <strong>line 9</strong> of the index.html file, change the background url to <strong>(images/texture.jpg)</strong>.</p>
+</li>
+<li>
+<p>On <strong>line 78</strong>, change the timing for the game to speed it up or slow it down.</p>
+</li>
+<li>
+<p>Save your changes.</p>
+</li>
+<li>
+<p>See what git is tracking: <code>git status</code></p>
+</li>
+<li>
+<p>Create a new, empty directory: <code>mkdir images</code></p>
+</li>
+<li>
+<p>Move the texture file into the directory with git: <code>git mv texture.jpg images/texture.jpg</code></p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_add_p">Staging Hunks of Changes</h3>
+<div class="paragraph">
+<p>Crafting atomic commits is an important part of creating a readable and informative history of the project.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>See what git is tracking: <code>git status</code>.</p>
+</li>
+<li>
+<p>Move some parts of some files to the staging area with the <code>--patch</code> flag: <code>git add -p</code>.</p>
+</li>
+<li>
+<p>Stage the hunk related to the image move: <code>y</code></p>
+</li>
+<li>
+<p>Leave the hunk related to the speed change in the working area: <code>n</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Wondering what all of those other options are for the hunks? Use the <code>?</code> to see a list of options above the hunk.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_local_diffs">Viewing Local Changes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have some files in the staging area and the working directory, let&#8217;s explore how you can compare different points in your repository.</p>
+</div>
+<div class="sect2">
+<h3 id="_git_diff">Comparing Changes within the Repository</h3>
+<div class="paragraph">
+<p><code>git diff</code> allows you to see allows you to see the difference between any two refs in the repository. The diagram below shows how you can compare the content of your working area, staging, and HEAD (or the most recent commit):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/diff-options.jpg" alt="Available options for git diff">
+</div>
+<div class="title">Figure 16. Git Diff Options.</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try these commands on the repository:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git diff
+$ git diff --staged
+$ git diff HEAD
+$ git diff --color-words</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>git diff</code> will also allow you to compare between branches, commits, and tags by simply typing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git diff &lt;REF-1&gt; &lt;REF-2&gt;
+$ git diff gh-pages slow-down
+$ git diff origin/gh-pages gh-pages
+$ git diff 2710 b745</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to &lt;REF-1&gt; starting at &lt;REF-2&gt;" or "see what is <strong>not</strong> in &lt;REF-1&gt; but <strong>is</strong> in &lt;REF-2&gt;".</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_init">Creating a New Local Repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With Git and GitHub, we have several options for starting a new version controlled project. You can start a new repository:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the remote</p>
+</li>
+<li>
+<p>Locally creating a new folder</p>
+</li>
+<li>
+<p>Locally by initializing an existing project</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_create_repo_local">Initializing a New Local Repository</h3>
+<div class="paragraph">
+<p>Let&#8217;s create a local repository that we can use to practice the next set of commands.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Navigate to the directory where you will place your practice repo (<code>cd ..</code> to get back to the parent folder).</p>
+</li>
+<li>
+<p>Create a new directory and initialize it as a git repository: <code>git init practice-repo</code></p>
+</li>
+<li>
+<p>CD into your new repository: <code>cd practice-repo</code></p>
+</li>
+<li>
+<p>Create an empty new file named <code>README.md</code>: <code>touch README.md</code></p>
+</li>
+<li>
+<p>Add and commit the README.md file.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Since we will be using this as our practice repository, we need to generate some files and commits. Here are some scripts to make this easier:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Bash:</strong> <code>for d in {1..6}; do touch "file${d}.md"; git add "file${d}.md"; git commit -m "adding file ${d}"; done</code></p>
+</li>
+<li>
+<p><strong>PowerShell:</strong> <code>for ($d=1; $d -le 6; $d++) { touch file$d.md; git add file$d.md; git commit -m "adding file$d.md"; }</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_commit_amend">Fixing Commit Mistakes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this activity, we will begin to explore some of the ways Git and GitHub can help us shape our project history.</p>
+</div>
+<div class="sect2">
+<h3 id="_commit_amend">Revising Your Last Commit</h3>
+<div class="paragraph">
+<p><code>git commit --amend</code> allows us to make changes to the commit that HEAD is currently pointing to. Two of the most common uses are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Re-writing commit messages</p>
+</li>
+<li>
+<p>Adding files to the commit</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Create a new file: <code>touch file7.txt</code></p>
+</li>
+<li>
+<p>When you are adding files to the previous commit, they should be in the staging area. Move your file to the staging area: <code>git add file7.txt</code></p>
+</li>
+<li>
+<p><code>git commit --amend</code></p>
+</li>
+<li>
+<p>The text editor will open, allowing you to edit your commit message.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can actually amend any data stored by the last commit such as commit author, email, etc.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_reset">Rewriting History with Git Reset</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you want to make changes to commits further back in history, you will need to use a more powerful command: <code>git reset</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_understanding_reset">Understanding Reset</h3>
+<div class="paragraph">
+<p>Sometimes we are working on a branch and we decide things aren&#8217;t going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/reset-visual.jpg" alt="The branch before and after reset.">
+</div>
+<div class="title">Figure 17. Git Reset Before and After.</div>
+</div>
+<div class="paragraph">
+<p>Remember, there are three different snapshots of our project at any given time. The first is the most recent commit (also known as HEAD). The second is the staging area (also called the index). The third is the working directory containing any new, deleted, or modified files.</p>
+</div>
+<div class="paragraph">
+<p>The <code>git reset</code> command has three modes, and they allow us to change some or all of these three snapshots.</p>
+</div>
+<div class="paragraph">
+<p>It also helps to know what branches technically are: each is a pointer, or reference, to the latest commit in a line of work. As we add new commits, the currently checked-out branch "moves forward," so that it always points to the most recent commit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reset_modes">Reset Modes</h3>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/reset-modes.jpg" alt="The three modes of reset.">
+</div>
+<div class="title">Figure 18. The three modes of reset.</div>
+</div>
+<div class="paragraph">
+<p>The three modes for git reset are: <code>--soft</code>, <code>--mixed</code>, and <code>--hard</code>. For these examples, assume that we have a "clean" working directory, i.e. there are no uncommited changes.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">soft</dt>
+<dd>
+<p><code>git reset --soft &lt;my-branch&gt; &lt;SHA&gt;</code> moves &lt;my-branch&gt; to point at the <code>&lt;SHA&gt;</code>. However, the working directory and staging area remain untouched. Since the snapshot that <code>&lt;my-branch&gt;</code> points to now differs from the index&#8217;s snapshot, this command effectively stages all differences between those snapshots. This is a good command to use when you have made a large number of small commits and you would like to regroup them into a single commit.</p>
+</dd>
+<dt class="hdlist1">mixed</dt>
+<dd>
+<p><code>git reset --mixed &lt;my-branch&gt; &lt;SHA&gt;</code> makes the current branch <strong>and</strong> the staging area look like the <code>&lt;SHA&gt;</code> snapshot. <strong>This is the default mode:</strong> if you don&#8217;t include a mode flag, Git will assume you want to do a <code>--mixed</code> reset. <code>--mixed</code> is useful if you want to keep all of your changes in the working directory, but change whether and how you commit those changes.</p>
+</dd>
+<dt class="hdlist1">hard</dt>
+<dd>
+<p><code>git reset --hard &lt;my-branch&gt; &lt;SHA&gt;</code> is the most drastic option. With this, Git will make all 3 snapshots, <code>&lt;my-branch&gt;</code>, the staging area, <strong>and</strong> your working directory, look like they did at <code>&lt;other-commit&gt;</code>. This can be dangerous! We&#8217;ve assumed so far that our working directory is clean. If it is not, and you have uncommited changes, <code>git reset --hard</code> will <strong>delete all of those changes</strong>. Even with a clean working directory, use <code>--hard</code> only if you&#8217;re sure you want to completely undo earlier changes.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reset_soft">Reset Soft</h3>
+<div class="paragraph">
+<p>Using the practice repository we created earlier, let&#8217;s try a <code>reset --soft</code>.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>View the history of our project: <code>git log --oneline --decorate</code></p>
+</li>
+<li>
+<p>Identify the current location of <code>HEAD</code>.</p>
+</li>
+<li>
+<p>Go back two commits in history: <code>git reset --soft HEAD~2</code></p>
+</li>
+<li>
+<p>See the tip of our branch (and <code>HEAD</code>) is now sitting two commits earlier than it was before: <code>git log --oneline --decorate</code></p>
+</li>
+<li>
+<p>The changes we made in the last two commits should be in the staging area: <code>git status</code></p>
+</li>
+<li>
+<p>Re-commit these changes: <code>git commit -m "re-add file 5 and 6"</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In this example, the tilde tells git we want to reset to two commits before the current location of <code>HEAD</code>. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reset_mixed">Reset Mixed</h3>
+<div class="paragraph">
+<p>Next we will try the default mode of reset, <code>reset --mixed</code>:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Once again, we will start by viewing the history of our project: <code>git log --oneline</code></p>
+</li>
+<li>
+<p>Go back one commit in history: <code>git reset HEAD~</code></p>
+</li>
+<li>
+<p>See where the tip of the branch is pointing: <code>git log --oneline --decorate</code></p>
+</li>
+<li>
+<p>The changes we made in the last commit have been moved back to the working directory: <code>git status</code></p>
+</li>
+<li>
+<p>Move the files to the staging area before we can commit them: <code>git add file5.md file6.md</code></p>
+</li>
+<li>
+<p>Re-commit the files: <code>git commit -m "re-add file 5 and 6"</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reset_hard">Reset Hard</h3>
+<div class="paragraph">
+<p>Last but not least, let&#8217;s try a hard reset.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Start by viewing the history of our project with: <code>git log --oneline</code></p>
+</li>
+<li>
+<p>Reset to the point in time where the only file that existed was the README.md: <code>git reset --hard &lt;SHA&gt;</code></p>
+</li>
+<li>
+<p>See that all of the commits are gone: <code>git log --oneline</code></p>
+</li>
+<li>
+<p>Notice your working directory is clean: <code>git status</code></p>
+</li>
+<li>
+<p>Ssee that the only file in your repository is the README.md: <code>ls</code></p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember, <code>git reset --hard</code> overwrites your working directory, staging area, and history. This means that uncommitted changes you have made to your files will be completely lost. Don&#8217;t use it unless you really want to discard your changes.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_reflog">Does Gone Really Mean Gone?</h3>
+<div class="paragraph">
+<p>The answer: It depends!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ git reflog</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The reflog is a record of every place HEAD has been. In a few minutes we will see how the reflog can be helpful in allowing us to restore previously committed changes. But first, we need to be aware of some of the reflog&#8217;s limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The reflog is only local. It is not pushed to the remote and only includes your local history. In other words, you can&#8217;t see the reflog for someone else&#8217;s commits and they can&#8217;t see yours.</p>
+</li>
+<li>
+<p>The reflog is a limited time offer. By default, reachable commits are displayed in the reflog for 90 days, but unreachable commits (meaning commits that are not attached to a branch) are only displayed for 30 days.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_cherry_pick">Getting it Back</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We just learned how reflog can help us find local changes that have been discarded. So what if:</p>
+</div>
+<div class="sect2">
+<h3 id="_cherry-pick">You Just Want That One Commit</h3>
+<div class="paragraph">
+<p>Cherry picking allows you to pick up a commit from your reflog or another branch of your project and move it to your current branch. Right now, your file directory and log should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ ls
+README.md
+$ git log --oneline
+84nqdkq initializing repo with README</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s cherry pick the commit where we added file 4:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>Find the commit ID where you added file4.md: <code>git reflog</code></p>
+</li>
+<li>
+<p>Cherry-pick that commit: <code>git cherry-pick &lt;SHA&gt;</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Now when you view your directory and log, you should see:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="console">$ ls
+file4.md
+README.md
+$ git log --oneline
+eanu482 adding file 4
+84nqdkq initializing repo with README</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Is the commit ID the same as the one you used in the cherry pick command? Why or why not?</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Remember, when using any commands that change history, it&#8217;s important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reset_hard">Oops, I Didn&#8217;t Mean to Reset</h3>
+<div class="paragraph">
+<p>Sometimes, you <code>git reset --hard</code> a little further than intended and want to restore that work. The good news is, that <code>git reset --hard</code> doesn&#8217;t just work by going back in time, it can also go forward:</p>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Instructions</div>
+<ol class="arabic">
+<li>
+<p>View the history of everywhere HEAD has pointed: <code>git reflog</code></p>
+</li>
+<li>
+<p>Reset to the point in time where the original <code>file6.md</code> was created: <code>git reset --hard &lt;SHA&gt;</code></p>
+</li>
+<li>
+<p>See your restored history: <code>git log --oneline</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Take a look at the commit IDs in <code>git log --oneline</code> compared to <code>git reflog</code>. What do you notice?</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Why didn&#8217;t this command cause a merge conflict since we had already cherry-picked file 4. The reason is that <code>git reset --hard</code> is not trying to merge the two histories together, it is simply moving the branch to point to a new commit. In this case, this was what we wanted. In other cases, this could cause us to loose any work we may have done after the original reset.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_rebase">Merge Strategies: Rebase</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this section, we will discuss another popular merge strategy, rebasing.</p>
+</div>
+<div class="sect2">
+<h3 id="_about_git_rebase">About Git rebase</h3>
+<div class="paragraph">
+<p><code>git rebase</code> enables you to modify your commit history in a variety of ways. For example, you can use it to reorder commits, edit them, squash multiple commits into one, and much more.</p>
+</div>
+<div class="paragraph">
+<p>To enable all of this, <code>rebase</code> comes in several forms. For today&#8217;s class, we&#8217;ll be using interactive rebase: <code>git rebase --interactive</code>, or <code>git rebase -i</code> for short.</p>
+</div>
+<div class="paragraph">
+<p>Typically, you would use <code>git rebase -i</code> to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Replay one branch on top of another branch</p>
+</li>
+<li>
+<p>Edit previous commit messages</p>
+</li>
+<li>
+<p>Combine multiple commits into one</p>
+</li>
+<li>
+<p>Delete or revert commits that are no longer necessary</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_understanding_git_merge_strategies">Understanding Git Merge Strategies</h3>
+<div class="paragraph">
+<p>Git uses three primary merge strategies:</p>
+</div>
+<div class="dlist">
+<div class="title">Git Merge Strategies</div>
+<dl>
+<dt class="hdlist1">fast forward</dt>
+<dd>
+<p>A fast forward merge assumes that no changes have been made on the base branch since the feature branch was created. This means that the branch pointer for base can simply be "fast forwarded" to point to the same commit as the feature branch.</p>
+</dd>
+<dt class="hdlist1">recursive</dt>
+<dd>
+<p>A recursive merge means that changes have been made on both the base branch and the feature branch and git needs to recursively combine them. With a recursive merge, a new "merge commit" is made to mark the point in time when the two branches came together. This merge commit is special because it has more than one parent.</p>
+</dd>
+<dt class="hdlist1">octopus</dt>
+<dd>
+<p>A merge of 3 or more branches is an octopus merge. This will also create a merge commit with multiple parents.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_linear_history">Creating a Linear History</h3>
+<div class="paragraph">
+<p>One of the most common uses of rebase is to eliminate recursive merges and create a more linear history. In this activity, we will learn how it is done.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="book/images/git-rebase.png" alt="The branch before and after rebase.">
+</div>
+<div class="title">Figure 19. Git Rebase.</div>
+</div>
+<div class="olist arabic">
+<div class="title">Activity Set Up</div>
+<ol class="arabic">
+<li>
+<p>Find the SHA of the initial commit: <code>git log --oneline</code></p>
+</li>
+<li>
+<p>Reset to the SHA of the initial commit: <code>git reset --hard SHA</code></p>
+</li>
+<li>
+<p>Create a new branch and check out to it: <code>git checkout -b rebase-me</code></p>
+</li>
+<li>
+<p>Cherry-pick files 4-6 onto the <code>rebase-me</code> branch using the reflog.</p>
+</li>
+<li>
+<p>Checkout to master: <code>git checkout master</code></p>
+</li>
+<li>
+<p>Cherry-pick files 1-3 onto the <code>rebase-me</code> branch using the reflog.</p>
+</li>
+<li>
+<p>Look at your history: <code>git log --oneline --graph --decorate --all</code></p>
+</li>
+<li>
+<p>If you merged now, it would be a recursive merge.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Begin the Rebase</div>
+<ol class="arabic">
+<li>
+<p>Checkout to the <code>rebase-me</code> branch: <code>git checkout rebase-me</code></p>
+</li>
+<li>
+<p>Start the merge: <code>git rebase -i master</code></p>
+</li>
+<li>
+<p>Your text editor will open, allowing you to see the commits to be rebased.</p>
+</li>
+<li>
+<p>Save and close the <code>rebase-todo</code>.</p>
+</li>
+<li>
+<p>Watch your rebase happen on the command line.</p>
+</li>
+<li>
+<p>Take another look at your history: <code>git log --oneline --graph --decorate --all</code></p>
+</li>
+<li>
+<p>If you merged now, it would be a fast-forward merge.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Finish the Merge</div>
+<ol class="arabic">
+<li>
+<p>Checkout to master, the branch you will merge into: <code>git checkout master</code></p>
+</li>
+<li>
+<p>Merge your changes in to master: <code>git merge rebase-me</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow_discussion">Appendix A: Talking About Workflows</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_workflow_discussion">Discussion Guide: Team Workflows</h3>
+<div class="paragraph">
+<p>Here are some topics you will want to discuss with your team as you establish your ideal process:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Which branching strategy will we use?</p>
+</li>
+<li>
+<p>Which branch will serve as our "master" or deployed code?</p>
+</li>
+<li>
+<p>Will we use naming conventions for our branches?</p>
+</li>
+<li>
+<p>How will we use labels and assignees?</p>
+</li>
+<li>
+<p>Will we use milestones?</p>
+</li>
+<li>
+<p>Will we have required elements of Issues or Pull Requests (e.g. shipping checklists)?</p>
+</li>
+<li>
+<p>How will we indicate sign-off on Pull Requests?</p>
+</li>
+<li>
+<p>Who will merge pull requests?</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2017-01-23 08:46:41 EST
+</div>
+</div>
+</body>
+</html>
