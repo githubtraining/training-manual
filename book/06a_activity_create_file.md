@@ -3,7 +3,7 @@
 Now it is time to put an image and a caption into your file:
 
 1. Find an image that you want to caption
-1. Find your file, named _TBD_.
+1. Find your file, `named 2010-02-##-USERNAME.md`.
 1. Open your file in your favorite text editor.
 1. Copy and paste the image text into your file on line 6.
 1. Add a caption by replacing a line that says "Caption Here".
