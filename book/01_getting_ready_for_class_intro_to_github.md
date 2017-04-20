@@ -1,1 +1,0 @@
-## Getting Ready for Class
