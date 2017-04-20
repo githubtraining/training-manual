@@ -4,14 +4,14 @@ Follow these steps to create an issue in the class repository:
 
 1. Click the *Issues* tab.
 1. Click *New Issue*.
-1. Type the following in the Subject line: `YOUR-USERNAME Recommendations`
+1. Type the following in the Subject line: `YOUR-USERNAME Workflow`
 1. In the body of the issue, include the text below:
 
 ```sh
-YOUR-USERNAME will add recommendations for things to do in YOUR-CITY.
+YOUR-USERNAME will choose an image, add a caption, and add both to a file.
 
 - [ ] Create a branch
-- [ ] Add the file
+- [ ] Edit the file
 - [ ] Commit the changes
 - [ ] Create a Pull Request
 - [ ] Request a Review
