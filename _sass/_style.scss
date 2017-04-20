@@ -753,11 +753,12 @@ h5, h6 {
 }
 
 blockquote {
-  border-left: 2px solid #777;
+  border-left: 2px solid darken($gray, 40%);
   padding-left: 20px;
   font-style: italic;
   font-size: 18px;
   font-weight: 500;
+  color: darken($gray, 40%);
 }
 
 
