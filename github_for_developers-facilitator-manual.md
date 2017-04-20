@@ -1,4 +1,14 @@
-# GitHub for Developers: Training Manual
+---
+layout: docs
+toc: true
+---
+
+# Preparing to Teach
+
+GitHub for Developers is designed for new Git and GitHub users who are comfortable on the command line. Complete the following steps to prepare for class
+
+1. Create a class repository in the `githubteacher` account.
+1. Delete the githubteacher copy of the `github-games` repo.
 
 
 
@@ -14,6 +24,13 @@ The prose, course text, slide layouts, class outlines, diagrams, HTML, CSS, and 
 
 For more information, visit: http://creativecommons.org/licenses/by/4.0/
 
+
+
+> ## Facilitator Note
+
+> As participants arrive, direct them to complete this section in preparation for class.
+
+> You should ensure everyone has successfully completed these steps before you begin.
 
 
 
@@ -299,7 +316,7 @@ The first step in the GitHub Workflow is to create a branch. This will allow us 
 
 ![GitHub Workflow](book/images/github-workflow.png)
 
-When you create a branch, you are essentially creating an identical copy of the project at that point in time. This isn't the same as creating a physical copy on disk. In the background, a branch is just a pointer. 
+When you create a branch, you are essentially creating an identical copy of the project at that point in time. This isn't the same as creating a physical copy on disk. In the background, a branch is just a pointer.
 
 Let's learn how you can create a new branch.
 
@@ -437,6 +454,8 @@ $ git branch
 If you type `git branch` you will see a list of local branches.
 
 
+> **Facilitator Note:** Show that any branches created before the repo has been cloned do not appear with `git branch`.
+
 
 ```sh
 $ git branch --all
@@ -465,7 +484,7 @@ Now it is time to put an image and a caption into your file:
 1. Find your file, `named 2010-02-##-USERNAME.md`.
 1. Open your file in your favorite text editor.
 1. Copy and paste the image text into your file on line 6.
-1. On line 7, add this text to center the file: `{: .center}`. 
+1. On line 7, add this text to center the file: `{: .center}`.
 1. On lines 9 and 10, add code for your caption.
 
         ```
@@ -822,6 +841,19 @@ Some more text
 - Save the default commit message.
 
 > **Note:** What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
+
+
+
+> ## Facilitator Note
+
+> The remote merge conflict in this section is **not** already set up. For this activity to work, the facilitator will need to make changes to the upstream repository during a break.
+
+> 1. Prepare to edit the upstream remote (githubschool/github-games)
+> 2. Checkout to the `shape-colors` branch
+> 3. Find the `index.html` file
+> 4. Change the colors on lines 115 - 121
+
+> Make these changes before adding the remote in class. If you are going to skip the remote portion, the entire class will need to go through making changes on `shape-colors` in their own individual repositories.
 
 
 
@@ -1263,4 +1295,3 @@ When they are done, they can submit a Pull Request to the original repository, b
 - Treat your fork like a branch, keep your work short lived and focused.
 - Once your Pull Request has been merged to the parent repository, delete your fork of the repository. If you would like to make additional changes, create a new fork.
 - If you want to keep your fork around for a long period of time, set a second, upstream remote to easily manage updates (we will cover this a little later.)
-
