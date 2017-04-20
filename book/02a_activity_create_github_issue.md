@@ -8,7 +8,7 @@ Follow these steps to create an issue in the class repository:
 1. In the body of the issue, include the text below:
 
 ```sh
-YOUR-USERNAME will add a caption for your assigned image.
+YOUR-USERNAME will choose an image, add a caption, and add both to a file.
 
 - [ ] Create a branch
 - [ ] Edit the file
