@@ -56,40 +56,25 @@ Some more text
 
 {% endif %}
 
-## Working with Multiple Remotes
+## Merge Conflict Practice
 
-When we created our fork, we discussed the fact that a fork is a static copy of the repository at the point in time when we clicked the fork button.
+Depending on how you're interacting with this manual, you may be in a class. The instructor may have set up a repository for you to practice merge conflicts. If this is the case:
+- _Every person_ has their own repository. Each person should fix the merge conflicts in their own repo. It will be called `github.com/githubschool/conflict-practice-username`, with username being your actual username.
+- We won't make you turn in your homework, but we will run a script to see if the activities are completed later. :wink:
 
-In the real world, changes will continue to happen on the original project as new features are added and bugs are fixed. How can we pull these changes made to the original repository into our copy? Let's find out.
+### Work to resolve the merge conflicts in the conflicts repository.
+1. Find your repository. It will be at `github.com/githubschool/USERNAME`, where your username is replacing the word USERNAME.
+1. In your repository, navigate to the **Pull Requests** tab.
+1. There are three open pull requests, and all of them have merge conflicts to fix. We recommend fixing them in this order:
+  - Update README
+  - Updates to game manual
+  - Minor CSS fixes
+1. View the pull request, and follow the steps to resolve the merge conflicts. When the merge conflict is resolved, merge the pull request.
 
-1. Add a new remote from the upstream fork: `git remote add upstream https://github.com/githubschool/github-games.git`
-- Confirm your remote settings: `git remote -v`
-- Pull down the remote tracking branches from the upstream fork: `git fetch upstream`
-- Create a local branch called `shape-colors` based on the `shape-colors` branch in your remote fork of the repository: `git checkout -b shape-colors origin/shape-colors`
-- See the difference between your branch and the upstream branch: `git diff shape-colors upstream/shape-colors`
-- Merge in the changes from the upstream fork's `shape-colors` branch: `git merge upstream/shape-colors`
-- Update your remote fork with your local changes: `git push`
-- Create a Pull Request *in your repository*. (base: `gh-pages`, compare: `shape-colors`)
-
-> **Note:** If you would like to keep things tidy, you can use `git remote remove upstream` once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.
-
-### Remote Merge Conflicts
-
-When you created the Pull Request, you should have had a merge conflict. This is because the colors of the shapes had also been changed on gh-pages. Let's use the GitHub Merge Conflicts UI to solve this conflict.
-
-1. Click *Resolve conflict*
-- Use *Next* to locate the conflict.
-- Decide which version of the colors you will keep.
-- Delete the second set of colors and the conflict markers.
-- Click *Mark as resolved*
-- Click *Commit changes*
-
-> **Note:** Some merge conflicts are too complex to be resolved using the GitHub.com UI. In these cases, the Resolve conflict button will be inactive.
-
-> The *Command line instructions* in the merge dialog box will give you some helpful pointers for how to resolve the conflict locally. *A word of caution*, the command line instructions assume you are ready to merge and close the pull request, so only complete Step 1 of the instructions if you are still collaborating on the changes.
-
-### Exploring
-
-Finished and want to do more? Here are some things you can do:
-
-- Add a new background to the game and submit it via Pull Request to githubschool.
+Don't remember the steps from class? No worries. As a general rule of thumb, here is a starting point:
+1. Working locally, merge `master` into the feature branch.
+1. When you see there's a conflict, that's OK! Type `git status` to verify which file has the conflict.
+1. Open that file in your text editor, and look for the merge conflict markers. (`<<<<<<<`, `=======`, `>>>>>>>`)
+1. Both branches' versions of code are present - pick which one you want to keep, and save the changes.
+1. Add and commit the saved changes to resolve the merge conflict.
+1. Push the feature branch up to the remote, and see the resolution in the pull request.
