@@ -7,7 +7,7 @@ Since you created the pull request, you will be notified when someone adds a com
 To edit a pull request file, you will need to access the *Files Changed* view.
 
 1. Click the *pencil icon* in the top right corner of the diff to edit the file using the GitHub file editor.
-1. Add recommendations to the file based on the comments from your reviewer or your personal experience.
+1. Make changes to the file based on the comments from your reviewer or your personal perspective.
 
 ### Committing Changes on GitHub
 
