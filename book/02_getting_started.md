@@ -6,7 +6,7 @@ We will start by introducing you to Git, GitHub, and the collaboration features 
 
 GitHub is a collaboration platform built on top of a distributed version control system called Git.
 
-![GitHub's beloved Octocat logo](book/images/github-icon.jpg)
+![GitHub's beloved Octocat logo](/img/github-icon.jpg)
 
 In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:
 
@@ -15,13 +15,13 @@ In addition to being a place to host and share your Git projects, GitHub provide
 * Projects
 * Organizations and Teams
 
-![GitHub Collaboration Features](book/images/collaboration-features.jpg)
+![GitHub Collaboration Features](/img/collaboration-features.jpg)
 
 ### The GitHub Ecosystem
 
 Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations.
 
-![The GitHub Integrations Directory](book/images/github-ecosystem.png)
+![The GitHub Integrations Directory](/img/github-ecosystem.png)
 
 You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.
 
@@ -64,7 +64,7 @@ A repository is the most basic element of GitHub. It is easiest to imagine as a 
 
 A repository contains all of the project files (including documentation), and stores each file's revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!
 
-![GitHub Repositories](book/images/repository-intro.jpg)
+![GitHub Repositories](/img/repository-intro.jpg)
 
 ### User Accounts vs. Organization Accounts
 
