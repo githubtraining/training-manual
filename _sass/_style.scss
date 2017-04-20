@@ -411,6 +411,11 @@ article {
   margin: 0 10px;
   @include box-shadow(0 3px 10px rgba(0,0,0,.1));
   font-size: 16px;
+
+}
+
+article.facilitator {
+  background-color: lighten($blue, 45%);
 }
 
 @media (max-width: 480px) {

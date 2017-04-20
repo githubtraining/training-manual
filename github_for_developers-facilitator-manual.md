@@ -1,7 +1,9 @@
 ---
-layout: docs
+layout: facilitator
 toc: true
+permalink: /facilitator/
 ---
+
 
 # Preparing to Teach
 
@@ -129,7 +131,7 @@ We will start by introducing you to Git, GitHub, and the collaboration features 
 
 GitHub is a collaboration platform built on top of a distributed version control system called Git.
 
-![GitHub's beloved Octocat logo](book/images/github-icon.jpg)
+![GitHub's beloved Octocat logo](/img/github-icon.jpg)
 
 In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:
 
@@ -138,13 +140,13 @@ In addition to being a place to host and share your Git projects, GitHub provide
 * Projects
 * Organizations and Teams
 
-![GitHub Collaboration Features](book/images/collaboration-features.jpg)
+![GitHub Collaboration Features](/img/collaboration-features.jpg)
 
 ### The GitHub Ecosystem
 
 Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations.
 
-![The GitHub Integrations Directory](book/images/github-ecosystem.png)
+![The GitHub Integrations Directory](/img/github-ecosystem.png)
 
 You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.
 
@@ -187,7 +189,7 @@ A repository is the most basic element of GitHub. It is easiest to imagine as a 
 
 A repository contains all of the project files (including documentation), and stores each file's revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!
 
-![GitHub Repositories](book/images/repository-intro.jpg)
+![GitHub Repositories](/img/repository-intro.jpg)
 
 ### User Accounts vs. Organization Accounts
 
@@ -287,7 +289,7 @@ In this section, we will discuss the collaborative workflow enabled by GitHub.
 
 ### The Essential GitHub Workflow
 
-![GitHub Workflow](book/images/github-workflow.png)
+![GitHub Workflow](/img/github-workflow.png)
 
 
 The GitHub flow is a lightweight workflow that allows you to experiment with new ideas safely, without fear of compromising a project.
@@ -314,9 +316,9 @@ The first step in the GitHub Workflow is to create a branch. This will allow us 
 
 ### Branching Defined
 
-![GitHub Workflow](book/images/github-workflow.png)
+![GitHub Workflow](/img/github-workflow.png)
 
-When you create a branch, you are essentially creating an identical copy of the project at that point in time. This isn't the same as creating a physical copy on disk. In the background, a branch is just a pointer.
+When you create a branch, you are essentially creating an identical copy of the project at that point in time. This isn't the same as creating a physical copy on disk. In the background, a branch is just a pointer. 
 
 Let's learn how you can create a new branch.
 
@@ -364,7 +366,7 @@ If you do not see a git version listed or this command returns an error, you may
 
 ### Git Configuration Levels
 
-![Git Configuration Levels](book/images/config-levels.jpg)
+![Git Configuration Levels](/img/config-levels.jpg)
 
 Git allows you to set configuration options at three different levels.
 
@@ -419,7 +421,7 @@ Using the command line, you can easily integrate Git into your current workflow.
 
 ### Creating a Local Copy of the repo
 
-![Cloning a repository](book/images/clone-diagram.jpg)
+![Cloning a repository](/img/clone-diagram.jpg)
 
 Before we can work locally, we will need to create a clone of the repository.
 
@@ -484,7 +486,7 @@ Now it is time to put an image and a caption into your file:
 1. Find your file, `named 2010-02-##-USERNAME.md`.
 1. Open your file in your favorite text editor.
 1. Copy and paste the image text into your file on line 6.
-1. On line 7, add this text to center the file: `{: .center}`.
+1. On line 7, add this text to center the file: `{: .center}`. 
 1. On lines 9 and 10, add code for your caption.
 
         ```
@@ -500,7 +502,7 @@ Now it is time to put an image and a caption into your file:
 
 After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.
 
-![The Two Stage Commit - Part 1](book/images/two-stage-commit-a.jpg)
+![The Two Stage Commit - Part 1](/img/two-stage-commit-a.jpg)
 
 When you work locally, your files exist in one of four states. They are either untracked, modified, staged, or committed.
 
@@ -508,15 +510,15 @@ An untracked file is a new file that has never been committed.
 
 Git tracks these files, and keeps track of your history by organizing your files and changes in three working trees. They are Working, Staging (also called Index), and History. When we are actively making changes to files, this is happening in the working tree.
 
-![The Two Stage Commit - Part 2](book/images/two-stage-commit-b.jpg)
+![The Two Stage Commit - Part 2](/img/two-stage-commit-b.jpg)
 
 To add these files to version control, you will create a collection of files that represent a discrete unit of work. We build this unit in the staging area.
 
-![The Two Stage Commit - Part 3](book/images/two-stage-commit-c.jpg)
+![The Two Stage Commit - Part 3](/img/two-stage-commit-c.jpg)
 
 When we are satisfied with the unit of work we have assembled, we will take a snapshot of everything in the staging area. This is called a commit.
 
-![The Two Stage Commit - Part 4](book/images/two-stage-commit-d.jpg)
+![The Two Stage Commit - Part 4](/img/two-stage-commit-d.jpg)
 
 In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let's do it now.
 
@@ -539,7 +541,7 @@ Now that you have made some changes in the project locally, let's learn how to p
 
 ### Pushing Your Changes to GitHub
 
-![Pushing to GitHub](book/images/push-pull.jpg)
+![Pushing to GitHub](/img/push-pull.jpg)
 
 In this case, our remote is GitHub.com, but this could also be your company's internal instance of GitHub Enterprise.
 
@@ -948,11 +950,11 @@ Every commit in Git is a unique snapshot of the project at that point in time. I
 - Commit date and time
 - Commit message
 
-![Git's Basic Commit Structure](book/images/commit-and-tree.png)
+![Git's Basic Commit Structure](/img/commit-and-tree.png)
 
 Each commit also contains the commit ID of its parent commit.
 
-![Relationship between commits](book/images/commit-parent.png)
+![Relationship between commits](/img/commit-parent.png)
 
 Image source: ProGit v2 by Scott Chacon
 
@@ -1015,7 +1017,7 @@ Now that you have some files in the staging area and the working directory, let'
 
 `git diff` allows you to see allows you to see the difference between any two refs in the repository. The diagram below shows how you can compare the content of your working area, staging, and HEAD (or the most recent commit):
 
-![Git Diff Options](book/images/diff-options.jpg)
+![Git Diff Options](/img/diff-options.jpg)
 
 Let's try these commands on the repository:
 
@@ -1086,7 +1088,7 @@ When you want to make changes to commits further back in history, you will need 
 
 Sometimes we are working on a branch and we decide things aren't going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history.
 
-![Git Reset Before and After](book/images/reset-visual.jpg)
+![Git Reset Before and After](/img/reset-visual.jpg)
 
 Remember, there are three different snapshots of our project at any given time. The first is the most recent commit (also known as HEAD). The second is the staging area (also called the index). The third is the working directory containing any new, deleted, or modified files.
 
@@ -1096,7 +1098,7 @@ It also helps to know what branches technically are: each is a pointer, or refer
 
 ### Reset Modes
 
-![Three modes of reset](book/images/reset-modes.jpg)
+![Three modes of reset](/img/reset-modes.jpg)
 
 The three modes for git reset are: `--soft`, `--mixed`, and `--hard`. For these examples, assume that we have a "clean" working directory, i.e. there are no uncommited changes.
 
@@ -1239,7 +1241,7 @@ Typically, you would use `git rebase -i` to:
 
 One of the most common uses of rebase is to eliminate recursive merges and create a more linear history. In this activity, we will learn how it is done.
 
-![Git Rebase](book/images/git-rebase.png)
+![Git Rebase](/img/git-rebase.png)
 
 #### Set Up
 1. Find the SHA of the initial commit: `git log --oneline`
@@ -1295,3 +1297,4 @@ When they are done, they can submit a Pull Request to the original repository, b
 - Treat your fork like a branch, keep your work short lived and focused.
 - Once your Pull Request has been merged to the parent repository, delete your fork of the repository. If you would like to make additional changes, create a new fork.
 - If you want to keep your fork around for a long period of time, set a second, upstream remote to easily manage updates (we will cover this a little later.)
+

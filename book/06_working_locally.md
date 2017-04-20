@@ -4,7 +4,7 @@ Using the command line, you can easily integrate Git into your current workflow.
 
 ### Creating a Local Copy of the repo
 
-![Cloning a repository](book/images/clone-diagram.jpg)
+![Cloning a repository](/img/clone-diagram.jpg)
 
 Before we can work locally, we will need to create a clone of the repository.
 
@@ -67,7 +67,7 @@ To checkout the branch you created online, type git checkout and the name of you
 
 After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.
 
-![The Two Stage Commit - Part 1](book/images/two-stage-commit-a.jpg)
+![The Two Stage Commit - Part 1](/img/two-stage-commit-a.jpg)
 
 When you work locally, your files exist in one of four states. They are either untracked, modified, staged, or committed.
 
@@ -75,15 +75,15 @@ An untracked file is a new file that has never been committed.
 
 Git tracks these files, and keeps track of your history by organizing your files and changes in three working trees. They are Working, Staging (also called Index), and History. When we are actively making changes to files, this is happening in the working tree.
 
-![The Two Stage Commit - Part 2](book/images/two-stage-commit-b.jpg)
+![The Two Stage Commit - Part 2](/img/two-stage-commit-b.jpg)
 
 To add these files to version control, you will create a collection of files that represent a discrete unit of work. We build this unit in the staging area.
 
-![The Two Stage Commit - Part 3](book/images/two-stage-commit-c.jpg)
+![The Two Stage Commit - Part 3](/img/two-stage-commit-c.jpg)
 
 When we are satisfied with the unit of work we have assembled, we will take a snapshot of everything in the staging area. This is called a commit.
 
-![The Two Stage Commit - Part 4](book/images/two-stage-commit-d.jpg)
+![The Two Stage Commit - Part 4](/img/two-stage-commit-d.jpg)
 
 In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let's do it now.
 
