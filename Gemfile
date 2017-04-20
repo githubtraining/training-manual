@@ -19,3 +19,4 @@ gem 'kindlegen'
 
 gem 'github-pages'
 gem 'jekyll-toc'
+gem 'jekyll-octicons'

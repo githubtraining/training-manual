@@ -48,6 +48,7 @@ kramdown:
 gems:
   - jekyll-feed
   - jekyll-toc
+  - jekyll-octicons
 
 exclude:
   - Gemfile
