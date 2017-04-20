@@ -18,4 +18,6 @@ Once you have made some changes to your file, you will need to create a new comm
 1. Choose the option to *Commit directly to your branch*.
 1. Click *Commit changes*.
 
-{% include 'book/08a_activity_edit_file_pull_request' %}
+### Activity: Editing Files in Pull Requests
+
+Go back to your Pull Request and make the edits requested by your collaborators.
