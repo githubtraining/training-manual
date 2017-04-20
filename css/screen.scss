@@ -7,3 +7,13 @@
 @import "pygments";
 @import "font-awesome";
 @import "style";
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2em;
+
+  > * {
+    display: block;
+  }
+}

@@ -18,3 +18,4 @@ gem 'kindlegen'
 #gem 'liquid', '>= 4.0.0'
 
 gem 'github-pages'
+gem 'jekyll-toc'

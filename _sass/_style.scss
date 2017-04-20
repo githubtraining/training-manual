@@ -443,6 +443,10 @@ aside {
     border-bottom: 1px solid $orange;
   }
 
+  .toc-h1, .toc-h3, .toc-h4 {
+    display: none;
+  }
+
   ul {
     padding-left: 0;
 
@@ -484,7 +488,7 @@ aside {
   .content { padding: 0; }
 }
 
-.section-nav {
+.sections-nav {
   text-align: center;
   padding-top: 40px;
   position: relative;

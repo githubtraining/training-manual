@@ -37,11 +37,18 @@ defaults:
       type: "book"
     values:
       layout: "docs"
+      toc: true
 
 # Build settings
 markdown: kramdown
+kramdown:
+  parse_block_html: true
+
+
 gems:
   - jekyll-feed
+  - jekyll-toc
+
 exclude:
   - Gemfile
   - Gemfile.lock
