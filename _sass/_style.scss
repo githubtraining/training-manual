@@ -668,15 +668,12 @@ li > code,
 li> pre,
 h5 > code,
 .note > code {
-  background-color: $dark-gray;
-  color: #fff;
+  background-color: darken($gray, 10%);
+  color: $dark-gray;
   max-width: 100%;
   overflow-x: auto;
   vertical-align: middle;
   @include border-radius(5px);
-  @include box-shadow(inset 0 1px 10px rgba(0,0,0,.3),
-    0 1px 0 rgba(255,255,255,.1),
-    0 -1px 0 rgba(0,0,0,.5));
 }
 
 .note code {
@@ -733,7 +730,7 @@ article {
 
   h2, h3, h4, h5, h6 { margin: 1em 0; }
 
-  h4 { color: #fff; }
+//  h4 { color: #fff; }
 
   ul li {
 
