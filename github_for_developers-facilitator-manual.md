@@ -1,7 +1,9 @@
 ---
 layout: docs
 toc: true
+permalink: /facilitator/
 ---
+
 
 # Preparing to Teach
 
@@ -316,7 +318,7 @@ The first step in the GitHub Workflow is to create a branch. This will allow us 
 
 ![GitHub Workflow](book/images/github-workflow.png)
 
-When you create a branch, you are essentially creating an identical copy of the project at that point in time. This isn't the same as creating a physical copy on disk. In the background, a branch is just a pointer.
+When you create a branch, you are essentially creating an identical copy of the project at that point in time. This isn't the same as creating a physical copy on disk. In the background, a branch is just a pointer. 
 
 Let's learn how you can create a new branch.
 
@@ -484,7 +486,7 @@ Now it is time to put an image and a caption into your file:
 1. Find your file, `named 2010-02-##-USERNAME.md`.
 1. Open your file in your favorite text editor.
 1. Copy and paste the image text into your file on line 6.
-1. On line 7, add this text to center the file: `{: .center}`.
+1. On line 7, add this text to center the file: `{: .center}`. 
 1. On lines 9 and 10, add code for your caption.
 
         ```
@@ -1295,3 +1297,4 @@ When they are done, they can submit a Pull Request to the original repository, b
 - Treat your fork like a branch, keep your work short lived and focused.
 - Once your Pull Request has been merged to the parent repository, delete your fork of the repository. If you would like to make additional changes, create a new fork.
 - If you want to keep your fork around for a long period of time, set a second, upstream remote to easily manage updates (we will cover this a little later.)
+

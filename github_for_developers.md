@@ -1,4 +1,8 @@
-# GitHub for Developers: Training Manual
+---
+layout: docs
+toc: true
+permalink: /{% if context.facilitator %}facilitator/{% endif %}
+---
 
 {% if context.facilitator %}
 {% include 'book/preparing_to_teach_github_for_developers' %}

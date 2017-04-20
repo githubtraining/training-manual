@@ -1,4 +1,8 @@
-# GitHub for Developers: Training Manual
+---
+layout: docs
+toc: true
+permalink: /
+---
 
 
 
