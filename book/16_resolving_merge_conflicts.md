@@ -4,40 +4,21 @@ When you work with a team (and even sometimes when you are working alone) you wi
 
 ### Local Merge Conflicts
 
-To practice merge conflicts, have made changes to the same line, in the same file, on two different branches. Let's try to merge these two branches together and see what happens:
+Merge conflicts are a natural and minor side effect of Distributed Version Control. They only happen under very specific circumstances.
+  - Changes to the same line of the same file
+  - Two different branches
+  - Changes on both branches happened since the branches have diverged
 
-1. Create a branch from the existing `remotes/origin/stats-update` branch: `git checkout stats-update`.
-- Merge the gh-pages branch into the stats-update branch you just created: `git merge gh-pages`.
+### Creating a Merge Conflict
 
-  You should receive a conflict message similar to the one shown below:
+Let's try to create a merge conflict, and fix it together. You and a partner will each create separate branches, create a file with the same name, and then try to merge. The first will merge cleanly, the second will have a merge conflict. Work together to resolve the merge conflict.
 
-  ```sh
-$ git merge gh-pages
-Auto-merging index.html
-CONFLICT (content): Merge conflict in index.html
-Automatic merge failed; fix conflicts and then commit the result.
-```
+1. In our class repository, create the branch that you will be working on and name it something memorable like `USERNAME-conflict`.
+1. On your branch, create a new file. The file name must be the same file name that your partner uses. Make sure the content inside of the file is different.
+1. Create a pull request in the class repository with `base: master` and `compare: USERNAME-conflict`.
+1. You will see that the _first_ pull request can merge well.
+1. When you see the merge conflict in the _second_ pull request, work together to resolve the merge conflict and merge the pull request.
 
-- Determine which file(s) are in conflict: `git status`.
-- Open the file(s) listed under **Unmerged Paths:** in your text editor.
-- Look for the merge conflict markers (shown below).
-
-  ```sh
-<<<<<<<<< HEAD
-Some text
-=========
-Some more text
->>>>>>>>> stats-update
-```
-
-- Choose which version of the code you would like to keep.
-- Delete the conflict markers.
-- Save the file.
-- Close the text editor.
-- Check to see what git is tracking: `git status`
-- Mark the file as resolved: `git add index.html`
-- Complete the merge: `git commit`
-- Save the default commit message.
 
 > **Note:** What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
 
