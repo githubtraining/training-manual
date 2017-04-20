@@ -2,7 +2,7 @@
 
 Pull Requests are used to propose changes to the project files. A pull request introduces an action that addresses an Issue. A Pull Request is considered a "work in progress" until it is merged into the project.
 
-Now that you have created a file, you will open a pull request to discuss the file with your team mates. Follow these steps to create a Pull Request in the class repository:
+Now that you have started to change your file, you will open a pull request to discuss the file with your team mates. Follow these steps to create a Pull Request in the class repository:
 
 1. Click the *Pull Request* tab.
 1. Click *New Pull Request*.
