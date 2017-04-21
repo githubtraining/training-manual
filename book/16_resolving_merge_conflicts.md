@@ -5,7 +5,7 @@ When you work with a team (and even sometimes when you are working alone) you wi
 ### Local Merge Conflicts
 
 Merge conflicts are a natural and minor side effect of distributed version control. They only happen under very specific circumstances.
-  - Changes to the same line of the same file
+  - Changes to the same "hunk" of the same file
   - Two different branches
   - Changes on both branches happened since the branches have diverged
 
@@ -17,16 +17,24 @@ Let's try to create a merge conflict, and fix it together. You and a partner wil
 1. On your branch, create a new file. The file name must be the same file name that your partner uses. Make sure the content inside of the file is different.
 1. Create a pull request in the class repository with `base: master` and `compare: USERNAME-conflict`.
 1. You will see that the _first_ pull request can merge well.
-1. When you see the merge conflict in the _second_ pull request, work together to resolve the merge conflict and merge the pull request.
+1. When you see the merge conflict in the _second_ pull request, work together to resolve the merge conflict.
+    1. Working locally, merge `master` into the feature branch.
+    1. When you see there's a conflict, that's OK! The files that have conflicts are listed under `Unmerged Paths`. Type `git status` to verify which file has the conflict.
+    1. Open that file in your text editor, and look for the merge conflict markers. (`<<<<<<<`, `=======`, `>>>>>>>`)
+    1. Both branches' versions of code are present - pick which one you want to keep, and save the changes.
+    1. Add and commit the saved changes to resolve the merge conflict.
+    1. Push the feature branch up to the remote, and see the resolution in the pull request.
+1. Merge the pull request.
 
 
 > **Note:** What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
 
 {% if context.facilitator %}
 
-> ## Facilitator Note
+## Facilitator Note
 
-> To set up these class merge conflict repositories, ________
+To set up these class merge conflict repositories, run the ____ script. If you do not have access to the script, instruct participants to fork the repository from `githubschool/github-games` instead.
+{: note}
 
 {% endif %}
 
@@ -44,11 +52,3 @@ Depending on how you're interacting with this manual, you may be in a class. The
   - Updates to game manual
   - Minor CSS fixes
 1. View the pull request, and follow the steps to resolve the merge conflicts. When the merge conflict is resolved, merge the pull request.
-
-Don't remember the steps from class? No worries. As a general rule of thumb, here is a starting point:
-1. Working locally, merge `master` into the feature branch.
-1. When you see there's a conflict, that's OK! The files that have conflicts are listed under `Unmerged Paths`. Type `git status` to verify which file has the conflict.
-1. Open that file in your text editor, and look for the merge conflict markers. (`<<<<<<<`, `=======`, `>>>>>>>`)
-1. Both branches' versions of code are present - pick which one you want to keep, and save the changes.
-1. Add and commit the saved changes to resolve the merge conflict.
-1. Push the feature branch up to the remote, and see the resolution in the pull request.
