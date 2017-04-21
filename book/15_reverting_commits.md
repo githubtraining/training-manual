@@ -42,5 +42,5 @@ To get your game working, you will need to reverse the commit that incorrectly r
 
 
 1. Initialize the revert: `git revert <SHA>`
-- Type a commit message.
-- Push your changes to GitHub.
+1. Type a commit message.
+1. Push your changes to GitHub.
