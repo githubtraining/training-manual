@@ -33,7 +33,7 @@ Let's try to create a merge conflict, and fix it together. You and a partner wil
 
 ## Facilitator Note
 
-To set up these class merge conflict repositories, run the ____ script. If you do not have access to the script, instruct participants to fork the repository from `githubschool/github-games` instead.
+There are different ways to prepare these repositories. You may want to use GitHub Classroom, use a script, or have participants fork the repository. Whichever way you choose, you will need to set up the repositories for the participants before they can complete then ext activity. 
 {: note}
 
 {% endif %}
