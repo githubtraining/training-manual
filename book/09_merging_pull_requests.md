@@ -25,7 +25,7 @@ Let's take a look at how you can merge the pull request.
 1. Click *Delete branch*
 1. Click *Issues* and confirm your original issue has been closed
 
-> **Note:** GitHub offers three different merge strategies for Pull Requests:
+> GitHub offers three different merge strategies for Pull Requests:
 - **Create a merge commit:** This is the traditional option that will perform a standard recursive merge. A new commit will be added that shows the point when the two branches were merged together.
 - **Squash and merge:** This option will take all of the commits on your branch and compress them into a single commit. The commit messages will be preserved in the extended commit message for the commit, but the individual commits will be lost.
 - **Rebase and merge:** This option will take all of the commits and replay them as if they just happened. This allows GitHub to perform a fast forward merge (and avoids the addition of the merge commit).
@@ -53,6 +53,6 @@ If you type `git branch --all` you will probably see that, even though you delet
 1. Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: `git pull --prune`
 
 
-> **Note:** Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to gh-pages, we will use this command to ensure all of the changes on our feature branch have been merged to production before we delete the branch.
+> Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to gh-pages, we will use this command to ensure all of the changes on our feature branch have been merged to production before we delete the branch.
 
 If you would like pruning of the remote tracking branches to be set as your default behavior when you pull, you can use the following configuration option: `git config --global fetch.prune true`.
