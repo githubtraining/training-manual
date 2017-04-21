@@ -181,14 +181,14 @@ h6:hover .header-link {
 /* Footer */
 
 footer {
-  background-color: #212121;
+  background-color: $gray;
   font-size: 16px;
   padding-bottom: 5px;
-  color: #c0c0c0;
+  color: $dark-gray;
   margin-top: 40px;
 
   a {
-    color: #fff;
+    color: #000;
 
     &:hover {
 
@@ -414,7 +414,7 @@ article {
 
 }
 
-article.facilitator {
+article.facilitator_page {
   background-color: lighten($blue, 45%);
 }
 
