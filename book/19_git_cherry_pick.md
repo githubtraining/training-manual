@@ -31,7 +31,9 @@ eanu482 adding file 4
 
 Is the commit ID the same as the one you used in the cherry pick command? Why or why not?
 
-> **Warning:** Remember, when using any commands that change history, it's important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
+> Remember, when using any commands that change history, it's important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
+{: .warning}
+
 
 ### Oops, I Didn't Mean to Reset
 
