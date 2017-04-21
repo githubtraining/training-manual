@@ -4,7 +4,7 @@ When you work with a team (and even sometimes when you are working alone) you wi
 
 ### Local Merge Conflicts
 
-Merge conflicts are a natural and minor side effect of Distributed Version Control. They only happen under very specific circumstances.
+Merge conflicts are a natural and minor side effect of distributed version control. They only happen under very specific circumstances.
   - Changes to the same line of the same file
   - Two different branches
   - Changes on both branches happened since the branches have diverged
@@ -47,7 +47,7 @@ Depending on how you're interacting with this manual, you may be in a class. The
 
 Don't remember the steps from class? No worries. As a general rule of thumb, here is a starting point:
 1. Working locally, merge `master` into the feature branch.
-1. When you see there's a conflict, that's OK! Type `git status` to verify which file has the conflict.
+1. When you see there's a conflict, that's OK! The files that have conflicts are listed under `Unmerged Paths`. Type `git status` to verify which file has the conflict.
 1. Open that file in your text editor, and look for the merge conflict markers. (`<<<<<<<`, `=======`, `>>>>>>>`)
 1. Both branches' versions of code are present - pick which one you want to keep, and save the changes.
 1. Add and commit the saved changes to resolve the merge conflict.
