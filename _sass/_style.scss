@@ -688,6 +688,11 @@ h5 > code,
   font-size: 0.8em;
 }
 
+.note code.highlighter-rouge {
+  color: $dark-gray;
+  background: #fff;
+}
+
 .code-block {
   margin: 10px 0;
   code { background: none; }
