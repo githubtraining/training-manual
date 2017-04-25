@@ -97,14 +97,6 @@ The CONTRIBUTING.md is another special file that is used to describe the process
 #### ISSUE_TEMPLATE.md
 The ISSUE_TEMPLATE.md (and its twin the pull request template) are used to generate templated starter text for your project issues. Any time someone opens an issue, the content in the template will be pre-populated in the issue body.
 
-### Introduction to GitHub Pages
-
-GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. Several of the projects we use in class will use GitHub Pages as the deployment strategy. We will barely scratch the surface in this class, but there are a few things you need to know:
-
-- You can create two types of websites, a user/organization site or a project site. We will be working with project websites.
-- For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a `master` or `gh-pages` branch, or a `/docs` folder on the `master` branch.
-- The rendered sites for our projects will appear at `githubschool.github.io/repo-name`.
-
 
 ### Using GitHub Issues
 
@@ -136,3 +128,11 @@ When you @mention someone in an issue, they will receive a notification - even i
 A `#` followed by the number of an issue or pull request (without a space) in the same repository will create a cross-link.
 #### `:smiley:`
 Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji id with `:`.
+
+### Introduction to GitHub Pages
+
+GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. Several of the projects we use in class will use GitHub Pages as the deployment strategy. We will barely scratch the surface in this class, but there are a few things you need to know:
+
+- You can create two types of websites, a user/organization site or a project site. We will be working with project websites.
+- For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a `master` or `gh-pages` branch, or a `/docs` folder on the `master` branch.
+- The rendered sites for our projects will appear at `githubschool.github.io/repo-name`.

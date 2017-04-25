@@ -26,25 +26,25 @@ permalink: /{% if context.facilitator %}facilitator/{% endif %}
 {% include 'book/07_collaborating_on_code' %}
 {% include 'book/08_edit_on_github' %}
 {% include 'book/09_merging_pull_requests' %}
-{% include 'book/11_local_history' %}
-{% include 'book/13_streamline_workflow_with_aliases' %}
+{% include 'book/10_local_history' %}
+{% include 'book/11_streamline_workflow_with_aliases' %}
 
 # Project 2: Merge Conflicts
-{% include 'book/16_resolving_merge_conflicts' %}
+{% include 'book/12_resolving_merge_conflicts' %}
 
 # Project 3: GitHub Games
-{% include 'book/14_workflow_review_project_github_games' %}
-{% include 'book/14_5_git_bisect' %}
+{% include 'book/13_workflow_review_project_github_games' %}
+{% include 'book/14_git_bisect' %}
 {% include 'book/15_reverting_commits' %}
-{% include 'book/17_helpful_git_commands' %}
-{% include 'book/10_view_local_changes' %}
+{% include 'book/16_helpful_git_commands' %}
+{% include 'book/17_view_local_changes' %}
 
 # Project 4: Local Repository
 {% include 'book/18_create_local_repo' %}
-{% include 'book/12_fixing_commit_mistakes' %}
-{% include 'book/18_rewriting_history_git_reset' %}
-{% include 'book/19_git_cherry_pick' %}
-{% include 'book/20_merge_strategies_rebase' %}
+{% include 'book/19_fixing_commit_mistakes' %}
+{% include 'book/20_rewriting_history_git_reset' %}
+{% include 'book/21_git_cherry_pick' %}
+{% include 'book/22_merge_strategies_rebase' %}
 {% include 'book/A_workflow_discuss' %}
 {% include 'book/App_a_workflow_guide' %}
 {% include 'book/App_b_fork_workflows' %}
