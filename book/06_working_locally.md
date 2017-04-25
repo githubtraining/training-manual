@@ -39,7 +39,9 @@ $ git branch
 If you type `git branch` you will see a list of local branches.
 
 {% if context.facilitator %}
-> **Facilitator Note:** Show that any branches created before the repo has been cloned do not appear with `git branch`.
+> Show that any branches created before the repo has been cloned do not appear with `git branch`.
+{: .facilitator}
+
 {% endif %}
 
 ```sh
@@ -49,7 +51,7 @@ $ git branch -a
 
 If you want to see all of the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`.
 
-> **Note:** The `--all` and `-a` are actually synonyms for the branch command. Git often provides a verbose and a short option.
+> The `--all` and `-a` are actually synonyms for the branch command. Git often provides a verbose and a short option.
 
 ### Switching Branches
 
@@ -59,7 +61,7 @@ $ git checkout <BRANCH-NAME>
 
 To checkout the branch you created online, type git checkout and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.
 
-> **Note:** You do not need to type `remotes/origin` in front of the branch - only the branch name. Typing `remotes/origin` in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.
+> You do not need to type `remotes/origin` in front of the branch - only the branch name. Typing `remotes/origin` in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.
 
 {% include 'book/06a_activity_create_file' %}
 
@@ -95,7 +97,7 @@ In order to make a file part of the version controlled directory we will first d
 1. Save and close the commit message
 1. Let's take another look at our repository status: `git status`
 
-> **Note:** Good commit messages should:
+> Good commit messages should:
 - Be short. ~50 characters is ideal.
 - Describe the change introduced by the commit.
 - Tell the story of how your project has evolved.
