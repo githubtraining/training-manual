@@ -15,4 +15,4 @@ Now it is time to put an image and a caption into your file:
         ```
 1. *Save* your file.
 
-> **Note:** Git doesn't care how you work with your files locally. You can work in your favorite IDE or text editor, or you can use VIM through the command line.
+> Git doesn't care how you work with your files locally. You can work in your favorite IDE or text editor, or you can use VIM through the command line.

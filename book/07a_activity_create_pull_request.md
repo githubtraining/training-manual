@@ -15,4 +15,4 @@ Now that you have started to change your file, you will open a pull request to d
 1. Assign the Pull Request to yourself.
 1. Click *Create pull request*.
 
-> **Note:** When you navigate to the class repository, you should see a banner at the top of the page indicating you have recently pushed branches, along with a button that reads *Compare & pull request*. This helpful button will automatically start the pull request process between your branch and the repository's default branch.
+> When you navigate to the class repository, you should see a banner at the top of the page indicating you have recently pushed branches, along with a button that reads *Compare & pull request*. This helpful button will automatically start the pull request process between your branch and the repository's default branch.

@@ -16,4 +16,4 @@ Let's see this in action:
 1. `git commit --amend`
 1. The text editor will open, allowing you to edit your commit message.
 
->**Note:** You can actually amend any data stored by the last commit such as commit author, email, etc.
+>You can actually amend any data stored by the last commit such as commit author, email, etc.

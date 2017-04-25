@@ -38,7 +38,7 @@ Using the practice repository we created earlier, let's try a `reset --soft`.
 1. The changes we made in the last two commits should be in the staging area: `git status`
 1. Re-commit these changes: `git commit -m "re-add file 5 and 6"`
 
-> **Note:** In this example, the tilde tells git we want to reset to two commits before the current location of `HEAD`. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset.
+> In this example, the tilde tells git we want to reset to two commits before the current location of `HEAD`. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset.
 
 ### Reset Mixed
 
@@ -52,7 +52,7 @@ Next we will try the default mode of reset, `reset --mixed`:
 1. Re-commit the files: `git commit -m "re-add file 5 and 6"`
 
 
-> **Note:** Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.
+> Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.
 
 ### Reset Hard
 
