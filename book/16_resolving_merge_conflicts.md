@@ -39,21 +39,18 @@ Some more text
 - Complete the merge: `git commit`
 - Save the default commit message.
 
-> **Note:** What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
+> What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
 
 {% if context.facilitator %}
-
-> ## Facilitator Note
-
-> The remote merge conflict in this section is **not** already set up. For this activity to work, the facilitator will need to make changes to the upstream repository during a break.
-
-> 1. Prepare to edit the upstream remote (githubschool/github-games)
-> 2. Checkout to the `shape-colors` branch
-> 3. Find the `index.html` file
-> 4. Change the colors on lines 115 - 121
-
-> Make these changes before adding the remote in class. If you are going to skip the remote portion, the entire class will need to go through making changes on `shape-colors` in their own individual repositories.
-
+>The remote merge conflict in this section is **not** already set up. For this activity to work, the facilitator will need to make changes to the upstream repository during a break.
+>
+>1. Prepare to edit the upstream remote (githubschool/github-games)
+>2. Checkout to the `shape-colors` branch
+>3. Find the `index.html` file
+>4. Change the colors on lines 115 - 121
+>
+>Make these changes before adding the remote in class. If you are going to skip the remote portion, the entire class will need to go through making changes on `shape-colors` in their own individual repositories.
+{: .facilitator}
 {% endif %}
 
 ## Working with Multiple Remotes
@@ -71,7 +68,7 @@ In the real world, changes will continue to happen on the original project as ne
 - Update your remote fork with your local changes: `git push`
 - Create a Pull Request *in your repository*. (base: `gh-pages`, compare: `shape-colors`)
 
-> **Note:** If you would like to keep things tidy, you can use `git remote remove upstream` once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.
+> If you would like to keep things tidy, you can use `git remote remove upstream` once you have completed the merge. This will remove the remote and the remote tracking branches associated with it.
 
 ### Remote Merge Conflicts
 
@@ -84,8 +81,8 @@ When you created the Pull Request, you should have had a merge conflict. This is
 - Click *Mark as resolved*
 - Click *Commit changes*
 
-> **Note:** Some merge conflicts are too complex to be resolved using the GitHub.com UI. In these cases, the Resolve conflict button will be inactive.
-
+> Some merge conflicts are too complex to be resolved using the GitHub.com UI. In these cases, the Resolve conflict button will be inactive.
+>
 > The *Command line instructions* in the merge dialog box will give you some helpful pointers for how to resolve the conflict locally. *A word of caution*, the command line instructions assume you are ready to merge and close the pull request, so only complete Step 1 of the instructions if you are still collaborating on the changes.
 
 ### Exploring
