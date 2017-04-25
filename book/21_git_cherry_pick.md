@@ -31,7 +31,9 @@ eanu482 adding file 4
 
 Is the commit ID the same as the one you used in the cherry pick command? Why or why not?
 
-> **Warning:** Remember, when using any commands that change history, it's important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
+> Remember, when using any commands that change history, it's important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
+{: .warning}
+
 
 ### Oops, I Didn't Mean to Reset
 
@@ -43,4 +45,4 @@ Sometimes, you `git reset --hard` a little further than intended and want to res
 
 Take a look at the commit IDs in `git log --oneline` compared to `git reflog`. What do you notice?
 
-> **Note:** Why didn't this command cause a merge conflict since we had already cherry-picked file 4. The reason is that `git reset --hard` is not trying to merge the two histories together, it is simply moving the branch to point to a new commit. In this case, this was what we wanted. In other cases, this could cause us to loose any work we may have done after the original reset.
+> Why didn't this command cause a merge conflict since we had already cherry-picked file 4. The reason is that `git reset --hard` is not trying to merge the two histories together, it is simply moving the branch to point to a new commit. In this case, this was what we wanted. In other cases, this could cause us to loose any work we may have done after the original reset.

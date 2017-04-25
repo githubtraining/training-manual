@@ -181,14 +181,14 @@ h6:hover .header-link {
 /* Footer */
 
 footer {
-  background-color: #212121;
+  background-color: $gray;
   font-size: 16px;
   padding-bottom: 5px;
-  color: #c0c0c0;
+  color: $dark-gray;
   margin-top: 40px;
 
   a {
-    color: #fff;
+    color: #000;
 
     &:hover {
 
@@ -414,7 +414,7 @@ article {
 
 }
 
-article.facilitator {
+article.facilitator_page {
   background-color: lighten($blue, 45%);
 }
 
@@ -664,6 +664,7 @@ code {
   pre, code { font-size: 16px; }
 }
 
+
 .highlight,
 p > pre,
 p > code,
@@ -671,7 +672,7 @@ p > nobr > code,
 li > code,
 li> pre,
 h5 > code,
-.note > code {
+blockquote > code, .note > code {
   background-color: darken($gray, 10%);
   color: $dark-gray;
   max-width: 100%;
@@ -680,12 +681,21 @@ h5 > code,
   @include border-radius(5px);
 }
 
-.note code {
+blockquote code, .note code {
   background-color: $dark-gray;
   background-color: rgba(0,0,0,0.2);
   margin-left: 2.5px;
   margin-right: 2.5px;
   font-size: 0.8em;
+}
+
+blockquote code.highlighter-rouge, .note code.highlighter-rouge {
+  color: $dark-gray;
+  background: #fff;
+}
+
+blockquote li, .note li {
+  margin-left: 20px;
 }
 
 .code-block {
@@ -740,7 +750,7 @@ article {
 
     p { margin: 0; }
 
-    blockquote { margin: 10px 0; }
+  //  blockquote { margin: 10px 0; }
   }
 
   ul li,
@@ -756,14 +766,14 @@ h5, h6 {
   font-style: italic;
 }
 
-blockquote {
+/*blockquote {
   border-left: 2px solid darken($gray, 40%);
   padding-left: 20px;
   font-style: italic;
   font-size: 18px;
   font-weight: 500;
   color: darken($gray, 40%);
-}
+}*/
 
 
 /* Tables */
@@ -838,34 +848,34 @@ code.output {
 
 /* Note types */
 
-.note {
+blockquote, .note {
   margin: 30px 0;
   margin-left: -30px;
-  padding: 20px 20px 24px;
+  padding: 70px 20px 24px;
   padding-left: 50px;
   @include border-radius(0 5px 5px 0);
   position: relative;
   @include box-shadow(0 1px 5px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255,255,255,.2), inset 0 -1px 0 rgba(0,0,0,.3));
-  background-color: $purple;
+  background-color: $blue;
   color: #fff;
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdlNmQ0MiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1YzRlMzUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background-image: -webkit-gradient(linear, left top, left bottom, from($purple), to(darken($purple, 20%)));
-  background-image: -webkit-linear-gradient(top, $purple 0%, darken($purple, 20%) 100%);
-  background-image: -moz-linear-gradient(top, $purple 0%, darken($purple, 20%) 100%);
-  background-image: -o-linear-gradient(top, $purple 0%, darken($purple, 20%) 100%);
-  background-image: linear-gradient(to bottom, $purple 0%,darken($purple, 20%) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from($blue), to(darken($blue, 20%)));
+  background-image: -webkit-linear-gradient(top, $blue 0%, darken($blue, 20%) 100%);
+  background-image: -moz-linear-gradient(top, $blue 0%, darken($blue, 20%) 100%);
+  background-image: -o-linear-gradient(top, $blue 0%, darken($blue, 20%) 100%);
+  background-image: linear-gradient(to bottom, $blue 0%,darken($blue, 20%) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7e6d42', endColorstr='#5c4e35',GradientType=0 );
 }
 
 @media (max-width: 568px) {
-  .note { margin-right: -30px; }
+  blockquote, .note { margin-right: -30px; }
 }
 
 @media (min-width: 768px) {
-  .note { margin-left: -50px; }
+  blockquote, .note { margin-left: -50px; }
 }
 
-.note {
+blockquote, .note {
   &:before {
     content: "";
     position: absolute;
@@ -892,12 +902,12 @@ code.output {
 
   p {
     font-weight: 400;
-    font-size: .75em;
+    font-size: 1em;
   }
 
   &:after {
-    content: '\2605';
-    color: #fc0;
+    content: '\24D8  Note';
+    color: #fff;
     position: absolute;
     top: 14px;
     left: 14px;
@@ -905,20 +915,24 @@ code.output {
     font-weight: 700;
     text-shadow: 0 -1px 0 rgba(0,0,0,.5);
   }
+
+  a {
+    color: $gray;
+  }
 }
 
-.info {
-  background-color: $blue;
+.protip {
+  background-color: $purple;
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAzODlhYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDYxN2YiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background-image: -webkit-gradient(linear, left top, left bottom, from($blue), to(darken($blue, 30%)));
-  background-image: -webkit-linear-gradient(top, $blue 0%, darken($blue, 30%) 100%);
-  background-image: -moz-linear-gradient(top, $blue 0%, darken($blue, 20%) 100%);
-  background-image: -o-linear-gradient(top, $blue 0%, darken($blue, 20%) 100%);
-  background-image: linear-gradient(to bottom, $blue 0%,darken($blue, 20%) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from($purple), to(darken($purple, 20%)));
+  background-image: -webkit-linear-gradient(top, $purple 0%, darken($purple, 20%) 100%);
+  background-image: -moz-linear-gradient(top, $purple 0%, darken($purple, 20%) 100%);
+  background-image: -o-linear-gradient(top, $purple 0%, darken($purple, 20%) 100%);
+  background-image: linear-gradient(to bottom, $purple 0%,darken($purple, 20%) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0389aa', endColorstr='#00617f',GradientType=0 );
 }
 
-.warning {
+.facilitator {
   background-color: $red;
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzllMjgxMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2ZjBkMGQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
   background-image: -webkit-gradient(linear, left top, left bottom, from($red), to(#6f0d0d));
@@ -929,26 +943,26 @@ code.output {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$red', endColorstr='#6f0d0d',GradientType=0 );
 }
 
-.unreleased {
-  background-color: #cd9239;
+.warning {
+  background-color: $orange;
   background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2NkOTIzOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhMjc1MjgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(205,146,57,1)), to(rgba(162,117,40,1)));
-  background-image: -webkit-linear-gradient(top, rgba(205,146,57,1) 0%, rgba(162,117,40,1) 100%);
-  background-image: -moz-linear-gradient(top, rgba(205,146,57,1) 0%, rgba(162,117,40,1) 100%);
-  background-image: -o-linear-gradient(top, rgba(205,146,57,1) 0%, rgba(162,117,40,1) 100%);
-  background-image: linear-gradient(to bottom, rgba(205,146,57,1) 0%,rgba(162,117,40,1) 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from($orange), to(darken($orange, 20%)));
+  background-image: -webkit-linear-gradient(top, $orange 0%, darken($orange, 20%) 100%);
+  background-image: -moz-linear-gradient(top, $orange 0%, darken($orange, 20%) 100%);
+  background-image: -o-linear-gradient(top, $orange 0%, darken($orange, 20%) 100%);
+  background-image: linear-gradient(to bottom, $orange 0%,darken($orange, 20%) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cd9239', endColorstr='#a27528',GradientType=0 );
 }
 
-.info:before { border-color: transparent #00617f #00617f transparent; }
+.protip:before { border-color: transparent #00617f #00617f transparent; }
 
-.warning:before { border-color: transparent #6f0d0d #6f0d0d transparent; }
+.facilitator:before { border-color: transparent #6f0d0d #6f0d0d transparent; }
 
-.unreleased:before { border-color: transparent #664719 #664719 transparent; }
+.warning:before { border-color: transparent #664719 #664719 transparent; }
 
-.info:after {
-  content: '\24D8';
-  color: #fff;
+.protip:after {
+  content: '\2605  Pro Tip';
+  color: #fc0;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -957,9 +971,9 @@ code.output {
   text-shadow: 0 -1px 0 rgba(0,0,0,.5);
 }
 
-.warning:after {
-  content: '\203C';
-  color: #fc0;
+.facilitator:after {
+  content: '\1F4D4  Facilitator Note';
+  color: #fff;
   position: absolute;
   top: 15px;
   left: 15px;
@@ -968,9 +982,9 @@ code.output {
   text-shadow: 0 -1px 0 rgba(0,0,0,.5);
 }
 
-.unreleased:after {
-  content: '\2692';
-  color: #2b2a12;
+.warning:after {
+  content: '\26A0 Warning';
+  color: #fff;
   position: absolute;
   top: 8px;
   left: 15px;

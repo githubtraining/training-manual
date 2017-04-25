@@ -8,9 +8,9 @@ cd "$(dirname "$0")/.."
 
 script/bootstrap
 
-file=github_for_developers.md
+#file="github_for_developers.md"
 
-for $file in *; do
+for file in github_for_developers.md; do
   eval script/generate-manual $file 2>/dev/null || true
 done
 
