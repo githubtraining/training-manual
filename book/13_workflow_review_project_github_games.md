@@ -4,6 +4,12 @@ In this section, we will work on a project repository called `github-games`.
 
 A `github-games` repository has been created for you in the githubschool organization. You can access the repository at `https://github.com/githubschool/github-games-username`.
 
+### Creating a Fork
+
+1. Navigate to the repo `githubschool/github-games`.
+1. Click *Fork*.
+
+> If you are part of an Organization on GitHub, you may see an additional screen that asks where you'd like to fork the repository. Choose your personal account.
 
 ### Workflow Review: Updating the README.md
 
@@ -18,14 +24,14 @@ Now you will practice the GitHub Flow from beginning to end by updating the link
 Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
 
 1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`
-- Create a new branch called `readme-update`: `git checkout -b readme-update`
-- Edit the URL in the README.md.
-- Commit the changes to your branch.
-- Push your branch to GitHub: `git push -u origin readme-update`
-- Create a Pull Request *in your repository* (base: `gh-pages`, compare: `readme-update`)
-- Merge your Pull Request.
-- Delete the branch on GitHub.
-- Update your local copy of the repository: `git pull --prune`
+1. Create a new branch called `readme-update`: `git checkout -b readme-update`
+1. Edit the URL in the README.md.
+1. Commit the changes to your branch.
+1. Push your branch to GitHub: `git push -u origin readme-update`
+1. Create a Pull Request *in your repository* (base: `gh-pages`, compare: `readme-update`)
+1. Merge your Pull Request.
+1. Delete the branch on GitHub.
+1. Update your local copy of the repository: `git pull --prune`
 
 `git checkout -b readme-update` is a shortcut command that allows you to combine the creation of the branch (`git branch readme-update`) and checking out to that branch (`git checkout readme-update`). The `-b` tells Git to create a new branch.
 

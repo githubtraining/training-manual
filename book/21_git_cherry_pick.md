@@ -16,7 +16,7 @@ $ git log --oneline
 Let's cherry pick the commit where we added file 4:
 
 1. Find the commit ID where you added file4.md: `git reflog`
--  Cherry-pick that commit: `git cherry-pick <SHA>`
+1.  Cherry-pick that commit: `git cherry-pick <SHA>`
 
 Now when you view your directory and log, you should see:
 
@@ -40,8 +40,8 @@ Is the commit ID the same as the one you used in the cherry pick command? Why or
 Sometimes, you `git reset --hard` a little further than intended and want to restore that work. The good news is, that `git reset --hard` doesn't just work by going back in time, it can also go forward:
 
 1. View the history of everywhere HEAD has pointed: `git reflog`
-- Reset to the point in time where the original `file6.md` was created: `git reset --hard <SHA>`
-- See your restored history: `git log --oneline`
+1. Reset to the point in time where the original `file6.md` was created: `git reset --hard <SHA>`
+1. See your restored history: `git log --oneline`
 
 Take a look at the commit IDs in `git log --oneline` compared to `git reflog`. What do you notice?
 
