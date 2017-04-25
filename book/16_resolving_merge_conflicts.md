@@ -21,15 +21,13 @@ Automatic merge failed; fix conflicts and then commit the result.
 1. Determine which file(s) are in conflict: `git status`.
 1. Open the file(s) listed under **Unmerged Paths:** in your text editor.
 1. Look for the merge conflict markers (shown below).
-
-  ```sh
+```sh
 <<<<<<<<< HEAD
 Some text
 =========
 Some more text
 >>>>>>>>> stats-update
 ```
-
 1. Choose which version of the code you would like to keep.
 1. Delete the conflict markers.
 1. Save the file.
