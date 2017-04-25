@@ -27,14 +27,11 @@ Let's try to create a merge conflict, and fix it together. You and a partner wil
 1. Merge the pull request.
 
 
-> **Note:** What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
+> What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.
 
 {% if context.facilitator %}
-
-## Facilitator Note
-
-There are different ways to prepare these repositories. You may want to use GitHub Classroom, use a script, or have participants fork the repository. Whichever way you choose, you will need to set up the repositories for the participants before they can complete the next activity. 
-{: note}
+> There are different ways to prepare these repositories. You may want to use GitHub Classroom, use a script, or have participants fork the repository. Whichever way you choose, you will need to set up the repositories for the participants before they can complete the next activity.
+{: .facilitator}
 
 {% endif %}
 
