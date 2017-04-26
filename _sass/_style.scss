@@ -435,6 +435,14 @@ article.facilitator_page {
 
 /* Right-side nav - used by both docs and news */
 
+#toc {
+  position: fixed;
+  overflow-y: scroll;
+  top: 80px ;
+  right: 0;
+  bottom: 0;
+}
+
 #toc li li a {
   border: none;
   text-transform: none;
