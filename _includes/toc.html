@@ -29,6 +29,8 @@ crossorigin="anonymous"></script>
 
     function createLink (header) {
       var innerText = (header.textContent === undefined) ? header.innerText : header.textContent;
+      innerText = innerText.replace('Permalink',' ');
+      console.log( innerText );
       return "<a href='#" + fixedEncodeURIComponent(header.id) + "'>" + innerText + "</a>";
     }
 
