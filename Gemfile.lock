@@ -39,7 +39,7 @@ GEM
     ethon (0.10.1)
       ffi (>= 1.3.0)
     execjs (2.7.0)
-    faraday (0.12.0.1)
+    faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     forwardable-extended (2.6.0)
@@ -175,8 +175,6 @@ GEM
       jekyll (~> 3.3)
     jekyll-titles-from-headings (0.1.5)
       jekyll (~> 3.3)
-    jekyll-toc (0.2.1)
-      nokogiri (~> 1.6)
     jekyll-watch (1.5.0)
       listen (~> 3.0, < 3.1)
     jemoji (0.8.0)
@@ -269,7 +267,6 @@ DEPENDENCIES
   epubcheck
   github-pages
   jekyll-octicons
-  jekyll-toc
   kindlegen
   pygments.rb
   rake
