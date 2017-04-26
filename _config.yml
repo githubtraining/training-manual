@@ -29,7 +29,6 @@ defaults:
       path: ""
     values:
       layout: "docs"
-      toc: true
 
 # Build settings
 markdown: kramdown
@@ -38,7 +37,6 @@ kramdown:
 
 gems:
   - jekyll-feed
-  - jekyll-toc
   - jekyll-octicons
 
 exclude:

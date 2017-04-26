@@ -1,6 +1,5 @@
 ---
 layout: {% if context.facilitator %}facilitator{% else %}docs{%endif%}
-toc: true
 permalink: /{% if context.facilitator %}facilitator/{% endif %}
 ---
 
