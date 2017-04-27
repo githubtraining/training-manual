@@ -47,3 +47,7 @@ permalink: /{% if context.facilitator %}facilitator/{% endif %}
 {% include 'book/A_workflow_discuss' %}
 {% include 'book/App_a_workflow_guide' %}
 {% include 'book/App_b_fork_workflows' %}
+
+# Learn More
+{% include 'book/App_a_workflow_guide' %}
+{% include 'book/App_b_fork_workflows' %}
