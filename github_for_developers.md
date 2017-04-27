@@ -27,6 +27,7 @@ permalink: /{% if context.facilitator %}facilitator/{% endif %}
 {% include 'book/09_merging_pull_requests' %}
 {% include 'book/10_local_history' %}
 {% include 'book/11_streamline_workflow_with_aliases' %}
+{% include 'book/12_review_local_workflow' %}
 
 # Project 2: Merge Conflicts
 {% include 'book/12_resolving_merge_conflicts' %}
