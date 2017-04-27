@@ -44,9 +44,6 @@ permalink: /{% if context.facilitator %}facilitator/{% endif %}
 {% include 'book/20_rewriting_history_git_reset' %}
 {% include 'book/21_git_cherry_pick' %}
 {% include 'book/22_merge_strategies_rebase' %}
-{% include 'book/A_workflow_discuss' %}
-{% include 'book/App_a_workflow_guide' %}
-{% include 'book/App_b_fork_workflows' %}
 
 # Learn More
 {% include 'book/App_a_workflow_guide' %}
