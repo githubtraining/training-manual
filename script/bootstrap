@@ -32,5 +32,10 @@ fi
 
 echo "==> Installing gem dependencies..."
 bundle check --path vendor/gems >/dev/null 2>&1  || {
-  bundle install --binstubs bin --path vendor/gems --quiet --without production
+  bundle install
 }
+
+echo "==> Installing gitbook"
+if [ -z "$(gitbook --version 2>/dev/null)" ]; then
+  npm install -g gitbook-cli
+fi

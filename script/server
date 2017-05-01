@@ -8,4 +8,4 @@ cd "$(dirname "$0")/.."
 
 script/setup
 
-bundle exec jekyll serve
+gitbook serve

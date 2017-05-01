@@ -4,7 +4,7 @@ Now that you have made some changes in the project locally, let's learn how to p
 
 ### Pushing Your Changes to GitHub
 
-![Pushing to GitHub](/img/push-pull.jpg)
+![Pushing to GitHub](img/push-pull.jpg)
 
 In this case, our remote is GitHub.com, but this could also be your company's internal instance of GitHub Enterprise.
 
@@ -18,7 +18,7 @@ $ git push
 - Windows: `git config --global credential.helper wincred`
 - Mac: `git config --global credential.helper osxkeychain`
 
-{% include 'book/07a_activity_create_pull_request' %}
+{% include './07a_activity_create_pull_request.md' %}
 
 ### Exploring a Pull Request
 
