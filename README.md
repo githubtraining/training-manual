@@ -4,18 +4,8 @@ Welcome to the GitHub Training Manual repo. In this repo, you will find the cont
 
 ## How To Generate the Manuals
 
-First, ensure that you've installed all the required dependencies by runing:
+These manuals are designed to be generated using CircleCI for continuous integration and deployment. If you fork this repository, you will need to set up the integration one time for it to work. 
 
-`script/setup`
+## Making Changes
 
-This will also generate student facilitator copies of the manual in Markdown, HTML, and PDF.
-
-To serve the manuals as a Jekyll web page, run:
-
-`script/server`
-
-To generate a manual other than _GitHub for Developers_ run:
-
-`script/generate-manual <manual-name>``
-
-where `<manual-name>` is one of the `*.md` files in this project's root directory.
+The manual is built from a file called `book/SUMMARY.md`. That includes other pieces in the `book` directory. Once CircleCI is set up, simply change these files on the master branch to generate new manuals on the gh-pages branch. 
