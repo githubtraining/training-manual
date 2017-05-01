@@ -1,7 +1,7 @@
 ## Welcome to GitHub for Developers
-> Note: This version of the manual is newer, and contains activities from our new curriculum. You can find the [legacy version of our training manual here](https://github.github.io/toc-test/legacy-manual.html).
+> Note: This version of the manual is newer, and contains activities from our new curriculum. You can find the [legacy version of our training manual here](https://githubtraining.github.io/training-manual/legacy-manual.html).
 
-You can download a PDF version of this manual [here](https://githubtraining.github.io/toc-test/mybook.pdf).
+You can download a PDF version of this manual [here](https://githubtraining.github.io/training-manual/mybook.pdf).
 
 Today you will embark on an exciting new adventure: learning how to use Git and GitHub.
 
