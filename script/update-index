@@ -1,6 +1,0 @@
-#!/bin/bash
-
-# Usage: script/update-index
-# Update index.html to match the current copy of github-for-developers-student-manual.html
-
-cp github-for-developers-student-manual.html index.html

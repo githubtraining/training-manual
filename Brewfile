@@ -1,2 +1,0 @@
-# ruby
-brew "rbenv"
