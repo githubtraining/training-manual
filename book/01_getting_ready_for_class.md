@@ -13,7 +13,7 @@ If you already have a github.com account you can skip this step. Otherwise, you 
 
 1. Access GitHub.com and click Sign up.
 1. Choose the free account.
-1.You will receive a verification email at the address provided.
+1. You will receive a verification email at the address provided.
 1. Click the link to complete the verification process.
 
 ### Step 2: Install Git
