@@ -13,11 +13,11 @@ $ git version 2.11.0
 
 If you do not see a git version listed or this command returns an error, you may need to install Git.
 
-> **Note:** To get the latest version of Git, visit www.git-scm.com.
+> To get the latest version of Git, visit www.git-scm.com.
 
 ### Git Configuration Levels
 
-![Git Configuration Levels](book/images/config-levels.jpg)
+![Git Configuration Levels](img/config-levels.jpg)
 
 Git allows you to set configuration options at three different levels.
 
@@ -28,7 +28,7 @@ These are the user level configurations. They only apply to your user account.
 #### --local
 These are the repository level configurations. They only apply to the specific repository where they are set.
 
-> **Note:** The default value for git config is `--local`.
+> The default value for git config is `--local`.
 
 ### Viewing Your Configurations
 

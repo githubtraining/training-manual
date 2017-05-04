@@ -6,7 +6,7 @@ When you want to make changes to commits further back in history, you will need 
 
 Sometimes we are working on a branch and we decide things aren't going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history.
 
-![Git Reset Before and After](book/images/reset-visual.jpg)
+![Git Reset Before and After](img/reset-visual.jpg)
 
 Remember, there are three different snapshots of our project at any given time. The first is the most recent commit (also known as HEAD). The second is the staging area (also called the index). The third is the working directory containing any new, deleted, or modified files.
 
@@ -16,7 +16,7 @@ It also helps to know what branches technically are: each is a pointer, or refer
 
 ### Reset Modes
 
-![Three modes of reset](book/images/reset-modes.jpg)
+![Three modes of reset](img/reset-modes.jpg)
 
 The three modes for git reset are: `--soft`, `--mixed`, and `--hard`. For these examples, assume that we have a "clean" working directory, i.e. there are no uncommited changes.
 
@@ -32,37 +32,37 @@ The three modes for git reset are: `--soft`, `--mixed`, and `--hard`. For these 
 Using the practice repository we created earlier, let's try a `reset --soft`.
 
 1. View the history of our project: `git log --oneline --decorate`
-- Identify the current location of `HEAD`.
-- Go back two commits in history: `git reset --soft HEAD~2`
-- See the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before: `git log --oneline --decorate`
-- The changes we made in the last two commits should be in the staging area: `git status`
-- Re-commit these changes: `git commit -m "re-add file 5 and 6"`
+1. Identify the current location of `HEAD`.
+1. Go back two commits in history: `git reset --soft HEAD~2`
+1. See the tip of our branch (and `HEAD`) is now sitting two commits earlier than it was before: `git log --oneline --decorate`
+1. The changes we made in the last two commits should be in the staging area: `git status`
+1. Re-commit these changes: `git commit -m "re-add file 5 and 6"`
 
-> **Note:** In this example, the tilde tells git we want to reset to two commits before the current location of `HEAD`. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset.
+> In this example, the tilde tells git we want to reset to two commits before the current location of `HEAD`. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset.
 
 ### Reset Mixed
 
 Next we will try the default mode of reset, `reset --mixed`:
 
 1. Once again, we will start by viewing the history of our project: `git log --oneline`
-- Go back one commit in history: `git reset HEAD~`
-- See where the tip of the branch is pointing: `git log --oneline --decorate`
-- The changes we made in the last commit have been moved back to the working directory: `git status`
-- Move the files to the staging area before we can commit them: `git add file5.md file6.md`
-- Re-commit the files: `git commit -m "re-add file 5 and 6"`
+1. Go back one commit in history: `git reset HEAD~`
+1. See where the tip of the branch is pointing: `git log --oneline --decorate`
+1. The changes we made in the last commit have been moved back to the working directory: `git status`
+1. Move the files to the staging area before we can commit them: `git add file5.md file6.md`
+1. Re-commit the files: `git commit -m "re-add file 5 and 6"`
 
 
-> **Note:** Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.
+> Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.
 
 ### Reset Hard
 
 Last but not least, let's try a hard reset.
 
 1. Start by viewing the history of our project with: `git log --oneline`
-- Reset to the point in time where the only file that existed was the README.md: `git reset --hard <SHA>`
-- See that all of the commits are gone: `git log --oneline`
-- Notice your working directory is clean: `git status`
-- Ssee that the only file in your repository is the README.md: `ls`
+1. Reset to the point in time where the only file that existed was the README.md: `git reset --hard <SHA>`
+1. See that all of the commits are gone: `git log --oneline`
+1. Notice your working directory is clean: `git status`
+1. See that the only file in your repository is the README.md: `ls`
 
 > **Warning:** Remember, `git reset --hard` overwrites your working directory, staging area, and history. This means that uncommitted changes you have made to your files will be completely lost. Don't use it unless you really want to discard your changes.
 

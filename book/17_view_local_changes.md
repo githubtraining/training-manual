@@ -6,7 +6,7 @@ Now that you have some files in the staging area and the working directory, let'
 
 `git diff` allows you to see allows you to see the difference between any two refs in the repository. The diagram below shows how you can compare the content of your working area, staging, and HEAD (or the most recent commit):
 
-![Git Diff Options](book/images/diff-options.jpg)
+![Git Diff Options](img/diff-options.jpg)
 
 Let's try these commands on the repository:
 
@@ -26,4 +26,4 @@ $ git diff origin/gh-pages gh-pages
 $ git diff 2710 b745
 ```
 
-> **Note:** Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to <REF-1> starting at <REF-2>" or "see what is *not* in <REF-1> but *is* in <REF-2>".
+> Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to <REF-1> starting at <REF-2>" or "see what is *not* in <REF-1> but *is* in <REF-2>".

@@ -1,0 +1,15 @@
+machine:
+  ruby:
+    version: 2.3.1
+dependencies:
+  pre:
+    - script/setup
+    - sudo aptitude -y install calibre
+test:
+  override:
+    - script/cibuild
+deployment:
+  production:
+    branch: master
+    commands:
+    - script/deploy

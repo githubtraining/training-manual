@@ -1,4 +1,4 @@
-### Discussion Guide: Team Workflows
+## Discussion Guide: Team Workflows
 
 Here are some topics you will want to discuss with your team as you establish your ideal process:
 

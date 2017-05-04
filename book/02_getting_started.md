@@ -6,7 +6,7 @@ We will start by introducing you to Git, GitHub, and the collaboration features 
 
 GitHub is a collaboration platform built on top of a distributed version control system called Git.
 
-![GitHub's beloved Octocat logo](book/images/github-icon.jpg)
+![GitHub's beloved Octocat logo](img/github-icon.jpg)
 
 In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:
 
@@ -15,13 +15,13 @@ In addition to being a place to host and share your Git projects, GitHub provide
 * Projects
 * Organizations and Teams
 
-![GitHub Collaboration Features](book/images/collaboration-features.jpg)
+![GitHub Collaboration Features](img/collaboration-features.jpg)
 
 ### The GitHub Ecosystem
 
 Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations.
 
-![The GitHub Integrations Directory](book/images/github-ecosystem.png)
+![The GitHub Integrations Directory](img/github-ecosystem.png)
 
 You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.
 
@@ -64,7 +64,7 @@ A repository is the most basic element of GitHub. It is easiest to imagine as a 
 
 A repository contains all of the project files (including documentation), and stores each file's revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!
 
-![GitHub Repositories](book/images/repository-intro.jpg)
+![GitHub Repositories](img/repository-intro.jpg)
 
 ### User Accounts vs. Organization Accounts
 
@@ -97,14 +97,6 @@ The CONTRIBUTING.md is another special file that is used to describe the process
 #### ISSUE_TEMPLATE.md
 The ISSUE_TEMPLATE.md (and its twin the pull request template) are used to generate templated starter text for your project issues. Any time someone opens an issue, the content in the template will be pre-populated in the issue body.
 
-### Introduction to GitHub Pages
-
-GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. Several of the projects we use in class will use GitHub Pages as the deployment strategy. We will barely scratch the surface in this class, but there are a few things you need to know:
-
-- You can create two types of websites, a user/organization site or a project site. We will be working with project websites.
-- For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a `master` or `gh-pages` branch, or a `/docs` folder on the `master` branch.
-- The rendered sites for our projects will appear at `githubschool.github.io/repo-name`.
-
 
 ### Using GitHub Issues
 
@@ -115,7 +107,7 @@ In GitHub, you will use issues to record and discuss ideas, enhancements, tasks,
 - Creating a single, comprehensive record of how and why you made certain decisions.
 - Allowing you to easily pull the right people into a conversation with @ mentions and team mentions.
 
-{% include 'book/02a_activity_create_github_issue' %}
+{% include './02a_activity_create_github_issue.md' %}
 
 ### Using Markdown
 
@@ -136,3 +128,11 @@ When you @mention someone in an issue, they will receive a notification - even i
 A `#` followed by the number of an issue or pull request (without a space) in the same repository will create a cross-link.
 #### `:smiley:`
 Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji id with `:`.
+
+### Introduction to GitHub Pages
+
+GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. Several of the projects we use in class will use GitHub Pages as the deployment strategy. We will barely scratch the surface in this class, but there are a few things you need to know:
+
+- You can create two types of websites, a user/organization site or a project site. We will be working with project websites.
+- For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a `master` or `gh-pages` branch, or a `/docs` folder on the `master` branch.
+- The rendered sites for our projects will appear at `githubschool.github.io/repo-name`.

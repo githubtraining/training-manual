@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# script/server: produce jekyll site of the manual
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+script/setup
+
+gitbook serve
