@@ -6,7 +6,7 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-mv SUMMARY_CICD_FULLGH4D.md SUMMARY.md
+mv book/SUMMARY_CICD_FULLGH4D.md book/SUMMARY.md
 
 echo "==> Building book"
 gitbook build
@@ -16,9 +16,9 @@ gitbook pdf . fullCICD.pdf
 
 mv index.html fullcicd.html
 
-mv SUMMARY.md SUMMARY_CICD_FULLGH4D.md
+mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D.md
 
-mv SUMMARY_CICDONLY.md SUMMARY.md
+mv book/SUMMARY_CICDONLY.md book/SUMMARY.md
 
 echo "==> Building book"
 gitbook build
@@ -29,7 +29,7 @@ gitbook pdf . onlyCICD.pdf
 
 mv index.html onlycicd.html
 
-mv SUMMARY.md SUMMARY_CICDONLY.md
+mv book/SUMMARY.md book/SUMMARY_CICDONLY.md
 
 
 #bundle exec jekyll serve
