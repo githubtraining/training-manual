@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Reverting Commits · GitBook</title>
+        <title>Change The .yml file · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.2">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="16_helpful_git_commands.html" />
+    <link rel="next" href="35_understanding_yml.html" />
     
     
-    <link rel="prev" href="14_git_bisect.html" />
+    <link rel="prev" href="33_interacting_cicd.html" />
     
 
     </head>
@@ -300,7 +300,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="3.4" data-path="15_reverting_commits.html">
+        <li class="chapter " data-level="3.4" data-path="15_reverting_commits.html">
             
                 <a href="15_reverting_commits.html">
             
@@ -385,7 +385,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="34_change_yml.html">
+        <li class="chapter active" data-level="4.4" data-path="34_change_yml.html">
             
                 <a href="34_change_yml.html">
             
@@ -507,7 +507,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Reverting Commits</a>
+        <a href="." >Change The .yml file</a>
     </h1>
 </div>
 
@@ -522,64 +522,48 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="reverting-commits">Reverting Commits</h2>
-<p>In this section, we will learn about commands that re-write history and understand when you should or shouldn&apos;t use them.</p>
-<h3 id="how-commits-are-made">How Commits Are Made</h3>
-<p>Every commit in Git is a unique snapshot of the project at that point in time. It contains the following information:</p>
+                                <h2 id="changing-the-yml-file">Changing the <code>.yml</code> file</h2>
+<h4 id="introduce-changes-to-yml-file-together-30-minutes">Introduce changes to <code>.yml</code> file together ~30 minutes</h4>
 <ul>
-<li>Pointers to the current objects in the repository</li>
-<li>Commit author and email (from your config settings)</li>
-<li>Commit date and time</li>
-<li>Commit message</li>
+<li><p>Add another test together to check if the game is moving too quickly</p>
+<ul>
+<li><p>As a new file, <code>tests/speedmax.rb</code></p>
+<pre><code>```
+require &apos;test/unit&apos;
+
+class TestGameSpeedMax &lt; Test::Unit::TestCase
+
+  def test_game_speed_max
+    # open file to read
+    file = File.read(&apos;./index.html&apos;)
+
+    # search for decrement word
+    min_index = file.index(&apos;min:&apos;)
+    end_index = file.index(&apos;}, // how long&apos;)
+    puts min_index
+    puts &apos;&gt; &apos;
+    puts end_index
+
+    # assign number after decrement to a variable
+    min = file[min_index + 5 ...end_index]
+
+    puts min
+
+    min_less_than_1 = min.to_f &lt; 1.0
+    min_greater_than_0 = min.to_f &gt; 0.0
+    min_range = min_less_than_1 &amp;&amp; min_greater_than_0
+    # assert if that variable is between 0-1
+    assert(min_range, &quot;The start speed is not between 0 and 1.&quot;)
+  end
+
+end
+```
+</code></pre></li>
+<li>In the build file, add <code>- ruby tests/speedmax.rb</code></li>
 </ul>
-<p><img src="img/commit-and-tree.png" alt="Git&apos;s Basic Commit Structure"></p>
-<p>Each commit also contains the commit ID of its parent commit.</p>
-<p><img src="img/commit-parent.png" alt="Relationship between commits"></p>
-<p>Image source: ProGit v2 by Scott Chacon</p>
-<h3 id="safe-operations">Safe Operations</h3>
-<p>Git&apos;s data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the the commits that have already been shared.</p>
-<p>If an operation will change a commit ID that has been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.</p>
-<h4 id="guidelines-for-common-commands">Guidelines for Common Commands</h4>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Cautions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>revert</code></td>
-<td>Generally safe since it creates a new commit.</td>
-</tr>
-<tr>
-<td><code>commit --amend</code></td>
-<td>Only use on local commits.</td>
-</tr>
-<tr>
-<td><code>reset</code></td>
-<td>Only use on local commits.</td>
-</tr>
-<tr>
-<td><code>cherry-pick</code></td>
-<td>Only use on local commits.</td>
-</tr>
-<tr>
-<td><code>rebase</code></td>
-<td>Only use on local commits.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="reverting-commits">Reverting Commits</h3>
-<p>To get your game working, you will need to reverse the commit that incorrectly renames <code>index.html</code>.</p>
-<blockquote>
-<p><strong>Warning</strong>: Before you reverse the commit, it is a good idea to make sure you will not be inadvertently reversing other changes that were lumped into the same commit. To see what was changed in the commit, use <code>git show SHA</code>.</p>
-</blockquote>
-<ol>
-<li>Initialize the revert: <code>git revert &lt;SHA&gt;</code></li>
-<li>Type a commit message.</li>
-<li>Push your changes to GitHub.</li>
-</ol>
+</li>
+<li>Discuss this new test. What does it do? Why would we implement it? What could we do differently? When will it pass or fail?</li>
+</ul>
 
                                 
                                 </section>
@@ -607,12 +591,12 @@
 
             
                 
-                <a href="14_git_bisect.html" class="navigation navigation-prev " aria-label="Previous page: Git Bisect">
+                <a href="33_interacting_cicd.html" class="navigation navigation-prev " aria-label="Previous page: Interacting with CI/CD">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="16_helpful_git_commands.html" class="navigation navigation-next " aria-label="Next page: Helpful Git Commands">
+                <a href="35_understanding_yml.html" class="navigation navigation-next " aria-label="Next page: Understanding the .yml file">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -623,7 +607,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Reverting Commits","level":"3.4","depth":1,"next":{"title":"Helpful Git Commands","level":"3.5","depth":1,"path":"16_helpful_git_commands.md","ref":"16_helpful_git_commands.md","articles":[]},"previous":{"title":"Git Bisect","level":"3.3","depth":1,"path":"14_git_bisect.md","ref":"14_git_bisect.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"15_reverting_commits.md","mtime":"2017-05-05T18:51:41.658Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-05T18:56:48.368Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Change The .yml file","level":"4.4","depth":1,"next":{"title":"Understanding the .yml file","level":"5.1","depth":1,"path":"35_understanding_yml.md","ref":"35_understanding_yml.md","articles":[]},"previous":{"title":"Interacting with CI/CD","level":"4.3","depth":1,"path":"33_interacting_cicd.md","ref":"33_interacting_cicd.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"34_change_yml.md","mtime":"2017-05-05T18:51:41.662Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-05T18:56:48.368Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
