@@ -6,10 +6,30 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+mv SUMMARY_CICD_FULLGH4D.md SUMMARY.md
+
 echo "==> Building book"
 gitbook build
 
 echo "==> Generating PDF"
-gitbook pdf . mybook.pdf
+gitbook pdf . fullCICD.pdf
+
+mv index.html fullcicd.html
+
+mv SUMMARY.md SUMMARY_CICD_FULLGH4D.md
+
+mv SUMMARY_CICDONLY.md SUMMARY.md
+
+echo "==> Building book"
+gitbook build
+
+
+echo "==> Generating PDF"
+gitbook pdf . onlyCICD.pdf
+
+mv index.html onlycicd.html
+
+mv SUMMARY.md SUMMARY_CICDONLY.md
+
 
 #bundle exec jekyll serve

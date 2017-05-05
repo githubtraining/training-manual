@@ -15,7 +15,9 @@ git config --global user.name "$GH_NAME" > /dev/null 2>&1
 rm -rf vendor
 rm .ruby-version
 
-mv mybook.pdf training-manual-temp.pdf
+mv onlyCICD.pdf onlyCICDtemp.pdf
+mv fullCICD.pdf fullCICDtemp.pdf
+
 
 git checkout gh-pages --force
 git pull origin gh-pages --rebase
@@ -25,8 +27,10 @@ git clean -fx _book
 
 git status
 
-rm -rf training-manual.pdf
-mv training-manual-temp.pdf training-manual.pdf
+rm -rf onlyCICD.pdf
+rm -rf fullCICD.pdf
+mv onlyCICDtemp.pdf onlyCICD.pdf
+mv fullCICDtemp.pdf fullCICD.pdf
 
 git add .
 git commit -m "update book [ci skip]"
