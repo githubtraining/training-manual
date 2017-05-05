@@ -14,7 +14,7 @@ gitbook build
 echo "==> Generating PDF"
 gitbook pdf . fullCICD.pdf
 
-mv _book/ _fullcicd/
+mv _book/ fullcicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D.md
 
@@ -27,7 +27,7 @@ gitbook build
 echo "==> Generating PDF"
 gitbook pdf . onlyCICD.pdf
 
-mv _book/ _onlycicd/
+mv _book/ onlycicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICDONLY.md
 
