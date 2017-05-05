@@ -15,6 +15,7 @@ echo "==> Generating PDF"
 gitbook pdf . fullCICD.pdf
 
 mv _book/index.html _book/fullcicd.html
+mv _book/ _fullcicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D.md
 
@@ -28,6 +29,7 @@ echo "==> Generating PDF"
 gitbook pdf . onlyCICD.pdf
 
 mv _book/index.html _book/onlycicd.html
+mv _book/ _onlycicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICDONLY.md
 
