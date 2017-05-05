@@ -36,3 +36,4 @@
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Workflow Guide](App_a_workflow_guide.md)
+  * [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
