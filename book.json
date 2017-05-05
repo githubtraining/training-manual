@@ -2,6 +2,6 @@
     "root": "./book",
     "pdf": {
      "fontSize" : 18
-    }
+   },
+    "plugins": ["anchors"]
 }
-       
