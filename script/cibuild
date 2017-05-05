@@ -11,6 +11,8 @@ mv book/SUMMARY_CICD_FULLGH4D.md book/SUMMARY.md
 echo "==> Building book"
 gitbook build
 
+ls 
+
 echo "==> Generating PDF"
 gitbook pdf . fullCICD.pdf
 
