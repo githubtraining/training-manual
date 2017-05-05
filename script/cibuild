@@ -6,6 +6,8 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+gitbook install
+
 echo "==> Building book"
 gitbook build
 
