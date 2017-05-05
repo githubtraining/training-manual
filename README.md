@@ -9,3 +9,11 @@ These manuals are designed to be generated using CircleCI for continuous integra
 ## Making Changes
 
 The manual is built from a file called `book/SUMMARY.md`. That includes other pieces in the `book` directory. Once CircleCI is set up, simply change these files on the master branch to generate new manuals on the gh-pages branch. 
+
+For the CI/CD class that is standalone from GitHub from Developers:
+- Edit `book/SUMMARY_CICDONLY.MD`
+- It will be displayed at: https://brianamarie.github.io/training-manual-1/onlycicd.html
+
+For the CI/CD class that is delivered as a part of a full GitHub for Developers offering:
+- Edit `book/SUMMARY_CICD_FULLGH4D.md`
+- It will be displayed at: https://brianamarie.github.io/training-manual-1/index.html
