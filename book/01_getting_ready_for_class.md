@@ -45,7 +45,7 @@ If you need additional assistance installing Git, you can find more information 
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
-- If you are working on Windows, you can use `Git Bash` which is installed with the Git package or `Git Shell` which is installed with GitHub Desktop.
+- If you are working on Windows, you can use `Git Bash` which is installed with the Git package or you can use Powershell with [Posh-git](http://dahlbyk.github.io/posh-git/).
 - If you are working on a Mac or other Unix based system, you can use the terminal application.
 
 Go ahead and open your command line application now!
