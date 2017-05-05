@@ -14,8 +14,6 @@ git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
 rm -rf vendor
 rm .ruby-version
-mv _fullcicd/index.html fullcicd.html
-mv _onlycicd/index.html onlycicd.html
 mv onlyCICD.pdf onlyCICDtemp.pdf
 mv fullCICD.pdf fullCICDtemp.pdf
 
