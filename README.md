@@ -12,8 +12,12 @@ The manual is built from a file called `book/SUMMARY.md`. That includes other pi
 
 For the CI/CD class that is standalone from GitHub from Developers:
 - Edit `book/SUMMARY_CICDONLY.MD`
-- It will be displayed at: https://brianamarie.github.io/training-manual-1/onlycicd.html
+- It will be displayed at: https://brianamarie.github.io/training-manual-1/onlycicd/index
 
 For the CI/CD class that is delivered as a part of a full GitHub for Developers offering:
 - Edit `book/SUMMARY_CICD_FULLGH4D.md`
-- We want it displayed here, but it is not functional yet: https://brianamarie.github.io/training-manual-1/fullcicd.html
+- We want it displayed here, but it is not functional yet: https://brianamarie.github.io/training-manual-1/fullcicd/index
+
+## Next Steps
+
+Once this is sorted here, we may want to merge this (and the general concept) into the proper training-manual repository so that all changes to curriculum are reflected in all courses. 
