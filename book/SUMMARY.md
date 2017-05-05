@@ -34,4 +34,5 @@
   * [Merge Strategies](22_merge_strategies_rebase.md)
 
 ## Appendix
+  * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Workflow Guide](App_a_workflow_guide.md)
