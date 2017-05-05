@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -509,9 +513,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="working-locally-with-git">Working Locally with Git</h2>
+                                <h2 id="working-locally-with-git"><a name="working-locally-with-git" class="plugin-anchor" href="#working-locally-with-git"><i class="fa fa-link" aria-hidden="true"></i></a>Working Locally with Git</h2>
 <p>Using the command line, you can easily integrate Git into your current workflow.</p>
-<h3 id="creating-a-local-copy-of-the-repo">Creating a Local Copy of the repo</h3>
+<h3 id="creating-a-local-copy-of-the-repo"><a name="creating-a-local-copy-of-the-repo" class="plugin-anchor" href="#creating-a-local-copy-of-the-repo"><i class="fa fa-link" aria-hidden="true"></i></a>Creating a Local Copy of the repo</h3>
 <p><img src="img/clone-diagram.jpg" alt="Cloning a repository"></p>
 <p>Before we can work locally, we will need to create a clone of the repository.</p>
 <p>When you clone a repository you are creating a copy of everything in that repository, including its history. This is one of the benefits of a DVCS like git - rather than being required to query a slow centralized server to review the commit history, queries are run locally and are lightning fast.</p>
@@ -524,14 +528,14 @@
 <li>Retrieve a full copy of the repository from GitHub: <code>git clone &lt;CLONE-URL&gt;</code></li>
 <li>Once the clone is complete, cd into the new directory created by the clone operation: <code>cd &lt;REPOSITORY-NAME&gt;</code></li>
 </ol>
-<h3 id="our-favorite-git-command-git-status">Our Favorite Git command: <code>git status</code></h3>
+<h3 id="our-favorite-git-command-git-status"><a name="our-favorite-git-command-git-status" class="plugin-anchor" href="#our-favorite-git-command-git-status"><i class="fa fa-link" aria-hidden="true"></i></a>Our Favorite Git command: <code>git status</code></h3>
 <pre><code class="lang-sh">$ git status
 On branch gh-pages
 Your branch is up-to-date with <span class="hljs-string">&apos;origin/gh-pages&apos;</span>.
 nothing to commit, working tree clean
 </code></pre>
 <p><code>git status</code> is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch gh-pages, everything is up to date with origin/gh-pages and our working tree is clean.</p>
-<h3 id="using-branches-locally">Using Branches locally</h3>
+<h3 id="using-branches-locally"><a name="using-branches-locally" class="plugin-anchor" href="#using-branches-locally"><i class="fa fa-link" aria-hidden="true"></i></a>Using Branches locally</h3>
 <pre><code class="lang-sh">$ git branch
 </code></pre>
 <p>If you type <code>git branch</code> you will see a list of local branches.</p>
@@ -542,13 +546,13 @@ $ git branch <span class="hljs-_">-a</span>
 <blockquote>
 <p>The <code>--all</code> and <code>-a</code> are actually synonyms for the branch command. Git often provides a verbose and a short option.</p>
 </blockquote>
-<h3 id="switching-branches">Switching Branches</h3>
+<h3 id="switching-branches"><a name="switching-branches" class="plugin-anchor" href="#switching-branches"><i class="fa fa-link" aria-hidden="true"></i></a>Switching Branches</h3>
 <pre><code>$ git checkout &lt;BRANCH-NAME&gt;
 </code></pre><p>To checkout the branch you created online, type git checkout and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.</p>
 <blockquote>
 <p>You do not need to type <code>remotes/origin</code> in front of the branch - only the branch name. Typing <code>remotes/origin</code> in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.</p>
 </blockquote>
-<h3 id="activity-edit-your-file">Activity: Edit Your File</h3>
+<h3 id="activity-edit-your-file"><a name="activity-edit-your-file" class="plugin-anchor" href="#activity-edit-your-file"><i class="fa fa-link" aria-hidden="true"></i></a>Activity: Edit Your File</h3>
 <p>Now it is time to put an image and a caption into your file:</p>
 <ol>
 <li>Find an image that you want to caption</li>
@@ -567,7 +571,7 @@ $ git branch <span class="hljs-_">-a</span>
 <blockquote>
 <p>Git doesn&apos;t care how you work with your files locally. You can work in your favorite IDE or text editor, or you can use VIM through the command line.</p>
 </blockquote>
-<h3 id="the-two-stage-commit">The Two Stage Commit</h3>
+<h3 id="the-two-stage-commit"><a name="the-two-stage-commit" class="plugin-anchor" href="#the-two-stage-commit"><i class="fa fa-link" aria-hidden="true"></i></a>The Two Stage Commit</h3>
 <p>After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.</p>
 <p><img src="img/two-stage-commit-a.jpg" alt="The Two Stage Commit - Part 1"></p>
 <p>When you work locally, your files exist in one of four states. They are either untracked, modified, staged, or committed.</p>
@@ -639,7 +643,7 @@ $ git branch <span class="hljs-_">-a</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Working Locally","level":"2.3","depth":1,"next":{"title":"Collaborating on Code","level":"2.4","depth":1,"path":"07_collaborating_on_code.md","ref":"07_collaborating_on_code.md","articles":[]},"previous":{"title":"Local Git Configs","level":"2.2","depth":1,"path":"05_local_git_configs.md","ref":"05_local_git_configs.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"06_working_locally.md","mtime":"2017-05-05T15:39:57.138Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-05T15:44:06.820Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Working Locally","level":"2.3","depth":1,"next":{"title":"Collaborating on Code","level":"2.4","depth":1,"path":"07_collaborating_on_code.md","ref":"07_collaborating_on_code.md","articles":[]},"previous":{"title":"Local Git Configs","level":"2.2","depth":1,"path":"05_local_git_configs.md","ref":"05_local_git_configs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"06_working_locally.md","mtime":"2017-05-05T20:25:50.217Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-05T20:29:34.199Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
