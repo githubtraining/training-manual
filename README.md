@@ -16,4 +16,4 @@ For the CI/CD class that is standalone from GitHub from Developers:
 
 For the CI/CD class that is delivered as a part of a full GitHub for Developers offering:
 - Edit `book/SUMMARY_CICD_FULLGH4D.md`
-- It will be displayed at: https://brianamarie.github.io/training-manual-1/index.html
+- We want it displayed here, but it is not functional yet: https://brianamarie.github.io/training-manual-1/fullcicd.html
