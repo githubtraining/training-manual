@@ -10,3 +10,4 @@ We've created more tests on the `all-<service>-tests` branch of the `github-game
 1. On that branch, open the `.yml` file. Add `tests/speedmax.rb` to the file in the same place that the other test, checking the URL, is being run.
 1. Create a pull request.
 1. Review the contents of the new test. What do you think it does? Why would we implement it? What could we do differently? When will it pass or fail?
+1. Merge the pull request.

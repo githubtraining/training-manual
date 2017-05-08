@@ -1,6 +1,6 @@
-## Understanding the `.yml` file
+## Break the Speed Test
 
-#### Show test files ~10-15 minutes
-- Test file exists in `.travis.yml` or `circle.yml`
-- Discuss parameters in test file (which will be different based on testing service)
-- **Activity:** manually validate YML files against test service's documentation
+1. Create a new branch based on `gh-pages`.
+1. Based on what you know about that test file, make a change that you think will cause the test to fail.
+1. After the status check returns from the CI/CD service, fix the file so the tests pass.
+1. Merge or close the pull request.
