@@ -1,3 +1,9 @@
-#### Fully functional class repository ~30 minutes
-- Extension of GitHub Games ([This repository](https://github.com/githubschool/github-games-ci-cd))
-- Set up Travis or Circle for personal fork on Travis or Circle sites
+#### Fully functional class repository
+
+We are going to start with tests built in to `github-games`, a repository we've already been working in.
+
+1. Visit the CI/CD integration site.
+1. When prompted to create a new account or log in, authenticate with GitHub.
+1. Add a new project, selecting the `github-games` repository.
+
+You may not see anything happen just yet. CI/CD services look for a special `.yml` file with configuration information. This file will contain information about the language of the project, dependencies, what tests to run, and how to build any deployments.
