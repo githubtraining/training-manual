@@ -27,6 +27,8 @@ git status
 
 rm -rf onlyCICD.pdf
 rm -rf fullCICD.pdf
+rm -rf fullcicd/
+rm -rf onlycicd/
 mv onlyCICDtemp.pdf onlyCICD.pdf
 mv fullCICDtemp.pdf fullCICD.pdf
 
