@@ -16,7 +16,8 @@ rm -rf vendor
 rm .ruby-version
 mv onlyCICD.pdf onlyCICDtemp.pdf
 mv fullCICD.pdf fullCICDtemp.pdf
-
+mv fullcicd/ fullcicdtemp/
+mv onlycicd/ onlycicdtemp/
 
 git checkout gh-pages --force
 git pull origin gh-pages --rebase
@@ -31,6 +32,8 @@ rm -rf fullcicd/
 rm -rf onlycicd/
 mv onlyCICDtemp.pdf onlyCICD.pdf
 mv fullCICDtemp.pdf fullCICD.pdf
+mv onlycicdtemp/ onlycicd/
+mv fullcicdtemp/ fullcicd
 
 git add .
 git commit -m "update book [ci skip]"
