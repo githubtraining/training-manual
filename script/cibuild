@@ -6,6 +6,13 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+git checkout gh-pages
+
+rm -rf fullcicd/
+rm -rf onlycicd/
+
+git checkout master
+
 mv book/SUMMARY_CICD_FULLGH4D.md book/SUMMARY.md
 
 echo "==> Building book"
@@ -14,7 +21,6 @@ gitbook build
 echo "==> Generating PDF"
 gitbook pdf . fullCICD.pdf
 
-rm -rf fullcicd/
 mv _book/ fullcicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D.md
@@ -28,7 +34,6 @@ gitbook build
 echo "==> Generating PDF"
 gitbook pdf . onlyCICD.pdf
 
-rm -rf onlycicd/
 mv _book/ onlycicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICDONLY.md
