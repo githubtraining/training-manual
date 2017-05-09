@@ -6,13 +6,6 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-git checkout gh-pages
-
-rm -rf fullcicd/
-rm -rf onlycicd/
-
-git checkout master
-
 mv book/SUMMARY_CICD_FULLGH4D.md book/SUMMARY.md
 
 echo "==> Building book"
