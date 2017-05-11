@@ -39,7 +39,7 @@ mv fullCICDtemp.pdf fullCICD.pdf
 mv GH4Dtemp.pdf GH4D.pdf
 mv onlycicdtemp/ onlycicd/
 mv fullcicdtemp/ fullcicd/
-mv GH4Dtemp/ GH4d/
+mv GH4Dtemp/ GH4D/
 
 git add .
 git commit -m "update book [ci skip]"
