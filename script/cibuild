@@ -6,6 +6,22 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+gitbook install
+
+# create new standard GH4D manual
+mv book/SUMMARY_GH4D.md book/SUMMARY.md
+
+echo "==> Building book"
+gitbook build
+
+echo "==> Generating PDF"
+gitbook pdf . GH4D.pdf
+
+mv _book/ GH4D/
+
+mv book/SUMMARY.md book/SUMMARY_GH4D.md
+
+# create new full CICD course
 mv book/SUMMARY_CICD_FULLGH4D.md book/SUMMARY.md
 
 echo "==> Building book"
@@ -18,6 +34,7 @@ mv _book/ fullcicd/
 
 mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D.md
 
+# create new condensed CICD course
 mv book/SUMMARY_CICDONLY.md book/SUMMARY.md
 
 echo "==> Building book"
