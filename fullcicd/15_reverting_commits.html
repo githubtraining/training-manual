@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -640,9 +644,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="reverting-commits">Reverting Commits</h2>
+                                <h2 id="reverting-commits"><a name="reverting-commits" class="plugin-anchor" href="#reverting-commits"><i class="fa fa-link" aria-hidden="true"></i></a>Reverting Commits</h2>
 <p>In this section, we will learn about commands that re-write history and understand when you should or shouldn&apos;t use them.</p>
-<h3 id="how-commits-are-made">How Commits Are Made</h3>
+<h3 id="how-commits-are-made"><a name="how-commits-are-made" class="plugin-anchor" href="#how-commits-are-made"><i class="fa fa-link" aria-hidden="true"></i></a>How Commits Are Made</h3>
 <p>Every commit in Git is a unique snapshot of the project at that point in time. It contains the following information:</p>
 <ul>
 <li>Pointers to the current objects in the repository</li>
@@ -654,10 +658,10 @@
 <p>Each commit also contains the commit ID of its parent commit.</p>
 <p><img src="img/commit-parent.png" alt="Relationship between commits"></p>
 <p>Image source: ProGit v2 by Scott Chacon</p>
-<h3 id="safe-operations">Safe Operations</h3>
+<h3 id="safe-operations"><a name="safe-operations" class="plugin-anchor" href="#safe-operations"><i class="fa fa-link" aria-hidden="true"></i></a>Safe Operations</h3>
 <p>Git&apos;s data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the the commits that have already been shared.</p>
 <p>If an operation will change a commit ID that has been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.</p>
-<h4 id="guidelines-for-common-commands">Guidelines for Common Commands</h4>
+<h4 id="guidelines-for-common-commands"><a name="guidelines-for-common-commands" class="plugin-anchor" href="#guidelines-for-common-commands"><i class="fa fa-link" aria-hidden="true"></i></a>Guidelines for Common Commands</h4>
 <table>
 <thead>
 <tr>
@@ -688,7 +692,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="reverting-commits">Reverting Commits</h3>
+<h3 id="reverting-commits"><a name="reverting-commits" class="plugin-anchor" href="#reverting-commits"><i class="fa fa-link" aria-hidden="true"></i></a>Reverting Commits</h3>
 <p>To get your game working, you will need to reverse the commit that incorrectly renames <code>index.html</code>.</p>
 <blockquote>
 <p><strong>Warning</strong>: Before you reverse the commit, it is a good idea to make sure you will not be inadvertently reversing other changes that were lumped into the same commit. To see what was changed in the commit, use <code>git show SHA</code>.</p>
@@ -741,7 +745,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Reverting Commits","level":"4.3","depth":1,"next":{"title":"Helpful Git Commands","level":"4.4","depth":1,"path":"16_helpful_git_commands.md","ref":"16_helpful_git_commands.md","articles":[]},"previous":{"title":"Git Bisect","level":"4.2","depth":1,"path":"14_git_bisect.md","ref":"14_git_bisect.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"15_reverting_commits.md","mtime":"2017-05-11T16:06:07.676Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:09:45.722Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Reverting Commits","level":"4.3","depth":1,"next":{"title":"Helpful Git Commands","level":"4.4","depth":1,"path":"16_helpful_git_commands.md","ref":"16_helpful_git_commands.md","articles":[]},"previous":{"title":"Git Bisect","level":"4.2","depth":1,"path":"14_git_bisect.md","ref":"14_git_bisect.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"15_reverting_commits.md","mtime":"2017-05-11T16:31:24.931Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:35:38.198Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

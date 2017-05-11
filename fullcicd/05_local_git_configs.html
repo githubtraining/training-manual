@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -640,9 +644,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="local-git-configuration">Local Git Configuration</h2>
+                                <h2 id="local-git-configuration"><a name="local-git-configuration" class="plugin-anchor" href="#local-git-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Local Git Configuration</h2>
 <p>In this section, we will prepare your local environment to work with Git.</p>
-<h3 id="checking-your-git-version">Checking Your Git Version</h3>
+<h3 id="checking-your-git-version"><a name="checking-your-git-version" class="plugin-anchor" href="#checking-your-git-version"><i class="fa fa-link" aria-hidden="true"></i></a>Checking Your Git Version</h3>
 <p>First, let&apos;s confirm your <a href="https://git-scm.com/downloads" target="_blank">Git Installation</a>:</p>
 <pre><code class="lang-sh">$ git --version
 $ git version 2.11.0
@@ -651,31 +655,31 @@ $ git version 2.11.0
 <blockquote>
 <p>To get the latest version of Git, visit www.git-scm.com.</p>
 </blockquote>
-<h3 id="git-configuration-levels">Git Configuration Levels</h3>
+<h3 id="git-configuration-levels"><a name="git-configuration-levels" class="plugin-anchor" href="#git-configuration-levels"><i class="fa fa-link" aria-hidden="true"></i></a>Git Configuration Levels</h3>
 <p><img src="img/config-levels.jpg" alt="Git Configuration Levels"></p>
 <p>Git allows you to set configuration options at three different levels.</p>
-<h4 id="-system">--system</h4>
+<h4 id="-system"><a name="-system" class="plugin-anchor" href="#-system"><i class="fa fa-link" aria-hidden="true"></i></a>--system</h4>
 <p>These are system-wide configurations. They apply to all users on this computer.</p>
-<h4 id="-global">--global</h4>
+<h4 id="-global"><a name="-global" class="plugin-anchor" href="#-global"><i class="fa fa-link" aria-hidden="true"></i></a>--global</h4>
 <p>These are the user level configurations. They only apply to your user account.</p>
-<h4 id="-local">--local</h4>
+<h4 id="-local"><a name="-local" class="plugin-anchor" href="#-local"><i class="fa fa-link" aria-hidden="true"></i></a>--local</h4>
 <p>These are the repository level configurations. They only apply to the specific repository where they are set.</p>
 <blockquote>
 <p>The default value for git config is <code>--local</code>.</p>
 </blockquote>
-<h3 id="viewing-your-configurations">Viewing Your Configurations</h3>
+<h3 id="viewing-your-configurations"><a name="viewing-your-configurations" class="plugin-anchor" href="#viewing-your-configurations"><i class="fa fa-link" aria-hidden="true"></i></a>Viewing Your Configurations</h3>
 <p>If you would like to see which config settings have been added automatically, you can type <code>git config --list</code>. This will automatically read from each of the three config files and list the setting they contain.</p>
 <pre><code class="lang-sh">$ git config --list
 </code></pre>
 <p>You can also narrow the list to a specific configuration level by including it before the list option.</p>
 <pre><code class="lang-sh">$ git config --global --list
 </code></pre>
-<h3 id="configuring-your-user-name-and-email">Configuring Your User Name and Email</h3>
+<h3 id="configuring-your-user-name-and-email"><a name="configuring-your-user-name-and-email" class="plugin-anchor" href="#configuring-your-user-name-and-email"><i class="fa fa-link" aria-hidden="true"></i></a>Configuring Your User Name and Email</h3>
 <p>Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can&apos;t create commits without these settings:</p>
 <pre><code class="lang-sh">$ git config --global user.name <span class="hljs-string">&quot;First Last&quot;</span>
 $ git config --global user.email <span class="hljs-string">&quot;you@email.com&quot;</span>
 </code></pre>
-<h3 id="configuring-autocrlf">Configuring autocrlf</h3>
+<h3 id="configuring-autocrlf"><a name="configuring-autocrlf" class="plugin-anchor" href="#configuring-autocrlf"><i class="fa fa-link" aria-hidden="true"></i></a>Configuring autocrlf</h3>
 <pre><code class="lang-sh">$ //<span class="hljs-keyword">for</span> Windows users
 $ git config --global core.autocrlf <span class="hljs-literal">true</span>
 $ //<span class="hljs-keyword">for</span> Mac or Linux users
@@ -728,7 +732,7 @@ $ git config --global core.autocrlf input
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Local Git Configs","level":"2.2","depth":1,"next":{"title":"Working Locally","level":"2.3","depth":1,"path":"06_working_locally.md","ref":"06_working_locally.md","articles":[]},"previous":{"title":"Branching with Git","level":"2.1","depth":1,"path":"04_branching_with_git.md","ref":"04_branching_with_git.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"05_local_git_configs.md","mtime":"2017-05-11T16:06:07.676Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:09:45.722Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Local Git Configs","level":"2.2","depth":1,"next":{"title":"Working Locally","level":"2.3","depth":1,"path":"06_working_locally.md","ref":"06_working_locally.md","articles":[]},"previous":{"title":"Branching with Git","level":"2.1","depth":1,"path":"04_branching_with_git.md","ref":"04_branching_with_git.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"05_local_git_configs.md","mtime":"2017-05-11T16:31:24.931Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:35:38.198Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

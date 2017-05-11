@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -640,9 +644,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="getting-it-back-git-cherry-pick">Getting it Back: <code>git cherry-pick</code></h2>
+                                <h2 id="getting-it-back-git-cherry-pick"><a name="getting-it-back-git-cherry-pick" class="plugin-anchor" href="#getting-it-back-git-cherry-pick"><i class="fa fa-link" aria-hidden="true"></i></a>Getting it Back: <code>git cherry-pick</code></h2>
 <p>We just learned how reflog can help us find local changes that have been discarded. So what if:</p>
-<h3 id="you-just-want-that-one-commit">You Just Want That One Commit</h3>
+<h3 id="you-just-want-that-one-commit"><a name="you-just-want-that-one-commit" class="plugin-anchor" href="#you-just-want-that-one-commit"><i class="fa fa-link" aria-hidden="true"></i></a>You Just Want That One Commit</h3>
 <p>Cherry picking allows you to pick up a commit from your reflog or another branch of your project and move it to your current branch. Right now, your file directory and log should look like this:</p>
 <pre><code class="lang-sh">$ ls
 README.md
@@ -667,7 +671,7 @@ eanu482 adding file 4
 <p>Remember, when using any commands that change history, it&apos;s important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
 {: .warning}</p>
 </blockquote>
-<h3 id="oops-i-didnt-mean-to-reset">Oops, I Didn&apos;t Mean to Reset</h3>
+<h3 id="oops-i-didnt-mean-to-reset"><a name="oops-i-didnt-mean-to-reset" class="plugin-anchor" href="#oops-i-didnt-mean-to-reset"><i class="fa fa-link" aria-hidden="true"></i></a>Oops, I Didn&apos;t Mean to Reset</h3>
 <p>Sometimes, you <code>git reset --hard</code> a little further than intended and want to restore that work. The good news is, that <code>git reset --hard</code> doesn&apos;t just work by going back in time, it can also go forward:</p>
 <ol>
 <li>View the history of everywhere HEAD has pointed: <code>git reflog</code></li>
@@ -721,7 +725,7 @@ eanu482 adding file 4
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Cherry Picking","level":"5.4","depth":1,"next":{"title":"Merge Strategies","level":"5.5","depth":1,"path":"22_merge_strategies_rebase.md","ref":"22_merge_strategies_rebase.md","articles":[]},"previous":{"title":"Rewriting History with Git Reset","level":"5.3","depth":1,"path":"20_rewriting_history_git_reset.md","ref":"20_rewriting_history_git_reset.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"21_git_cherry_pick.md","mtime":"2017-05-11T16:06:07.676Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:09:45.722Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Cherry Picking","level":"5.4","depth":1,"next":{"title":"Merge Strategies","level":"5.5","depth":1,"path":"22_merge_strategies_rebase.md","ref":"22_merge_strategies_rebase.md","articles":[]},"previous":{"title":"Rewriting History with Git Reset","level":"5.3","depth":1,"path":"20_rewriting_history_git_reset.md","ref":"20_rewriting_history_git_reset.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"21_git_cherry_pick.md","mtime":"2017-05-11T16:31:24.931Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:35:38.198Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -17,6 +17,10 @@
     
             
                 
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
                 <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
                 
             
@@ -640,9 +644,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="merging-pull-requests">Merging Pull Requests</h2>
+                                <h2 id="merging-pull-requests"><a name="merging-pull-requests" class="plugin-anchor" href="#merging-pull-requests"><i class="fa fa-link" aria-hidden="true"></i></a>Merging Pull Requests</h2>
 <p>Now that you have made the requested changes, your pull request should be ready to merge.</p>
-<h3 id="merge-explained">Merge Explained</h3>
+<h3 id="merge-explained"><a name="merge-explained" class="plugin-anchor" href="#merge-explained"><i class="fa fa-link" aria-hidden="true"></i></a>Merge Explained</h3>
 <p>When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the <code>gh-pages</code> branch.</p>
 <p>Many project teams have established rules about who should merge a pull request.</p>
 <ul>
@@ -651,7 +655,7 @@
 <li>Still others say it can be anyone other than the person who created the pull request to ensure at least one review has taken place.</li>
 </ul>
 <p>This is a discussion you should have with the other members of your team.</p>
-<h3 id="merging-your-pull-request">Merging Your Pull Request</h3>
+<h3 id="merging-your-pull-request"><a name="merging-your-pull-request" class="plugin-anchor" href="#merging-your-pull-request"><i class="fa fa-link" aria-hidden="true"></i></a>Merging Your Pull Request</h3>
 <p>Let&apos;s take a look at how you can merge the pull request.</p>
 <ol>
 <li>Navigate to your Pull Request (HINT: Use the Author or Assignee drop downs to find your Pull Request quickly)</li>
@@ -669,7 +673,7 @@
 <li><strong>Rebase and merge:</strong> This option will take all of the commits and replay them as if they just happened. This allows GitHub to perform a fast forward merge (and avoids the addition of the merge commit).</li>
 </ul>
 </blockquote>
-<h3 id="updating-your-local-repository">Updating Your Local Repository</h3>
+<h3 id="updating-your-local-repository"><a name="updating-your-local-repository" class="plugin-anchor" href="#updating-your-local-repository"><i class="fa fa-link" aria-hidden="true"></i></a>Updating Your Local Repository</h3>
 <p>When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically update your local copy of the repository. Let&apos;s go back to our command line application and get everything in sync.</p>
 <p>First, we need to get the changes we made on GitHub into our local copy of the repository:</p>
 <ol>
@@ -677,7 +681,7 @@
 <li>Retrieve all of the changes from GitHub: <code>git pull</code></li>
 </ol>
 <p><code>git pull</code> is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are <code>git fetch</code> and <code>git merge</code></p>
-<h3 id="cleaning-up-the-unneeded-branches">Cleaning Up the Unneeded Branches</h3>
+<h3 id="cleaning-up-the-unneeded-branches"><a name="cleaning-up-the-unneeded-branches" class="plugin-anchor" href="#cleaning-up-the-unneeded-branches"><i class="fa fa-link" aria-hidden="true"></i></a>Cleaning Up the Unneeded Branches</h3>
 <p>If you type <code>git branch --all</code> you will probably see that, even though you deleted your branch on the remote, it is still listed in your local copy of the repository, both as a local branch and as a read-only remote tracking branch. Let&apos;s get rid of those extra branches.</p>
 <ol>
 <li>Take a look at your local branches: <code>git branch --all</code></li>
@@ -733,7 +737,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Merging Pull Requests","level":"2.6","depth":1,"next":{"title":"Local History","level":"2.7","depth":1,"path":"10_local_history.md","ref":"10_local_history.md","articles":[]},"previous":{"title":"Editing on GitHub","level":"2.5","depth":1,"path":"08_edit_on_github.md","ref":"08_edit_on_github.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"09_merging_pull_requests.md","mtime":"2017-05-11T16:06:07.676Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:09:45.722Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Merging Pull Requests","level":"2.6","depth":1,"next":{"title":"Local History","level":"2.7","depth":1,"path":"10_local_history.md","ref":"10_local_history.md","articles":[]},"previous":{"title":"Editing on GitHub","level":"2.5","depth":1,"path":"08_edit_on_github.md","ref":"08_edit_on_github.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"09_merging_pull_requests.md","mtime":"2017-05-11T16:31:24.931Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:35:38.198Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
