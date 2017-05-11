@@ -62,7 +62,7 @@ mv _book/ onlycicdtravis/
 mv book/SUMMARY.md book/SUMMARY_CICDONLY_TRAVIS.md
 
 # create new condensed CICD course with Circle
-mv book/SUMMARY_CICDONLY_Circle.md book/SUMMARY.md
+mv book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
 
 echo "==> Building book"
 gitbook build
