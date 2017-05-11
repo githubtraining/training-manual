@@ -14,11 +14,15 @@ git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
 rm -rf vendor
 rm .ruby-version
-mv onlyCICD.pdf onlyCICDtemp.pdf
-mv fullCICD.pdf fullCICDtemp.pdf
+mv onlyCICDTravis.pdf onlyCICDTravistemp.pdf
+mv fullCICDTravis.pdf fullCICDtempTravis.pdf
+mv onlyCICDCircle.pdf onlyCICDtempCircle.pdf
+mv fullCICDCircle.pdf fullCICDtempCircle.pdf
 mv GH4D.pdf GH4Dtemp.pdf
-mv fullcicd/ fullcicdtemp/
-mv onlycicd/ onlycicdtemp/
+mv fullcicdtravis/ fullcicdtravistemp/
+mv onlycicdtravis/ onlycicdtravistemp/
+mv fullcicdcircle/ fullcicdcircletemp/
+mv onlycicdcircle/ onlycicdcircletemp/
 mv GH4D/ GH4Dtemp/
 
 git checkout gh-pages --force
@@ -28,17 +32,25 @@ git clean -fx _book
 
 git status
 
-rm -rf onlyCICD.pdf
-rm -rf fullCICD.pdf
+rm -rf onlyCICDTravis.pdf
+rm -rf onlyCICDCircle.pdf
+rm -rf fullCICDTravis.pdf
+rm -rf fullCICDCircle.pdf
 rm -rf GH4D.pdf
-rm -rf fullcicd/
-rm -rf onlycicd/
+rm -rf fullcicdtravis/
+rm -rf onlycicdtravis/
+rm -rf fullcicdcircle/
+rm -rf onlycicdcircle/
 rm -rf GH4D/
-mv onlyCICDtemp.pdf onlyCICD.pdf
-mv fullCICDtemp.pdf fullCICD.pdf
+mv onlyCICDCircletemp.pdf onlyCICDCircle.pdf
+mv fullCICDCircletemp.pdf fullCICDCircle.pdf
+mv onlyCICDTravistemp.pdf onlyCICDTravis.pdf
+mv fullCICDTravistemp.pdf fullCICDTravis.pdf
 mv GH4Dtemp.pdf GH4D.pdf
-mv onlycicdtemp/ onlycicd/
-mv fullcicdtemp/ fullcicd/
+mv onlycicdtravistemp/ onlycicdtravis/
+mv fullcicdtravistemp/ fullcicdtravis/
+mv onlycicdcircletemp/ onlycicdcircle/
+mv fullcicdcircletemp/ fullcicdcircle/
 mv GH4Dtemp/ GH4D/
 
 git add .
