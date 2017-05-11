@@ -15,9 +15,9 @@ git config --global user.name "$GH_NAME" > /dev/null 2>&1
 rm -rf vendor
 rm .ruby-version
 mv onlyCICDTravis.pdf onlyCICDTravistemp.pdf
-mv fullCICDTravis.pdf fullCICDtempTravis.pdf
-mv onlyCICDCircle.pdf onlyCICDtempCircle.pdf
-mv fullCICDCircle.pdf fullCICDtempCircle.pdf
+mv fullCICDTravis.pdf fullCICDTravistemp.pdf
+mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
+mv fullCICDCircle.pdf fullCICDCircletemp.pdf
 mv GH4D.pdf GH4Dtemp.pdf
 mv fullcicdtravis/ fullcicdtravistemp/
 mv onlycicdtravis/ onlycicdtravistemp/
