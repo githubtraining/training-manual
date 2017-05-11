@@ -1,0 +1,659 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Rewriting History with Git Reset · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="21_git_cherry_pick.html" />
+    
+    
+    <link rel="prev" href="19_fixing_commit_mistakes.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Getting Started</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01_getting_ready_for_class.html">
+            
+                <a href="01_getting_ready_for_class.html">
+            
+                    
+                    Getting Ready for Class
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="02_getting_started.html">
+            
+                <a href="02_getting_started.html">
+            
+                    
+                    Getting Started
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="03_github_flow.html">
+            
+                <a href="03_github_flow.html">
+            
+                    
+                    GitHub Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Project 1: Caption This</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="04_branching_with_git.html">
+            
+                <a href="04_branching_with_git.html">
+            
+                    
+                    Branching with Git
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="05_local_git_configs.html">
+            
+                <a href="05_local_git_configs.html">
+            
+                    
+                    Local Git Configs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="06_working_locally.html">
+            
+                <a href="06_working_locally.html">
+            
+                    
+                    Working Locally
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="07_collaborating_on_code.html">
+            
+                <a href="07_collaborating_on_code.html">
+            
+                    
+                    Collaborating on Code
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="08_edit_on_github.html">
+            
+                <a href="08_edit_on_github.html">
+            
+                    
+                    Editing on GitHub
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="09_merging_pull_requests.html">
+            
+                <a href="09_merging_pull_requests.html">
+            
+                    
+                    Merging Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="10_local_history.html">
+            
+                <a href="10_local_history.html">
+            
+                    
+                    Local History
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="11_streamline_workflow_with_aliases.html">
+            
+                <a href="11_streamline_workflow_with_aliases.html">
+            
+                    
+                    Streamline Workflow with Aliases
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Project 2: Merge Conflicts</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="12_resolving_merge_conflicts.html">
+            
+                <a href="12_resolving_merge_conflicts.html">
+            
+                    
+                    Resolving Merge Conflicts
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Project 3: GitHub Games</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="13_workflow_review_project_github_games.html">
+            
+                <a href="13_workflow_review_project_github_games.html">
+            
+                    
+                    Workflow Review
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="14_git_bisect.html">
+            
+                <a href="14_git_bisect.html">
+            
+                    
+                    Git Bisect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="15_reverting_commits.html">
+            
+                <a href="15_reverting_commits.html">
+            
+                    
+                    Reverting Commits
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="16_helpful_git_commands.html">
+            
+                <a href="16_helpful_git_commands.html">
+            
+                    
+                    Helpful Git Commands
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="17_view_local_changes.html">
+            
+                <a href="17_view_local_changes.html">
+            
+                    
+                    Viewing Local Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="17_workflow_discussion.html">
+            
+                <a href="17_workflow_discussion.html">
+            
+                    
+                    Workflow Discussion
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Project 4: Local Repository</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="18_create_local_repo.html">
+            
+                <a href="18_create_local_repo.html">
+            
+                    
+                    Create a Local Repo
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="19_fixing_commit_mistakes.html">
+            
+                <a href="19_fixing_commit_mistakes.html">
+            
+                    
+                    Fixing Commit Mistakes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.3" data-path="20_rewriting_history_git_reset.html">
+            
+                <a href="20_rewriting_history_git_reset.html">
+            
+                    
+                    Rewriting History with Git Reset
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="21_git_cherry_pick.html">
+            
+                <a href="21_git_cherry_pick.html">
+            
+                    
+                    Cherry Picking
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="22_merge_strategies_rebase.html">
+            
+                <a href="22_merge_strategies_rebase.html">
+            
+                    
+                    Merge Strategies
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Appendix</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="app_Day_1_activities.html">
+            
+                <a href="app_Day_1_activities.html">
+            
+                    
+                    Day 1 Activity Instructions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="App_a_workflow_guide.html">
+            
+                <a href="App_a_workflow_guide.html">
+            
+                    
+                    Workflow Guide
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Rewriting History with Git Reset</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="rewriting-history-with-git-reset"><a name="rewriting-history-with-git-reset" class="plugin-anchor" href="#rewriting-history-with-git-reset"><i class="fa fa-link" aria-hidden="true"></i></a>Rewriting History with Git Reset</h2>
+<p>When you want to make changes to commits further back in history, you will need to use a more powerful command: <code>git reset</code>.</p>
+<h3 id="understanding-reset"><a name="understanding-reset" class="plugin-anchor" href="#understanding-reset"><i class="fa fa-link" aria-hidden="true"></i></a>Understanding Reset</h3>
+<p>Sometimes we are working on a branch and we decide things aren&apos;t going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history.</p>
+<p><img src="img/reset-visual.jpg" alt="Git Reset Before and After"></p>
+<p>Remember, there are three different snapshots of our project at any given time. The first is the most recent commit (also known as HEAD). The second is the staging area (also called the index). The third is the working directory containing any new, deleted, or modified files.</p>
+<p>The <code>git reset</code> command has three modes, and they allow us to change some or all of these three snapshots.</p>
+<p>It also helps to know what branches technically are: each is a pointer, or reference, to the latest commit in a line of work. As we add new commits, the currently checked-out branch &quot;moves forward,&quot; so that it always points to the most recent commit.</p>
+<h3 id="reset-modes"><a name="reset-modes" class="plugin-anchor" href="#reset-modes"><i class="fa fa-link" aria-hidden="true"></i></a>Reset Modes</h3>
+<p><img src="img/reset-modes.jpg" alt="Three modes of reset"></p>
+<p>The three modes for git reset are: <code>--soft</code>, <code>--mixed</code>, and <code>--hard</code>. For these examples, assume that we have a &quot;clean&quot; working directory, i.e. there are no uncommited changes.</p>
+<h4 id="-soft"><a name="-soft" class="plugin-anchor" href="#-soft"><i class="fa fa-link" aria-hidden="true"></i></a><code>--soft</code></h4>
+<p><code>git reset --soft &lt;SHA&gt;</code> moves the current branch to point at the <code>&lt;SHA&gt;</code>. However, the working directory and staging area remain untouched. Since the snapshot that current branch points to now differs from the index&apos;s snapshot, this command effectively stages all differences between those snapshots. This is a good command to use when you have made a large number of small commits and you would like to regroup them into a single commit.</p>
+<h4 id="-mixed"><a name="-mixed" class="plugin-anchor" href="#-mixed"><i class="fa fa-link" aria-hidden="true"></i></a><code>--mixed</code></h4>
+<p><code>git reset --mixed &lt;SHA&gt;</code> makes the current branch <em>and</em> the staging area look like the <code>&lt;SHA&gt;</code> snapshot. <em>This is the default mode:</em> if you don&apos;t include a mode flag, Git will assume you want to do a <code>--mixed</code> reset. <code>--mixed</code> is useful if you want to keep all of your changes in the working directory, but change whether and how you commit those changes.</p>
+<h4 id="-hard"><a name="-hard" class="plugin-anchor" href="#-hard"><i class="fa fa-link" aria-hidden="true"></i></a><code>--hard</code></h4>
+<p><code>git reset --hard &lt;SHA&gt;</code> is the most drastic option. With this, Git will make all 3 snapshots, the current branch, the staging area, <em>and</em> your working directory, look like they did at <code>&lt;other-commit&gt;</code>. This can be dangerous! We&apos;ve assumed so far that our working directory is clean. If it is not, and you have uncommitted changes, <code>git reset --hard</code> will <em>delete all of those changes</em>. Even with a clean working directory, use <code>--hard</code> only if you&apos;re sure you want to completely undo earlier changes.</p>
+<h3 id="reset-soft"><a name="reset-soft" class="plugin-anchor" href="#reset-soft"><i class="fa fa-link" aria-hidden="true"></i></a>Reset Soft</h3>
+<p>Using the practice repository we created earlier, let&apos;s try a <code>reset --soft</code>.</p>
+<ol>
+<li>View the history of our project: <code>git log --oneline --decorate</code></li>
+<li>Identify the current location of <code>HEAD</code>.</li>
+<li>Go back two commits in history: <code>git reset --soft HEAD~2</code></li>
+<li>See the tip of our branch (and <code>HEAD</code>) is now sitting two commits earlier than it was before: <code>git log --oneline --decorate</code></li>
+<li>The changes we made in the last two commits should be in the staging area: <code>git status</code></li>
+<li>Re-commit these changes: <code>git commit -m &quot;re-add file 5 and 6&quot;</code></li>
+</ol>
+<blockquote>
+<p>In this example, the tilde tells git we want to reset to two commits before the current location of <code>HEAD</code>. You can also use the first few characters of the commit ID to pinpoint the location where you would like to reset.</p>
+</blockquote>
+<h3 id="reset-mixed"><a name="reset-mixed" class="plugin-anchor" href="#reset-mixed"><i class="fa fa-link" aria-hidden="true"></i></a>Reset Mixed</h3>
+<p>Next we will try the default mode of reset, <code>reset --mixed</code>:</p>
+<ol>
+<li>Once again, we will start by viewing the history of our project: <code>git log --oneline</code></li>
+<li>Go back one commit in history: <code>git reset HEAD~</code></li>
+<li>See where the tip of the branch is pointing: <code>git log --oneline --decorate</code></li>
+<li>The changes we made in the last commit have been moved back to the working directory: <code>git status</code></li>
+<li>Move the files to the staging area before we can commit them: <code>git add file5.md file6.md</code></li>
+<li>Re-commit the files: <code>git commit -m &quot;re-add file 5 and 6&quot;</code></li>
+</ol>
+<blockquote>
+<p>Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.</p>
+</blockquote>
+<h3 id="reset-hard"><a name="reset-hard" class="plugin-anchor" href="#reset-hard"><i class="fa fa-link" aria-hidden="true"></i></a>Reset Hard</h3>
+<p>Last but not least, let&apos;s try a hard reset.</p>
+<ol>
+<li>Start by viewing the history of our project with: <code>git log --oneline</code></li>
+<li>Reset to the point in time where the only file that existed was the README.md: <code>git reset --hard &lt;SHA&gt;</code></li>
+<li>See that all of the commits are gone: <code>git log --oneline</code></li>
+<li>Notice your working directory is clean: <code>git status</code></li>
+<li>See that the only file in your repository is the README.md: <code>ls</code></li>
+</ol>
+<blockquote>
+<p><strong>Warning:</strong> Remember, <code>git reset --hard</code> overwrites your working directory, staging area, and history. This means that uncommitted changes you have made to your files will be completely lost. Don&apos;t use it unless you really want to discard your changes.</p>
+</blockquote>
+<h3 id="does-gone-really-mean-gone"><a name="does-gone-really-mean-gone" class="plugin-anchor" href="#does-gone-really-mean-gone"><i class="fa fa-link" aria-hidden="true"></i></a>Does Gone Really Mean Gone?</h3>
+<p>The answer: It depends!</p>
+<pre><code class="lang-sh">$ git reflog
+</code></pre>
+<p>The reflog is a record of every place HEAD has been. In a few minutes we will see how the reflog can be helpful in allowing us to restore previously committed changes. But first, we need to be aware of some of the reflog&apos;s limitations:</p>
+<ul>
+<li><strong>The reflog is only local.</strong> It is not pushed to the remote and only includes your local history. In other words, you can&apos;t see the reflog for someone else&apos;s commits and they can&apos;t see yours.</li>
+<li><strong>The reflog is a limited time offer.</strong> By default, reachable commits are displayed in the reflog for 90 days, but unreachable commits (meaning commits that are not attached to a branch) are only displayed for 30 days.</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="19_fixing_commit_mistakes.html" class="navigation navigation-prev " aria-label="Previous page: Fixing Commit Mistakes">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="21_git_cherry_pick.html" class="navigation navigation-next " aria-label="Next page: Cherry Picking">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Rewriting History with Git Reset","level":"5.3","depth":1,"next":{"title":"Cherry Picking","level":"5.4","depth":1,"path":"21_git_cherry_pick.md","ref":"21_git_cherry_pick.md","articles":[]},"previous":{"title":"Fixing Commit Mistakes","level":"5.2","depth":1,"path":"19_fixing_commit_mistakes.md","ref":"19_fixing_commit_mistakes.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"20_rewriting_history_git_reset.md","mtime":"2017-05-11T19:54:32.354Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T19:58:48.565Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
