@@ -418,9 +418,22 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="36_introducing_more_tests.html">
+        <li class="chapter " data-level="5.2" data-path="36_break_speed_test.html">
             
-                <a href="36_introducing_more_tests.html">
+                <a href="36_break_speed_test.html">
+            
+                    
+                    Break the Speed Test
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="37_introducing_more_tests.html">
+            
+                <a href="37_introducing_more_tests.html">
             
                     
                     Introducing More Tests
@@ -431,9 +444,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" data-path="37_partner_activity.html">
+        <li class="chapter " data-level="5.4" data-path="38_partner_activity.html">
             
-                <a href="37_partner_activity.html">
+                <a href="38_partner_activity.html">
             
                     
                     Partner Activity
@@ -523,47 +536,17 @@
                                 <section class="normal markdown-section">
                                 
                                 <h2 id="changing-the-yml-file">Changing the <code>.yml</code> file</h2>
-<h4 id="introduce-changes-to-yml-file-together-30-minutes">Introduce changes to <code>.yml</code> file together ~30 minutes</h4>
-<ul>
-<li><p>Add another test together to check if the game is moving too quickly</p>
-<ul>
-<li><p>As a new file, <code>tests/speedmax.rb</code></p>
-<pre><code>```
-require &apos;test/unit&apos;
-
-class TestGameSpeedMax &lt; Test::Unit::TestCase
-
-  def test_game_speed_max
-    # open file to read
-    file = File.read(&apos;./index.html&apos;)
-
-    # search for decrement word
-    min_index = file.index(&apos;min:&apos;)
-    end_index = file.index(&apos;}, // how long&apos;)
-    puts min_index
-    puts &apos;&gt; &apos;
-    puts end_index
-
-    # assign number after decrement to a variable
-    min = file[min_index + 5 ...end_index]
-
-    puts min
-
-    min_less_than_1 = min.to_f &lt; 1.0
-    min_greater_than_0 = min.to_f &gt; 0.0
-    min_range = min_less_than_1 &amp;&amp; min_greater_than_0
-    # assert if that variable is between 0-1
-    assert(min_range, &quot;The start speed is not between 0 and 1.&quot;)
-  end
-
-end
-```
-</code></pre></li>
-<li>In the build file, add <code>- ruby tests/speedmax.rb</code></li>
-</ul>
-</li>
-<li>Discuss this new test. What does it do? Why would we implement it? What could we do differently? When will it pass or fail?</li>
-</ul>
+<h4 id="introduce-changes-to-the-yml-file">Introduce Changes to the <code>.yml</code> File</h4>
+<p>We&apos;ve created more tests on the <code>all-&lt;service&gt;-tests</code> branch of the <code>github-games</code> repository, where <code>&lt;service&gt;</code> is the CI/CD service provider. Let&apos;s go through the process of adding a new test, and seeing what it&apos;s like to break it or test it.</p>
+<ol>
+<li>Merge the <code>all-&lt;service&gt;-tests</code> branch into the gh-pages branch of your <code>github-games</code> fork.</li>
+<li>If you look in the <code>tests/</code> directory, you&apos;ll see a few new tests. We&apos;re going to add the <code>tests/speedmax.rb</code> test to the <code>.yml</code> file.</li>
+<li>Create a new branch based on <code>gh-pages</code>.</li>
+<li>On that branch, open the <code>.yml</code> file. Add <code>tests/speedmax.rb</code> to the file in the same place that the other test, checking the URL, is being run.</li>
+<li>Create a pull request.</li>
+<li>Review the contents of the new test. What do you think it does? Why would we implement it? What could we do differently? When will it pass or fail?</li>
+<li>Merge the pull request.</li>
+</ol>
 
                                 
                                 </section>
@@ -607,7 +590,7 @@ end
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Change The .yml file","level":"4.4","depth":1,"next":{"title":"Understanding the .yml file","level":"5.1","depth":1,"path":"35_understanding_yml.md","ref":"35_understanding_yml.md","articles":[]},"previous":{"title":"Interacting with CI/CD","level":"4.3","depth":1,"path":"33_interacting_cicd.md","ref":"33_interacting_cicd.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"34_change_yml.md","mtime":"2017-05-05T19:48:22.518Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-05T19:53:20.699Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Change The .yml file","level":"4.4","depth":1,"next":{"title":"Understanding the .yml file","level":"5.1","depth":1,"path":"35_understanding_yml.md","ref":"35_understanding_yml.md","articles":[]},"previous":{"title":"Interacting with CI/CD","level":"4.3","depth":1,"path":"33_interacting_cicd.md","ref":"33_interacting_cicd.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"34_change_yml.md","mtime":"2017-05-11T16:06:07.676Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:10:12.284Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

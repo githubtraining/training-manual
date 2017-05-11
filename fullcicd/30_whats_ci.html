@@ -523,9 +523,22 @@
             
         </li>
     
-        <li class="chapter " data-level="7.2" data-path="36_introducing_more_tests.html">
+        <li class="chapter " data-level="7.2" data-path="36_break_speed_test.html">
             
-                <a href="36_introducing_more_tests.html">
+                <a href="36_break_speed_test.html">
+            
+                    
+                    Break the Speed Test
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="37_introducing_more_tests.html">
+            
+                <a href="37_introducing_more_tests.html">
             
                     
                     Introducing More Tests
@@ -536,9 +549,9 @@
             
         </li>
     
-        <li class="chapter " data-level="7.3" data-path="37_partner_activity.html">
+        <li class="chapter " data-level="7.4" data-path="38_partner_activity.html">
             
-                <a href="37_partner_activity.html">
+                <a href="38_partner_activity.html">
             
                     
                     Partner Activity
@@ -627,23 +640,21 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="what-is-ci">What is CI?</h2>
-<h4 id="definition-context">Definition, context</h4>
-<ul>
-<li>compare and contrast old Software Development Life Cycle (SDLC) with new, convince class of need to modernize their workflow (<a href="https://github.box.com/s/2vycilxamykdcswmed5mp6bvua1ejaz0" target="_blank">related presentation</a>)</li>
-<li>need an (analog?) activity to illustrate this, perhaps give people index cards with an assigned role and a shared goal of moving an object along past a finish line, but then give each role something they&apos;re looking for that holds the process back (waterfall, traditional SDLC, manual processes).</li>
-<li>Do the activity again, but give every role/team the ability to green-light moving the object along, also add some automated gates that automatically green-light moving object along if certain criteria are met, design so the process moves quickly (fast shipping)</li>
-</ul>
+                                <h2 id="what-is-cicd">What is CI/CD?</h2>
+<p>Continuous Integration and Continuous Deployment tools take manual tasks and do them automatically.</p>
 <h4 id="why-run-tests-why-use-ci">Why run tests? Why use CI?</h4>
 <ul>
 <li>Test code automatically</li>
 <li>Add structure to development process</li>
-<li>Test driven development (TDD) isn&apos;t just the addition of random tests - it&apos;s about building tests almost as software requirements</li>
-<li>Builds are done on separate servers by the CI services<ul>
-<li>describe the benefits of this: consistent configurations, battery of tests, reduces &quot;works on my machine&quot;</li>
-<li>possible activity where participants come up with some of the pros on their own</li>
+<li>Test driven development (TDD) isn&apos;t just the addition of random tests, but rather about building tests as software requirements</li>
+<li>Builds are done on separate servers by the CI services</li>
+<li>Other benefits include consistent configurations, battery of tests, reduces &quot;works on my machine&quot;</li>
 </ul>
-</li>
+<h4 id="how-does-cicd-work-with-github">How does CI/CD work with GitHub?</h4>
+<ul>
+<li>When used with GitHub, tests can be run automatically on branches and pull requests every time there is a new commit, and return a status through GitHub&apos;s API</li>
+<li>Tests are run in consistent environment based on your software&apos;s production environment</li>
+<li>Protected Branches can serve as a gate, keeping pull requests without passing tests from being merged</li>
 </ul>
 <h4 id="what-is-the-difference-between-ci-and-cd">What is the difference between CI and CD?</h4>
 <ul>
@@ -656,16 +667,25 @@
 <li>Continuous Deployment is the practice of continuously deploying to production servers. In conjunction with CI, companies can move to a CD model by giving developers the freedom to deploy several times a day upon successful builds. Merging in and of itself isn&apos;t considered CD, unless it&apos;s tied to some deployment strategy (ex: Heroku automatically deploy anything that gets merged into master).</li>
 </ul>
 </li>
-<li>We will cover CI in this course, but <em>not</em> CD.<ul>
-<li>Frequently these are implemented together and discussed together, but the concepts are different.</li>
-<li><strong>note: add info about why they are typically implemented together</strong></li>
+<li>We will cover more CI than CD in this course.<ul>
+<li>Though the concepts are different, CI and CD are frequently discussed and implemented together.</li>
+<li>Typically CI and CD are implemented at the same time because many of the tasks are already defined. For example, a project may already have the tests written, and the steps for deployment. Once a CI/CD tool is introduced, it&apos;s simple to have them be done together.</li>
 </ul>
 </li>
 </ul>
-<h4 id="repercussions">Repercussions</h4>
+<h4 id="other-things-to-think-about">Other Things to Think About</h4>
 <ul>
-<li>Protected branches</li>
-<li>Automatic deploys</li>
+<li>Protected branches<ul>
+<li>On GitHub, you may want to set up protected branches when you set up CI/CD.</li>
+<li>Protected branches block code from being merged in to the master branch on the remote before it passes a set of configurable requirements, like passing CI/CD tests and builds, or having approved reviews.</li>
+</ul>
+</li>
+<li>Automatic deploys<ul>
+<li>With CI/CD, you can also set up deploys to happen automatically when code passes the tests on the master branch.</li>
+<li>Much like many integrations work with GitHub, many deployment options work with CI/CD services.</li>
+<li>One example is Heroku. You could configure a project on Heroku with a CI/CD service, and whenever a build passes on the master branch, deployment to Heroku would be streamlined and taken care of automatically. </li>
+</ul>
+</li>
 </ul>
 
                                 
@@ -710,7 +730,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"What is CI/CD?","level":"6.1","depth":1,"next":{"title":"Setting up CI/CD","level":"6.2","depth":1,"path":"31_setting_up_cicd.md","ref":"31_setting_up_cicd.md","articles":[]},"previous":{"title":"Merge Strategies","level":"5.5","depth":1,"path":"22_merge_strategies_rebase.md","ref":"22_merge_strategies_rebase.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"30_whats_ci.md","mtime":"2017-05-05T19:48:22.518Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-05T19:52:55.181Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"What is CI/CD?","level":"6.1","depth":1,"next":{"title":"Setting up CI/CD","level":"6.2","depth":1,"path":"31_setting_up_cicd.md","ref":"31_setting_up_cicd.md","articles":[]},"previous":{"title":"Merge Strategies","level":"5.5","depth":1,"path":"22_merge_strategies_rebase.md","ref":"22_merge_strategies_rebase.md","articles":[]},"dir":"ltr"},"config":{"plugins":[],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"30_whats_ci.md","mtime":"2017-05-11T16:06:07.676Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-11T16:09:45.722Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
