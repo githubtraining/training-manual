@@ -42,7 +42,7 @@
 
 ## Project 6: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [`circle.yml`](35_travisCI.md)
+  * [`travis.yml`](35_travisCI.md)
   * [Break the Speed Test](36_break_speed_test.md)
   * [Introducing More Tests](37_introducing_more_tests.md)
   * [Partner Activity](38_partner_activity.md)
