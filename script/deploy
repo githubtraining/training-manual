@@ -16,8 +16,10 @@ rm -rf vendor
 rm .ruby-version
 mv onlyCICD.pdf onlyCICDtemp.pdf
 mv fullCICD.pdf fullCICDtemp.pdf
+mv GH4D.pdf GH4Dtemp.pdf
 mv fullcicd/ fullcicdtemp/
 mv onlycicd/ onlycicdtemp/
+mv GH4D/ GH4Dtemp/
 
 git checkout gh-pages --force
 git pull origin gh-pages --rebase
@@ -28,12 +30,16 @@ git status
 
 rm -rf onlyCICD.pdf
 rm -rf fullCICD.pdf
+rm -rf GH4D.pdf
 rm -rf fullcicd/
 rm -rf onlycicd/
+rm -rf GH4D/
 mv onlyCICDtemp.pdf onlyCICD.pdf
 mv fullCICDtemp.pdf fullCICD.pdf
+mv GH4Dtemp.df GH4D.pdf
 mv onlycicdtemp/ onlycicd/
-mv fullcicdtemp/ fullcicd
+mv fullcicdtemp/ fullcicd/
+mv GH4Dtemp/ GH4d/
 
 git add .
 git commit -m "update book [ci skip]"
