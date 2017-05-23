@@ -23,4 +23,4 @@ When the changes contained in the pull request are approved, the feature branch 
 
 Here are some interesting things you can check out later:
 
-- *guides.github.com/introduction/flow/* An interactive review of the GitHub Workflow.
+- *[guides.github.com/introduction/flow/](https://guides.github.com/introduction/flow/)* An interactive review of the GitHub Workflow.
