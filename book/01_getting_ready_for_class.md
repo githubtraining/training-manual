@@ -58,8 +58,8 @@ For this class, we will use a basic text editor to interact with our code. Let's
 
 You can use almost any text editor, but we have the best success with the following:
 
-- GitPad
 - [Atom](https://atom.io/)
+- GitPad
 - Vi or Vim
 - Sublime
 - Notepad or Notepad++
@@ -70,14 +70,14 @@ If you do not already have a text editor installed, go ahead and download and in
 
 After you have installed an editor, confirm you can open it from the command line.
 
-If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
-{: .note}
-
 If installed properly, the following command will open the Atom text editor:
 
 ```sh
 $ atom .
 ```
+
+> If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+
 
 ### Exploring
 
