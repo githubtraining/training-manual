@@ -5,10 +5,10 @@ The repositories we use in class are deployed using GitHub Pages, so you don't _
 But, if you'd like to see what your changes look like locally before they actually are pushed to the default branch, you can. Here's how:
 
 1. Check that Ruby is installed
-  - on your command line, run `ruby -v` and `gem -v` -- if you see a version `2.3.x` you're :+1:
+   - on your command line, run `ruby -v` and `gem -v` -- if you see a version `2.3.x` you're :+1:
 1. Install Ruby, if necessary
-  - On Windows, you can do so from https://rubyinstaller.org, and restart your machine
-  - If you need to install Ruby on a Mac, install [homebrew](https://brew.sh) and then run `brew install ruby`.
+   - On Windows, you can do so from https://rubyinstaller.org, select version `2.3.3` and restart your machine.
+   - If you need to install Ruby on a Mac, install [homebrew](https://brew.sh) and then run `brew install ruby`.
 1. Clone the repository, and CD into it
 1. Once inside of the repository, type `script/setup` to install all of the proper gems. 
 1. Then, type `script/server`.
