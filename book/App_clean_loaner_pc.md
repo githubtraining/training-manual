@@ -5,11 +5,11 @@ If you borrowed a laptop or used a virtual machine for this class, you will want
 ### Step 1: Clear your configs
 
 1. `git config --unset --global user.name`
-1. git config --unset --global user.email
+1. `git config --unset --global user.email`
 
 ### Step 2: Clear your command line history
 
-- **Bash:** history -c && history -w && exit
+- **Bash:** `history -c && history -w && exit`
 - **Windows command prompt:** Alt+F7
 
 ### Step 3: Clear the credential manager
