@@ -20,7 +20,7 @@ If you borrowed a laptop or used a virtual machine for this class, you will want
 1. Click **User Accounts**.
 1. Click **Manage my credentials**.
 1. Click **Credential Manager**.
-1. In the Windows Credentials and Generic Credentials section, remove any stored credentials referencing Git or GitHub
+1. In the Windows Credentials and Generic Credentials section, remove any stored credentials referencing Git or GitHub.
 
 **For Mac**
 
