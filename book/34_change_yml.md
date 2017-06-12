@@ -12,7 +12,16 @@ We've created more tests on the in the `/tests` directory. Let's go through the 
 
 #### Break the Speed Test
 
-1. Create a new branch based on `gh-pages`.
-1. Based on what you know about that test file, make a change that you think will cause the test to fail.
+1. Based on what you know about that test file, make a change that you think will cause the test to fail. (Change line 78 `min:` to be anything outside of `0.0` and `1.0`.)
+
+#### Enable Protected Branches
+1. See that you _could_ merge the pull request even though the tests are failing.
+1. In your repsitory, click on the `Settings` tab.
+1. Select `Branches` on the left navigation panel.
+1. Under `Protected Branches`, click `Choose a branch` and select `gh-pages`.
+1. Select `Protect this branch` and then select whichever protections you'd like for your default branch.
+
+
+#### Fix the Speed Test
 1. After the status check returns from the CI/CD service, fix the file so the tests pass.
-1. Merge or close the pull request.
+1. Merge the pull request.
