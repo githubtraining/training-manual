@@ -1,4 +1,4 @@
-#### Fully functional class repository
+## Fully functional class repository
 
 We are going to start with tests built in to `github-games`, a repository we've already been working in.
 
