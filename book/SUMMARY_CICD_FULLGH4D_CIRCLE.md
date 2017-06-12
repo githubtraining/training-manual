@@ -35,8 +35,8 @@
 
 ## Project 5: GitHub Games with CI/CD
   * [What is CI/CD?](30_whats_ci.md)
-  * [Setting up CI/CD](31_setting_up_cicd.md)
-  * [Merging tests and `.yml` file](32_merging_tests.md)
+  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Change The `.yml` file](34_change_yml.md)
 

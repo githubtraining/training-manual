@@ -16,7 +16,8 @@
   * [Streamline Workflow with Aliases](11_streamline_workflow_with_aliases.md)
 
 ## Project 2A: GitHub Games
-  * [Setting up CI/CD](31_setting_up_cicd.md)
+  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Workflow Review](13_workflow_review_project_github_games.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
