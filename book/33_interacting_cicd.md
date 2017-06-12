@@ -13,7 +13,7 @@ The current test is looking to see if the URL in the `README.md` is correct. Usi
 1. Save your changes, and exit out of your text editor.
 1. Move your changes from the working directory to the staging area: `git add README.md`.
 1. Commit the work in the staging area: `git commit -m "commit-message-goes-here"`.
-1. If desired, you can check this test locally by running `ruby tests/test_verifyurl.rb` on this branch. Notice how different it will look on everyone's machines, and how having the tests run externally will smooth out the process.
+1. If desired, you can check this test locally by running `ruby tests/test_verifyurl.rb` on this branch. Notice how different it will look on everyone's machines, and how having the tests run externally will smooth out the process. _(For this to work, you will need Ruby installed locally.)_
 1. Push your branch to the remote: `git push -u origin break-readme`.
 1. Open a pull request in your repository with `base: gh-pages` and `compare: break-readme`.
 1. Wait for tests to run, and when they fail, click to find more information and look at the build output.
