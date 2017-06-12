@@ -64,7 +64,7 @@
     <link rel="next" href="34_change_yml.html" />
     
     
-    <link rel="prev" href="32_merging_tests.html" />
+    <link rel="prev" href="30_whats_ci.html" />
     
 
     </head>
@@ -265,9 +265,22 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="31_setting_up_cicd.html">
+        <li class="chapter " data-level="3.1" data-path="31_merging_tests.html">
             
-                <a href="31_setting_up_cicd.html">
+                <a href="31_merging_tests.html">
+            
+                    
+                    Merging tests and .yml file
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="32_setting_up_cicd.html">
+            
+                <a href="32_setting_up_cicd.html">
             
                     
                     Setting up CI/CD
@@ -278,7 +291,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="13_workflow_review_project_github_games.html">
+        <li class="chapter " data-level="3.3" data-path="13_workflow_review_project_github_games.html">
             
                 <a href="13_workflow_review_project_github_games.html">
             
@@ -291,7 +304,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="14_git_bisect.html">
+        <li class="chapter " data-level="3.4" data-path="14_git_bisect.html">
             
                 <a href="14_git_bisect.html">
             
@@ -304,7 +317,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="15_reverting_commits.html">
+        <li class="chapter " data-level="3.5" data-path="15_reverting_commits.html">
             
                 <a href="15_reverting_commits.html">
             
@@ -317,7 +330,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="16_helpful_git_commands.html">
+        <li class="chapter " data-level="3.6" data-path="16_helpful_git_commands.html">
             
                 <a href="16_helpful_git_commands.html">
             
@@ -330,7 +343,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="17_view_local_changes.html">
+        <li class="chapter " data-level="3.7" data-path="17_view_local_changes.html">
             
                 <a href="17_view_local_changes.html">
             
@@ -363,20 +376,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="32_merging_tests.html">
-            
-                <a href="32_merging_tests.html">
-            
-                    
-                    Merging tests and .yml file
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3" data-path="33_interacting_cicd.html">
+        <li class="chapter active" data-level="4.2" data-path="33_interacting_cicd.html">
             
                 <a href="33_interacting_cicd.html">
             
@@ -389,7 +389,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="34_change_yml.html">
+        <li class="chapter " data-level="4.3" data-path="34_change_yml.html">
             
                 <a href="34_change_yml.html">
             
@@ -435,22 +435,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" data-path="36_break_speed_test.html">
+        <li class="chapter " data-level="5.3" data-path="36_introducing_more_tests.html">
             
-                <a href="36_break_speed_test.html">
-            
-                    
-                    Break the Speed Test
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.4" data-path="37_introducing_more_tests.html">
-            
-                <a href="37_introducing_more_tests.html">
+                <a href="36_introducing_more_tests.html">
             
                     
                     Introducing More Tests
@@ -461,9 +448,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.5" data-path="38_partner_activity.html">
+        <li class="chapter " data-level="5.4" data-path="37_partner_activity.html">
             
-                <a href="38_partner_activity.html">
+                <a href="37_partner_activity.html">
             
                     
                     Partner Activity
@@ -564,7 +551,7 @@
 <li>Save your changes, and exit out of your text editor.</li>
 <li>Move your changes from the working directory to the staging area: <code>git add README.md</code>.</li>
 <li>Commit the work in the staging area: <code>git commit -m &quot;commit-message-goes-here&quot;</code>.</li>
-<li>If desired, you can check this test locally by running <code>ruby tests/test_verifyurl.rb</code> on this branch. Notice how different it will look on everyone&apos;s machines, and how having the tests run externally will smooth out the process.</li>
+<li>If desired, you can check this test locally by running <code>ruby tests/test_verifyurl.rb</code> on this branch. Notice how different it will look on everyone&apos;s machines, and how having the tests run externally will smooth out the process. <em>(For this to work, you will need Ruby installed locally.)</em></li>
 <li>Push your branch to the remote: <code>git push -u origin break-readme</code>.</li>
 <li>Open a pull request in your repository with <code>base: gh-pages</code> and <code>compare: break-readme</code>.</li>
 <li>Wait for tests to run, and when they fail, click to find more information and look at the build output.</li>
@@ -598,7 +585,7 @@
 
             
                 
-                <a href="32_merging_tests.html" class="navigation navigation-prev " aria-label="Previous page: Merging tests and .yml file">
+                <a href="30_whats_ci.html" class="navigation navigation-prev " aria-label="Previous page: What is CI/CD?">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -614,7 +601,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Interacting with CI/CD","level":"4.3","depth":1,"next":{"title":"Change The .yml file","level":"4.4","depth":1,"path":"34_change_yml.md","ref":"34_change_yml.md","articles":[]},"previous":{"title":"Merging tests and .yml file","level":"4.2","depth":1,"path":"32_merging_tests.md","ref":"32_merging_tests.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"33_interacting_cicd.md","mtime":"2017-06-02T16:34:22.610Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-02T16:39:43.824Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Interacting with CI/CD","level":"4.2","depth":1,"next":{"title":"Change The .yml file","level":"4.3","depth":1,"path":"34_change_yml.md","ref":"34_change_yml.md","articles":[]},"previous":{"title":"What is CI/CD?","level":"4.1","depth":1,"path":"30_whats_ci.md","ref":"30_whats_ci.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"33_interacting_cicd.md","mtime":"2017-06-12T14:11:03.125Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-12T14:16:31.864Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

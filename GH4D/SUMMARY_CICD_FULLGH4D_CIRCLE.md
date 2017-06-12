@@ -35,17 +35,16 @@
 
 ## Project 5: GitHub Games with CI/CD
   * [What is CI/CD?](30_whats_ci.md)
-  * [Setting up CI/CD](31_setting_up_cicd.md)
-  * [Merging tests and `.yml` file](32_merging_tests.md)
+  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Change The `.yml` file](34_change_yml.md)
 
 ## Project 6: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
   * [`circle.yml`](35_circleCI.md)
-  * [Break the Speed Test](36_break_speed_test.md)
-  * [Introducing More Tests](37_introducing_more_tests.md)
-  * [Partner Activity](38_partner_activity.md)
+  * [Introducing More Tests](36_introducing_more_tests.md)
+  * [Partner Activity](37_partner_activity.md)
 
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)

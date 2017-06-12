@@ -265,9 +265,22 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="31_setting_up_cicd.html">
+        <li class="chapter " data-level="3.1" data-path="31_merging_tests.html">
             
-                <a href="31_setting_up_cicd.html">
+                <a href="31_merging_tests.html">
+            
+                    
+                    Merging tests and .yml file
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="32_setting_up_cicd.html">
+            
+                <a href="32_setting_up_cicd.html">
             
                     
                     Setting up CI/CD
@@ -278,7 +291,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="13_workflow_review_project_github_games.html">
+        <li class="chapter " data-level="3.3" data-path="13_workflow_review_project_github_games.html">
             
                 <a href="13_workflow_review_project_github_games.html">
             
@@ -291,7 +304,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.3" data-path="14_git_bisect.html">
+        <li class="chapter " data-level="3.4" data-path="14_git_bisect.html">
             
                 <a href="14_git_bisect.html">
             
@@ -304,7 +317,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.4" data-path="15_reverting_commits.html">
+        <li class="chapter " data-level="3.5" data-path="15_reverting_commits.html">
             
                 <a href="15_reverting_commits.html">
             
@@ -317,7 +330,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.5" data-path="16_helpful_git_commands.html">
+        <li class="chapter " data-level="3.6" data-path="16_helpful_git_commands.html">
             
                 <a href="16_helpful_git_commands.html">
             
@@ -330,7 +343,7 @@
             
         </li>
     
-        <li class="chapter " data-level="3.6" data-path="17_view_local_changes.html">
+        <li class="chapter " data-level="3.7" data-path="17_view_local_changes.html">
             
                 <a href="17_view_local_changes.html">
             
@@ -363,9 +376,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="32_merging_tests.html">
+        <li class="chapter " data-level="4.2" data-path="32_merging_tests.md">
             
-                <a href="32_merging_tests.html">
+                <span>
             
                     
                     Merging tests and .yml file
@@ -435,22 +448,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" data-path="36_break_speed_test.html">
+        <li class="chapter " data-level="5.3" data-path="36_introducing_more_tests.html">
             
-                <a href="36_break_speed_test.html">
-            
-                    
-                    Break the Speed Test
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.4" data-path="37_introducing_more_tests.html">
-            
-                <a href="37_introducing_more_tests.html">
+                <a href="36_introducing_more_tests.html">
             
                     
                     Introducing More Tests
@@ -461,9 +461,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.5" data-path="38_partner_activity.html">
+        <li class="chapter " data-level="5.4" data-path="37_partner_activity.html">
             
-                <a href="38_partner_activity.html">
+                <a href="37_partner_activity.html">
             
                     
                     Partner Activity
@@ -554,14 +554,29 @@
                                 
                                 <h2 id="changing-the-yml-file"><a name="changing-the-yml-file" class="plugin-anchor" href="#changing-the-yml-file"><i class="fa fa-link" aria-hidden="true"></i></a>Changing the <code>.yml</code> file</h2>
 <h4 id="introduce-changes-to-the-yml-file"><a name="introduce-changes-to-the-yml-file" class="plugin-anchor" href="#introduce-changes-to-the-yml-file"><i class="fa fa-link" aria-hidden="true"></i></a>Introduce Changes to the <code>.yml</code> File</h4>
-<p>We&apos;ve created more tests on the <code>all-&lt;service&gt;-tests</code> branch of the <code>github-games</code> repository, where <code>&lt;service&gt;</code> is the CI/CD service provider. Let&apos;s go through the process of adding a new test, and seeing what it&apos;s like to break it or test it.</p>
+<p>We&apos;ve created more tests on the in the <code>/tests</code> directory. Let&apos;s go through the process of adding a new test, and seeing what it&apos;s like to break it or test it.</p>
 <ol>
-<li>Merge the <code>all-&lt;service&gt;-tests</code> branch into the gh-pages branch of your <code>github-games</code> fork.</li>
-<li>If you look in the <code>tests/</code> directory, you&apos;ll see a few new tests. We&apos;re going to add the <code>tests/speedmax.rb</code> test to the <code>.yml</code> file.</li>
+<li>If you look in the <code>tests/</code> directory, you&apos;ll see a few new tests. We&apos;re going to add the <code>tests/test_speedmax.rb</code> test to the <code>.yml</code> file.</li>
 <li>Create a new branch based on <code>gh-pages</code>.</li>
-<li>On that branch, open the <code>.yml</code> file. Add <code>tests/speedmax.rb</code> to the file in the same place that the other test, checking the URL, is being run.</li>
+<li>On that branch, open the <code>.yml</code> file. Add <code>tests/test_speedmax.rb</code> to the file in the same place that the other test, checking the URL, is being run.</li>
 <li>Create a pull request.</li>
 <li>Review the contents of the new test. What do you think it does? Why would we implement it? What could we do differently? When will it pass or fail?</li>
+</ol>
+<h4 id="break-the-speed-test"><a name="break-the-speed-test" class="plugin-anchor" href="#break-the-speed-test"><i class="fa fa-link" aria-hidden="true"></i></a>Break the Speed Test</h4>
+<ol>
+<li>Based on what you know about that test file, make a change that you think will cause the test to fail. (Change line 78 <code>min:</code> to be anything outside of <code>0.0</code> and <code>1.0</code>.)</li>
+</ol>
+<h4 id="enable-protected-branches"><a name="enable-protected-branches" class="plugin-anchor" href="#enable-protected-branches"><i class="fa fa-link" aria-hidden="true"></i></a>Enable Protected Branches</h4>
+<ol>
+<li>See that you <em>could</em> merge the pull request even though the tests are failing.</li>
+<li>In your repsitory, click on the <code>Settings</code> tab.</li>
+<li>Select <code>Branches</code> on the left navigation panel.</li>
+<li>Under <code>Protected Branches</code>, click <code>Choose a branch</code> and select <code>gh-pages</code>.</li>
+<li>Select <code>Protect this branch</code> and then select whichever protections you&apos;d like for your default branch.</li>
+</ol>
+<h4 id="fix-the-speed-test"><a name="fix-the-speed-test" class="plugin-anchor" href="#fix-the-speed-test"><i class="fa fa-link" aria-hidden="true"></i></a>Fix the Speed Test</h4>
+<ol>
+<li>After the status check returns from the CI/CD service, fix the file so the tests pass.</li>
 <li>Merge the pull request.</li>
 </ol>
 
@@ -607,7 +622,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Change The .yml file","level":"4.4","depth":1,"next":{"title":"Understanding the .yml file","level":"5.1","depth":1,"path":"35_understanding_yml.md","ref":"35_understanding_yml.md","articles":[]},"previous":{"title":"Interacting with CI/CD","level":"4.3","depth":1,"path":"33_interacting_cicd.md","ref":"33_interacting_cicd.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"34_change_yml.md","mtime":"2017-06-02T16:34:22.610Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-02T16:39:22.736Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Change The .yml file","level":"4.4","depth":1,"next":{"title":"Understanding the .yml file","level":"5.1","depth":1,"path":"35_understanding_yml.md","ref":"35_understanding_yml.md","articles":[]},"previous":{"title":"Interacting with CI/CD","level":"4.3","depth":1,"path":"33_interacting_cicd.md","ref":"33_interacting_cicd.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"34_change_yml.md","mtime":"2017-06-12T14:11:03.125Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-06-12T14:16:11.185Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
