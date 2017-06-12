@@ -16,7 +16,8 @@
   * [Streamline Workflow with Aliases](11_streamline_workflow_with_aliases.md)
 
 ## Project 2A: GitHub Games
-  * [Setting up CI/CD](31_setting_up_cicd.md)
+  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Workflow Review](13_workflow_review_project_github_games.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
@@ -32,9 +33,8 @@
 ## Project 3: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
   * [`travis.yml`](35_travisCI.md)
-  * [Break the Speed Test](36_break_speed_test.md)
-  * [Introducing More Tests](37_introducing_more_tests.md)
-  * [Partner Activity](38_partner_activity.md)  
+  * [Introducing More Tests](36_introducing_more_tests.md)
+  * [Partner Activity](37_partner_activity.md)
 
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
