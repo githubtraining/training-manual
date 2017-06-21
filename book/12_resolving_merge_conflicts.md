@@ -14,7 +14,7 @@ Merge conflicts are a natural and minor side effect of distributed version contr
 Let's try to create a merge conflict, and fix it together. You and a partner will each create separate branches, create a file with the same name, and then try to merge. The first will merge cleanly, the second will have a merge conflict. Work together to resolve the merge conflict.
 
 1. In our class repository, create the branch that you will be working on and name it something memorable like `USERNAME-conflict`.
-1. On your branch, create a new file. The file name must be the same file name that your partner uses. Make sure the content inside of the file is different.
+1. On your branch, create a new file. The file name must be the same file name that your partner uses. Make sure the content inside of the file is different, and that neither file is empty.
 1. Create a pull request in the class repository with `base: master` and `compare: USERNAME-conflict`.
 1. You will see that the _first_ pull request can merge well.
 1. When you see the merge conflict in the _second_ pull request, work together to resolve the merge conflict.
