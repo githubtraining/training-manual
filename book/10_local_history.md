@@ -18,4 +18,4 @@ $ git log --stat
 $ git log --patch
 ```
 
-> Use the up and down arrows or press enter to view additional log entries. Type q to quit viewing the log and return to the command prompt.
+> Use the up and down arrows or press enter to view additional log entries. Type `q` to quit viewing the log and return to the command prompt.
