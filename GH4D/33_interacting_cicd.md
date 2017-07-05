@@ -4,6 +4,8 @@
 
 The current test is looking to see if the URL in the `README.md` is correct. Using the GitHub flow, create a pull request that will have a failing build and **doesn't** have the correct URL. Our current test is found here: `tests/test_verifyurl.rb`
 
+The purpose of this section is to practice looking at the test and deciphering the error messages in a failing build. It can be overwhelming to look at all of the tool's feedback! If you'd like to dig in deeper, please do so, but if it feels like too much, focus on looking for the error message so you know what to fix. 
+
 
 1. Working locally, check out to the `gh-pages` branch: `git checkout gh-pages`.
 1. Make sure you have the most recent code: `git pull`.
