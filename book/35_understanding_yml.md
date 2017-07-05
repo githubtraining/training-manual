@@ -10,4 +10,6 @@ The `.yml` is like a to-do list with three main parts:
   - testing
   - deploying
 
-There are many other steps that can go around and in between as a part of these main sections. If there is some scripts you want to happen before the build, as a part of the build, or based on the output or results of a build or of tests, that is all possible. The content of the `.yml` file will vary between service providers. For more detail on the `.yml` file for a specific CI/CD service, see their documentation. 
+There are many other steps that can go around and in between as a part of these main sections. If there is some scripts you want to happen before the build, as a part of the build, or based on the output or results of a build or of tests, that is all possible. The content of the `.yml` file will vary between service providers. For more detail on the `.yml` file for a specific CI/CD service, see their documentation.
+
+> Note: Our examples are relatively simple, but the capabilities of the testing environment go much deeper. The purpose of these testing environments is to test as closely to production as possible. So, if you want to set up multiple versions, multiple languages, multiple environments, multiple machines - the sky is the limit. For specifics on how to do this, check out the documentation for your CI services provider. 
