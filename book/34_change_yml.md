@@ -10,6 +10,8 @@ We've created more tests on the in the `/tests` directory. Let's go through the 
 1. Create a pull request.
 1. Review the contents of the new test. What do you think it does? Why would we implement it? What could we do differently? When will it pass or fail?
 
+_Note: If someone commits changes to the `.yml` file, those changes will be included in the tests. Since you cannot lock a file, it's important to remember to check any changes to the `.yml` file in pull requests._
+
 #### Break the Speed Test
 
 1. Based on what you know about that test file, make a change that you think will cause the test to fail. (Change line 78 `min:` to be anything outside of `0.0` and `1.0`.)
