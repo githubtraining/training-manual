@@ -10,7 +10,7 @@ We've created more tests on the in the `/tests` directory. Let's go through the 
 1. Create a pull request.
 1. Review the contents of the new test. What do you think it does? Why would we implement it? What could we do differently? When will it pass or fail?
 
-> Note: If someone changes to the `.yml` file, those changes will be included in the tests. Since you cannot lock a file, it's important to remember to check any changes to the `.yml` file in pull requests.
+> Note: If someone commits changes to the `.yml` file, those changes will be included in the tests. Since you cannot lock a file, it's important to remember to check any changes to the `.yml` file in pull requests.
 
 #### Break the Speed Test
 
