@@ -43,19 +43,6 @@
   * [Cherry Picking](21_git_cherry_pick.md)
   * [Merge Strategies](22_merge_strategies_rebase.md)
 
-<<<<<<< HEAD
-=======
-## Project 3 Continued: GitHub Games with CI/CD
-  * [Interacting with CI/CD](33_interacting_cicd.md)
-  * [Change The `.yml` file](34_change_yml.md)
-
-## Project 6: Starting From Scratch
-  * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [`travis.yml`](35_travisCI.md)
-  * [Introducing More Tests](36_introducing_more_tests.md)
-  * [Partner Activity](37_partner_activity.md)
-
->>>>>>> master
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Workflow Guide](App_a_workflow_guide.md)
