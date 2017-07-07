@@ -10,7 +10,8 @@ Now you will practice the GitHub Flow from beginning to end by updating the link
 
 The current test is looking to see if the URL in the `README.md` is correct. Using the GitHub flow, create a pull request that will have a failing build and **doesn't** have the correct URL. Our current test is found here: `tests/test_verifyurl.rb`
 
-Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
+The purpose of this section is to practice the workflow, looking at the test, and deciphering the error messages in a failing build. It can be overwhelming to look at all of the tool's feedback! If you'd like to dig in deeper, please do so, but if it feels like too much, focus on looking for the error message so you know what to fix. 
+
 
 1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`.
 1. Checkout to the branch that is in the pull request, `CISERVICE-tests`.
