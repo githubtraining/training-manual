@@ -4,11 +4,11 @@ Now you will practice the GitHub Flow from beginning to end by updating the link
 
 > Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-username`.
 
-> If you click the link, you will see the text in the `README.md`. We have intentionally broken this repository so we can fix it together. The tests that we are merging in also check for this URL.
+> If you access this URL, you will see the text in the `README.md`. We have intentionally broken this repository so we can fix it together. The tests that we are merging also check for this URL.
 
 The current test is looking to see if the URL in the `README.md` is correct. Using the GitHub flow, create a pull request that will have a failing build and **doesn't** have the correct URL. Our current test is found here: `tests/test_verifyurl.rb`
 
-The purpose of this section is to practice the workflow, looking at the test, and deciphering the error messages in a failing build. It can be overwhelming to look at all of the tool's feedback! If you'd like to dig in deeper, please do so, but if it feels like too much, focus on looking for the error message so you know what to fix. 
+The purpose of this section is to practice the workflow, looking at the test, and deciphering the error messages in a failing build. It can be overwhelming to look at all of the tool's feedback! If you'd like to dig in deeper, please do so, but if it feels like too much, focus on looking for the error message so you know what to fix.
 
 
 1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`.
