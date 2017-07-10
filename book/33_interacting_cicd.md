@@ -3,8 +3,6 @@
 Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.
 
 > Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-username`.
->
-> This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.
 
 > If you click the link, you will see the text in the `README.md`. We have intentionally broken this repository so we can fix it together. The tests that we are merging in also check for this URL.
 
