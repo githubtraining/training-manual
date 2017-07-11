@@ -33,7 +33,7 @@
 
 ## Project 4: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [`circle.yml`](35_circleCI.md)
+  * [Circle CI](35_circleCI.md)
   * [Partner Activity](37_partner_activity.md)
 
 

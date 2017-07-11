@@ -33,7 +33,7 @@
 
 ## Project 4: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [`travis.yml`](35_travisCI.md)
+  * [Travis CI](35_travisCI.md)
   * [Partner Activity](37_partner_activity.md)
 
 ## Project 5: Local Repository
