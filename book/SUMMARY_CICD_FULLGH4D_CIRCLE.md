@@ -22,7 +22,7 @@
   * [Workflow Review](33_workflow_review_with_ci.md)
   * [What is CI/CD?](30_whats_ci.md)
   * [Setting up CI/CD](32_setting_up_cicd.md)
-  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Merging Tests and the `.yml` file](31_merging_tests.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
@@ -43,7 +43,7 @@
   * [Rewriting History with Git Reset](20_rewriting_history_git_reset.md)
   * [Cherry Picking](21_git_cherry_pick.md)
   * [Merge Strategies](22_merge_strategies_rebase.md)
-  
+
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Workflow Guide](App_a_workflow_guide.md)

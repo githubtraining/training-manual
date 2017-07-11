@@ -1,4 +1,4 @@
-## Merging tests and the `.yml` file
+## Merging Tests and the `.yml` file
 
 Before we can begin using our Continuous Integration solution, we need to add the `.yml` file and some tests that we already created for our project.
 
