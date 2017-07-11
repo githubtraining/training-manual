@@ -1,5 +1,9 @@
 ## Changing the `.yml` file
 
+Earlier in the course, we merged a `.yml` file into our `gh-pages` branch but we didn't really identify what the `.yml` file does. Continuous Integration providers use the `.yml` file to identify how you want your testing environment setup and what tests you want to run.
+
+When we merged the existing `.yml` file into our project, it identified how the environment should be setup and included one test to ensure the README and link matched your username. 
+
 #### Introduce Changes to the `.yml` File
 
 We've created more tests on the in the `/tests` directory. Let's go through the process of adding a new test, and seeing what it's like to break it or test it.
