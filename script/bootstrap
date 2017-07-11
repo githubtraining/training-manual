@@ -35,6 +35,9 @@ bundle check --path vendor/gems >/dev/null 2>&1  || {
   bundle install
 }
 
+echo "==> Installing extend"
+npm install extend
+
 echo "==> Installing gitbook"
 if [ -z "$(gitbook --version 2>/dev/null)" ]; then
   npm install -g gitbook-cli
