@@ -1,4 +1,4 @@
-## Merge the `.yml` File
+## Merge tests and the `.yml` File
 
 1. Look at the list of remote tracking branches: `git branch --all`.
 1. Depending on which CI/CD service you are using, create a pull request into `base: gh-pages` from the appropriate branch, named `<service>-tests`.
