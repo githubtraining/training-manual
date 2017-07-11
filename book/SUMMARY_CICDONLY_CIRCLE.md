@@ -22,18 +22,18 @@
   * [Workflow Review](13_workflow_review_project_github_games.md)
   * [What is CI/CD?](30_whats_ci.md)
   * [Setting up CI/CD](32_setting_up_cicd.md)
-  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Merging Tests and the `.yml` file](31_merging_tests.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
-  * [Change The `.yml` file](34_change_yml.md)
+  * [Changing the `.yml` file](34_change_yml.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [`circle.yml`](35_circleCI.md)
+  * [Circle CI](35_circleCI.md)
   * [Partner Activity](37_partner_activity.md)
 
 ## Appendix
