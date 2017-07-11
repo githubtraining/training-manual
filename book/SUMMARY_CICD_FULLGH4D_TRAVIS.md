@@ -28,7 +28,7 @@
   * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
-  * [Change The `.yml` file](34_change_yml.md)
+  * [Changing the `.yml` file](34_change_yml.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Starting From Scratch
