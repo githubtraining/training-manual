@@ -6,6 +6,8 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+gitbook install
+
 # create new standard GH4D manual
 mv book/SUMMARY_GH4D.md book/SUMMARY.md
 
