@@ -37,5 +37,5 @@ bundle check --path vendor/gems >/dev/null 2>&1  || {
 
 echo "==> Installing gitbook"
 if [ -z "$(gitbook --version 2>/dev/null)" ]; then
-  npm install -g gitbook-cli
+  npm install -g gitbook-cli@2.3.0
 fi
