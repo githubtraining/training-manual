@@ -15,26 +15,26 @@
   * [Local History](10_local_history.md)
   * [Streamline Workflow with Aliases](11_streamline_workflow_with_aliases.md)
 
-## Project 2A: GitHub Games
-  * [Merging tests and `.yml` file](31_merging_tests.md)
-  * [Setting up CI/CD](32_setting_up_cicd.md)
+## Project 2: Merge Conflicts
+  * [Resolving Merge Conflicts](12_resolving_merge_conflicts.md)
+
+## Project 3: GitHub Games
   * [Workflow Review](13_workflow_review_project_github_games.md)
+  * [What is CI/CD?](30_whats_ci.md)
+  * [Setting up CI/CD](32_setting_up_cicd.md)
+  * [Merging tests and `.yml` file](31_merging_tests.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
+  * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
-
-## Project 2B: GitHub Games with CI/CD  
-  * [What is CI/CD?](30_whats_ci.md)
-  * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Change The `.yml` file](34_change_yml.md)
+  * [Workflow Discussion](17_workflow_discussion.md)
 
-## Project 3: Starting From Scratch
+## Project 4: Starting From Scratch
   * [Understanding the `.yml` file](35_understanding_yml.md)
   * [`circle.yml`](35_circleCI.md)
-  * [Introducing More Tests](36_introducing_more_tests.md)
   * [Partner Activity](37_partner_activity.md)
- 
 
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
