@@ -23,19 +23,18 @@
   * [What is CI/CD?](30_whats_ci.md)
   * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
-  * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
-  * [Change The `.yml` file](34_change_yml.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
-## Project 4: Starting From Scratch
+## Project 4: Adding More Tests
+  * [Change The `.yml` file](34_change_yml.md)
   * [Understanding the `.yml` file](35_understanding_yml.md)
   * [`circle.yml`](35_circleCI.md)
   * [Partner Activity](37_partner_activity.md)
-
 
 ## Project 5: Local Repository
   * [Create a Local Repo](18_create_local_repo.md)
@@ -43,7 +42,7 @@
   * [Rewriting History with Git Reset](20_rewriting_history_git_reset.md)
   * [Cherry Picking](21_git_cherry_pick.md)
   * [Merge Strategies](22_merge_strategies_rebase.md)
-  
+
 ## Appendix
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Workflow Guide](App_a_workflow_guide.md)
