@@ -18,7 +18,7 @@ _Note: If someone commits changes to the `.yml` file, those changes will be incl
 
 #### Enable Protected Branches
 1. See that you _could_ merge the pull request even though the tests are failing.
-1. In your repsitory, click on the `Settings` tab.
+1. In your repository, click on the `Settings` tab.
 1. Select `Branches` on the left navigation panel.
 1. Under `Protected Branches`, click `Choose a branch` and select `gh-pages`.
 1. Select `Protect this branch` and then select whichever protections you'd like for your default branch.
