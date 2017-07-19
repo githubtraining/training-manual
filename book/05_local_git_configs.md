@@ -53,7 +53,7 @@ $ git config --global user.name "First Last"
 $ git config --global user.email "you@email.com"
 ```
 
-> If you would like your email to remain private when working on projects on GitHub. Click the **Keep my email address private** in the Settings > Emails section. After enabling this feature, you just need to enter the automatically generated ID+username@users.noreply.github.com when configuring your email. For example: `git config --global user.email 18249274+githubteacher@users.noreply.github.com`.
+> Your name and email address will automatically be stored in the commits you make with Git.If you would like your email to remain private, GitHub allows you to generate a no-reply email address for your account. Click the **Keep my email address private** in the Settings > Emails section. After enabling this feature, you just need to enter the automatically generated ID+username@users.noreply.github.com when configuring your email. For example: `git config --global user.email 18249274+githubteacher@users.noreply.github.com`.
 
 ### Configuring autocrlf
 
