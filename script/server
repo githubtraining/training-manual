@@ -1,5 +1,5 @@
 #!/bin/bash
-
+option=$1
 # script/server: produce jekyll site of the manual
 
 set -e
@@ -7,5 +7,43 @@ set -e
 cd "$(dirname "$0")/.."
 
 script/setup
+
+if [ -z "$1" ]
+then
+  echo "ProTip: You can use \`script/server <number>\` to skip this step."
+  echo "1: Standard GitHub for Developers (GH4D)"
+  echo "2: GH4D + Circle CI"
+  echo "3: GH4D + Travis CI"
+  echo "4: Circle CI only"
+  echo "5: Travis CI only"
+  echo "Which manual would you like to build? You can enter more than one number."
+  read option
+fi
+
+if echo "$option" | grep -iq "1";
+then
+  cp book/SUMMARY_GH4D.md book/SUMMARY.md
+fi
+
+if echo "$option" | grep -iq "2";
+then
+  cp book/SUMMARY_CICD_FULLGH4D_CIRCLE.md book/SUMMARY.md
+fi
+
+if echo "$option" | grep -iq "3";
+then
+  cp book/SUMMARY_CICD_FULLGH4D_TRAVIS.md book/SUMMARY.md
+fi
+
+if echo "$option" | grep -iq "4";
+then
+  cp book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
+fi
+
+if echo "$option" | grep -iq "5";
+then
+  cp book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
+fi
+
 
 gitbook serve
