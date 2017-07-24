@@ -37,3 +37,4 @@
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Day 2 Activity Instructions](app_day2_mergeconflict.md)
   * [Workflow Guide](App_a_workflow_guide.md)
+  * [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
