@@ -26,6 +26,8 @@ Continuous Integration and Continuous Deployment tools take manual tasks and do 
   - Though the concepts are different, CI and CD are frequently discussed and implemented together.
   - Typically CI and CD are implemented at the same time because many of the tasks are already defined. For example, a project may already have the tests written, and the steps for deployment. Once a CI/CD tool is introduced, it's simple to have them be done together.
 
+![CD](img/cd.png)
+
 #### Other Things to Think About
 - Protected branches
   - On GitHub, you may want to set up protected branches when you set up CI/CD.
