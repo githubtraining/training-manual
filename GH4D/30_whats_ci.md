@@ -14,6 +14,8 @@ Continuous Integration and Continuous Deployment tools take manual tasks and do 
 - Tests are run in consistent environment based on your software's production environment
 - Protected Branches can serve as a gate, keeping pull requests without passing tests from being merged
 
+![CI](img/ci.png)
+
 #### What is the difference between CI and CD?
 - **CI**: Continuous integration
   - Continuous Integration is the practice of automatically kicking off tests with each push, rather than ad-hoc testing.
@@ -24,6 +26,8 @@ Continuous Integration and Continuous Deployment tools take manual tasks and do 
   - Though the concepts are different, CI and CD are frequently discussed and implemented together.
   - Typically CI and CD are implemented at the same time because many of the tasks are already defined. For example, a project may already have the tests written, and the steps for deployment. Once a CI/CD tool is introduced, it's simple to have them be done together.
 
+![CD](img/cd.png)
+
 #### Other Things to Think About
 - Protected branches
   - On GitHub, you may want to set up protected branches when you set up CI/CD.
@@ -31,4 +35,4 @@ Continuous Integration and Continuous Deployment tools take manual tasks and do 
 - Automatic deploys
   - With CI/CD, you can also set up deploys to happen automatically when code passes the tests on the master branch.
   - Much like many integrations work with GitHub, many deployment options work with CI/CD services.
-  - One example is Heroku. You could configure a project on Heroku with a CI/CD service, and whenever a build passes on the master branch, deployment to Heroku would be streamlined and taken care of automatically. 
+  - One example is Heroku. You could configure a project on Heroku with a CI/CD service, and whenever a build passes on the master branch, deployment to Heroku would be streamlined and taken care of automatically.
