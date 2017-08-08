@@ -14,6 +14,7 @@ This script uses Ruby. If you don't already have Ruby installed locally, you can
 1. Check that Ruby is installed.
    - on your command line, run `ruby -v` and `gem -v` 
    - If you see a version `2.3.x` for Ruby, you're :+1:. If not, refer to directions above. :point_up:
+1. If there is a `Gemfile.lock` file, delete it. 
 1. Install bundler: `gem install bundler`.
 1. Clone the repository, and CD into it.
 1. Once inside of the repository, type `script/setup` to install all of the proper gems. 
