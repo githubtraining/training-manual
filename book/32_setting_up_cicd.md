@@ -1,6 +1,6 @@
 ## Setting Up CI/CD
 
-We are going to start with tests built in to `github-games`, a repository we've already been working in.
+We are going to start with tests built in to `github-games`.
 
 1. Visit the CI/CD integration site.
 1. When prompted to create a new account or log in, authenticate with GitHub.

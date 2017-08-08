@@ -38,3 +38,4 @@
   * [Day 2 Activity Instructions](app_day2_mergeconflict.md)
   * [Workflow Guide](App_a_workflow_guide.md)
   * [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
+  * [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
