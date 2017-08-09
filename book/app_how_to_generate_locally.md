@@ -20,5 +20,3 @@ This script uses Ruby. If you don't already have Ruby installed locally, you sho
 1. Type `script/setup` to install all of the proper gems.
 1. Then, type `script/server`.
 1. If all goes well, your terminal will tell you where to access your site in your browser. :tada:
-
-> Note: If you are using Windows and you notice an error with timezones, you may need to add `gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]` to your Gemfile before step 4. 
