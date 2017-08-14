@@ -22,7 +22,7 @@
   * [Workflow Review](33_workflow_review_with_ci.md)
   * [What is CI/CD?](30_whats_ci.md)
   * [Setting up CI/CD](32_setting_up_cicd.md)
-  * [Merging tests and `.yml` file](31_merging_tests.md)
+  * [Merging Tests and the `.yml` file](31_merging_tests.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
@@ -33,7 +33,7 @@
 ## Project 4: Adding More Tests
   * [Change The `.yml` file](34_change_yml.md)
   * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [`circle.yml`](35_circleCI.md)
+  * [Circle CI](35_circleCI.md)
   * [Partner Activity](37_partner_activity.md)
 
 ## Project 5: Local Repository
