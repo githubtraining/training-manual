@@ -27,7 +27,7 @@ $ git lol
 
 ```sh
 $ git config --global alias.co "checkout -b"
-$ git config --global alias.ss "status -s"
+$ git config --global alias.s "status -s"
 $ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 ```
 
