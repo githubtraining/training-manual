@@ -3,5 +3,5 @@
     "pdf": {
      "fontSize" : 18
    },
-    "plugins": ["anchors"]
+    "plugins": ["anchors", "advanced-emoji"]
 }
