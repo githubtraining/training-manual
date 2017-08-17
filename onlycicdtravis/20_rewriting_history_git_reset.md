@@ -6,7 +6,7 @@ When you want to make changes to commits further back in history, you will need 
 
 Sometimes we are working on a branch and we decide things aren't going quite like we had planned. We want to reset some, or even all, of our files to look like what they were at a different point in history.
 
-![Git Reset Before and After](img/reset-visual.jpg)
+![Git Reset Before and After](img/reset-visual.png)
 
 Remember, there are three different snapshots of our project at any given time. The first is the most recent commit (also known as HEAD). The second is the staging area (also called the index). The third is the working directory containing any new, deleted, or modified files.
 
@@ -16,7 +16,7 @@ It also helps to know what branches technically are: each is a pointer, or refer
 
 ### Reset Modes
 
-![Three modes of reset](img/reset-modes.jpg)
+![Three modes of reset](img/reset-modes.png)
 
 The three modes for git reset are: `--soft`, `--mixed`, and `--hard`. For these examples, assume that we have a "clean" working directory, i.e. there are no uncommited changes.
 

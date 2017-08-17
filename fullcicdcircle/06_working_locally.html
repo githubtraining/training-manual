@@ -644,7 +644,7 @@
                                 <h2 id="working-locally-with-git"><a name="working-locally-with-git" class="plugin-anchor" href="#working-locally-with-git"><i class="fa fa-link" aria-hidden="true"></i></a>Working Locally with Git</h2>
 <p>Using the command line, you can easily integrate Git into your current workflow.</p>
 <h3 id="creating-a-local-copy-of-the-repo"><a name="creating-a-local-copy-of-the-repo" class="plugin-anchor" href="#creating-a-local-copy-of-the-repo"><i class="fa fa-link" aria-hidden="true"></i></a>Creating a Local Copy of the repo</h3>
-<p><img src="img/clone-diagram.jpg" alt="Cloning a repository"></p>
+<p><img src="img/clone-diagram.png" alt="Cloning a repository"></p>
 <p>Before we can work locally, we will need to create a clone of the repository.</p>
 <p>When you clone a repository you are creating a copy of everything in that repository, including its history. This is one of the benefits of a DVCS like git - rather than being required to query a slow centralized server to review the commit history, queries are run locally and are lightning fast.</p>
 <p>Let&apos;s go ahead and clone the class repository to your local desktop.</p>
@@ -701,15 +701,15 @@ $ git branch <span class="hljs-_">-a</span>
 </blockquote>
 <h3 id="the-two-stage-commit"><a name="the-two-stage-commit" class="plugin-anchor" href="#the-two-stage-commit"><i class="fa fa-link" aria-hidden="true"></i></a>The Two Stage Commit</h3>
 <p>After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.</p>
-<p><img src="img/two-stage-commit-a.jpg" alt="The Two Stage Commit - Part 1"></p>
+<p><img src="img/two-stage-commit-a.png" alt="The Two Stage Commit - Part 1"></p>
 <p>When you work locally, your files exist in one of four states. They are either untracked, modified, staged, or committed.</p>
 <p>An untracked file is a new file that has never been committed.</p>
 <p>Git tracks these files, and keeps track of your history by organizing your files and changes in three working trees. They are Working, Staging (also called Index), and History. When we are actively making changes to files, this is happening in the working tree.</p>
-<p><img src="img/two-stage-commit-b.jpg" alt="The Two Stage Commit - Part 2"></p>
+<p><img src="img/two-stage-commit-b.png" alt="The Two Stage Commit - Part 2"></p>
 <p>To add these files to version control, you will create a collection of files that represent a discrete unit of work. We build this unit in the staging area.</p>
-<p><img src="img/two-stage-commit-c.jpg" alt="The Two Stage Commit - Part 3"></p>
+<p><img src="img/two-stage-commit-c.png" alt="The Two Stage Commit - Part 3"></p>
 <p>When we are satisfied with the unit of work we have assembled, we will take a snapshot of everything in the staging area. This is called a commit.</p>
-<p><img src="img/two-stage-commit-d.jpg" alt="The Two Stage Commit - Part 4"></p>
+<p><img src="img/two-stage-commit-d.png" alt="The Two Stage Commit - Part 4"></p>
 <p>In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let&apos;s do it now.</p>
 <ol>
 <li>First, let&apos;s check the status of our working tree: <code>git status</code></li>
@@ -771,7 +771,7 @@ $ git branch <span class="hljs-_">-a</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Working Locally","level":"2.3","depth":1,"next":{"title":"Collaborating on Code","level":"2.4","depth":1,"path":"07_collaborating_on_code.md","ref":"07_collaborating_on_code.md","articles":[]},"previous":{"title":"Local Git Configs","level":"2.2","depth":1,"path":"05_local_git_configs.md","ref":"05_local_git_configs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"06_working_locally.md","mtime":"2017-08-17T13:31:49.978Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T13:37:12.755Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Working Locally","level":"2.3","depth":1,"next":{"title":"Collaborating on Code","level":"2.4","depth":1,"path":"07_collaborating_on_code.md","ref":"07_collaborating_on_code.md","articles":[]},"previous":{"title":"Local Git Configs","level":"2.2","depth":1,"path":"05_local_git_configs.md","ref":"05_local_git_configs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"06_working_locally.md","mtime":"2017-08-17T20:05:49.023Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T20:11:18.521Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
