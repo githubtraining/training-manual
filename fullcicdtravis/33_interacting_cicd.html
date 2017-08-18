@@ -653,11 +653,14 @@
 <ol>
 <li>Clone your copy of the repository: <code>git clone https://github.com/githubschool/github-games-USERNAME.git</code>.</li>
 <li>Checkout to the branch that is in the pull request, <code>git checkout CISERVICE-tests</code>.</li>
-<li>Edit the URL in the <code>README.md</code> so the tests will pass.</li>
+<li>Edit the URL in the <code>README.md</code> so the tests will <em>fail</em>.</li>
 <li>Commit the changes to your branch.</li>
 <li>If desired, you can check this test locally by running <code>ruby tests/test_verifyurl.rb</code> on this branch. Notice how different it will look on everyone&apos;s machines, and how having the tests run externally will smooth out the process. <em>(For this to work, you will need Ruby installed locally.)</em></li>
 <li>Push your branch to GitHub: <code>git push</code></li>
-<li>See that the tests are passing. If they aren&apos;t passing, look at the test to see what changes you still need to make.</li>
+<li>See that the tests are failing. </li>
+<li>Working locally again, change the URL so the tests will <em>pass</em>. Commit those changes. </li>
+<li>Push your branch up to the remote.</li>
+<li>Let the tests run again. If they aren&apos;t passing, look at the test to see what changes you still need to make.</li>
 <li>When all tests are passing, merge your Pull Request.</li>
 <li>Delete the branch on GitHub.</li>
 <li>Update your local copy of the repository: <code>git pull --prune</code></li>
@@ -705,7 +708,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Interacting with CI/CD","level":"4.5","depth":1,"next":{"title":"Git Bisect","level":"4.6","depth":1,"path":"14_git_bisect.md","ref":"14_git_bisect.md","articles":[]},"previous":{"title":"Merging Tests and the .yml file","level":"4.4","depth":1,"path":"31_merging_tests.md","ref":"31_merging_tests.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"33_interacting_cicd.md","mtime":"2017-08-17T20:05:49.027Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-17T20:10:49.734Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Interacting with CI/CD","level":"4.5","depth":1,"next":{"title":"Git Bisect","level":"4.6","depth":1,"path":"14_git_bisect.md","ref":"14_git_bisect.md","articles":[]},"previous":{"title":"Merging Tests and the .yml file","level":"4.4","depth":1,"path":"31_merging_tests.md","ref":"31_merging_tests.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"33_interacting_cicd.md","mtime":"2017-08-18T13:17:05.028Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-08-18T13:22:18.544Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
