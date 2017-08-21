@@ -4,7 +4,7 @@ You may want to put tags or releases on certain commits in your code's history t
 
 ### Tags
 
-A tag is a pointer that points to a specific commit. Unlike commits, tags are _not_ immutable. They can be moved and changed. We recommend using GitHub Releases in place of tags; a tag will still be created, but it will have a GitHub linked history that cannot be changed. Before we get into Releases, let's practice a bit with tags.
+A tag is a pointer that points to a specific commit. Unlike commits, tags are _not_ immutable. They can be moved and changed. Before we get into Releases, let's practice a bit with tags.
 
 When creating a tag from the command line, you can make a "lightweight" or an "annotated" tag. The following example creates an annotated tag with the `-a` flag, names the tag `v1.0`, and connects it to whichever commit SHA is included.
 
@@ -16,7 +16,7 @@ Another caveat with tags is that they are not automatically pushed up with commi
 
 ### Releases
 
-Releases are similar to tags, because they point to a specific commit and can be named like any other tag. However, releases can also include attached binaries. This means you can upload and store the compiled program for others to download, and have that compiled version be attached to the exact source code that composes it. 
+Releases are similar to tags, because they point to a specific commit and can be named like any other tag. However, releases can also include attached binaries. This means you can upload and store the compiled program for others to download, and have that compiled version be attached to the exact source code that composes it. We recommend using GitHub Releases in place of tags; a tag will still be created, but it will have a GitHub linked history that cannot be changed. 
 
 ### Add a Release to GitHub-Games
 
