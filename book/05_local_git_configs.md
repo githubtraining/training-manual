@@ -47,7 +47,7 @@ $ git config --global --list
 
 ### Configuring Your User Name and Email
 
-The directions below are using `--global`. This is fine if you are on your own machine. However, if you are using a shared computer, omit the `--global` flag so that the settings will only be stored to the repository. When you work in another repository on this same computer, you will need to set these configurations again.
+The directions below are using the `--global` scope. This is fine if you are on a personal user account. However, if you are borrowing a computer without a private, personal account, skip the `--global` flag so that the settings will only be stored to our assignment repository. When you work in another repository on this same computer, you will need to set these configurations again.
 
 Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:
 
