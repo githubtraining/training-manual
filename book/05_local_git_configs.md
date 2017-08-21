@@ -30,6 +30,7 @@ These are the repository level configurations. They only apply to the specific r
 
 > The default value for git config is `--local`.
 
+
 ### Viewing Your Configurations
 
 If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the three config files and list the setting they contain.
@@ -45,6 +46,8 @@ $ git config --global --list
 ```
 
 ### Configuring Your User Name and Email
+
+The directions below are using `--global`. This is fine if you are on your own machine. However, if you are using a shared computer, omit the `--global` flag so that the settings will only be stored to the repository. When you work in another repository on this same computer, you will need to set these configurations again.
 
 Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:
 
