@@ -56,7 +56,7 @@ $ git config --global user.email "you@email.com"
 
 #### Git Config and Your Privacy
 
-The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag so the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again. 
+The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again. 
 
 > For example:
 > ```sh
