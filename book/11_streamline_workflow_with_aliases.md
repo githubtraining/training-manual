@@ -37,4 +37,5 @@ Check out these resource for a list of common aliases:
 
 - *[git-scm.com/book/en/v2/Git-Basics-Git-Aliases](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases)* A helpful overview of some of the most common git aliases.
 
-We also encourage you to read through these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack. His tips are referenced throughout the manual, but this is a consolidated place to view some we might have skipped over.
+We also encourage you to read through these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.
+- His tips are referenced throughout the manual, so don't worry if you don't understand every concept yet. 
