@@ -29,6 +29,7 @@
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
   * [Changing the `.yml` file](34_change_yml.md)
+  * [Tags & Releases](17_tags_and_releases.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Starting From Scratch
