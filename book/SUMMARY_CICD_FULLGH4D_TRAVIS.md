@@ -28,6 +28,7 @@
   * [Reverting Commits](15_reverting_commits.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
+  * [Tags & Releases](17_tags_and_releases.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Adding More Tests
@@ -47,4 +48,3 @@
   * [Day 1 Activity Instructions](app_Day_1_activities.md)
   * [Workflow Guide](App_a_workflow_guide.md)
   * [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
-  
