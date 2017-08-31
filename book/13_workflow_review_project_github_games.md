@@ -37,15 +37,16 @@ Since this is a review, we have written these steps at a high level. As we compl
 #### Alias Pro Tips
 
 **Tidying Up Locally**
-- There are shortcuts that allow you to do a deep clean if you've neglected the state of your local repository. The following TWO configs (both need to be added) will: switch to master, update master from the origin, and delete all local branches already merged into master.
+There are shortcuts that allow you to do a deep clean if you've neglected the state of your local repository. The following TWO configs (both need to be added) will: switch to master, update master from the origin, and delete all local branches already merged into master.
+
+**Note:** Depending on your shell, you might have to add these aliases directly to your git config file, which you can open by typing `git config --global -e`.
 ```
 git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-master} | grep -v " ${1-master}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"
 ```
-- Warning: You might want to edit this to avoid local deletions of important branches like `gh-pages` or `production`.
-- Note: Depending on your shell, you might have to add these aliases directly to your git config file, which you can open by typing `git config --global -e`.
+**Warning:** You might want to edit this to avoid local deletions of important branches like `gh-pages` or `production`.
 ```
 git config --global alias.bdone "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f
 ```
-- Note: This alias won't work until we add `git up`, which is shared at the end of this course.
+**Note:** This alias won't work until we add `git up`, which is shared at the end of this course.
 
 *Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
