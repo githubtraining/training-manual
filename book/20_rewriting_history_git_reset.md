@@ -88,7 +88,7 @@ git config --global alias.save "!git add -A && git commit -m 'SAVEPOINT'"
 ```
 or
 ```
-git config --global alias.wip "commit -am "WIP""
+git config --global alias.wip "commit -am 'WIP'"
 ```
 - Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
 - In `save`, the `-A` flag adds all changes, including untracked files, to the index.
