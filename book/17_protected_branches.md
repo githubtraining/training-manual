@@ -4,3 +4,6 @@ In some workflows, it might be valuable to set up protections to avoid accidenta
 
 
 ### Code Owners
+Repository maintainers can define exactly which people and teams need to review projects by creating a code owners file.
+
+This feature automatically requests reviews from the code owners when a pull request changes any owned files.
