@@ -25,7 +25,7 @@ Crafting atomic commits is an important part of creating a readable and informat
 
 #### Alias Pro Tip
 
-**Regular Commits and Save Points**
+**Quick Commits**
 - Sometimes, you'll want to do the opposite of granular commits and move quickly. Here's an alias that stages all saved changes and gives the stub for writing a commit message.
 ```
 git config --global alias.cm "!git add -A && git commit -m"
