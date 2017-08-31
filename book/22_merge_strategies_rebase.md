@@ -59,6 +59,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 #### Alias Pro Tips
 
 **Getting Your Working Directory Up to Date**
+
 ```
 git pull --rebase --prune
 ```

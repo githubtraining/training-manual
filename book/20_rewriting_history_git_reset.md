@@ -82,24 +82,30 @@ The reflog is a record of every place HEAD has been. In a few minutes we will se
 #### Alias Pro Tips
 
 **Alternatives to Stashing -- Check Points**
-- Sometimes, you'll want to save your work in a commit without having to think of a commit message, or before you're ready to organize your changes. If that's the case, you can create aliases to create "save points".
+
+Sometimes, you'll want to save your work in a commit without having to think of a commit message, or before you're ready to organize your changes. If that's the case, you can create aliases to create "save points".
+
 ```
 git config --global alias.save "!git add -A && git commit -m 'SAVEPOINT'"
 ```
+
 or
 ```
 git config --global alias.wip "commit -am 'WIP'"
 ```
+
 - Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
 - In `save`, the `-A` flag adds all changes, including untracked files, to the index.
 - In `wip`, only tracked changes are committed.
 
 When you're ready to return to work, you can use `git undo` to reset your prior commit and keep all of the changes from that commit in the working directory.
+
 ```
 git config --global alias.undo "reset HEAD~1 --mixed"
 ```
 
 If the only thing that you needed to change was the commit message, you can update by using `git amend`.
+
 ```
 git config --global alias.amend "commit -a --amend"
 ```

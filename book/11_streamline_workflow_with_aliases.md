@@ -38,16 +38,19 @@ Check out these resource for a list of common aliases:
 
 We also encourage you to read through these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.
 
-- His tips are referenced throughout the manual, so don't worry if you don't understand every concept yet.
-- Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.   
+His tips are referenced throughout the manual, so don't worry if you don't understand every concept yet.
+
+Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.   
 ```
 git config --global alias.ec "config --global -e"
 ```
-- Pro Tip # 2: To checkout to another branch, you can make a quick shortcut.
+
+Pro Tip # 2: To checkout to another branch, you can make a quick shortcut.
 ```
 git config --global alias.co "checkout"
 ```
-- Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.
+
+Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.
 ```
 git config --global alias.cob "checkout -b"
 ```

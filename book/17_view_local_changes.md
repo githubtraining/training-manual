@@ -31,9 +31,10 @@ $ git diff 2710 b745
 #### Alias Pro Tip
 
 **Returning to the Remote**
-- After finishing up locally, you might determine that you want to head back to your remote repository to make sure that everything looks right.
 
-- Note: Depending on your shell, you might have to add these aliases directly to your git config file, which you can open by typing `git config --global -e`.
+After finishing up locally, you might determine that you want to head back to your remote repository to make sure that everything looks right.
+
+**Note:** Depending on your shell, you might have to add these aliases directly to your git config file, which you can open by typing `git config --global -e`.
 
 WINDOWS
 ```
