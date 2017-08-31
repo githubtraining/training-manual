@@ -46,4 +46,11 @@ MAC/LINUX
 git config --global alias.open = "!f() { REPO_URL=$(git open remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
 ```
 
+And just in case you're prone to forget your word choices, you can link multiple aliases together to accomplish the same purpose.
+
+```
+git config --global alias.browse "!git open"
+```
+
+
 *Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
