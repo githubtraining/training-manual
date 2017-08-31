@@ -26,7 +26,6 @@ $ git lol
 #### Other Helpful Aliases
 
 ```sh
-$ git config --global alias.co "checkout -b"
 $ git config --global alias.s "status -s"
 $ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 ```
@@ -43,4 +42,12 @@ We also encourage you to read through these [three](http://haacked.com/archive/2
 - Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.   
 ```
 git config --global alias.ec "config --global -e"
+```
+- Pro Tip # 2: To checkout to another branch, you can make a quick shortcut.
+```
+git config --global alias.co "checkout"
+```
+- Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.
+```
+git config --global alias.cob "checkout -b"
 ```
