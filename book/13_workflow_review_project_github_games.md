@@ -34,7 +34,7 @@ Since this is a review, we have written these steps at a high level. As we compl
 >
 > You only need to use this long command the first time you push a new branch. After that, you can simply use `git push`.
 
-#### Alias Pro Tip
+#### Alias Pro Tips
 
 **Tidying Up Locally**
 - There are shortcuts that allow you to do a deep clean if you've neglected the state of your local repository. The following TWO configs (both need to be added) will: switch to master, update master from the origin, and delete all local branches already merged into master.
@@ -46,6 +46,6 @@ git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-mast
 ```
 git config --global alias.bdone "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f
 ```
-- Note: This alias won't work until we add `git up`, which is shared at the end of this course. 
+- Note: This alias won't work until we add `git up`, which is shared at the end of this course.
 
 *Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
