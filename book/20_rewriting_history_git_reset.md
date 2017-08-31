@@ -79,7 +79,7 @@ The reflog is a record of every place HEAD has been. In a few minutes we will se
 - **The reflog is only local.** It is not pushed to the remote and only includes your local history. In other words, you can't see the reflog for someone else's commits and they can't see yours.
 - **The reflog is a limited time offer.** By default, reachable commits are displayed in the reflog for 90 days, but unreachable commits (meaning commits that are not attached to a branch) are only displayed for 30 days.
 
-#### Alias Pro Tip
+#### Alias Pro Tips
 
 **Alternatives to Stashing -- Check Points**
 - Sometimes, you'll want to save your work in a commit without having to think of a commit message, or before you're ready to organize your changes. If that's the case, you can create aliases to create "save points".
@@ -103,6 +103,6 @@ If the only thing that you needed to change was the commit message, you can upda
 ```
 git config --global alias.amend "commit -a --amend"
 ```
-- `-a` will add any modifications and deletions of existing files to your commit, but ignore brand new files. 
+- `-a` will add any modifications and deletions of existing files to your commit, but ignore brand new files.
 
 *Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*

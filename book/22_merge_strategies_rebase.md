@@ -56,7 +56,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 1. Checkout to master, the branch you will merge into: `git checkout master`
 1. Merge your changes in to master: `git merge rebase-me`
 
-#### Alias Pro Tip
+#### Alias Pro Tips
 
 **Getting Your Working Directory Up to Date**
 ```
