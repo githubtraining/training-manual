@@ -68,6 +68,6 @@ If you'd like to combine this with another advanced workflow tip and update your
 ```sh
 git config --global alias.up "!git pull --rebase --prune $@ && git submodule update --init --recursive"
 ```
-- Using the ! prefix allows you to use any command and not just git commands in the alias.
+- Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
 
 *Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
