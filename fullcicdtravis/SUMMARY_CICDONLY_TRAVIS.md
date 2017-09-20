@@ -37,6 +37,10 @@
   * [Travis CI](35_travisCI.md)
   * [Partner Activity](37_partner_activity.md)
 
-## Appendix
-  * [Day 1 Activity Instructions](app_Day_1_activities.md)
-  * [Workflow Guide](App_a_workflow_guide.md)
+  ## Appendix
+    * [Day 1 Activity Instructions](app_Day_1_activities.md)
+    * [Day 2 Activity Instructions](app_day2_mergeconflict.md)
+    * [Workflow Guide](App_a_workflow_guide.md)
+    * [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
+    * [Fork and Pull Workflow and Multiple Remotes](app_fork_workflow.md)
+    * [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
