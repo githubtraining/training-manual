@@ -3,6 +3,8 @@ In some workflows, it might be valuable to set up protections to avoid accidenta
 ### Protected Branches
 Repository maintainers can secure specific branches in their repository from being merged into unless the specified criteria is met. This criteria can include requiring peer reviews, status checks from integrations from popular Continuous Integrations tools and other services, or until a specific **code owner** has approved changes to specific files. 
 
+   > A repository can have up to 100 protected branches. 
+
 Let's enable protected branches and identify the different options available to you:
 
 1. Select the **Settings** tab.
