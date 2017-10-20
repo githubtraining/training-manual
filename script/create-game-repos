@@ -1,0 +1,87 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+access_token=$GITHUBTEACHER_TOKEN
+collabrepo=$1
+
+#test array content
+function containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
+  return 0
+}
+
+function getnames () {
+  #get facilitator name from README
+  teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "githubteacher:$access_token" -X GET https://api.github.com/repos/githubschool/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//')
+  #make sure no one is teaching class
+  echo "A new github-games repo is about to be created for $teacher."
+  echo "Is that OK? (Y or N)"
+  read classtime
+  if echo "$classtime" | grep -iq "^y" ;
+  then
+    echo "Deleting githubschool/github-games-$teacher repo..."
+    curl -i -u "githubteacher:$access_token" -X DELETE https://api.github.com/repos/githubschool/github-games-$teacher
+  else
+    echo "This is not a good time to run this script. Wait until class is over and try again"
+    exit
+  fi
+  #grab template repo
+  git clone --bare https://github.com/githubtraining/github-games game-template
+  pushd game-template
+  collabs=$(curl -u "githubteacher:$access_token" -X GET https://api.github.com/repos/githubschool/$collabrepo/collaborators?per_page=100 | jq '.[] | .login')
+  ownersArray=( "${ownersArray[@]/"$teacher"}" )
+  for i in ${collabs[@]}
+  do
+    if
+      containsElement $i $ownersArray
+      then
+        i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+        repoStatus=$(curl -i -u "githubteacher:$access_token" -X GET https://api.github.com/repos/githubschool/github-games-$i | grep "^Status:")
+        echo "repoStatus for $i is $repoStatus"
+        if
+          echo $repoStatus | grep -iq "404"
+        then
+          createRepo $i
+        else
+          echo "Skipping $i because they already have a repo."
+        fi
+      else
+        echo "Skipping $i because they are an owner in this org."
+    fi
+  done
+  popd
+  echo "Remove the local (temporary) clone"
+  rm -rf game-template
+}
+
+function createRepo () {
+  student=$1
+  student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
+  studentRepo="github-games-"$student
+  echo "Time to create $studentRepo for $student"
+  #create a repo named github-games-$student in githubschool org
+  echo "Create server-side location for fresh githubschool/$studentRepo repo..."
+  curl -i -u "githubteacher:$access_token" -d "{ \"name\": \"$studentRepo\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://githubtraining.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://api.github.com/orgs/githubschool/repos
+  echo "Resting 5 seconds to allow repo creation to resolve"
+  sleep 5
+  #add student as a collaborator
+  curl -i -u "githubteacher:$access_token" -d "{ \"permission\": \"admin\"}" -X PUT https://api.github.com/repos/githubschool/$studentRepo/collaborators/$student
+  echo "Push the fresh $studentRepo back to githubschool ..."
+  git push --mirror https://githubteacher:$access_token@github.com/githubschool/$studentRepo
+  echo "Waiting for push to resolve before creating issues."
+  sleep 5
+  #set default branch to gh-pages
+  #curl -i -u "githubteacher:$access_token" -d "{\"name\": \"$studentRepo\", \"default_branch\": \"gh-pages\"}" https://api.github.com/repos/githubschool/$studentRepo
+  #create issues for problems
+  curl -i -u "githubteacher:$access_token" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at https://githubschool.github.io/$studentRepo, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$student?\"}" -X POST https://api.github.com/repos/githubschool/$studentRepo/issues
+  curl -i -u "githubteacher:$access_token" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and the one in the README are pointing to githubschool's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at https://githubschool.github.io/$studentRepo\"}" -X POST https://api.github.com/repos/githubschool/$studentRepo/issues
+  #assign issues to $student
+  for i in {1..2};
+    do curl -i -u "githubteacher:$access_token" -d "{\"assignees\": [\"$student\"]}" -X POST https://api.github.com/repos/githubschool/$studentRepo/issues/$i/assignees;
+  done
+}
+
+ownersArray=$(curl -u "githubteacher:$access_token" -X GET https://api.github.com/orgs/githubschool/members?role=admin | jq '.[] | .login')
+getnames
