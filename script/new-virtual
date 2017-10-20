@@ -1,0 +1,76 @@
+#!/bin/sh
+
+set -x
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+access_token=$GITHUBTEACHER_TOKEN
+reponame=$1
+
+#get details for the README
+function getdetails () {
+  echo "Let's add the class details to the README:"
+  echo "List the class dates."
+  echo "Example: March 10 - 13, 2017."
+  read classdate
+  echo "Who is teaching? Without the @."
+  read teacher
+  echo "Create a unique name for the survey collector."
+  echo "Example: 2017-06-06-open-enrollment."
+  read surveyName
+  #generate the survey link
+  surveyLink=$((curl --request PUT --url "https://restapi.surveygizmo.com/v5/survey/3288613/surveycampaign?api_token=981a05da21662b120905e73abf1b6a206bac35ffd1d360e66a&api_token_secret=A9jXemFF3MfAo&_method=PUT&type=link&name=$surveyName" | jq .data.uri) | (sed -e 's/^"//' -e 's/"$//'))
+  #append teacher and class type to survey link
+  longLink=$surveyLink"?type=developers&teacher="$teacher
+  #create a google short link
+  shortLink=$((curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//'))
+  script/create-repo caption-this $reponame $teacher
+  git clone https://githubteacher:$access_token@github.com/githubschool/$reponame $reponame
+  pushd $reponame
+  git config user.name "GitHub Teacher"
+  git config user.email "trainingdemos+githubteacher@github.com"
+  sed -i "" "s/THIS-DATE/$classdate/g" README.md
+  sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md
+  sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md
+  git add README.md
+  git commit -m "create class README"
+  sed -i "" "s|caption-this|$reponame|g" _config.yml
+  git add _config.yml
+  git commit -m "update config with class information"
+  git push
+  git config --local --unset user.name
+  git config --local --unset user.email
+  popd
+  rm -rf $reponame
+  prettyrepo $teacher
+}
+
+function prettyrepo () {
+  teacher=$1
+  #set branch protections
+  curl -i -H "Accept: application/vnd.github.loki-preview+json" -u "githubteacher:$access_token" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$teacher\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$teacher\", \"githubteacher\" ], \"teams\": [ \"null\" ] } }" -X PUT https://api.github.com/repos/githubschool/$reponame/branches/master/protection
+  curl -i -H "Accept: application/vnd.github.loki-preview+json" -u "githubteacher:$access_token" -X DELETE https://api.github.com/repos/githubschool/$reponame/branches/master/protection/required_status_checks
+  #delete labels other than question, duplicate, enhancement, and help wanted
+  curl -i -u "githubteacher:$access_token" -X DELETE https://api.github.com/repos/githubschool/$reponame/labels/bug
+  curl -i -u "githubteacher:$access_token" -X DELETE https://api.github.com/repos/githubschool/$reponame/labels/invalid
+  curl -i -u "githubteacher:$access_token" -X DELETE https://api.github.com/repos/githubschool/$reponame/labels/wontfix
+  #open the issue to be added as a collaborator
+  curl -i -u "githubteacher:$access_token" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'unsubscribe' button.\"}" -X POST https://api.github.com/repos/githubschool/$reponame/issues
+  #add a project to the repo and grab the project id
+  projID=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "githubteacher:$access_token" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST https://api.github.com/repos/githubschool/$reponame/projects | jq .id)
+  #add columns to project
+  columnOne=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "githubteacher:$access_token" -d "{ \"name\": \"To-Do\"}" -X POST https://api.github.com/projects/$projID/columns | jq .id)
+  columnTwo=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "githubteacher:$access_token" -d "{ \"name\": \"Extended Projects\"}" -X POST https://api.github.com/projects/$projID/columns | jq .id)
+  curl -H "Accept: application/vnd.github.inertia-preview+json" -u "githubteacher:$access_token" -d "{ \"name\": \"In-Progress\"}" -X POST https://api.github.com/projects/$projID/columns
+  curl -H "Accept: application/vnd.github.inertia-preview+json" -u "githubteacher:$access_token" -d "{ \"name\": \"Done\"}" -X POST https://api.github.com/projects/$projID/columns
+  #add cards to each column
+  curl -i -H "Accept: application/vnd.github.inertia-preview+json" -u "githubteacher:$access_token" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST https://api.github.com/projects/columns/$columnOne/cards
+  finishstrong
+}
+
+function finishstrong () {
+  echo "ALL DONE: Remember to enable GitHub Pages on master."
+  echo "Good luck with class!"
+}
+
+echo "This script creates a new caption-this repository"
+getdetails
