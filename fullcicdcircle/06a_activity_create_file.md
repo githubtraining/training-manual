@@ -5,7 +5,6 @@ Now it is time to put an image and a caption into your file:
 1. Find your file, `named 2010-02-##-USERNAME.md`.
 1. Open your file in your favorite text editor.
 1. Copy and paste the image text into your file on line 6.
-1. On line 7, add this text to center the file: `{: .center}`. 
 1. On lines 9 and 10, add code for your caption.
 
         ```

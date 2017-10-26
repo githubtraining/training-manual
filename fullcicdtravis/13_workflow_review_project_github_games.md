@@ -23,7 +23,7 @@ Since this is a review, we have written these steps at a high level. As we compl
 1. Edit the URL in the README.md.
 1. Commit the changes to your branch.
 1. Push your branch to GitHub: `git push -u origin readme-update`
-1. Create a Pull Request *in your repository* (base: `gh-pages`, compare: `readme-update`)
+1. Create a Pull Request *in your repository* (base: `master`, compare: `readme-update`)
 1. Merge your Pull Request.
 1. Delete the branch on GitHub.
 1. Update your local copy of the repository: `git pull --prune`
