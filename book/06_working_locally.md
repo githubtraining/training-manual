@@ -23,8 +23,8 @@ Let's go ahead and clone the class repository to your local desktop.
 
 ```sh
 $ git status
-On branch gh-pages
-Your branch is up-to-date with 'origin/gh-pages'.
+On branch master
+Your branch is up-to-date with 'origin/master'.
 nothing to commit, working tree clean
 ```
 
