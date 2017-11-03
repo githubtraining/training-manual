@@ -1,6 +1,37 @@
-# Class scripts
+# GitHub Training Scripts
 
 This directory contains several scripts used to set up and facilitate our classes.
+
+## First Time Usage
+
+### Remote Configuration
+
+To use these scripts, please follow these steps **first**: 
+
+- [ ] Create an organization on your instance (if not using github.com) called `githubtraining` and clone the template repos there: caption-this, polygons, github-games (all included within the same release as the `training-manual` repository.)
+- [ ] Create a separate org where you will house the disposable teaching repos
+- [ ] Give your user account(s) admin access to the org
+- [ ] Create a Personal Access Token for your user account
+- [ ] Decide whether you want to do 1:1 appointments. If not,say No when the question is asked or they can comment out those lines of code
+- [ ] Set up a survey account and survey on SurveyGizmo, or comment out those lines of code
+
+### Local Configuration
+
+You will need to do the following while checked out to this branch (these only work for Bash right now, so if you are using ZSH you will need to set these ENV vars manually):
+
+- run `script/teach-class` and choose option 0
+- for the TOKEN_OWNER, type `githubteacher`
+- for the INSTANCE_URL, type `api.github.com`
+- for the CLASS_ORG, type `githubschool`
+- In addition to the above ENV variables, you will need to set a few more for the 1:1 Appointment URL and the Survey:
+  - `echo "export APPT_URL='APPT_URL_HERE'" >> ~/.bashrc`
+  - `echo "export SURVEY_TOKEN='SURVEY_TOKEN_HERE'" >> ~/.bashrc`
+  - `echo "export SURVEY_SECRET='SURVEY_SECRET_HERE'" >> ~/.bashrc`
+  - `echo "export SURVEY_CAMPAIGN='SURVEY_CAMPAIGN_HERE'" >> ~/.bashrc`
+- exit your terminal session and start a new one
+- run `script/teach-class` and enjoy!
+
+## Class Scripts
 
 ### script/teach-class
 
