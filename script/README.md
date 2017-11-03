@@ -1,9 +1,6 @@
-This directory contains several scripts you can use to make your teaching life easier:
-
-
 ## Class scripts
 
-This folder also contains several scripts used to set up and facilitate our classes.
+This directory contains several scripts used to set up and facilitate our classes.
 
 ### script/teach-class
 
