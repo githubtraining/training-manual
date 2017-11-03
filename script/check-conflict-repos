@@ -1,0 +1,79 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+collabrepo=$1
+
+#test array content
+function containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
+  return 0
+}
+
+function getnames () {
+  #get name of collaborators from day 1
+  collabs=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login')
+  for i in ${collabs[@]}
+  do
+    if
+      containsElement $i $ownersArray
+    then
+      checkrepo $i
+    fi
+  done
+}
+
+function checkrepo () {
+  student=$1
+  student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
+  studentRepo="conflict-practice-"$student
+  #start student file
+  echo "---" > conflict-activity-$student.json
+  echo "githubHandle: $student" >> conflict-activity-$student.json
+  #check to see if pull requests created by script have been merged
+  for i in {1..3};
+  do
+    prstatus=$(curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls/$i/merge)
+    if echo $prstatus | grep -iq "204"
+    then
+      echo "PR $i status is 204"
+      echo "pr$i: merged" >> conflict-activity-$student.json
+      #search for conflict markers
+      #startmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://$INSTANCE_URL/search/code?q=%3C%3C%3C%3C%3C%3C%3C%20*+in:file+repo:$CLASS_ORG/$studentRepo" | jq .total_count)
+      #echo "search for <<<<<<< found $startmark"
+      #divmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://$INSTANCE_URL/search/code?q=%3D%3D%3D%3D%3D%3D%3D+in:file+repo:$CLASS_ORG/$studentRepo" | jq .total_count)
+      #echo "search for ======= found $divmark"
+      #endmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://$INSTANCE_URL/search/code?q=%3E%3E%3E%3E%3E%3E%3E%20*+in:file+repo:$CLASS_ORG/$studentRepo" | jq .total_count)
+      #echo "search for >>>>>>> found $endmark"
+      #make sure play/manual/manual.html still exists
+      #checkfile=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://$INSTANCE_URL/search/code?q=manual.html+in:path+repo:$CLASS_ORG/$studentRepo" | jq .total_count)
+      #echo "search for play/manual/manual.html returned $checkfile"
+      #echo "checks$i: $startmark,$divmark,$endmark,$checkfile" >> conflict-activity-$student.json
+    else
+      echo "PR $i has not been merged"
+      echo "pr$i: incomplete" >> conflict-activity-$student.json
+    fi
+  done
+  echo "---" >> conflict-activity-$student.json
+  #send graded file to original class repo
+  #first, encode file as base64
+  newfile=$(cat conflict-activity-$student.json | base64)
+  #does the file already exist?
+  status=$(curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json | grep "^Status:")
+  if echo "$status" | grep -iq "404" ;
+  then
+    #create the file on the repo
+    curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"path\": \"_grades/conflict-activity-$student.json\", \"message\": \"Graded conflict activity for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json
+  else
+    #get the sha
+    sha=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json | jq .sha)
+    echo "Replacing the file at sha: $sha"
+    #replace the file
+    curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"path\": \"_grades/conflict-activity-$student.json\", \"message\": \"Graded conflict activity for $student\", \"content\": \"$newfile\", \"sha\": $sha}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json
+  fi
+  rm conflict-activity-$student.json
+}
+
+ownersArray=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login')
+getnames
