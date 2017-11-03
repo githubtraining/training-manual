@@ -1,0 +1,69 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+#your token must have DELETE permissions
+
+function resetactivity () {
+  reponame=$1
+  default_branch=$2
+
+  #make sure no one is teaching class
+  echo "Is anyone teaching a class right now using $TOKEN_OWNER? (Y or N)"
+  read classtime
+  if echo "$classtime" | grep -iq "^y" ;
+  then
+    echo "This is not a good time to run this script. Wait until class is over and try again"
+    exit
+  else
+    deletedisposablerepo $reponame
+
+    echo "Resting 5 seconds to all deletions to resolve"
+    sleep 5
+
+    echo "Creating a fresh repo for $CLASS_ORG"
+    duplicaterepo $reponame $default_branch
+  fi
+}
+
+function deletedisposablerepo () {
+  reponame=$1
+
+  echo "Delete $TOKEN_OWNER $reponame repo..."
+  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X DELETE https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1
+
+  echo "Delete $CLASS_ORG $reponame repo..."
+    curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$1
+}
+
+function duplicaterepo () {
+  reponame=$1
+  dbranch=$2
+
+  echo "Create server-side location for fresh $CLASS_ORG/$reponame repo..."
+  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"$reponame\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos
+
+  echo "Resting 5 more seconds to allow repo creation to resolve"
+  sleep 5
+
+  echo "Clone $reponame template from githubtraining org..."
+  rm -rf $reponame
+  git clone --bare https://$ROOT_URL/githubtraining/$reponame $reponame
+
+  echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
+  pushd $reponame
+  git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
+
+  echo "Resting 5 more seconds to allow push to resolve"
+  sleep 5
+
+  echo "Setting default branch for repo"
+  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+  popd
+
+  echo "Remove the local (temporary) clone"
+  rm -rf $reponame
+}
+
+#usage list the repository name and default branch
+resetactivity github-games master
