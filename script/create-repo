@@ -1,0 +1,45 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+type=$1
+reponame=$2
+collab=$3
+
+function checkavail () {
+  repoStatus=$(curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame)
+  if echo $repoStatus | grep -iq "404"
+  then
+    echo "Cool, that name is available."
+    createrepo
+  else
+    echo "Oops, that repository name is already taken."
+    echo "Please try a different name."
+    exit
+  fi
+}
+
+function createrepo () {
+  #create the repository on $INSTANCE_URL
+  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos
+  echo "Resting 5 seconds to allow repo creation to resolve"
+  sleep 5
+  #add collaborators
+  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab
+  clonerepo
+}
+
+function clonerepo () {
+  #create the repo locally
+  git clone --bare https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/githubtraining/$type $reponame
+  pushd $reponame
+  git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
+  echo "Resting 5 more seconds to allow push to resolve"
+  sleep 5
+  #echo "Setting default branch for repo"
+  #curl -i -H "Authorization: token $GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+  popd
+  rm -rf $reponame
+}
+
+checkavail
