@@ -1,0 +1,62 @@
+#!/bin/sh
+
+echo "==============================================="
+if [ -z ${TOKEN_OWNER+x} ]
+  then
+    echo "It looks like you need to add the TOKEN_OWNER var"
+    echo "to your ~/.bashrc. Please type the github username"
+    echo "of the teacher. Remember, this user will need to have"
+    echo "full admin access to the teaching organization."
+    read newname
+    echo "export TOKEN_OWNER='$newname'" >> ~/.bashrc
+  else
+    echo "TOKEN_OWNER = $TOKEN_OWNER."
+fi
+echo "==============================================="
+if [ -z ${GITHUBTEACHER_TOKEN+x} ]
+  then
+    echo "It looks like you need to add the"
+    echo "GITHUBTEACHER_TOKEN var to your ~/.bashrc."
+    echo "Please generate an OAUTH token on the"
+    echo "teacher account and paste it here."
+    read newtoken
+    echo "export GITHUBTEACHER_TOKEN='$newtoken'" >> ~/.bashrc
+  else
+    echo "GITHUBTEACHER_TOKEN is set!"
+fi
+echo "==============================================="
+if [ -z ${INSTANCE_URL+x} ]
+  then
+    echo "It looks like you need to add the"
+    echo "INSTANCE_URL var to your ~/.bashrc. Please type the"
+    echo "root endpoint for your github instance."
+    echo "For example: api.github.com OR mycompany.github.com/api/v3"
+    read newurl
+    echo "export INSTANCE_URL='$newurl'" >> ~/.bashrc
+    if echo "$newurl" | grep -iq "\<api.github.com\>" ;
+      then
+        echo "export ROOT_URL='github.com'" >> ~/.bashrc
+      else
+        #strip the API part
+        strippedURL=$(echo "$newurl" | sed -E 's/\/api\/v3//')
+        echo "export ROOT_URL='$strippedURL'" >> ~/.bashrc
+    fi
+  else
+    echo "INSTANCE_URL = $INSTANCE_URL"
+    echo "ROOT_URL = $ROOT_URL"
+fi
+echo "==============================================="
+if [ -z ${CLASS_ORG+x} ]
+  then
+    echo "It looks like you need to add the CLASS_ORG var"
+    echo "to your ~/.bashrc. Please type the organization name"
+    echo "used for github training on your instance."
+    echo "For example: githubschool"
+    read neworg
+    echo "export CLASS_ORG='$neworg'" >> ~/.bashrc
+  else
+    echo "CLASS_ORG = $CLASS_ORG"
+fi
+echo "==============================================="
+echo "ATTENTION: You must restart your open terminal sessions"
+echo "for changes to take effect."
