@@ -21,12 +21,6 @@ This script is used to create a new class repository for GitHub for Developers b
 
 **Usage:** `script/new-virtual REPO-NAME`
 
-### new-class
-
-This script is used to create a class repository with only a README and an issue to add collaborators. This was used with the old Day 1 activity to create a bio. **This script is depreciated.**
-
-**Usage:** `script/new-class REPO-NAME`
-
 ### create-conflict-repos
 
 _This is contained within the `teach-class` script._
