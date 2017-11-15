@@ -6,13 +6,13 @@ This directory contains several scripts used to set up and facilitate our classe
 
 ### Remote Configuration
 
-To use these scripts, please follow these steps **first**: 
+To use these scripts, please follow these steps **first**:
 
-- [ ] Create an organization on your instance (if not using github.com) called `githubtraining` and clone the template repos there: caption-this, polygons, github-games (all included within the same release as the `training-manual` repository.)
+- [ ] Create an organization on your instance (if not using github.com) called `githubtraining` and import the template repos there: caption-this, polygons, github-games (all included within the same release as the `training-manual` repository). Ensure your newly created repos contain all the branches as were included in this release.
 - [ ] Create a separate org where you will house the disposable teaching repos
-- [ ] Give your user account(s) admin access to the org
-- [ ] Create a Personal Access Token for your user account
-- [ ] Decide whether you want to do 1:1 appointments. If not,say No when the question is asked or they can comment out those lines of code
+- [ ] Give your user account(s) admin access to the disposable repos org
+- [ ] Create a [Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for your user account
+- [ ] Decide whether you want to do 1:1 appointments. If not, comment out those lines of code
 - [ ] Set up a survey account and survey on SurveyGizmo, or comment out those lines of code
 
 ### Local Configuration
@@ -35,7 +35,7 @@ You will need to do the following while checked out to this branch (these only w
 
 ### script/teach-class
 
-This script is used to run an entire class and is comprised of some of the scripts that are identified below. 
+This script is used to run an entire class and is comprised of some of the scripts that are identified below.
 
 **Usage:** `script/teach-class`
 
@@ -91,7 +91,7 @@ This script is used to reset the github-games repository in githubschool using t
 
 This script allows those who clone it for the first time to ensure they have the proper dependencies to run all other scripts locally.
 
-> Note: This requires Ruby. 
+> Note: This requires Ruby.
 
 **Usage:** `script/bootstrap`
 
@@ -117,4 +117,4 @@ When you are making changes locally and want to check how they look, use this sc
 
 Uses GitBook to produce the manuals for all classes.
 
-**Usage:** Typically used within other scripts, such as `script/server` and `script/deploy`. 
+**Usage:** Typically used within other scripts, such as `script/server` and `script/deploy`.
