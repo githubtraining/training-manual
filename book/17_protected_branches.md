@@ -22,7 +22,7 @@ Repository maintainers can define exactly which people and teams need to review 
 - your technical documentation team reviews all changes in the `docs/` folder 
 - your security team reviews any new dependencies listed in the `package.json` file
 
-Let's create a CODEOWNERS file and step through each option:
+Let's create a CODEOWNERS file:
 
 1. Create a new file in your repository titled `CODEOWNERS` (no extension necessary). You can add this to a `.github/` directory if desired.
 1. On the first line, type `*          @YOUR_USERNAME`
