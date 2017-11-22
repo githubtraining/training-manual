@@ -1,4 +1,4 @@
-In some workflows, it might be valuable to set up protections to avoid accidental mistakes and/or risky shortcuts. There are several methods for this, including **Protected Branches** and **Code Owners**.
+In some workflows, you will want to protect critical branches to ensure the code being merged to those branches has passed the required checks and received appropriate peer review. There are several methods for this, including **Protected Branches** and **Code Owners**.
 
 ### Protected Branches
 Repository maintainers can secure specific branches in their repository from being merged into unless the specified criteria is met. This criteria can include requiring peer reviews, status checks from integrations from popular Continuous Integrations tools and other services, or until a specific **code owner** has approved changes to specific files. 
