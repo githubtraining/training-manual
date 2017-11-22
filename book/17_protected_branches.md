@@ -30,3 +30,5 @@ Let's create a CODEOWNERS file and step through each option:
 1. On the next line, type `*.js       @githubteacher`
   - Order is important. The last matching pattern for a given change takes precedence.
 1. Now that you have created a CODEOWNERS file, go back to your branch protection settings and select the option to **Require pull request reviews before merging** and **Require review from Code Owners**. Remember to click **Save changes**.
+
+For more information on how to format the CODEOWNERS file, check out [the documentation](https://help.github.com/articles/about-codeowners/)
