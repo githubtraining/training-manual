@@ -1,35 +1,32 @@
 In some workflows, you will want to protect critical branches to ensure the code being merged to those branches has passed the required checks and received appropriate peer review. There are several methods for this, including **Protected Branches** and **Code Owners**.
 
 ### Protected Branches
-Repository maintainers can secure specific branches in their repository from being merged into unless the specified criteria is met. This criteria can include requiring peer reviews, status checks from integrations from popular Continuous Integrations tools and other services, or until a specific **code owner** has approved changes to specific files. 
 
-   > A repository can have up to 100 protected branches. 
+Repository maintainers can prevent merges to specific branches that have not met pre-defined criteria. This criteria can include peer reviews, tests run by integrations such as a Continuous Integration services or code quality, or until a specific code owner has reviewed and approved changes.  
 
-Let's enable protected branches and identify the different options available to you:
+Let's enable protected branches:
 
 1. Select the **Settings** tab.
 1. Select **Branches** from the menu on the left side of the screen.
 1. Click the **Choose a branch...** dropdown and select the branch you would like to protect, for example, `master`.
-1. Check the **Protect this branch** option. This will enable specific ways you would like to protect the selected branch.
-    - Without checking any other options, the selected branch prevents force-pushes and prevents it from being deleted. To require additional steps before a branch can be mergd into the newly protected branch, continue following these steps.
-1. Click the **Require pull request reviews before merging** if you want to require other collaborators on the project to approve the pull request before it can be merged into the protected branch. This requirement can be further enhanced by dismissing previous approvals after additional commits have been pushed (**Dismiss stale pull request approvals when new commits are pushed**) or you want to require the approval from specified code owners (**Require review from Code Owners**).
-1. Check the **Require status checks to pass before merging** to require status checks or tests to pass before a branch can be merged into the protected branch. A status check may include an integration such as continuous integration, automated code review, or other GitHub integrations available on the GitHub Marketplace.
+1. Check the **Protect this branch** option. 
+
+Without checking any other options, basic branch protection prevents force-pushes and prevents it from being deleted. To learn more about the options available, check out [the documentation for this feature](https://help.github.com/articles/defining-the-mergeability-of-pull-requests/).
 
 
-### Code Owners
-Repository maintainers can define exactly which people and teams need to review projects by creating a code owners file.
+### CODEOWNERS
 
-This feature automatically requests reviews from the code owners when a pull request changes any owned files.
+Repository maintainers can define exactly which people and teams need to review sets of changes by creating a **CODEOWNERS** file. For example, you could use CODEOWNERS to ensure:
 
-Let's format a code owners file and step through each option:
+- your team's Javascript expert reviews all files with a `.js` extension
+- your technical documentation team reviews all changes in the `docs/` folder 
+- your security team reviews any new dependencies listed in the `package.json` file
 
-1. Create a new file in your repository titled `CODEOWNERS` (no extension necessary).
-1. On line one, type `# GLOBAL OWNER`
-  - The # means that this is a comment. We'll use these to separate our file to demonstrate the multiple features.
-1. On line two, type `*          @YOUR_USERNAME`
+Let's create a CODEOWNERS file and step through each option:
+
+1. Create a new file in your repository titled `CODEOWNERS` (no extension necessary). You can add this to a `.github/` directory if desired.
+1. On the first line, type `*          @YOUR_USERNAME`
   - This means that you will be the default owner for everything in the repo, unless a later match takes preference.
-  - The number of spaces between the asterisk and your name is arbitrary.
-1. On line three, type `# Specificity`
-1. On line four, type `*.md       @githubteacher`
-  - Order is important, and the last matching pattern takes the most precedence.
-  - When someone opens a PR that only modifies markdown files, `githubteacher` would be requested for a review, not you.
+1. On the next line, type `*.js       @githubteacher`
+  - Order is important. The last matching pattern for a given change takes precedence.
+1. Now that you have created a CODEOWNERS file, go back to your branch protection settings and select the option to **Require pull request reviews before merging** and **Require review from Code Owners**. Remember to click **Save changes**.
