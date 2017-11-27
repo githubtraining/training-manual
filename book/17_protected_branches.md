@@ -1,3 +1,5 @@
+## Protected Branches & `CODEOWNERS`
+
 In some workflows, you will want to protect critical branches to ensure the code being merged to those branches has passed the required checks and received appropriate peer review. There are several methods for this, including **Protected Branches** and **Code Owners**.
 
 ### Protected Branches
@@ -9,7 +11,7 @@ Let's enable protected branches:
 1. Select the **Settings** tab.
 1. Select **Branches** from the menu on the left side of the screen.
 1. Click the **Choose a branch...** dropdown and select the branch you would like to protect, for example, `master`.
-1. Check the **Protect this branch** option. 
+1. Check the **Protect this branch** option.
 
 Without checking any other options, basic branch protection prevents force-pushes and prevents it from being deleted. To learn more about the options available, check out [the documentation for this feature](https://help.github.com/articles/defining-the-mergeability-of-pull-requests/).
 
@@ -19,7 +21,7 @@ Without checking any other options, basic branch protection prevents force-pushe
 Repository maintainers can define exactly which people and teams need to review sets of changes by creating a **CODEOWNERS** file. For example, you could use CODEOWNERS to ensure:
 
 - your team's Javascript expert reviews all files with a `.js` extension
-- your technical documentation team reviews all changes in the `docs/` folder 
+- your technical documentation team reviews all changes in the `docs/` folder
 - your security team reviews any new dependencies listed in the `package.json` file
 
 Let's create a CODEOWNERS file:
