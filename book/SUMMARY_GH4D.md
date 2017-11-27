@@ -20,6 +20,7 @@
 
 ## Project 3: GitHub Games
   * [Workflow Review](13_workflow_review_project_github_games.md)
+  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)

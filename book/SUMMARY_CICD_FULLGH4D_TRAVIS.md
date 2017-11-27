@@ -24,12 +24,12 @@
   * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Merging Tests and the `.yml` file](31_merging_tests.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
+  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
   * [Tags & Releases](17_tags_and_releases.md)
-  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Adding More Tests
