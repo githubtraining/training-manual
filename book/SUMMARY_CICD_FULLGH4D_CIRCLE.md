@@ -29,6 +29,7 @@
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
   * [Tags & Releases](17_tags_and_releases.md)
+  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Adding More Tests
