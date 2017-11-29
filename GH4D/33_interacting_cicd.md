@@ -17,7 +17,6 @@ The purpose of this section is to practice the workflow, looking at the test, an
 1. Checkout to the branch that is in the pull request, `git checkout CISERVICE-tests`.
 1. Edit the URL in the `README.md` so the tests will _fail_.
 1. Commit the changes to your branch.
-1. If desired, you can check this test locally by running `ruby tests/test_verifyurl.rb` on this branch. Notice how different it will look on everyone's machines, and how having the tests run externally will smooth out the process. _(For this to work, you will need Ruby installed locally.)_
 1. Push your branch to GitHub: `git push`
 1. See that the tests are failing. 
 1. Working locally again, change the URL so the tests will _pass_. Commit those changes. 
@@ -26,3 +25,5 @@ The purpose of this section is to practice the workflow, looking at the test, an
 1. When all tests are passing, merge your Pull Request.
 1. Delete the branch on GitHub.
 1. Update your local copy of the repository: `git pull --prune`
+
+> If desired, you can check this test locally by running `ruby tests/test_verifyurl.rb` on this branch. Notice how different it will look on everyone's machines, and how having the tests run externally will smooth out the process. _(For this to work, you will need Ruby installed locally.)_
