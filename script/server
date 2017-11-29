@@ -12,9 +12,9 @@ if [ -z "$1" ]
 then
   echo "ProTip: You can use \`script/server <number>\` to skip this step."
   echo "1: Standard GitHub for Developers (GH4D)"
-  echo "2: GH4D + Circle CI"
+  echo "2: GH4D + CircleCI"
   echo "3: GH4D + Travis CI"
-  echo "4: Circle CI only"
+  echo "4: CircleCI only"
   echo "5: Travis CI only"
   echo "Which manual would you like to build? You can enter more than one number."
   read option
