@@ -1,5 +1,5 @@
 ## Welcome to GitHub for Developers
-> Note: This version of the manual is newer, and contains activities from our new curriculum. You can find the [legacy version of our training manual here](https://githubtraining.github.io/training-manual/legacy-manual.html).
+> Note: This version of the manual is newer, and contains activities from our new curriculum. You can find the [legacy version of our training manual here](https://githubtraining.github.io/training-manual/legacy-manual.pdf).
 
 You can download a PDF version of this manual [here](https://githubtraining.github.io/training-manual/GH4D.pdf).
 
