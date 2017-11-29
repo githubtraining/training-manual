@@ -2,7 +2,6 @@
 
 Before we can begin using our Continuous Integration solution, we need to add the `.yml` file and some tests that we already created for our project.
 
-1. Look at the list of remote tracking branches: `git branch --all`.
 1. Depending on which CI/CD service you are using, create a pull request into `base: master` from the appropriate branch, named `<service>-tests`.
 1. **DO NOT** Merge the pull request.
 
