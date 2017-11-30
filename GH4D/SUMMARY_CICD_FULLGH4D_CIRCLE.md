@@ -34,7 +34,7 @@
 ## Project 4: Adding More Tests
   * [Change The `.yml` file](34_change_yml.md)
   * [Understanding the `.yml` file](35_understanding_yml.md)
-  * [Circle CI](35_circleCI.md)
+  * [CircleCI](35_circleCI.md)
   * [Partner Activity](37_partner_activity.md)
 
 ## Project 5: Local Repository
