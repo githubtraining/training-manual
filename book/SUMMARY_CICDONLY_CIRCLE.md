@@ -23,6 +23,7 @@
   * [What is CI/CD?](30_whats_ci.md)
   * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Merging Tests and the `.yml` file](31_merging_tests.md)
+  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
