@@ -24,6 +24,7 @@
   * [Setting up CI/CD](32_setting_up_cicd.md)
   * [Merging Tests and the `.yml` file](31_merging_tests.md)
   * [Interacting with CI/CD](33_interacting_cicd.md)
+  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
