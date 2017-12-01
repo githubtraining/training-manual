@@ -48,7 +48,7 @@ function duplicaterepo () {
 
   echo "Clone $reponame template from githubtraining org..."
   rm -rf $reponame
-  git clone --bare https://$ROOT_URL/githubtraining/$reponame $reponame
+  git clone --bare https://github.com/githubtraining/$reponame $reponame
 
   echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
   pushd $reponame

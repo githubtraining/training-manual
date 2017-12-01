@@ -27,7 +27,7 @@ function getnames () {
     exit
   fi
   #grab template repo
-  git clone --bare https://$ROOT_URL/githubtraining/github-games game-template
+  git clone --bare https://github.com/githubtraining/github-games game-template
   pushd game-template
   collabs=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login')
   ownersArray=( "${ownersArray[@]/"$teacher"}" )
