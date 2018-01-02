@@ -1,4 +1,4 @@
-## Edit a File
+## Create a File
 
 1. In the repository's **Code** tab, navigate to the `hometown` folder.
 1. While in the `hometown` folder, click **Create new file**.
