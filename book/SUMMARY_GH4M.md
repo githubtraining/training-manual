@@ -4,11 +4,13 @@
   * [Prerequisites](managers/01_prereqs.md)
   * [The Modern Software Organization](managers/02_collaboration.md)  
   * [Key Questions](managers/02_key_questions.md)
-  * [Core Concepts of Version Control](managers/02_getting_started.md)
   * [Join our Class Repository](managers/04_joinrepo.md)
+  * [Core Concepts of Version Control](managers/02_getting_started.md)
+
 
 ## GitHub Flow
   * [GitHub Flow](03_github_flow.md)
+  * [Creating an Issue](managers/06_issue.md)
   * [Creating a Branch](managers/07_branch.md)
   * [Making Changes](managers/08_edit_file.md)
   * [Opening a Pull Request](managers/09_pull_request.md)
