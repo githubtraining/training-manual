@@ -1,6 +1,8 @@
 ## Prerequisites
 
-_Welcome! :wave: This is the source repository for the GitHub for Managers Universe Workshop. Be sure to follow the prerequisite(s) below before coming to the workshop to get started!_
+Welcome! This one-day class leads participants through common situations with GitHub, graphical clients, and file versioning. Participants will learn how to use version control without touching the command line and discover solutions in working with a variety workflows, tools, and user perspectives.
+
+Be sure to follow the prerequisite(s) below before coming to the workshop to get started.
 
 - :point_right: **GitHub Account.** If you don't already have an account with GitHub, sign up and create a new account at https://github.com/join before the workshop.
 - :point_right: **Heroku Account.** If you don't already have an account with Heroku, sign up and create a new account at https://signup.heroku.com/login before the workshop.
