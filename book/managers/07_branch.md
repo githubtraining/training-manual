@@ -1,1 +1,3 @@
-Create a branch. 
+## Branches
+
+Create a branch

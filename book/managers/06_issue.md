@@ -1,4 +1,4 @@
-# Create an Issue
+## Create an Issue
 
 Let's create a tracking Issue to record our first item of work, which will be to create a file with your name.
 

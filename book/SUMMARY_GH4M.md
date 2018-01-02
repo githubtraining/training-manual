@@ -2,13 +2,13 @@
 
 ## Getting Started
   * [Prerequisites](managers/01_prereqs.md)
-  * [Core Concepts](managers/02_concepts.md)
+  * [Core Concepts](managers/02_getting_started.md)
+  * [Key Questions](managers/02_key_questions.md)
   * [Administrative Settings](managers/03_admin.md)
   * [Join our Class Repository](managers/04_joinrepo.md)
 
 ## GitHub Flow
-  * [GitHub Flow](managers/05_github_flow.md)
-  * [Creating an Issue](managers/06_issue.md)
+  * [GitHub Flow](03_github_flow.md)
   * [Creating a Branch](managers/07_branch.md)
   * [Making Changes](managers/08_edit_file.md)
   * [Opening a Pull Request](managers/09_pull_request.md)
