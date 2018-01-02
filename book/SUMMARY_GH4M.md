@@ -2,9 +2,9 @@
 
 ## Getting Started
   * [Prerequisites](managers/01_prereqs.md)
-  * [Core Concepts](managers/02_getting_started.md)
+  * [The Modern Software Organization](managers/02_collaboration.md)  
   * [Key Questions](managers/02_key_questions.md)
-  * [Administrative Settings](managers/03_admin.md)
+  * [Core Concepts of Version Control](managers/02_getting_started.md)
   * [Join our Class Repository](managers/04_joinrepo.md)
 
 ## GitHub Flow
@@ -18,6 +18,7 @@
 ## Pipeline
   * [What is a Pipeline?](managers/12_pipeline.md)
   * [Create a Fork](managers/13_create_fork.md)
+  * [Administrative Settings](managers/03_admin.md)
 
 ## Setup CI & CD
   * [What is CI?](managers/14_whats_ci.md)
