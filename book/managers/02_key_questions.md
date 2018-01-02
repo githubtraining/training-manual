@@ -1,4 +1,6 @@
-## Starting Questions
+## Key Questions
+
+As we work together, we'll discuss the following questions as a group.
 
 - What is your name, team, and the types of software systems you are managing? (e.g.  embedded software, business systems, developer operations, SaaS, etc)
 - Would you agree that software is essential to your business? Why?
