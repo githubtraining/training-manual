@@ -7,4 +7,4 @@ _Welcome! :wave: This is the source repository for the GitHub for Managers Unive
 - :point_right: **CircleCI Account.** If you don't already have an account with CircleCI, sign up and create a new account at https://circleci.com/ before the workshop.
 - :point_right: **Internet Access**.
 - :point_right: [Your favorite browser](https://help.github.com/articles/supported-browsers/), but it has to be one of the following: [Chrome](https://www.google.com/chrome/), [Firefox](http://www.mozilla.org/firefox/), [Safari](http://www.apple.com/safari/), [Microsoft Edge](http://www.browserfordoing.com/) or [Internet Explorer 11](http://ie.microsoft.com/).
-- :point_right: Log in to both **GitHub** and **Heroku** just before the workshop begins!
+- :point_right: Log in to both **GitHub** and **Heroku** just before the workshop begins.

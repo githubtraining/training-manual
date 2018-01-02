@@ -1,4 +1,4 @@
-## Getting Started With Collaboration
+## Git and GitHub
 
 We will start by introducing you to Git, GitHub, and the collaboration features we will use throughout the class. Even if you have used GitHub in the past, we hope this information will provide a baseline understanding of how to use it to build better software!
 
@@ -16,14 +16,6 @@ In addition to being a place to host and share your Git projects, GitHub provide
 * Organizations and Teams
 
 ![GitHub Collaboration Features](img/collaboration-features.png)
-
-### The GitHub Ecosystem
-
-Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations.
-
-![The GitHub Integrations Directory](img/github-ecosystem.png)
-
-You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.
 
 ### What is Git?
 
