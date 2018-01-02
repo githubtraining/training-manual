@@ -1,0 +1,1 @@
+1. Check out the new Webhook created in your GitHub repository. Go to the repository's **Settings** tab, then select **Webhooks** to see that it was automatically created when you authorized it. [:camera:](https://github.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.030.jpeg)

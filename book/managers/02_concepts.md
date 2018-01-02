@@ -17,5 +17,3 @@ Let's spend a brief moment going over some terminology. Links are provided to le
     - [Project Boards](https://help.github.com/articles/about-project-boards/)
     - [Templates](https://github.com/blog/2111-issue-and-pull-request-templates)
 - [Integrations](https://github.com/features/integrations) and the [GitHub Marketplace](https://github.com/marketplace) :sparkles:
-
-Every repository contains [administrative settings](https://help.github.com/categories/administering-a-repository/) for you to manage your project effectively, including (but not limited to) visibility, collaboration and quality checking. Check out each of the settings to learn how you can find tune your environment.
