@@ -1,3 +1,3 @@
 ## Join our Class Repository
 
-Find our repository, and comment on an issue to be added as a collaborator.
+We will start out working in one class repository. To be added as a **collaborator**, please find issue #1 and leave a comment. 
