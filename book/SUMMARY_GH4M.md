@@ -23,10 +23,9 @@
   * [Administrative Settings](managers/03_admin.md)
 
 ## Setup CI & CD
-  * [What is CI?](managers/14_whats_ci.md)
-  * [Set up CI](managers/15_set_up_ci.md)
-  * [What is CD?](managers/16_whats_cd.md)
-  * [Set up CD](managers/17_set_up_cd.md)
+  * [What are CI and CD?](30_whats_ci.md)
+  * [Configure CI](managers/15_set_up_ci.md)
+  * [Configure CD](managers/17_set_up_cd.md)
   * [Check Webhooks](managers/18_webhooks.md)
 
 ## End to End Test
