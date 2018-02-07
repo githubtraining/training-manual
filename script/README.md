@@ -39,7 +39,9 @@ This script is used to run an entire class and is comprised of some of the scrip
 
 **Usage:** `script/teach-class`
 
-> Note: The first time you execute `script/teach-class`, choose option `**0**` to configure the script within your organization.
+> Note: 
+> This requires [jq](https://stedolan.github.io/jq/) to be installed. Installation instructions are provided [here](https://github.com/stedolan/jq/wiki/Installation). The first time you execute `script/teach-class`, choose option `**0**` to configure the script within your organization.
+
 
 ### script/new-virtual
 
