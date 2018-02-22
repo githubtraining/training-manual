@@ -60,7 +60,7 @@ A repository contains all of the project files (including documentation), and st
 
 ### User Accounts vs. Organization Accounts
 
-There are two account types in GitHub, user accounts and organization accounts. While there are many differences in these account types, on of the more notable differences is how you handle permissions.
+There are two account types in GitHub, user accounts and organization accounts. While there are many differences in these account types, one of the more notable differences is how you handle permissions.
 
 #### User Accounts
 When you signed up for GitHub, you were automatically given a user account. Permissions for a user account are simple, you add people as collaborators to specific repositories to give them full read-write access to the project.
@@ -86,8 +86,8 @@ Graphs provide a more granular view into the repository activity, including who 
 The README.md is a special file that we recommend all repositories contain. GitHub looks for this file and helpfully displays it below the repository. The README should explain the project and point readers to helpful information within the project.
 #### CONTRIBUTING.md
 The CONTRIBUTING.md is another special file that is used to describe the process for collaborating on the repository. The link to the CONTRIBUTING.md file is shown when a user attempts to create a new issue or pull request.
-#### ISSUE_TEMPLATE.md
-The ISSUE_TEMPLATE.md (and its twin the pull request template) are used to generate templated starter text for your project issues. Any time someone opens an issue, the content in the template will be pre-populated in the issue body.
+#### ISSUE_TEMPLATE.md and PULL_REQUEST_TEMPLATE
+The ISSUE_TEMPLATE.md and the PULL_REQUEST_TEMPLATE.md are used to generate templated starter text for your project issues and pull requests. Any time someone opens an issue or pull request, the content in the template will be pre-populated in the body of the issue or pull request.
 
 
 ### Using GitHub Issues
