@@ -4,7 +4,6 @@
   * [Goals](managers/01_goals.md)
   * [Prerequisites](managers/01_prereqs.md)
   * [The Modern Software Organization](managers/02_collaboration.md)  
-  * [Key Questions](managers/02_key_questions.md)
   * [Join our Class Repository](managers/04_joinrepo.md)
   * [Core Concepts of Version Control](managers/02_getting_started.md)
 
@@ -16,6 +15,7 @@
   * [Making Changes](managers/08_edit_file.md)
   * [Opening a Pull Request](managers/09_pull_request.md)
   * [Collaborating on Pull Requests](managers/10_collaborate.md)
+  * [Collaboration Questions](managers/10_collaboration_questions.md)
   * [Merging Pull Requests](managers/11_merge_pr.md)
 
 ## Pipeline

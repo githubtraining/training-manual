@@ -22,9 +22,15 @@ All of the code is there, but it's a pain to manually deploy. We want anything t
 We want automatic deploys to production from master, but more importantly, we want a deployment pipeline. We want review apps to be spun up automatically from each pull request, so we can immediately get review from everyone. Then, once it's merged into the `development` branch, we want it to automatically go to the development server, and when it's in `master`, to go to production.
 
 
-### Tooling
+### Key Questions
+- How many organization accounts should you have? How many do you have?
+- How do you decide when to create a new repository?
+- Do you have examples of the types of repositories you have?
+- What tooling would you use outside of GitHub?
+- What GitHub features would you want to heavily utilize?
+- What administrative settings could be arranged to be helpful?
 
-What tooling would you use outside of GitHub? What GitHub features would you want to heavily utilize? What administrative settings could be arranged to be helpful?
+#### Tooling
 
 - GitHub Pages
 - Git Flow vs GitHub Flow
