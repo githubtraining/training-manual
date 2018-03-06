@@ -1,6 +1,7 @@
 # Summary
 
 ## Getting Started
+  * [Goals](managers/01_goals.md)
   * [Prerequisites](managers/01_prereqs.md)
   * [The Modern Software Organization](managers/02_collaboration.md)  
   * [Key Questions](managers/02_key_questions.md)
