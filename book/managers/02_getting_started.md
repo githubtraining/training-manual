@@ -1,6 +1,6 @@
 ## Git and GitHub
 
-We will start by introducing you to Git, GitHub, and the collaboration features we will use throughout the class. Even if you have used GitHub in the past, we hope this information will provide a baseline understanding of how to use it to build better software!
+We will start by introducing you to Git, GitHub, and the collaboration features you will use to get things done. Even if you have used GitHub in the past, we hope this information will provide a better understanding of how to implement Git and GitHub within your organization or team to build better software together.
 
 ### What is GitHub?
 
