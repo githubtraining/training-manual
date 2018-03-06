@@ -10,4 +10,4 @@ Be sure to follow the prerequisite(s) below before coming to the workshop to get
 - :point_right: **Internet Access**.
 - :point_right: [Your favorite browser](https://help.github.com/articles/supported-browsers/), but it has to be one of the following: [Chrome](https://www.google.com/chrome/), [Firefox](http://www.mozilla.org/firefox/), [Safari](http://www.apple.com/safari/), [Microsoft Edge](http://www.browserfordoing.com/) or [Internet Explorer 11](http://ie.microsoft.com/).
 - :point_right: Log in to both **GitHub** and **Heroku** just before the workshop begins.
-- :point_right: Download and install [GitHub Desktop](TODO: URL)
+- :point_right: Download and install [GitHub Desktop](TODO: URL).
