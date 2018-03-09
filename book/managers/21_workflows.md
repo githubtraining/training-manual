@@ -1,10 +1,10 @@
 ## Designing and Guiding Workflows
 
-Developers should know how to use Git and GitHub on a day to day basis. However, before any team gets started, it's critical to have a defined workflow.
+Developers should know how to use Git and GitHub on a day to day basis. However, before any team gets started, it's critical to have a defined workflow. Later, we'll shape our own workflows as practice.
 
 ### Scenarios
 
-Consider the following scenarios, and how you might create a workflow and choose tools to set the team up for success.
+Before we map out our own new ideas or problems with workflows, let's take a look at some existing workflow challenges. Consider the following scenarios and how you might create a workflow and choose tools to set the team up for success.
 
 #### Project 1: Tests and Releases
 We have our code set up and we want to have the tests automated. The tests are already existent in the file that is native, so a Circle file wouldn't be necessary. We want all tests to be passed before any branch is merged.  We don't have anything to deploy at this point in time, but we do want to have a recommended strategy for creating releases and how we will use release branches. We need to communicate these strategies to the team.
@@ -20,24 +20,3 @@ All of the code is there, but it's a pain to manually deploy. We want anything t
 
 #### Project 5: More complex deployment pipeline
 We want automatic deploys to production from master, but more importantly, we want a deployment pipeline. We want review apps to be spun up automatically from each pull request, so we can immediately get review from everyone. Then, once it's merged into the `development` branch, we want it to automatically go to the development server, and when it's in `master`, to go to production.
-
-
-### Key Questions
-- How many organization accounts should you have? How many do you have?
-- How do you decide when to create a new repository?
-- Do you have examples of the types of repositories you have?
-- What tooling would you use outside of GitHub?
-- What GitHub features would you want to heavily utilize?
-- What administrative settings could be arranged to be helpful?
-
-#### Tooling
-
-- GitHub Pages
-- Git Flow vs GitHub Flow
-- Choosing tools in the development pipeline
-- Project Boards &  Milestones
-- Templates
-- Avoiding context changing
-- Using Pulse and Graphs
-- Protected branches
-- Avoiding duplicated code and work
