@@ -2,7 +2,9 @@
 
 For the next exercises, navigate to the class repository. To be added as a **collaborator**, please find issue #1 and leave a comment.
 
-In the meantime, while you're navigating...
+---
+
+####In the meantime, while you're navigating...
 
 What's your name?
 
