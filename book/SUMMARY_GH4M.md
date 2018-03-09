@@ -33,6 +33,10 @@
   * [GitHub Flow in the Fork](managers/19_github_flow_fork.md)
   * [Interacting with Integrations](managers/20_integrations.md)
 
+## Connecting the Dots
+  * [Reviewing the pipeline](managers/20_review_pipeline.md)
+  * [Technical Possibilities](managers/19_technical_possibilities.md)
+
 ## Real World Work
   * [Workflows](managers/21_workflows.md)
   * [Team Activity](managers/22_team_activity.md)
