@@ -12,5 +12,3 @@ These three smaller goals all fit together to accomplish a much larger and more 
 ### What tools do you use?
 
 What tools are already in use in your organization? What tools have been used in the past, or may be used in the future? GitHub provides a centralized "Hub" where all of these tools can be connected so developers can see all of the important puzzle pieces connected where they're working.
-
-TODO: Intructions for whiteboarding session? Have participants write out lists of tools or raise their hands or something? Draw on the board and try to connect how they work, or could work? Draw similarities between tools and also differences?
