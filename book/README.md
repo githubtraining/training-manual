@@ -1,9 +1,5 @@
 ## Welcome to GitHub
 
-> Note: This version of the manual is newer, and contains activities from our new curriculum. You can find the [legacy version of our training manual here](https://githubtraining.github.io/training-manual/legacy-manual.pdf).
-
-You can download a PDF version of this manual [here](https://githubtraining.github.io/training-manual/GH4D.pdf).
-
 Today you will embark on an exciting new adventure: learning how to use Git and GitHub.
 
 As we move through today's materials, please keep in mind: this class is for you! Be sure to follow along, try the activities, and ask lots of questions!
