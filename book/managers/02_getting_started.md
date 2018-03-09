@@ -2,16 +2,6 @@
 
 We will start by introducing you to Git, GitHub, and the collaboration features you will use to get things done. Even if you have used GitHub in the past, this information will provide a better understanding of how to implement Git and GitHub within your organization or team to build better software together.
 
-### Who's in the room?
-
-What's your name, what team do you work on, and what types of software systems are you managing (e.g.  embedded software, business systems, developer operations, SaaS, etc)?
-
-### More questions!
-
-How do you use GitHub now?
-
-How do you want to improve on that by the time this course is over?
-
 ### What is GitHub?
 
 GitHub is a collaboration platform built on top of a distributed version control system called Git.
