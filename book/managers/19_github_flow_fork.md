@@ -1,4 +1,4 @@
-# End-to-End Test
+## End-to-End Test
 
 Now we have CI/CD setup for our app. Let's try it out!
 

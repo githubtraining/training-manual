@@ -4,7 +4,7 @@ For the next exercises, navigate to the class repository. To be added as a **col
 
 ---
 
-####In the meantime, while you're navigating...
+#### In the meantime, while you're navigating...
 
 What's your name?
 
