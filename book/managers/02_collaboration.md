@@ -8,8 +8,6 @@ Whether you're aware of it or not, source code management impacts your business.
 
 ### The GitHub Ecosystem
 
-Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations. Find even more tools at https://github.com/works-with. 
+Rather than force you into a "one size fits all" ecosystem, GitHub strives to be a place of reliability and discovery, bringing all of your favorite tools together alongside exciting new prospects. For more information on integrations, check out https://github.com/integrations. Find even more tools at https://github.com/works-with.
 
 ![The GitHub Integrations Directory](../img/github-ecosystem.png)
-
-You may even find some new, indispensable tools to help with continuous integration, dependency management, code quality and much more.
