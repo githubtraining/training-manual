@@ -1,3 +1,4 @@
+version: 1
 machine:
   ruby:
     version: 2.3.1
