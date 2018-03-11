@@ -19,11 +19,14 @@ mv fullCICDTravis.pdf fullCICDTravistemp.pdf
 mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
 mv fullCICDCircle.pdf fullCICDCircletemp.pdf
 mv GH4D.pdf GH4Dtemp.pdf
+mv GH4M.pdf GH4Mtemp.pdf
 mv fullcicdtravis/ fullcicdtravistemp/
 mv onlycicdtravis/ onlycicdtravistemp/
 mv fullcicdcircle/ fullcicdcircletemp/
 mv onlycicdcircle/ onlycicdcircletemp/
 mv GH4D/ GH4Dtemp/
+mv GH4M/ GH4Mtemp/
+
 
 git checkout gh-pages --force
 git pull origin gh-pages --rebase
@@ -37,21 +40,25 @@ rm -rf onlyCICDCircle.pdf
 rm -rf fullCICDTravis.pdf
 rm -rf fullCICDCircle.pdf
 rm -rf GH4D.pdf
+rm -rf GH4M.pdf
 rm -rf fullcicdtravis/
 rm -rf onlycicdtravis/
 rm -rf fullcicdcircle/
 rm -rf onlycicdcircle/
 rm -rf GH4D/
+rm -rf GH4M/
 mv onlyCICDCircletemp.pdf onlyCICDCircle.pdf
 mv fullCICDCircletemp.pdf fullCICDCircle.pdf
 mv onlyCICDTravistemp.pdf onlyCICDTravis.pdf
 mv fullCICDTravistemp.pdf fullCICDTravis.pdf
 mv GH4Dtemp.pdf GH4D.pdf
+mv GH4Mtemp.pdf GH4M.pdf
 mv onlycicdtravistemp/ onlycicdtravis/
 mv fullcicdtravistemp/ fullcicdtravis/
 mv onlycicdcircletemp/ onlycicdcircle/
 mv fullcicdcircletemp/ fullcicdcircle/
 mv GH4Dtemp/ GH4D/
+mv GH4Mtemp/ GH4M/
 
 git add .
 git commit -m "update book [ci skip]"

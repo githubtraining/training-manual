@@ -75,5 +75,19 @@ mv _book/ onlycicdcircle/
 
 mv book/SUMMARY.md book/SUMMARY_CICDONLY_CIRCLE.md
 
+# create new GitHub for Managers manual
+mv book/SUMMARY_GH4M.md book/SUMMARY.md
+
+echo "==> Building book"
+gitbook build
+
+
+echo "==> Generating PDF"
+gitbook pdf . GH4M.pdf
+
+mv _book/ GH4M/
+
+mv book/SUMMARY.md book/SUMMARY_GH4M.md
+
 
 #bundle exec jekyll serve
