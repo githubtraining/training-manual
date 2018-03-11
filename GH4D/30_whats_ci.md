@@ -22,8 +22,8 @@ Continuous Integration and Continuous Deployment tools take manual tasks and do 
 - **CD**: Continuous deployment
   - Code pushed to deployment automatically based on custom circumstances
   - Continuous Deployment is the practice of continuously deploying to production servers. In conjunction with CI, companies can move to a CD model by giving developers the freedom to deploy several times a day upon successful builds. Merging in and of itself isn't considered CD, unless it's tied to some deployment strategy (ex: Heroku automatically deploy anything that gets merged into master).
-- We will cover more CI than CD in this course.
-  - Though the concepts are different, CI and CD are frequently discussed and implemented together.
+  - How do you deploy before merge? This can help us perform a better code review, and we can see our actual application deployment before merging to `master`.
+- Though the concepts are different, CI and CD are frequently discussed and implemented together.
   - Typically CI and CD are implemented at the same time because many of the tasks are already defined. For example, a project may already have the tests written, and the steps for deployment. Once a CI/CD tool is introduced, it's simple to have them be done together.
 
 ![CD](img/cd.png)

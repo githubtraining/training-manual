@@ -1,0 +1,688 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>What are CI and CD? · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="managers/15_set_up_ci.html" />
+    
+    
+    <link rel="prev" href="managers/03_admin.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Getting Started</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="managers/01_goals.html">
+            
+                <a href="managers/01_goals.html">
+            
+                    
+                    Goals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="managers/01_prereqs.html">
+            
+                <a href="managers/01_prereqs.html">
+            
+                    
+                    Prerequisites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="managers/02_collaboration.html">
+            
+                <a href="managers/02_collaboration.html">
+            
+                    
+                    The Modern Software Organization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="managers/04_joinrepo.html">
+            
+                <a href="managers/04_joinrepo.html">
+            
+                    
+                    Join our Class Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="managers/02_getting_started.html">
+            
+                <a href="managers/02_getting_started.html">
+            
+                    
+                    Core Concepts of Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">GitHub Flow</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="03_github_flow.html">
+            
+                <a href="03_github_flow.html">
+            
+                    
+                    GitHub Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="managers/06_issue.html">
+            
+                <a href="managers/06_issue.html">
+            
+                    
+                    Creating an Issue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="managers/07_branch.html">
+            
+                <a href="managers/07_branch.html">
+            
+                    
+                    Creating a Branch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="managers/08_edit_file.html">
+            
+                <a href="managers/08_edit_file.html">
+            
+                    
+                    Making Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="managers/09_pull_request.html">
+            
+                <a href="managers/09_pull_request.html">
+            
+                    
+                    Opening a Pull Request
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="managers/10_collaborate.html">
+            
+                <a href="managers/10_collaborate.html">
+            
+                    
+                    Collaborating on Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="managers/10_collaboration_questions.html">
+            
+                <a href="managers/10_collaboration_questions.html">
+            
+                    
+                    Collaboration Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="managers/11_merge_pr.html">
+            
+                <a href="managers/11_merge_pr.html">
+            
+                    
+                    Merging Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pipeline</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="managers/12_pipeline.html">
+            
+                <a href="managers/12_pipeline.html">
+            
+                    
+                    What is a Pipeline?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="managers/13_create_fork.html">
+            
+                <a href="managers/13_create_fork.html">
+            
+                    
+                    Create a Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="managers/03_admin.html">
+            
+                <a href="managers/03_admin.html">
+            
+                    
+                    Administrative Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Setup CI & CD</li>
+        
+        
+    
+        <li class="chapter active" data-level="4.1" data-path="30_whats_ci.html">
+            
+                <a href="30_whats_ci.html">
+            
+                    
+                    What are CI and CD?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="managers/15_set_up_ci.html">
+            
+                <a href="managers/15_set_up_ci.html">
+            
+                    
+                    Configure CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="managers/17_set_up_cd.html">
+            
+                <a href="managers/17_set_up_cd.html">
+            
+                    
+                    Configure CD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="managers/18_webhooks.html">
+            
+                <a href="managers/18_webhooks.html">
+            
+                    
+                    Check Webhooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">End to End Test</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="managers/19_github_flow_fork.html">
+            
+                <a href="managers/19_github_flow_fork.html">
+            
+                    
+                    GitHub Flow in the Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="managers/20_integrations.html">
+            
+                <a href="managers/20_integrations.html">
+            
+                    
+                    Interacting with Integrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Connecting the Dots</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="managers/20_review_pipeline.html">
+            
+                <a href="managers/20_review_pipeline.html">
+            
+                    
+                    Reviewing the pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="managers/19_technical_possibilities.html">
+            
+                <a href="managers/19_technical_possibilities.html">
+            
+                    
+                    Technical Possibilities
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Real World Work</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="managers/21_workflows.html">
+            
+                <a href="managers/21_workflows.html">
+            
+                    
+                    Workflows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="managers/22_team_activity.html">
+            
+                <a href="managers/22_team_activity.html">
+            
+                    
+                    Team Activity
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Appendix</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="managers/23_more_resources.html">
+            
+                <a href="managers/23_more_resources.html">
+            
+                    
+                    More Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >What are CI and CD?</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="what-is-cicd"><a name="what-is-cicd" class="plugin-anchor" href="#what-is-cicd"><i class="fa fa-link" aria-hidden="true"></i></a>What is CI/CD?</h2>
+<p>Continuous Integration and Continuous Deployment tools take manual tasks and do them automatically.</p>
+<h4 id="why-run-tests-why-use-ci"><a name="why-run-tests-why-use-ci" class="plugin-anchor" href="#why-run-tests-why-use-ci"><i class="fa fa-link" aria-hidden="true"></i></a>Why run tests? Why use CI?</h4>
+<ul>
+<li>Test code automatically</li>
+<li>Add structure to development process</li>
+<li>Test driven development (TDD) isn&apos;t just the addition of random tests, but rather about building tests as software requirements</li>
+<li>Builds are done on separate servers by the CI services</li>
+<li>Other benefits include consistent configurations, battery of tests, reduces &quot;works on my machine&quot;</li>
+</ul>
+<h4 id="how-does-cicd-work-with-github"><a name="how-does-cicd-work-with-github" class="plugin-anchor" href="#how-does-cicd-work-with-github"><i class="fa fa-link" aria-hidden="true"></i></a>How does CI/CD work with GitHub?</h4>
+<ul>
+<li>When used with GitHub, tests can be run automatically on branches and pull requests every time there is a new commit, and return a status through GitHub&apos;s API</li>
+<li>Tests are run in consistent environment based on your software&apos;s production environment</li>
+<li>Protected Branches can serve as a gate, keeping pull requests without passing tests from being merged</li>
+</ul>
+<p><img src="img/ci.png" alt="CI"></p>
+<h4 id="what-is-the-difference-between-ci-and-cd"><a name="what-is-the-difference-between-ci-and-cd" class="plugin-anchor" href="#what-is-the-difference-between-ci-and-cd"><i class="fa fa-link" aria-hidden="true"></i></a>What is the difference between CI and CD?</h4>
+<ul>
+<li><strong>CI</strong>: Continuous integration<ul>
+<li>Continuous Integration is the practice of automatically kicking off tests with each push, rather than ad-hoc testing.</li>
+</ul>
+</li>
+<li><strong>CD</strong>: Continuous deployment<ul>
+<li>Code pushed to deployment automatically based on custom circumstances</li>
+<li>Continuous Deployment is the practice of continuously deploying to production servers. In conjunction with CI, companies can move to a CD model by giving developers the freedom to deploy several times a day upon successful builds. Merging in and of itself isn&apos;t considered CD, unless it&apos;s tied to some deployment strategy (ex: Heroku automatically deploy anything that gets merged into master).</li>
+<li>How do you deploy before merge? This can help us perform a better code review, and we can see our actual application deployment before merging to <code>master</code>.</li>
+</ul>
+</li>
+<li>Though the concepts are different, CI and CD are frequently discussed and implemented together.<ul>
+<li>Typically CI and CD are implemented at the same time because many of the tasks are already defined. For example, a project may already have the tests written, and the steps for deployment. Once a CI/CD tool is introduced, it&apos;s simple to have them be done together.</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/cd.png" alt="CD"></p>
+<h4 id="other-things-to-think-about"><a name="other-things-to-think-about" class="plugin-anchor" href="#other-things-to-think-about"><i class="fa fa-link" aria-hidden="true"></i></a>Other Things to Think About</h4>
+<ul>
+<li>Protected branches<ul>
+<li>On GitHub, you may want to set up protected branches when you set up CI/CD.</li>
+<li>Protected branches block code from being merged in to the master branch on the remote before it passes a set of configurable requirements, like passing CI/CD tests and builds, or having approved reviews.</li>
+</ul>
+</li>
+<li>Automatic deploys<ul>
+<li>With CI/CD, you can also set up deploys to happen automatically when code passes the tests on the master branch.</li>
+<li>Much like many integrations work with GitHub, many deployment options work with CI/CD services.</li>
+<li>One example is Heroku. You could configure a project on Heroku with a CI/CD service, and whenever a build passes on the master branch, deployment to Heroku would be streamlined and taken care of automatically.</li>
+</ul>
+</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="managers/03_admin.html" class="navigation navigation-prev " aria-label="Previous page: Administrative Settings">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="managers/15_set_up_ci.html" class="navigation navigation-next " aria-label="Next page: Configure CI">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"What are CI and CD?","level":"4.1","depth":1,"next":{"title":"Configure CI","level":"4.2","depth":1,"path":"managers/15_set_up_ci.md","ref":"managers/15_set_up_ci.md","articles":[]},"previous":{"title":"Administrative Settings","level":"3.3","depth":1,"path":"managers/03_admin.md","ref":"managers/03_admin.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"30_whats_ci.md","mtime":"2018-03-11T16:15:28.876Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-11T16:22:50.053Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
