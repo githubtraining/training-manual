@@ -11,12 +11,14 @@
 ## GitHub Flow
   * [GitHub Flow](03_github_flow.md)
   * [Creating an Issue](managers/06_issue.md)
+  * [Projects](managers/06_projects.md)
   * [Creating a Branch](managers/07_branch.md)
   * [Making Changes](managers/08_edit_file.md)
   * [Opening a Pull Request](managers/09_pull_request.md)
   * [Collaborating on Pull Requests](managers/10_collaborate.md)
   * [Collaboration Questions](managers/10_collaboration_questions.md)
   * [Merging Pull Requests](managers/11_merge_pr.md)
+  * [Add Documentation to your Project](managers/24-add-ghpages.md)
 
 ## Pipeline
   * [What is a Pipeline?](managers/12_pipeline.md)

@@ -25,7 +25,8 @@ Let's take a look at how you can merge the pull request.
 1. Scroll to the bottom of the Pull Request and click the *Merge pull request* button
 1. Click *Confirm merge*
 1. Click *Delete branch*
-1. Click *Issues* and confirm your original issue has been closed
+1. Click *Issues* and confirm your original issue has been closed.
+1. Navigate to the Project board and confirm that your pull request and issue have been moved to the *Done* column.
 
 > GitHub offers three different merge strategies for Pull Requests:
 - **Create a merge commit:** This is the traditional option that will perform a standard recursive merge. A new commit will be added that shows the point when the two branches were merged together.
