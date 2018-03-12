@@ -11,6 +11,7 @@
 ## GitHub Flow
   * [GitHub Flow](03_github_flow.md)
   * [Creating an Issue](managers/06_issue.md)
+  * [Projects](managers/06_projects.md)
   * [Creating a Branch](managers/07_branch.md)
   * [Making Changes](managers/08_edit_file.md)
   * [Opening a Pull Request](managers/09_pull_request.md)

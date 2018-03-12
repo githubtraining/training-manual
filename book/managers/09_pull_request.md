@@ -15,4 +15,4 @@ There are many important traceability and tracking aspects with Issues and Pull 
 
   ![image of project](https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.015.jpeg)
 1. Add your pull request to the **Recommendations** Project board.
-1. Navigate back to the Project board, and add your pull request from triaging to **In Progress**. 
+1. Navigate back to the Project board, and add your pull request from triaging to **In Progress**.
