@@ -17,7 +17,6 @@
   * [Collaborating on Pull Requests](managers/10_collaborate.md)
   * [Collaboration Questions](managers/10_collaboration_questions.md)
   * [Merging Pull Requests](managers/11_merge_pr.md)
-  * [Add Documentation to your Project](managers/24-add-ghpages.md)
 
 ## Pipeline
   * [What is a Pipeline?](managers/12_pipeline.md)
