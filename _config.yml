@@ -1,0 +1,33 @@
+
+title: GitHub Training Manual
+email: services@github.com
+description: The official manual for the GitHub Training team.
+baseurl: "/training-manual" # the subpath of your site, e.g. /blog
+url: "https://githubtraining.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: githubtraining
+github_username:  github
+github_repo: training-manual
+logo: /img/logo-copy.png
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "docs"
+
+# Build settings
+markdown: kramdown
+kramdown:
+  parse_block_html: true
+
+gems:
+  - jekyll-feed
+  - jekyll-octicons
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - github_for_developers.md
+  - book
