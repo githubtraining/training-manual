@@ -1,0 +1,32 @@
+version: 2.0
+
+jobs:
+  build:
+    working_directory: ~/training-manual
+    docker:
+      - image: circleci/ruby:2.3.1-node
+    steps:
+      - checkout
+      - script/setup
+      - sudo aptitude -y install calibre
+      - restore_cache:
+        keys:
+          - dependency-cache-{{ checksum "package.json" }}
+          - dependency-cache-{{ checksum "Gemfile.lock" }}
+          - dependency-cache-
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - save_cache:
+          key: dependency-cache-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+            - ./vendor/gems
+            - ./.bundle
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
