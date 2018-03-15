@@ -1,72 +1,80 @@
 #!/bin/bash
 
-# script/server: produce jekyll site of the manual
+# script/deploy: Push the books to the gh-pages branch
 
 set -e
 
 cd "$(dirname "$0")/.."
 
-remote=$(git config remote.origin.url)
+# Set email and username
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
-#git init
-#git remote add --fetch origin "$remote"
 
-rm -rf vendor
-rm .ruby-version
-mv onlyCICDTravis.pdf onlyCICDTravistemp.pdf
-mv fullCICDTravis.pdf fullCICDTravistemp.pdf
-mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
-mv fullCICDCircle.pdf fullCICDCircletemp.pdf
-mv GH4D.pdf GH4Dtemp.pdf
-mv GH4M.pdf GH4Mtemp.pdf
-mv fullcicdtravis/ fullcicdtravistemp/
-mv onlycicdtravis/ onlycicdtravistemp/
-mv fullcicdcircle/ fullcicdcircletemp/
-mv onlycicdcircle/ onlycicdcircletemp/
-mv GH4D/ GH4Dtemp/
-mv GH4M/ GH4Mtemp/
+# Move all PDFs to /tmp
+mv ./fullcicdtravis.pdf /tmp/
+mv ./onlycicdtravis.pdf /tmp/
+mv ./fullcicdcircle.pdf /tmp/
+mv ./onlycicdcircle.pdf /tmp/
+mv ./GH4D.pdf /tmp/
+mv ./GH4M.pdf /tmp/
 
+# Move all books to /tmp
+mv ./fullcicdtravis/ /tmp/fullcicdtravis/
+mv ./onlycicdtravis/ /tmp/onlycicdtravis/
+mv ./fullcicdcircle/ /tmp/fullcicdcircle/
+mv ./onlycicdcircle/ /tmp/onlycicdcircle/
+mv ./GH4D/ /tmp/GH4D/
+mv ./GH4M/ /tmp/GH4M/
 
+# Switch to gh-pages branch and pull from origin
 git checkout gh-pages --force
-git pull origin gh-pages --rebase
-git clean -fx node_modules
-git clean -fx _book
+git pull --rebase origin gh-pages
 
+# Clean up
+git clean -fx _book
+git clean -fx .bundle
+git clean -fx node_modules
+git clean -fx vendor
+git clean -fx .ruby-version
+
+# Delete old PDFs and book folders
+[ -f fullcicdtravis.pdf ] && rm fullcicdtravis.pdf
+[ -f onlycicdtravis.pdf ] && rm onlycicdtravis.pdf
+[ -f fullcicdcircle.pdf ] && rm fullcicdcircle.pdf
+[ -f onlycicdcircle.pdf ] && rm onlycicdcircle.pdf
+[ -f GH4D.pdf ] && rm GH4D.pdf
+[ -f GH4M.pdf ] && rm GH4M.pdf
+[ -d fullcicdtravis/ ] && rm -rf fullcicdtravis/
+[ -d onlycicdtravis/ ] && rm -rf onlycicdtravis/
+[ -d fullcicdcircle/ ] && rm -rf fullcicdcircle/
+[ -d onlycicdcircle/ ] && rm -rf onlycicdcircle/
+[ -d GH4D/ ] && rm -rf GH4D/
+[ -d GH4M/ ] && rm -rf GH4M/
+
+# Move PDFs back from /tmp
+mv /tmp/fullcicdtravis.pdf ./
+mv /tmp/onlycicdtravis.pdf ./
+mv /tmp/fullcicdcircle.pdf ./
+mv /tmp/onlycicdcircle.pdf ./
+mv /tmp/GH4D.pdf ./
+mv /tmp/GH4M.pdf ./
+
+# Move all book folders back from /tmp
+mv /tmp/onlycicdtravis/ ./onlycicdtravis/
+mv /tmp/fullcicdtravis/ ./fullcicdtravis/
+mv /tmp/onlycicdcircle/ ./onlycicdcircle/
+mv /tmp/fullcicdcircle/ ./fullcicdcircle/
+mv /tmp/GH4D/ ./GH4D/
+mv /tmp/GH4M/ ./GH4M/
+
+# Debug: show status
 git status
 
-rm -rf onlyCICDTravis.pdf
-rm -rf onlyCICDCircle.pdf
-rm -rf fullCICDTravis.pdf
-rm -rf fullCICDCircle.pdf
-rm -rf GH4D.pdf
-rm -rf GH4M.pdf
-rm -rf fullcicdtravis/
-rm -rf onlycicdtravis/
-rm -rf fullcicdcircle/
-rm -rf onlycicdcircle/
-rm -rf GH4D/
-rm -rf GH4M/
-mv onlyCICDCircletemp.pdf onlyCICDCircle.pdf
-mv fullCICDCircletemp.pdf fullCICDCircle.pdf
-mv onlyCICDTravistemp.pdf onlyCICDTravis.pdf
-mv fullCICDTravistemp.pdf fullCICDTravis.pdf
-mv GH4Dtemp.pdf GH4D.pdf
-mv GH4Mtemp.pdf GH4M.pdf
-mv onlycicdtravistemp/ onlycicdtravis/
-mv fullcicdtravistemp/ fullcicdtravis/
-mv onlycicdcircletemp/ onlycicdcircle/
-mv fullcicdcircletemp/ fullcicdcircle/
-mv GH4Dtemp/ GH4D/
-mv GH4Mtemp/ GH4M/
-
-git add .
-git commit -m "update book [ci skip]"
-
-#bundle install
-
-echo -e "\n\n"
-echo "==> Deploying..."
-echo -e "\n\n"
-
-git push
+# git add .
+# git commit -m "update book [ci skip]"
+#
+# echo -e "\n\n"
+# echo "==> Deploying..."
+# echo -e "\n\n"
+#
+# git push

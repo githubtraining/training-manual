@@ -6,88 +6,24 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-gitbook install
+# use local gitbook
+gitbook="./node_modules/.bin/gitbook"
 
-# create new standard GH4D manual
-mv book/SUMMARY_GH4D.md book/SUMMARY.md
+# create new standard ${1} manual
+[ -f "book/SUMMARY_${1}.md" ] && mv "book/SUMMARY_${1}.md" "book/SUMMARY.md"
 
-echo "==> Building book"
-gitbook build
+sleep 1 # wait a little
 
-echo "==> Generating PDF"
-gitbook pdf . GH4D.pdf
+echo "==> Building book ${1}..."
+${gitbook} build >/dev/null 2>&1
 
-mv _book/ GH4D/
+echo "==> Generating PDF ${1}..."
+${gitbook} pdf . ${1}.pdf >/dev/null 2>&1
 
-mv book/SUMMARY.md book/SUMMARY_GH4D.md
+sleep 1 # wait a little
 
-# create new full CICD course for Travis
-mv book/SUMMARY_CICD_FULLGH4D_TRAVIS.md book/SUMMARY.md
+[ -d "_book/" ] && mv "_book/" "${1}/"
+[ -f "book/SUMMARY.md" ] && mv "book/SUMMARY.md" "book/SUMMARY_${1}.md"
 
-echo "==> Building book"
-gitbook build
-
-echo "==> Generating PDF"
-gitbook pdf . fullCICDTravis.pdf
-
-mv _book/ fullcicdtravis/
-
-mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_TRAVIS.md
-
-# create new full CICD course for Circle
-mv book/SUMMARY_CICD_FULLGH4D_CIRCLE.md book/SUMMARY.md
-
-echo "==> Building book"
-gitbook build
-
-echo "==> Generating PDF"
-gitbook pdf . fullCICDCircle.pdf
-
-mv _book/ fullcicdcircle/
-
-mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_Circle.md
-
-# create new condensed CICD course with Travis
-mv book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
-
-echo "==> Building book"
-gitbook build
-
-
-echo "==> Generating PDF"
-gitbook pdf . onlyCICDTravis.pdf
-
-mv _book/ onlycicdtravis/
-
-mv book/SUMMARY.md book/SUMMARY_CICDONLY_TRAVIS.md
-
-# create new condensed CICD course with Circle
-mv book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
-
-echo "==> Building book"
-gitbook build
-
-
-echo "==> Generating PDF"
-gitbook pdf . onlyCICDCircle.pdf
-
-mv _book/ onlycicdcircle/
-
-mv book/SUMMARY.md book/SUMMARY_CICDONLY_CIRCLE.md
-
-# create new GitHub for Managers manual
-mv book/SUMMARY_GH4M.md book/SUMMARY.md
-
-echo "==> Building book"
-gitbook build
-
-
-echo "==> Generating PDF"
-gitbook pdf . GH4M.pdf
-
-mv _book/ GH4M/
-
-mv book/SUMMARY.md book/SUMMARY_GH4M.md
-
-
-#bundle exec jekyll serve
+echo -e "Done with ${1}.\n"
+exit 0;
