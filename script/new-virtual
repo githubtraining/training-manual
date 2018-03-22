@@ -22,11 +22,11 @@ function getdetails () {
   #create a google short link
   shortLink=$((curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//'))
   script/create-repo caption-this $reponame $teacher
-  git clone https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame $reponame
+  git clone https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame $reponame
   if [ $? -eq 0 ]; then
     pushd $reponame
     git config user.name "$TOKEN_OWNER"
-    githubemail=$((curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/users/$TOKEN_OWNER | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
+    githubemail=$((curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/users/$TOKEN_OWNER | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
     git config user.email "$githubemail"
     sed -i "" "s/THIS-DATE/$classdate/g" README.md
     sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md
@@ -50,23 +50,23 @@ function getdetails () {
 function prettyrepo () {
   teacher=$1
   #set branch protections
-  curl -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$teacher\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$teacher\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/branches/master/protection
-  curl -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/branches/master/protection/required_status_checks
+  curl -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$teacher\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$teacher\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/branches/master/protection
+  curl -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/branches/master/protection/required_status_checks
   #delete labels other than question, duplicate, enhancement, and help wanted
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/labels/bug
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/labels/invalid
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/labels/wontfix
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/labels/bug
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/labels/invalid
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/labels/wontfix
   #open the issue to be added as a collaborator
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'unsubscribe' button.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/issues
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'unsubscribe' button.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/issues
   #add a project to the repo and grab the project id
-  projID=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/projects | jq .id)
+  projID=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/projects | jq .id)
   #add columns to project
-  columnOne=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"To-Do\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns | jq .id)
-  columnTwo=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"Extended Projects\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns | jq .id)
-  curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"In-Progress\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns
-  curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"Done\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns
+  columnOne=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"To-Do\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns | jq .id)
+  columnTwo=$(curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns | jq .id)
+  curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"In-Progress\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns
+  curl -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns
   #add cards to each column
-  curl -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST https://$INSTANCE_URL/projects/columns/$columnOne/cards
+  curl -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST https://$INSTANCE_URL/projects/columns/$columnOne/cards
   finishstrong
 }
 

@@ -7,7 +7,7 @@ reponame=$2
 collab=$3
 
 function checkavail () {
-  repoStatus=$(curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame)
+  repoStatus=$(curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame)
   if echo $repoStatus | grep -iq "404"
   then
     echo "Cool, that name is available."
@@ -21,11 +21,11 @@ function checkavail () {
 
 function createrepo () {
   #create the repository on $INSTANCE_URL
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
   #add collaborators
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab
   clonerepo
 }
 
@@ -34,11 +34,11 @@ function clonerepo () {
   git clone --bare https://github.com/githubtraining/$type $reponame
   if [ $? -eq 0 ]; then
     pushd $reponame
-    git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
+    git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame
     echo "Resting 5 more seconds to allow push to resolve"
     sleep 5
     #echo "Setting default branch for repo"
-    #curl -i -H "Authorization: token $GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+    #curl -i -H "Authorization: token $TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
     popd
     rm -rf $reponame
   else

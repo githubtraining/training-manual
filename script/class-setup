@@ -22,16 +22,16 @@ if [ -z ${TOKEN_OWNER+x} ]
     echo "TOKEN_OWNER = $TOKEN_OWNER."
 fi
 echo "==============================================="
-if [ -z ${GITHUBTEACHER_TOKEN+x} ]
+if [ -z ${TEACHER_PAT+x} ]
   then
     echo "It looks like you need to add the"
-    echo "GITHUBTEACHER_TOKEN var to your ~/.trainingmanualrc."
+    echo "TEACHER_PAT var to your ~/.trainingmanualrc."
     echo "Please generate an OAUTH token on the"
     echo "teacher account and paste it here."
     read newtoken
-    echo "export GITHUBTEACHER_TOKEN='$newtoken'" >> $HOME/.trainingmanualrc
+    echo "export TEACHER_PAT='$newtoken'" >> $HOME/.trainingmanualrc
   else
-    echo "GITHUBTEACHER_TOKEN is set!"
+    echo "TEACHER_PAT is set!"
 fi
 echo "==============================================="
 if [ -z ${INSTANCE_URL+x} ]
