@@ -42,26 +42,26 @@ function checkrepo () {
       if [ "$i" == "1" ]
       then
         #search for conflict markers
-        startmark1=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/index.html" | grep -c -i '<<<<<<<')
+        startmark1=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/index.html" | grep -c -i '<<<<<<<')
         echo "search for <<<<<<< found $startmark1"
-        divmark1=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.html" | grep -c -i '=======')
+        divmark1=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.html" | grep -c -i '=======')
         echo "search for ======= found $divmark1"
-        endmark1=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.html" | grep -c -i '>>>>>>>')
+        endmark1=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.html" | grep -c -i '>>>>>>>')
         echo "search for >>>>>>> found $endmark1"
-        startmark2=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/manual/manual.html" | grep -c -i '<<<<<<<')
+        startmark2=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/manual/manual.html" | grep -c -i '<<<<<<<')
         echo "search for <<<<<<< found $startmark2"
-        divmark2=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/manual/manual.html" | grep -c -i '=======')
+        divmark2=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/manual/manual.html" | grep -c -i '=======')
         echo "search for ======= found $divmark2"
-        endmark2=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/manual/manual.html" | grep -c -i '>>>>>>>')
+        endmark2=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/manual/manual.html" | grep -c -i '>>>>>>>')
         echo "search for >>>>>>> found $endmark2"
-        startmark3=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/mini/mini_bored.html" | grep -c -i '<<<<<<<')
+        startmark3=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/mini/mini_bored.html" | grep -c -i '<<<<<<<')
         echo "search for <<<<<<< found $startmark3"
-        divmark3=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/mini/mini_bored.html" | grep -c -i '=======')
+        divmark3=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/play/mini/mini_bored.html" | grep -c -i '=======')
         echo "search for ======= found $divmark3"
-        endmark3=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/play/mini/mini_bored.html" | grep -c -i '>>>>>>>')
+        endmark3=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/play/mini/mini_bored.html" | grep -c -i '>>>>>>>')
         echo "search for >>>>>>> found $endmark3"
         #make sure play/manual/manual.html still exists
-        checkfile=$(curl -u "githubteacher:$access_token" -X GET "https://api.github.com/search/code?q=manual.html+in:path+repo:githubschool/$studentRepo" | jq .total_count)
+        checkfile=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://api.github.com/search/code?q=manual.html+in:path+repo:githubschool/$studentRepo" | jq .total_count)
         # echo "search for play/manual/manual.html returned $checkfile"
         echo "The answers are represent starting conflict markets, middle conflict markers, ending conflict markers, and if the deleted file is present (null = not present, 0 = present with another unnecessary file, 1 = correct files present)." >> conflict-activity-$student.json
         echo "correct answers would be: 0,0,0,0,0,0,0,0,0,1" >> conflict-activity-$student.json
@@ -69,21 +69,21 @@ function checkrepo () {
       elif [ "$i" == "2" ]
       then
         #search for conflict markers
-        startmark=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.css" | grep -c -i '<<<<<<<')
+        startmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.css" | grep -c -i '<<<<<<<')
         echo "search for <<<<<<< found $startmark"
-        divmark=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.css" | grep -c -i '=======')
+        divmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.css" | grep -c -i '=======')
         echo "search for ======= found $divmark"
-        endmark=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.css" | grep -c -i '>>>>>>>')
+        endmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/css/index.css" | grep -c -i '>>>>>>>')
         echo "search for >>>>>>> found $endmark"
         echo "correct answers would be: 0,0,0" >> conflict-activity-$student.json
         echo "checks$i:$startmark,$divmark,$endmark" >> conflict-activity-$student.json
       else
         #search for conflict markers
-        startmark=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/README.md" | grep -c -i '<<<<<<<')
+        startmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/README.md" | grep -c -i '<<<<<<<')
         echo "search for <<<<<<< found $startmark"
-        divmark=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/README.md" | grep -c -i '=======')
+        divmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/README.md" | grep -c -i '=======')
         echo "search for ======= found $divmark"
-        endmark=$(curl -u "githubteacher:$access_token" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/README.md" | grep -c -i '>>>>>>>')
+        endmark=$(curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET "https://raw.githubusercontent.com/githubschool/$studentRepo/master/README.md" | grep -c -i '>>>>>>>')
         echo "search for >>>>>>> found $endmark"
         echo "correct answers would be: 0,0,0" >> conflict-activity-$student.json
         echo "checks$i:$startmark,$divmark,$endmark" >> conflict-activity-$student.json
