@@ -23,24 +23,28 @@ function getdetails () {
   shortLink=$((curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//'))
   script/create-repo caption-this $reponame $teacher
   git clone https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame $reponame
-  pushd $reponame
-  git config user.name "$TOKEN_OWNER"
-  githubemail=$((curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/users/$TOKEN_OWNER | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
-  git config user.email "$githubemail"
-  sed -i "" "s/THIS-DATE/$classdate/g" README.md
-  sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md
-  sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md
-  git add README.md
-  git commit -m "create class README"
-  sed -i "" "s|caption-this|$reponame|g" _config.yml
-  git add _config.yml
-  git commit -m "update config with class information"
-  git push
-  git config --local --unset user.name
-  git config --local --unset user.email
-  popd
-  rm -rf $reponame
-  prettyrepo $teacher
+  if [ $? -eq 0 ]; then
+    pushd $reponame
+    git config user.name "$TOKEN_OWNER"
+    githubemail=$((curl -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -X GET https://$INSTANCE_URL/users/$TOKEN_OWNER | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
+    git config user.email "$githubemail"
+    sed -i "" "s/THIS-DATE/$classdate/g" README.md
+    sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md
+    sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md
+    git add README.md
+    git commit -m "create class README"
+    sed -i "" "s|caption-this|$reponame|g" _config.yml
+    git add _config.yml
+    git commit -m "update config with class information"
+    git push
+    git config --local --unset user.name
+    git config --local --unset user.email
+    popd
+    rm -rf $reponame
+    prettyrepo $teacher
+  else
+    echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
+  fi  
 }
 
 function prettyrepo () {
