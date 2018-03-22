@@ -49,20 +49,23 @@ function duplicaterepo () {
   echo "Clone $reponame template from githubtraining org..."
   rm -rf $reponame
   git clone --bare https://github.com/githubtraining/$reponame $reponame
+  if [ $? -eq 0 ]; then
+    echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
+    pushd $reponame
+    git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
 
-  echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
-  pushd $reponame
-  git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
+    echo "Resting 5 more seconds to allow push to resolve"
+    sleep 5
 
-  echo "Resting 5 more seconds to allow push to resolve"
-  sleep 5
+    echo "Setting default branch for repo"
+    curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+    popd
 
-  echo "Setting default branch for repo"
-  curl -i -u "$TOKEN_OWNER:$GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
-  popd
-
-  echo "Remove the local (temporary) clone"
-  rm -rf $reponame
+    echo "Remove the local (temporary) clone"
+    rm -rf $reponame
+  else
+    echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
+  fi  
 }
 
 #usage list the repository name and default branch

@@ -32,14 +32,18 @@ function createrepo () {
 function clonerepo () {
   #create the repo locally
   git clone --bare https://github.com/githubtraining/$type $reponame
-  pushd $reponame
-  git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
-  echo "Resting 5 more seconds to allow push to resolve"
-  sleep 5
-  #echo "Setting default branch for repo"
-  #curl -i -H "Authorization: token $GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
-  popd
-  rm -rf $reponame
+  if [ $? -eq 0 ]; then
+    pushd $reponame
+    git push --mirror https://$TOKEN_OWNER:$GITHUBTEACHER_TOKEN@$ROOT_URL/$CLASS_ORG/$reponame
+    echo "Resting 5 more seconds to allow push to resolve"
+    sleep 5
+    #echo "Setting default branch for repo"
+    #curl -i -H "Authorization: token $GITHUBTEACHER_TOKEN" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+    popd
+    rm -rf $reponame
+  else
+    echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
+  fi  
 }
 
 checkavail
