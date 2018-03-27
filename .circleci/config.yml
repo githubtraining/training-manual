@@ -64,6 +64,7 @@ jobs:
           keys:
             - dependency-cache-{{ checksum "Gemfile.lock" }}
             - dependency-cache-
+      - run: bundle exec jekyll build
       - run: script/setup
       - attach_workspace:
           at: ./
