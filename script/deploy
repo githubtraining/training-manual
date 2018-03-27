@@ -74,6 +74,14 @@ git add .
 git commit -m "update book [ci skip]"
 
 echo -e "\n\n"
+echo "==> Building..."
+echo -e "\n\n"
+
+bundle exec jekyll build
+
+# will exit if the build does not work on Circle CI
+
+echo -e "\n\n"
 echo "==> Deploying..."
 echo -e "\n\n"
 
