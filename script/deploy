@@ -10,21 +10,18 @@ cd "$(dirname "$0")/.."
 git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
-# Move all PDFs to /tmp
-mv ./fullcicdtravis.pdf /tmp/
-mv ./onlycicdtravis.pdf /tmp/
-mv ./fullcicdcircle.pdf /tmp/
-mv ./onlycicdcircle.pdf /tmp/
-mv ./GH4D.pdf /tmp/
-mv ./GH4M.pdf /tmp/
-
-# Move all books to /tmp
-mv ./fullcicdtravis/ /tmp/fullcicdtravis/
-mv ./onlycicdtravis/ /tmp/onlycicdtravis/
-mv ./fullcicdcircle/ /tmp/fullcicdcircle/
-mv ./onlycicdcircle/ /tmp/onlycicdcircle/
-mv ./GH4D/ /tmp/GH4D/
-mv ./GH4M/ /tmp/GH4M/
+rm -rf vendor
+rm .ruby-version
+mv onlyCICDTravis.pdf onlyCICDTravistemp.pdf
+mv fullCICDTravis.pdf fullCICDTravistemp.pdf
+mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
+mv fullCICDCircle.pdf fullCICDCircletemp.pdf
+mv GH4D.pdf GH4Dtemp.pdf
+mv fullcicdtravis/ fullcicdtravistemp/
+mv onlycicdtravis/ onlycicdtravistemp/
+mv fullcicdcircle/ fullcicdcircletemp/
+mv onlycicdcircle/ onlycicdcircletemp/
+mv GH4D/ GH4Dtemp/
 
 # Switch to gh-pages branch and pull from origin
 git checkout gh-pages --force
@@ -51,24 +48,26 @@ git clean -fx .ruby-version
 [ -d GH4D/ ] && rm -rf GH4D/
 [ -d GH4M/ ] && rm -rf GH4M/
 
-# Move PDFs back from /tmp
-mv /tmp/fullcicdtravis.pdf ./
-mv /tmp/onlycicdtravis.pdf ./
-mv /tmp/fullcicdcircle.pdf ./
-mv /tmp/onlycicdcircle.pdf ./
-mv /tmp/GH4D.pdf ./
-mv /tmp/GH4M.pdf ./
-
-# Move all book folders back from /tmp
-mv /tmp/onlycicdtravis/ ./onlycicdtravis/
-mv /tmp/fullcicdtravis/ ./fullcicdtravis/
-mv /tmp/onlycicdcircle/ ./onlycicdcircle/
-mv /tmp/fullcicdcircle/ ./fullcicdcircle/
-mv /tmp/GH4D/ ./GH4D/
-mv /tmp/GH4M/ ./GH4M/
-
-# Debug: show status
-git status
+rm -rf onlyCICDTravis.pdf
+rm -rf onlyCICDCircle.pdf
+rm -rf fullCICDTravis.pdf
+rm -rf fullCICDCircle.pdf
+rm -rf GH4D.pdf
+rm -rf fullcicdtravis/
+rm -rf onlycicdtravis/
+rm -rf fullcicdcircle/
+rm -rf onlycicdcircle/
+rm -rf GH4D/
+mv onlyCICDCircletemp.pdf onlyCICDCircle.pdf
+mv fullCICDCircletemp.pdf fullCICDCircle.pdf
+mv onlyCICDTravistemp.pdf onlyCICDTravis.pdf
+mv fullCICDTravistemp.pdf fullCICDTravis.pdf
+mv GH4Dtemp.pdf GH4D.pdf
+mv onlycicdtravistemp/ onlycicdtravis/
+mv fullcicdtravistemp/ fullcicdtravis/
+mv onlycicdcircletemp/ onlycicdcircle/
+mv fullcicdcircletemp/ fullcicdcircle/
+mv GH4Dtemp/ GH4D/
 
 git add .
 git commit -m "update book [ci skip]"

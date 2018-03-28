@@ -25,5 +25,56 @@ sleep 1 # wait a little
 [ -d "_book/" ] && mv "_book/" "${1}/"
 [ -f "book/SUMMARY.md" ] && mv "book/SUMMARY.md" "book/SUMMARY_${1}.md"
 
-echo -e "Done with ${1}.\n"
-exit 0;
+echo "==> Building book"
+gitbook build
+
+echo "==> Generating PDF"
+gitbook pdf . fullCICDTravis.pdf
+
+mv _book/ fullcicdtravis/
+
+mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_TRAVIS.md
+
+# create new full CICD course for Circle
+mv book/SUMMARY_CICD_FULLGH4D_CIRCLE.md book/SUMMARY.md
+
+echo "==> Building book"
+gitbook build
+
+echo "==> Generating PDF"
+gitbook pdf . fullCICDCircle.pdf
+
+mv _book/ fullcicdcircle/
+
+mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_Circle.md
+
+# create new condensed CICD course with Travis
+mv book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
+
+echo "==> Building book"
+gitbook build
+
+
+echo "==> Generating PDF"
+gitbook pdf . onlyCICDTravis.pdf
+
+mv _book/ onlycicdtravis/
+
+mv book/SUMMARY.md book/SUMMARY_CICDONLY_TRAVIS.md
+
+# create new condensed CICD course with Circle
+mv book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
+
+echo "==> Building book"
+gitbook build
+
+
+echo "==> Generating PDF"
+gitbook pdf . onlyCICDCircle.pdf
+
+mv _book/ onlycicdcircle/
+
+mv book/SUMMARY.md book/SUMMARY_CICDONLY_CIRCLE.md
+
+
+#bundle exec jekyll serve
