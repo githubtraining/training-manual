@@ -1,5 +1,7 @@
 #!/bin/sh
 
+type jq >/dev/null 2>&1 || { >&2 "You don't have jq installed, grab it from https://stedolan.github.io/jq/download/"; exit 1; }
+
 echo "==============================================="
 echo "We'll create a file to store all training related configs."
 echo "Checking for and creating ~/.trainingmanualrc..."
