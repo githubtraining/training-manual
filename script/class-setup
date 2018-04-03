@@ -43,7 +43,24 @@ if [ -z ${INSTANCE_URL+x} ]
     echo "root endpoint for your github instance."
     echo "For example: api.github.com OR mycompany.github.com/api/v3"
     read newurl
-    echo "export INSTANCE_URL='$newurl'" >> $HOME/.trainingmanualrc
+    echo "Checking if '$newurl' is accessible..."
+    curl $newurl
+    if [ 0 -eq $? ]
+      then
+        echo "API endpoint verified"
+      else
+        echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
+    fi      
+    echo "Checking if '$newurl' is accessible with authentication... $newname and $newtoken"
+    
+    if [[ $(curl -u "$newname:$newtoken" https://$newurl/ | jq .message) = null ]]
+      then
+        echo "API endpoint + authentication verified"
+        echo "export INSTANCE_URL='$newurl'" >> $HOME/.trainingmanualrc
+      else
+        echo "Can't make an authenticated request to the API."
+        exit 1
+    fi
     if echo "$newurl" | grep -iq "\<api.github.com\>" ;
       then
         echo "export ROOT_URL='github.com'" >> $HOME/.trainingmanualrc
@@ -64,7 +81,15 @@ if [ -z ${CLASS_ORG+x} ]
     echo "used for github training on your instance."
     echo "For example: githubschool"
     read neworg
-    echo "export CLASS_ORG='$neworg'" >> $HOME/.trainingmanualrc
+    echo "Checking if $neworg is accessible via the API..."
+    if [[ $(curl -u "$newname:$newtoken" https://$newurl/orgs/$neworg | jq .message) = null ]]
+          then
+        echo "That organization was verified."
+        echo "export CLASS_ORG='$neworg'" >> $HOME/.trainingmanualrc
+      else
+        echo "Can't access the organization via the API."
+        exit 1
+    fi
   else
     echo "CLASS_ORG = $CLASS_ORG"
 fi
