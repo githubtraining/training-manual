@@ -17,32 +17,32 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
-
     working_directory: ~/training-manual
-
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v2-dependencies-{{ checksum "Gemfile.lock" }}
           # fallback to using the latest cache if no exact match is found
           - v2-dependencies-
-
-      - run:
-          name: Ruby dependencies
-          command: bundle install
-
+      - run: bundle install
       - save_cache:
           paths:
             - /usr/local/bundle
           key: v2-dependencies-{{ checksum "Gemfile.lock" }}
+  test:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.3-node
 
-      - run:
-          name: Build
-          command: bundle exec jekyll build --verbose
-
-      - run:
-          name: Test
-          command: bundle exec htmlproofer ./_site --check-html --disable-external
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+    working_directory: ~/training-manual
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec jekyll build --verbose
+      - run: bundle exec htmlproofer ./_site --check-html --disable-external
