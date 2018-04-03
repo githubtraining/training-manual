@@ -1,0 +1,38 @@
+
+### Taken from https://github.com/Hyperparticle/hyperparticle.github.io/blob/2365749469b1eea3e8c4b18af24a4865fc426fd3/.circleci/config.yml
+
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+
+version: 2.0
+
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.3-node
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+    working_directory: ~/training-manual
+    steps:
+      - checkout
+      - run: bundle install
+  test:
+    docker:
+      # specify the version you desire here
+      - image: circleci/ruby:2.3-node
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+    working_directory: ~/training-manual
+    steps:
+      - checkout
+      - run: bundle install
+      - run: bundle exec jekyll build --verbose
+      - run: bundle exec htmlproofer ./_site --check-html --disable-external
