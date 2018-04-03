@@ -11,7 +11,6 @@ git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
 rm -rf vendor
-rm .ruby-version
 mv onlyCICDTravis.pdf onlyCICDTravistemp.pdf
 mv fullCICDTravis.pdf fullCICDTravistemp.pdf
 mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
