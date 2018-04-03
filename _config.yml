@@ -35,7 +35,7 @@ markdown: kramdown
 kramdown:
   parse_block_html: true
 
-plugins_dir:
+plugins:
   - jekyll-feed
   - jekyll-octicons
 
