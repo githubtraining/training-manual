@@ -26,10 +26,10 @@ sleep 1 # wait a little
 [ -f "book/SUMMARY.md" ] && mv "book/SUMMARY.md" "book/SUMMARY_${1}.md"
 
 echo "==> Building book"
-gitbook build
+${gitbook} build
 
 echo "==> Generating PDF"
-gitbook pdf . fullCICDTravis.pdf
+${gitbook} pdf . fullCICDTravis.pdf
 
 mv _book/ fullcicdtravis/
 
@@ -39,10 +39,10 @@ mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_TRAVIS.md
 mv book/SUMMARY_CICD_FULLGH4D_CIRCLE.md book/SUMMARY.md
 
 echo "==> Building book"
-gitbook build
+${gitbook} build
 
 echo "==> Generating PDF"
-gitbook pdf . fullCICDCircle.pdf
+${gitbook} pdf . fullCICDCircle.pdf
 
 mv _book/ fullcicdcircle/
 
@@ -52,11 +52,11 @@ mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_Circle.md
 mv book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
 
 echo "==> Building book"
-gitbook build
+${gitbook} build
 
 
 echo "==> Generating PDF"
-gitbook pdf . onlyCICDTravis.pdf
+${gitbook} pdf . onlyCICDTravis.pdf
 
 mv _book/ onlycicdtravis/
 
@@ -66,11 +66,11 @@ mv book/SUMMARY.md book/SUMMARY_CICDONLY_TRAVIS.md
 mv book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
 
 echo "==> Building book"
-gitbook build
+${gitbook} build
 
 
 echo "==> Generating PDF"
-gitbook pdf . onlyCICDCircle.pdf
+${gitbook} pdf . onlyCICDCircle.pdf
 
 mv _book/ onlycicdcircle/
 
