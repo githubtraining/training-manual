@@ -1,0 +1,676 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>What is a Pipeline? · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="13_create_fork_manager.html" />
+    
+    
+    <link rel="prev" href="11_merge_pr_manager.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Getting Started</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01_goals_manager.html">
+            
+                <a href="01_goals_manager.html">
+            
+                    
+                    Goals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01_prereqs_manager.html">
+            
+                <a href="01_prereqs_manager.html">
+            
+                    
+                    Prerequisites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02_collaboration_manager.html">
+            
+                <a href="02_collaboration_manager.html">
+            
+                    
+                    The Modern Software Organization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="04_joinrepo_manager.html">
+            
+                <a href="04_joinrepo_manager.html">
+            
+                    
+                    Join our Class Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="02_getting_started_manager.html">
+            
+                <a href="02_getting_started_manager.html">
+            
+                    
+                    Core Concepts of Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">GitHub Flow</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="03_github_flow.html">
+            
+                <a href="03_github_flow.html">
+            
+                    
+                    GitHub Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="06_issue_manager.html">
+            
+                <a href="06_issue_manager.html">
+            
+                    
+                    Creating an Issue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="06_projects_manager.html">
+            
+                <a href="06_projects_manager.html">
+            
+                    
+                    Projects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="07_branch_manager.html">
+            
+                <a href="07_branch_manager.html">
+            
+                    
+                    Creating a Branch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="08_edit_file_manager.html">
+            
+                <a href="08_edit_file_manager.html">
+            
+                    
+                    Making Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="09_pull_request_manager.html">
+            
+                <a href="09_pull_request_manager.html">
+            
+                    
+                    Opening a Pull Request
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="10_collaborate_manager.html">
+            
+                <a href="10_collaborate_manager.html">
+            
+                    
+                    Collaborating on Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="10_collaboration_questions_manager.html">
+            
+                <a href="10_collaboration_questions_manager.html">
+            
+                    
+                    Collaboration Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="11_merge_pr_manager.html">
+            
+                <a href="11_merge_pr_manager.html">
+            
+                    
+                    Merging Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pipeline</li>
+        
+        
+    
+        <li class="chapter active" data-level="3.1" data-path="12_pipeline_manager.html">
+            
+                <a href="12_pipeline_manager.html">
+            
+                    
+                    What is a Pipeline?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="13_create_fork_manager.html">
+            
+                <a href="13_create_fork_manager.html">
+            
+                    
+                    Create a Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="03_admin_manager.html">
+            
+                <a href="03_admin_manager.html">
+            
+                    
+                    Administrative Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Setup CI & CD</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="30_whats_ci.html">
+            
+                <a href="30_whats_ci.html">
+            
+                    
+                    What are CI and CD?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="15_set_up_ci_manager.html">
+            
+                <a href="15_set_up_ci_manager.html">
+            
+                    
+                    Configure CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="17_set_up_cd_manager.html">
+            
+                <a href="17_set_up_cd_manager.html">
+            
+                    
+                    Configure CD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="18_webhooks_manager.html">
+            
+                <a href="18_webhooks_manager.html">
+            
+                    
+                    Check Webhooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">End to End Test</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="19_github_flow_fork_manager.html">
+            
+                <a href="19_github_flow_fork_manager.html">
+            
+                    
+                    GitHub Flow in the Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="20_integrations_manager.html">
+            
+                <a href="20_integrations_manager.html">
+            
+                    
+                    Interacting with Integrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Connecting the Dots</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="20_review_pipeline_manager.html">
+            
+                <a href="20_review_pipeline_manager.html">
+            
+                    
+                    Reviewing the pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="19_technical_possibilities_manager.html">
+            
+                <a href="19_technical_possibilities_manager.html">
+            
+                    
+                    Technical Possibilities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="24-add-ghpages_manager.md">
+            
+                <span>
+            
+                    
+                    Add Documentation to your Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Real World Work</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="21_workflows_manager.html">
+            
+                <a href="21_workflows_manager.html">
+            
+                    
+                    Workflows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="22_team_activity_manager.html">
+            
+                <a href="22_team_activity_manager.html">
+            
+                    
+                    Team Activity
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Appendix</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="23_more_resources_manager.html">
+            
+                <a href="23_more_resources_manager.html">
+            
+                    
+                    More Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >What is a Pipeline?</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="software-development-pipeline"><a name="software-development-pipeline" class="plugin-anchor" href="#software-development-pipeline"><i class="fa fa-link" aria-hidden="true"></i></a>Software Development Pipeline</h2>
+<p>GitHub concepts are well documented features, but it is important to understand how developers do their work. Even new users to GitHub can set up a CI/CD development pipeline with little effort.</p>
+<p>A pipeline is a concept of how your tools fit together, so the development process is seamless. The goals are to:</p>
+<ul>
+<li>Provide quick feedback to developers</li>
+<li>Automate as much as possible</li>
+<li>Deploy with higher quality code</li>
+</ul>
+<p>These three smaller goals all fit together to accomplish a much larger and more abstract goal: to develop faster and better.</p>
+<h3 id="what-tools-do-you-use"><a name="what-tools-do-you-use" class="plugin-anchor" href="#what-tools-do-you-use"><i class="fa fa-link" aria-hidden="true"></i></a>What tools do you use?</h3>
+<p>What tools are already in use in your organization? What tools have been used in the past, or may be used in the future? GitHub provides a centralized &quot;Hub&quot; where all of these tools can be connected so developers can see all of the important puzzle pieces connected where they&apos;re working.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="11_merge_pr_manager.html" class="navigation navigation-prev " aria-label="Previous page: Merging Pull Requests">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="13_create_fork_manager.html" class="navigation navigation-next " aria-label="Next page: Create a Fork">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"What is a Pipeline?","level":"3.1","depth":1,"next":{"title":"Create a Fork","level":"3.2","depth":1,"path":"13_create_fork_manager.md","ref":"13_create_fork_manager.md","articles":[]},"previous":{"title":"Merging Pull Requests","level":"2.9","depth":1,"path":"11_merge_pr_manager.md","ref":"11_merge_pr_manager.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"12_pipeline_manager.md","mtime":"2018-04-03T08:46:27.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-03T08:50:37.429Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

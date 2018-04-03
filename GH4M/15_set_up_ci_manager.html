@@ -1,0 +1,692 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Configure CI · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="17_set_up_cd_manager.html" />
+    
+    
+    <link rel="prev" href="30_whats_ci.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Getting Started</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01_goals_manager.html">
+            
+                <a href="01_goals_manager.html">
+            
+                    
+                    Goals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01_prereqs_manager.html">
+            
+                <a href="01_prereqs_manager.html">
+            
+                    
+                    Prerequisites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02_collaboration_manager.html">
+            
+                <a href="02_collaboration_manager.html">
+            
+                    
+                    The Modern Software Organization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="04_joinrepo_manager.html">
+            
+                <a href="04_joinrepo_manager.html">
+            
+                    
+                    Join our Class Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="02_getting_started_manager.html">
+            
+                <a href="02_getting_started_manager.html">
+            
+                    
+                    Core Concepts of Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">GitHub Flow</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="03_github_flow.html">
+            
+                <a href="03_github_flow.html">
+            
+                    
+                    GitHub Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="06_issue_manager.html">
+            
+                <a href="06_issue_manager.html">
+            
+                    
+                    Creating an Issue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="06_projects_manager.html">
+            
+                <a href="06_projects_manager.html">
+            
+                    
+                    Projects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="07_branch_manager.html">
+            
+                <a href="07_branch_manager.html">
+            
+                    
+                    Creating a Branch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="08_edit_file_manager.html">
+            
+                <a href="08_edit_file_manager.html">
+            
+                    
+                    Making Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="09_pull_request_manager.html">
+            
+                <a href="09_pull_request_manager.html">
+            
+                    
+                    Opening a Pull Request
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="10_collaborate_manager.html">
+            
+                <a href="10_collaborate_manager.html">
+            
+                    
+                    Collaborating on Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="10_collaboration_questions_manager.html">
+            
+                <a href="10_collaboration_questions_manager.html">
+            
+                    
+                    Collaboration Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="11_merge_pr_manager.html">
+            
+                <a href="11_merge_pr_manager.html">
+            
+                    
+                    Merging Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pipeline</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="12_pipeline_manager.html">
+            
+                <a href="12_pipeline_manager.html">
+            
+                    
+                    What is a Pipeline?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="13_create_fork_manager.html">
+            
+                <a href="13_create_fork_manager.html">
+            
+                    
+                    Create a Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="03_admin_manager.html">
+            
+                <a href="03_admin_manager.html">
+            
+                    
+                    Administrative Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Setup CI & CD</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="30_whats_ci.html">
+            
+                <a href="30_whats_ci.html">
+            
+                    
+                    What are CI and CD?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.2" data-path="15_set_up_ci_manager.html">
+            
+                <a href="15_set_up_ci_manager.html">
+            
+                    
+                    Configure CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="17_set_up_cd_manager.html">
+            
+                <a href="17_set_up_cd_manager.html">
+            
+                    
+                    Configure CD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="18_webhooks_manager.html">
+            
+                <a href="18_webhooks_manager.html">
+            
+                    
+                    Check Webhooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">End to End Test</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="19_github_flow_fork_manager.html">
+            
+                <a href="19_github_flow_fork_manager.html">
+            
+                    
+                    GitHub Flow in the Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="20_integrations_manager.html">
+            
+                <a href="20_integrations_manager.html">
+            
+                    
+                    Interacting with Integrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Connecting the Dots</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="20_review_pipeline_manager.html">
+            
+                <a href="20_review_pipeline_manager.html">
+            
+                    
+                    Reviewing the pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="19_technical_possibilities_manager.html">
+            
+                <a href="19_technical_possibilities_manager.html">
+            
+                    
+                    Technical Possibilities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="24-add-ghpages_manager.md">
+            
+                <span>
+            
+                    
+                    Add Documentation to your Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Real World Work</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="21_workflows_manager.html">
+            
+                <a href="21_workflows_manager.html">
+            
+                    
+                    Workflows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="22_team_activity_manager.html">
+            
+                <a href="22_team_activity_manager.html">
+            
+                    
+                    Team Activity
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Appendix</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="23_more_resources_manager.html">
+            
+                <a href="23_more_resources_manager.html">
+            
+                    
+                    More Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Configure CI</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="configure-ci"><a name="configure-ci" class="plugin-anchor" href="#configure-ci"><i class="fa fa-link" aria-hidden="true"></i></a>Configure CI</h2>
+<ol>
+<li><a href="https://www.circleci.com" target="_blank">Open a new tab</a>, go to <a href="https://circleci.com" target="_blank">https://circleci.com</a> and click <strong>Log In</strong>.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.022.jpeg" alt="image of logging into circleci"></li>
+<li>Click <strong>Sign in with GitHub</strong>.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.023.jpeg" alt="image of logging into CircleCI with GitHub"></li>
+<li>Click <strong>Authorize circleci</strong>.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.024.jpeg" alt="image of clicking authorize circleci">.</li>
+<li>After authorization, you can access the CircleCI app at <a href="https://circleci.com/dashboard" target="_blank">https://circleci.com/dashboard</a>.<ul>
+<li><strong>Note:</strong> If you are already a member of multiple GitHub orgs, you need to select your username in the dropdown at the top of the page.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.025.jpeg" alt="image of selecting user account in circleci"></li>
+</ul>
+</li>
+<li>On the left side, click <strong>Projects</strong> and then click <strong>Add Project</strong>.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.026.jpeg" alt="image of adding project on circleci"></li>
+<li>Next to <strong>github-for-managers</strong>, click <strong>Setup project</strong>.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.027.jpeg" alt="image of setting up project github-for-managers"></li>
+<li>Make the selections for setting up the project.<ul>
+<li>For <strong>Operating System</strong>, select <strong>Linux</strong></li>
+<li>For <strong>Platform</strong>, select <strong>2.0</strong></li>
+<li>For <strong>Language</strong>, select <strong>Ruby</strong></li>
+<li>Click <strong>Start building</strong></li>
+</ul>
+</li>
+<li>After up to four minutes, your CircleCI tests should pass <img align="absmiddle" alt=":tada:" class="emoji" src="gitbook/gitbook-plugin-advanced-emoji/emojis/tada.png" title=":tada:"> <img align="absmiddle" alt=":tada:" class="emoji" src="gitbook/gitbook-plugin-advanced-emoji/emojis/tada.png" title=":tada:">.
+<img src="https://raw.githubusercontent.com/universeworkshops/github-for-managers/master/workshop-images/github-for-managers.029.jpeg" alt="image of circleci tests passing"></li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="30_whats_ci.html" class="navigation navigation-prev " aria-label="Previous page: What are CI and CD?">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="17_set_up_cd_manager.html" class="navigation navigation-next " aria-label="Next page: Configure CD">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Configure CI","level":"4.2","depth":1,"next":{"title":"Configure CD","level":"4.3","depth":1,"path":"17_set_up_cd_manager.md","ref":"17_set_up_cd_manager.md","articles":[]},"previous":{"title":"What are CI and CD?","level":"4.1","depth":1,"path":"30_whats_ci.md","ref":"30_whats_ci.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"15_set_up_ci_manager.md","mtime":"2018-04-03T08:46:27.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-03T08:50:37.429Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

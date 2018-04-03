@@ -1,0 +1,759 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Core Concepts of Version Control · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="03_github_flow.html" />
+    
+    
+    <link rel="prev" href="04_joinrepo_manager.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Getting Started</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01_goals_manager.html">
+            
+                <a href="01_goals_manager.html">
+            
+                    
+                    Goals
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="01_prereqs_manager.html">
+            
+                <a href="01_prereqs_manager.html">
+            
+                    
+                    Prerequisites
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="02_collaboration_manager.html">
+            
+                <a href="02_collaboration_manager.html">
+            
+                    
+                    The Modern Software Organization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="04_joinrepo_manager.html">
+            
+                <a href="04_joinrepo_manager.html">
+            
+                    
+                    Join our Class Repository
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="02_getting_started_manager.html">
+            
+                <a href="02_getting_started_manager.html">
+            
+                    
+                    Core Concepts of Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">GitHub Flow</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="03_github_flow.html">
+            
+                <a href="03_github_flow.html">
+            
+                    
+                    GitHub Flow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="06_issue_manager.html">
+            
+                <a href="06_issue_manager.html">
+            
+                    
+                    Creating an Issue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="06_projects_manager.html">
+            
+                <a href="06_projects_manager.html">
+            
+                    
+                    Projects
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="07_branch_manager.html">
+            
+                <a href="07_branch_manager.html">
+            
+                    
+                    Creating a Branch
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="08_edit_file_manager.html">
+            
+                <a href="08_edit_file_manager.html">
+            
+                    
+                    Making Changes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="09_pull_request_manager.html">
+            
+                <a href="09_pull_request_manager.html">
+            
+                    
+                    Opening a Pull Request
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="10_collaborate_manager.html">
+            
+                <a href="10_collaborate_manager.html">
+            
+                    
+                    Collaborating on Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="10_collaboration_questions_manager.html">
+            
+                <a href="10_collaboration_questions_manager.html">
+            
+                    
+                    Collaboration Questions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.9" data-path="11_merge_pr_manager.html">
+            
+                <a href="11_merge_pr_manager.html">
+            
+                    
+                    Merging Pull Requests
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Pipeline</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="12_pipeline_manager.html">
+            
+                <a href="12_pipeline_manager.html">
+            
+                    
+                    What is a Pipeline?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="13_create_fork_manager.html">
+            
+                <a href="13_create_fork_manager.html">
+            
+                    
+                    Create a Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="03_admin_manager.html">
+            
+                <a href="03_admin_manager.html">
+            
+                    
+                    Administrative Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Setup CI & CD</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="30_whats_ci.html">
+            
+                <a href="30_whats_ci.html">
+            
+                    
+                    What are CI and CD?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="15_set_up_ci_manager.html">
+            
+                <a href="15_set_up_ci_manager.html">
+            
+                    
+                    Configure CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="17_set_up_cd_manager.html">
+            
+                <a href="17_set_up_cd_manager.html">
+            
+                    
+                    Configure CD
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="18_webhooks_manager.html">
+            
+                <a href="18_webhooks_manager.html">
+            
+                    
+                    Check Webhooks
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">End to End Test</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="19_github_flow_fork_manager.html">
+            
+                <a href="19_github_flow_fork_manager.html">
+            
+                    
+                    GitHub Flow in the Fork
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="20_integrations_manager.html">
+            
+                <a href="20_integrations_manager.html">
+            
+                    
+                    Interacting with Integrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Connecting the Dots</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="20_review_pipeline_manager.html">
+            
+                <a href="20_review_pipeline_manager.html">
+            
+                    
+                    Reviewing the pipeline
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="19_technical_possibilities_manager.html">
+            
+                <a href="19_technical_possibilities_manager.html">
+            
+                    
+                    Technical Possibilities
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="24-add-ghpages_manager.md">
+            
+                <span>
+            
+                    
+                    Add Documentation to your Project
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Real World Work</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="21_workflows_manager.html">
+            
+                <a href="21_workflows_manager.html">
+            
+                    
+                    Workflows
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="22_team_activity_manager.html">
+            
+                <a href="22_team_activity_manager.html">
+            
+                    
+                    Team Activity
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">Appendix</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="23_more_resources_manager.html">
+            
+                <a href="23_more_resources_manager.html">
+            
+                    
+                    More Resources
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >Core Concepts of Version Control</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="git-and-github"><a name="git-and-github" class="plugin-anchor" href="#git-and-github"><i class="fa fa-link" aria-hidden="true"></i></a>Git and GitHub</h2>
+<p>We will start by introducing you to Git, GitHub, and the collaboration features you will use to get things done. Even if you have used GitHub in the past, this information will provide a better understanding of how to implement Git and GitHub within your organization or team to build better software together.</p>
+<h3 id="what-is-github"><a name="what-is-github" class="plugin-anchor" href="#what-is-github"><i class="fa fa-link" aria-hidden="true"></i></a>What is GitHub?</h3>
+<p>GitHub is a collaboration platform built on top of a distributed version control system called Git.</p>
+<p><img src="../img/github-icon.jpg" alt="GitHub&apos;s beloved Octocat logo"></p>
+<p>In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:</p>
+<ul>
+<li>Issues</li>
+<li>Pull Requests</li>
+<li>Projects</li>
+<li>Organizations and Teams</li>
+</ul>
+<p><img src="../img/collaboration-features.png" alt="GitHub Collaboration Features"></p>
+<h3 id="what-is-git"><a name="what-is-git" class="plugin-anchor" href="#what-is-git"><i class="fa fa-link" aria-hidden="true"></i></a>What is Git?</h3>
+<p><strong>Git is:</strong></p>
+<ul>
+<li>a distributed version control system or DVCS.</li>
+<li>free and open source.</li>
+<li>designed to handle everything from small to very large projects with speed and efficiency.</li>
+<li>easy to learn and has a tiny footprint with lightning fast performance.</li>
+</ul>
+<p>Git features cheap local branching, convenient staging areas, and multiple workflows.</p>
+<p>As we begin to discuss Git (and what makes it special) it would be helpful if you could forget everything you know about other version control systems (VCSs) for just a moment. Git stores and thinks about information very differently than other VCSs.</p>
+<p>We will learn more about how Git stores your code as we go through this class, but the first thing you will need to understand is how Git works with your content.</p>
+<h4 id="snapshots-not-deltas"><a name="snapshots-not-deltas" class="plugin-anchor" href="#snapshots-not-deltas"><i class="fa fa-link" aria-hidden="true"></i></a>Snapshots, not Deltas</h4>
+<p>One of the first ideas you will need understand is that Git does not store your information as series of changes. Instead Git takes a snapshot of your repository at a given point in time. This snapshot is called a commit.</p>
+<h4 id="optimized-for-local-operations"><a name="optimized-for-local-operations" class="plugin-anchor" href="#optimized-for-local-operations"><i class="fa fa-link" aria-hidden="true"></i></a>Optimized for Local Operations</h4>
+<p>Git is optimized for local operation. When you clone a copy of a repository to your local machine, you receive a copy of the entire repository and its history. This means you can work on the plane, on the train, or anywhere else your adventures find you!</p>
+<h4 id="branches-are-lightweight-and-cheap"><a name="branches-are-lightweight-and-cheap" class="plugin-anchor" href="#branches-are-lightweight-and-cheap"><i class="fa fa-link" aria-hidden="true"></i></a>Branches are Lightweight and Cheap</h4>
+<p>Branches are an essential concept in Git.</p>
+<p>When you create a new branch in Git, you are actually just creating a pointer that corresponds to the most recent snapshot in a line of work. Git keeps the snapshots for each branch separate until you explicitly tell it to merge those snapshots into the main line of work.</p>
+<h4 id="git-is-explicit"><a name="git-is-explicit" class="plugin-anchor" href="#git-is-explicit"><i class="fa fa-link" aria-hidden="true"></i></a>Git is Explicit</h4>
+<p>Which brings us to our final point for now; Git is very explicit. It does not do anything until you tell it to. No auto-saves or auto-syncing with the remote, Git waits for you to tell it when to take a snapshot and when to send that snapshot to the remote.</p>
+<h3 id="exploring-a-github-repository"><a name="exploring-a-github-repository" class="plugin-anchor" href="#exploring-a-github-repository"><i class="fa fa-link" aria-hidden="true"></i></a>Exploring a GitHub Repository</h3>
+<p>A repository is the most basic element of GitHub. It is easiest to imagine as a project&apos;s folder. However, unlike an ordinary folder on your laptop, a GitHub repository offers simple yet powerful tools for collaborating with others.</p>
+<p>A repository contains all of the project files (including documentation), and stores each file&apos;s revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!</p>
+<p><img src="../img/repository-intro.png" alt="GitHub Repositories"></p>
+<h3 id="user-accounts-vs-organization-accounts"><a name="user-accounts-vs-organization-accounts" class="plugin-anchor" href="#user-accounts-vs-organization-accounts"><i class="fa fa-link" aria-hidden="true"></i></a>User Accounts vs. Organization Accounts</h3>
+<p>There are two account types in GitHub, user accounts and organization accounts. While there are many differences in these account types, one of the more notable differences is how you handle permissions.</p>
+<h4 id="user-accounts"><a name="user-accounts" class="plugin-anchor" href="#user-accounts"><i class="fa fa-link" aria-hidden="true"></i></a>User Accounts</h4>
+<p>When you signed up for GitHub, you were automatically given a user account. Permissions for a user account are simple, you add people as collaborators to specific repositories to give them full read-write access to the project.</p>
+<h4 id="organization-accounts"><a name="organization-accounts" class="plugin-anchor" href="#organization-accounts"><i class="fa fa-link" aria-hidden="true"></i></a>Organization Accounts</h4>
+<p>Organization accounts provide more granular control over repository permissions. In an organization account you create teams of people and then give those teams access to specific repositories. Permissions can be assigned at the team level (e.g, read, write, or admin).</p>
+<h3 id="repository-navigation"><a name="repository-navigation" class="plugin-anchor" href="#repository-navigation"><i class="fa fa-link" aria-hidden="true"></i></a>Repository Navigation</h3>
+<h4 id="code"><a name="code" class="plugin-anchor" href="#code"><i class="fa fa-link" aria-hidden="true"></i></a>Code</h4>
+<p>The code view is where you will find the files included in the repository. These files may contain the project code, documentation, and other important files. We also call this view the root of the project. Any changes to these files will be tracked via Git version control.</p>
+<h4 id="issues"><a name="issues" class="plugin-anchor" href="#issues"><i class="fa fa-link" aria-hidden="true"></i></a>Issues</h4>
+<p>Issues are used to track bugs and feature requests. Issues can be assigned to specific team members and are designed to encourage discussion and collaboration.</p>
+<h4 id="pull-requests"><a name="pull-requests" class="plugin-anchor" href="#pull-requests"><i class="fa fa-link" aria-hidden="true"></i></a>Pull Requests</h4>
+<p>A Pull Request represents a change, such as adding, modifying, or deleting files, which the author would like to make to the repository. Pull Requests help you write better software by facilitating code review and showing the status of any automated tests.</p>
+<h4 id="projects"><a name="projects" class="plugin-anchor" href="#projects"><i class="fa fa-link" aria-hidden="true"></i></a>Projects</h4>
+<p>Projects allow you to visualize your work with Kanban style boards. Projects can be created at the repository or organization level.</p>
+<h4 id="wiki"><a name="wiki" class="plugin-anchor" href="#wiki"><i class="fa fa-link" aria-hidden="true"></i></a>Wiki</h4>
+<p>Wikis in GitHub can be used to communicate project details, display user documentation, or almost anything your heart desires. And of course, GitHub helps you keep track of the edits to your Wiki!</p>
+<h4 id="pulse--graphs"><a name="pulse--graphs" class="plugin-anchor" href="#pulse--graphs"><i class="fa fa-link" aria-hidden="true"></i></a>Pulse &amp; Graphs</h4>
+<p>Pulse is your project&apos;s dash board. It contains information on the work that has been completed and the work in progress. Graphs provide a more granular view into the repository activity, including who has contributed, when the work is being done, and who has forked the repository.</p>
+<h4 id="readmemd"><a name="readmemd" class="plugin-anchor" href="#readmemd"><i class="fa fa-link" aria-hidden="true"></i></a>README.md</h4>
+<p>The README.md is a special file that we recommend all repositories contain. GitHub looks for this file and helpfully displays it below the repository. The README should explain the project and point readers to helpful information within the project.</p>
+<h4 id="contributingmd"><a name="contributingmd" class="plugin-anchor" href="#contributingmd"><i class="fa fa-link" aria-hidden="true"></i></a>CONTRIBUTING.md</h4>
+<p>The CONTRIBUTING.md is another special file that is used to describe the process for collaborating on the repository. The link to the CONTRIBUTING.md file is shown when a user attempts to create a new issue or pull request.</p>
+<h4 id="issuetemplatemd-and-pullrequesttemplate"><a name="issuetemplatemd-and-pullrequesttemplate" class="plugin-anchor" href="#issuetemplatemd-and-pullrequesttemplate"><i class="fa fa-link" aria-hidden="true"></i></a>ISSUE_TEMPLATE.md and PULL_REQUEST_TEMPLATE</h4>
+<p>The ISSUE_TEMPLATE.md and the PULL_REQUEST_TEMPLATE.md are used to generate templated starter text for your project issues and pull requests. Any time someone opens an issue or pull request, the content in the template will be pre-populated in the body of the issue or pull request.</p>
+<h3 id="using-github-issues"><a name="using-github-issues" class="plugin-anchor" href="#using-github-issues"><i class="fa fa-link" aria-hidden="true"></i></a>Using GitHub Issues</h3>
+<p>In GitHub, you will use issues to record and discuss ideas, enhancements, tasks, and bugs. Issues make collaboration easier by:</p>
+<ul>
+<li>Replacing email for project discussions, ensuring everyone on the team has the complete story, both now and in the future.</li>
+<li>Allowing you to cross-link to related issues and pull requests.</li>
+<li>Creating a single, comprehensive record of how and why you made certain decisions.</li>
+<li>Allowing you to easily pull the right people into a conversation with @ mentions and team mentions.</li>
+</ul>
+<h3 id="using-markdown"><a name="using-markdown" class="plugin-anchor" href="#using-markdown"><i class="fa fa-link" aria-hidden="true"></i></a>Using Markdown</h3>
+<p>GitHub uses a syntax called <strong>Markdown</strong> to help you add basic text formatting to Issues, Pull Requests, and files with the <code>.md</code> extension.</p>
+<h3 id="commonly-used-markdown-syntax"><a name="commonly-used-markdown-syntax" class="plugin-anchor" href="#commonly-used-markdown-syntax"><i class="fa fa-link" aria-hidden="true"></i></a>Commonly Used Markdown Syntax</h3>
+<h4 id="header"><a name="header" class="plugin-anchor" href="#header"><i class="fa fa-link" aria-hidden="true"></i></a><code># Header</code></h4>
+<p>The <code>#</code> indicates a Header. # = Header 1, ##  = Header 2, etc.</p>
+<h4 id="list-item"><a name="list-item" class="plugin-anchor" href="#list-item"><i class="fa fa-link" aria-hidden="true"></i></a><code>* List item</code></h4>
+<p>A single <code>*</code> or <code>-</code> followed by a space will create a bulleted list.</p>
+<h4 id="bold-item"><a name="bold-item" class="plugin-anchor" href="#bold-item"><i class="fa fa-link" aria-hidden="true"></i></a><code>**Bold item**</code></h4>
+<p>Two asterix <code>**</code> on either side of a string will make that text bold.</p>
+<h4 id="---checklist"><a name="---checklist" class="plugin-anchor" href="#---checklist"><i class="fa fa-link" aria-hidden="true"></i></a><code>- [ ] Checklist</code></h4>
+<p>A <code>-</code> followed by a space and <code>[ ]</code> will create a handy checklist in your issue or pull request.</p>
+<h4 id="mention"><a name="mention" class="plugin-anchor" href="#mention"><i class="fa fa-link" aria-hidden="true"></i></a><code>@mention</code></h4>
+<p>When you @mention someone in an issue, they will receive a notification - even if they are not currently subscribed to the issue or watching the repository.</p>
+<h4 id="975"><a name="975" class="plugin-anchor" href="#975"><i class="fa fa-link" aria-hidden="true"></i></a><code>#975</code></h4>
+<p>A <code>#</code> followed by the number of an issue or pull request (without a space) in the same repository will create a cross-link.</p>
+<h4 id="smiley"><a name="smiley" class="plugin-anchor" href="#smiley"><i class="fa fa-link" aria-hidden="true"></i></a><code>:smiley:</code></h4>
+<p>Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji id with <code>:</code>.</p>
+<h3 id="introduction-to-github-pages"><a name="introduction-to-github-pages" class="plugin-anchor" href="#introduction-to-github-pages"><i class="fa fa-link" aria-hidden="true"></i></a>Introduction to GitHub Pages</h3>
+<p>GitHub Pages enable you to host free, static web pages directly from your GitHub repositories. Several of the projects we use in class will use GitHub Pages as the deployment strategy. We will barely scratch the surface in this class, but there are a few things you need to know:</p>
+<ul>
+<li>You can create two types of websites, a user/organization site or a project site. We will be working with project websites.</li>
+<li>For a project site, GitHub will only serve the content on a specific branch. Depending on the settings for your repository, GitHub can serve your site from a <code>master</code> or <code>gh-pages</code> branch, or a <code>/docs</code> folder on the <code>master</code> branch.</li>
+<li>The rendered sites for our projects will appear at <code>githubschool.github.io/repo-name</code>.</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="04_joinrepo_manager.html" class="navigation navigation-prev " aria-label="Previous page: Join our Class Repository">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="03_github_flow.html" class="navigation navigation-next " aria-label="Next page: GitHub Flow">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Core Concepts of Version Control","level":"1.6","depth":1,"next":{"title":"GitHub Flow","level":"2.1","depth":1,"path":"03_github_flow.md","ref":"03_github_flow.md","articles":[]},"previous":{"title":"Join our Class Repository","level":"1.5","depth":1,"path":"04_joinrepo_manager.md","ref":"04_joinrepo_manager.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"02_getting_started_manager.md","mtime":"2018-04-03T08:46:27.727Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-03T08:50:37.429Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
