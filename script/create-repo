@@ -32,18 +32,26 @@ function createrepo () {
 function clonerepo () {
   #create the repo locally
   git clone --bare https://github.com/githubtraining/$type $reponame
-  if [ $? -eq 0 ]; then
-    pushd $reponame
-    git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame
-    echo "Resting 5 more seconds to allow push to resolve"
-    sleep 5
-    #echo "Setting default branch for repo"
-    #curl -i -H "Authorization: token $TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
-    popd
-    rm -rf $reponame
-  else
-    echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
-  fi  
+  if [$? -ne 0]
+   then
+    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$type $reponame
+    if [$? -ne 0]
+      then
+        echo "!!! Couldn't clone template repo at all."
+        exit 1
+    fi
+    exit 1
+  fi
+
+  pushd $reponame
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame
+  echo "Resting 5 more seconds to allow push to resolve"
+  sleep 5
+  #echo "Setting default branch for repo"
+  #curl -i -H "Authorization: token $TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+  popd
+  rm -rf $reponame
 }
 
 checkavail
