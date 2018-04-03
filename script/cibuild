@@ -24,10 +24,10 @@ mv book/SUMMARY.md book/SUMMARY_GH4D.md
 ## Create new full CICD course for Travis
 mv book/SUMMARY_CICD_FULLGH4D_TRAVIS.md book/SUMMARY.md
 
-echo "==> Building book"
+echo "==> Building book fullCICDTravis"
 ${gitbook} build
 
-echo "==> Generating PDF"
+echo "==> Generating PDF fullCICDTravis"
 ${gitbook} pdf . fullCICDTravis.pdf
 
 mv _book/ fullcicdtravis/
@@ -37,10 +37,10 @@ mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_TRAVIS.md
 # create new full CICD course for Circle
 mv book/SUMMARY_CICD_FULLGH4D_CIRCLE.md book/SUMMARY.md
 
-echo "==> Building book"
+echo "==> Building book fullCICDCircle"
 ${gitbook} build
 
-echo "==> Generating PDF"
+echo "==> Generating PDF fullCICDCircle"
 ${gitbook} pdf . fullCICDCircle.pdf
 
 mv _book/ fullcicdcircle/
@@ -50,11 +50,11 @@ mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_Circle.md
 # create new condensed CICD course with Travis
 mv book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
 
-echo "==> Building book"
+echo "==> Building book onlyCICDTravis"
 ${gitbook} build
 
 
-echo "==> Generating PDF"
+echo "==> Generating PDF onlyCICDTravis"
 ${gitbook} pdf . onlyCICDTravis.pdf
 
 mv _book/ onlycicdtravis/
@@ -64,11 +64,11 @@ mv book/SUMMARY.md book/SUMMARY_CICDONLY_TRAVIS.md
 # create new condensed CICD course with Circle
 mv book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
 
-echo "==> Building book"
+echo "==> Building book onlyCICDCircle"
 ${gitbook} build
 
 
-echo "==> Generating PDF"
+echo "==> Generating PDF onlyCICDCircle"
 ${gitbook} pdf . onlyCICDCircle.pdf
 
 mv _book/ onlycicdcircle/
@@ -78,10 +78,10 @@ mv book/SUMMARY.md book/SUMMARY_CICDONLY_CIRCLE.md
 # create new GitHub for Managers manual
 mv book/SUMMARY_GH4M.md book/SUMMARY.md
 
-echo "==> Building book"
+echo "==> Building book GH4M"
 ${gitbook} build
 
-echo "==> Generating PDF"
+echo "==> Generating PDF GH4M"
 ${gitbook} pdf . GH4M.pdf
 
 mv _book/ GH4M/
