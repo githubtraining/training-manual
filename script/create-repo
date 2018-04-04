@@ -7,7 +7,7 @@ reponame=$2
 collab=$3
 
 function checkavail () {
-  repoStatus=$(curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame)
+  repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame) >> log.out 2>&1
   if echo $repoStatus | grep -iq "404"
   then
     echo "Cool, that name is available."
@@ -21,32 +21,28 @@ function checkavail () {
 
 function createrepo () {
   #create the repository on $INSTANCE_URL
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
   #add collaborators
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab >> log.out 2>&1
   clonerepo
 }
 
 function clonerepo () {
   #create the repo locally
-  git clone --bare https://github.com/githubtraining/$type $reponame
-  exitCode=$?
-  echo "The exit code from first clone: $exitCode"
-  if [ $exitCode -ne 0 ]; then
+  git clone --bare https://github.com/githubtraining/$type $reponame >> log.out 2>&1
+  if [ $? -ne 0 ]; then
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
-    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$type $reponame
-    secondExit=$?
-    echo "The second exit code $secondExit"
-    if [ $secondExit -ne 0 ]; then
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$type $reponame >> log.out 2>&1
+    if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all."
       exit 1
     fi
   fi
 
-  pushd $reponame
-  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame
+  pushd $reponame >> log.out 2>&1
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
   echo "Resting 5 more seconds to allow push to resolve"
   sleep 5
   #echo "Setting default branch for repo"
