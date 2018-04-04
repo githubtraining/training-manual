@@ -7,3 +7,4 @@ script/cibuild fullcicdtravis
 script/cibuild fullcicdcircle
 script/cibuild GH4D
 script/cibuild GH4M
+script/cibuild GH4DJA
