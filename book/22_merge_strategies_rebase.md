@@ -56,19 +56,4 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 1. Checkout to master, the branch you will merge into: `git checkout master`
 1. Merge your changes in to master: `git merge rebase-me`
 
-#### Alias Pro Tips
-
-**Getting Your Working Directory Up to Date**
-
-```
-git pull --rebase --prune
-```
-is a helpful command that allows you to pull changes down from the remote and place local commits to follow the remote updates.
-
-If you'd like to combine this with another advanced workflow tip and update your submodules, that command might look like this:
-```sh
-git config --global alias.up "!git pull --rebase --prune $@ && git submodule update --init --recursive"
-```
-- Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
-
-*Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
+If you'd like some help keeping everything clean with an alias, don't forget to check the appendix!

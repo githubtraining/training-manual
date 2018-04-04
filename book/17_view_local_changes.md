@@ -28,29 +28,4 @@ $ git diff 2710 b745
 
 > Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to <REF-1> starting at <REF-2>" or "see what is *not* in <REF-1> but *is* in <REF-2>".
 
-#### Alias Pro Tip
-
-**Returning to the Remote**
-
-After finishing up locally, you might determine that you want to head back to your remote repository to make sure that everything looks right.
-
-**Note:** Depending on your shell, you might have to add these aliases directly to your git config file, which you can open by typing `git config --global -e`.
-
-WINDOWS
-```
-git config --global alias.open = "!f() { REPO_URL=$(git config remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
-```
-
-MAC/LINUX
-```
-git config --global alias.open = "!f() { REPO_URL=$(git open remote.origin.url); explorer ${REPO_URL%%.git}; }; f"
-```
-
-And just in case you're prone to forget your word choices, you can link multiple aliases together to accomplish the same purpose.
-
-```
-git config --global alias.browse "!git open"
-```
-
-
-*Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
+There's a helpful alias for opening the remote directly from your command line. Check out the appendix if you'd like to know more!

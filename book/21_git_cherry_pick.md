@@ -47,16 +47,4 @@ Take a look at the commit IDs in `git log --oneline` compared to `git reflog`. W
 
 > Why didn't this command cause a merge conflict since we had already cherry-picked file 4. The reason is that `git reset --hard` is not trying to merge the two histories together, it is simply moving the branch to point to a new commit. In this case, this was what we wanted. In other cases, this could cause us to loose any work we may have done after the original reset.
 
-#### Alias Pro Tip
-
-**Avoiding Tragedy**
-
-Sometimes, you'll reset --hard too soon, before you've made a commit. If you reset work that you never committed, it's gone for good. Using a command like `git wipe` will commit everything in your working directory, and then do a hard reset to get rid of that commit (but it's still reachable in the reflog). This is a really safe option that allows you to keep yourself from making sad mistakes.
-
-```
-git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 -- hard"
-```
-
-- `-q` stands for `--quiet`, which suppresses the commit summary message. 
-
-*Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
+See how to avoid tragedy with a convenient alias in the appendix.

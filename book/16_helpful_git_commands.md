@@ -23,18 +23,4 @@ Crafting atomic commits is an important part of creating a readable and informat
 
 > Wondering what all of those other options are for the hunks? Use the `?` to see a list of options above the hunk.
 
-#### Alias Pro Tip
-
-**Quick Commits**
-
-Sometimes, you'll want to do the opposite of granular commits and move quickly. Here's an alias that stages all saved changes and gives the stub for writing a commit message.
-
-```
-git config --global alias.cm "!git add -A && git commit -m"
-```
-
-- Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
-
-- The `-A` flag adds all changes, including untracked files, to the index.
-
-*Source: these [three](http://haacked.com/archive/2014/07/28/github-flow-aliases/) / [blog](http://haacked.com/archive/2015/06/29/git-migrate/) /  [posts](http://haacked.com/archive/2017/01/04/git-alias-open-url/) by GitHubber Phil Haack.*
+`git config --global alias.cm "!git add -A && git commit -m"` could be helpful here. Check out the appendix to see how!
