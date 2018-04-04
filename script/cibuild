@@ -64,13 +64,11 @@ mv book/SUMMARY.md book/SUMMARY_GH4M.md
 mv book/SUMMARY_GH4DJA.md book/SUMMARY.md
 
 echo "==> Building book Japanese GH4D"
-gitbook build
+${gitbook} build
 
 echo "==> Generating PDF Japanese GH4D"
-gitbook pdf . GH4DJA.pdf
+${gitbook} pdf . GH4DJA.pdf
 
 mv _book/ GH4DJA/
 
 mv book/SUMMARY.md book/SUMMARY_GH4DJA.md
-
-
