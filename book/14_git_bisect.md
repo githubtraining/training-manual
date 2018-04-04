@@ -17,7 +17,6 @@ Using a binary search, `git bisect` can help us detect specific events in our co
 ![Git Bisect](img/git-bisect.png)
 
 > When you are doing a bisect, you are essentially in a detached head state. It is important to remember to end the bisect with `git bisect reset` before attempting to perform other operations with Git.
-{: .warning}
 
 ### Finding the Bug in Our Project
 
