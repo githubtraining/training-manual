@@ -1,0 +1,727 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>チェリーピックとは · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="22_merge_strategies_rebase.html" />
+    
+    
+    <link rel="prev" href="20_rewriting_history_git_reset.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">はじめに</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="01_getting_ready_for_class.html">
+            
+                <a href="01_getting_ready_for_class.html">
+            
+                    
+                    クラスの受講準備
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="02_getting_started.html">
+            
+                <a href="02_getting_started.html">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="03_github_flow.html">
+            
+                <a href="03_github_flow.html">
+            
+                    
+                    GitHubのフロー
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">プロジェクト１：キャプション</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="04_branching_with_git.html">
+            
+                <a href="04_branching_with_git.html">
+            
+                    
+                    GitでBranching（ブランチ作成）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="05_local_git_configs.html">
+            
+                <a href="05_local_git_configs.html">
+            
+                    
+                    ローカルのGit設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="06_working_locally.html">
+            
+                <a href="06_working_locally.html">
+            
+                    
+                    ローカルでの作業
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="07_collaborating_on_code.html">
+            
+                <a href="07_collaborating_on_code.html">
+            
+                    
+                    コードについてのコラボレーション
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="08_edit_on_github.html">
+            
+                <a href="08_edit_on_github.html">
+            
+                    
+                    GitHubでのファイル編集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="09_merging_pull_requests.html">
+            
+                <a href="09_merging_pull_requests.html">
+            
+                    
+                    Pull Requestのマージ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="10_local_history.html">
+            
+                <a href="10_local_history.html">
+            
+                    
+                    ローカル履歴
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="11_streamline_workflow_with_aliases.html">
+            
+                <a href="11_streamline_workflow_with_aliases.html">
+            
+                    
+                    エイリアスによるワークフローの効率化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">プロジェクト２：マージコンフリクト</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="12_resolving_merge_conflicts.html">
+            
+                <a href="12_resolving_merge_conflicts.html">
+            
+                    
+                    マージコンフリクトの解決
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">プロジェクト３：GitHubゲーム</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="13_workflow_review_project_github_games.html">
+            
+                <a href="13_workflow_review_project_github_games.html">
+            
+                    
+                    ワークフローのレビュー
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="17_protected_branches.html">
+            
+                <a href="17_protected_branches.html">
+            
+                    
+                    保護されたブランチとCODEOWNERS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="14_git_bisect.html">
+            
+                <a href="14_git_bisect.html">
+            
+                    
+                    Git Bisect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="15_reverting_commits.html">
+            
+                <a href="15_reverting_commits.html">
+            
+                    
+                    コミットの打ち消し
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="16_helpful_git_commands.html">
+            
+                <a href="16_helpful_git_commands.html">
+            
+                    
+                    役に立つGitのコマンド
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="17_view_local_changes.html">
+            
+                <a href="17_view_local_changes.html">
+            
+                    
+                    ローカル変更の表示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="17_tags_and_releases.html">
+            
+                <a href="17_tags_and_releases.html">
+            
+                    
+                    タグとリリース
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="17_workflow_discussion.html">
+            
+                <a href="17_workflow_discussion.html">
+            
+                    
+                    ワークフローディスカッション
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">プロジェクト４：ローカルリポジトリ</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="18_create_local_repo.html">
+            
+                <a href="18_create_local_repo.html">
+            
+                    
+                    ローカルでのリポジトリ作成
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="19_fixing_commit_mistakes.html">
+            
+                <a href="19_fixing_commit_mistakes.html">
+            
+                    
+                    コミットの誤りの修正
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="20_rewriting_history_git_reset.html">
+            
+                <a href="20_rewriting_history_git_reset.html">
+            
+                    
+                    Git Resetによる履歴の書き換え
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.4" data-path="21_git_cherry_pick.html">
+            
+                <a href="21_git_cherry_pick.html">
+            
+                    
+                    チェリーピックとは
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.5" data-path="22_merge_strategies_rebase.html">
+            
+                <a href="22_merge_strategies_rebase.html">
+            
+                    
+                    マージ方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">付属資料</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="app_Day_1_activities.html">
+            
+                <a href="app_Day_1_activities.html">
+            
+                    
+                    １日目の実習手順
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="app_day2_mergeconflict.html">
+            
+                <a href="app_day2_mergeconflict.html">
+            
+                    
+                    ２日目の実習手順
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.3" data-path="App_a_workflow_guide.html">
+            
+                <a href="App_a_workflow_guide.html">
+            
+                    
+                    ワークフローガイド
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.4" data-path="app_how_to_generate_locally.html">
+            
+                <a href="app_how_to_generate_locally.html">
+            
+                    
+                    Jekyllサイトをローカルで生成する方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.5" data-path="app_git_branch_in_terminal.html">
+            
+                <a href="app_git_branch_in_terminal.html">
+            
+                    
+                    ターミナルプロンプトへのブランチ追加
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.6" data-path="app_fork_workflow.html">
+            
+                <a href="app_fork_workflow.html">
+            
+                    
+                    フォークとプルのワークフロー、および、マルチプルリモート
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.7" data-path="App_clean_loaner_pc.html">
+            
+                <a href="App_clean_loaner_pc.html">
+            
+                    
+                    トレーニングの終わりに（借りたパソコン上の履歴削除）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >チェリーピックとは</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="&#x53D6;&#x308A;&#x623B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;git-cherry-pick"><a name="&#x53D6;&#x308A;&#x623B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;git-cherry-pick" class="plugin-anchor" href="#&#x53D6;&#x308A;&#x623B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;git-cherry-pick"><i class="fa fa-link" aria-hidden="true"></i></a>&#x53D6;&#x308A;&#x623B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;<code>git cherry-pick</code></h2>
+<p>&#x524D;&#x56DE;&#x3001;reflog&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3001;&#x7834;&#x68C4;&#x3055;&#x308C;&#x305F;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x306E;&#x5909;&#x66F4;&#x3092;&#x898B;&#x3064;&#x3051;&#x308B;&#x65B9;&#x6CD5;&#x3092;&#x5B66;&#x7FD2;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002; &#x4ECA;&#x56DE;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x5834;&#x5408;&#x3092;&#x5B66;&#x7FD2;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<h3 id="1&#x3064;&#x306E;&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x304C;&#x6B32;&#x3057;&#x3044;&#x5834;&#x5408;"><a name="1&#x3064;&#x306E;&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x304C;&#x6B32;&#x3057;&#x3044;&#x5834;&#x5408;" class="plugin-anchor" href="#1&#x3064;&#x306E;&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x304C;&#x6B32;&#x3057;&#x3044;&#x5834;&#x5408;"><i class="fa fa-link" aria-hidden="true"></i></a>1&#x3064;&#x306E;&#x7279;&#x5B9A;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x304C;&#x6B32;&#x3057;&#x3044;&#x5834;&#x5408;</h3>
+<p>&#x30C1;&#x30A7;&#x30EA;&#x30FC;&#x30D4;&#x30C3;&#x30AF;&#x306F;&#x3001;reflog&#x3082;&#x3057;&#x304F;&#x306F;&#x3001;&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x4ED6;&#x306E;&#x30D6;&#x30E9;&#x30F3;&#x30C1;&#x304B;&#x3089;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x3092;&#x62FE;&#x3044;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30D6;&#x30E9;&#x30F3;&#x30C1;&#x306B;&#x79FB;&#x52D5;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002; &#x73FE;&#x5728;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3068;&#x30ED;&#x30B0;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306F;&#x305A;&#x3067;&#x3059;&#x3002;</p>
+<pre><code class="lang-sh">$ ls
+README.md
+$ git <span class="hljs-built_in">log</span> --oneline
+84nqdkq initializing repo with README
+</code></pre>
+<p>&#x30D5;&#x30A1;&#x30A4;&#x30EB;4&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x3092;&#x30C1;&#x30A7;&#x30EA;&#x30FC;&#x30D4;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<ol>
+<li>file4.md&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x30B3;&#x30DF;&#x30C3;&#x30C8;ID&#x3092;&#x898B;&#x3064;&#x3051;&#x307E;&#x3059;&#x3002;<code>git reflog</code></li>
+<li>&#x305D;&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x3092;&#x30C1;&#x30A7;&#x30EA;&#x30FC;&#x30D4;&#x30C3;&#x30AF;&#x3057;&#x307E;&#x3059;&#x3002;<code>git cherry-pick &lt;SHA&gt;</code></li>
+</ol>
+<p>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3068;&#x30ED;&#x30B0;&#x3092;&#x898B;&#x308B;&#x3068;&#x3001;&#x4EE5;&#x4E0B;&#x306E;&#x3088;&#x3046;&#x306B;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306F;&#x305A;&#x3067;&#x3059;&#x3002;</p>
+<pre><code class="lang-sh">$ ls
+file4.md
+README.md
+$ git <span class="hljs-built_in">log</span> --oneline
+eanu482 adding file 4
+84nqdkq initializing repo with README
+</code></pre>
+<p>&#x30B3;&#x30DF;&#x30C3;&#x30C8;ID&#x306F;&#x3001;&#x30C1;&#x30A7;&#x30EA;&#x30FC;&#x30D4;&#x30C3;&#x30AF;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x4F7F;&#x7528;&#x3057;&#x305F;&#x3082;&#x306E;&#x3068;&#x540C;&#x3058;&#x3067;&#x3057;&#x3087;&#x3046;&#x304B;&#xFF1F; &#x306A;&#x305C;&#x305D;&#x3046;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3057;&#x3087;&#x3046;&#x304B;&#xFF1F;</p>
+<blockquote>
+<p>&#x5C65;&#x6B74;&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306F;&#x3001;GitHub&#x306B;&#x30D7;&#x30C3;&#x30B7;&#x30E5;&#x3059;&#x308B;&#x524D;&#x306B;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002; &#x3059;&#x3067;&#x306B;&#x30EA;&#x30E2;&#x30FC;&#x30C8;&#x306B;&#x30D7;&#x30C3;&#x30B7;&#x30E5;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x306E;ID&#x3092;&#x5909;&#x66F4;&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;&#x3001;&#x30B3;&#x30E9;&#x30DC;&#x30EC;&#x30FC;&#x30BF;&#x306B;&#x554F;&#x984C;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x6050;&#x308C;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002; {: .warning}</p>
+</blockquote>
+<h3 id="&#x304A;&#x3063;&#x3068;&#x3001;&#x8AA4;&#x3063;&#x3066;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3057;&#x3061;&#x3083;&#x3063;&#x305F;"><a name="&#x304A;&#x3063;&#x3068;&#x3001;&#x8AA4;&#x3063;&#x3066;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3057;&#x3061;&#x3083;&#x3063;&#x305F;" class="plugin-anchor" href="#&#x304A;&#x3063;&#x3068;&#x3001;&#x8AA4;&#x3063;&#x3066;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3057;&#x3061;&#x3083;&#x3063;&#x305F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x304A;&#x3063;&#x3068;&#x3001;&#x8AA4;&#x3063;&#x3066;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3057;&#x3061;&#x3083;&#x3063;&#x305F;</h3>
+<p>&#x6642;&#x6298;&#x3001;<code>git reset --hard</code> &#x3092;&#x610F;&#x56F3;&#x3057;&#x305F;&#x7BC4;&#x56F2;&#x3088;&#x308A;&#x3082;&#x5E83;&#x304F;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x3001;&#x305D;&#x308C;&#x3092;&#x5FA9;&#x5143;&#x3055;&#x305B;&#x305F;&#x3044;&#x3068;&#x3044;&#x3046;&#x6642;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002; &#x5E78;&#x3044;&#x306A;&#x3053;&#x3068;&#x306B;&#x3001;<code>git reset --hard</code> &#x306F;&#x3001;&#x9061;&#x308B;&#x3060;&#x3051;&#x3067;&#x306A;&#x304F;&#x3001;&#x524D;&#x306B;&#x9032;&#x3081;&#x308B;&#x3053;&#x3068;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<ol>
+<li>HEAD&#x304C;&#x6307;&#x3057;&#x3066;&#x304D;&#x305F;&#x5168;&#x3066;&#x306E;&#x5834;&#x6240;&#x306E;&#x5C65;&#x6B74;&#x3092;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;<code>git reflog</code></li>
+<li>&#x5143;&#x306E;<code>file6.md</code>&#x304C;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x305F;&#x6642;&#x70B9;&#x306B;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3057;&#x307E;&#x3059;&#x3002;<code>git reset --hard &lt;SHA&gt;</code></li>
+<li>&#x5FA9;&#x5143;&#x3055;&#x308C;&#x305F;&#x5C65;&#x6B74;&#x3092;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;<code>git log --oneline</code></li>
+</ol>
+<p><code>git log --oneline</code>&#x306E;&#x30B3;&#x30DF;&#x30C3;&#x30C8;ID&#x3092; <code>git reflog</code> &#x3068;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002; &#x6C17;&#x3065;&#x304D;&#x307E;&#x3057;&#x305F;&#x304B;&#xFF1F;</p>
+<blockquote>
+<p>&#x3059;&#x3067;&#x306B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;4&#x3092;&#x30C1;&#x30A7;&#x30EA;&#x30FC;&#x30D4;&#x30C3;&#x30AF;&#x3057;&#x305F;&#x306E;&#x306B;&#x3001;&#x306A;&#x305C;&#x3053;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306F;&#x30DE;&#x30FC;&#x30B8;&#x30B3;&#x30F3;&#x30D5;&#x30EA;&#x30AF;&#x30C8;&#x3092;&#x8D77;&#x3053;&#x3055;&#x306A;&#x304B;&#x3063;&#x305F;&#x3067;&#x3057;&#x3087;&#x3046;&#x304B;&#x3002; &#x305D;&#x306E;&#x7406;&#x7531;&#x306F;&#x3001;<code>git reset --hard</code> &#x304C;2&#x3064;&#x306E;&#x5C65;&#x6B74;&#x3092;&#x30DE;&#x30FC;&#x30B8;&#x3057;&#x3088;&#x3046;&#x3068;&#x3057;&#x3066;&#x3044;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x65B0;&#x3057;&#x3044;&#x30B3;&#x30DF;&#x30C3;&#x30C8;&#x3092;&#x6307;&#x3059;&#x3088;&#x3046;&#x30D6;&#x30E9;&#x30F3;&#x30C1;&#x3092;&#x79FB;&#x52D5;&#x3057;&#x305F;&#x3060;&#x3051;&#x3060;&#x304B;&#x3089;&#x3067;&#x3059;&#x3002; &#x305D;&#x308C;&#x304C;&#x4ECA;&#x56DE;&#x306E;&#x72D9;&#x3044;&#x3067;&#x3057;&#x305F;&#x3002; &#x3057;&#x304B;&#x3057;&#x9055;&#x3046;&#x5834;&#x9762;&#x3067;&#x306F;&#x3001;&#x5143;&#x306E;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x5F8C;&#x306B;&#x884C;&#x3063;&#x305F;&#x4F5C;&#x696D;&#x304C;&#x5168;&#x3066;&#x5931;&#x308F;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;&#x53EF;&#x80FD;&#x6027;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="20_rewriting_history_git_reset.html" class="navigation navigation-prev " aria-label="Previous page: Git Resetによる履歴の書き換え">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="22_merge_strategies_rebase.html" class="navigation navigation-next " aria-label="Next page: マージ方法">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"チェリーピックとは","level":"5.4","depth":1,"next":{"title":"マージ方法","level":"5.5","depth":1,"path":"ja/22_merge_strategies_rebase.md","ref":"ja/22_merge_strategies_rebase.md","articles":[]},"previous":{"title":"Git Resetによる履歴の書き換え","level":"5.3","depth":1,"path":"ja/20_rewriting_history_git_reset.md","ref":"ja/20_rewriting_history_git_reset.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"ja/21_git_cherry_pick.md","mtime":"2018-04-04T11:22:49.117Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-04T11:27:25.241Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
