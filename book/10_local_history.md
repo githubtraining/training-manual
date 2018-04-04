@@ -6,7 +6,7 @@ In this section, you will discover commands for viewing the history of your proj
 
 When you clone a repository, you receive the history of all of the commits made in that repository. The log command allows us to view that history on our local machine.
 
-Let's take a look at some of the option switches you can use to customize your view of the project history.
+Let's take a look at some of the option switches you can use to customize your view of the project history. You can find these options, and many more, on [git-scm.com](https://git-scm.com/docs/git-log). _(Note: `--graph` is default on most Git Bash for Windows terminals.)_ 
 
 ```sh
 $ git log

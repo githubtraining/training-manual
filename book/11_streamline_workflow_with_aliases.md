@@ -23,14 +23,7 @@ $ git config --global alias.lol "log --oneline --graph --decorate --all"
 $ git lol
 ```
 
-#### Other Helpful Aliases
-
-```sh
-$ git config --global alias.s "status -s"
-$ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-```
-
-#### Explore
+#### Explore Other Helpful Aliases
 
 Check out these resources for a list of common aliases:
 
@@ -55,4 +48,14 @@ git config --global alias.ch "checkout"
 Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.
 ```
 git config --global alias.cob "checkout -b"
+```
+
+Pro Tip # 4: You can create aliases that only call one command.
+```
+git config --global alias.s "status -s"
+```
+
+Pro Tip # 5: Clean up branches quickly and easily.
+```
+$ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 ```
