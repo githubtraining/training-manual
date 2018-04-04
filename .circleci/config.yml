@@ -46,6 +46,7 @@ jobs:
             - ./onlycicdcircle/
             - ./GH4D/
             - ./GH4M/
+            - ./GH4DJA/
 
   deploy:
     <<: *defaults
