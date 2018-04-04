@@ -37,7 +37,7 @@
 ## Connecting the Dots
   * [Reviewing the pipeline](20_review_pipeline_manager.md)
   * [Technical Possibilities](19_technical_possibilities_manager.md)
-  * [Add Documentation to your Project](24-add-ghpages_manager.md)
+  * [Add Documentation to your Project](24_add_ghpages_manager.md)
 
 ## Real World Work
   * [Workflows](21_workflows_manager.md)

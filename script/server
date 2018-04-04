@@ -14,9 +14,7 @@ then
   echo "1: Standard GitHub for Developers (GH4D)"
   echo "2: GH4D + CircleCI"
   echo "3: GH4D + Travis CI"
-  echo "4: CircleCI only"
-  echo "5: Travis CI only"
-  echo "6: GH4D Japanese"
+  echo "4: GH4D Japanese"
   echo "Which manual would you like to build? You can enter more than one number."
   read option
 fi
@@ -37,16 +35,6 @@ then
 fi
 
 if echo "$option" | grep -iq "4";
-then
-  cp book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
-fi
-
-if echo "$option" | grep -iq "5";
-then
-  cp book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
-fi
-
-if echo "$option" | grep -iq "6";
 then
   cp book/SUMMARY_GH4DJA.md book/SUMMARY.md
 fi

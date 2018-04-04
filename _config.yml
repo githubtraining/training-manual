@@ -42,6 +42,10 @@ plugins:
 exclude:
   - Gemfile
   - Gemfile.lock
-  - vendor
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
   - github_for_developers.md
   - book
+  - node_modules

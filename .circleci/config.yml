@@ -34,12 +34,7 @@ jobs:
             - ./vendor/gems
       - run: npm run docs:prepare # gitbook install
       # build the books
-      - run: script/cibuild fullcicdtravis
-      - run: script/cibuild onlycicdtravis
-      - run: script/cibuild fullcicdcircle
-      - run: script/cibuild onlycicdcircle
-      - run: script/cibuild GH4D
-      - run: script/cibuild GH4M
+      - run: script/cibuild
       # persist the books for deployment
       - persist_to_workspace:
           root: ~/training-manual
