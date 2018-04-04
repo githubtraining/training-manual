@@ -22,7 +22,6 @@ function getdetails () {
   #create a google short link
   shortLink=$((curl https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//'))
   script/create-repo caption-this $reponame $teacher
-  git clone https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame $reponame
   if [ $? -eq 0 ]; then
     pushd $reponame
     git config user.name "$TOKEN_OWNER"

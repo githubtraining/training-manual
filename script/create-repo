@@ -32,16 +32,17 @@ function createrepo () {
 function clonerepo () {
   #create the repo locally
   git clone --bare https://github.com/githubtraining/$type $reponame
-  if [$? -ne 0]
-   then
+  exitCode=$?
+  echo "The exit code from first clone: $exitCode"
+  if [ $exitCode -ne 0 ]; then
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
     git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$type $reponame
-    if [$? -ne 0]
-      then
-        echo "!!! Couldn't clone template repo at all."
-        exit 1
+    secondExit=$?
+    echo "The second exit code $secondExit"
+    if [ $secondExit -ne 0 ]; then
+      echo "!!! Couldn't clone template repo at all."
+      exit 1
     fi
-    exit 1
   fi
 
   pushd $reponame
