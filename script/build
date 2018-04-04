@@ -9,3 +9,4 @@ script/cibuild fullcicdcircle
 script/cibuild onlycicdcircle
 script/cibuild GH4D
 script/cibuild GH4M
+script/cibuild GH4DJA

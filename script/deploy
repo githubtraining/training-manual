@@ -17,11 +17,13 @@ mv fullCICDTravis.pdf fullCICDTravistemp.pdf
 mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
 mv fullCICDCircle.pdf fullCICDCircletemp.pdf
 mv GH4D.pdf GH4Dtemp.pdf
+mv GH4DJA.pdf GH4DJAtemp.pdf
 mv fullcicdtravis/ fullcicdtravistemp/
 mv onlycicdtravis/ onlycicdtravistemp/
 mv fullcicdcircle/ fullcicdcircletemp/
 mv onlycicdcircle/ onlycicdcircletemp/
 mv GH4D/ GH4Dtemp/
+mv GH4DJA/ GH4DJAtemp/
 
 # Switch to gh-pages branch and pull from origin
 git checkout gh-pages --force
@@ -41,33 +43,39 @@ git clean -fx .ruby-version
 [ -f onlycicdcircle.pdf ] && rm onlycicdcircle.pdf
 [ -f GH4D.pdf ] && rm GH4D.pdf
 [ -f GH4M.pdf ] && rm GH4M.pdf
+[ -f GH4DJA.pdf ] && rm GH4DJA.pdf
 [ -d fullcicdtravis/ ] && rm -rf fullcicdtravis/
 [ -d onlycicdtravis/ ] && rm -rf onlycicdtravis/
 [ -d fullcicdcircle/ ] && rm -rf fullcicdcircle/
 [ -d onlycicdcircle/ ] && rm -rf onlycicdcircle/
 [ -d GH4D/ ] && rm -rf GH4D/
 [ -d GH4M/ ] && rm -rf GH4M/
+[ -d GH4DJA/ ] && rm -rf GH4DJA/
 
 rm -rf onlyCICDTravis.pdf
 rm -rf onlyCICDCircle.pdf
 rm -rf fullCICDTravis.pdf
 rm -rf fullCICDCircle.pdf
 rm -rf GH4D.pdf
+rm -rf GH4DJA.pdf
 rm -rf fullcicdtravis/
 rm -rf onlycicdtravis/
 rm -rf fullcicdcircle/
 rm -rf onlycicdcircle/
 rm -rf GH4D/
+rm -rf GH4DJA/
 mv onlyCICDCircletemp.pdf onlyCICDCircle.pdf
 mv fullCICDCircletemp.pdf fullCICDCircle.pdf
 mv onlyCICDTravistemp.pdf onlyCICDTravis.pdf
 mv fullCICDTravistemp.pdf fullCICDTravis.pdf
 mv GH4Dtemp.pdf GH4D.pdf
+mv GH4DJAtemp.pdf GH4DJA.pdf
 mv onlycicdtravistemp/ onlycicdtravis/
 mv fullcicdtravistemp/ fullcicdtravis/
 mv onlycicdcircletemp/ onlycicdcircle/
 mv fullcicdcircletemp/ fullcicdcircle/
 mv GH4Dtemp/ GH4D/
+mv GH4DJAtemp/ GH4DJA/
 
 git add .
 git commit -m "update book [ci skip]"
