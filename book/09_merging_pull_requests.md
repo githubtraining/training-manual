@@ -6,6 +6,8 @@ Now that you have made the requested changes, your pull request should be ready 
 
 When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `gh-pages` branch.
 
+![Merging Pull Requests](img/merging-prs.png)
+
 Many project teams have established rules about who should merge a pull request.
 
 - Some say it should be the person who created the pull request since they will be the ones to deal with any issues resulting from the merge.

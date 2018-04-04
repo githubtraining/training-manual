@@ -1,0 +1,12 @@
+{
+  "name": "training-manual",
+  "scripts": {
+    "docs:prepare": "gitbook install"
+  },
+  "dependencies": {
+    "gitbook": "^3.2.3",
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-advanced-emoji": "^0.2.2",
+    "gitbook-plugin-anchors": "^0.7.1"
+  }
+}

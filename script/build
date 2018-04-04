@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# script/build: build all books and PDFs
+# this can be used locally instead of running script/cibuild [BOOKNAME] to build all books
+
+script/cibuild fullcicdtravis
+script/cibuild onlycicdtravis
+script/cibuild fullcicdcircle
+script/cibuild onlycicdcircle
+script/cibuild GH4D
+script/cibuild GH4M

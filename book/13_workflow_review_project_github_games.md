@@ -4,6 +4,8 @@ In this section, we will work on a project repository called `github-games`.
 
 A `github-games` repository has been created for you in the githubschool organization. You can access the repository at `https://github.com/githubschool/github-games-username`.
 
+If you're using the Fork and Pull Workflow, [don't forget to look in the appendix for a more thorough explanation](app_fork_workflow.md).
+
 ### Workflow Review: Updating the README.md
 
 Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.
@@ -21,7 +23,7 @@ Since this is a review, we have written these steps at a high level. As we compl
 1. Edit the URL in the README.md.
 1. Commit the changes to your branch.
 1. Push your branch to GitHub: `git push -u origin readme-update`
-1. Create a Pull Request *in your repository* (base: `gh-pages`, compare: `readme-update`)
+1. Create a Pull Request *in your repository* (base: `master`, compare: `readme-update`)
 1. Merge your Pull Request.
 1. Delete the branch on GitHub.
 1. Update your local copy of the repository: `git pull --prune`

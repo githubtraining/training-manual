@@ -30,6 +30,7 @@ These are the repository level configurations. They only apply to the specific r
 
 > The default value for git config is `--local`.
 
+
 ### Viewing Your Configurations
 
 If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the three config files and list the setting they contain.
@@ -53,12 +54,21 @@ $ git config --global user.name "First Last"
 $ git config --global user.email "you@email.com"
 ```
 
-> Your name and email address will automatically be stored in the commits you make with Git. If you would like your email to remain private, GitHub allows you to generate a no-reply email address for your account. Click the **Keep my email address private** in the [Settings > Emails section](https://github.com/settings/emails). After enabling this feature, you just need to enter the automatically generated `ID+username@users.noreply.github.com` when configuring your email.
+#### Git Config and Your Privacy
+
+The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again. 
 
 > For example:
-```sh
-git config --global user.email 18249274+githubteacher@users.noreply.github.com
-```
+> ```sh
+> git config user.email "you@email.com"
+>```
+
+Your name and email address will automatically be stored in the commits you make with Git. If you would like your email to remain private, GitHub allows you to generate a no-reply email address for your account. Click the **Keep my email address private** in the [Settings > Emails section](https://github.com/settings/emails). After enabling this feature, you just need to enter the automatically generated `ID+username@users.noreply.github.com` when configuring your email.
+
+> For example:
+> ```sh
+> git config --global user.email 18249274+githubteacher@users.noreply.github.com
+> ```
 
 ### Configuring autocrlf
 

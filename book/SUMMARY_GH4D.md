@@ -20,10 +20,12 @@
 
 ## Project 3: GitHub Games
   * [Workflow Review](13_workflow_review_project_github_games.md)
+  * [Protected Branches & CODEOWNERS](17_protected_branches.md)
   * [Git Bisect](14_git_bisect.md)
   * [Reverting Commits](15_reverting_commits.md)
   * [Helpful Git Commands](16_helpful_git_commands.md)
   * [Viewing Local Changes](17_view_local_changes.md)
+  * [Tags & Releases](17_tags_and_releases.md)
   * [Workflow Discussion](17_workflow_discussion.md)
 
 ## Project 4: Local Repository
@@ -38,5 +40,7 @@
   * [Day 2 Activity Instructions](app_day2_mergeconflict.md)
   * [Workflow Guide](App_a_workflow_guide.md)
   * [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
+  * [Add Branch to Terminal Prompt](app_git_branch_in_terminal.md)
+  * [Fork and Pull Workflow and Multiple Remotes](app_fork_workflow.md)
   * [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
   * [Alias Pro Tips](app_aliases.md)
