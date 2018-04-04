@@ -4,7 +4,7 @@
 
 ### 変更をGitHubにプッシュ
 
-![GitHubにプッシュ](img/push-pull.png)
+![GitHubにプッシュ](../img/push-pull.png)
 
 今回このクラスでは、リモートはGitHub.comですが、あなたの勤務先のGitHub Enterpriseの内部インスタンスにすることもできます。
 

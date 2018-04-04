@@ -6,7 +6,7 @@
 
 `git diff` でリポジトリにある2つのrefの違いを見ることができます。 以下の図は、ワーキングエリアやステージング、HEAD（最新コミット）の内容を比較する方法を表しています。
 
-![Git diffのオプション](img/diff-options.png)
+![Git diffのオプション](../img/diff-options.png)
 
 リポジトリにこのコマンドを使ってみましょう。
 

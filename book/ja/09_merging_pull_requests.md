@@ -6,7 +6,7 @@
 
 ブランチをマージするとき、あなたのフィーチャブランチからコンテンツと履歴が取り出され、` gh-pages `のブランチのコンテンツと履歴に追加されます。
 
-![Pull Requestのマージ](img/merging-prs.png)
+![Pull Requestのマージ](../img/merging-prs.png)
 
 多くのプロジェクトチームでは、誰がPull Requestをマージするべきか、ルールを定めています。
 

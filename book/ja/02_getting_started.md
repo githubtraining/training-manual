@@ -6,7 +6,7 @@
 
 GitHubは、Gitと呼ばれる分散型バージョン管理システム上に構築されたコラボレーションプラットフォームです。
 
-![GitHubの愛されるオクタキャットロゴ](img/github-icon.png)
+![GitHubの愛されるオクタキャットロゴ](../img/github-icon.jpg)
 
 GitHubは、Gitプロジェクトをホストし共有する場所です。加えて、GitHubは、ユーザとそのチームによる効果的なコラボレーションに役立つ多くの機能を提供します。 たとえば、次のような機能です。
 
@@ -15,13 +15,13 @@ GitHubは、Gitプロジェクトをホストし共有する場所です。加�
 - Projects（プロジェクト）
 - Organization（オーガナイゼーション）およびTeam（チーム）
 
-![GitHubのコラボレーション機能](img/collaboration-features.png)
+![GitHubのコラボレーション機能](../img/collaboration-features.png)
 
 ### GitHub Ecosystemについて
 
 GitHubは、あなたに「画一的な」ecosystem（体系）を強制するのではなく、あなた好みのツールが揃っている場所になろうと努力しています。 インテグレーションの詳細については、https://github.com/integrationsを参照してください。
 
-![GitHubのインテグレーションディレクトリ](img/github-ecosystem.png)
+![GitHubのインテグレーションディレクトリ](../img/github-ecosystem.png)
 
 継続的インテグレーション、依存関係のマネジメント、コード品質向上などに役立つ、これまでになかった必須ツールが見つかるかもしれません。
 
@@ -64,7 +64,7 @@ Gitで新規ブランチを作成した場合、実際には、一連の作業�
 
 リポジトリには、ドキュメントを含むすべてのプロジェクト用ファイルが保管されており、各ファイルのリビジョン履歴が保存されます。 単に知りたいだけの人にとっても、優れたコントリビュータにとっても、リポジトリの関連要素を知ることは、とても重要です。
 
-![GitHubのリポジトリ](img/repository-intro.png)
+![GitHubのリポジトリ](../img/repository-intro.png)
 
 ### ユーザアカウントと オーガナイゼーションアカウントの比較
 

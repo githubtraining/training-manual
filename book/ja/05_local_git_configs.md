@@ -17,7 +17,7 @@ $ git version 2.11.0
 
 ### Gitの設定レベル
 
-![Gitの設定レベル](img/config-levels.png)
+![Gitの設定レベル](../img/config-levels.png)
 
 Gitでは、3つの異なるレベルで設定オプションを設定できます。
 
@@ -63,7 +63,7 @@ $ git config --global user.email "you@email.com"
 この演習の手順では、あなたの` user.name `と` user.email `の設定を識別するとき、`--global`フラグを使用します。 現在、個人のアカウントを使用せずにコンピュータを使用している場合は、 `--global`を適用しないでください。 この方法によって、設定は、本クラスで割り当てたリポジトリにのみ保存されます。 同じコンピュータ上の別のリポジトリで作業する場合は、この設定オプションを再度設定する必要があります。
 
 > 例えば
-> 
+>
 > ```sh
 git config user.email "you@email.com"
 ```
@@ -71,7 +71,7 @@ git config user.email "you@email.com"
 ユーザの名前とメールアドレスは、Gitでユーザが作成したコミットに自動的に保存されます。 メールを非公開にしたい場合は、GitHubによって、そのユーザアカウント用の返信受付不可のメールアドレスを生成することができます。 [Settings > Emails セクション](https://github.com/settings/emails)の**Keep my email address private**をクリックしてください。 この機能を有効にしたら、自動的に生成された` ID +username@users.noreply.github.com `をメールを設定するときに入力するだけです。
 
 > 例えば
-> 
+>
 > ```sh
 git config --global user.email 18249274+githubteacher@users.noreply.github.com
 ```

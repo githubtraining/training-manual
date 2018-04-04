@@ -11,11 +11,11 @@ Gitのコミットは、それぞれ、その時点でのユニークなスナ�
 - コミットの日付と時間
 - コミットメッセージ
 
-![Gitの基本的なコミットの構造](img/commit-and-tree.png)
+![Gitの基本的なコミットの構造](../img/commit-and-tree.png)
 
 他にも、それぞれのコミットには親コミットのコミットIDも含まれています。
 
-![コミット同士の関係](img/commit-parent.png)
+![コミット同士の関係](../img/commit-parent.png)
 
 画像ソース：Scott ChaconのProGit v2
 

@@ -4,7 +4,7 @@
 
 ### 重要なGitHubのワークフロー
 
-![GitHubのワークフロー](img/github-workflow.png)
+![GitHubのワークフロー](../img/github-workflow.png)
 
 GitHubのフローは、負荷の少ないワークフローのため、新しいアイデアを安全に試すことができ、プロジェクトの妨げとなる心配はありません。
 

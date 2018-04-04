@@ -14,7 +14,7 @@
 
 `git bisect` は、２点間にある履歴を半分にし、そのコミットをチェックアウトします。 ユーザは、その時点でのバグや機能の有無を確認し、Gitにその結果を伝えます。 その後Gitは、探しているコミットが見つかるまで同じ過程を繰り返します。
 
-![Git Bisect](img/git-bisect.png)
+![Git Bisect](../img/git-bisect.png)
 
 > Bisectが行われているときは、本質的に切り離されたHEAD (detached HEAD) の状態になっています。 Git で他の操作を行う前に、`git bisect reset` を実行して bisect を終了しましょう。 {: .warning}
 
