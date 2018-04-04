@@ -47,34 +47,6 @@ mv _book/ fullcicdcircle/
 
 mv book/SUMMARY.md book/SUMMARY_CICD_FULLGH4D_Circle.md
 
-# create new condensed CICD course with Travis
-mv book/SUMMARY_CICDONLY_TRAVIS.md book/SUMMARY.md
-
-echo "==> Building book onlyCICDTravis"
-${gitbook} build
-
-
-echo "==> Generating PDF onlyCICDTravis"
-${gitbook} pdf . onlyCICDTravis.pdf
-
-mv _book/ onlycicdtravis/
-
-mv book/SUMMARY.md book/SUMMARY_CICDONLY_TRAVIS.md
-
-# create new condensed CICD course with Circle
-mv book/SUMMARY_CICDONLY_CIRCLE.md book/SUMMARY.md
-
-echo "==> Building book onlyCICDCircle"
-${gitbook} build
-
-
-echo "==> Generating PDF onlyCICDCircle"
-${gitbook} pdf . onlyCICDCircle.pdf
-
-mv _book/ onlycicdcircle/
-
-mv book/SUMMARY.md book/SUMMARY_CICDONLY_CIRCLE.md
-
 # create new GitHub for Managers manual
 mv book/SUMMARY_GH4M.md book/SUMMARY.md
 

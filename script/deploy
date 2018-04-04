@@ -11,16 +11,12 @@ git config --global user.email "$GH_EMAIL" > /dev/null 2>&1
 git config --global user.name "$GH_NAME" > /dev/null 2>&1
 
 rm -rf vendor
-mv onlyCICDTravis.pdf onlyCICDTravistemp.pdf
 mv fullCICDTravis.pdf fullCICDTravistemp.pdf
-mv onlyCICDCircle.pdf onlyCICDCircletemp.pdf
 mv fullCICDCircle.pdf fullCICDCircletemp.pdf
 mv GH4D.pdf GH4Dtemp.pdf
 mv GH4M.pdf GH4Mtemp.pdf
 mv fullcicdtravis/ fullcicdtravistemp/
-mv onlycicdtravis/ onlycicdtravistemp/
 mv fullcicdcircle/ fullcicdcircletemp/
-mv onlycicdcircle/ onlycicdcircletemp/
 mv GH4D/ GH4Dtemp/
 mv GH4M/ GH4Mtemp/
 
@@ -37,39 +33,27 @@ git clean -fx .ruby-version
 
 # Delete old PDFs and book folders
 [ -f fullcicdtravis.pdf ] && rm fullcicdtravis.pdf
-[ -f onlycicdtravis.pdf ] && rm onlycicdtravis.pdf
 [ -f fullcicdcircle.pdf ] && rm fullcicdcircle.pdf
-[ -f onlycicdcircle.pdf ] && rm onlycicdcircle.pdf
 [ -f GH4D.pdf ] && rm GH4D.pdf
 [ -f GH4M.pdf ] && rm GH4M.pdf
 [ -d fullcicdtravis/ ] && rm -rf fullcicdtravis/
-[ -d onlycicdtravis/ ] && rm -rf onlycicdtravis/
 [ -d fullcicdcircle/ ] && rm -rf fullcicdcircle/
-[ -d onlycicdcircle/ ] && rm -rf onlycicdcircle/
 [ -d GH4D/ ] && rm -rf GH4D/
 [ -d GH4M/ ] && rm -rf GH4M/
 
-rm -rf onlyCICDTravis.pdf
-rm -rf onlyCICDCircle.pdf
 rm -rf fullCICDTravis.pdf
 rm -rf fullCICDCircle.pdf
 rm -rf GH4D.pdf
 rm -rf GH4M.pdf
 rm -rf fullcicdtravis/
-rm -rf onlycicdtravis/
 rm -rf fullcicdcircle/
-rm -rf onlycicdcircle/
 rm -rf GH4D/
 rm -rf GH4M/
-mv onlyCICDCircletemp.pdf onlyCICDCircle.pdf
 mv fullCICDCircletemp.pdf fullCICDCircle.pdf
-mv onlyCICDTravistemp.pdf onlyCICDTravis.pdf
 mv fullCICDTravistemp.pdf fullCICDTravis.pdf
 mv GH4Dtemp.pdf GH4D.pdf
 mv GH4Mtemp.pdf GH4M.pdf
-mv onlycicdtravistemp/ onlycicdtravis/
 mv fullcicdtravistemp/ fullcicdtravis/
-mv onlycicdcircletemp/ onlycicdcircle/
 mv fullcicdcircletemp/ fullcicdcircle/
 mv GH4Dtemp/ GH4D/
 mv GH4Mtemp/ GH4M/
