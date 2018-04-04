@@ -24,7 +24,7 @@ Using a binary search, `git bisect` can help us detect specific events in our co
 
 1. Initiate the binary search: `git bisect start`.
 1. Specify the commit where you noticed the code was broken: `git bisect bad <SHA>`.
-1. Specify the commit where you knew things were working: `git bisect good <SHA`.
+1. Specify the commit where you knew things were working: `git bisect good <SHA>`.
 1. Bisect will check you out to the midpoint between good and bad.
 1. Run a test to see if the game would work at this point. Our test is to use `ls` to see if an `index.html` file exists.
 1. If the game is still broken (there *is no* `index.html` file), type: `git bisect bad`.
