@@ -10,7 +10,7 @@ Depending on how you're interacting with this manual, you may be in a class. The
 1. Find your repository. It will be at `github.com/githubschool/USERNAME`, where your username is replacing the word USERNAME.
 1. In your repository, navigate to the **Pull Requests** tab.
 1. There are three open pull requests, and all of them have merge conflicts to fix. We recommend fixing them in this order:
-  - Update README
-  - Updates to game manual
-  - Minor CSS fixes
+    - Update README
+    - Updates to game manual
+    - Minor CSS fixes
 1. View the pull request, and follow the steps to resolve the merge conflicts. When the merge conflict is resolved, merge the pull request.
