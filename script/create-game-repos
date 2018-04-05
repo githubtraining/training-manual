@@ -3,7 +3,6 @@
 #you must have a $TOKEN_OWNER token
 #saved to your ENV variables in order to use this script
 collabrepo=$1
-teacher=$2
 
 #test array content
 function containsElement () {
@@ -16,6 +15,9 @@ function getnames () {
   #get facilitator name from README
   #teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//')
   #make sure no one is teaching class
+  echo "What is the teacher's username?"
+  read teacher
+
   echo "A new github-games repo is about to be created for $teacher."
   echo "Is that OK? (Y or N)"
   read classtime

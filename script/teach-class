@@ -1,6 +1,4 @@
 #!/bin/sh
-teacher=$1
-
 set -e
 
 function gettask () {
@@ -67,8 +65,8 @@ function dotask () {
   if echo "$task" | grep -iq "6" ;
   then
     echo "running script/create-game-repos"
-    script/create-game-repos $collabrepo $teacher
+    script/create-game-repos $collabrepo
   fi
 }
-
+    
 gettask
