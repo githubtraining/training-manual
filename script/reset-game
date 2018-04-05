@@ -48,8 +48,19 @@ function duplicaterepo () {
 
   echo "Clone $reponame template from githubtraining org..."
   rm -rf $reponame
-  git clone --bare https://github.com/githubtraining/$reponame $reponame
-  if [ $? -eq 0 ]; then
+
+  git clone --bare https://github.com/githubtraining/$reponame $reponame >> log.out 2>&1
+  if [ $? -ne 0 ]; then
+    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame $reponame >> log.out 2>&1
+    if [ $? -ne 0 ]; then
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/$reponame and upload it to your GHE instance."
+      exit 1
+    fi
+  fi
+
+  # git clone --bare https://github.com/githubtraining/$reponame $reponame
+  # if [ $? -eq 0 ]; then
     echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
     pushd $reponame
     git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame
@@ -63,9 +74,6 @@ function duplicaterepo () {
 
     echo "Remove the local (temporary) clone"
     rm -rf $reponame
-  else
-    echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
-  fi  
 }
 
 #usage list the repository name and default branch

@@ -28,8 +28,18 @@ function getnames () {
     exit
   fi
   #grab template repo
-  git clone --bare https://github.com/githubtraining/github-games game-template
-  if [ $? -eq 0 ]; then
+  git clone --bare https://github.com/githubtraining/github-games game-template >> log.out 2>&1
+  if [ $? -ne 0 ]; then
+    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/github-games game-template >> log.out 2>&1
+    if [ $? -ne 0 ]; then
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/github-games and upload it to your GHE instance."
+      exit 1
+    fi
+  fi
+  
+  # git clone --bare https://github.com/githubtraining/github-games game-template
+  # if [ $? -eq 0 ]; then
     pushd game-template
     collabs=$(curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login')
     ownersArray=( "${ownersArray[@]/"$teacher"}" )
@@ -55,9 +65,6 @@ function getnames () {
     popd
     echo "Remove the local (temporary) clone"
     rm -rf game-template
-  else
-    echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
-  fi
 }
 
 function createRepo () {
