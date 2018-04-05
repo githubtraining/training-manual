@@ -30,10 +30,10 @@ function deletedisposablerepo () {
   reponame=$1
 
   echo "Delete $TOKEN_OWNER $reponame repo..."
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1 >> log.out 2>&1
 
   echo "Delete $CLASS_ORG $reponame repo..."
-    curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$1 >> log.out 2>&1
 }
 
 function duplicaterepo () {
@@ -41,7 +41,7 @@ function duplicaterepo () {
   dbranch=$2
 
   echo "Create server-side location for fresh $CLASS_ORG/$reponame repo..."
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
 
   echo "Resting 5 more seconds to allow repo creation to resolve"
   sleep 5
@@ -61,19 +61,19 @@ function duplicaterepo () {
 
   # git clone --bare https://github.com/githubtraining/$reponame $reponame
   # if [ $? -eq 0 ]; then
-    echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
-    pushd $reponame
-    git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame
+  echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
+  pushd $reponame
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
 
-    echo "Resting 5 more seconds to allow push to resolve"
-    sleep 5
+  echo "Resting 5 more seconds to allow push to resolve"
+  sleep 5
 
-    echo "Setting default branch for repo"
-    curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
-    popd
+  echo "Setting default branch for repo"
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame >> log.out 2>&1
+  popd
 
-    echo "Remove the local (temporary) clone"
-    rm -rf $reponame
+  echo "Remove the local (temporary) clone"
+  rm -rf $reponame
 }
 
 #usage list the repository name and default branch

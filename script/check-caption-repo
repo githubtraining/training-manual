@@ -35,7 +35,7 @@ function checkrepo () {
   for i in ${pullsNumbers[@]}
   do
     #give credit to the author
-    prAuthor=$(curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls/$i | jq .user.login)
+    prAuthor=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls/$i | jq .user.login) >> log.out 2>&1
     if
       containsElement $prAuthor $ownersArray
     then
@@ -43,7 +43,7 @@ function checkrepo () {
       echo "prAuth: https://$INSTANCE_URL/$CLASS_ORG/$collabrepo/pull/$i" >> caption-activity-$prAuthor.yml
     fi
     #get authors of reviews on this PR
-    reviewAuth=$(curl -H "Accept: application/vnd.github.v3+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls/$i/reviews | jq '.[] | .user.login')
+    reviewAuth=$(curl -s -H "Accept: application/vnd.github.v3+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls/$i/reviews | jq '.[] | .user.login') >> log.out 2>&1
     #iterate through reviewers and give credit
     for z in ${reviewAuth[@]}
     do
@@ -71,17 +71,17 @@ function sendfiles () {
       #first, encode file as base64
       newfile=$(cat caption-activity-$i.yml | base64)
       #does the file already exist?
-      status=$(curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml | grep "^Status:")
+      status=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml | grep "^Status:") >> log.out 2>&1
       if echo "$status" | grep -iq "404" ;
       then
         #create the file on the repo
-        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml
+        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml >> log.out 2>&1
       else
         #get the sha
-        sha=$(curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml | jq .sha)
+        sha=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml | jq .sha) >> log.out 2>&1
         echo "Replacing the file at sha: $sha"
         #replace the file
-        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$newfile\", \"sha\": $sha}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml
+        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$newfile\", \"sha\": $sha}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/caption-activity-$i.yml >> log.out 2>&1
       fi
       #and delete the temporary grading file
       rm caption-activity-$i.yml
@@ -90,7 +90,7 @@ function sendfiles () {
 }
 
 #get name of collaborators from day 1
-collabs=$(curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login')
-ownersArray=$(curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login')
-pullsNumbers=$(curl -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls?per_page=100 | jq '.[] | .number')
+collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
+pullsNumbers=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls?per_page=100 | jq '.[] | .number') >> log.out 2>&1
 getstudents

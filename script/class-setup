@@ -44,7 +44,7 @@ if [ -z ${INSTANCE_URL+x} ]
     echo "For example: api.github.com OR mycompany.github.com/api/v3"
     read newurl
     echo "Checking if '$newurl' is accessible..."
-    curl $newurl
+    curl -s $newurl >> log.out 2>&1
     if [ 0 -eq $? ]
       then
         echo "API endpoint verified"
@@ -53,7 +53,7 @@ if [ -z ${INSTANCE_URL+x} ]
     fi      
     echo "Checking if '$newurl' is accessible with authentication... $newname and $newtoken"
     
-    if [[ $(curl -u "$newname:$newtoken" https://$newurl/ | jq .message) = null ]]
+    if [[ $(curl -s -u "$newname:$newtoken" https://$newurl/ | jq .message >> log.out 2>&1) = null ]]
       then
         echo "API endpoint + authentication verified"
         echo "export INSTANCE_URL='$newurl'" >> $HOME/.trainingmanualrc
@@ -82,7 +82,7 @@ if [ -z ${CLASS_ORG+x} ]
     echo "For example: githubschool"
     read neworg
     echo "Checking if $neworg is accessible via the API..."
-    if [[ $(curl -u "$newname:$newtoken" https://$newurl/orgs/$neworg | jq .message) = null ]]
+    if [[ $(curl -s -u "$newname:$newtoken" https://$newurl/orgs/$neworg | jq .message >> log.out 2>&1) = null ]]
           then
         echo "That organization was verified."
         echo "export CLASS_ORG='$neworg'" >> $HOME/.trainingmanualrc

@@ -21,11 +21,11 @@ function checkavail () {
 
 function createrepo () {
   #create the repository on $INSTANCE_URL
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
   #add collaborators
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab >> log.out 2>&1
   clonerepo
 }
 
