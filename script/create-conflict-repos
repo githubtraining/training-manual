@@ -30,22 +30,22 @@ function getnames () {
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
   for i in ${collabs[@]}
   do
+#    if
+#      containsElement $i $ownersArray
+#    then
+    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i | grep "^Status:") >> log.out 2>&1
+    echo "repoStatus for $i is $repoStatus"
     if
-      containsElement $i $ownersArray
+      echo $repoStatus | grep -iq "404"
     then
-      i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-      repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i | grep "^Status:") >> log.out 2>&1
-      echo "repoStatus for $i is $repoStatus"
-      if
-        echo $repoStatus | grep -iq "404"
-      then
-        createRepo $i
-      else
-        echo "Skipping $i because they already have a repo."
-      fi
+      createRepo $i
     else
-      echo "Skipping $i because they are an owner in this org."
+      echo "Skipping $i because they already have a repo."
     fi
+ #   else
+ #     echo "Skipping $i because they are an owner in this org."
+ #   fi
   done
   popd
   echo "Remove the local (temporary) clone"
@@ -77,5 +77,5 @@ function createRepo () {
   done
 }
 
-ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
+#ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
 getnames
