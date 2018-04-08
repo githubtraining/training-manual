@@ -2,7 +2,7 @@
 
 Project boards are Kanban style organization tools.
 
-![projectboard](../img/projectboard.png)
+![projectboard](../GH4D/img/projectboard.png)
 
 Project boards are one tool, but you could also use many other options to fill this project management role.
 

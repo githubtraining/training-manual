@@ -6,7 +6,7 @@ Now that you have made the requested changes, your pull request should be ready 
 
 When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `gh-pages` branch.
 
-![Merging Pull Requests](../img/merging-prs.png)
+![Merging Pull Requests](../GH4D/img/merging-prs.png)
 
 Many project teams have established rules about who should merge a pull request.
 
