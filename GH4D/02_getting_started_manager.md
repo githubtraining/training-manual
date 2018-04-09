@@ -6,7 +6,7 @@ We will start by introducing you to Git, GitHub, and the collaboration features 
 
 GitHub is a collaboration platform built on top of a distributed version control system called Git.
 
-![GitHub's beloved Octocat logo](../img/github-icon.jpg)
+![GitHub's beloved Octocat logo](../GH4D/img/github-icon.jpg)
 
 In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:
 
