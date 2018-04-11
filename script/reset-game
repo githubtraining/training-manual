@@ -49,6 +49,9 @@ function duplicaterepo () {
   echo "Clone $reponame template from githubtraining org..."
   rm -rf $reponame
 
+  echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
+  echo "The timeout may take some time..."
+
   git clone --bare https://github.com/githubtraining/$reponame $reponame >> log.out 2>&1
   if [ $? -ne 0 ]; then
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
