@@ -39,3 +39,4 @@ Bisect can also run the tests on your code automatically. Let's try it again usi
 
 1. `git bisect start <bad-SHA> <good-SHA>`
 1. `git bisect run ls index.html`
+1. `git bisect reset`
