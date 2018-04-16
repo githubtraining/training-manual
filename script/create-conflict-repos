@@ -1,0 +1,84 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+collabrepo=$1
+
+#test array content
+function containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
+  return 0
+}
+
+function getnames () {
+  #grab template repo
+
+  echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
+  echo "The timeout may take some time..."
+
+  git clone --bare https://github.com/githubtraining/polygons conflict-template >> log.out 2>&1
+  if [ $? -ne 0 ]; then
+    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/polygons conflict-template >> log.out 2>&1
+    if [ $? -ne 0 ]; then
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/polygons and upload it to your GHE instance."
+      exit 1
+    fi
+  fi
+
+  # git clone --bare https://github.com/githubtraining/polygons conflict-template >> log.out 2>&1
+  # if [ $? -eq 0 ]; then
+  pushd conflict-template
+  collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+  for i in ${collabs[@]}
+  do
+#    if
+#      containsElement $i $ownersArray
+#    then
+    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i | grep "^Status:") >> log.out 2>&1
+    echo "repoStatus for $i is $repoStatus"
+    if
+      echo $repoStatus | grep -iq "404"
+    then
+      createRepo $i
+    else
+      echo "Skipping $i because they already have a repo."
+    fi
+ #   else
+ #     echo "Skipping $i because they are an owner in this org."
+ #   fi
+  done
+  popd
+  echo "Remove the local (temporary) clone"
+  rm -rf conflict-template
+}
+
+function createRepo () {
+  student=$1
+  studentRepo="conflict-practice-"$student
+  echo "Time to create $studentRepo for $student"
+  #create a repo named conflict-practice-$student in $CLASS_ORG org
+  echo "Create server-side location for fresh $CLASS_ORG/$studentRepo repo..."
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$studentRepo\", \"description\": \"Let's resolve some conflicts.\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+  echo "Resting 5 seconds to allow repo creation to resolve"
+  sleep 5
+  #add student as a collaborator
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/collaborators/$student >> log.out 2>&1
+  echo "Push the fresh $studentRepo back to $CLASS_ORG ..."
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$studentRepo >> log.out 2>&1
+  echo "Waiting for push to resolve before creating pull requests."
+  sleep 5
+  #create PRs for each branch
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Updates to game manual\", \"head\": \"manual\", \"base\": \"master\", \"body\": \"This pull request edits the wording of some of the language on the main page. It appears that it has also been edited on master, because there's a merge conflict. Please make sure that all of the words are the ones that you'd like to use, and that there aren't any lines of text missing.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225093022/6c1c6eb72b\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Minor CSS fixes\", \"head\": \"css-changes\", \"base\": \"master\", \"body\": \"This pull request makes some small changes to the CSS. Pick the CSS that you think makes the most sense given the history of the file on both branches and resolve the merge conflict.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225086721/5a00221234\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Update README\", \"head\": \"readme-update\", \"base\": \"master\", \"body\": \"This pull request updates the README.md. Resolve the merge conflicts and make sure the final version of the README.md is accurate and descriptive.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225086807/17d3c84475\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls >> log.out 2>&1
+  #assign PRs to $student
+  for i in {1..3};
+    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$student\"]}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues/$i/assignees >> log.out 2>&1;
+  done
+}
+
+#ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
+getnames

@@ -1,0 +1,57 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+type=$1
+reponame=$2
+collab=$3
+
+function checkavail () {
+  repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame) >> log.out 2>&1
+  if echo $repoStatus | grep -iq "404"
+  then
+    echo "Cool, that name is available."
+    createrepo
+  else
+    echo "Oops, that repository name is already taken."
+    echo "Please try a different name."
+    exit
+  fi
+}
+
+function createrepo () {
+  #create the repository on $INSTANCE_URL
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/$reponame/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+  echo "Resting 5 seconds to allow repo creation to resolve"
+  sleep 5
+  #add collaborators
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/collaborators/$collab >> log.out 2>&1
+  clonerepo
+}
+
+function clonerepo () {
+  #create the repo locally
+  echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
+  echo "The timeout may take some time..."
+
+  git clone --bare https://github.com/githubtraining/$type $reponame >> log.out 2>&1
+  if [ $? -ne 0 ]; then
+    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$type $reponame >> log.out 2>&1
+    if [ $? -ne 0 ]; then
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/$type and upload it to your GHE instance."
+      exit 1
+    fi
+  fi
+
+  pushd $reponame >> log.out 2>&1
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
+  echo "Resting 5 more seconds to allow push to resolve"
+  sleep 5
+  #echo "Setting default branch for repo"
+  #curl -i -H "Authorization: token $TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
+  popd
+  rm -rf $reponame
+}
+
+checkavail

@@ -1,0 +1,72 @@
+#!/bin/sh
+set -e
+
+function gettask () {
+  echo "========================================================"
+  echo "This script manages the repos and activities"
+  echo "for the GitHub for Developers training."
+  echo "========================================================"
+  echo "What would you like to do? (Just the number please)"
+  echo "0: Confirm Set-up"
+  echo "1: Create a new caption-this class repository"
+  echo "2: Add collabs and create files (also makes the repo private)"
+  echo "3: Grade the day 1 repo"
+  echo "4: Create conflict repos for each student"
+  echo "5: Grade the conflict repos"
+  echo "6: Create the github-games repos for each student"
+  echo "7: Done"
+  read task
+  if echo "$task" | grep -iq "7" ;
+  then
+    exit
+  else
+    dotask $task
+  fi
+}
+
+function dotask () {
+  task=$1
+  if echo "$task" | grep -iq "0" ;
+  then
+    echo "running script/class-setup"
+    script/class-setup
+    echo "=============================="
+    echo "Set-up is complete"
+    echo "=============================="
+    exit
+  fi
+  echo "What is the name of the day 1 repo?"
+  read collabrepo
+  if echo "$task" | grep -iq "1" ;
+  then
+    echo "running script/new-virtual"
+    script/new-virtual $collabrepo
+  fi
+  if echo "$task" | grep -iq "2" ;
+  then
+    echo "running script/create-files"
+    script/create-files $collabrepo
+  fi
+  if echo "$task" | grep -iq "3" ;
+  then
+    echo "running script/check-caption-repo"
+    script/check-caption-repo $collabrepo
+  fi
+  if echo "$task" | grep -iq "4" ;
+  then
+    echo "running script/create-conflict-repos"
+    script/create-conflict-repos $collabrepo
+  fi
+  if echo "$task" | grep -iq "5" ;
+  then
+    echo "running script/check-conflict-repos"
+    script/check-conflict-repos $collabrepo
+  fi
+  if echo "$task" | grep -iq "6" ;
+  then
+    echo "running script/create-game-repos"
+    script/create-game-repos $collabrepo
+  fi
+}
+    
+gettask
