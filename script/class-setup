@@ -41,7 +41,7 @@ if [ -z ${INSTANCE_URL+x} ]
     echo "It looks like you need to add the"
     echo "INSTANCE_URL var to your ~/.trainingmanualrc. Please type the"
     echo "root endpoint for your github instance."
-    echo "For example: api.github.com OR mycompany.github.com/api/v3"
+    echo "For example: api.github.com OR github.mycompany.com/api/v3"
     read newurl
     echo "Checking if '$newurl' is accessible..."
     curl -s $newurl >> log.out 2>&1
