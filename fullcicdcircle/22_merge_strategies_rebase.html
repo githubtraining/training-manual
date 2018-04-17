@@ -674,6 +674,19 @@
             
         </li>
     
+        <li class="chapter " data-level="7.8" data-path="app_aliases.html">
+            
+                <a href="app_aliases.html">
+            
+                    
+                    Alias Pro Tips
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
 
@@ -723,13 +736,13 @@
 <p>In this section, we will discuss another popular merge strategy, rebasing.</p>
 <h3 id="understanding-git-merge-strategies"><a name="understanding-git-merge-strategies" class="plugin-anchor" href="#understanding-git-merge-strategies"><i class="fa fa-link" aria-hidden="true"></i></a>Understanding Git Merge Strategies</h3>
 <p>Git uses three primary merge strategies:</p>
-<h4 id="fast-forward"><a name="fast-forward" class="plugin-anchor" href="#fast-forward"><i class="fa fa-link" aria-hidden="true"></i></a>Fast forward</h4>
+<h4 id="fast-forward"><a name="fast-forward" class="plugin-anchor" href="#fast-forward"><i class="fa fa-link" aria-hidden="true"></i></a>Fast Forward</h4>
 <p>A fast forward merge assumes that no changes have been made on the base branch since the feature branch was created. This means that the branch pointer for base can simply be &quot;fast forwarded&quot; to point to the same commit as the feature branch.</p>
 <h4 id="recursive"><a name="recursive" class="plugin-anchor" href="#recursive"><i class="fa fa-link" aria-hidden="true"></i></a>Recursive</h4>
 <p>A recursive merge means that changes have been made on both the base branch and the feature branch and git needs to recursively combine them. With a recursive merge, a new &quot;merge commit&quot; is made to mark the point in time when the two branches came together. This merge commit is special because it has more than one parent.</p>
 <h4 id="octopus"><a name="octopus" class="plugin-anchor" href="#octopus"><i class="fa fa-link" aria-hidden="true"></i></a>Octopus</h4>
 <p>A merge of 3 or more branches is an octopus merge. This will also create a merge commit with multiple parents.</p>
-<h3 id="about-git-rebase"><a name="about-git-rebase" class="plugin-anchor" href="#about-git-rebase"><i class="fa fa-link" aria-hidden="true"></i></a>About Git rebase</h3>
+<h3 id="about-git-rebase"><a name="about-git-rebase" class="plugin-anchor" href="#about-git-rebase"><i class="fa fa-link" aria-hidden="true"></i></a>About Git Rebase</h3>
 <p><code>git rebase</code> enables you to modify your commit history in a variety of ways. For example, you can use it to reorder commits, edit them, squash multiple commits into one, and much more.</p>
 <p>To enable all of this, <code>rebase</code> comes in several forms. For today&apos;s class, we&apos;ll be using interactive rebase: <code>git rebase --interactive</code>, or <code>git rebase -i</code> for short.</p>
 <p>Typically, you would use <code>git rebase -i</code> to:</p>
@@ -768,6 +781,7 @@
 <li>Checkout to master, the branch you will merge into: <code>git checkout master</code></li>
 <li>Merge your changes in to master: <code>git merge rebase-me</code></li>
 </ol>
+<p>If you&apos;d like some help keeping everything clean with an alias, don&apos;t forget to check the appendix!</p>
 
                                 
                                 </section>
@@ -811,7 +825,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Merge Strategies","level":"6.5","depth":1,"next":{"title":"Day 1 Activity Instructions","level":"7.1","depth":1,"path":"app_Day_1_activities.md","ref":"app_Day_1_activities.md","articles":[]},"previous":{"title":"Cherry Picking","level":"6.4","depth":1,"path":"21_git_cherry_pick.md","ref":"21_git_cherry_pick.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"22_merge_strategies_rebase.md","mtime":"2018-04-16T21:43:35.365Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-16T21:46:59.728Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Merge Strategies","level":"6.5","depth":1,"next":{"title":"Day 1 Activity Instructions","level":"7.1","depth":1,"path":"app_Day_1_activities.md","ref":"app_Day_1_activities.md","articles":[]},"previous":{"title":"Cherry Picking","level":"6.4","depth":1,"path":"21_git_cherry_pick.md","ref":"21_git_cherry_pick.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"22_merge_strategies_rebase.md","mtime":"2018-04-17T16:49:41.912Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-17T16:52:51.671Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

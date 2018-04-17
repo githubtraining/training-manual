@@ -46,3 +46,5 @@ Sometimes, you `git reset --hard` a little further than intended and want to res
 Take a look at the commit IDs in `git log --oneline` compared to `git reflog`. What do you notice?
 
 > Why didn't this command cause a merge conflict since we had already cherry-picked file 4. The reason is that `git reset --hard` is not trying to merge the two histories together, it is simply moving the branch to point to a new commit. In this case, this was what we wanted. In other cases, this could cause us to loose any work we may have done after the original reset.
+
+See how to avoid tragedy with a convenient alias in the appendix.

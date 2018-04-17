@@ -35,3 +35,5 @@ Since this is a review, we have written these steps at a high level. As we compl
 > The `-u` is the short version of the option `--set-upstream`. This option tells Git to create a relationship between our local branch and a remote tracking branch of the same name.\
 >
 > You only need to use this long command the first time you push a new branch. After that, you can simply use `git push`.
+
+`git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-master} | grep -v " ${1-master}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"` could be helpful here. **Take a peek in the appendix to learn how!**

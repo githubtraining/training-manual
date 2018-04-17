@@ -22,3 +22,5 @@ Crafting atomic commits is an important part of creating a readable and informat
 1. Leave the hunk related to the speed change in the working area: `n`
 
 > Wondering what all of those other options are for the hunks? Use the `?` to see a list of options above the hunk.
+
+`git config --global alias.cm "!git add -A && git commit -m"` could be helpful here. Check out the appendix to see how!

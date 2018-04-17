@@ -674,6 +674,19 @@
             
         </li>
     
+        <li class="chapter " data-level="7.8" data-path="app_aliases.html">
+            
+                <a href="app_aliases.html">
+            
+                    
+                    Alias Pro Tips
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
 
@@ -733,17 +746,28 @@
 <p><strong>Using the Alias</strong></p>
 <pre><code class="lang-sh">$ git lol
 </code></pre>
-<h4 id="other-helpful-aliases"><a name="other-helpful-aliases" class="plugin-anchor" href="#other-helpful-aliases"><i class="fa fa-link" aria-hidden="true"></i></a>Other Helpful Aliases</h4>
-<pre><code class="lang-sh">$ git config --global alias.ch <span class="hljs-string">&quot;checkout -b&quot;</span>
-$ git config --global alias.s <span class="hljs-string">&quot;status -s&quot;</span>
-$ git config alias.dlb <span class="hljs-string">&apos;!git checkout &lt;DEFAULT-BRANCH&gt; &amp;&amp; git pull --prune &amp;&amp; git branch --merged | grep -v &quot;\*&quot; | xargs -n 1 git branch -d&apos;</span>
-</code></pre>
-<h4 id="explore"><a name="explore" class="plugin-anchor" href="#explore"><i class="fa fa-link" aria-hidden="true"></i></a>Explore</h4>
-<p>Check out this resource for a list of common aliases:</p>
+<h4 id="explore-other-helpful-aliases"><a name="explore-other-helpful-aliases" class="plugin-anchor" href="#explore-other-helpful-aliases"><i class="fa fa-link" aria-hidden="true"></i></a>Explore Other Helpful Aliases</h4>
+<p>Check out these resources for a list of common aliases:</p>
 <ul>
 <li><em><a href="https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases" target="_blank">git-scm.com/book/en/v2/Git-Basics-Git-Aliases</a></em> A helpful overview of some of the most common git aliases.</li>
 </ul>
-
+<p>We also encourage you to read through these three blog posts by GitHub developer Phil Hack. His tips are referenced throughout the manual.</p>
+<ul>
+<li><a href="http://haacked.com/archive/2014/07/28/github-flow-aliases/" target="_blank">GitHub Flow Aliases</a></li>
+<li><a href="http://haacked.com/archive/2015/06/29/git-migrate/" target="_blank">Git Migrate</a></li>
+<li><a href="http://haacked.com/archive/2017/01/04/git-alias-open-url/" target="_blank">Git Alias Open URL</a></li>
+</ul>
+<p>Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.   </p>
+<pre><code>git config --global alias.ec &quot;config --global -e&quot;
+</code></pre><p>Pro Tip # 2: To checkout to another branch, you can make a quick shortcut.</p>
+<pre><code>git config --global alias.ch &quot;checkout&quot;
+</code></pre><p>Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.</p>
+<pre><code>git config --global alias.cob &quot;checkout -b&quot;
+</code></pre><p>Pro Tip # 4: You can create aliases that only call one command.</p>
+<pre><code>git config --global alias.s &quot;status -s&quot;
+</code></pre><p>Pro Tip # 5: Clean up branches quickly and easily.</p>
+<pre><code>$ git config alias.dlb &apos;!git checkout &lt;DEFAULT-BRANCH&gt; &amp;&amp; git pull --prune &amp;&amp; git branch --merged | grep -v &quot;\*&quot; | xargs -n 1 git branch -d&apos;
+</code></pre>
                                 
                                 </section>
                             
@@ -786,7 +810,7 @@ $ git config alias.dlb <span class="hljs-string">&apos;!git checkout &lt;DEFAULT
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Streamline Workflow with Aliases","level":"2.8","depth":1,"next":{"title":"Resolving Merge Conflicts","level":"3.1","depth":1,"path":"12_resolving_merge_conflicts.md","ref":"12_resolving_merge_conflicts.md","articles":[]},"previous":{"title":"Local History","level":"2.7","depth":1,"path":"10_local_history.md","ref":"10_local_history.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"11_streamline_workflow_with_aliases.md","mtime":"2018-04-16T21:43:35.361Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-16T21:46:27.918Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Streamline Workflow with Aliases","level":"2.8","depth":1,"next":{"title":"Resolving Merge Conflicts","level":"3.1","depth":1,"path":"12_resolving_merge_conflicts.md","ref":"12_resolving_merge_conflicts.md","articles":[]},"previous":{"title":"Local History","level":"2.7","depth":1,"path":"10_local_history.md","ref":"10_local_history.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"11_streamline_workflow_with_aliases.md","mtime":"2018-04-17T16:49:41.912Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-17T16:52:21.720Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

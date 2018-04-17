@@ -27,3 +27,5 @@ $ git diff 2710 b745
 ```
 
 > Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to <REF-1> starting at <REF-2>" or "see what is *not* in <REF-1> but *is* in <REF-2>".
+
+There's a helpful alias for opening the remote directly from your command line. Check out the appendix if you'd like to know more!
