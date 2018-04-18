@@ -1,0 +1,148 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+collabrepo=$1
+
+#test array content
+function containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
+  return 0
+}
+
+#get the names of the people who need a file
+function getnames () {
+  #get names of people who have commented on the issue
+  counter=2
+  for i in ${commenters[@]}
+  do
+    if
+      containsElement $i $collabs
+    then
+      i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+      addcollab $i
+      createFile $i $counter
+    else
+      echo "Skipping $i because they are already a collaborator."
+    fi
+    ((counter++))
+  done
+  createissue $counter
+}
+
+function addcollab () {
+  student=$1
+  #student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
+  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators/$student
+}
+
+function createFile () {
+  student=$1
+  #student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
+  counter=$2
+  if [ $counter -le 9 ]
+  then
+    filenum=0$counter
+  else
+    filenum=$counter
+  fi
+  echo "Time to create file 0000-01-$filenum-$student.md in $collabrepo"
+  echo "---" > 0000-01-$filenum-$student.md
+  echo "layout: slide" >> 0000-01-$filenum-$student.md
+  echo 'title: "Welcome to our slide deck!"' >> 0000-01-$filenum-$student.md
+  echo "---" >> 0000-01-$filenum-$student.md
+  echo "" >> 0000-01-$filenum-$student.md
+  octocats=("![riddlocat](https://octodex.github.com/images/riddlocat.png)"  "![skitchtocat](https://octodex.github.com/images/skitchtocat.png)"  "![luchadortocat](https://octodex.github.com/images/luchadortocat.png)"  "![codercat](https://octodex.github.com/codercat.jpg)"  "![dojocat](https://octodex.github.com/images/dojocat.jpg)"  "![dodgetocat](https://octodex.github.com/images/dodgetocat_v2.png)"  "![steroidtocat](https://octodex.github.com/images/steroidtocat.png)"  "![inflatocat](https://octodex.github.com/images/inflatocat.png)"  "![poptocat](https://octodex.github.com/images/poptocat.png)"  "![Robotocat](https://octodex.github.com/images/Robotocat.png)"  "![saritocat](https://octodex.github.com/images/saritocat.png)"  "![jetpacktocat](https://octodex.github.com/images/jetpacktocat.png)"  "![cooler-octocat](https://octodex.github.com/images/twenty-percent-cooler-octocat.png)" "![octocat-de-los-muertos](https://octodex.github.com/images/octocat-de-los-muertos.jpg)" "![poptocat2](https://octodex.github.com/images/poptocat_v2.png)" "![minertocat](https://octodex.github.com/images/minertocat.png)" "![femalecodertocat](https://octodex.github.com/images/femalecodertocat.png)" "![cherryontop-o-cat](https://octodex.github.com/images/cherryontop-o-cat.png)" "![orderedlistocat](https://octodex.github.com/images/orderedlistocat.png)" "![herme-t-crabb](https://octodex.github.com/images/herme-t-crabb.png)" "![droidtocat](https://octodex.github.com/images/droidtocat.png)" "![snowoctocat](https://octodex.github.com/images/snowoctocat.png)" "![electrocat](https://octodex.github.com/electrocat.png)" "![skatetocat](https://octodex.github.com/images/skatetocat.png)" "![labtocat](https://octodex.github.com/images/labtocat.png)" "![Mardigrastocat](https://octodex.github.com/images/Mardigrastocat.png)" "![defunktocat](https://octodex.github.com/images/defunktocat.png)" "![catstello](https://octodex.github.com/images/catstello.png)" "![constructocat](https://octodex.github.com/images/constructocat2.jpg)" "![kimonotocat](https://octodex.github.com/images/kimonotocat.png)" "![octofez](https://octodex.github.com/images/octofez.png)" "![dinotocat](https://octodex.github.com/images/dinotocat.png)" )
+  randomoctocat=${octocats[$RANDOM % ${#octocats[@]} ]}
+  echo "$randomoctocat" >> 0000-01-$filenum-$student.md
+  echo "{: .center}" >> 0000-01-$filenum-$student.md
+  echo "" >> 0000-01-$filenum-$student.md
+  echo "Caption here" >> 0000-01-$filenum-$student.md
+  newfile=$(cat 0000-01-$filenum-$student.md | base64)
+  #now create the file on the repo
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/0000-01-$filenum-$student.md\", \"message\": \"Activity file for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_posts/0000-01-$filenum-$student.md >> log.out 2>&1
+  rm 0000-01-$filenum-$student.md
+}
+
+function createissue () {
+  counter=$1
+  #is there already an issue?
+  issues=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues | jq '.[] | {issueNum: .number, issueTitle: .title}') >> log.out 2>&1
+  #create the body of the issue comment
+  temptext="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
+  for i in ${commenters[@]}
+  do
+    student=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    temptext=$temptext"- [ ] @$student\n"
+  done
+  echo "Here is the issue text: $temptext"
+  #decide whether to post or patch
+  if echo "$issues" | grep -iq "Activity 1"
+  then
+    #get the issue number
+    echo "Please point me to the correct issue"
+    echo "To update the list of students (just type the number)"
+    echo $issues
+    read captionIssue
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$temptext\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues/$captionIssue/comments/1 >> log.out 2>&1
+  else
+    #create a new issue
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Activity 1: Your First Caption\", \"body\": \"$temptext\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues >> log.out 2>&1
+    firstrun $counter
+  fi
+}
+
+function firstrun () {
+  counter=$1
+  #create extended activity issues
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Add A New Slide\", \"body\": \"## We Need More Slides\nGrab another octocat and create a new slide from scratch.\n If you need help, check out the Appendix in the training manual.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Add a Caption To an Existing Slide\", \"body\": \"## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\n If you need help, check out the Appendix in the training manual.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Improve the README\", \"body\": \"## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Restyle the Slides\", \"body\": \"## Do you have an eye for design?\nHelp us improve the look of the slide deck.\n If you need help, check out the Appendix in the training manual.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues >> log.out 2>&1
+  #create a file for $TOKEN_OWNER
+  createFile $TOKEN_OWNER $counter
+  makeprivate
+}
+
+function makeprivate () {
+  #is the repo already private?
+  repostatus=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo | jq .private) >> log.out 2>&1
+  if $repostatus
+  then
+    echo "This repo is already private."
+  else
+    echo "Are you ready to make this repo private? Y or N"
+    read flipswitch
+    if echo "$flipswitch" | grep -iq "^y" ;
+    then
+      #switch repo to private
+      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$collabrepo\", \"private\": true}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo >> log.out 2>&1
+      #ask about adding 1:1s
+      echo "Does this class get 1:1 sessions? Y or N"
+      read oneonone
+      if echo "$oneonone" | grep -iq "^y" ;
+      then
+        createoneonones
+      fi
+    else
+      echo "Ok, just remember to change the repo to private"
+      echo "and add the info for booking 1:1 appointments to the README."
+    fi
+  fi
+}
+
+function createoneonones () {
+  #create an issue for 1:1 appointments
+  isstext="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
+  for i in ${commenters[@]}
+  do
+    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    isstext=$isstext"@$i "
+  done
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$isstext\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues >> log.out 2>&1
+}
+
+collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
+getnames

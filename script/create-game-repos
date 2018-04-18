@@ -1,0 +1,104 @@
+#!/bin/sh
+
+#you must have a $TOKEN_OWNER token
+#saved to your ENV variables in order to use this script
+collabrepo=$1
+
+#test array content
+function containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
+  return 0
+}
+
+function getnames () {
+  #get facilitator name from README
+  #teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//')
+  #make sure no one is teaching class
+  echo "What is the teacher's username?"
+  read teacher
+
+  echo "A new github-games repo is about to be created for $teacher."
+  echo "Is that OK? (Y or N)"
+  read classtime
+  if echo "$classtime" | grep -iq "^y" ;
+  then
+    echo "Deleting $CLASS_ORG/github-games-$teacher repo..."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$teacher >> log.out 2>&1
+  else
+    echo "This is not a good time to run this script. Wait until class is over and try again"
+    exit
+  fi
+  #grab template repo
+
+  echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
+  echo "The timeout may take some time..."
+
+  git clone --bare https://github.com/githubtraining/github-games game-template >> log.out 2>&1
+  if [ $? -ne 0 ]; then
+    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/github-games game-template >> log.out 2>&1
+    if [ $? -ne 0 ]; then
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/github-games and upload it to your GHE instance."
+      exit 1
+    fi
+  fi
+  
+  # git clone --bare https://github.com/githubtraining/github-games game-template
+  # if [ $? -eq 0 ]; then
+  pushd game-template
+  collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+  ownersArray=( "${ownersArray[@]/"$teacher"}" )
+  for i in ${collabs[@]}
+  do
+    if
+      containsElement $i $ownersArray
+      then
+        i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+        repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$i | grep "^Status:") >> log.out 2>&1
+        echo "repoStatus for $i is $repoStatus"
+        if
+          echo $repoStatus | grep -iq "404"
+        then
+          createRepo $i
+        else
+          echo "Skipping $i because they already have a repo."
+        fi
+      else
+        echo "Skipping $i because they are an owner in this org."
+    fi
+  done
+  popd
+  echo "Remove the local (temporary) clone"
+  rm -rf game-template
+}
+
+function createRepo () {
+  student=$1
+  student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
+  studentRepo="github-games-"$student
+  echo "Time to create $studentRepo for $student"
+  #create a repo named github-games-$student in $CLASS_ORG org
+  echo "Create server-side location for fresh $CLASS_ORG/$studentRepo repo..."
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$studentRepo\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+  echo "Resting 5 seconds to allow repo creation to resolve"
+  sleep 5
+  #add student as a collaborator
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/collaborators/$student >> log.out 2>&1
+  echo "Push the fresh $studentRepo back to $CLASS_ORG ..."
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$studentRepo >> log.out 2>&1
+  echo "Waiting for push to resolve before creating issues."
+  sleep 5
+  #set default branch to gh-pages
+  #curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$studentRepo\", \"default_branch\": \"gh-pages\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo
+  #create issues for problems
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at https://$CLASS_ORG.github.io/$studentRepo, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$student?\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and the one in the README are pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at https://$CLASS_ORG.github.io/$studentRepo\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues >> log.out 2>&1
+  #assign issues to $student
+  for i in {1..2};
+    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$student\"]}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues/$i/assignees >> log.out 2>&1;
+  done
+}
+
+ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
+getnames
