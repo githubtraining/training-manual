@@ -21,7 +21,7 @@ Image source: ProGit v2 by Scott Chacon
 
 ### Safe Operations
 
-Git's data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the the commits that have already been shared.
+Git's data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the commits that have already been shared.
 
 If an operation will change a commit ID that has been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.
 
