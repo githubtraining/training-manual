@@ -1,17 +1,4 @@
-## Resolving Merge Conflicts
-
-When you work with a team (and even sometimes when you are working alone) you will occasionally create merge conflicts. At first, merge conflicts can be intimidating, but resolving them is actually quite easy. In this section you will learn how!
-
-These exercises will focus on the technical "how". In real merge conflicts, it's important to know who to ask in case you aren't sure how to resolve the conflict on your own. Usually it's a good idea to ask the person who made the conflicting changes, or someone who is a CODEOWNER on the file. 
-
-### Local Merge Conflicts
-
-Merge conflicts are a natural and minor side effect of distributed version control. They only happen under very specific circumstances.
-  - Changes to the same "hunk" of the same file
-  - Two different branches
-  - Changes on both branches happened since the branches have diverged
-
-### Creating a Merge Conflict
+### Resolving a Merge Conflict
 
 Let's try to create a merge conflict, and fix it together. You and a partner will each create separate branches, create a file with the same name, and then try to merge. The first will merge cleanly, the second will have a merge conflict. Work together to resolve the merge conflict.
 

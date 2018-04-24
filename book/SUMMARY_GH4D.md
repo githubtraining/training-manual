@@ -16,7 +16,8 @@
   * [Streamline Workflow with Aliases](11_streamline_workflow_with_aliases.md)
 
 ## Project 2: Merge Conflicts
-  * [Resolving Merge Conflicts](12_resolving_merge_conflicts.md)
+  * [Defining a merge conflict](12a_what_is_a_merge_conflict.md)
+  * [Resolving merge Conflicts](12b_resolving_merge_conflicts.md)
 
 ## Project 3: GitHub Games
   * [Workflow Review](13_workflow_review_project_github_games.md)
