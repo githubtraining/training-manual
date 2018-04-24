@@ -110,3 +110,21 @@ Regardless of the reason, it's up to you to resolve it as a steward of this proj
         color: #000;
     }
     ```
+
+### The different types of merge conflicts in "Updates to game manual"
+
+Not every conflict deals with content. For example, in the pull request "Updates to game manual", you can see content-type conflicts, but something new as well:
+
+```shell
+Auto-merging play/mini/mini_bored.html
+CONFLICT (content): Merge conflict in play/mini/mini_bored.html
+CONFLICT (modify/delete): play/manual/manual.html deleted in HEAD and modified in master. Version master of play/manual/manual.html left in tree.
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+In this example, the file `play/manual/manual.html` has been deleted in our currently checked out branch (`HEAD`), and modified in `master`. You, as the developer in charge of resolving this conflict, must decide whether to remove the file (as has been decided on this branch), or to bring the file back with some modifications (as was started in `master`).
+
+You'll find the file has automatically been put in your working directory (identified by the message from Git). If you choose to keep the file with modifications, just bring up the file in your favorite text editor, make the changes you'd like, stage the file with `git add play/manual/manual.html` and finish your merge commit.
+
+To remove the file altogether, tell Git you'd like to remove the file with `git rm play/manual/manual.html`, and then finish your merge commit.
+
