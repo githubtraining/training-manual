@@ -14,9 +14,10 @@ function gettask () {
   echo "4: Create conflict repos for each student"
   echo "5: Grade the conflict repos"
   echo "6: Create the github-games repos for each student"
-  echo "7: Done"
+  echo "7: Expire student repos"
+  echo "8: Done"
   read task
-  if echo "$task" | grep -iq "7" ;
+  if echo "$task" | grep -iq "8" ;
   then
     exit
   else
@@ -65,6 +66,11 @@ function dotask () {
   if echo "$task" | grep -iq "6" ;
   then
     echo "running script/create-game-repos"
+    script/create-game-repos $collabrepo
+  fi
+  if echo "$task" | grep -iq "7" ;
+  then
+    echo "running script/expire-repo"
     script/create-game-repos $collabrepo
   fi
 }
