@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+reponame=$1
+
+set -x
+
+function deleteit () {
+  curl -i -H "Authorization: token $GITHUBTEACHER_TOKEN" -X DELETE https://api.github.com/repos/githubschool/$reponame
+}
+
+deleteit
