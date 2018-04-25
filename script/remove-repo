@@ -7,7 +7,7 @@ reponame=$1
 set -x
 
 function deleteit () {
-  curl -i -H "Authorization: token $GITHUBTEACHER_TOKEN" -X DELETE https://api.github.com/repos/githubschool/$reponame
+  curl -i -H "Authorization: token $TEACHER_PAT" -X DELETE https://api.github.com/repos/githubschool/$reponame
 }
 
 deleteit
