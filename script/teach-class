@@ -71,7 +71,7 @@ function dotask () {
   if echo "$task" | grep -iq "7" ;
   then
     echo "running script/expire-repo"
-    script/create-game-repos $collabrepo
+    script/expire-repo $collabrepo
   fi
 }
     
