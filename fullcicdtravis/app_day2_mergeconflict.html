@@ -269,12 +269,25 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="12_resolving_merge_conflicts.html">
+        <li class="chapter " data-level="3.1" data-path="12a_what_is_a_merge_conflict.html">
             
-                <a href="12_resolving_merge_conflicts.html">
+                <a href="12a_what_is_a_merge_conflict.html">
             
                     
-                    Resolving Merge Conflicts
+                    Defining a merge conflict
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="12b_resolving_merge_conflicts.html">
+            
+                <a href="12b_resolving_merge_conflicts.html">
+            
+                    
+                    Resolving merge Conflicts
             
                 </a>
             
@@ -745,12 +758,108 @@
 <li>In your repository, navigate to the <strong>Pull Requests</strong> tab.</li>
 <li>There are three open pull requests, and all of them have merge conflicts to fix. We recommend fixing them in this order:<ul>
 <li>Update README</li>
-<li>Updates to game manual</li>
 <li>Minor CSS fixes</li>
+<li>Updates to game manual</li>
 </ul>
 </li>
 <li>View the pull request, and follow the steps to resolve the merge conflicts. When the merge conflict is resolved, merge the pull request.</li>
 </ol>
+<h3 id="refresher-fixing-a-merge-conflict-locally"><a name="refresher-fixing-a-merge-conflict-locally" class="plugin-anchor" href="#refresher-fixing-a-merge-conflict-locally"><i class="fa fa-link" aria-hidden="true"></i></a>Refresher: Fixing a merge conflict locally</h3>
+<p>We&apos;ve learned a lot! Try resolving the conflicts yourself first. If you need extra assistance, use these instructions.</p>
+<ol>
+<li><p>Clone the repository to your local machine: </p>
+<p> <code>git clone https://github.com/githubschool/conflict-practice-username.git</code></p>
+</li>
+<li><p>Find and check out to the conflict branch, for example: </p>
+<p> <code>git checkout my-branch</code></p>
+</li>
+<li><p>Merge <code>master</code> into the conflict branch: <code>git merge master</code>. The merge will be halted because a conflict exists.</p>
+</li>
+<li>Read the response from Git. It will identify the file(s) with a conflict. Open the file(s) in your favorite text editor.</li>
+<li>Remove the conflict markers: <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code></li>
+<li>Review the code, edit to keep the version you&apos;d like.</li>
+<li><p>Stage the conflicting files you&apos;ve now resolve, for example: </p>
+<p> <code>git add conflict-file.txt</code></p>
+</li>
+<li><p>Finish the merge commit that was halted in #3 with: </p>
+<p> <code>git commit -m &quot;merge master into my-branch&quot;</code></p>
+</li>
+<li><p>Push your nonconflicted branch to GitHub: </p>
+<p> <code>git push</code></p>
+</li>
+</ol>
+<h3 id="multiple-conflict-markers-in-minor-css-fixes"><a name="multiple-conflict-markers-in-minor-css-fixes" class="plugin-anchor" href="#multiple-conflict-markers-in-minor-css-fixes"><i class="fa fa-link" aria-hidden="true"></i></a>Multiple conflict markers in &quot;Minor CSS fixes&quot;</h3>
+<p>In some cases, you may notice multiple conflict markers. When these appear, it is either because:</p>
+<ol>
+<li>You&apos;ve got multiple conflicts in the same file, or</li>
+<li>Another developer has neglected to remove markers when fixing a previous conflict, and committed those markers to your project&apos;s history.</li>
+</ol>
+<p>Regardless of the reason, it&apos;s up to you to resolve it as a steward of this project! Here&apos;s an example of how this might work from the pull request titled &quot;Minor CSS fixes&quot;:</p>
+<ol>
+<li><p>Merge the master branch into your conflict branch. The multiple markers may look something like this.</p>
+<pre><code class="lang-css"> &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+ a {
+ &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+     color: #000;
+ =======
+
+ /**a{
+     color: #999999;
+ &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+ }
+
+ a:hover{
+     color: #fff;
+ =======
+     color: #999999;
+ }
+
+ a:hover{
+     color: #dddddd;
+ &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+ &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+ =======
+ &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
+ }
+ **/
+</code></pre>
+</li>
+<li><p>Remove all conflict markers, regardless of where they originated.</p>
+<pre><code class="lang-css"> <span class="hljs-selector-tag">a</span> {
+     <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+
+ <span class="hljs-comment">/**a{
+     color: #999999;
+ }
+
+ a:hover{
+     color: #fff;
+     color: #999999;
+ }
+
+ a:hover{
+     color: #dddddd;
+ }
+ **/</span>
+</code></pre>
+</li>
+<li><p>Review the code so it will still build. In this example, the CSS needs a closing brace, and we&apos;ll also remove the commented code.</p>
+<pre><code class="lang-css"> <span class="hljs-selector-tag">a</span> {
+     <span class="hljs-attribute">color</span>: <span class="hljs-number">#000</span>;
+ }
+</code></pre>
+</li>
+</ol>
+<h3 id="the-different-types-of-merge-conflicts-in-updates-to-game-manual"><a name="the-different-types-of-merge-conflicts-in-updates-to-game-manual" class="plugin-anchor" href="#the-different-types-of-merge-conflicts-in-updates-to-game-manual"><i class="fa fa-link" aria-hidden="true"></i></a>The different types of merge conflicts in &quot;Updates to game manual&quot;</h3>
+<p>Not every conflict deals with content. For example, in the pull request &quot;Updates to game manual&quot;, you can see content-type conflicts, but something new as well:</p>
+<pre><code class="lang-shell">Auto-merging play/mini/mini_bored.html
+CONFLICT (content): Merge conflict in play/mini/mini_bored.html
+CONFLICT (modify/delete): play/manual/manual.html deleted in HEAD and modified in master. Version master of play/manual/manual.html left in tree.
+Automatic merge failed; fix conflicts and then commit the result.
+</code></pre>
+<p>In this example, the file <code>play/manual/manual.html</code> has been deleted in our currently checked out branch (<code>HEAD</code>), and modified in <code>master</code>. You, as the developer in charge of resolving this conflict, must decide whether to remove the file (as has been decided on this branch), or to bring the file back with some modifications (as was started in <code>master</code>).</p>
+<p>You&apos;ll find the file has automatically been put in your working directory (identified by the message from Git). If you choose to keep the file with modifications, just bring up the file in your favorite text editor, make the changes you&apos;d like, stage the file with <code>git add play/manual/manual.html</code> and finish your merge commit.</p>
+<p>To remove the file altogether, tell Git you&apos;d like to remove the file with <code>git rm play/manual/manual.html</code>, and then finish your merge commit.</p>
 
                                 
                                 </section>
@@ -794,7 +903,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Day 2 Activity Instructions","level":"7.2","depth":1,"next":{"title":"Workflow Guide","level":"7.3","depth":1,"path":"App_a_workflow_guide.md","ref":"App_a_workflow_guide.md","articles":[]},"previous":{"title":"Day 1 Activity Instructions","level":"7.1","depth":1,"path":"app_Day_1_activities.md","ref":"app_Day_1_activities.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"app_day2_mergeconflict.md","mtime":"2018-04-19T09:34:02.943Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-19T09:36:10.099Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Day 2 Activity Instructions","level":"7.2","depth":1,"next":{"title":"Workflow Guide","level":"7.3","depth":1,"path":"App_a_workflow_guide.md","ref":"App_a_workflow_guide.md","articles":[]},"previous":{"title":"Day 1 Activity Instructions","level":"7.1","depth":1,"path":"app_Day_1_activities.md","ref":"app_Day_1_activities.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"app_day2_mergeconflict.md","mtime":"2018-04-26T19:11:52.504Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-04-26T19:14:08.967Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
