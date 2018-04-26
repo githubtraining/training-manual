@@ -6,8 +6,8 @@ set -x
 #saved to your ENV variables in order to use this script
 
 function getpages () {
-  numPages=$((curl -sI -H "Authorization: token $TEACHER_PAT" -X GET https://api.github.com/orgs/githubschool/repos | grep "^Link:") | (sed -n 's/.*\([0-9]\)>; rel=\"last\".*/\1/p'))
-  if [ -z "$numPages"]
+  numPages=$((curl -sI -H "Authorization: token $TEACHER_PAT" -X GET https://api.github.com/orgs/githubschool/repos | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
+  if [ -z "$numPages" ]
     then
       numPages=1
       echo "There is only $numPages page"
