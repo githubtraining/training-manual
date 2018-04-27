@@ -1,0 +1,67 @@
+#!/bin/sh
+
+#set -x
+
+#you must have a GITHUBTEACHER_TOKEN
+#saved to your ENV variables in order to use this script
+
+function getpages () {
+  numPages=$((curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/repos | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
+  if [ -z "$numPages" ]
+    then
+      numPages=1
+      echo "There is only $numPages page"
+    else
+      echo "There are $numPages pages"
+  fi
+  while [ $numPages -gt 1 ]; do
+    echo "Getting results for page $numPages"
+    getrepos $numPages
+    let numPages=numPages-1
+  done
+}
+
+#get repos in $CLASS_ORG org that start with conflict-practice or github-games
+function getrepos () {
+  pagenum=$1
+  repolist=$(curl -s -H "Authorization: token $TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/repos?page=$pagenum | jq '.[] | .name')
+  for i in ${repolist[@]}
+  do
+    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    if echo "$i" | grep -iq -e "conflict-practice-" -e "github-games-"
+    then
+      echo "Let's see when $i was created"
+      checkdates $i
+    fi
+  done
+}
+
+function checkdates () {
+  reponame=$1
+  created=$((curl -s -H "Authorization: token $TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >> log.out 2>&1
+  #if they were created more than 10 days ago, expire them
+  if [[ "$compDate" > "$created" ]];
+  then
+    echo "EXPIRED: $reponame was created on $created"
+    benice $reponame
+  else
+    echo "KEEP: $reponame was created on $created"
+  fi
+}
+
+function benice () {
+  reponame=$1
+  user=$(echo "$reponame" | (sed -n -e 's/.*-//p'))
+  if echo "$reponame" | grep -iq -e "github-games-"
+  then
+    template="github-games [here](https://github.com/githubtraining/github-games)"
+  else
+    template="polygons (our conflict practice activity) [here](https://github.com/githubtraining/polygons)"
+  fi
+  curl -s -i -H "Authorization: token $TEACHER_PAT" -d "{ \"title\": \"Thank you for attending GitHub Training\", \"body\": \"@$user We hope you enjoyed the :octocat: class and we look forward to seeing you in another [class or webinar](https://services.github.com/training/#public) soon. To keep things tidy in the githubschool organization, we are going to remove your practice repository.\n\nIf you would like to revisit these activities in the future, you can access the template repository for $template.\n\nStop by and see us sometime at [services.github.com](https://services.github.com), or take our newest self-paced courses at [lab.github.com](https://lab.github.com). :wave: Until we see you again, good luck in your GitHub adventures :rocket:.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame/issues >> log.out 2>&1
+  #delete the repo
+  script/remove-repo $reponame
+}
+
+compDate=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
+getpages
