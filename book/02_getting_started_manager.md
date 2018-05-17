@@ -11,7 +11,7 @@ GitHub is a collaboration platform built on top of a distributed version control
 In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:
 
 * Issues
-* Pull Requests
+* Pull requests
 * Projects
 * Organizations and Teams
 
@@ -72,8 +72,8 @@ Organization accounts provide more granular control over repository permissions.
 The code view is where you will find the files included in the repository. These files may contain the project code, documentation, and other important files. We also call this view the root of the project. Any changes to these files will be tracked via Git version control.
 #### Issues
 Issues are used to track bugs and feature requests. Issues can be assigned to specific team members and are designed to encourage discussion and collaboration.
-#### Pull Requests
-A Pull Request represents a change, such as adding, modifying, or deleting files, which the author would like to make to the repository. Pull Requests help you write better software by facilitating code review and showing the status of any automated tests.
+#### Pull requests
+A Pull Request represents a change, such as adding, modifying, or deleting files, which the author would like to make to the repository. Pull requests help you write better software by facilitating code review and showing the status of any automated tests.
 #### Projects
 Projects allow you to visualize your work with Kanban style boards. Projects can be created at the repository or organization level.
 #### Wiki
@@ -99,7 +99,7 @@ In GitHub, you will use issues to record and discuss ideas, enhancements, tasks,
 
 ### Using Markdown
 
-GitHub uses a syntax called **Markdown** to help you add basic text formatting to Issues, Pull Requests, and files with the `.md` extension.
+GitHub uses a syntax called **Markdown** to help you add basic text formatting to issues, pull requests, and files with the `.md` extension.
 
 ### Commonly Used Markdown Syntax
 #### `# Header`
