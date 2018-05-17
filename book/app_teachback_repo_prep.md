@@ -37,5 +37,3 @@ git push --force
 
 #### Project 4: Working locally
 Create a new repository for these activities.
-
-----
