@@ -1,6 +1,6 @@
 ## Prerequisites
 
-This one-day class leads participants through common situations with GitHub, graphical clients, and file versioning. Participants will learn how to use version control without touching the command line and discover solutions in working with a variety workflows, tools, and user perspectives.
+This two-day class leads participants through common situations with GitHub, graphical clients, and file versioning. Participants will learn how to use version control without touching the command line and discover solutions in working with a variety workflows, tools, and user perspectives.
 
 Be sure to follow the prerequisite(s) below before coming to the workshop to get started.
 
