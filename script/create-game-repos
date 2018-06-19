@@ -18,7 +18,7 @@ function getnames () {
   echo "What is the teacher's username?"
   read teacher
 
-  echo "A new github-games repo is about to be created for $teacher."
+  echo "A new github-games repo is about to be created for $teacher. If one already exists, it will be deleted."
   echo "Is that OK? (Y or N)"
   read classtime
   if echo "$classtime" | grep -iq "^y" ;
