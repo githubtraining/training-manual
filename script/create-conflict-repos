@@ -43,8 +43,7 @@ function getnames () {
     echo "Deleting githubschool/conflict-practice-$teacher repo..."
     curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$teacher
   else
-    echo "This is not a good time to run this script. Wait until class is over and try again"
-    exit
+    echo "A conflict-practice repo wasn't created for the facilitator, creating for the students..."
   fi
 
   ownersArray=( "${ownersArray[@]/"$teacher"}" )

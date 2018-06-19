@@ -26,8 +26,7 @@ function getnames () {
     echo "Deleting $CLASS_ORG/github-games-$teacher repo..."
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$teacher >> log.out 2>&1
   else
-    echo "This is not a good time to run this script. Wait until class is over and try again"
-    exit
+    echo "A github-games repo wasn't created for the facilitator. Creating for the students..."
   fi
   #grab template repo
 
