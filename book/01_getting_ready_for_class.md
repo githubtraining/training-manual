@@ -11,12 +11,16 @@ For this class, we will use a public account on GitHub.com. We do this for a few
 - We don't want you to "practice" in repositories that contain real code.
 - We are going to break some things so we can teach you how to fix them. (therefore, refer to the bullet above)
 
-If you already have a github.com account you can skip this step. Otherwise, you can set up your free account by following these steps:
+You can set up your free account by following these steps:
 
 1. Access GitHub.com and click Sign up.
 1. Choose the free account.
 1. You will receive a verification email at the address provided.
 1. Click the link to complete the verification process.
+
+If you already have an account, verify that you can visit github.com within your organization's network. 
+
+GitHub is designed to run on the current versions of all major browsers. In particular, if you use Microsoft's Internet Explorer (IE), you must be using the latest version. Take a look at our list of [supported browsers](https://help.github.com/articles/supported-browsers/).
 
 ### Step 2: Install Git
 
@@ -47,12 +51,51 @@ If you need additional assistance installing Git, you can find more information 
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
-- If you are working on Windows, you can use `Git Bash` which is installed with the Git package or you can use Powershell with [Posh-git](http://dahlbyk.github.io/posh-git/).
-- If you are working on a Mac or other Unix based system, you can use the terminal application.
+- If you are working on Windows, we recommend `Git Bash` which is installed with the Git packagem, so that you can follow along with the facilitator who will be using Bash.
+- If you are working on a Mac or other Unix-based system, you can use the build-in Terminal application.
 
-Go ahead and open your command line application now!
+### Step 3: Try cloning with HTTPS
 
-### Step 3: Set Up Your Text Editor
+Open your chosen shell, and type:
+
+```sh
+git clone https://github.com/githubschool/scratch
+```
+
+If the clone is successful you'll see:
+
+```sh
+$ git clone https://github.com/githubschool/scratch
+Cloning into 'scratch'...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+```
+
+If your clone is unsuccessful, read about [authenticating with GitHub from Git](https://help.github.com/articles/set-up-git/#next-steps-authenticating-with-github-from-git). Please note: many corporate networks restrict SSH traffic, so we highly recommend using HTTPS and verifying the clone works before class. Also, if you have two-factor authentication enabled and wish to use HTTPS, you will need to [set up a personal access token](https://help.github.com/articles/https-cloning-errors/#provide-access-token-if-2fa-enabled).
+
+#### Proxy configuration
+
+If your organization uses a proxy, you will need to configure the proxy settings in Git. Open Git Bash (on Windows) or Terminal (on Mac or *nix) and complete the appropriate steps below:
+
+**If your proxy does not require authentication:**
+
+```
+git config --global http.proxy https://YOUR.PROXY.SERVER:8080
+```
+
+Replace `YOUR.PROXY.SERVER` with your proxy's URL.
+
+**If your proxy does require authentication:**
+
+```
+git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@YOUR.PROXY.SERVER:8080
+```
+
+Replace `YOUR_PROXY_USERNAME` with the username used to authenticate into your proxy, `YOUR_PROXY_PASSWORD` with the password used to authenticate into your proxy, and `YOUR.PROXY.SERVER` with your proxy's URL.
+
+### Step 4: Set Up Your Text Editor
 
 For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command line.
 
@@ -61,12 +104,14 @@ For this class, we will use a basic text editor to interact with our code. Let's
 You can use almost any text editor, but we have the best success with the following:
 
 - [Atom](https://atom.io/)
-- GitPad
+- [Visual Studio Code](https://code.visualstudio.com)
+- Notepad
 - Vi or Vim
 - Sublime
-- Notepad or Notepad++
+- Notepad++
+- GitPad
 
-If you do not already have a text editor installed, go ahead and download and install one of the above editors now!
+If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at help.github.com](https://help.github.com/articles/associating-text-editors-with-git/).
 
 #### Your Editor on the Command Line
 
