@@ -12,23 +12,6 @@ function containsElement () {
 }
 
 function getnames () {
-  #get facilitator name from README
-  #teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//')
-  #make sure no one is teaching class
-  echo "What is the teacher's username?"
-  read teacher
-
-  echo "A new github-games repo is about to be created for $teacher. If one already exists, it will be deleted."
-  echo "Is that OK? (Y or N)"
-  read classtime
-  if echo "$classtime" | grep -iq "^y" ;
-  then
-    echo "Deleting $CLASS_ORG/github-games-$teacher repo..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$teacher >> log.out 2>&1
-  else
-    echo "A github-games repo wasn't created for the facilitator. Creating for the students..."
-  fi
-  #grab template repo
 
   echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
   echo "The timeout may take some time..."
@@ -47,6 +30,20 @@ function getnames () {
   # if [ $? -eq 0 ]; then
   pushd game-template
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+  
+  teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
+  echo "A new github-games repo is about to be created for $teacher. If one already exists, it will be deleted."
+  echo "Is that OK? (Y or N)"
+  read classtime
+  if echo "$classtime" | grep -iq "^y" ;
+  then
+    echo "Deleting $CLASS_ORG/github-games-$teacher repo..."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$teacher >> log.out 2>&1
+  else
+    echo "A github-games repo wasn't created for the facilitator. Creating for the students..."
+  fi
+  #grab template repo
+
   ownersArray=( "${ownersArray[@]/"$teacher"}" )
   for i in ${collabs[@]}
   do
