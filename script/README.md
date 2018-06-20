@@ -23,13 +23,13 @@ Here's how to get your local environment up and running:
 
 1. install [jq](https://stedolan.github.io/jq/download/)
 2. run `script/teach-class` and choose option 0 to set up your environment variables. You'll need the following pieces of information from [above](#remote-configuration):
-  - the title of your newly created training organization
-  - your username, or the username of a shared teaching account
-  - your personal access token (PAT) or the PAT of the shared teaching account
-  - (optional) the API key and secret for Survey Gizmo
-  - (optional) the URL for one-on-one appointments
-- exit your terminal session and start a new one
-- run `script/teach-class` and choose the option for the task you need
+   - the title of your newly created training organization
+   - your username, or the username of a shared teaching account
+   - your personal access token (PAT) or the PAT of the shared teaching account
+   - (optional) the API key and secret for Survey Gizmo
+   - (optional) the URL for one-on-one appointments
+3. exit your terminal session and start a new one
+4. run `script/teach-class` and choose the option for the task you need
 
 ## Class Scripts
 
