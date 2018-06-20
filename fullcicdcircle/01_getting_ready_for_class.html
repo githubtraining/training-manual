@@ -760,19 +760,29 @@
                                 
                                 <h2 id="getting-ready-for-class"><a name="getting-ready-for-class" class="plugin-anchor" href="#getting-ready-for-class"><i class="fa fa-link" aria-hidden="true"></i></a>Getting Ready for Class</h2>
 <p>While you are waiting for class to begin, please take a few minutes to set up your local work environment.</p>
+<!-- toc -->
+<ul>
+<li><a href="#step-1-set-up-your-githubcom-account">Step 1: Set Up Your GitHub.com Account</a></li>
+<li><a href="#step-2-install-git">Step 2: Install Git</a></li>
+<li><a href="#step-3-try-cloning-with-https">Step 3: Try cloning with HTTPS</a></li>
+<li><a href="#step-4-set-up-your-text-editor">Step 4: Set Up Your Text Editor</a></li>
+</ul>
+<!-- tocstop -->
 <h3 id="step-1-set-up-your-githubcom-account"><a name="step-1-set-up-your-githubcom-account" class="plugin-anchor" href="#step-1-set-up-your-githubcom-account"><i class="fa fa-link" aria-hidden="true"></i></a>Step 1: Set Up Your GitHub.com Account</h3>
 <p>For this class, we will use a public account on GitHub.com. We do this for a few reasons:</p>
 <ul>
 <li>We don&apos;t want you to &quot;practice&quot; in repositories that contain real code.</li>
 <li>We are going to break some things so we can teach you how to fix them. (therefore, refer to the bullet above)</li>
 </ul>
-<p>If you already have a github.com account you can skip this step. Otherwise, you can set up your free account by following these steps:</p>
+<p>You can set up your free account by following these steps:</p>
 <ol>
 <li>Access GitHub.com and click Sign up.</li>
 <li>Choose the free account.</li>
 <li>You will receive a verification email at the address provided.</li>
 <li>Click the link to complete the verification process.</li>
 </ol>
+<p>If you already have an account, verify that you can visit github.com within your organization&apos;s network. </p>
+<p>GitHub is designed to run on the current versions of all major browsers. In particular, if you use Microsoft&apos;s Internet Explorer (IE), you must be using the latest version. Take a look at our list of <a href="https://help.github.com/articles/supported-browsers/" target="_blank">supported browsers</a>.</p>
 <h3 id="step-2-install-git"><a name="step-2-install-git" class="plugin-anchor" href="#step-2-install-git"><i class="fa fa-link" aria-hidden="true"></i></a>Step 2: Install Git</h3>
 <p>Git is an open source version control application. You will need Git installed for this class.</p>
 <p>You may already have Git installed so let&apos;s check! Open Terminal if you are on a Mac, or PowerShell if you are on a Windows machine, and type:</p>
@@ -789,22 +799,44 @@ git version 2.11.0
 <h4 id="where-is-your-shell"><a name="where-is-your-shell" class="plugin-anchor" href="#where-is-your-shell"><i class="fa fa-link" aria-hidden="true"></i></a>Where is Your Shell?</h4>
 <p>Now is a good time to create a shortcut to the command line application you will want to use with Git:</p>
 <ul>
-<li>If you are working on Windows, you can use <code>Git Bash</code> which is installed with the Git package or you can use Powershell with <a href="http://dahlbyk.github.io/posh-git/" target="_blank">Posh-git</a>.</li>
-<li>If you are working on a Mac or other Unix based system, you can use the terminal application.</li>
+<li>If you are working on Windows, we recommend <code>Git Bash</code> which is installed with the Git packagem, so that you can follow along with the facilitator who will be using Bash.</li>
+<li>If you are working on a Mac or other Unix-based system, you can use the build-in Terminal application.</li>
 </ul>
-<p>Go ahead and open your command line application now!</p>
-<h3 id="step-3-set-up-your-text-editor"><a name="step-3-set-up-your-text-editor" class="plugin-anchor" href="#step-3-set-up-your-text-editor"><i class="fa fa-link" aria-hidden="true"></i></a>Step 3: Set Up Your Text Editor</h3>
+<h3 id="step-3-try-cloning-with-https"><a name="step-3-try-cloning-with-https" class="plugin-anchor" href="#step-3-try-cloning-with-https"><i class="fa fa-link" aria-hidden="true"></i></a>Step 3: Try cloning with HTTPS</h3>
+<p>Open your chosen shell, and type:</p>
+<pre><code class="lang-sh">git <span class="hljs-built_in">clone</span> https://github.com/githubschool/scratch
+</code></pre>
+<p>If the clone is successful you&apos;ll see:</p>
+<pre><code class="lang-sh">$ git <span class="hljs-built_in">clone</span> https://github.com/githubschool/scratch
+Cloning into <span class="hljs-string">&apos;scratch&apos;</span>...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+</code></pre>
+<p>If your clone is unsuccessful, read about <a href="https://help.github.com/articles/set-up-git/#next-steps-authenticating-with-github-from-git" target="_blank">authenticating with GitHub from Git</a>. Please note: many corporate networks restrict SSH traffic, so we highly recommend using HTTPS and verifying the clone works before class. Also, if you have two-factor authentication enabled and wish to use HTTPS, you will need to <a href="https://help.github.com/articles/https-cloning-errors/#provide-access-token-if-2fa-enabled" target="_blank">set up a personal access token</a>.</p>
+<h4 id="proxy-configuration"><a name="proxy-configuration" class="plugin-anchor" href="#proxy-configuration"><i class="fa fa-link" aria-hidden="true"></i></a>Proxy configuration</h4>
+<p>If your organization uses a proxy, you will need to configure the proxy settings in Git. Open Git Bash (on Windows) or Terminal (on Mac or *nix) and complete the appropriate steps below:</p>
+<p><strong>If your proxy does not require authentication:</strong></p>
+<pre><code>git config --global http.proxy https://YOUR.PROXY.SERVER:8080
+</code></pre><p>Replace <code>YOUR.PROXY.SERVER</code> with your proxy&apos;s URL.</p>
+<p><strong>If your proxy does require authentication:</strong></p>
+<pre><code>git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@YOUR.PROXY.SERVER:8080
+</code></pre><p>Replace <code>YOUR_PROXY_USERNAME</code> with the username used to authenticate into your proxy, <code>YOUR_PROXY_PASSWORD</code> with the password used to authenticate into your proxy, and <code>YOUR.PROXY.SERVER</code> with your proxy&apos;s URL.</p>
+<h3 id="step-4-set-up-your-text-editor"><a name="step-4-set-up-your-text-editor" class="plugin-anchor" href="#step-4-set-up-your-text-editor"><i class="fa fa-link" aria-hidden="true"></i></a>Step 4: Set Up Your Text Editor</h3>
 <p>For this class, we will use a basic text editor to interact with our code. Let&apos;s make sure you have one installed and ready to work from the command line.</p>
 <h4 id="pick-your-editor"><a name="pick-your-editor" class="plugin-anchor" href="#pick-your-editor"><i class="fa fa-link" aria-hidden="true"></i></a>Pick Your Editor</h4>
 <p>You can use almost any text editor, but we have the best success with the following:</p>
 <ul>
 <li><a href="https://atom.io/" target="_blank">Atom</a></li>
-<li>GitPad</li>
+<li><a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a></li>
+<li>Notepad</li>
 <li>Vi or Vim</li>
 <li>Sublime</li>
-<li>Notepad or Notepad++</li>
+<li>Notepad++</li>
+<li>GitPad</li>
 </ul>
-<p>If you do not already have a text editor installed, go ahead and download and install one of the above editors now!</p>
+<p>If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the <a href="https://help.github.com/articles/associating-text-editors-with-git/" target="_blank">instructions at help.github.com</a>.</p>
 <h4 id="your-editor-on-the-command-line"><a name="your-editor-on-the-command-line" class="plugin-anchor" href="#your-editor-on-the-command-line"><i class="fa fa-link" aria-hidden="true"></i></a>Your Editor on the Command Line</h4>
 <p>After you have installed an editor, confirm you can open it from the command line.</p>
 <p>If installed properly, the following command will open the Atom text editor:</p>
@@ -813,11 +845,12 @@ git version 2.11.0
 <blockquote>
 <p>If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.</p>
 </blockquote>
-<h3 id="exploring"><a name="exploring" class="plugin-anchor" href="#exploring"><i class="fa fa-link" aria-hidden="true"></i></a>Exploring</h3>
+<hr>
+<h5 id="exploring"><a name="exploring" class="plugin-anchor" href="#exploring"><i class="fa fa-link" aria-hidden="true"></i></a>Exploring</h5>
 <p>Congratulations! You should now have a working version of Git and a text editor on your system. If you still have some time before class begins, here are some interesting resources you can check out:</p>
 <ul>
 <li><em><a href="https://www.github.com/explore" target="_blank">github.com/explore</a></em> Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.</li>
-<li><em><a href="https://services.github.com/on-demand/" target="_blank">services.github.com/on-demand</a></em> Our On Demand Training courses are GitHub&apos;s open source training materials. The site contains additional resources you may find helpful when reviewing what you have learned in class! You can even make contributions to the materials or open issues if you would like us to explain something in greater detail. Find the open source repository here: <a href="https://github.com/github/training-kit" target="_blank"><code>https://github.com/github/training-kit</code></a></li>
+<li><em><a href="https://lab.github.com" target="_blank">lab.github.com</a></em> The Learning Lab bot will guide you through projects and provide feedback right from your GitHub repository, helping you build every step of the way.</li>
 </ul>
 
                                 
@@ -862,7 +895,7 @@ git version 2.11.0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Getting Ready for Class","level":"1.2","depth":1,"next":{"title":"Getting Started","level":"1.3","depth":1,"path":"02_getting_started.md","ref":"02_getting_started.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"anchors":{},"advanced-emoji":{"embedEmojis":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"01_getting_ready_for_class.md","mtime":"2018-06-13T00:20:36.382Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-06-13T00:22:59.216Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Getting Ready for Class","level":"1.2","depth":1,"next":{"title":"Getting Started","level":"1.3","depth":1,"path":"02_getting_started.md","ref":"02_getting_started.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["anchors","advanced-emoji","simple-page-toc"],"root":"./book","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"simple-page-toc":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"advanced-emoji":{"embedEmojis":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":18,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"gitbook":"*"},"file":{"path":"01_getting_ready_for_class.md","mtime":"2018-06-20T19:06:24.985Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-06-20T19:09:19.988Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
