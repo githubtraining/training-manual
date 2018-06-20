@@ -51,7 +51,7 @@ if [ -z ${INSTANCE_URL+x} ]
       else
         echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
     fi      
-    echo "Checking if '$newurl' is accessible with authentication... $newname and $newtoken"
+    echo "Checking if '$newurl' is accessible with authentication..."
     
     if [[ $(curl -s -u "$newname:$newtoken" https://$newurl/ | jq .message) = null ]]
       then
