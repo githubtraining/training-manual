@@ -27,8 +27,6 @@ function getnames () {
     fi
   fi
 
-  # git clone --bare https://github.com/githubtraining/polygons conflict-template >> log.out 2>&1
-  # if [ $? -eq 0 ]; then
   pushd conflict-template
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
 
