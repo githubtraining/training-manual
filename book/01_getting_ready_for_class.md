@@ -2,6 +2,8 @@
 
 While you are waiting for class to begin, please take a few minutes to set up your local work environment.
 
+<!-- toc -->
+
 ### Step 1: Set Up Your GitHub.com Account
 
 For this class, we will use a public account on GitHub.com. We do this for a few reasons:
