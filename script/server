@@ -16,6 +16,8 @@ then
   echo "3: GH4D + Travis CI"
   echo "4: GH4D Japanese"
   echo "5: GH4M"
+  echo "6: InnerSource for Leaders"
+  echo "7: InnerSource for Developers"
   echo "Which manual would you like to build? You can enter more than one number."
   read option
 fi
@@ -43,6 +45,16 @@ fi
 if echo "$option" | grep -iq "5";
 then
   cp book/SUMMARY_GH4M.md book/SUMMARY.md
+fi
+
+if echo "$option" | grep -iq "6";
+then
+  cp book/SUMMARY_ISFL.md book/SUMMARY.md
+fi
+
+if echo "$option" | grep -iq "7";
+then
+  cp book/SUMMARY_ISFD.md book/SUMMARY.md
 fi
 
 gitbook serve
