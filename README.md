@@ -1,10 +1,12 @@
 # GitHub Training Manuals
 
-Welcome to the GitHub Training Manual repo. In this repo, you will find the content for all of the materials used by GitHub trainers during our official training courses.
+Welcome to the GitHub Training Manuals. In this repo, you will find the content for all of the materials used by GitHub trainers during our official training courses, as well scripts used to automate teaching tasks.
 
 ## How To Generate the Manuals
 
-These manuals are designed to be generated using CircleCI for continuous integration and deployment. If you fork this repository, you will need to set up the integration one time for it to work.
+The manuals can be generated locally using [gitbook](https://toolchain.gitbook.com/setup.html). GitBook allows you to generate HTML, eBook, and PDF versions.
+
+We also use CircleCI for continuous integration and deployment.
 
 ## Making Changes
 
@@ -40,3 +42,17 @@ We can create as many manuals as we'd like from this content, and have it all re
 ## Next Steps
 
 Once this is sorted here, we may want to merge this (and the general concept) into the proper training-manual repository so that all changes to curriculum are reflected in all courses.
+
+## Deployment with CircleCI and GitHub Pages
+
+If you'd like to deploy the manual using CircleCI and GitHub Pages, this section is for you! We use CircleCI to generate the manual using gitbook, and then push the generated manual to the `gh-pages` branch of the GitHub repository.
+
+On GitHub:
+
+- create a `gh-pages` branch. The branch can be orphaned since it will contain just the generated manual, not any of the source code. 
+
+On the CircleCI project:
+
+- In CircleCI project Settings > Build Settings > Environment Variables, set a `GH_NAME` environment, store the GitHub username of a shared teacher user account, or the GitHub username of a trainer
+- In CircleCI project Settings > Build Settings > Environment Variables, set a `GH_EMAIL` environment, store the email address of the shared teacher user account, or the email address of a trainer
+- In CircleCI project Settings > Permissions > Checkout SSH Key, click the button to add a deploy key for your shared teaching account, or a trainer's account.
