@@ -8,28 +8,28 @@ This directory contains several scripts used to set up and facilitate our classe
 
 To use these scripts, please follow these steps **first**:
 
-- [ ] Create an organization on your instance (if not using github.com) called `githubtraining` and import the template repos there: caption-this, polygons, github-games (all included within the same release as the `training-manual` repository). Ensure your newly created repos contain all the branches as were included in this release.
-- [ ] Create a separate org where you will house the disposable teaching repos
-- [ ] Give your user account(s) admin access to the disposable repos org
-- [ ] Create a [Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for your user account
-- [ ] Decide whether you want to do 1:1 appointments. If not, comment out those lines of code
-- [ ] Set up a survey account and survey on SurveyGizmo, or comment out those lines of code
+- [ ] Create an organization that will house all student repositories. Something like "githubtraining" or "githubschool" will work, but any name will work.
+- [ ] If you're using GitHub Enterprise, and access to github.com is limited within your organization, import the following repos and all their branches in your newly created organization: [caption-this](https://github.com/githubtraining/caption-this), [polygons](https://github.com/githubtraining/polygons), [github-games](https://github.com/githubtraining/github-games). You'll need access to GitHub.com to perform this one-time operation.
+- [ ] Ensure your user account is an owner of the newly created training org, and add any other trainers as owners of the org. Alternatively, you can create a separate teaching account that all trainers have access to, and make that teaching account an owner of the org.
+- [ ] Create a [Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/) for your user account, or the shared teaching account. You'll need this for the [local configuration](#local-configuration).
+- OPTIONAL: If using Survey Gizmo to distribute surveys to participants, [generate an API key and secret](https://apihelp.surveygizmo.com/help/authentication). Save these for later. 
+- OPTIONAL: If you're going to offer participants one-on-one appointments, determine the URL participants will use to schedule those. We use [YouCanBook.me](http://youcanbook.me). You'll need the URL later.
 
 ### Local Configuration
 
-You will need to do the following while checked out to this branch (these only work for Bash right now, so if you are using ZSH you will need to set these ENV vars manually):
+Generally speaking, we'll create a `.trainingmanualrc` in your home directory, and source that file from your Bash or ZSH profile. The scripts take care of doing that for you. When performing an operation using the training scripts, the variables specified in your `~/.trainingmanualrc` file will be used.
 
-- run `script/teach-class` and choose option 0
-- for the TOKEN_OWNER, type `githubteacher`
-- for the INSTANCE_URL, type `api.github.com`
-- for the CLASS_ORG, type `githubschool`
-- In addition to the above ENV variables, you will need to set a few more for the 1:1 Appointment URL and the Survey:
-  - `echo "export APPT_URL='APPT_URL_HERE'" >> ~/.bashrc`
-  - `echo "export SURVEY_TOKEN='SURVEY_TOKEN_HERE'" >> ~/.bashrc`
-  - `echo "export SURVEY_SECRET='SURVEY_SECRET_HERE'" >> ~/.bashrc`
-  - `echo "export SURVEY_CAMPAIGN='SURVEY_CAMPAIGN_HERE'" >> ~/.bashrc`
-- exit your terminal session and start a new one
-- run `script/teach-class` and enjoy!
+Here's how to get your local environment up and running: 
+
+1. install [jq](https://stedolan.github.io/jq/download/)
+2. run `script/teach-class` and choose option 0 to set up your environment variables. You'll need the following pieces of information from [above](#remote-configuration):
+   - the title of your newly created training organization
+   - your username, or the username of a shared teaching account
+   - your personal access token (PAT) or the PAT of the shared teaching account
+   - (optional) the API key and secret for Survey Gizmo
+   - (optional) the URL for one-on-one appointments
+3. exit your terminal session and start a new one
+4. run `script/teach-class` and choose the option for the task you need
 
 ## Class Scripts
 
@@ -91,7 +91,7 @@ This script is used to reset the github-games repository in githubschool using t
 
 ### bootstrap
 
-This script allows those who clone it for the first time to ensure they have the proper dependencies to run all other scripts locally.
+This script allows those who clone this repo for the first time to ensure they have the proper dependencies to run all other scripts locally.
 
 > Note: This requires Ruby.
 
