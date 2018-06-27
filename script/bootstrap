@@ -1,17 +1,1 @@
-#!/bin/sh
-
-# script/bootstrap: Resolve all dependencies required to produce manuals
-
-set -e
-
-cd "$(dirname "$0")/.."
-
-echo "==> Installing gem dependencies..."
-bundle check --path vendor/gems >/dev/null 2>&1  || {
-  bundle install
-}
-
-if [ -f "package.json" ]; then
-  echo "==> Installing npm dependencies…"
-  npm install
-fi
+npm i docsify-cli -g

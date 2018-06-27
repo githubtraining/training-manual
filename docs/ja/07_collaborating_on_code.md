@@ -19,7 +19,7 @@ $ git push
 - Windows: `git config --global credential.helper wincred`
 - Mac: `git config --global credential.helper osxkeychain`
 
-{% include './07a_activity_create_pull_request.md' %}
+[include](07a_activity_create_pull_request.md ':include')
 
 ### Pull Requestについて知ろう
 

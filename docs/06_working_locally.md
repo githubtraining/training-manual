@@ -4,7 +4,7 @@ Using the command line, you can easily integrate Git into your current workflow.
 
 ### Creating a Local Copy of the repo
 
-![Cloning a repository](img/clone-diagram.png)
+![Cloning a repository](./img/clone-diagram.png)
 
 Before we can work locally, we will need to create a clone of the repository.
 
@@ -63,13 +63,13 @@ To checkout the branch you created online, type git checkout and the name of you
 
 > You do not need to type `remotes/origin` in front of the branch - only the branch name. Typing `remotes/origin` in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.
 
-{% include './06a_activity_create_file.md' %}
+[include](06a_activity_create_file.md ':include')
 
 ### The Two Stage Commit
 
 After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.
 
-![The Two Stage Commit - Part 1](img/two-stage-commit-a.png)
+![The Two Stage Commit - Part 1](./img/two-stage-commit-a.png)
 
 When you work locally, your files exist in one of four states. They are either untracked, modified, staged, or committed.
 
@@ -77,15 +77,15 @@ An untracked file is a new file that has never been committed.
 
 Git tracks these files, and keeps track of your history by organizing your files and changes in three working trees. They are Working, Staging (also called Index), and History. When we are actively making changes to files, this is happening in the working tree.
 
-![The Two Stage Commit - Part 2](img/two-stage-commit-b.png)
+![The Two Stage Commit - Part 2](./img/two-stage-commit-b.png)
 
 To add these files to version control, you will create a collection of files that represent a discrete unit of work. We build this unit in the staging area.
 
-![The Two Stage Commit - Part 3](img/two-stage-commit-c.png)
+![The Two Stage Commit - Part 3](./img/two-stage-commit-c.png)
 
 When we are satisfied with the unit of work we have assembled, we will take a snapshot of everything in the staging area. This is called a commit.
 
-![The Two Stage Commit - Part 4](img/two-stage-commit-d.png)
+![The Two Stage Commit - Part 4](./img/two-stage-commit-d.png)
 
 In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let's do it now.
 

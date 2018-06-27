@@ -129,7 +129,7 @@ Githubでは、アイデア、改善策、課題やバグを記録し、これ�
 - ユーザが行った判断の過程および理由について、包括的な単一の記録を作成できる。
 - @メンションやチームのメンションを用いて、適当なユーザを会話に誘うことができる。
 
-{% include './02a_activity_create_github_issue.md' %}
+[include](02a_activity_create_github_issue.md ':include')
 
 ### Markdownの使用
 

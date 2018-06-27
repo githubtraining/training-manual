@@ -62,7 +62,7 @@ $ git branch -a
 
 > ブランチ名の前に、`remotes/origin`を入力する必要はありません。ブランチ名のみで大丈夫です。 ブランチ名の前に`remotes/origin`を入力すると、分離されたHEAD状態になります。 後ほど詳しく学習しますが、今は、この状態が、あるべき状態ではないことを覚えておいてください。
 
-{% include './06a_activity_create_file.md' %}
+[include](06a_activity_create_file.md ':include')
 
 ### 2 段階コミット
 

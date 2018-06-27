@@ -86,37 +86,3 @@ This script is used to determine whether the students successfully fixed their g
 This script is used to reset the github-games repository in githubschool using the template in githubtraining. It will also delete the copy of the game from the githubteacher account.
 
 **Usage:** `script/reset-game`
-
-# Other Scripts
-
-### bootstrap
-
-This script allows those who clone this repo for the first time to ensure they have the proper dependencies to run all other scripts locally.
-
-> Note: This requires Ruby.
-
-**Usage:** `script/bootstrap`
-
-### cibuild
-
-This script is used GitHub's building of the manual using CircleCI and GitBook.
-
-**Usage:** Only used in the `.circle` file during CircleCI's build. Not recommended to use locally.
-
-### deploy
-
-Used in GitHub's deployment of the manual using CircleCI and GitBook.
-
-**Usage:** Only used in the `.circle` file during CircleCI's build. Not recommended to use locally.
-
-### server
-
-When you are making changes locally and want to check how they look, use this script to host the webpage on a local server.
-
-**Usage:** `script/server`
-
-### setup
-
-Uses GitBook to produce the manuals for all classes.
-
-**Usage:** Typically used within other scripts, such as `script/server` and `script/deploy`.

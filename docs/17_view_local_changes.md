@@ -6,7 +6,7 @@ Now that you have some files in the staging area and the working directory, let'
 
 `git diff` allows you to see the difference between any two refs in the repository. The diagram below shows how you can compare the content of your working area, staging, and HEAD (or the most recent commit):
 
-![Git Diff Options](img/diff-options.png)
+![Git Diff Options](./img/diff-options.png)
 
 Let's try these commands on the repository:
 
