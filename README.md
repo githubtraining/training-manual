@@ -1,42 +1,34 @@
-# GitHub Training Manuals
+# GitHub Training Manual: GitHub for Developers
 
-Welcome to the GitHub Training Manual repo. In this repo, you will find the content for all of the materials used by GitHub trainers during our official training courses.
+Welcome to the GitHub Training Manual repo. In this repo, you will find the content used by GitHub trainers during our official training courses and scripts used when teaching.
 
-## How To Generate the Manuals
+## Deploy the manual
 
-These manuals are designed to be generated using CircleCI for continuous integration and deployment. If you fork this repository, you will need to set up the integration one time for it to work.
+These manuals are designed to be generated using [docsify](https://docsify.js.org). To get your own manuals up and running, all you have to do is:
 
-## Making Changes
+1. Fork this repository
+2. In your fork, click on **Settings**
+3. Scroll down to the GitHub Pages section, and set **Source:** to `master branch /docs folder`.
+4. Click **Save**.
+5. Return to the GitHub Pages section of Settings, and you'll receive the URL of your published manual.
 
-Each manual is built from summary files. The summary file includes other pieces in the `book` directory. Once CircleCI is set up, simply change these files on the master branch to generate new manuals on the gh-pages branch.
+## Make changes
 
-Remember, changing just one file will impact the other manuals, so be intentional about your changes.
+The official [docsify documentation](https://docsify.js.org/#/?id=docsify) is your best bet for getting up to speed with the tool. 
 
-## Adding New Manuals
+In general, you'll find all of the manual content in the [docs/](docs/) folder of this repository. All content is written in Markdown, and it's all stitched together in [`docs/_sidebar.md`](docs/_sidebar.md), which specifies the order and hierarchy of the content.
 
-We can create as many manuals as we'd like from this content, and have it all rendered in the same way. Here are the steps to creating a new manual:
-- Create a new summary file based on the existing summary files in the `book` directory.
-- In the `script/cibuild` file, add this chunk of code. Try to add it in a logical place in context of the other manuals.
-        ```
-        # create <description> course
-        mv book/<NAME-OF-SUMMARY-FILE>.md book/SUMMARY.md
+## Preview changes on your machine
 
-        echo "==> Building book"
-        gitbook build
+You can install, and serve the contents of the `docs/` folder locally with minimal setup. The steps are thoroughly described in the [doscify quick start](https://docsify.js.org/#/quickstart) guide.
 
-        echo "==> Generating PDF"
-        gitbook pdf . <COURSENAME>.pdf
+You can also simply run the following scripts:
 
-        mv _book/ <COURESNAME>/
+```shell
+script/bootstrap
+script/server
+```
 
-        mv book/SUMMARY.md book/<NAME-OF-SUMMARY-FILE>.md
-        ```
-- In the `script/deploy` file, make changes so the files are all added in the appropriate places. The best way to do this is to follow the conventions for the existing manuals. Generally, you will want to accomplish these steps:
-  - After removing the vendor file but before checking out to the `gh-pages` branch, move the PDF and directory for the manual to a temporary directory.
-  - Remove the existing pdf and directory for the manual. Without this step, the new manual won't have anywhere to go.
-  - Move the temporary pdf and directory to the permanent names.
-  - Update the `index.html` file on the `gh-pages` branch to reflect the new URL and description for the manual.
-  
-## Next Steps
+## Teaching scripts
 
-Once this is sorted here, we may want to merge this (and the general concept) into the proper training-manual repository so that all changes to curriculum are reflected in all courses.
+Scripts that accompany the manual, and their documentation can be found in the ['scripts/'](scripts/) directory.
