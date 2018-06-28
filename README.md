@@ -16,7 +16,7 @@ These manuals are designed to be generated using [docsify](https://docsify.js.or
 
 The official [docsify documentation](https://docsify.js.org/#/?id=docsify) is your best bet for getting up to speed with the tool. 
 
-In general, you'll find all of the manual content in the [docs/](docs/) folder of this repository. All content is written in Markdown, and it's all stitched together in [`docs/_sidebar.md`](docs/_sidebar.md), which specifies the order and hierarchy of the content.
+In general, you'll find all of the manual content in the [`docs/`](docs/) folder of this repository. All content is written in Markdown, and it's all stitched together in [`docs/_sidebar.md`](docs/_sidebar.md), which specifies the order and hierarchy of the content.
 
 ## Preview changes on your machine
 
@@ -31,4 +31,4 @@ script/server
 
 ## Teaching scripts
 
-Scripts that accompany the manual, and their documentation can be found in the ['scripts/'](scripts/) directory.
+Scripts that accompany the manual, and their documentation can be found in the [`script/`](script/) directory.
