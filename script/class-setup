@@ -14,10 +14,10 @@ echo ""
 echo "==============================================="
 if [ -z ${TOKEN_OWNER+x} ]
   then
-    echo "It looks like you need to add the TOKEN_OWNER var"
+    echo "It looks like we'll need to add the TOKEN_OWNER var"
     echo "to your ~/.trainingmanualrc. Please type the github username"
-    echo "of the teacher. Remember, this user will need to have"
-    echo "full admin access to the teaching organization."
+    echo "of the teacher and we'll add this automatically. Remember, this"
+    echo "user will need to have full admin access to the teaching organization."
     read newname
     echo "export TOKEN_OWNER='$newname'" >> $HOME/.trainingmanualrc
   else
@@ -26,7 +26,7 @@ fi
 echo "==============================================="
 if [ -z ${TEACHER_PAT+x} ]
   then
-    echo "It looks like you need to add the"
+    echo "It looks like we need to add the"
     echo "TEACHER_PAT var to your ~/.trainingmanualrc."
     echo "Please generate an OAUTH token on the"
     echo "teacher account and paste it here."
@@ -50,9 +50,9 @@ if [ -z ${INSTANCE_URL+x} ]
         echo "API endpoint verified"
       else
         echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
-    fi      
+    fi
     echo "Checking if '$newurl' is accessible with authentication..."
-    
+
     if [[ $(curl -s -u "$newname:$newtoken" https://$newurl/ | jq .message) = null ]]
       then
         echo "API endpoint + authentication verified"
