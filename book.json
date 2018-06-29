@@ -1,7 +1,0 @@
-{
-    "root": "./book",
-    "pdf": {
-     "fontSize" : 18
-   },
-    "plugins": ["anchors", "advanced-emoji", "simple-page-toc"]
-}
