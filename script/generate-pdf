@@ -1,0 +1,8 @@
+echo "Creating a PDF... if this fails check out the documentation at: https://toolchain.gitbook.com/ebook.html"
+  
+npm install -g gitbook-cli
+cp docs/_sidebar.md docs/SUMMARY.md
+gitbook pdf docs/ docs/book.pdf
+rm docs/SUMMARY.md
+
+echo "Your PDF is at docs/book.pdf. Commit it to your repo if you'd like to."
