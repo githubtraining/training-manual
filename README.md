@@ -29,6 +29,10 @@ script/bootstrap
 script/server
 ```
 
+## Generate a PDF
+
+Docsify doesn't currently support creating PDFs, but you can generate one using [GitBook](https://toolchain.gitbook.com/ebook.html). We've tried to make this simple for you by creating [`script/generate-pdf`](script/generate-pdf).
+
 ## Teaching scripts
 
 Scripts that accompany the manual, and their documentation can be found in the [`script/`](script/) directory.
