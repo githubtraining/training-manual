@@ -48,8 +48,6 @@ function clonerepo () {
   git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
   echo "Resting 5 more seconds to allow push to resolve"
   sleep 5
-  #echo "Setting default branch for repo"
-  #curl -i -H "Authorization: token $TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"gh-pages\"}" -X PATCH https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame
   popd
   rm -rf $reponame
 }

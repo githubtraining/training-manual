@@ -62,8 +62,6 @@ function duplicaterepo () {
     fi
   fi
 
-  # git clone --bare https://github.com/githubtraining/$reponame $reponame
-  # if [ $? -eq 0 ]; then
   echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
   pushd $reponame
   git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1

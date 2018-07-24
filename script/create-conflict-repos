@@ -27,15 +27,29 @@ function getnames () {
     fi
   fi
 
-  # git clone --bare https://github.com/githubtraining/polygons conflict-template >> log.out 2>&1
-  # if [ $? -eq 0 ]; then
   pushd conflict-template
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+
+  #get facilitator name from README
+  teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
+  #make sure no one is teaching class
+  echo "A new conflict-practice repo is about to be created for $teacher. If one already exists, it will be deleted."
+  echo "Is that OK? (Y or N)"
+  read classtime
+  if echo "$classtime" | grep -iq "^y" ;
+  then
+    echo "Deleting githubschool/conflict-practice-$teacher repo..."
+    curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$teacher
+  else
+    echo "A conflict-practice repo wasn't created for the facilitator, creating for the students..."
+  fi
+
+  ownersArray=( "${ownersArray[@]/"$teacher"}" )
   for i in ${collabs[@]}
   do
-#    if
-#      containsElement $i $ownersArray
-#    then
+   if
+     containsElement $i $ownersArray
+   then
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i | grep "^Status:") >> log.out 2>&1
     echo "repoStatus for $i is $repoStatus"
@@ -46,9 +60,9 @@ function getnames () {
     else
       echo "Skipping $i because they already have a repo."
     fi
- #   else
- #     echo "Skipping $i because they are an owner in this org."
- #   fi
+   else
+     echo "Skipping $i because they are an owner in this org."
+   fi
   done
   popd
   echo "Remove the local (temporary) clone"
@@ -80,5 +94,5 @@ function createRepo () {
   done
 }
 
-#ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
+ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
 getnames
