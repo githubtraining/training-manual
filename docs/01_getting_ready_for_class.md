@@ -51,8 +51,8 @@ If you need additional assistance installing Git, you can find more information 
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
-- If you are working on Windows, we recommend `Git Bash` which is installed with the Git packagem, so that you can follow along with the facilitator who will be using Bash.
-- If you are working on a Mac or other Unix-based system, you can use the build-in Terminal application.
+- If you are working on Windows, we recommend `Git Bash` which is installed with the Git package, so that you can follow along with the facilitator who will be using Bash.
+- If you are working on a Mac or other Unix-based system, you can use the built-in Terminal application.
 
 ### Step 3: Try cloning with HTTPS
 
