@@ -60,7 +60,7 @@ Git is optimized for local operation. When you clone a copy of a repository to y
 
 Branches are an essential concept in Git.
 
-When you create a new branch in Git, you are actually just creating a pointer that corresponds to the most recent snapshot in a line of work. Git keeps the snapshots for each branch separate until you explicitly tell it to merge those snapshots into the main line of work.
+When you create a new branch in Git, you are actually just creating a pointer that corresponds to the most recent commit in a line of work. Git keeps the commits for each branch separate until you explicitly tell it to merge those commits into the main line of work.
 
 #### Git is Explicit
 
