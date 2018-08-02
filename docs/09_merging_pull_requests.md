@@ -4,7 +4,7 @@ Now that you have made the requested changes, your pull request should be ready 
 
 ### Merge Explained
 
-When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `gh-pages` branch.
+When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `master` branch.
 
 ![Merging Pull Requests](./img/merging-prs.png)
 
@@ -38,7 +38,7 @@ When you merged your Pull Request, you deleted the branch on GitHub, but this wi
 
 First, we need to get the changes we made on GitHub into our local copy of the repository:
 
-1. Start by switching back to your default branch: `git checkout gh-pages`
+1. Start by switching back to your default branch: `git checkout master`
 1. Retrieve all of the changes from GitHub: `git pull`
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
