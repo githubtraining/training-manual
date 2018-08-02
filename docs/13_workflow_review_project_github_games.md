@@ -2,7 +2,7 @@
 
 In this section, we will work on a project repository called `github-games`.
 
-A `github-games` repository has been created for you in the githubschool organization. You can access the repository at `https://github.com/githubschool/github-games-username`.
+A `github-games` repository has been created for you in the githubschool organization. You can access the repository at `https://github.com/githubschool/github-games-USERNAME`.
 
 If you're using the Fork and Pull Workflow, [don't forget to look in the appendix for a more thorough explanation](app_fork_workflow.md).
 
@@ -10,7 +10,7 @@ If you're using the Fork and Pull Workflow, [don't forget to look in the appendi
 
 Now you will practice the GitHub Flow from beginning to end by updating the link in the README to point to your fork of the repository.
 
-> Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-username`.
+> Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-USERNAME`.
 >
 > This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.
 
