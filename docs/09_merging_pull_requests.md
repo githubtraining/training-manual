@@ -55,6 +55,6 @@ If you type `git branch --all` you will probably see that, even though you delet
 1. Your local branch is gone but the remote tracking branch is still there. Delete the remote tracking branch: `git pull --prune`
 
 
-> Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to gh-pages, we will use this command to ensure all of the changes on our feature branch have been merged to production before we delete the branch.
+> Adding the `--merged` option to the `git branch` command allows you to see which branches do not contain unique work when compared to the checked out branch. In this case, since we are checked out to master, we will use this command to ensure all of the changes on our feature branch have been merged to production before we delete the branch.
 
 If you would like pruning of the remote tracking branches to be set as your default behavior when you pull, you can use the following configuration option: `git config --global fetch.prune true`.
