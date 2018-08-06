@@ -13,22 +13,21 @@ function containsElement () {
 
 function getnames () {
 
-  echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
-  echo "The timeout may take some time..."
+  echo "Trying to clone a template repo from $ROOT_URL."
 
-  git clone --bare https://github.com/githubtraining/github-games game-template >> log.out 2>&1
-  if [ $? -ne 0 ]; then
-    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+  if [ $ROOT_URL = "github.com" ]; then
+    git clone --bare https://github.com/githubtraining/github-games game-template >> log.out 2>&1
+  else
     git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/github-games game-template >> log.out 2>&1
     if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/github-games and upload it to your GHE instance."
       exit 1
     fi
   fi
-  
+
   pushd game-template
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
-  
+
   teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
   echo "A new github-games repo is about to be created for $teacher. If one already exists, it will be deleted."
   echo "Is that OK? (Y or N)"

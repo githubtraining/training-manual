@@ -14,12 +14,11 @@ function containsElement () {
 function getnames () {
   #grab template repo
 
-  echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
-  echo "The timeout may take some time..."
+  echo "Trying to clone a template repo from $ROOT_URL."
 
-  git clone --bare https://github.com/githubtraining/polygons conflict-template >> log.out 2>&1
-  if [ $? -ne 0 ]; then
-    echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
+  if [ $ROOT_URL = "github.com" ]; then
+    git clone --bare https://github.com/githubtraining/polygons conflict-template >> log.out 2>&1
+  else
     git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/polygons conflict-template >> log.out 2>&1
     if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/polygons and upload it to your GHE instance."
