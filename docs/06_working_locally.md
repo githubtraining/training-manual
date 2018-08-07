@@ -38,12 +38,6 @@ $ git branch
 
 If you type `git branch` you will see a list of local branches.
 
-{% if context.facilitator %}
-> Show that any branches created before the repo has been cloned do not appear with `git branch`.
-{: .facilitator}
-
-{% endif %}
-
 ```sh
 $ git branch --all
 $ git branch -a
