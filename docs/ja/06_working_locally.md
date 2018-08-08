@@ -38,12 +38,6 @@ $ git branch
 
 ` git branch`と入力すると、ローカルのブランチの一覧が表示されます。
 
-{% if context.facilitator %}
-
-> ファシリテーターから、リポジトリのクローン前に作成されたブランチは、`git branch`では表示されないことを示します。 {: .facilitator}
-
-{% endif %}
-
 ```sh
 $ git branch --all
 $ git branch -a
