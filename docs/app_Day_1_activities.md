@@ -6,7 +6,7 @@ Just like we did in class, open a new pull request adding a new slide to the dec
 
 1. Create a new branch, and checkout to that branch: `git checkout -b NEWBRANCHNAME`.
 1. Create a new file in the `_posts` directory, named by date and description like YYYY-MM-DD-username-description.md. (The date has to be in the past - future dates won't show up.)
-1. Follow the directions for the same activity we created together, where it says "[Activity: Edit Your File](https://githubtraining.github.io/training-manual/06_working_locally.html)".
+1. Follow the directions for the same activity we created together, where it says "[Activity: Edit Your File](https://githubtraining.github.io/training-manual/#/06_working_locally)".
 1. Instead of just adding the caption, you will need to find a new image from the image list and use that to fill in this template:
         ```
         ---
