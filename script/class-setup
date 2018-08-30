@@ -144,8 +144,9 @@ echo "==============================================="
 echo "What kind of shell are you using?"
 echo "acceptable options: bash, zsh"
 read shell
-echo "Adding to your $shell rc..."
-echo "\nsource $HOME/.trainingmanualrc" >> $HOME/.${shell}rc
+echo "Adding to your .${shell}rc..."
+echo "\n# added by github/training-manual class setup" >> $HOME/.${shell}rc
+echo "test -f \"$HOME/.trainingmanualrc\" && source \"$HOME/.trainingmanualrc\"" >> $HOME/.${shell}rc
 
 echo "ATTENTION: You must restart your open terminal sessions"
 echo "for changes to take effect."
