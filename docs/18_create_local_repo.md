@@ -17,7 +17,7 @@ for d in {1..6}; do touch "file${d}.md"; git add "file${d}.md"; git commit -m "a
 
 #### PowerShell:
 ```
-for ($d=1; $d -le 6; $d++) { $null > file$d.md; git add file$d.md; git commit -m "adding file$d.md"; }
+for ($d=1; $d -le 6; $d++) { Out-File file$d.md; git add file$d.md; git commit -m "adding file$d.md"; }
 ```
 
 > You might see a command during this section, `tree .git`. If you're on a machine where `tree .git` doesn't work (probably a Windows machine), try `cmd //c tree` instead.
