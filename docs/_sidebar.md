@@ -44,3 +44,4 @@
   * [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
   * [Alias Pro Tips](app_aliases.md)
   * [Teachback: Prepare repositories](app_teachback_repo_prep.md)
+  * [Teacher/Facilitation Tips](app_facilitation_tips.md)
