@@ -19,11 +19,11 @@ Depending on how you're interacting with this manual, you may be in a class. The
 
 We've learned a lot! Try resolving the conflicts yourself first. If you need extra assistance, use these instructions.
 
-1. Clone the repository to your local machine: 
-    
+1. Clone the repository to your local machine:
+
     `git clone https://github.com/githubschool/conflict-practice-username.git`
 
-1. Find and check out to the conflict branch, for example: 
+1. Find and check out to the conflict branch using the `git checkout <branch>` command. For example:
 
     `git checkout my-branch`
 
@@ -31,15 +31,15 @@ We've learned a lot! Try resolving the conflicts yourself first. If you need ext
 1. Read the response from Git. It will identify the file(s) with a conflict. Open the file(s) in your favorite text editor.
 1. Remove the conflict markers: `<<<<<<<`, `=======`, `>>>>>>>`
 1. Review the code, edit to keep the version you'd like.
-1. Stage the conflicting files you've now resolve, for example: 
+1. Stage the conflicting files you've now resolve, for example:
 
     `git add conflict-file.txt`
 
-1. Finish the merge commit that was halted in #3 with: 
+1. Finish the merge commit that was halted in #3 with:
 
     `git commit -m "merge master into my-branch"`
 
-1. Push your nonconflicted branch to GitHub: 
+1. Push your nonconflicted branch to GitHub:
 
     `git push`
 
@@ -127,4 +127,3 @@ In this example, the file `play/manual/manual.html` has been deleted in our curr
 You'll find the file has automatically been put in your working directory (identified by the message from Git). If you choose to keep the file with modifications, just bring up the file in your favorite text editor, make the changes you'd like, stage the file with `git add play/manual/manual.html` and finish your merge commit.
 
 To remove the file altogether, tell Git you'd like to remove the file with `git rm play/manual/manual.html`, and then finish your merge commit.
-
