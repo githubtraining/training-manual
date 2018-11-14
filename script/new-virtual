@@ -28,9 +28,9 @@ function getdetails () {
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
     githubemail=$((curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/users/$TOKEN_OWNER | jq .email) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
     git config user.email "$githubemail" >> log.out 2>&1
-    sed -i "" "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
-    sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
-    sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
+    sed -i "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
+    sed -i "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
+    sed -i "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
     git add README.md >> log.out 2>&1
     git commit -m "create class README" >> log.out 2>&1
     sed -i "" "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
