@@ -59,7 +59,7 @@ function createFile () {
   echo "" >> 0000-01-$filenum-$student.md
   echo "$randomoctocat" >> 0000-01-$filenum-$student.md
   echo "{: .center}" >> 0000-01-$filenum-$student.md
-  newfile=$(cat 0000-01-$filenum-$student.md | base64)
+  newfile=$(cat 0000-01-$filenum-$student.md | base64 --wrap=0)
   #now create the file on the repo
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/0000-01-$filenum-$student.md\", \"message\": \"Activity file for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_posts/0000-01-$filenum-$student.md >> log.out 2>&1
   rm 0000-01-$filenum-$student.md
@@ -144,5 +144,7 @@ function createoneonones () {
 }
 
 collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+echo "Collabs: ${collabs}"
 commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
+echo "Commenters: ${Commenters}"
 getnames
