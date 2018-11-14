@@ -144,7 +144,5 @@ function createoneonones () {
 }
 
 collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
-echo "Collabs: ${collabs}"
 commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
-echo "Commenters: ${Commenters}"
 getnames
