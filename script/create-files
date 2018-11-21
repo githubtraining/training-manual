@@ -64,7 +64,11 @@ function createFile () {
   echo "" >> 0000-01-$filenum-$student.md
   echo "$randomoctocat" >> 0000-01-$filenum-$student.md
   echo "{: .center}" >> 0000-01-$filenum-$student.md
-  newfile=$(cat 0000-01-$filenum-$student.md | base64 --wrap=0)
+  if [ $OSTYPE = "msys" ]; then
+    newfile=$(cat 0000-01-$filenum-$student.md | base64 --wrap=0)
+  else
+    newfile=$(cat 0000-01-$filenum-$student.md | base64)
+  fi
   #now create the file on the repo
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/0000-01-$filenum-$student.md\", \"message\": \"Activity file for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_posts/0000-01-$filenum-$student.md >> log.out 2>&1
   rm 0000-01-$filenum-$student.md
