@@ -21,7 +21,7 @@ function checkavail () {
 
 function createrepo () {
   #create the repository on ${INSTANCE_URL}
-  echo "Creating Repo:  ${ROOT_URL}"
+  echo "Creating Repo:  ${ROOT_URL}/${CLASS_ORG}/${reponame}"
   if [ $ROOT_URL = "github.com" ]; then
 	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${reponame}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${reponame}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
    else
