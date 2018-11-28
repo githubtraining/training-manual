@@ -1,12 +1,14 @@
 #!/bin/sh
 
-#set -x
+set -x
 
 #you must have a GITHUBTEACHER_TOKEN
 #saved to your ENV variables in order to use this script
 
 function getpages () {
+	echo "GETPAGES"
   numPages=$((curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/repos | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
+  echo "NUMPAGES " $numPages
   if [ -z "$numPages" ]
     then
       numPages=1
@@ -40,6 +42,7 @@ function checkdates () {
   reponame=$1
   created=$((curl -s -H "Authorization: token $TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >> log.out 2>&1
   #if they were created more than 10 days ago, expire them
+  echo "CREATED -> " $created
   if [[ "$compDate" > "$created" ]];
   then
     echo "EXPIRED: $reponame was created on $created"
@@ -63,5 +66,10 @@ function benice () {
   script/remove-repo $reponame
 }
 
-compDate=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
+if [ $OSTYPE = "msys" ]; then
+   compDate=$(date --date='10 days ago'  +%Y-%m-%dT%H:%M:%S)
+else
+   compDate=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
+fi
+
 getpages
