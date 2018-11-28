@@ -1,4 +1,5 @@
 #!/bin/sh
+source "$HOME/.trainingmanualrc"
 
 #you must have a githubteacher token
 #saved to your ENV variables in order to use this script
@@ -143,6 +144,7 @@ function makeprivate () {
 
 function createoneonones () {
   #create an issue for 1:1 appointments
+  echo "$APPT_URL"
   isstext="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
   for i in ${commenters[@]}
   do
