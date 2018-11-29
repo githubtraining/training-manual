@@ -28,12 +28,22 @@ function getdetails () {
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
     githubemail=$((curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/users/$TOKEN_OWNER | jq .email) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
     git config user.email "$githubemail" >> log.out 2>&1
-    sed -i "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
-    sed -i "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
-    sed -i "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
-    git add README.md >> log.out 2>&1
+    if [ $OSTYPE = "msys" ]; then
+      sed -i "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
+      sed -i "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
+      sed -i "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
+    else
+      sed -i "" "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
+      sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
+      sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
+    fi
+        git add README.md >> log.out 2>&1
     git commit -m "create class README" >> log.out 2>&1
-    sed -i "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
+    if [ $OSTYPE = "msys" ]; then
+      sed -i "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
+    else
+      sed -i "" "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
+    fi
     git add _config.yml >> log.out 2>&1
     git commit -m "update config with class information" >> log.out 2>&1
     git push https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
@@ -44,7 +54,7 @@ function getdetails () {
     prettyrepo $teacher
   else
     echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
-  fi  
+  fi
 }
 
 function prettyrepo () {
