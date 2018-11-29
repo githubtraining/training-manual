@@ -32,18 +32,15 @@ function getdetails () {
       sed -i "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
       sed -i "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
+      sed -i "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
     else
       sed -i "" "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
       sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
       sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
-    fi
-        git add README.md >> log.out 2>&1
-    git commit -m "create class README" >> log.out 2>&1
-    if [ $OSTYPE = "msys" ]; then
-      sed -i "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
-    else
       sed -i "" "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
     fi
+    git add README.md >> log.out 2>&1
+    git commit -m "create class README" >> log.out 2>&1
     git add _config.yml >> log.out 2>&1
     git commit -m "update config with class information" >> log.out 2>&1
     git push https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
