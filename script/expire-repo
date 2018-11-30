@@ -63,5 +63,10 @@ function benice () {
   script/remove-repo $reponame
 }
 
-compDate=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
+if [ $OSTYPE = "msys" ]; then
+   compDate=$(date --date='10 days ago'  +%Y-%m-%dT%H:%M:%S)
+else
+   compDate=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
+fi
+
 getpages
