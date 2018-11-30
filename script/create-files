@@ -18,16 +18,21 @@ function getnames () {
   counter=2
   for i in ${commenters[@]}
   do
+    j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if
       containsElement $i $collabs
     then
-      i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-      addcollab $i
-      createFile $i $counter
+      addcollab $j
     else
-      echo "Skipping $i because they are already a collaborator."
+      echo "Skipping adding $j as a collaborator because they are already a collaborator."
     fi
-    ((counter++))
+    if [ $j != $TOKEN_OWNER ]
+    then
+      createFile $j $counter
+      ((counter++))
+    else
+      echo "Skipping creating another file for $j because they are the instructor."
+    fi
   done
   createissue $counter
 }
@@ -60,7 +65,11 @@ function createFile () {
   echo "" >> 0000-01-$filenum-$student.md
   echo "$randomoctocat" >> 0000-01-$filenum-$student.md
   echo "{: .center}" >> 0000-01-$filenum-$student.md
-  newfile=$(cat 0000-01-$filenum-$student.md | base64)
+  if [ $OSTYPE = "msys" ]; then
+    newfile=$(cat 0000-01-$filenum-$student.md | base64 --wrap=0)
+  else
+    newfile=$(cat 0000-01-$filenum-$student.md | base64)
+  fi
   #now create the file on the repo
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/0000-01-$filenum-$student.md\", \"message\": \"Activity file for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_posts/0000-01-$filenum-$student.md >> log.out 2>&1
   rm 0000-01-$filenum-$student.md
