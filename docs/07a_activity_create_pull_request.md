@@ -13,6 +13,7 @@ Now that you have started to change your file, you will open a pull request to d
 1. Include one of the keywords: `closes`, `fixes`, or `resolves` followed by the issue number you created earlier to note which Issue the Pull Request should close. Example: `This resolves #3`
 1. Click *Preview* to see how your Pull Request will look.
 1. Assign the Pull Request to yourself.
+1. Select your partner as a Reviewer for the Pull Request.
 1. Click *Create pull request*.
 
 > When you navigate to the class repository, you should see a banner at the top of the page indicating you have recently pushed branches, along with a button that reads *Compare & pull request*. This helpful button will automatically start the pull request process between your branch and the repository's default branch.
