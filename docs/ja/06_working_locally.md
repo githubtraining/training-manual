@@ -28,7 +28,7 @@ Your branch is up-to-date with 'origin/master'.
 nothing to commit, working tree clean
 ```
 
-` git status `は、リポジトリの現在の状態とそれに含まれるファイルを確認するために、頻繁に使用するコマンドです。 現在のところ、gh-pagesブランチにいることが表示されています。すべてがorigin/gh-pagesに合わせて最新版になり、ワーキングツリーはクリーンです。
+` git status `は、リポジトリの現在の状態とそれに含まれるファイルを確認するために、頻繁に使用するコマンドです。 現在のところ、masterブランチにいることが表示されています。すべてがorigin/masterに合わせて最新版になり、ワーキングツリーはクリーンです。
 
 ### ローカルでのブランチの使用
 
