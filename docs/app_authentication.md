@@ -19,7 +19,7 @@ The following are reasons you may be having trouble performing network operation
 ### 3. Are you behind a firewall?
 
 **Yes** 
-  - The company firewall may be blocking access to GitHub, ask your employer or network adminstrator if you can [use a proxy to get around the firewall](https://help.github.com/desktop/faq/articles/can-i-log-in-behind-a-proxy-server/).
+  - The company firewall may be blocking access to GitHub, ask your employer or network adminstrator to [whitelist GitHub.com](https://help.github.com/articles/troubleshooting-connectivity-problems/). If a proxy is necessary, that can be configured [with Git](https://git-scm.com/docs/git-config#git-config-httpproxy).
    - If the server you are cloning your repository from is anything other than GitHub.com, there might be something wrong with the SSL certificate. You could allow Git to accept a self-signed certificate with `git config --global http.verify false`
 
 **No** - It's possible that you've previously configured a proxy to bypass a firewall. You can unset such a proxy with the command `git config --global --unset http.proxy`. You may need to use `--system` instead of `--global`.
