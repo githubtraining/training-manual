@@ -45,3 +45,4 @@
   * [Vi Basics](app_vi_basics.md)
   * [Teachback: Prepare repositories](app_teachback_repo_prep.md)
   * [Teacher/Facilitation Tips](app_facilitation_tips.md)
+  * [Authentication Troubleshooting Guide](app_authentication.md)
