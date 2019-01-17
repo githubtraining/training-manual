@@ -4,7 +4,7 @@ The following are reasons you may be having trouble performing network operation
 
 ### 1. Have you told Git to remember your credentials in the past?
 
-**Yes** - You may have cached outdated credentials. Ask Git to forget them with `git config --global --unset credential.helper`. You may have to try `--system` instead of `--global`. Additionally, you may need to [clear the credentials from your credential manager](./app_authentication.md).
+**Yes** - You may have cached outdated credentials. Ask Git to forget them with `git config --global --unset credential.helper`. You may have to try `--system` instead of `--global`. Additionally, you may need to [clear the credentials from your credential manager](./App_clean_loaner_pc).
 
 **No / I don't know / I don't remember** - You should be seeing a prompt to enter your GitHub username and password each time you perform a network operation. If you don't, you've probably cached your credentials without realizing it.
 
