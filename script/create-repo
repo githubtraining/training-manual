@@ -15,7 +15,7 @@ function checkavail () {
   else
     echo "Oops, that repository name is already taken."
     echo "Please try a different name."
-    exit
+    exit 2
   fi
 }
 

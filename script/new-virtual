@@ -22,7 +22,8 @@ function getdetails () {
   #create a google short link
   shortLink=$((curl -s https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
   script/create-repo caption-this $reponame $teacher
-  if [ $? -eq 0 ]; then
+  returnCode=$?
+  if [ $returnCode -eq 0 ]; then
     git clone https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame $reponame >> log.out 2>&1
     pushd $reponame
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
@@ -49,6 +50,8 @@ function getdetails () {
     popd
     rm -rf $reponame >> log.out 2>&1
     prettyrepo $teacher
+  elif [ $returnCode -eq 2 ]; then
+    echo "!!! Please try running option 1 again and picking a unique repository name."
   else
     echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
   fi
