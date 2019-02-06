@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #you must have a githubteacher token
 #saved to your ENV variables in order to use this script
@@ -22,7 +22,7 @@ function checkavail () {
 function createrepo () {
   #create the repository on ${INSTANCE_URL}
   echo "Creating Repo:  https://${ROOT_URL}/${CLASS_ORG}/${reponame}"
-  if [ $ROOT_URL = "github.com" ]; then
+  if [ "$ROOT_URL" = "github.com" ]; then
 	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${reponame}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${reponame}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
    else
 	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${reponame}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${reponame}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
@@ -38,21 +38,24 @@ function clonerepo () {
   #create the repo locally
   echo "Trying to clone a template repo from $ROOT_URL."
 
-  if [ $ROOT_URL = "github.com" ]; then
+  if [ "$ROOT_URL" = "github.com" ]; then
     git clone --bare "https://github.com/githubtraining/${type}" "${reponame}" >> log.out 2>&1
   else
     echo "Cloning from Enterprise Instance"
     git clone --bare "https://${TOKEN_OWNER}:${TEACHER_PAT}@${ROOT_URL}/${CLASS_ORG}/${type}" "${reponame}" >> log.out 2>&1
+#	shellcheck disable=SC2181	# https://github.com/koalaman/shellcheck/wiki/SC2181
     if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/${type} and upload it to your GHE instance."
       exit 1
     fi
   fi
 
+#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   pushd "${reponame}" >> log.out 2>&1
   git push --mirror "https://${TOKEN_OWNER}:${TEACHER_PAT}@$ROOT_URL/${CLASS_ORG}/${reponame}" >> log.out 2>&1
   echo "Resting 5 more seconds to allow push to resolve"
   sleep 5
+#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   popd
   rm -rf "${reponame}"
 }
