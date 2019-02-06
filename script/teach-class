@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-
+#	shellcheck disable=SC2162,SC2086
 function gettask () {
   echo "========================================================"
   echo "This script manages the repos and activities"
@@ -24,7 +24,7 @@ function gettask () {
     dotask $task
   fi
 }
-
+#	shellcheck disable=SC2162
 function dotask () {
   task=$1
   if echo "$task" | grep -iq "0" ;
@@ -46,34 +46,34 @@ function dotask () {
     if echo "$task" | grep -iq "1" ;
     then
       echo "running script/new-virtual"
-      script/new-virtual $collabrepo
+      script/new-virtual "$collabrepo"
     fi
     if echo "$task" | grep -iq "2" ;
     then
       echo "running script/create-files"
-      script/create-files $collabrepo
+      script/create-files "$collabrepo"
     fi
     if echo "$task" | grep -iq "3" ;
     then
       echo "running script/check-caption-repo"
-      script/check-caption-repo $collabrepo
+      script/check-caption-repo "$collabrepo"
     fi
     if echo "$task" | grep -iq "4" ;
     then
       echo "running script/create-conflict-repos"
-      script/create-conflict-repos $collabrepo
+      script/create-conflict-repos "$collabrepo"
     fi
     if echo "$task" | grep -iq "5" ;
     then
       echo "running script/check-conflict-repos"
-      script/check-conflict-repos $collabrepo
+      script/check-conflict-repos "$collabrepo"
     fi
     if echo "$task" | grep -iq "6" ;
     then
       echo "running script/create-game-repos"
-      script/create-game-repos $collabrepo
+      script/create-game-repos "$collabrepo"
     fi
   fi
 }
-    
+
 gettask
