@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #you must have a githubteacher token
 #saved to your ENV variables in order to use this script
@@ -7,7 +7,7 @@ reponame=$1
 #set -x
 
 function deleteit () {
-  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame >> log.out 2>&1
+  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame" >> log.out 2>&1
 }
 
 deleteit
