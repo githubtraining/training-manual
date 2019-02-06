@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #you must have a githubteacher token
 #saved to your ENV variables in order to use this script
@@ -10,19 +10,20 @@ function resetactivity () {
 
   #make sure no one is teaching class
   echo "Is anyone teaching a class right now using $TOKEN_OWNER? (Y or N)"
+#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
   read classtime
   if echo "$classtime" | grep -iq "^y" ;
   then
     echo "This is not a good time to run this script. Wait until class is over and try again"
     exit
   else
-    deletedisposablerepo $reponame
+    deletedisposablerepo "$reponame"
 
     echo "Resting 5 seconds to all deletions to resolve"
     sleep 5
 
     echo "Creating a fresh repo for $CLASS_ORG"
-    duplicaterepo $reponame $default_branch
+    duplicaterepo "$reponame" "$default_branch"
   fi
 }
 
@@ -30,10 +31,10 @@ function deletedisposablerepo () {
   reponame=$1
 
   echo "Delete $TOKEN_OWNER $reponame repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1 >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$TOKEN_OWNER"/"$1" >> log.out 2>&1
 
   echo "Delete $CLASS_ORG $reponame repo..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$1 >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$1" >> log.out 2>&1
 }
 
 function duplicaterepo () {
@@ -41,21 +42,22 @@ function duplicaterepo () {
   dbranch=$2
 
   echo "Create server-side location for fresh $CLASS_ORG/$reponame repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$reponame\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://"$INSTANCE_URL"/orgs/"$CLASS_ORG"/repos >> log.out 2>&1
 
   echo "Resting 5 more seconds to allow repo creation to resolve"
   sleep 5
 
   echo "Clone $reponame template from githubtraining org..."
-  rm -rf $reponame
+  rm -rf "$reponame"
 
   echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
   echo "The timeout may take some time..."
 
-  git clone --bare https://github.com/githubtraining/$reponame $reponame >> log.out 2>&1
+  git clone --bare https://github.com/githubtraining/"$reponame" "$reponame" >> log.out 2>&1
+#	shellcheck disable=SC2181	# https://github.com/koalaman/shellcheck/wiki/SC2181
   if [ $? -ne 0 ]; then
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
-    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame $reponame >> log.out 2>&1
+    git clone --bare https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/"$reponame" "$reponame" >> log.out 2>&1
     if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/$reponame and upload it to your GHE instance."
       exit 1
@@ -63,18 +65,20 @@ function duplicaterepo () {
   fi
 
   echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
-  pushd $reponame
-  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$reponame >> log.out 2>&1
+#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+  pushd "$reponame"
+  git push --mirror https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/"$reponame" >> log.out 2>&1
 
   echo "Resting 5 more seconds to allow push to resolve"
   sleep 5
 
   echo "Setting default branch for repo"
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame" >> log.out 2>&1
+#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   popd
 
   echo "Remove the local (temporary) clone"
-  rm -rf $reponame
+  rm -rf "$reponame"
 }
 
 #usage list the repository name and default branch
