@@ -49,7 +49,6 @@ for var in {TOKEN_OWNER,TEACHER_PAT,INSTANCE_URL,ROOT_URL,CLASS_ORG}; do
 	fi
 	if [ "$var" = "TEACHER_PAT" ] && ! [[ "$result" =~ ^[a-f0-9]{40}$ ]]; then
 		ERRORS+=("$0: scenario $scenario: $var <> 40-char-hex")
-		echo "${#result}"
 	fi
 	if [ "$var" = "INSTANCE_URL" ] && [ "$result" != "github.com/api/v3" ]; then
 		ERRORS+=("$0: scenario $scenario: $var <> github.com/api/v3")
