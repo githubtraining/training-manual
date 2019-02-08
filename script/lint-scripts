@@ -19,7 +19,7 @@ if [ "1" == $status ]; then
 fi
 
 # find all executables and run `shellcheck`
-for f in $(find . -type f -not -iwholename '*.git*' | sort -u); do
+for f in $(find . -d 1 -type f -not -iwholename '*.git*' | sort -u); do
 	if file "$f" | grep --quiet shell; then
 		{
 			shellcheck "$f" && echo "[OK]: successfully linted $f"
