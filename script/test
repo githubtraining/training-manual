@@ -1,0 +1,12 @@
+#!/bin/bash
+# This script calls all of the testing scripts.
+
+./lint-scripts
+#./us0-confirm-setup
+#./us1-create-caption-this-class-repo
+#./us2-add-collabs-create-files
+#./us3-grade-day1-repo
+#./us4-create-indiv-conflict-repos
+#./us5-grade-day2-repos
+#./us6-create-indiv-gh-games-repos
+#./us7-expire-student-repos
