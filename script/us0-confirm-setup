@@ -20,8 +20,8 @@
 #	or if $SHELL == /bin/zsh then $HOME/.zshrc contains "source $HOME/.trainingmanualrc"
 # (4) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
 
-set -e
-set -o pipefail
+#set -e
+#set -o pipefail
 
 ERRORS=()
 GREP="/usr/bin/grep"
@@ -40,6 +40,7 @@ file="$HOME/.trainingmanualrc"
 for var in {TOKEN_OWNER,TEACHER_PAT,INSTANCE_URL,ROOT_URL,CLASS_ORG}; do
 #	shellcheck disable=SC2016,SC1001
 	result=$($GREP "$var" "$file" | $AWK 'BEGIN {FS="="} {print $2}' | $TR -d "'")
+	status=$($GREP "$var" "$file")
 	status=$?
 	if [ 0 -ne $status ]; then
 		ERRORS+=("$0: scenario $scenario: $HOME/.trainingmanualrc does not contain $var")
