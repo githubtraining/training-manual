@@ -2,7 +2,7 @@
 # This script calls all of the testing scripts.
 
 ./lint-scripts
-#./us0-confirm-setup
+./us0-confirm-setup
 #./us1-create-caption-this-class-repo
 #./us2-add-collabs-create-files
 #./us3-grade-day1-repo
