@@ -1,0 +1,98 @@
+#!/bin/bash
+# This script contains tests for the scenarios used to determine that
+# teach-class option 0 ran successfully.
+#
+# User Story: Confirm Setup
+#
+# As a GHE trainer,
+# I want to confirm ~/.trainingmanualrc variables are set and set correctly,
+# so that I can teach a GHE class.
+#
+# Acceptance Criteria / Scenarios:
+# (1) ~/.trainingmanualrc exists
+# (2) ~/.trainingmanualrc contains
+#		export TOKEN_OWNER=$USER
+# 	and	export TEACHER_PAT=<40-hex-char-string>
+# 	and	export INSTANCE_URL='github.com/api/v3'
+# 	and	export ROOT_URL='github.com'
+# 	and	export CLASS_ORG='GHE-Training'
+# (3) if $SHELL == /bin/bash then $HOME/.bashrc contains "source $HOME/.trainingmanualrc"
+#	or if $SHELL == /bin/zsh then $HOME/.zshrc contains "source $HOME/.trainingmanualrc"
+# (4) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+
+set -e
+set -o pipefail
+
+ERRORS=()
+GREP="/usr/bin/grep"
+AWK="/usr/bin/awk"
+TR="/usr/bin/tr"
+
+
+scenario=1
+if [ ! -f "$HOME/.trainingmanualrc" ]; then
+	ERRORS+=("$0: scenario $scenario: $HOME/.trainingmanualrc does not exist")
+fi
+
+
+scenario=2
+file="$HOME/.trainingmanualrc"
+for var in {TOKEN_OWNER,TEACHER_PAT,INSTANCE_URL,ROOT_URL,CLASS_ORG}; do
+#	shellcheck disable=SC2016,SC1001
+	result=$($GREP "$var" "$file" | $AWK 'BEGIN {FS="="} {print $2}' | $TR -d "'")
+	status=$?
+	if [ 0 -ne $status ]; then
+		ERRORS+=("$0: scenario $scenario: $HOME/.trainingmanualrc does not contain $var")
+	fi
+	if [ "$var" = "TOKEN_OWNER" ] && [ "$result" != "$USER" ]; then
+		ERRORS+=("$0: scenario $scenario: $var <> $USER")
+	fi
+	if [ "$var" = "TEACHER_PAT" ] && ! [[ "$result" =~ ^[a-f0-9]{40}$ ]]; then
+		ERRORS+=("$0: scenario $scenario: $var <> 40-char-hex")
+		echo "${#result}"
+	fi
+	if [ "$var" = "INSTANCE_URL" ] && [ "$result" != "github.com/api/v3" ]; then
+		ERRORS+=("$0: scenario $scenario: $var <> github.com/api/v3")
+	fi
+	if [ "$var" = "ROOT_URL" ] && [ "$result" != "github.com" ]; then
+		ERRORS+=("$0: scenario $scenario: $var <> github.com")
+	fi
+#	if [ "$var" = "CLASS_ORG" ] && [ "$result" != "GHE-Training" ]; then
+#		ERRORS+=("$0: scenario $scenario: $var <> GHE-Training")
+#	fi
+done
+
+
+scenario=3
+string="source $HOME/.trainingmanualrc"
+if [ "$SHELL" = /bin/bash ]; then
+	status=$($GREP --quiet "$string" "$HOME"/.bashrc)
+	status=$?
+	if [ 0 -ne $status ]; then
+		ERRORS+=("$0: scenario $scenario: $HOME/.bashrc does not contain $string")
+	fi
+elif [ "$SHELL" = /bin/zsh ]; then
+	status=$($GREP --quiet "$string" "$HOME"/.zshrc)
+	status=$?
+	if [ 0 -ne $status ]; then
+		ERRORS+=("$0: scenario $scenario: $HOME/.zshrc does not contain $string")
+	fi
+fi
+
+
+scenario=4
+loginID=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .login | (sed -e 's/^"//' -e 's/"$//'))
+if [ "$USER" != "$loginID" ]; then
+	ERRORS+=("$0: scenario $scenario: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER")
+fi
+
+
+if [ ${#ERRORS[@]} -eq 0 ]; then
+	echo "No errors, hooray"
+else
+	echo "These scenarios FAILED:"
+	for i in 1 to "${#ERRORS[@]}"; do
+		echo "${ERRORS[i]}"
+	done
+	exit 1
+fi
