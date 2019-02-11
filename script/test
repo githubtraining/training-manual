@@ -1,12 +1,30 @@
 #!/bin/bash
 # This script calls all of the testing scripts.
 
+printf "linting scripts in %s\n" "$PWD"
 ./lint-scripts
+
+printf "\nConfirming 0 class-setup was successful\n"
 ./us0-confirm-setup
-#./us1-create-caption-this-class-repo
+
+printf "\nConfirming 1 new-virtual was successful\n"
+# $1 in the following command is the class repository you set up via teach-class option 1
+./us1-create-caption-this-class-repo rmh-testing
+
+#printf "\nConfirming 2 create-files was successful\n"
 #./us2-add-collabs-create-files
+
+#printf "\nConfirming 3 check-caption-repo was successful\n"
 #./us3-grade-day1-repo
+
+#printf "\nConfirming 4 create-conflict-repos was successful\n"
 #./us4-create-indiv-conflict-repos
+
+#printf "\nConfirming 5 check-conflict-repo was successful\n"
 #./us5-grade-day2-repos
+
+#printf "\nConfirming 6 create-game-repos was successful\n"
 #./us6-create-indiv-gh-games-repos
+
+#printf "\nConfirming 7 expire-repo was successful\n"
 #./us7-expire-student-repos
