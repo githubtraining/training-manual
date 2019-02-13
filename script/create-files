@@ -14,22 +14,23 @@ function containsElement () {
 }
 
 #get the names of the people who need a file
+# shellcheck disable=SC2068,SC2086  # https://www.shellcheck.net/wiki/SC2068
 function getnames () {
   #get names of people who have commented on the issue
   counter=2
-  for i in "${commenters[@]}"
+  for i in ${commenters[@]}
   do
-    j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    j=$(echo $i | (sed -e 's/^"//' -e 's/"$//'))
     if
-      containsElement "$i" "$collabs"
+      containsElement $i $collabs
     then
-      addcollab "$j"
+      addcollab $j
     else
       echo "Skipping adding $j as a collaborator because they are already a collaborator."
     fi
     if [ "$j" != "$TOKEN_OWNER" ]
     then
-      createFile "$j" "$counter"
+      createFile $j $counter
       ((counter++))
     else
       echo "Skipping creating another file for $j because they are the instructor."
@@ -69,10 +70,10 @@ function createFile () {
   echo "$randomoctocat" >> 0000-01-"$filenum"-"$student".md
   echo "{: .center}" >> 0000-01-"$filenum"-"$student".md
 #	shellcheck disable=SC2002	# https://github.com/koalaman/shellcheck/wiki/SC2002
-    if [ "$OSTYPE" = "msys" ]; then
-      newfile=$(cat 0000-01-"$filenum"-"$student".md | base64 --wrap=0)
-    else
-      newfile=$(cat 0000-01-"$filenum"-"$student".md | base64)
+  if [ "$OSTYPE" = "msys" ]; then
+    newfile=$(cat 0000-01-"$filenum"-"$student".md | base64 --wrap=0)
+  else
+    newfile=$(cat 0000-01-"$filenum"-"$student".md | base64)
   fi
   #now create the file on the repo
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/0000-01-$filenum-$student.md\", \"message\": \"Activity file for $student\", \"content\": \"$newfile\"}" -X PUT https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/contents/_posts/0000-01-"$filenum"-"$student".md >> log.out 2>&1
@@ -85,7 +86,8 @@ function createissue () {
   issues=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/issues | jq '.[] | {issueNum: .number, issueTitle: .title}') >> log.out 2>&1
   #create the body of the issue comment
   temptext="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
-  for i in "${commenters[@]}"
+#	shellcheck disable=SC2068	# https://www.shellcheck.net/wiki/SC2068
+  for i in ${commenters[@]}
   do
     student=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     temptext=$temptext"- [ ] @$student\n"
@@ -154,7 +156,8 @@ function createoneonones () {
   #create an issue for 1:1 appointments
   echo "$APPT_URL"
   isstext="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
-  for i in "${commenters[@]}"
+#	shellcheck disable=SC2068	# https://www.shellcheck.net/wiki/SC2068
+  for i in ${commenters[@]}
   do
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     isstext=$isstext"@$i "
