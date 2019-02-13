@@ -24,16 +24,17 @@ function getpages () {
 }
 
 #get repos in $CLASS_ORG org that start with conflict-practice or github-games
+# shellcheck disable=SC2068,SC2086 # https://www.shellcheck.net/wiki/SC2068
 function getrepos () {
   pagenum=$1
   repolist=$(curl -s -H "Authorization: token $TEACHER_PAT" -X GET https://"$INSTANCE_URL"/orgs/"$CLASS_ORG"/repos?page="$pagenum" | jq '.[] | .name')
-  for i in "${repolist[@]}"
+  for i in ${repolist[@]}
   do
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if echo "$i" | grep -iq -e "conflict-practice-" -e "github-games-"
     then
       echo "Let's see when $i was created"
-      checkdates "$i"
+      checkdates $i
     fi
   done
 }
