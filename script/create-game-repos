@@ -44,19 +44,19 @@ function getnames () {
   fi
 
   ownersArray=( "${ownersArray[@]/"$teacher"}" )
-  for i in "${collabs[@]}"
+#	shellcheck disable=SC2128,SC2068,SC2086	# https://github.com/koalaman/shellcheck/wiki/SC2128
+  for i in ${collabs[@]}
   do
     if
-#	shellcheck disable=SC2128	# https://github.com/koalaman/shellcheck/wiki/SC2128
-      containsElement "$i" "$ownersArray"
+      containsElement $i $ownersArray
       then
-        i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+        i=$(echo $i | (sed -e 's/^"//' -e 's/"$//'))
         repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/github-games-"$i" | grep "^Status:") >> log.out 2>&1
         echo "repoStatus for $i is $repoStatus"
         if
-          echo "$repoStatus" | grep -iq "404"
+          echo $repoStatus | grep -iq "404"
         then
-          createRepo "$i"
+          createRepo $i
         else
           echo "Skipping $i because they already have a repo."
         fi
