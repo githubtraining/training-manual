@@ -10,7 +10,7 @@
 #
 # Background:
 # (1) ~/.trainingmanualrc exists
-# (2) I can use $USER:$PAT to capture data from the GHE API
+# (2) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
 # (3) $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
 # (4) $CLASS_REPO_NAME Issue #1 exists
 # (5) $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
@@ -65,7 +65,7 @@ function checkIssueNum () {
 	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/"$3" | jq .number)
 	if ! [ "$result" ]; then
 		ERRORS+=("$0: $1 $2: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
-	elif [ $3 -ne "$result" ]; then
+	elif [ "$3" -ne "$result" ]; then
 		ERRORS+=("$0: $1 $2: Issue #$3 does not exist")
 	fi
 }
@@ -87,10 +87,10 @@ if [ ! -f "$HOME/.trainingmanualrc" ]; then
 	ERRORS+=("$0: background $step: $HOME/.trainingmanualrc does not exist")
 fi
 
-# Background 2: I can use $USER:$PAT to capture data from the GHE API
+# Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
 step=2
 loginID=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .login | (sed -e 's/^"//' -e 's/"$//'))
-if [ "$USER" != "$loginID" ]; then
+if [ "$TOKEN_OWNER" != "$loginID" ]; then
 	ERRORS+=("$0: $type $step: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER")
 fi
 
@@ -126,17 +126,17 @@ creator=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/
 
 # Scenario 1: $CLASS_REPO_NAME has each $loginID of students who commented on issue #1 as a collaborator
 step=1
-#	shellcheck disable=SC2068	# https://www.shellcheck.net/wiki/SC2068
+#	shellcheck disable=SC2068,SC2086	# https://www.shellcheck.net/wiki/SC2068
 for i in ${commenters[@]}; do
-	j=$(echo $i | (sed -e 's/^"//' -e 's/"$//'))
+	j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
 	f=0
-	if containsElement $i $collabs	# is this commenter a collaborator?
+	if containsElement "$i" $collabs	# is this commenter a collaborator?
 	then
 		f=0
 	else
 		f=1
 	fi
-	if containsElement $i $owners	# is this commenter an org owner (admin role)?
+	if containsElement "$i" $owners	# is this commenter an org owner (admin role)?
 	then
 		f=0
 	else
@@ -253,15 +253,15 @@ filenum=02
 # get the names of the people who should have a file - people who have commented on issue #1
 #	shellcheck disable=SC2068,SC2086	# https://www.shellcheck.net/wiki/SC2068
 for i in ${commenters[@]}; do
-	j=$(echo $i | (sed -e 's/^"//' -e 's/"$//'))
+	j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
 #	echo "$j is a commenter"
 	f=0
-	if containsElement $i $collabs	# is this commenter a collaborator?
+	if containsElement "$i" $collabs	# is this commenter a collaborator?
 	then
 #		echo "$j is a collaborator"
 		f=0
 	fi
-	if containsElement $i $owners	# is this commenter an org owner (admin role or repo collabs with unrestricted push to master set)
+	if containsElement "$i" $owners	# is this commenter an org owner (admin role or repo collabs with unrestricted push to master set)
 	then
 #		echo "$j is an owner"
 		f=0
@@ -275,6 +275,7 @@ for i in ${commenters[@]}; do
 		status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$j".md)
 		status=$?
 		if [ 0 -eq $status ]; then
+			echo "Found student file 0000-01-$filenum-$j.md"
 			((counter++))	# file exists, and it should
 		else
 			ERRORS+=("$0: $type $step: collaborator $j does NOT have a 0000-01-$filenum-$j.md file")
@@ -286,7 +287,8 @@ setFilenum
 status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$creator".md)
 status=$?
 if [ 0 -eq $status ]; then
-	:	# file exists, do nothing
+	echo "Found instructor file 0000-01-$filenum-$creator.md"
+#	:	# file exists, do nothing
 else
 	ERRORS+=("$0: $type $step: Facilitator $creator does NOT have a 0000-01-$filenum-$creator.md file")
 fi
