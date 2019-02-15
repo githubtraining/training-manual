@@ -1,6 +1,6 @@
 #!/bin/bash
 # This script contains tests for the scenarios used to determine that
-# teach-class option 0 ran successfully.
+# teach-class option 1 ran successfully.
 #
 # User Story: Create the Caption-This Repository
 #
@@ -10,7 +10,7 @@
 #
 # Background:
 # ~/.trainingmanualrc exists
-# I can use $USER:$PAT to capture data from the GHE API
+# I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
 #
 # Acceptance Criteria / Scenarios:
 # (1) $CLASS_REPO_NAME is created in https://$ROOT_URL/$CLASS_ORG
@@ -20,9 +20,9 @@
 # (5) $CLASS_REPO_NAME has one open project
 # (6) $CLASS_REPO_NAME Project #1 has name "Class Activity: Caption Contest"
 # (7) $CLASS_REPO_NAME Project #1 is in the open state
-# (8) $CLASS_REPO_NAME README.md file exists
-# (9) $CLASS_REPO_NAME README.md file contains Facilitator: = $USER
-# (10) $CLASS_REPO_NAME README.md file contains Class Date: contents
+# (8) $CLASS_REPO_NAME README.md file exists 
+# (9) $CLASS_REPO_NAME README.md file contains Facilitator: = @$TOKEN_OWNER (! "@TEACHER-HANDLE")
+# (10) $CLASS_REPO_NAME README.md file contains Class Date: = some-text (! "THIS-DATE")
 # (11) $CLASS_REPO_NAME is Public
 #
 
@@ -32,7 +32,6 @@ ERRORS=()
 ot_file=./temp-readme.md
 GREP="/usr/bin/grep"
 AWK="/usr/bin/awk"
-TR="/usr/bin/tr"
 RM="/bin/rm"
 
 if ! [[ $1 ]]; then
@@ -40,139 +39,146 @@ if ! [[ $1 ]]; then
 	exit 1
 fi
 
-# Background
-background=1
+type="Background"
+
+# Background 1: ~/.trainingmanualrc exists
+step=1
 if [ ! -f "$HOME/.trainingmanualrc" ]; then
-	ERRORS+=("$0: background $background: $HOME/.trainingmanualrc does not exist")
+	ERRORS+=("$0: $type $step: $HOME/.trainingmanualrc does not exist")
 fi
 
-background=2
+# Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+step=2
 loginID=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .login | (sed -e 's/^"//' -e 's/"$//'))
-if [ "$USER" != "$loginID" ]; then
-	ERRORS+=("$0: background $background: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER")
+if [ "$TOKEN_OWNER" != "$loginID" ]; then
+	ERRORS+=("$0: $type $step: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER")
 fi
 
+type="Scenario"
 
 # Scenario 1: Class repository name exists
-scenario=1
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .name | $TR -d "\"")
-status=$?
-if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
+step=1
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .name | (sed -e 's/^"//' -e 's/"$//'))
+if ! [ "$result" ]; then
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
 elif [ "$result" != "$CLASS_REPO_NAME" ]; then
-	ERRORS+=("$0: scenario $scenario: $CLASS_REPO_NAME does not exist")
+	ERRORS+=("$0: $type $step: $CLASS_REPO_NAME does not exist")
 fi
 
 
 # Scenario 2: Open issues count = 1
-scenario=2
+step=2
 result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .open_issues_count)
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
 elif [ 1 -ne "$result" ]; then
-	ERRORS+=("$0: scenario $scenario: Open Issues Count <> 1")
+	ERRORS+=("$0: $type $step: Open Issues Count <> 1")
 fi
 
 
-# Scenario 3: Issue #1 exists in $CLASS_REPO_NAME on GHE
-scenario=3
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .open_issues)
+# Scenario 3: One issue (Issue #1) exists in $CLASS_REPO_NAME on GHE
+step=3
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1 | jq .number)
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
 elif [ 1 -ne "$result" ]; then
-	ERRORS+=("$0: scenario $scenario: Issue #1 does not exist")
+	ERRORS+=("$0: $type $step: Issue #1 does not exist")
 fi
 
 
 # Scenario 4: Issue #1 has proper description
-scenario=4
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1 | jq .title | $TR -d "\"")
+step=4
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1 | jq .title | (sed -e 's/^"//' -e 's/"$//'))
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/issues/1")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/issues/1")
 elif [ "$result" != "Comment here to be added as a collaborator" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository Issue #1 does not have expected description $result <> 'Comment here to be added as a collaborator'")
+	ERRORS+=("$0: $type $step: Class repository Issue #1 does not have expected description $result <> 'Comment here to be added as a collaborator'")
 fi
 
 
 # Scenario 5: Class repository has one project
-scenario=5
+step=5
 result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].number)
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects")
 elif [ 1 -ne "$result" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository does not have project #1")
+	ERRORS+=("$0: $type $step: Class repository does not have project #1")
 fi
 
 
 # Scenario 6: The class repository project has proper name
-scenario=6
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].name | $TR -d "\"")
+step=6
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].name | (sed -e 's/^"//' -e 's/"$//'))
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects")
 elif [ "$result" != "Class Activity: Caption Contest" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository Project #1 does not have expected name")
+	ERRORS+=("$0: $type $step: Class repository Project #1 does not have expected name")
 fi
 
 
 # Scenario 7: Project is in the open state
-scenario=7
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].state | $TR -d "\"")
+step=7
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].state | (sed -e 's/^"//' -e 's/"$//'))
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects")
 elif [ "$result" != "open" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository Project #1 is not open")
+	ERRORS+=("$0: $type $step: Class repository Project #1 is not open")
 fi
 
 
 # Scenario 8: README.md file exists
-scenario=8
+step=8
 status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/README.md > "$ot_file")
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/contents/README.md")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/contents/README.md")
 fi
 
 
-# Scenario 9: README.md file contains Facilitator: = @$USER
-scenario=9
+# Scenario 9: README.md file contains Facilitator: = @$TOKEN_OWNER, (! "@TEACHER-HANDLE")
+step=9
 #	shellcheck disable=SC2016
-facilitator=$($GREP "Facilitator:" "$ot_file" | $AWK 'BEGIN {FS=":"} {print $2}' | $TR -d " ")
+facilitator=$($GREP "Facilitator:" "$ot_file" | $AWK 'BEGIN {FS=":"} {print $2}' | tr -d " ")
 status=$($GREP "Facilitator:" "$ot_file")
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository README.md does not contain 'Facilitator:'")
-elif [ "$facilitator" != "@$USER" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository README.md $Facilitator does not equal @$USER")
+	ERRORS+=("$0: $type $step: Class repository README.md does not contain 'Facilitator:'")
+elif [ "$facilitator" != "@$TOKEN_OWNER" ]; then
+	ERRORS+=("$0: $type $step: Class repository README.md Facilitator: ($facilitator) not set to myself (@$TOKEN_OWNER) - OK if you are checking $facilitator's repository")
+elif [ "$facilitator" = "@TEACHER-HANDLE" ]; then
+	ERRORS+=("$0: $type $step: Class repository README.md Facilitator: not changed from TEACHER-HANDLE")
 fi
 
 
-# Scenario 10: README.md file contains Class Date: contents
-scenario=10
+# Scenario 10: README.md file contains Class Date: ! "THIS-DATE"
+step=10
 #	shellcheck disable=SC2016
 class_dates=$($GREP "Class Date:" "$ot_file" | $AWK 'BEGIN {FS=":"} {print $2}')
 status=$($GREP "Class Date:" "$ot_file")
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository README.md does not contain 'Class Date:'")
-elif ! [[ "$class_dates" ]]; then
-	ERRORS+=("$0: scenario $scenario: Class repository README.md Class Date: not set")
+	ERRORS+=("$0: $type $step: Class repository README.md does not contain 'Class Date:'")
+elif ! [ "$class_dates" ]; then
+	ERRORS+=("$0: $type $step: Class repository README.md Class Date: not set")
+elif [ "THIS-DATE" = "$class_dates" ]; then
+	ERRORS+=("$0: $type $step: Class repository README.md Class Date: not changed from THIS-DATE")
 fi
 
 
 # Scenario 11: The class repository project is public
-scenario=11
+step=11
 result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .private)
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
+	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
 elif [ "$result" != "false" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository is not Public")
+	ERRORS+=("$0: $type $step: Class repository is not Public")
 fi
 
 
