@@ -81,20 +81,20 @@ function setFilenum () {
 
 type="Background"
 
-# Background 1 ~/.trainingmanualrc exists
+# Background 1: ~/.trainingmanualrc exists
 step=1
 if [ ! -f "$HOME/.trainingmanualrc" ]; then
 	ERRORS+=("$0: background $step: $HOME/.trainingmanualrc does not exist")
 fi
 
-# Background 2 I can use $USER:$PAT to capture data from the GHE API
+# Background 2: I can use $USER:$PAT to capture data from the GHE API
 step=2
 loginID=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .login | (sed -e 's/^"//' -e 's/"$//'))
 if [ "$USER" != "$loginID" ]; then
 	ERRORS+=("$0: $type $step: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER")
 fi
 
-# Background 3 $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+# Background 3: $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
 step=3
 result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .name | (sed -e 's/^"//' -e 's/"$//'))
 if ! [ "$result" ]; then
@@ -104,12 +104,13 @@ elif [ "$result" != "$CLASS_REPO_NAME" ]; then
 fi
 
 
-# Background 4 $CLASS_REPO_NAME Issue #1 exists
+# Background 4: $CLASS_REPO_NAME Issue #1 exists
 step=4
 issue=1
 checkIssueNum "$type" "$step" "$issue"
 
-# Background 5 $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+
+# Background 5: $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
 step=5
 issue=1
 title="Comment here to be added as a collaborator"
@@ -260,7 +261,7 @@ for i in ${commenters[@]}; do
 #		echo "$j is a collaborator"
 		f=0
 	fi
-	if containsElement $i $owners	# is this commenter an org owner (admin role or repo collabs with unrestricted push to master set) 
+	if containsElement $i $owners	# is this commenter an org owner (admin role or repo collabs with unrestricted push to master set)
 	then
 #		echo "$j is an owner"
 		f=0
@@ -270,11 +271,7 @@ for i in ${commenters[@]}; do
 		f=2
 	fi
 	if [ 0 -eq $f ]; then
-		if [ "$counter" -le 9 ]; then
-			filenum=0$counter
-		else
-			filenum=$counter
-		fi
+		setFilenum
 		status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$j".md)
 		status=$?
 		if [ 0 -eq $status ]; then
@@ -283,37 +280,29 @@ for i in ${commenters[@]}; do
 			ERRORS+=("$0: $type $step: collaborator $j does NOT have a 0000-01-$filenum-$j.md file")
 		fi
 	fi
-	if [ 1 -eq $f ]; then
-		if [ "$counter" -le 9 ]; then
-			filenum=0$counter
-		else
-			filenum=$counter
-		fi
-		status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$j".md)
-		status=$?
-		if [ 0 -eq $status ]; then
-			ERRORS+=("$0: $type $step: Org Owner $j HAS a 0000-01-$filenum-$j.md file, but shouldn't")
-			((counter++))	# file exists, but shouldn't
-		fi
-	fi
 done
-if [ "$counter" -le 9 ]; then
-	filenum=0$counter
-else
-	filenum=$counter
-fi
+setFilenum
 # now check for the instructor's file
 status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$creator".md)
 status=$?
 if [ 0 -eq $status ]; then
 	:	# file exists, do nothing
 else
-	ERRORS+=("$0: $type $step: Facilitator $creator does NOT have a 0000-01-$counter-$creator.md file")
+	ERRORS+=("$0: $type $step: Facilitator $creator does NOT have a 0000-01-$filenum-$creator.md file")
 fi
 
 
 # Scenario 16: $CLASS_REPO_NAME/tree/master/_posts does not contain 0000-01-??-$loginID.md files for $CLASS_ORG owners
 step=16
+#	if [ 1 -eq $f ]; then
+#		setFilenum
+#		status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$j".md)
+#		status=$?
+#		if [ 0 -eq $status ]; then
+#			ERRORS+=("$0: $type $step: Org Owner $j HAS a 0000-01-$filenum-$j.md file, but shouldn't")
+#			((counter++))	# file exists, but shouldn't
+#		fi
+#	fi
 
 
 if [ ${#ERRORS[@]} -eq 0 ]; then
@@ -325,5 +314,3 @@ else
 	done
 	exit 1
 fi
-
-
