@@ -39,7 +39,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 1. Create a new branch and check out to it: `git checkout -b rebase-me`
 1. Cherry-pick files 4-6 onto the `rebase-me` branch using the reflog.
 1. Checkout to master: `git checkout master`
-1. Cherry-pick files 1-3 onto the `rebase-me` branch using the reflog.
+1. Cherry-pick files 1-3 onto the `master` branch using the reflog.
 1. Look at your history: `git log --oneline --graph --decorate --all`
 1. If you merged now, it would be a recursive merge.
 
