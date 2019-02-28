@@ -1,0 +1,232 @@
+#!/bin/bash
+# This script contains some common functions used by the testing scripts (us?-*)
+#
+
+logfile="test.log"
+#echo "##### Test execution started @ $(date +%Y%m%d_%H%M%S) #####" > "$logfile" 
+
+# validate that passed parameters are expected - $1 passed param count , $2 expected param count
+function checkParamCount() {
+	if [ "$1" -ne "$2" ]; then
+		echo "${FUNCNAME[1]} must be passed $2 parameters, you passed $1"
+		exit 1
+	fi
+}
+
+######################### Error Handling & Logging #########################
+
+# log sends a line of text to the logfile
+function log() {
+	checkParamCount $# 1
+	echo "$(date +%Y%m%d_%H%M%S):$0:${FUNCNAME[2]}: $1" >> "$logfile" 2>&1
+}
+
+# addErr takes full error message argument as $1  
+# requires ${ERRORS[@]} to be defined
+function addErr() {
+	checkParamCount $# 1
+	log "ERROR: $1"
+	ERRORS+=("$0:${FUNCNAME[1]}: $1")
+}
+
+# Output the elements of the ERRORS() array, $1 contains type (Background/Scenario)
+# requires ${ERRORS[@]} to be defined globally
+function printErrors() {
+	checkParamCount $# 1
+	if [ ${#ERRORS[@]} -eq 0 ]; then
+		log "INFO: No $1 errors"
+	else
+		echo "${FUNCNAME[1]}: These $1 steps FAILED:"
+		for (( i=0; i < ${#ERRORS[@]}; i++ )); do
+			echo "${ERRORS[i]}"
+		done
+		exit 1
+	fi
+}
+
+######################### Validation #########################
+
+# check for valid access using $TOKEN_OWNER & $TEACHER_PAT
+# $1 is type (Background/Scenario), $2 is step
+function checkAccessToAPI() {
+	local loginID
+	checkParamCount $# 2
+	loginID=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .login | (sed -e 's/^"//' -e 's/"$//'))
+	if [ "$TOKEN_OWNER" != "$loginID" ]; then
+		addErr "$1 $2: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER"
+	fi
+}
+ 
+# check to see if repo contains expected branches
+# $1 is test type (background/scenario), $2 is step #, $3 is repo name, $4 is sorted double quoted and comma separated list of branch names, include extra last comma.
+# $4 Example: '"css-changes","manual","master","readme-update",'
+function checkBranchesOnRepo() {
+	local resultNames
+	checkParamCount $# 4
+	resultNames=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$3/branches" | jq ".[].name" | sort | awk 'ORS=","' )
+	if [ "$resultNames" != "$4" ]; then
+		addErr "$1 $2: Repo $3, did not match required branches [$4]"
+	fi
+}
+
+# retrieve the number of commits to a repo (e.g. to compare template to copy) - return # of commits
+# $1 is repo name 
+function getRepoCommitCount() {
+	local commitCount
+	checkParamCount $# 1
+	commitCount=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$1/commits" | jq '.[].sha' | wc -l )
+#	log "[commitCount]=[$commitCount]"
+	return "$commitCount" 
+}
+
+# check to see if conflict-practice repo has no new commits
+# $1 is test type (background/scenario), $2 is step #, $3 is repo name (conflict-repo-$loginID), $4 expected commit counts
+# you must make sure repo exists before calling this
+function checkCommitsOnRepo() {
+	local commitCount
+	checkParamCount $# 4
+	getRepoCommitCount "$3"
+	commitCount=$?
+	if [ "$commitCount" -ne "$4" ]; then
+		addErr "$1 $2: Repo $3 is modified, commit count $commitCount did not match template commit count $4" 
+	fi  
+#	log "$1 $2:($3) [expectedCommitCount, commitCount]=[$4,$commitCount]"
+}
+
+# check for the existance of issue number
+# $1 is test type (background/scenario), $2 is step #, $3 is repo name, $4 is issue #
+function checkIssueNum() { 
+	local result 
+	checkParamCount $# 4
+	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/issues/"$4" | jq .number)
+	if [ "$4" != "$result" ]; then
+		addErr "$1 $2: Issue #$4 does not exist"
+	fi
+}
+
+# validate issue title is what you expect
+# $1 is test type (background/scenario), $2 is step #, $3 is repo_name, $4 is issue #, $5 is expected title string
+function checkIssueTitle() {
+	local result
+	checkParamCount $# 5
+	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/issues/"$4" | jq .title | (sed -e 's/^"//' -e 's/"$//'))
+	if [ "$result" != "$5" ]; then
+		addErr "$1 $2: $3 Issue #$4: '$result' <> '$5'"
+	fi
+}
+
+# validate number of open issues
+# All PRs are issues but not all issues are PRs, so .open_issues_count = (Open PRs + Open Issues)
+# $1 = type, $2 = step, $3 = reponame, $4=number of open issues expected
+function checkOpenIssueCount() {
+	local regex='^[0-9]+$'
+	checkParamCount $# 4
+	open_issue_cnt=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3" | jq .open_issues_count)
+	open_pr_cnt=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/pulls | jq '.[].number' | wc -l | tr -d " ")
+	result=$(( open_issue_cnt - open_pr_cnt ))
+	if [[ $result =~ $regex ]] && [ "$4" != "$result" ]; then
+		addErr "$1 $2: There are $result (not $4) Open Issues in $3"
+	fi
+}
+
+# validate number of open PRs
+# $1 = type, $2 = step, $3 = reponame, $4=number of open PRs expected
+function checkOpenPRCount() {
+	local regex='^[0-9]+$'
+	checkParamCount $# 4
+	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/pulls | jq '.[].number' | wc -l | tr -d " ")
+	if [[ $result =~ $regex ]] && [ "$4" != "$result" ]; then
+		addErr "$1 $2: There are $result (not $4) PRs in $3"
+	fi
+}
+
+# validate number of open projects
+# $1 = type, $2 = step, $3 = reponame, $4=number of open projects expected
+function checkOpenProjectCount() {
+	local regex='^[0-9]+$'
+	checkParamCount $# 4
+	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/projects | jq '.[] | .number' )
+	if [[ $result =~ $regex ]] && [ "$4" != "$result" ]; then
+		addErr "$1 $2: There are $result (not $4) Projects in $3"
+	fi
+}
+
+# check to see if conflict-practice repo contains required pull requests
+# $1 is test type (background/scenario), $2 is step #, $3 is repo name (conflict-repo-$loginID), $4 is sorted double quoted and comma separated list of pull request names, include extra last comma.
+# Example: '"Minor CSS fixes","Update README","Updates to game manual",'
+# you must make sure repo exists before calling this
+function checkPRTitlesOnRepo() {
+	local resultNames
+	checkParamCount $# 4
+	resultNames=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$3/pulls" | jq '.[].title' | sort | awk 'ORS=","' )
+	if [ "$resultNames" != "$4" ]; then
+		addErr "$1 $2: Repo $3, did not match required pull requests [$4] "
+	fi  
+#	log "$1 $2:($3) [resultNames]=[$resultNames]"
+}
+
+# check to see if repo exists - return 0 if it does, 1 if it does not
+# $1 is test type (background/scenario), $2 is step #, $3 is reponame 
+function checkRepoExists() {
+	local resultRepoName
+	local repoExists=0
+	checkParamCount $# 3
+	resultRepoName=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$3" | jq .name | (sed -e 's/^"//' -e 's/"$//'))
+#	log "$1 $2:($3)[repoName, resultRepoName]=[$repoName, $resultRepoName]"
+	if [ "$resultRepoName" != "$3" ]; then
+		addErr "$1 $2: $3 does not exist... API returned repo name $resultRepoName"
+		repoExists=1
+	fi  
+	return $repoExists
+}
+
+# validate ~/.trainingmanualrc file exists
+# $1 is test type (background/scenario), $2 is step #
+function checkTrainingmanualrcFile() {
+	checkParamCount $# 2
+	if [ ! -f "$HOME/.trainingmanualrc" ]; then
+		addErr "$1 $2: $HOME/.trainingmanualrc does not exist"
+	fi
+}
+ 
+# validate array contents - return 1 if $1 exists in $2, 0 if $1 doesn't exist in $2
+# string $1 is an expected element of array $2 (passed by reference)
+# example call...    containsElement "$username" collabs    
+function containsElement() {
+	local arr=$2	# array is passed in by reference
+	local e
+	checkParamCount $# 2
+	for e in "${arr[@]}"; do [[ "$e" == "$1" ]] && return 1; done
+	return 0
+}
+
+# validate expected file exists in repo
+# $1 = type, $2 = step, $3 = reponame, $4 = filename (can include path to file)
+function fileExistsInRepo() {
+	checkParamCount $# 4
+	filename=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/contents/"$4" | jq '.name' | (sed -e 's/^"//' -e 's/"$//'))
+	filenameToMatch=$(echo "$4" | awk -F'/' '{print $NF}')  #If $4 contained directory path, extract only filename to compare
+	if [ "$filename" != "$filenameToMatch" ]; then
+		addErr "$1 $2: File '$4' not found in repo '$3'"
+	fi
+}
+
+# is repo Private
+# $1 = type, $2 = step, $3 = reponame
+function isPrivate() {
+	checkParamCount $# 3
+	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3" | jq .private)
+	if [ "$result" != "true" ]; then
+		addErr "$1 $2: $3 is not Private"
+	fi
+}
+
+# is repo Public
+# $1 = type, $2 = step, $3 = reponame
+function isPublic() {
+	checkParamCount $# 3
+	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3" | jq .private)
+	if [ "$result" != "false" ]; then
+		addErr "$1 $2: $3 is not Public"
+	fi
+}

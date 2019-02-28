@@ -2,7 +2,7 @@
 # This script contains tests for the scenarios used to determine that
 # teach-class option 2 ran successfully.
 #
-# User Story: Create the Caption-This Repository
+# User Story: Add collaborators, create files
 #
 # As a GHE trainer,
 # I want to create markdown files in the class repository,
@@ -31,44 +31,23 @@
 # (13) $CLASS_REPO_NAME is Private
 # (14) $CLASS_REPO_NAME/tree/master/_posts contains file 0000-01-01-intro.md
 # (15) $CLASS_REPO_NAME/tree/master/_posts contains file 0000-01-??-$loginID.md for each collaborator in the repo
-# (16) $CLASS_REPO_NAME/tree/master/_posts does not contain 0000-01-??-$loginID.md files for $CLASS_ORG owners
 #
 
-CLASS_REPO_NAME=$1
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then test_prefix="./test"; fi
+if [ "$curdirnam" = "script" ]; then test_prefix="../test"; fi
+if [ "$curdirnam" = "test" ]; then test_prefix="."; fi
 
-ERRORS=()
+# shellcheck disable=SC1091 source=/dev/null 
+source $test_prefix/us-common-functions
+
+CLASS_REPO_NAME=$1
 
 if ! [[ $1 ]]; then
 	printf "You must supply the Class Repository Name as a parameter"
 	exit 1
 fi
 
-# test array contents - validate string $1 is an element of array $2
-function containsElement () {
-  local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
-  return 0
-}
-
-# test issue title - $1 is test type (background/scenario), $2 is step #, $3 is issue #, $4 is expected title string
-function checkIssueTitle () {
-	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/"$3" | jq .title | (sed -e 's/^"//' -e 's/"$//'))
-	if ! [ "$result" ]; then
-		ERRORS+=("$0: $1 $2: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/issues/$3")
-	elif [ "$result" != "$4" ]; then
-		ERRORS+=("$0: $1 $2: $CLASS_REPO_NAME Issue #$3: '$result' <> '$4'")
-	fi
-}
-
-# check for the existance of issue - $1 is test type (background/scenario), $2 is step #, $3 is issue #
-function checkIssueNum () {
-	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/"$3" | jq .number)
-	if ! [ "$result" ]; then
-		ERRORS+=("$0: $1 $2: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
-	elif [ "$3" -ne "$result" ]; then
-		ERRORS+=("$0: $1 $2: Issue #$3 does not exist")
-	fi
-}
 
 function setFilenum () {
 	if [ "$counter" -le 9 ]; then
@@ -79,64 +58,56 @@ function setFilenum () {
 
 }
 
+
 type="Background"
 
 # Background 1: ~/.trainingmanualrc exists
 step=1
-if [ ! -f "$HOME/.trainingmanualrc" ]; then
-	ERRORS+=("$0: background $step: $HOME/.trainingmanualrc does not exist")
-fi
+checkTrainingmanualrcFile "$type" "$step"
 
 # Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
 step=2
-loginID=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .login | (sed -e 's/^"//' -e 's/"$//'))
-if [ "$TOKEN_OWNER" != "$loginID" ]; then
-	ERRORS+=("$0: $type $step: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER")
-fi
+checkAccessToAPI "$type" "$step"
 
 # Background 3: $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
 step=3
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .name | (sed -e 's/^"//' -e 's/"$//'))
-if ! [ "$result" ]; then
-	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
-elif [ "$result" != "$CLASS_REPO_NAME" ]; then
-	ERRORS+=("$0: $type $step: $CLASS_REPO_NAME does not exist")
-fi
-
+checkRepoExists "$type" "$step" "$CLASS_REPO_NAME"
 
 # Background 4: $CLASS_REPO_NAME Issue #1 exists
 step=4
 issue=1
-checkIssueNum "$type" "$step" "$issue"
-
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
 
 # Background 5: $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
 step=5
 issue=1
 title="Comment here to be added as a collaborator"
-checkIssueTitle "$type" "$step" "$issue" "$title"
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
 
+printErrors "$type"
 
 type="Scenario"
+
 commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1/comments?per_page=100 | jq '.[].user.login')
+#	shellcheck disable=SC2034	# passing collabs by reference below
 collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/collaborators?per_page=100 | jq '.[] | .login')
+#	shellcheck disable=SC2034	# passing owners by reference below
 owners=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/orgs/"$CLASS_ORG"/members?role=admin | jq '.[] | .login')
 creator=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1 | jq '.user.login' | (sed -e 's/^"//' -e 's/"$//'))
 
 
 # Scenario 1: $CLASS_REPO_NAME has each $loginID of students who commented on issue #1 as a collaborator
 step=1
-#	shellcheck disable=SC2068,SC2086	# https://www.shellcheck.net/wiki/SC2068
-for i in ${commenters[@]}; do
+for i in "${commenters[@]}"; do
 	j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
 	f=0
-	if containsElement "$i" $collabs	# is this commenter a collaborator?
+	if containsElement "$i" collabs	# is this commenter a collaborator?
 	then
 		f=0
 	else
 		f=1
 	fi
-	if containsElement "$i" $owners	# is this commenter an org owner (admin role)?
+	if containsElement "$i" owners	# is this commenter an org owner (admin role)?
 	then
 		f=0
 	else
@@ -149,102 +120,81 @@ for i in ${commenters[@]}; do
 		f=0
 	fi
 	if [ 1 -eq $f ]; then	# this commentor should be listed as a collaborator but is not
-		ERRORS+=("$0: $type $step: $j is NOT set as a collaborator but has commented on issue #1")
+		addErr "$type $step: $j is NOT set as a collaborator but has commented on issue #1"
 	fi
 done
 
 # Scenario 2: $CLASS_REPO_NAME Open Issues count = 6
 step=2
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .open_issues_count)
-if ! [ "$result" ]; then
-	ERRORS+=("$0: $type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
-elif [ 6 -ne "$result" ]; then
-	ERRORS+=("$0: $type $step: There are not 6 Issues in this repo")
-fi
+expected_open_issue_count=6
+checkOpenIssueCount "$type" "$step" "$CLASS_REPO_NAME" "$expected_open_issue_count"
 
 # Scenario 3: $CLASS_REPO_NAME Issue #2 exists
 step=3
 issue=2
-checkIssueNum "$type" "$step" "$issue"
-
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
 
 # Scenario 4: $CLASS_REPO_NAME has an issue #2 named "Activity 1: Your First Caption"
 step=4
 issue=2
 title="Activity 1: Your First Caption"
-checkIssueTitle "$type" "$step" "$issue" "$title"
-
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
 
 # Scenario 5: $CLASS_REPO_NAME Issue #3 exists
 step=5
 issue=3
-checkIssueNum "$type" "$step" "$issue"
-
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
 
 # Scenario 6: $CLASS_REPO_NAME has an issue #3 named "Add A New Slide"
 step=6
 issue=3
 title="Add A New Slide"
-checkIssueTitle "$type" "$step" "$issue" "$title"
-
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
 
 # Scenario 7: $CLASS_REPO_NAME Issue #4 exists
 step=7
 issue=4
-checkIssueNum "$type" "$step" "$issue"
-
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
 
 # Scenario 8: $CLASS_REPO_NAME has an issue #4 named "Add a Caption To an Existing Slide"
 step=8
 issue=4
 title="Add a Caption To an Existing Slide"
-checkIssueTitle "$type" "$step" "$issue" "$title"
-
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
 
 # Scenario 9: $CLASS_REPO_NAME Issue #5 exists
 step=9
 issue=5
-checkIssueNum "$type" "$step" "$issue"
-
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
 
 # Scenario 10: $CLASS_REPO_NAME has an issue #5 named "Improve the README"
 step=10
 issue=5
 title="Improve the README"
-checkIssueTitle "$type" "$step" "$issue" "$title"
-
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
 
 # Scenario 11: $CLASS_REPO_NAME Issue #6 exists
 step=11
 issue=6
-checkIssueNum "$type" "$step" "$issue"
-
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
 
 # Scenario 12: $CLASS_REPO_NAME has an issue #6 named "Restyle the Slides"
 step=12
 issue=6
 title="Restyle the Slides"
-checkIssueTitle "$type" "$step" "$issue" "$title"
-
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
 
 # Scenario 13: $CLASS_REPO_NAME is Private
 step=13
-result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME" | jq .private)
-if ! [ "$result" ]; then
-	ERRORS+=("$0: scenario $scenario: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME")
-elif [ "$result" != "true" ]; then
-	ERRORS+=("$0: scenario $scenario: Class repository is not Private")
-fi
-
+isPrivate "$type" "$step" "$CLASS_REPO_NAME"
 
 # Scenario 14: $CLASS_REPO_NAME _posts/ contains file 0000-01-01-intro.md
 step=14
 status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-01-intro.md)
 status=$?
 if [ 0 -ne $status ]; then
-	ERRORS+=("$0: $type $step: 0000-01-01-intro.md does NOT exist")
+	addErr "$type $step: 0000-01-01-intro.md does NOT exist"
 fi
-
 
 # Scenario 15: $CLASS_REPO_NAME/tree/master/_posts contains file 0000-01-$counter-$loginID.md for each collaborator in the repo
 step=15
@@ -256,12 +206,12 @@ for i in ${commenters[@]}; do
 	j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
 #	echo "$j is a commenter"
 	f=0
-	if containsElement "$i" $collabs	# is this commenter a collaborator?
+	if containsElement "$i" collabs	# is this commenter a collaborator?
 	then
 #		echo "$j is a collaborator"
 		f=0
 	fi
-	if containsElement "$i" $owners	# is this commenter an org owner (admin role or repo collabs with unrestricted push to master set)
+	if containsElement "$i" owners	# is this commenter an org owner (admin role or repo collabs with unrestricted push to master set) 
 	then
 #		echo "$j is an owner"
 		f=0
@@ -275,10 +225,10 @@ for i in ${commenters[@]}; do
 		status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$j".md)
 		status=$?
 		if [ 0 -eq $status ]; then
-			echo "Found student file 0000-01-$filenum-$j.md"
+#			echo "Found student file 0000-01-$filenum-$j.md"
 			((counter++))	# file exists, and it should
 		else
-			ERRORS+=("$0: $type $step: collaborator $j does NOT have a 0000-01-$filenum-$j.md file")
+			addErr "$type $step: collaborator $j does NOT have a 0000-01-$filenum-$j.md file"
 		fi
 	fi
 done
@@ -287,32 +237,11 @@ setFilenum
 status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$creator".md)
 status=$?
 if [ 0 -eq $status ]; then
-	echo "Found instructor file 0000-01-$filenum-$creator.md"
-#	:	# file exists, do nothing
+#	echo "Found instructor file 0000-01-$filenum-$creator.md"
+	:	# file exists, do nothing
 else
-	ERRORS+=("$0: $type $step: Facilitator $creator does NOT have a 0000-01-$filenum-$creator.md file")
+	addErr "$type $step: Facilitator $creator does NOT have a 0000-01-$filenum-$creator.md file"
 fi
 
 
-# Scenario 16: $CLASS_REPO_NAME/tree/master/_posts does not contain 0000-01-??-$loginID.md files for $CLASS_ORG owners
-step=16
-#	if [ 1 -eq $f ]; then
-#		setFilenum
-#		status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/_posts/0000-01-"$filenum"-"$j".md)
-#		status=$?
-#		if [ 0 -eq $status ]; then
-#			ERRORS+=("$0: $type $step: Org Owner $j HAS a 0000-01-$filenum-$j.md file, but shouldn't")
-#			((counter++))	# file exists, but shouldn't
-#		fi
-#	fi
-
-
-if [ ${#ERRORS[@]} -eq 0 ]; then
-	echo "No errors, hooray"
-else
-	echo "These scenarios FAILED:"
-	for i in 1 to "${#ERRORS[@]}"; do
-		echo "${ERRORS[i]}"
-	done
-	exit 1
-fi
+printErrors "$type"

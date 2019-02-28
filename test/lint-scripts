@@ -4,6 +4,7 @@
 # See https://github.com/koalaman/shellcheck for info
 # See https://www.shellcheck.net for using an online editor for your snippets
 # 
+# Note: This script is meant to be executed from the parent directory of the test and script directories
 
 set -e
 set -o pipefail
@@ -18,8 +19,14 @@ if [ "1" == $status ]; then
 	exit 1
 fi
 
-# find all executables and run `shellcheck`
-for f in $(find . -d 1 -type f -not -iwholename '*.git*' | sort -u); do
+# find all executables and run `shellcheck`, try to be smart about where we were executed from
+dirs="."	# default to just $PWD
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then dirs="./test ./script"; fi
+if [ "$curdirnam" = "script" ]; then dirs="../test ."; fi
+if [ "$curdirnam" = "test" ]; then dirs=". ../script"; fi
+#	shellcheck disable=SC2086	# want word splitting - multiple dirs
+for f in $(find $dirs -d 1 -type f -not -iwholename '*.git*' | sort -u); do
 	if file "$f" | grep --quiet shell; then
 		{
 			shellcheck "$f" && echo "[OK]: successfully linted $f"
@@ -31,7 +38,7 @@ for f in $(find . -d 1 -type f -not -iwholename '*.git*' | sort -u); do
 done
 
 if [ ${#ERRORS[@]} -eq 0 ]; then
-	echo "No errors, hooray"
+	echo "No shellcheck errors"
 else
 	echo "These files failed shellcheck: ${ERRORS[*]}"
 	exit 1

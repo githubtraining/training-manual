@@ -1,0 +1,164 @@
+#!/bin/bash
+# This script contains tests for the scenarios used to determine that
+# teach-class option 6 ran successfully.
+#
+# User Story: Create individual github-games-$user repositories
+#
+# As a GHE trainer,
+# I want to create individual github-games-$user repositories in the class organization,
+# so that I can have students work on advanced git commands to resolve issues
+#
+# Background:
+# (1) ~/.trainingmanualrc exists
+# (2) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+# (3) $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+# (4) $CLASS_REPO_NAME Issue #1 exists
+# (5) $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+#
+# Acceptance Criteria / Scenarios:
+# (1) Accessing GitHub pages at https://$ROOT_URL/pages/$CLASS_ORG/github-games results in a 404 error
+# (2) All commenters to $CLASS_REPO_NAME Issue $1 has a $CLASS_ORG/github-games-$userID repo created
+# (3) Each $CLASS_ORG/github-games-$userID repo has Open Issues count = 2
+# (4) Each $CLASS_ORG/github-games-$userID repo has Open Projects count = 0
+# (5) Each $CLASS_ORG/github-games-$userID repo has Open PR count = 0
+# (6) Each $CLASS_ORG/github-games-$userID Issue #1 exists
+# (7) Each $CLASS_ORG/github-games-$userID has an issue #1 named "Game broken"
+# (8) Each $CLASS_ORG/github-games-$userID Issue #2 exists
+# (9) Each $CLASS_ORG/github-games-$userID has an issue #2 named "URL in description and README broken"
+# (10) Each $CLASS_ORG/github-games-$userID repo is Public
+# (11) Each $CLASS_ORG/github-games-$userID repo has a root-level file named Gemfile
+# (12) Each $CLASS_ORG/github-games-$userID repo has a root-level file named Gemfile.lock
+# (13) Each $CLASS_ORG/github-games-$userID repo has a root-level file named LICENSE
+# (14) Each $CLASS_ORG/github-games-$userID repo has a root-level file named README.md
+# (15) Each $CLASS_ORG/github-games-$userID repo has a root-level file named _config.yml
+# (16) Each $CLASS_ORG/github-games-$userID repo has a root-level file named inde.html
+# (17) Each $CLASS_ORG/github-games-$userID repo has a root-level file named package.json
+# (18) Each $CLASS_ORG/github-games-$userID repo has a root-level file named stats.js
+# (19) Each $CLASS_ORG/github-games-$userID repo has a root-level file named texture.jpg
+# 
+
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then test_prefix="./test"; fi
+if [ "$curdirnam" = "script" ]; then test_prefix="../test"; fi
+if [ "$curdirnam" = "test" ]; then test_prefix="."; fi
+
+# shellcheck disable=SC1091 source=/dev/null 
+source $test_prefix/us-common-functions
+
+CLASS_REPO_NAME=$1
+
+if ! [[ $1 ]]; then
+	printf "You must supply the Class Repository Name as a parameter"
+	exit 1
+fi
+
+
+type="Background"
+
+# Background 1: ~/.trainingmanualrc exists
+step=1
+checkTrainingmanualrcFile "$type" "$step"
+
+# Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+step=2
+checkAccessToAPI "$type" "$step"
+
+# Background 3: $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+step=3
+checkRepoExists "$type" "$step" "$CLASS_REPO_NAME"
+
+# Background 4: $CLASS_REPO_NAME Issue #1 exists
+step=4
+issue=1
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
+
+# Background 5: $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+step=5
+issue=1
+title="Comment here to be added as a collaborator"
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
+
+printErrors "$type"
+
+type="Scenario"
+
+commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1/comments?per_page=100 | jq '.[].user.login')
+#	shellcheck disable=SC2034	# passed by reference to containsElement
+collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/collaborators?per_page=100 | jq '.[] | .login')
+#	shellcheck disable=SC2034	# passed by reference to containsElement
+owners=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/orgs/"$CLASS_ORG"/members?role=admin | jq '.[] | .login')
+#creator=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1 | jq '.user.login' | (sed -e 's/^"//' -e 's/"$//'))
+
+
+# Scenario 1: Accessing GitHub pages at https://$ROOT_URL/pages/$CLASS_ORG/github-games results in a 404 error
+step=1
+status1=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$ROOT_URL"/pages/"$CLASS_ORG"/github-games | grep "<h1>404</h1>")
+status1=$?
+status2=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$ROOT_URL"/pages/"$CLASS_ORG"/github-games | grep "<p><strong>There isn't a GitHub Pages site here.</strong></p>")
+status2=$?
+if [ 0 -ne $status1 ] && [ 0 -ne $status2 ]; then 
+	addErr "$type $step: GitHub pages have been enabled for $CLASS_ORG/github-games"
+fi
+
+# Scenario 2: All commenters to $CLASS_REPO_NAME Issue $1 has a $CLASS_ORG/github-games-$userID repo created
+step=2
+#	shellcheck disable=SC2068,SC2086	# https://www.shellcheck.net/wiki/SC2068
+for i in ${commenters[@]}; do
+	j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+	repo_name="github-games-"$j
+	# Scenario 2: $CLASS_ORG/github-games-$userID repo exists
+	step=2
+	checkRepoExists "$type" "$step" "$repo_name"
+	status=$?
+	if [ 0 -eq $status ]; then
+		# Scenario 3: Each $CLASS_ORG/github-games-$userID repo has Open Issues count = 2
+		step=3
+		open_issue_count=2
+		checkOpenIssueCount "$type" "$step" "$repo_name" "$open_issue_count" 
+
+		# Scenario 4: Each $CLASS_ORG/github-games-$userID repo has Open Projects count = 0
+		step=4
+		open_project_count=0
+		checkOpenProjectCount "$type" "$step" "$repo_name" "$open_project_count"
+
+		# Scenario 5: Each $CLASS_ORG/github-games-$userID repo has Open PR count = 0
+		step=5
+		open_pr_count=0
+		checkOpenPRCount "$type" "$step" "$repo_name" "$open_pr_count"
+
+		# Scenario 6: Each $CLASS_ORG/github-games-$userID repo, Issue #1 exists
+		step=6
+		issue=1
+		checkIssueNum "$type" "$step" "$repo_name" "$issue"
+
+		# Scenario 7: Each $CLASS_ORG/github-games-$userID repo, Issue #1 named "Game broken"
+		step=7
+		issue=1
+		title="Game broken"
+		checkIssueTitle "$type" "$step" "$repo_name" "$issue" "$title"
+
+		# Scenario 8: Each $CLASS_ORG/github-games-$userID repo, Issue #2 exists
+		step=8
+		issue=2
+		checkIssueNum "$type" "$step" "$repo_name" "$issue"
+
+		# Scenario 9: Each $CLASS_ORG/github-games-$userID repo, Issue #2 named "URL in description and README broken"
+		step=9
+		issue=2
+		title="URL in description and README broken"
+		checkIssueTitle "$type" "$step" "$repo_name" "$issue" "$title"
+
+		# Scenario 10: Each $CLASS_ORG/github-games-$userID repo is Public
+		step=10
+		isPublic "$type" "$step" "$repo_name"
+
+		# Scenarios 11-19: Each $CLASS_ORG/github-games-$userID repo has the named files
+		step=11
+		for file in {Gemfile,Gemfile.lock,LICENSE,README.md,_config.yml,inde.html,package.json,stats.js,texture.jpg};	do
+				fileExistsInRepo "$type" "$step" "$repo_name" "$file"
+				((step++))
+			done
+	fi
+done
+
+printErrors "$type"

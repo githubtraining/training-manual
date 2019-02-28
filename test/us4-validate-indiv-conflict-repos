@@ -1,0 +1,169 @@
+#!/bin/bash
+# This script contains tests for the scenarios used to determine that
+# teach-class option 4 ran successfully.
+#
+# User Story: Create conflict-repo for each student
+# 
+# As a GHE trainer,
+# I want to create conflict-practice-$USER for each student,
+# so that students can practice merge activities on their conflict-repo
+#
+# Background:
+# ( 1) ~/.trainingmanualrc exists
+# ( 2) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+# ( 3) $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+# ( 4) $CLASS_REPO_NAME Issue #1 exists
+# ( 5) $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+# ( 6) template repo "polygons" exists 
+#
+# Acceptance Criteria / Scenarios:
+# For each $userID of students who commented on issue #1 as a collaborator on repo $CLASS_REPO_NAME
+# ( 1) Each $userID has conflict-practice-$userID repo 
+# ( 2) Each $CLASS_ORG/conflict-practice-$userID has only following three pull requests
+#      "Updates to game manual","Minor CSS fixes","Update README"
+# ( 3) Each $CLASS_ORG/conflict-practice-$userID has only following branches
+#     "css-changes","manual","master","readme-update"
+# ( 4) Each $CLASS_ORG/conflict-practice-$userID matches commits with template repo
+#      by checking number of commits against the template repository polygon 
+# ( 5) Each $CLASS_ORG/conflict-practice-$userID repo has Open Issues count = 0
+# ( 6) Each $CLASS_ORG/conflict-practice-$userID repo has Open Projects count = 0
+# ( 7) Each $CLASS_ORG/conflict-practice-$userID repo has Open PR count = 3
+# ( 8) Each $CLASS_ORG/conflict-practice-$userID repo is Public
+# ( 9) Each $CLASS_ORG/conflict-practice-$userID repo, master branch, has named following files
+#      README.md, index.html, index.css, css/index.css
+ 
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then test_prefix="./test"; fi
+if [ "$curdirnam" = "script" ]; then test_prefix="../test"; fi
+if [ "$curdirnam" = "test" ]; then test_prefix="."; fi
+
+# shellcheck disable=SC1091 source=/dev/null 
+source $test_prefix/us-common-functions
+
+# input params
+CLASS_REPO_NAME=$1
+
+# shellcheck disable=SC2034 # LOGLEVEL is used in us-common-functions
+LOGLEVEL="DEBUG"
+
+templateRepoName="polygons"
+templateRepoCommitCount=0
+
+#input validation 
+if ! [[ $1 ]]; then
+	log "You must supply the Class Repository Name as a parameter"
+	exit 1
+fi
+
+
+## Background
+type="Background"
+
+# Background 1: ~/.trainingmanualrc exists
+step=1
+checkTrainingmanualrcFile "$type" "$step"
+
+# Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+step=2
+checkAccessToAPI "$type" "$step"
+
+# Background 3: $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+step=3
+checkRepoExists "$type" "$step" "$CLASS_REPO_NAME"
+
+# Background 4: $CLASS_REPO_NAME Issue #1 exists
+step=4
+issue=1
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
+
+# Background 5: $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+step=5
+issue=1
+title="Comment here to be added as a collaborator"
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
+
+# Background 6: # template repo "polygons" exists (and get number of commits for later use)
+step=6
+checkRepoExists "$type" "$step" "$templateRepoName"
+
+
+printErrors "$type"
+
+
+## Scenarios
+type="Scenario"
+
+#issue1Creator=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1 | jq '.user.login' | (sed -e 's/^"//' -e 's/"$//'))
+issue1Commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/issues/1/comments?per_page=100 | jq '.[].user.login')
+#log "[issue1Commenters]=[$issue1Commenters]"
+#log "[issue1Creator]=[$issue1Creator]"
+
+# Get template repo commit count, to later compare in scenario 4
+getRepoCommitCount "$templateRepoName"
+templateRepoCommitCount=$?
+#log "[templateRepoCommitCount]=[$templateRepoCommitCount]"
+
+# get the names of the people who should have a file - people who have commented on issue #1
+#	shellcheck disable=SC2068,SC2086	# https://www.shellcheck.net/wiki/SC2068
+for i in ${issue1Commenters[@]}; do
+	j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+# log "**Testing for $j commenter"
+#	if [ "$j" = "$issue1Creator" ]; then	# is this commenter the repo creator (in this case, creator of issue #1)?
+#		log "$j is also the creator"
+#	fi
+	
+	repo_name="conflict-practice-$j"
+	# Scenario  1: Each $userID has conflict-practice-$userID repo 
+	step=1
+	checkRepoExists "$type" "$step" "$repo_name"
+	repoExists=$?
+	if [ "$repoExists" -eq 0 ]; then 
+		# Scenario  2: Each $CLASS_ORG/conflict-practice-$userID has only following three pull requests
+		# "Updates to game manual","Minor CSS fixes","Update README"   //sorted list with comma separated values, include additional last comma
+		step=2	
+		prTitles='"Minor CSS fixes","Update README","Updates to game manual",'
+		checkPRTitlesOnRepo "$type" "$step" "$repo_name" "$prTitles"
+
+		# Scenario  3: Each $CLASS_ORG/conflict-practice-$userID has only following branches
+		#     "css-changes","manual","master","readme-update" //sorted list with comma separated values, include additional last comma
+		step=3
+		brNames='"css-changes","manual","master","readme-update",'
+		checkBranchesOnRepo "$type" "$step" "$repo_name" "$brNames"
+
+		# Scenario  4: Each $CLASS_ORG/conflict-practice-$userID matches commits with template repo
+		#     by checking number of commits against the template repository polygon 
+		step=4
+		checkCommitsOnRepo "$type" "$step" "$repo_name" $templateRepoCommitCount
+		
+		
+		# Scenario  5: Each $CLASS_ORG/conflict-practice-$userID repo has Open Issues count = 0
+		step=5
+		open_issue_count=0
+		checkOpenIssueCount "$type" "$step" "$repo_name" "$open_issue_count" 		
+		
+		# Scenario  6: Each $CLASS_ORG/conflict-practice-$userID repo has Open Projects count = 0
+		step=6
+		open_project_count=0
+		checkOpenProjectCount "$type" "$step" "$repo_name" "$open_project_count"
+    
+		# Scenario  7: Each $CLASS_ORG/conflict-practice-$userID repo has Open PR count = 3
+		step=7
+		open_pr_count=3
+		checkOpenPRCount "$type" "$step" "$repo_name" "$open_pr_count"    
+    
+		# Scenario  8: Each $CLASS_ORG/conflict-practice-$userID repo is Public
+		step=8
+		isPublic "$type" "$step" "$repo_name"
+    
+   
+		# Scenario  9: Each $CLASS_ORG/conflict-practice-$userID repo, master branch, has named following files
+		#      README.md, index.html, index.css, css/index.css
+		step=9
+		for file in {README.md,index.html,index.css,css/index.css};	do
+				fileExistsInRepo "$type" "$step" "$repo_name" "$file"
+		done		
+		
+	fi
+done
+
+printErrors "$type"

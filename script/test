@@ -1,30 +1,106 @@
 #!/bin/bash
-# This script calls all of the testing scripts.
+# This script tests the suite of scripts used in this repo to automate the github training setup.
+# The script takes an optional test repository name as its only parameter
+# It will then emulate the student and instructor activity to test that all scripts execute as intended
+#
+# Note: Each test/validation script may be executed individually by passing the test repository name as $1
+#	e.g. $ ./test/us2-validate-collabs-and-files class-repo-name
+#
+# Pre-requisite: Prior to executing this script, the script/teach-class, Option 0 must be run
 
-printf "linting scripts in %s\n" "$PWD"
-./lint-scripts
+now=$(date +%Y%m%d_%H%M%S)
+logfile="test.log"
+echo "##### Test execution started @ $now #####" > "$logfile"	# create new/overwrite old logfile
 
-printf "\nConfirming 0 class-setup was successful\n"
-./us0-confirm-setup
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then test_prefix="./test"; script_prefix="./script"; fi
+if [ "$curdirnam" = "script" ]; then test_prefix="../test"; script_prefix="."; fi
+if [ "$curdirnam" = "test" ]; then test_prefix="."; script_prefix="../script"; fi
 
-printf "\nConfirming 1 new-virtual was successful\n"
+# shellcheck disable=SC1091 source=/dev/null
+source $test_prefix/us-common-functions
+
+TEST_REPO_NAME=${1:-"zTest_$now"}	# use $1 if present, else use zTest_$now as repo name to test
+log "Testing with \$TEST_REPO_NAME=$TEST_REPO_NAME"
+
+#	Lint scripts for code smells and inappripriate syntax based on the shebang declaration
+log "##### linting scripts in $test_prefix and $script_prefix #####"
+$test_prefix/lint-scripts
+
+#	Execute teach-class Option 0
+#log "##### Executing teach-class Option 0 #####"
+#$script_prefix/class-setup
+
+#	Validate teach-class Option 0 ran successfully
+log "##### Confirming Option 0: 'Confirm Set-Up' was successful #####"
+$test_prefix/us0-confirm-setup
+
+#	Execute teach-class Option 1
+log "##### Executing teach-class Option 1 'Create a new caption-this class repository' using $TEST_REPO_NAME #####"
+checkRepoExists "test" "test" "$TEST_REPO_NAME"
+repoExists=$?
+if [ "$repoExists" -ne 0 ]; then
+	# repo doesn't exist, run this expect script
+	$test_prefix/us1-create-caption-this-repo "$TEST_REPO_NAME" "$TOKEN_OWNER"
+else
+	# repo exists, run this expect script
+	:
+	#$test_prefix/us1-update-caption-this-repo "$TEST_REPO_NAME" "$TOKEN_OWNER"
+fi
+
+#	Validate teach-class Option 1 ran successfully
+log "##### Confirming Option 1: 'Create a new caption-this class repository' was successful #####"
 # $1 in the following command is the class repository you set up via teach-class option 1
-./us1-create-caption-this-class-repo rmh-testing
+$test_prefix/us1-validate-caption-this-repo "$TEST_REPO_NAME"
 
-#printf "\nConfirming 2 create-files was successful\n"
-#./us2-add-collabs-create-files
+#	Emulate students adding comments to Issue #1
+log "##### Poking some comments into Issue #1 of $TEST_REPO_NAME #####"
+$test_prefix/us2-add-commenters-to-issue1 "$TEST_REPO_NAME"
 
-#printf "\nConfirming 3 check-caption-repo was successful\n"
-#./us3-grade-day1-repo
+#	Execute teach-class Option 2
+log "##### Executing Option 2: 'Add collabs and create files (also makes $TEST_REPO_NAME private)' #####"
+$test_prefix/us2-create-collabs-and-files "$TEST_REPO_NAME"
+#$script_prefix/create-files "$TEST_REPO_NAME"	# if you want to add manual input
 
-#printf "\nConfirming 4 create-conflict-repos was successful\n"
-#./us4-create-indiv-conflict-repos
+#	Validate teach-class Option 2 ran successfully
+log "##### Confirming Option 2: 'Add collabs and create files (also makes $TEST_REPO_NAME private)' was successful #####"
+$test_prefix/us2-validate-collabs-and-files "$TEST_REPO_NAME"
 
-#printf "\nConfirming 5 check-conflict-repo was successful\n"
-#./us5-grade-day2-repos
+#	Validate the automated grading of Day 1 repos
+#log "##### Confirming Option 3: 'Grade the day 1 repo' was successful #####"
+#$test_prefix/us3-validate-day1-repo-grading "$TEST_REPO_NAME"
 
-#printf "\nConfirming 6 create-game-repos was successful\n"
-#./us6-create-indiv-gh-games-repos
+#	Execute teach-class Option 4
+log "##### Executing Option 4: 'Create conflict repos for each student' #####"
+$test_prefix/us4-create-conflict-repos "$TEST_REPO_NAME"
+#$script_prefix/create-conflict-repos "$TEST_REPO_NAME"	# if you want to add manual input
 
-#printf "\nConfirming 7 expire-repo was successful\n"
-#./us7-expire-student-repos
+#	Validate teach-class Option 4 ran successfully
+log "##### Confirming Option 4: 'Create conflict repos for each student' was successful #####"
+$test_prefix/us4-validate-indiv-conflict-repos "$TEST_REPO_NAME"
+
+#	Emulate students creating PRs in conflict-practice repos
+#log "##### Poking some PRs into conflict-practice- repos #####"
+#$test_prefix/us4-add-PRs-to-conflict-repos "$TEST_REPO_NAME"
+
+#	Validate the automated grading of Day 2 repos
+#log "##### Confirming Option 5: 'Grade the conflict repos' was successful #####"
+#$test_prefix/us5-validate-day2-repo-grading "$TEST_REPO_NAME"
+
+#	Execute teach-class Option 6
+log "##### Executing Option 6: 'Create the github-games repos for each student' #####"
+$test_prefix/us6-create-game-repos "$TEST_REPO_NAME"
+#$script_prefix/create-game-repos "$TEST_REPO_NAME"	# if you want to add manual input
+
+#	Validate teach-class Option 6 ran successfully
+log "##### Confirming Option 6: 'Create the github-games repos for each student' was successful #####"
+$test_prefix/us6-validate-indiv-gh-games-repos "$TEST_REPO_NAME"
+
+#	Execute teach-class Option 7
+#log "##### Executing Option 7: 'Expire student repos' #####"
+#$test_prefix/us7-expire-repo "$TEST_REPO_NAME"
+#$script_prefix/remove-repo "$TEST_REPO_NAME"
+
+#	Validate teach-class Option 7 ran successfully
+#log "##### Confirming Option 7: 'Expire student repos' was successful #####"
+#$test_prefix/us7-validate-student-repo-expiring "$TEST_REPO_NAME"
