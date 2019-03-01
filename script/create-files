@@ -6,37 +6,47 @@ source "$HOME/.trainingmanualrc"
 #saved to your ENV variables in order to use this script
 collabrepo=$1
 
+# validate that passed parameters are expected - $1 passed param count , $2 expected param count
+function checkParamCount() {
+	if [ "$1" -ne "$2" ]; then
+		echo "${FUNCNAME[1]} must be passed $2 parameters, you passed $1"
+		exit 1
+	fi
+}
+
 #test array content
-function containsElement () {
-  local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
-  return 0
+function containsElement() {
+	local arr=$2	# array is passed in by reference
+	local e
+	checkParamCount $# 2
+	for e in "${arr[@]}"; do [[ "$e" == "$1" ]] && return 1; done
+	return 0
 }
 
 #get the names of the people who need a file
-# shellcheck disable=SC2068,SC2086  # https://www.shellcheck.net/wiki/SC2068
+# shellcheck disable=SC2068  # https://www.shellcheck.net/wiki/SC2068
 function getnames () {
   #get names of people who have commented on the issue
   counter=2
   for i in ${commenters[@]}
   do
-    j=$(echo $i | (sed -e 's/^"//' -e 's/"$//'))
+    j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if
-      containsElement $i $collabs
+      containsElement "$i" collabs
     then
-      addcollab $j
+      addcollab "$j"
     else
       echo "Skipping adding $j as a collaborator because they are already a collaborator."
     fi
     if [ "$j" != "$TOKEN_OWNER" ]
     then
-      createFile $j $counter
+      createFile "$j" "$counter"
       ((counter++))
     else
       echo "Skipping creating another file for $j because they are the instructor."
     fi
   done
-  createissue $counter
+  createissue "$counter"
 }
 
 function addcollab () {
@@ -57,19 +67,19 @@ function createFile () {
   fi
   echo "Time to create file 0000-01-$filenum-$student.md in $collabrepo"
   echo "---" > 0000-01-"$filenum"-"$student".md
-#	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
+  #	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
   echo "layout: slide" >> 0000-01-"$filenum"-"$student".md
   echo 'title: "Welcome to our slide deck!"' >> 0000-01-"$filenum"-"$student".md
   echo "---" >> 0000-01-"$filenum"-"$student".md
   echo "" >> 0000-01-"$filenum"-"$student".md
   octocats=("![riddlocat](https://octodex.github.com/images/riddlocat.png)"  "![skitchtocat](https://octodex.github.com/images/skitchtocat.png)"  "![luchadortocat](https://octodex.github.com/images/luchadortocat.png)"  "![codercat](https://octodex.github.com/images/codercat.jpg)"  "![dojocat](https://octodex.github.com/images/dojocat.jpg)"  "![dodgetocat](https://octodex.github.com/images/dodgetocat_v2.png)"  "![steroidtocat](https://octodex.github.com/images/steroidtocat.png)"  "![inflatocat](https://octodex.github.com/images/inflatocat.png)"  "![poptocat](https://octodex.github.com/images/poptocat.png)"  "![Robotocat](https://octodex.github.com/images/Robotocat.png)"  "![saritocat](https://octodex.github.com/images/saritocat.png)"  "![jetpacktocat](https://octodex.github.com/images/jetpacktocat.png)"  "![cooler-octocat](https://octodex.github.com/images/twenty-percent-cooler-octocat.png)" "![octocat-de-los-muertos](https://octodex.github.com/images/octocat-de-los-muertos.jpg)" "![poptocat2](https://octodex.github.com/images/poptocat_v2.png)" "![minertocat](https://octodex.github.com/images/minertocat.png)" "![femalecodertocat](https://octodex.github.com/images/femalecodertocat.png)" "![cherryontop-o-cat](https://octodex.github.com/images/cherryontop-o-cat.png)" "![orderedlistocat](https://octodex.github.com/images/orderedlistocat.png)" "![herme-t-crabb](https://octodex.github.com/images/herme-t-crabb.png)" "![droidtocat](https://octodex.github.com/images/droidtocat.png)" "![snowoctocat](https://octodex.github.com/images/snowoctocat.png)" "![boxertocat](https://octodex.github.com/images/boxertocat_octodex.jpg)" "![skatetocat](https://octodex.github.com/images/skatetocat.png)" "![labtocat](https://octodex.github.com/images/labtocat.png)" "![Mardigrastocat](https://octodex.github.com/images/Mardigrastocat.png)" "![defunktocat](https://octodex.github.com/images/defunktocat.png)" "![catstello](https://octodex.github.com/images/catstello.png)" "![constructocat](https://octodex.github.com/images/constructocat2.jpg)" "![kimonotocat](https://octodex.github.com/images/kimonotocat.png)" "![octofez](https://octodex.github.com/images/octofez.png)" "![dinotocat](https://octodex.github.com/images/dinotocat.png)" )
   randomoctocat=${octocats[$RANDOM % ${#octocats[@]} ]}
-#	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
+  #	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
   echo "Caption here" >> 0000-01-"$filenum"-"$student".md
   echo "" >> 0000-01-"$filenum"-"$student".md
   echo "$randomoctocat" >> 0000-01-"$filenum"-"$student".md
   echo "{: .center}" >> 0000-01-"$filenum"-"$student".md
-#	shellcheck disable=SC2002	# https://github.com/koalaman/shellcheck/wiki/SC2002
+  #	shellcheck disable=SC2002	# https://github.com/koalaman/shellcheck/wiki/SC2002
   if [ "$OSTYPE" = "msys" ]; then
     newfile=$(cat 0000-01-"$filenum"-"$student".md | base64 --wrap=0)
   else
@@ -100,8 +110,7 @@ function createissue () {
     echo "Please point me to the correct issue"
     echo "To update the list of students (just type the number)"
     echo "$issues"
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-    read captionIssue
+    read -r captionIssue
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$temptext\"}" -X PATCH https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/issues/"$captionIssue"/comments/1 >> log.out 2>&1
   else
     #create a new issue
@@ -131,16 +140,14 @@ function makeprivate () {
     echo "This repo is already private."
   else
     echo "Are you ready to make this repo private? Y or N"
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-    read flipswitch
+    read -r flipswitch
     if echo "$flipswitch" | grep -iq "^y" ;
     then
       #switch repo to private
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$collabrepo\", \"private\": true}" -X PATCH https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo" >> log.out 2>&1
       #ask about adding 1:1s
       echo "Does this class get 1:1 sessions? Y or N"
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-      read oneonone
+      read -r oneonone
       if echo "$oneonone" | grep -iq "^y" ;
       then
         createoneonones
@@ -152,11 +159,11 @@ function makeprivate () {
   fi
 }
 
+#	shellcheck disable=SC2068	# https://www.shellcheck.net/wiki/SC2068
 function createoneonones () {
   #create an issue for 1:1 appointments
   echo "$APPT_URL"
   isstext="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
-#	shellcheck disable=SC2068	# https://www.shellcheck.net/wiki/SC2068
   for i in ${commenters[@]}
   do
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
@@ -164,7 +171,7 @@ function createoneonones () {
   done
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$isstext\"}" -X POST https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/issues >> log.out 2>&1
 }
-
+#	shellcheck disable=SC2034	# collabs passed by reference above
 collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
 commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
 getnames
