@@ -10,8 +10,7 @@ function resetactivity () {
 
   #make sure no one is teaching class
   echo "Is anyone teaching a class right now using $TOKEN_OWNER? (Y or N)"
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-  read classtime
+  read -r classtime
   if echo "$classtime" | grep -iq "^y" ;
   then
     echo "This is not a good time to run this script. Wait until class is over and try again"
@@ -34,7 +33,7 @@ function deletedisposablerepo () {
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$TOKEN_OWNER"/"$1" >> log.out 2>&1
 
   echo "Delete $CLASS_ORG $reponame repo..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$1" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$1" >> log.out 2>&1
 }
 
 function duplicaterepo () {
@@ -54,7 +53,7 @@ function duplicaterepo () {
   echo "The timeout may take some time..."
 
   git clone --bare https://github.com/githubtraining/"$reponame" "$reponame" >> log.out 2>&1
-#	shellcheck disable=SC2181	# https://github.com/koalaman/shellcheck/wiki/SC2181
+  #	shellcheck disable=SC2181	# https://github.com/koalaman/shellcheck/wiki/SC2181
   if [ $? -ne 0 ]; then
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
     git clone --bare https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/"$reponame" "$reponame" >> log.out 2>&1
@@ -65,7 +64,7 @@ function duplicaterepo () {
   fi
 
   echo "Push the fresh $reponame back to $CLASS_ORG's repo..."
-#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+  #	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   pushd "$reponame"
   git push --mirror https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/"$reponame" >> log.out 2>&1
 
@@ -74,7 +73,7 @@ function duplicaterepo () {
 
   echo "Setting default branch for repo"
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$reponame\", \"default_branch\": \"$dbranch\"}" https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame" >> log.out 2>&1
-#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+  #	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   popd
 
   echo "Remove the local (temporary) clone"
