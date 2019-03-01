@@ -3,6 +3,9 @@
 # The script takes an optional test repository name as its only parameter
 # It will then emulate the student and instructor activity to test that all scripts execute as intended
 #
+# Note: GitHub uses an eventual consistency model so beware of race conditions when checking for the existance
+#	of a change just made to a repo. We may need to insert sleep commands between setting and checking.
+#
 # Note: Each test/validation script may be executed individually by passing the test repository name as $1
 #	e.g. $ ./test/us2-validate-collabs-and-files class-repo-name
 #
@@ -37,15 +40,13 @@ $test_prefix/us0-confirm-setup
 
 #	Execute teach-class Option 1
 log "##### Executing teach-class Option 1 'Create a new caption-this class repository' using $TEST_REPO_NAME #####"
-checkRepoExists "test" "test" "$TEST_REPO_NAME"
-repoExists=$?
-if [ "$repoExists" -ne 0 ]; then
+repoName=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$TEST_REPO_NAME" | jq .name | (sed -e 's/^"//' -e 's/"$//'))
+if [ "$repoName" != "$TEST_REPO_NAME" ]; then
 	# repo doesn't exist, run this expect script
-	$test_prefix/us1-create-caption-this-repo "$TEST_REPO_NAME" "$TOKEN_OWNER"
+	$test_prefix/us1-create-caption-this-repo "$TEST_REPO_NAME" "$TOKEN_OWNER" >> "$logfile"
 else
-	# repo exists, run this expect script
+	# repo exists, don't need to run anything
 	:
-	#$test_prefix/us1-update-caption-this-repo "$TEST_REPO_NAME" "$TOKEN_OWNER"
 fi
 
 #	Validate teach-class Option 1 ran successfully
@@ -59,8 +60,16 @@ $test_prefix/us2-add-commenters-to-issue1 "$TEST_REPO_NAME"
 
 #	Execute teach-class Option 2
 log "##### Executing Option 2: 'Add collabs and create files (also makes $TEST_REPO_NAME private)' #####"
-$test_prefix/us2-create-collabs-and-files "$TEST_REPO_NAME"
-#$script_prefix/create-files "$TEST_REPO_NAME"	# if you want to add manual input
+isPublic "main" "2" "$TEST_REPO_NAME"
+repoPublic=$?
+if [ "$repoPublic" -eq 0 ]; then
+	# create - class repo is public, assumming first time execution
+	$test_prefix/us2-create-collabs-and-files "$TEST_REPO_NAME" >> "$logfile"
+	#$script_prefix/create-files "$TEST_REPO_NAME"	# if you want to add manual input
+else
+	# update/rerun - class repo is private, assumming repeat execution
+	$test_prefix/us2-update-collabs-and-files "$TEST_REPO_NAME"   >> "$logfile"
+fi
 
 #	Validate teach-class Option 2 ran successfully
 log "##### Confirming Option 2: 'Add collabs and create files (also makes $TEST_REPO_NAME private)' was successful #####"
@@ -72,7 +81,7 @@ $test_prefix/us2-validate-collabs-and-files "$TEST_REPO_NAME"
 
 #	Execute teach-class Option 4
 log "##### Executing Option 4: 'Create conflict repos for each student' #####"
-$test_prefix/us4-create-conflict-repos "$TEST_REPO_NAME"
+$test_prefix/us4-create-conflict-repos "$TEST_REPO_NAME" >> "$logfile"  # create/update-rerun uses same script
 #$script_prefix/create-conflict-repos "$TEST_REPO_NAME"	# if you want to add manual input
 
 #	Validate teach-class Option 4 ran successfully
@@ -89,7 +98,7 @@ $test_prefix/us4-validate-indiv-conflict-repos "$TEST_REPO_NAME"
 
 #	Execute teach-class Option 6
 log "##### Executing Option 6: 'Create the github-games repos for each student' #####"
-$test_prefix/us6-create-game-repos "$TEST_REPO_NAME"
+$test_prefix/us6-create-game-repos "$TEST_REPO_NAME" >> "$logfile"  # create/update-rerun uses same script
 #$script_prefix/create-game-repos "$TEST_REPO_NAME"	# if you want to add manual input
 
 #	Validate teach-class Option 6 ran successfully
