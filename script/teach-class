@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 function gettask () {
@@ -16,12 +16,12 @@ function gettask () {
   echo "6: Create the github-games repos for each student"
   echo "7: Expire student repos"
   echo "8: Done"
-  read task
+  read -r task
   if echo "$task" | grep -iq "8" ;
   then
     exit
   else
-    dotask $task
+    dotask "$task"
   fi
 }
 
@@ -42,38 +42,38 @@ function dotask () {
     script/expire-repo
   else
     echo "What is the name of the day 1 repo?"
-    read collabrepo
+    read -r collabrepo
     if echo "$task" | grep -iq "1" ;
     then
       echo "running script/new-virtual"
-      script/new-virtual $collabrepo
+      script/new-virtual "$collabrepo"
     fi
     if echo "$task" | grep -iq "2" ;
     then
       echo "running script/create-files"
-      script/create-files $collabrepo
+      script/create-files "$collabrepo"
     fi
     if echo "$task" | grep -iq "3" ;
     then
       echo "running script/check-caption-repo"
-      script/check-caption-repo $collabrepo
+      script/check-caption-repo "$collabrepo"
     fi
     if echo "$task" | grep -iq "4" ;
     then
       echo "running script/create-conflict-repos"
-      script/create-conflict-repos $collabrepo
+      script/create-conflict-repos "$collabrepo"
     fi
     if echo "$task" | grep -iq "5" ;
     then
       echo "running script/check-conflict-repos"
-      script/check-conflict-repos $collabrepo
+      script/check-conflict-repos "$collabrepo"
     fi
     if echo "$task" | grep -iq "6" ;
     then
       echo "running script/create-game-repos"
-      script/create-game-repos $collabrepo
+      script/create-game-repos "$collabrepo"
     fi
   fi
 }
-    
+
 gettask

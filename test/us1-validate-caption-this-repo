@@ -1,0 +1,149 @@
+#!/bin/bash
+# This script contains tests for the scenarios used to determine that
+# teach-class option 1 ran successfully.
+#
+# User Story: Create the Caption-This Repository
+#
+# As a GHE trainer,
+# I want to create a class repository,
+# so that I can have students interact with a training repository
+#
+# Background:
+# (1) ~/.trainingmanualrc exists
+# (2) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+#
+# Acceptance Criteria / Scenarios:
+# (1) $CLASS_REPO_NAME is created in https://$ROOT_URL/$CLASS_ORG
+# (2) $CLASS_REPO_NAME Open Issues count = 1
+# (3) $CLASS_REPO_NAME Issue #1 exists
+# (4) $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+# (5) $CLASS_REPO_NAME has one open project
+# (6) $CLASS_REPO_NAME Project #1 has name "Class Activity: Caption Contest"
+# (7) $CLASS_REPO_NAME Project #1 is in the open state
+# (8) $CLASS_REPO_NAME README.md file exists 
+# (9) $CLASS_REPO_NAME README.md file contains Facilitator: = @$TOKEN_OWNER (! "@TEACHER-HANDLE")
+# (10) $CLASS_REPO_NAME README.md file contains Class Date: = some-text (! "THIS-DATE")
+# (11) $CLASS_REPO_NAME is Public
+#
+
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then test_prefix="./test"; fi
+if [ "$curdirnam" = "script" ]; then test_prefix="../test"; fi
+if [ "$curdirnam" = "test" ]; then test_prefix="."; fi
+
+# shellcheck disable=SC1091 source=/dev/null 
+source $test_prefix/us-common-functions
+
+CLASS_REPO_NAME=$1
+
+ot_file=./temp-readme.md
+
+if ! [[ $1 ]]; then
+	printf "You must supply the Class Repository Name as a parameter"
+	exit 1
+fi
+
+type="Background"
+
+# Background 1: ~/.trainingmanualrc exists
+step=1
+checkTrainingmanualrcFile "$type" "$step"
+
+# Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+step=2
+checkAccessToAPI "$type" "$step"
+
+
+printErrors "$type"
+
+
+type="Scenario"
+
+# Scenario 1: $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+step=1
+checkRepoExists "$type" "$step" "$CLASS_REPO_NAME"
+
+# Scenario 2: Open issues count = 1
+step=2
+open_issue_count=1
+checkOpenIssueCount "$type" "$step" "$CLASS_REPO_NAME" "$open_issue_count"
+
+# Scenario 3: One issue (Issue #1) exists in $CLASS_REPO_NAME on GHE
+step=3
+issue=1
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
+
+# Scenario 4: Issue #1 has proper description
+step=4
+issue=1
+title="Comment here to be added as a collaborator"
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
+
+# Scenario 5: Class repository has one project
+step=5
+open_project_count=1
+checkOpenProjectCount "$type" "$step" "$CLASS_REPO_NAME" "$open_project_count"
+
+# Scenario 6: The class repository project has proper name
+step=6
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].name | (sed -e 's/^"//' -e 's/"$//'))
+status=$?
+if [ 0 -ne $status ]; then
+	addErr "$type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects"
+elif [ "$result" != "Class Activity: Caption Contest" ]; then
+	addErr "$type $step: Class repository Project #1 does not have expected name"
+fi
+
+# Scenario 7: Project is in the open state
+step=7
+result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.inertia-preview+json" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/projects | jq .[].state | (sed -e 's/^"//' -e 's/"$//'))
+status=$?
+if [ 0 -ne $status ]; then
+	addErr "$type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/projects"
+elif [ "$result" != "open" ]; then
+	addErr "$type $step: Class repository Project #1 is not open"
+fi
+
+# Scenario 8: README.md file exists, make a copy to $ot_file for later greps
+step=8
+status=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -H "Accept: application/vnd.github.VERSION.raw" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$CLASS_REPO_NAME"/contents/README.md > "$ot_file")
+status=$?
+if [ 0 -ne $status ]; then
+	addErr "$type $step: Could not access https://$INSTANCE_URL/repos/$CLASS_ORG/$CLASS_REPO_NAME/contents/README.md"
+fi
+
+# Scenario 9: README.md file contains Facilitator: = @$TOKEN_OWNER, (! "@TEACHER-HANDLE")
+step=9
+#	shellcheck disable=SC2016
+facilitator=$(grep "Facilitator:" "$ot_file" | awk 'BEGIN {FS=":"} {print $2}' | tr -d " ")
+status=$(grep "Facilitator:" "$ot_file")
+status=$?
+if [ 0 -ne $status ]; then
+	addErr "$type $step: Class repository README.md does not contain 'Facilitator:'"
+elif [ "$facilitator" != "@$TOKEN_OWNER" ]; then
+	addErr "$type $step: Class repository README.md Facilitator: ($facilitator) not set to myself (@$TOKEN_OWNER) - OK if you are checking $facilitator repository"
+elif [ "$facilitator" = "@TEACHER-HANDLE" ]; then
+	addErr "$type $step: Class repository README.md Facilitator: not changed from TEACHER-HANDLE"
+fi
+
+# Scenario 10: README.md file contains Class Date: ! "THIS-DATE"
+step=10
+#	shellcheck disable=SC2016
+class_dates=$(grep "Class Date:" "$ot_file" | awk 'BEGIN {FS=":"} {print $2}')
+status=$(grep "Class Date:" "$ot_file")
+status=$?
+if [ 0 -ne $status ]; then
+	addErr "$type $step: Class repository README.md does not contain 'Class Date:'"
+elif ! [ "$class_dates" ]; then
+	addErr "$type $step: Class repository README.md Class Date: not set"
+elif [ "THIS-DATE" = "$class_dates" ]; then
+	addErr "$type $step: Class repository README.md Class Date: not changed from THIS-DATE"
+fi
+
+# Scenario 11: The class repository project is public
+step=11
+isPublic "$type" "$step" "$CLASS_REPO_NAME"
+
+
+rm "$ot_file"
+printErrors "$type"

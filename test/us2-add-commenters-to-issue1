@@ -1,0 +1,87 @@
+#!/bin/bash
+# This script emulates people adding comments to issue #1 of the Caption-this repo
+#
+# User Story: Add commenters to Issue #1
+#
+# As a GHE trainer,
+# I want to emulate students commenting on issue #1 in the class repository,
+# so that I can automatically add them as collaborators by executing teach-class, Option 2
+#
+# Background:
+# (1) ~/.trainingmanualrc exists
+# (2) I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+# (3) $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+# (4) $CLASS_REPO_NAME Issue #1 exists
+# (5) $CLASS_REPO_NAME has an Issue #1 named "Comment here to be added as a collaborator"
+#
+# Scenario:
+# (1) Insert comment on Issue #1 as $TOKEN_OWNER:$TEACHER_PAT
+#
+
+curdirnam=${PWD##*/}
+if [ "$curdirnam" = "training-manual" ]; then test_prefix="./test"; fi
+if [ "$curdirnam" = "script" ]; then test_prefix="../test"; fi
+if [ "$curdirnam" = "test" ]; then test_prefix="."; fi
+
+# shellcheck disable=SC1091 source=/dev/null 
+source $test_prefix/us-common-functions
+
+CLASS_REPO_NAME=$1
+
+if ! [[ $1 ]]; then
+	printf "You must supply the Class Repository Name as a parameter"
+	exit 1
+fi
+
+# addComment inserts a comment on the given issue
+# $1 is user_id, $2 is user_id's PAT, $3 is the repo name, $4 is the issue number to comment on
+function addComment() {
+	checkParamCount $# 4
+	result=$(curl -s -i -u "$1:$2" -d "{ \"body\": \"Adding my comment\"}" -X POST https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/issues/"$4"/comments)
+	result=$?
+	if [ 0 -ne $result ]; then
+		log "ERROR: $1 failed to add a comment to Issue #1 [$result]"
+		addErr "$type $step: $1 failed to add a comment to Issue #1"
+	else
+		log "INFO: $1 added a comment to Issue #1"
+	fi
+}
+
+
+type="Background"
+
+# Background 1: ~/.trainingmanualrc exists
+step=1
+checkTrainingmanualrcFile "$type" "$step"
+
+# Background 2: I can use $TOKEN_OWNER:$TEACHER_PAT to capture data from the GHE API
+step=2
+checkAccessToAPI "$type" "$step"
+
+# Background 3: $CLASS_REPO_NAME exists in https://$ROOT_URL/$CLASS_ORG
+step=3
+checkRepoExists "$type" "$step" "$CLASS_REPO_NAME"
+
+# Background 4: $CLASS_REPO_NAME Issue #1 exists
+step=4
+issue=1
+checkIssueNum "$type" "$step" "$CLASS_REPO_NAME" "$issue"
+
+# Background 5: $CLASS_REPO_NAME has an issue #1 named "Comment here to be added as a collaborator"
+step=5
+issue=1
+title="Comment here to be added as a collaborator"
+checkIssueTitle "$type" "$step" "$CLASS_REPO_NAME" "$issue" "$title"
+
+printErrors "$type"
+
+type="Scenario"
+
+# for each 'user' you want to have comment on the issue
+step=1
+user_id=$TOKEN_OWNER
+user_pat=$TEACHER_PAT
+issue_num=1
+addComment "$user_id" "$user_pat" "$CLASS_REPO_NAME" "$issue_num"
+
+printErrors "$type"
