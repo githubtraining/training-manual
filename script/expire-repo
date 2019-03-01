@@ -6,7 +6,6 @@
 #saved to your ENV variables in order to use this script
 
 function getpages () {
-#	https://github.com/koalaman/shellcheck/wiki/SC1102
   numPages=$( (curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET https://"$INSTANCE_URL"/orgs/"$CLASS_ORG"/repos | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
   if [ -z "$numPages" ]
     then
@@ -18,13 +17,12 @@ function getpages () {
   while [ $numPages -gt 1 ]; do
     echo "Getting results for page $numPages"
     getrepos $numPages
-#	shellcheck disable=SC2219	# https://github.com/koalaman/shellcheck/wiki/SC2219
-    let numPages=numPages-1
+    ((numPages--))
   done
 }
 
 #get repos in $CLASS_ORG org that start with conflict-practice or github-games
-# shellcheck disable=SC2068,SC2086 # https://www.shellcheck.net/wiki/SC2068
+# shellcheck disable=SC2068 # https://www.shellcheck.net/wiki/SC2068
 function getrepos () {
   pagenum=$1
   repolist=$(curl -s -H "Authorization: token $TEACHER_PAT" -X GET https://"$INSTANCE_URL"/orgs/"$CLASS_ORG"/repos?page="$pagenum" | jq '.[] | .name')
@@ -34,14 +32,13 @@ function getrepos () {
     if echo "$i" | grep -iq -e "conflict-practice-" -e "github-games-"
     then
       echo "Let's see when $i was created"
-      checkdates $i
+      checkdates "$i"
     fi
   done
 }
 
 function checkdates () {
   reponame=$1
-#	https://github.com/koalaman/shellcheck/wiki/SC1102
   created=$( (curl -s -H "Authorization: token $TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame" | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >> log.out 2>&1
   #if they were created more than 10 days ago, expire them
   if [[ "$compDate" > "$created" ]];
