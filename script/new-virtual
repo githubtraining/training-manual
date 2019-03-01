@@ -9,35 +9,29 @@ function getdetails () {
   echo "Let's add the class details to the README:"
   echo "List the class dates."
   echo "Example: March 10 - 13, 2017."
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-  read classdate
+  read -r classdate
   echo "Who is teaching? Without the @."
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-  read teacher
+  read -r teacher
   echo "Create a unique name for the survey collector."
   echo "Example: 2017-06-06-open-enrollment."
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-  read surveyName
+  read -r surveyName
   #generate the survey link
-#	https://github.com/koalaman/shellcheck/wiki/SC1102
   surveyLink=$( (curl -s --request PUT --url "https://restapi.surveygizmo.com/v5/survey/$SURVEY_CAMPAIGN/surveycampaign?api_token=$SURVEY_TOKEN&api_token_secret=$SURVEY_SECRET&_method=PUT&type=link&name=$surveyName" | jq .data.uri) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
   #append teacher and class type to survey link
   longLink=$surveyLink"?type=developers&teacher="$teacher
   #create a google short link
-#	https://github.com/koalaman/shellcheck/wiki/SC1102
   shortLink=$( (curl -s https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
   script/create-repo caption-this "$reponame" "$teacher"
   returnCode=$?
   if [ $returnCode -eq 0 ]; then
     git clone https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/"$reponame" "$reponame" >> log.out 2>&1
-#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+    #	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
     pushd "$reponame"
-#	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
+    #	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
-#	https://github.com/koalaman/shellcheck/wiki/SC1102
     githubemail=$( (curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/users/"$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
     git config user.email "$githubemail" >> log.out 2>&1
-#	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
+    #	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
     if [ "$OSTYPE" = "msys" ]; then
       sed -i "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
@@ -49,7 +43,7 @@ function getdetails () {
       sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
       sed -i "" "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
     fi
-#	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
+    #	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
     git add README.md >> log.out 2>&1
     git commit -m "create class README" >> log.out 2>&1
     git add _config.yml >> log.out 2>&1
@@ -57,7 +51,7 @@ function getdetails () {
     git push https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/"$reponame" >> log.out 2>&1
     git config --local --unset user.name >> log.out 2>&1
     git config --local --unset user.email >> log.out 2>&1
-#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+    #	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
     popd
     rm -rf "$reponame" >> log.out 2>&1
     prettyrepo "$teacher"
@@ -71,7 +65,7 @@ function getdetails () {
 function prettyrepo () {
   teacher=$1
   #set branch protections
-#	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
+  #	shellcheck disable=SC2129	# https://github.com/koalaman/shellcheck/wiki/SC2129
   curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$teacher\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$teacher\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame"/branches/master/protection >> log.out 2>&1
   curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame"/branches/master/protection/required_status_checks >> log.out 2>&1
   #delete labels other than question, duplicate, enhancement, and help wanted
@@ -84,8 +78,8 @@ function prettyrepo () {
   projID=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$reponame"/projects | jq .id) >> log.out 2>&1
   #add columns to project
   columnOne=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"To-Do\"}" -X POST https://"$INSTANCE_URL"/projects/"$projID"/columns | jq .id) >> log.out 2>&1
-#	columnTwo is never used anywhere, commenting it out
-#  columnTwo=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns | jq .id) >> log.out 2>&1
+  #	columnTwo is never used anywhere, commenting it out
+  #  columnTwo=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST https://$INSTANCE_URL/projects/$projID/columns | jq .id) >> log.out 2>&1
   curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"In-Progress\"}" -X POST https://"$INSTANCE_URL"/projects/"$projID"/columns >> log.out 2>&1
   curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST https://"$INSTANCE_URL"/projects/"$projID"/columns >> log.out 2>&1
   #add cards to each column
