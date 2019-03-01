@@ -3,7 +3,7 @@
 #
 
 logfile="test.log"
-#echo "##### Test execution started @ $(date +%Y%m%d_%H%M%S) #####" > "$logfile" 
+#echo "##### Test execution started @ $(date +%Y%m%d_%H%M%S) #####" > "$logfile"
 
 # validate that passed parameters are expected - $1 passed param count , $2 expected param count
 function checkParamCount() {
@@ -21,7 +21,7 @@ function log() {
 	echo "$(date +%Y%m%d_%H%M%S):$0:${FUNCNAME[2]}: $1" >> "$logfile" 2>&1
 }
 
-# addErr takes full error message argument as $1  
+# addErr takes full error message argument as $1
 # requires ${ERRORS[@]} to be defined
 function addErr() {
 	checkParamCount $# 1
@@ -56,7 +56,7 @@ function checkAccessToAPI() {
 		addErr "$1 $2: TOKEN_OWNER:TEACHER_PAT unable to access https://$INSTANCE_URL/users/$TOKEN_OWNER"
 	fi
 }
- 
+
 # check to see if repo contains expected branches
 # $1 is test type (background/scenario), $2 is step #, $3 is repo name, $4 is sorted double quoted and comma separated list of branch names, include extra last comma.
 # $4 Example: '"css-changes","manual","master","readme-update",'
@@ -70,13 +70,13 @@ function checkBranchesOnRepo() {
 }
 
 # retrieve the number of commits to a repo (e.g. to compare template to copy) - return # of commits
-# $1 is repo name 
+# $1 is repo name
 function getRepoCommitCount() {
 	local commitCount
 	checkParamCount $# 1
 	commitCount=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$1/commits" | jq '.[].sha' | wc -l )
 #	log "[commitCount]=[$commitCount]"
-	return "$commitCount" 
+	return "$commitCount"
 }
 
 # check to see if conflict-practice repo has no new commits
@@ -88,15 +88,15 @@ function checkCommitsOnRepo() {
 	getRepoCommitCount "$3"
 	commitCount=$?
 	if [ "$commitCount" -ne "$4" ]; then
-		addErr "$1 $2: Repo $3 is modified, commit count $commitCount did not match template commit count $4" 
-	fi  
+		addErr "$1 $2: Repo $3 is modified, commit count $commitCount did not match template commit count $4"
+	fi
 #	log "$1 $2:($3) [expectedCommitCount, commitCount]=[$4,$commitCount]"
 }
 
 # check for the existance of issue number
 # $1 is test type (background/scenario), $2 is step #, $3 is repo name, $4 is issue #
-function checkIssueNum() { 
-	local result 
+function checkIssueNum() {
+	local result
 	checkParamCount $# 4
 	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3"/issues/"$4" | jq .number)
 	if [ "$4" != "$result" ]; then
@@ -161,12 +161,12 @@ function checkPRTitlesOnRepo() {
 	resultNames=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$3/pulls" | jq '.[].title' | sort | awk 'ORS=","' )
 	if [ "$resultNames" != "$4" ]; then
 		addErr "$1 $2: Repo $3, did not match required pull requests [$4] "
-	fi  
+	fi
 #	log "$1 $2:($3) [resultNames]=[$resultNames]"
 }
 
 # check to see if repo exists - return 0 if it does, 1 if it does not
-# $1 is test type (background/scenario), $2 is step #, $3 is reponame 
+# $1 is test type (background/scenario), $2 is step #, $3 is reponame
 function checkRepoExists() {
 	local resultRepoName
 	local repoExists=0
@@ -176,7 +176,7 @@ function checkRepoExists() {
 	if [ "$resultRepoName" != "$3" ]; then
 		addErr "$1 $2: $3 does not exist... API returned repo name $resultRepoName"
 		repoExists=1
-	fi  
+	fi
 	return $repoExists
 }
 
@@ -188,10 +188,10 @@ function checkTrainingmanualrcFile() {
 		addErr "$1 $2: $HOME/.trainingmanualrc does not exist"
 	fi
 }
- 
+
 # validate array contents - return 1 if $1 exists in $2, 0 if $1 doesn't exist in $2
 # string $1 is an expected element of array $2 (passed by reference)
-# example call...    containsElement "$username" collabs    
+# example call...    containsElement "$username" collabs
 function containsElement() {
 	local arr=$2	# array is passed in by reference
 	local e
@@ -218,7 +218,9 @@ function isPrivate() {
 	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3" | jq .private)
 	if [ "$result" != "true" ]; then
 		addErr "$1 $2: $3 is not Private"
+		return 1
 	fi
+	return 0
 }
 
 # is repo Public
@@ -228,5 +230,7 @@ function isPublic() {
 	result=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$3" | jq .private)
 	if [ "$result" != "false" ]; then
 		addErr "$1 $2: $3 is not Public"
+		return 1
 	fi
+	return 0
 }
