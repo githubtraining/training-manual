@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-#	shellcheck disable=SC2162,SC2086
+
 function gettask () {
   echo "========================================================"
   echo "This script manages the repos and activities"
@@ -16,15 +16,15 @@ function gettask () {
   echo "6: Create the github-games repos for each student"
   echo "7: Expire student repos"
   echo "8: Done"
-  read task
+  read -r task
   if echo "$task" | grep -iq "8" ;
   then
     exit
   else
-    dotask $task
+    dotask "$task"
   fi
 }
-#	shellcheck disable=SC2162
+
 function dotask () {
   task=$1
   if echo "$task" | grep -iq "0" ;
@@ -42,7 +42,7 @@ function dotask () {
     script/expire-repo
   else
     echo "What is the name of the day 1 repo?"
-    read collabrepo
+    read -r collabrepo
     if echo "$task" | grep -iq "1" ;
     then
       echo "running script/new-virtual"
