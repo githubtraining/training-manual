@@ -4,11 +4,21 @@
 #saved to your ENV variables in order to use this script
 collabrepo=$1
 
+# validate that passed parameters are expected - $1 passed param count , $2 expected param count
+function checkParamCount() {
+	if [ "$1" -ne "$2" ]; then
+		echo "${FUNCNAME[1]} must be passed $2 parameters, you passed $1"
+		exit 1
+	fi
+}
+
 #test array content
-function containsElement () {
-  local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
-  return 0
+function containsElement() {
+	local arr=$2	# array is passed in by reference
+	local e
+	checkParamCount $# 2
+	for e in "${arr[@]}"; do [[ "$e" == "$1" ]] && return 1; done
+	return 0
 }
 
 function getnames () {
@@ -19,22 +29,21 @@ function getnames () {
     git clone --bare https://github.com/githubtraining/github-games game-template >> log.out 2>&1
   else
     git clone --bare https://"$TOKEN_OWNER":"$TEACHER_PAT"@"$ROOT_URL"/"$CLASS_ORG"/github-games game-template >> log.out 2>&1
-#	shellcheck disable=SC2181	# https://github.com/koalaman/shellcheck/wiki/SC2181
+    #	shellcheck disable=SC2181	# https://github.com/koalaman/shellcheck/wiki/SC2181
     if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/github-games and upload it to your GHE instance."
       exit 1
     fi
   fi
 
-#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+  #	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   pushd game-template
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
 
   teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/"$collabrepo"/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
   echo "A new github-games repo is about to be created for $teacher. If one already exists, it will be deleted."
   echo "Is that OK? (Y or N)"
-#	shellcheck disable=SC2162	# https://github.com/koalaman/shellcheck/wiki/SC2162
-  read classtime
+  read -r classtime
   if echo "$classtime" | grep -iq "^y" ;
   then
     echo "Deleting $CLASS_ORG/github-games-$teacher repo..."
@@ -44,19 +53,19 @@ function getnames () {
   fi
 
   ownersArray=( "${ownersArray[@]/"$teacher"}" )
-#	shellcheck disable=SC2128,SC2068,SC2086	# https://github.com/koalaman/shellcheck/wiki/SC2128
+  #	shellcheck disable=SC2068	# https://github.com/koalaman/shellcheck/wiki/SC2068
   for i in ${collabs[@]}
   do
     if
-      containsElement $i $ownersArray
+      containsElement "$i" ownersArray
       then
-        i=$(echo $i | (sed -e 's/^"//' -e 's/"$//'))
+        i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
         repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://"$INSTANCE_URL"/repos/"$CLASS_ORG"/github-games-"$i" | grep "^Status:") >> log.out 2>&1
         echo "repoStatus for $i is $repoStatus"
         if
-          echo $repoStatus | grep -iq "404"
+          echo "$repoStatus" | grep -iq "404"
         then
-          createRepo $i
+          createRepo "$i"
         else
           echo "Skipping $i because they already have a repo."
         fi
@@ -64,7 +73,7 @@ function getnames () {
         echo "Skipping $i because they are an owner in this org."
     fi
   done
-#	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
+  #	shellcheck disable=SC2164	# https://github.com/koalaman/shellcheck/wiki/SC2164
   popd
   echo "Remove the local (temporary) clone"
   rm -rf game-template
