@@ -44,7 +44,7 @@ fast forwardのマージは、フィーチャブランチが作成された後�
 3. 新しいブランチを作成し、そのブランチにチェックアウトします。`git checkout -b rebase-me`
 4. reflogを使用し、ファイル4-6を `rebase-me` のブランチにチェリーピックします。
 5. masterにチェックアウトします。`git checkout master`
-6. reflogを使用し、ファイル1-3を `rebase-me` のブランチにチェリーピックします。
+6. reflogを使用し、ファイル1-3を `master` のブランチにチェリーピックします。
 7. 履歴を確認します。`git log --oneline --graph --decorate --all`
 8. この時点で仮にマージすると、再帰的なマージとなります。
 
