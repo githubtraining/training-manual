@@ -72,7 +72,15 @@ function createRepo () {
   echo "Time to create $studentRepo for $student"
   #create a repo named github-games-$student in $CLASS_ORG org
   echo "Create server-side location for fresh $CLASS_ORG/$studentRepo repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$studentRepo\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+
+  if [ $ROOT_URL = "github.com" ]; then
+    echo "Creating on GITHUB"
+	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${studentRepo}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${CLASS_ORG}.github.io/${studentRepo}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+   else
+     echo "Creating on Enterprise"
+	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${studentRepo}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${studentRepo}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+  fi
+
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
   #add student as a collaborator
