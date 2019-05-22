@@ -16,8 +16,74 @@ set -e
 ########################## Functions Below #####################################
 ################################################################################
 ################################################################################
-#### Function gettask ##########################################################
-function gettask ()
+#### Function ValidateEnv ######################################################
+function ValidateEnv ()
+{
+  echo ""
+  echo "========================================================"
+  echo " validating environmrent and libraries..."
+
+  #######################################################
+  # Need to validate the environment vars and libraries #
+  #######################################################
+
+  #########################
+  # Validate jq installed #
+  #########################
+  VALIDATE_JQ_CMD=$(which jq 2>&1)
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    echo "ERROR! Failed to find [jq] installed on system!"
+    echo "Please install to system before next run!"
+    echo "grab it from https://stedolan.github.io/jq/download/"
+    exit 1
+  fi
+
+  ############################################
+  # Check we have the TEACHER_PAT in the env #
+  ############################################
+  if [[ -z "${TEACHER_PAT}" ]]; then
+    echo "ERROR! Failed to find [TEACHER_PAT] in local environment variables!"
+    echo "Please give the PAT for running this course, followed by the [ENTER] key"
+    echo "(note: your input will NOT be displayed)"
+    echo ""
+    ################
+    # Read the PAT #
+    ################
+    read -s TEACHER_PAT
+
+    ############################################
+    # Clean any whitespace that may be entered #
+    ############################################
+    TEACHER_PAT_NO_WHITESPACE="$(echo -e "${TEACHER_PAT}" | tr -d '[:space:]')"
+    TEACHER_PAT=$TEACHER_PAT_NO_WHITESPACE
+
+    ##########################################
+    # Check the length of the PAT for sanity #
+    ##########################################
+    if [ ${#TEACHER_PAT} -ne 40 ]; then
+      echo "GitHub PAT's are 40 characters in length! you gave me ${#TEACHER_PAT} characters!"
+      exit 1
+    else
+      #############################
+      # Set it to the environment #
+      #############################
+      export TEACHER_PAT=$TEACHER_PAT
+    fi
+
+  echo "========================================================"
+}
+################################################################################
+#### Function GetTask ##########################################################
+function GetTask ()
 {
   echo ""
   echo "========================================================"
@@ -68,12 +134,12 @@ function gettask ()
   #######################
   else
     # Run a task
-    dotask "$TASK"
+    DoTask "$TASK"
   fi
 }
 ################################################################################
-#### Function dotask ###########################################################
-function dotask ()
+#### Function DoTask ###########################################################
+function DoTask ()
 {
   ####################
   # Read in the TASK #
@@ -153,7 +219,12 @@ function dotask ()
 ############################### MAIN ###########################################
 ################################################################################
 
+#####################
+# Validate Env Vars #
+#####################
+ValidateEnv
+
 #######################
 # Get the task to run #
 #######################
-gettask
+GetTask
