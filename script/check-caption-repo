@@ -1,43 +1,61 @@
-#!/bin/sh
+#!/bin/bash
+################################################################################
+############################ Check Caption Repo ################################
+################################################################################
 
-#you must have a githubteacher token
-#saved to your ENV variables in order to use this script
+###########################################################
+# NOTE:                                                   #
+# You must have a githubteacher token                     #
+# saved to your ENV variables in order to use this script #
+###########################################################
+
 collabrepo=$1
 
-#test array content
-function containsElement () {
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function ContainsElement ##################################################
+function ContainsElement ()
+{
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
-
-function getstudents () {
+################################################################################
+#### Function GetStudents ######################################################
+function GetStudents ()
+{
   for i in ${collabs[@]}
   do
     if
-      containsElement $i $ownersArray
+      ContainsElement $i $ownersArray
     then
-      createStudentFile $i
+      CreateStudentFile $i
     fi
   done
-  checkrepo
+  CheckRepo
 }
-
-function createStudentFile () {
+################################################################################
+#### Function CreateStudentFile ################################################
+function CreateStudentFile ()
+{
   student=$1
   student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
   echo "---" > caption-activity-$student.yml
   echo "githubHandle: $student" >> caption-activity-$student.yml
 }
-
-function checkrepo () {
+################################################################################
+#### Function CheckRepo ########################################################
+function CheckRepo ()
+{
   #iterate through the PRs and find out who authored each one
   for i in ${pullsNumbers[@]}
   do
     #give credit to the author
     prAuthor=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls/$i | jq .user.login) >> log.out 2>&1
     if
-      containsElement $prAuthor $ownersArray
+      ContainsElement $prAuthor $ownersArray
     then
       prAuthor=$(echo "$prAuthor" | (sed -e 's/^"//' -e 's/"$//'))
       echo "prAuth: https://$INSTANCE_URL/$CLASS_ORG/$collabrepo/pull/$i" >> caption-activity-$prAuthor.yml
@@ -49,21 +67,23 @@ function checkrepo () {
     do
       #give credit to the author
       if
-        containsElement $z $ownersArray
+        ContainsElement $z $ownersArray
       then
         z=$(echo "$z" | (sed -e 's/^"//' -e 's/"$//'))
         echo "reviewAuth: https://$INSTANCE_URL/$CLASS_ORG/$collabrepo/pull/$i" >> caption-activity-$z.yml
       fi
     done
   done
-  sendfiles
+  SendFiles
 }
-
-function sendfiles () {
+################################################################################
+#### Function SendFiles ########################################################
+function SendFiles ()
+{
   for i in ${collabs[@]}
   do
     if
-      containsElement $i $ownersArray
+      ContainsElement $i $ownersArray
     then
       i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
       echo "---" >> caption-activity-$i.yml
@@ -88,9 +108,17 @@ function sendfiles () {
     fi
   done
 }
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+########################################
+# Get name of collaborators from day 1 #
+########################################
+collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
+pullsNumbers=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls?per_page=100" | jq '.[] | .number') >> log.out 2>&1
 
-#get name of collaborators from day 1
-collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
-ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
-pullsNumbers=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/pulls?per_page=100 | jq '.[] | .number') >> log.out 2>&1
-getstudents
+####################
+# Get the students #
+####################
+GetStudents

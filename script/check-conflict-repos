@@ -1,30 +1,43 @@
-#!/bin/sh
+#!/bin/bash
 
-#you must have a githubteacher token
-#saved to your ENV variables in order to use this script
+################################################################################
+########################## Check Conflicts Repo ################################
+################################################################################
+
+###########################################################
+# NOTE:                                                   #
+# You must have a githubteacher token                     #
+# saved to your ENV variables in order to use this script #
+###########################################################
 collabrepo=$1
 
-#test array content
-function containsElement () {
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function ContainsElement ##################################################
+function ContainsElement () {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
-
+################################################################################
+#### Function getnames #########################################################
 function getnames () {
   #get name of collaborators from day 1
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
   for i in ${collabs[@]}
   do
     if
-      containsElement $i $ownersArray
+      ContainsElement $i $ownersArray
     then
-      checkrepo $i
+      CheckRepo $i
     fi
   done
 }
-
-function checkrepo () {
+################################################################################
+#### Function CheckRepo ########################################################
+function CheckRepo () {
   student=$1
   student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
   studentRepo="conflict-practice-"$student
@@ -112,6 +125,15 @@ function checkrepo () {
   fi
   rm conflict-activity-$student.json
 }
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+########################################
+# Get name of collaborators from day 1 #
+########################################
+ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
 
-ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
+######################
+# Get the user names #
+######################
 getnames
