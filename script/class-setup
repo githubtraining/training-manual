@@ -24,10 +24,25 @@ SHELL=''          # What shell the user is using
 #### Function ValidateJQ #######################################################
 function ValidateJQ ()
 {
-  ############################
-  # Validate JQ is installed #
-  ############################
-  type jq >/dev/null 2>&1 || { >&2 "You don't have jq installed, grab it from https://stedolan.github.io/jq/download/"; exit 1; }
+  #########################
+  # Validate jq installed #
+  #########################
+  VALIDATE_JQ_CMD=$(which jq 2>&1)
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    echo "ERROR! Failed to find [jq] installed on system!"
+    echo "Please install to system before next run!"
+    echo "grab it from https://stedolan.github.io/jq/download/"
+    exit 1
+  fi
 }
 ################################################################################
 #### Function CreateRCFile #####################################################
@@ -55,16 +70,19 @@ function TokenOwner ()
   ##############################
   # See if we have token owner #
   ##############################
-  if [ -z ${TOKEN_OWNER+x} ]
+  if [ -z ${CLIENT_TOKEN_OWNER+x} ]
     then
-      echo "It looks like we'll need to add the TOKEN_OWNER var"
+      echo "It looks like we'll need to add the CLIENT_TOKEN_OWNER var"
       echo "to your ~/.trainingclientrc. Please type the github username"
       echo "you'll be using today and we'll add this automatically. Remember, this"
       echo "user will need to have full admin access to the teaching organization."
+      #####################
+      # Read in the input #
+      #####################
       read NEW_NAME
-      echo "export TOKEN_OWNER='$NEW_NAME'" >> $HOME/.trainingclientrc
+      echo "export CLIENT_TOKEN_OWNER='$NEW_NAME'" >> $HOME/.trainingclientrc
     else
-      echo "TOKEN_OWNER = $TOKEN_OWNER."
+      echo "CLIENT_TOKEN_OWNER = $CLIENT_TOKEN_OWNER."
   fi
   echo "==============================================="
 }
@@ -75,15 +93,19 @@ function DemoPAT ()
   ##############################
   # See if we have teacher pat #
   ##############################
-  if [ -z ${DEMO_PAT+x} ]; then
+  if [ -z ${CLIENT_PAT+x} ]; then
     echo "It looks like we need to add the"
-    echo "DEMO_PAT var to your ~/.trainingclientrc."
+    echo "CLIENT_PAT var to your ~/.trainingclientrc."
     echo "Please generate a Personal Access token on the"
     echo "account you'll be teaching from and paste it here."
-    read NEW_TOKEN
-    echo "export DEMO_PAT='$NEW_TOKEN'" >> $HOME/.trainingclientrc
+    echo "(Note: the token will not be displayed when entered)"
+    #####################
+    # Read in the token #
+    #####################
+    read -s NEW_TOKEN
+    echo "export CLIENT_PAT='$NEW_TOKEN'" >> $HOME/.trainingclientrc
   else
-    echo "DEMO_PAT is set!"
+    echo "CLIENT_PAT is set!"
   fi
 
   echo "==============================================="
@@ -95,9 +117,9 @@ function InstanceURL ()
   ###############################
   # See if we have instance url #
   ###############################
-  if [ -z ${INSTANCE_URL+x} ]; then
+  if [ -z ${CLIENT_URL+x} ]; then
     echo "It looks like you need to add the"
-    echo "INSTANCE_URL var to your ~/.trainingclientrc. Please type the"
+    echo "CLIENT_URL var to your ~/.trainingclientrc. Please type the"
     echo "root endpoint for your github instance."
     echo "For example: api.github.com OR github.mycompany.com/api/v3"
     read NEW_URL
@@ -115,7 +137,7 @@ function InstanceURL ()
     if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" https://$NEW_URL/ | jq .message) = null ]]
       then
         echo "API endpoint + authentication verified"
-        echo "export INSTANCE_URL='$NEW_URL'" >> $HOME/.trainingclientrc
+        echo "export CLIENT_URL='$NEW_URL'" >> $HOME/.trainingclientrc
       else
         echo "Can't make an authenticated request to the API."
         exit 1
@@ -127,9 +149,10 @@ function InstanceURL ()
         #strip the API part
         strippedURL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
         echo "export ROOT_URL='$strippedURL'" >> $HOME/.trainingclientrc
+        echo "export CLIENT_URL='$CLIENT_URL'" >> $HOME/.trainingclientrc
     fi
   else
-    echo "INSTANCE_URL = $INSTANCE_URL"
+    echo "CLIENT_URL = $INSTANCE_URL"
     echo "ROOT_URL = $ROOT_URL"
   fi
 
@@ -142,9 +165,9 @@ function ClassOrg ()
   ##########################
   # See if we have the Org #
   ##########################
-  if [ -z ${CLASS_ORG+x} ]
+  if [ -z ${CLIENT_CLASS_ORG+x} ]
     then
-      echo "It looks like you need to add the CLASS_ORG var"
+      echo "It looks like you need to add the CLIENT_CLASS_ORG var"
       echo "to your ~/.trainingclientrc. Please type the organization name"
       echo "used for github training on your instance."
       echo "For example: githubschool"
@@ -153,13 +176,13 @@ function ClassOrg ()
       if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" https://$NEW_URL/orgs/$NEW_ORG | jq .message) = null ]]
             then
           echo "That organization was verified."
-          echo "export CLASS_ORG='$NEW_ORG'" >> $HOME/.trainingclientrc
+          echo "export CLIENT_CLASS_ORG='$NEW_ORG'" >> $HOME/.trainingclientrc
         else
           echo "Can't access the organization via the API."
           exit 1
       fi
     else
-      echo "CLASS_ORG = $CLASS_ORG"
+      echo "CLIENT_CLASS_ORG = $CLIENT_CLASS_ORG"
   fi
   echo "==============================================="
 }
@@ -170,16 +193,16 @@ function SurveyToken ()
   ###################################
   # See if we have the survey token #
   ###################################
-  if [ -z ${SURVEY_TOKEN+x} ]
+  if [ -z ${CLIENT_SURVEY_TOKEN+x} ]
     then
       echo "The scripts use the SurveyGizmo API to auto-generate"
       echo "the post-class survey. You will need to add the API"
       echo "Key found in SurveyGizmo (Log In -> Account -> Integrations -> API Key)"
       echo " to your ~/.trainingclientrc. Please paste the API Key below:"
       read SURVEY_TOKEN
-      echo "export SURVEY_TOKEN='$SURVEY_TOKEN'" >> $HOME/.trainingclientrc
+      echo "export CLIENT_SURVEY_TOKEN='$SURVEY_TOKEN'" >> $HOME/.trainingclientrc
     else
-      echo "SURVEY_TOKEN is set!"
+      echo "CLIENT_SURVEY_TOKEN is set!"
   fi
   echo "==============================================="
 }
@@ -190,16 +213,16 @@ function SurveySecret ()
   ####################################
   # See if we have the survey secret #
   ####################################
-  if [ -z ${SURVEY_SECRET+x} ]
+  if [ -z ${CLIENT_SURVEY_SECRET+x} ]
     then
       echo "The SurveyGizmo API also requires a secret key."
       echo "You will need to add the api"
       echo "secret key generated by SurveyGizmo to your ~/.trainingclientrc."
       echo "Please paste it below:"
       read SURVEY_SECRET
-      echo "export SURVEY_SECRET='$SURVEY_SECRET'" >> $HOME/.trainingclientrc
+      echo "export CLIENT_SURVEY_SECRET='$SURVEY_SECRET'" >> $HOME/.trainingclientrc
     else
-      echo "SURVEY_SECRET is set!"
+      echo "CLIENT_SURVEY_SECRET is set!"
   fi
   echo "==============================================="
 }
@@ -210,15 +233,15 @@ function SurveyCampaign ()
   #####################################
   # See if we have the survey campain #
   #####################################
-  if [ -z ${SURVEY_CAMPAIGN+x} ]
+  if [ -z ${CLIENT_SURVEY_CAMPAIGN+x} ]
     then
       echo "The survey created in SurveyGizmo is assigned a unique"
       echo "campaign number. Go ahead and add it to your ~/.trainingclientrc."
       echo "By pasting it below:"
       read SURVEY_CAMPAIGN
-      echo "export SURVEY_CAMPAIGN='$SURVEY_CAMPAIGN'" >> $HOME/.trainingclientrc
+      echo "export CLIENT_SURVEY_CAMPAIGN='$SURVEY_CAMPAIGN'" >> $HOME/.trainingclientrc
     else
-      echo "SURVEY_CAMPAIGN = $SURVEY_CAMPAIGN"
+      echo "CLIENT_SURVEY_CAMPAIGN = $SURVEY_CAMPAIGN"
   fi
   echo "==============================================="
 }
@@ -229,15 +252,15 @@ function ApptURL ()
   ###############################
   # See if we have the appt url #
   ###############################
-  if [ -z ${APPT_URL+x} ]
+  if [ -z ${CLIENT_APPT_URL+x} ]
     then
       echo "If you will offer 1:1 appointments with your students,"
       echo "you will need to add the booking URL to your ~/.trainingclientrc"
       echo "by pasting it below:"
       read APPT_URL
-      echo "export APPT_URL='$APPT_URL'" >> $HOME/.trainingclientrc
+      echo "export CLIENT_APPT_URL='$APPT_URL'" >> $HOME/.trainingclientrc
     else
-      echo "APPT_URL = $APPT_URL"
+      echo "CLIENT_APPT_URL = $APPT_URL"
   fi
   echo "==============================================="
 }
@@ -266,42 +289,52 @@ function ShellCheck ()
 # Validate jq #
 ###############
 ValidateJQ
+
 ##################
 # Create rc file #
 ##################
 CreateRCFile
+
 #######################
 # Get the token owner #
 #######################
 TokenOwner
+
 #######################
 # Get the teacher pat #
 #######################
 DemoPAT
+
 ########################
 # Get the instance url #
 ########################
 InstanceURL
+
 #####################
 # Get the class org #
 #####################
 ClassOrg
+
 ########################
 # Get the survey token #
 ########################
 SurveyToken
+
 #########################
 # Get the survey secret #
 #########################
 SurveySecret
+
 ##########################
 # Get the survey capaign #
 ##########################
 SurveyCampaign
+
 ####################
 # Get the appt url #
 ####################
 ApptURL
+
 #########################
 # Check the users shell #
 #########################

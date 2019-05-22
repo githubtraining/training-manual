@@ -16,98 +16,6 @@ set -e
 ########################## Functions Below #####################################
 ################################################################################
 ################################################################################
-#### Function ValidateEnv ######################################################
-function ValidateEnv ()
-{
-  echo ""
-  echo "========================================================"
-  echo " validating environmrent and libraries..."
-
-  #######################################################
-  # Need to validate the environment vars and libraries #
-  #######################################################
-
-  #########################
-  # Validate jq installed #
-  #########################
-  VALIDATE_JQ_CMD=$(which jq 2>&1)
-
-  #######################
-  # Load the error code #
-  #######################
-  ERROR_CODE=$?
-
-  ##############################
-  # Check the shell for errors #
-  ##############################
-  if [ $ERROR_CODE -ne 0 ]; then
-    echo "ERROR! Failed to find [jq] installed on system!"
-    echo "Please install to system before next run!"
-    echo "grab it from https://stedolan.github.io/jq/download/"
-    exit 1
-  fi
-
-  #########################################
-  # Check we have the DEMO_PAT in the env #
-  #########################################
-  if [[ -z "${DEMO_PAT}" ]]; then
-    echo "ERROR! Failed to find [DEMO_PAT] in local environment variables!"
-    echo "Please give the PAT for running this course, followed by the [ENTER] key"
-    echo "(note: your input will NOT be displayed)"
-    echo ""
-    ################
-    # Read the PAT #
-    ################
-    read -s DEMO_PAT
-
-    ############################################
-    # Clean any whitespace that may be entered #
-    ############################################
-    DEMO_PAT_NO_WHITESPACE="$(echo -e "${DEMO_PAT}" | tr -d '[:space:]')"
-    DEMO_PAT=$DEMO_PAT_NO_WHITESPACE
-
-    ##########################################
-    # Check the length of the PAT for sanity #
-    ##########################################
-    if [ ${#DEMO_PAT} -ne 40 ]; then
-      echo "GitHub PAT's are 40 characters in length! you gave me ${#DEMO_PAT} characters!"
-      exit 1
-    else
-      #############################
-      # Set it to the environment #
-      #############################
-      export DEMO_PAT=$DEMO_PAT
-    fi
-  fi
-
-  #########################################
-  # Check we have the DEMO_URL in the env #
-  #########################################
-  if [[ -z "${DEMO_URL}" ]]; then
-    echo "ERROR! Failed to find [DEMO_URL] in local environment variables!"
-    echo "Please give the DEMO_URL for running this course, followed by the [ENTER] key"
-    echo "(note: This will be in format: https://the-github-url.com )"
-    echo ""
-    ################
-    # Read the URL #
-    ################
-    read -s INSTANCE_URL
-
-    ############################################
-    # Clean any whitespace that may be entered #
-    ############################################
-    INSTANCE_URL_NO_WHITESPACE="$(echo -e "${INSTANCE_URL}" | tr -d '[:space:]')"
-    INSTANCE_URL=$INSTANCE_URL_NO_WHITESPACE
-
-    #############################
-    # Set it to the environment #
-    #############################
-    export INSTANCE_URL=$INSTANCE_URL
-  fi
-
-  echo "========================================================"
-}
-################################################################################
 #### Function GetTask ##########################################################
 function GetTask ()
 {
@@ -116,6 +24,10 @@ function GetTask ()
   echo "This script manages the repos and activities"
   echo "for the GitHub for Developers training."
   echo "========================================================"
+  echo ""
+  echo "NOTE: If you have NOT ran: 0 Confirm Set-up, please run this task first"
+  echo "      as it is needed to set all base environment variables!"
+  echo ""
   echo ""
   echo "What would you like to do? (Just the number please)"
   echo "0: Confirm Set-up"
@@ -231,11 +143,6 @@ function DoTask ()
 ################################################################################
 ############################### MAIN ###########################################
 ################################################################################
-
-#####################
-# Validate Env Vars #
-#####################
-ValidateEnv
 
 #######################
 # Get the task to run #

@@ -9,7 +9,7 @@
 # You must have a githubteacher token                     #
 # saved to your ENV variables in order to use this script #
 ###########################################################
-collabrepo=$1
+COLLAB_REPO=$1
 
 ################################################################################
 ########################## Functions Below #####################################
@@ -27,7 +27,7 @@ function ContainsElement ()
 function getnames ()
 {
   #get name of collaborators from day 1
-  collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
+  collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
   for i in ${collabs[@]}
   do
     if
@@ -114,17 +114,17 @@ function CheckRepo ()
   #first, encode file as base64
   newfile=$(cat conflict-activity-$student.json | base64)
   #does the file already exist?
-  status=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json | grep "^Status:") >> log.out 2>&1
+  status=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$student.json | grep "^Status:") >> log.out 2>&1
   if echo "$status" | grep -iq "404" ;
   then
     #create the file on the repo
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$student.json\", \"message\": \"Graded conflict activity for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$student.json\", \"message\": \"Graded conflict activity for $student\", \"content\": \"$newfile\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$student.json >> log.out 2>&1
   else
     #get the sha
-    sha=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json | jq .sha) >> log.out 2>&1
+    sha=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$student.json | jq .sha) >> log.out 2>&1
     echo "Replacing the file at sha: $sha"
     #replace the file
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$student.json\", \"message\": \"Graded conflict activity for $student\", \"content\": \"$newfile\", \"sha\": $sha}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/_grades/conflict-activity-$student.json >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$student.json\", \"message\": \"Graded conflict activity for $student\", \"content\": \"$newfile\", \"sha\": $sha}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$student.json >> log.out 2>&1
   fi
   rm conflict-activity-$student.json
 }
