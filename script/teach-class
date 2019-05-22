@@ -47,36 +47,36 @@ function ValidateEnv ()
     exit 1
   fi
 
-  ############################################
-  # Check we have the TEACHER_PAT in the env #
-  ############################################
-  if [[ -z "${TEACHER_PAT}" ]]; then
-    echo "ERROR! Failed to find [TEACHER_PAT] in local environment variables!"
+  #########################################
+  # Check we have the DEMO_PAT in the env #
+  #########################################
+  if [[ -z "${DEMO_PAT}" ]]; then
+    echo "ERROR! Failed to find [DEMO_PAT] in local environment variables!"
     echo "Please give the PAT for running this course, followed by the [ENTER] key"
     echo "(note: your input will NOT be displayed)"
     echo ""
     ################
     # Read the PAT #
     ################
-    read -s TEACHER_PAT
+    read -s DEMO_PAT
 
     ############################################
     # Clean any whitespace that may be entered #
     ############################################
-    TEACHER_PAT_NO_WHITESPACE="$(echo -e "${TEACHER_PAT}" | tr -d '[:space:]')"
-    TEACHER_PAT=$TEACHER_PAT_NO_WHITESPACE
+    DEMO_PAT_NO_WHITESPACE="$(echo -e "${DEMO_PAT}" | tr -d '[:space:]')"
+    DEMO_PAT=$DEMO_PAT_NO_WHITESPACE
 
     ##########################################
     # Check the length of the PAT for sanity #
     ##########################################
-    if [ ${#TEACHER_PAT} -ne 40 ]; then
-      echo "GitHub PAT's are 40 characters in length! you gave me ${#TEACHER_PAT} characters!"
+    if [ ${#DEMO_PAT} -ne 40 ]; then
+      echo "GitHub PAT's are 40 characters in length! you gave me ${#DEMO_PAT} characters!"
       exit 1
     else
       #############################
       # Set it to the environment #
       #############################
-      export TEACHER_PAT=$TEACHER_PAT
+      export DEMO_PAT=$DEMO_PAT
     fi
 
   echo "========================================================"
@@ -93,14 +93,12 @@ function GetTask ()
   echo ""
   echo "What would you like to do? (Just the number please)"
   echo "0: Confirm Set-up"
-  echo "1: Create a new caption-this class repository"
-  echo "2: Add collabs and create files (also makes the repo private)"
-  echo "3: Grade the day 1 repo"
-  echo "4: Create conflict repos for each student"
-  echo "5: Grade the conflict repos"
-  echo "6: Create the github-games repos for each student"
-  echo "7: Expire student repos"
-  echo "8: Done"
+  echo "1: Add collabs and create files (also makes the repo private)"
+  echo "2: Grade the day 1 repo"
+  echo "3: Create conflict repos for each student"
+  echo "4: Create the github-games repos for each student"
+  echo "5: Expire student repos"
+  echo "6: Done"
   echo ""
 
   ################################
@@ -126,7 +124,7 @@ function GetTask ()
   ################
   # If were done #
   ################
-  if [ $TASK -eq 8 ]; then
+  if [ $TASK -eq 6 ]; then
     # Exit script
     exit 0
   #######################
@@ -154,7 +152,7 @@ function DoTask ()
   #########################################
   # See if we need to get the collab repo #
   #########################################
-  if [ $TASK -ne 0 ] || [ $TASK -ne 7 ]; then
+  if [ $TASK -ne 0 ] || [ $TASK -ne 6 ]; then
   echo "What is the name of the day 1 repo?"
   ########################
   # Read the collab repo #
@@ -175,42 +173,30 @@ function DoTask ()
   # TASK 1 #
   ##########
   elif [ $TASK -eq 1 ]; then
-    echo "running script/new-virtual"
-    script/new-virtual $COLLAB_REPO
+    echo "running script/create-files"
+    script/create-files $COLLAB_REPO
   ##########
   # TASK 2 #
   ##########
   elif [ $TASK -eq 2 ]; then
-    echo "running script/create-files"
-    script/create-files $COLLAB_REPO
+    echo "running script/check-caption-repo"
+    script/check-caption-repo $COLLAB_REPO
   ##########
   # TASK 3 #
   ##########
   elif [ $TASK -eq 3 ]; then
-    echo "running script/check-caption-repo"
-    script/check-caption-repo $COLLAB_REPO
+    echo "running script/create-conflict-repos"
+    script/create-conflict-repos $COLLAB_REPO
   ##########
   # TASK 4 #
   ##########
   elif [ $TASK -eq 4 ]; then
-    echo "running script/create-conflict-repos"
-    script/create-conflict-repos $COLLAB_REPO
+    echo "running script/create-game-repos"
+    script/create-game-repos $COLLAB_REPO
   ##########
   # TASK 5 #
   ##########
   elif [ $TASK -eq 5 ]; then
-    echo "running script/check-conflict-repos"
-    script/check-conflict-repos $COLLAB_REPO
-  ##########
-  # TASK 6 #
-  ##########
-  elif [ $TASK -eq 6]; then
-    echo "running script/create-game-repos"
-    script/create-game-repos $COLLAB_REPO
-  ##########
-  # TASK 7 #
-  ##########
-  elif [ $TASK -eq 7 ]; then
     echo "running script/expire-repo"
     script/expire-repo
   fi
