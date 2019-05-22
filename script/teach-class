@@ -179,11 +179,12 @@ function DoTask ()
   # See if we need to get the collab repo #
   #########################################
   if [ $TASK -ne 0 ] || [ $TASK -ne 6 ]; then
-  echo "What is the name of the day 1 repo?"
-  ########################
-  # Read the collab repo #
-  ########################
-  read COLLAB_REPO
+    echo "What is the name of the day 1 repo?"
+    ########################
+    # Read the collab repo #
+    ########################
+    read COLLAB_REPO
+  fi
 
   ##########
   # TASK 0 #
