@@ -16,14 +16,16 @@ collabrepo=$1
 ################################################################################
 ################################################################################
 #### Function ContainsElement ##################################################
-function ContainsElement () {
+function ContainsElement ()
+{
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
 ################################################################################
 #### Function getnames #########################################################
-function getnames () {
+function getnames ()
+{
   #get name of collaborators from day 1
   collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
   for i in ${collabs[@]}
@@ -37,7 +39,8 @@ function getnames () {
 }
 ################################################################################
 #### Function CheckRepo ########################################################
-function CheckRepo () {
+function CheckRepo ()
+{
   student=$1
   student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
   studentRepo="conflict-practice-"$student
