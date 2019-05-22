@@ -38,7 +38,7 @@ function CreateRCFile ()
   ###########################
   echo "==============================================="
   echo "We'll create a file to store all training related configs."
-  echo "Checking for and creating ~/.trainingclientrc..."
+  echo "Checking for and creating [$HOME/.trainingclientrc]"
 
   ######################
   # See if file exists #
