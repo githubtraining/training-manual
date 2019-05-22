@@ -78,6 +78,32 @@ function ValidateEnv ()
       #############################
       export DEMO_PAT=$DEMO_PAT
     fi
+  fi
+
+  #########################################
+  # Check we have the DEMO_URL in the env #
+  #########################################
+  if [[ -z "${DEMO_URL}" ]]; then
+    echo "ERROR! Failed to find [DEMO_URL] in local environment variables!"
+    echo "Please give the DEMO_URL for running this course, followed by the [ENTER] key"
+    echo "(note: This will be in format: https://the-github-url.com )"
+    echo ""
+    ################
+    # Read the URL #
+    ################
+    read -s INSTANCE_URL
+
+    ############################################
+    # Clean any whitespace that may be entered #
+    ############################################
+    INSTANCE_URL_NO_WHITESPACE="$(echo -e "${INSTANCE_URL}" | tr -d '[:space:]')"
+    INSTANCE_URL=$INSTANCE_URL_NO_WHITESPACE
+
+    #############################
+    # Set it to the environment #
+    #############################
+    export INSTANCE_URL=$INSTANCE_URL
+  fi
 
   echo "========================================================"
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+DEMO_PAT#!/bin/bash
 
 ################################################################################
 ############################### Class Setup ####################################
@@ -38,12 +38,12 @@ function CreateRCFile ()
   ###########################
   echo "==============================================="
   echo "We'll create a file to store all training related configs."
-  echo "Checking for and creating ~/.trainingmanualrc..."
+  echo "Checking for and creating ~/.trainingclientrc..."
 
   ######################
   # See if file exists #
   ######################
-  [ ! -f "$HOME/.trainingmanualrc" ] && touch "$HOME/.trainingmanualrc"
+  [ ! -f "$HOME/.trainingclientrc" ] && touch "$HOME/.trainingclientrc"
   echo "==============================================="
   echo ""
   echo "==============================================="
@@ -58,32 +58,32 @@ function TokenOwner ()
   if [ -z ${TOKEN_OWNER+x} ]
     then
       echo "It looks like we'll need to add the TOKEN_OWNER var"
-      echo "to your ~/.trainingmanualrc. Please type the github username"
+      echo "to your ~/.trainingclientrc. Please type the github username"
       echo "you'll be using today and we'll add this automatically. Remember, this"
       echo "user will need to have full admin access to the teaching organization."
       read NEW_NAME
-      echo "export TOKEN_OWNER='$NEW_NAME'" >> $HOME/.trainingmanualrc
+      echo "export TOKEN_OWNER='$NEW_NAME'" >> $HOME/.trainingclientrc
     else
       echo "TOKEN_OWNER = $TOKEN_OWNER."
   fi
   echo "==============================================="
 }
 ################################################################################
-#### Function TeacherPAT #######################################################
-function TeacherPAT ()
+#### Function DemoPAT ##########################################################
+function DemoPAT ()
 {
   ##############################
   # See if we have teacher pat #
   ##############################
-  if [ -z ${TEACHER_PAT+x} ]; then
+  if [ -z ${DEMO_PAT+x} ]; then
     echo "It looks like we need to add the"
-    echo "TEACHER_PAT var to your ~/.trainingmanualrc."
+    echo "DEMO_PAT var to your ~/.trainingclientrc."
     echo "Please generate a Personal Access token on the"
     echo "account you'll be teaching from and paste it here."
     read NEW_TOKEN
-    echo "export TEACHER_PAT='$NEW_TOKEN'" >> $HOME/.trainingmanualrc
+    echo "export DEMO_PAT='$NEW_TOKEN'" >> $HOME/.trainingclientrc
   else
-    echo "TEACHER_PAT is set!"
+    echo "DEMO_PAT is set!"
   fi
 
   echo "==============================================="
@@ -97,7 +97,7 @@ function InstanceURL ()
   ###############################
   if [ -z ${INSTANCE_URL+x} ]; then
     echo "It looks like you need to add the"
-    echo "INSTANCE_URL var to your ~/.trainingmanualrc. Please type the"
+    echo "INSTANCE_URL var to your ~/.trainingclientrc. Please type the"
     echo "root endpoint for your github instance."
     echo "For example: api.github.com OR github.mycompany.com/api/v3"
     read NEW_URL
@@ -115,18 +115,18 @@ function InstanceURL ()
     if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" https://$NEW_URL/ | jq .message) = null ]]
       then
         echo "API endpoint + authentication verified"
-        echo "export INSTANCE_URL='$NEW_URL'" >> $HOME/.trainingmanualrc
+        echo "export INSTANCE_URL='$NEW_URL'" >> $HOME/.trainingclientrc
       else
         echo "Can't make an authenticated request to the API."
         exit 1
     fi
     if echo "$NEW_URL" | grep -iq "\<api.github.com\>" ;
       then
-        echo "export ROOT_URL='github.com'" >> $HOME/.trainingmanualrc
+        echo "export ROOT_URL='github.com'" >> $HOME/.trainingclientrc
       else
         #strip the API part
         strippedURL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
-        echo "export ROOT_URL='$strippedURL'" >> $HOME/.trainingmanualrc
+        echo "export ROOT_URL='$strippedURL'" >> $HOME/.trainingclientrc
     fi
   else
     echo "INSTANCE_URL = $INSTANCE_URL"
@@ -145,7 +145,7 @@ function ClassOrg ()
   if [ -z ${CLASS_ORG+x} ]
     then
       echo "It looks like you need to add the CLASS_ORG var"
-      echo "to your ~/.trainingmanualrc. Please type the organization name"
+      echo "to your ~/.trainingclientrc. Please type the organization name"
       echo "used for github training on your instance."
       echo "For example: githubschool"
       read NEW_ORG
@@ -153,7 +153,7 @@ function ClassOrg ()
       if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" https://$NEW_URL/orgs/$NEW_ORG | jq .message) = null ]]
             then
           echo "That organization was verified."
-          echo "export CLASS_ORG='$NEW_ORG'" >> $HOME/.trainingmanualrc
+          echo "export CLASS_ORG='$NEW_ORG'" >> $HOME/.trainingclientrc
         else
           echo "Can't access the organization via the API."
           exit 1
@@ -175,9 +175,9 @@ function SurveyToken ()
       echo "The scripts use the SurveyGizmo API to auto-generate"
       echo "the post-class survey. You will need to add the API"
       echo "Key found in SurveyGizmo (Log In -> Account -> Integrations -> API Key)"
-      echo " to your ~/.trainingmanualrc. Please paste the API Key below:"
+      echo " to your ~/.trainingclientrc. Please paste the API Key below:"
       read SURVEY_TOKEN
-      echo "export SURVEY_TOKEN='$SURVEY_TOKEN'" >> $HOME/.trainingmanualrc
+      echo "export SURVEY_TOKEN='$SURVEY_TOKEN'" >> $HOME/.trainingclientrc
     else
       echo "SURVEY_TOKEN is set!"
   fi
@@ -194,10 +194,10 @@ function SurveySecret ()
     then
       echo "The SurveyGizmo API also requires a secret key."
       echo "You will need to add the api"
-      echo "secret key generated by SurveyGizmo to your ~/.trainingmanualrc."
+      echo "secret key generated by SurveyGizmo to your ~/.trainingclientrc."
       echo "Please paste it below:"
       read SURVEY_SECRET
-      echo "export SURVEY_SECRET='$SURVEY_SECRET'" >> $HOME/.trainingmanualrc
+      echo "export SURVEY_SECRET='$SURVEY_SECRET'" >> $HOME/.trainingclientrc
     else
       echo "SURVEY_SECRET is set!"
   fi
@@ -213,10 +213,10 @@ function SurveyCampaign ()
   if [ -z ${SURVEY_CAMPAIGN+x} ]
     then
       echo "The survey created in SurveyGizmo is assigned a unique"
-      echo "campaign number. Go ahead and add it to your ~/.trainingmanualrc."
+      echo "campaign number. Go ahead and add it to your ~/.trainingclientrc."
       echo "By pasting it below:"
       read SURVEY_CAMPAIGN
-      echo "export SURVEY_CAMPAIGN='$SURVEY_CAMPAIGN'" >> $HOME/.trainingmanualrc
+      echo "export SURVEY_CAMPAIGN='$SURVEY_CAMPAIGN'" >> $HOME/.trainingclientrc
     else
       echo "SURVEY_CAMPAIGN = $SURVEY_CAMPAIGN"
   fi
@@ -232,10 +232,10 @@ function ApptURL ()
   if [ -z ${APPT_URL+x} ]
     then
       echo "If you will offer 1:1 appointments with your students,"
-      echo "you will need to add the booking URL to your ~/.trainingmanualrc"
+      echo "you will need to add the booking URL to your ~/.trainingclientrc"
       echo "by pasting it below:"
       read APPT_URL
-      echo "export APPT_URL='$APPT_URL'" >> $HOME/.trainingmanualrc
+      echo "export APPT_URL='$APPT_URL'" >> $HOME/.trainingclientrc
     else
       echo "APPT_URL = $APPT_URL"
   fi
@@ -253,7 +253,7 @@ function ShellCheck ()
   read SHELL
   echo "Adding to your .${SHELL}rc..."
   echo "\n# added by github/training-manual class setup" >> $HOME/.${SHELL}rc
-  echo "test -f \"$HOME/.trainingmanualrc\" && source \"$HOME/.trainingmanualrc\"" >> $HOME/.${SHELL}rc
+  echo "test -f \"$HOME/.trainingclientrc\" && source \"$HOME/.trainingclientrc\"" >> $HOME/.${SHELL}rc
 
   echo "ATTENTION: You must restart your open terminal sessions"
   echo "for changes to take effect."
@@ -277,7 +277,7 @@ TokenOwner
 #######################
 # Get the teacher pat #
 #######################
-TeacherPAT
+DemoPAT
 ########################
 # Get the instance url #
 ########################
