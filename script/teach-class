@@ -1,11 +1,30 @@
-#!/bin/sh
+#!/bin/bash
+################################################################################
+############################ Teach Class #######################################
+################################################################################
+
+############################
+# Set the exit on non zero #
+############################
 set -e
 
-function gettask () {
+###########
+# GLOBALS #
+###########
+
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function gettask ##########################################################
+function gettask ()
+{
+  echo ""
   echo "========================================================"
   echo "This script manages the repos and activities"
   echo "for the GitHub for Developers training."
   echo "========================================================"
+  echo ""
   echo "What would you like to do? (Just the number please)"
   echo "0: Confirm Set-up"
   echo "1: Create a new caption-this class repository"
@@ -16,64 +35,125 @@ function gettask () {
   echo "6: Create the github-games repos for each student"
   echo "7: Expire student repos"
   echo "8: Done"
-  read task
-  if echo "$task" | grep -iq "8" ;
-  then
-    exit
+  echo ""
+
+  ################################
+  # Read the task that was input #
+  ################################
+  read TASK
+
+  ############################################
+  # Clean any whitespace that may be entered #
+  ############################################
+  TASK_NO_WHITESPACE="$(echo -e "$TASK" | tr -d '[:space:]')"
+  TASK=$TASK_NO_WHITESPACE
+
+  ############################
+  # Validate we got a number #
+  ############################
+  REGEX='^[0-9]+$'
+  if ! [[ $TASK =~ $REGEX ]] ; then
+    echo "ERROR: [$TASK] is not a number!"
+    exit 1
+  fi
+
+  ################
+  # If were done #
+  ################
+  if [ $TASK -eq 8 ]; then
+    # Exit script
+    exit 0
+  #######################
+  # Were running a task #
+  #######################
   else
-    dotask $task
+    # Run a task
+    dotask "$TASK"
   fi
 }
+################################################################################
+#### Function dotask ###########################################################
+function dotask ()
+{
+  ####################
+  # Read in the TASK #
+  ####################
+  TASK=$1
 
-function dotask () {
-  task=$1
-  if echo "$task" | grep -iq "0" ;
-  then
+  #######################
+  # Set the collab repo #
+  #######################
+  COLLAB_REPO=''
+
+  #########################################
+  # See if we need to get the collab repo #
+  #########################################
+  if [ $TASK -ne 0 ] || [ $TASK -ne 7 ]; then
+  echo "What is the name of the day 1 repo?"
+  ########################
+  # Read the collab repo #
+  ########################
+  read COLLAB_REPO
+
+  ##########
+  # TASK 0 #
+  ##########
+  if [ $TASK -eq 0 ]; then
     echo "running script/class-setup"
     script/class-setup
     echo "=============================="
     echo "Set-up is complete"
     echo "=============================="
     exit
-  fi
-  if echo "$task" | grep -iq "7" ;
-  then
+  ##########
+  # TASK 1 #
+  ##########
+  elif [ $TASK -eq 1 ]; then
+    echo "running script/new-virtual"
+    script/new-virtual $COLLAB_REPO
+  ##########
+  # TASK 2 #
+  ##########
+  elif [ $TASK -eq 2 ]; then
+    echo "running script/create-files"
+    script/create-files $COLLAB_REPO
+  ##########
+  # TASK 3 #
+  ##########
+  elif [ $TASK -eq 3 ]; then
+    echo "running script/check-caption-repo"
+    script/check-caption-repo $COLLAB_REPO
+  ##########
+  # TASK 4 #
+  ##########
+  elif [ $TASK -eq 4 ]; then
+    echo "running script/create-conflict-repos"
+    script/create-conflict-repos $COLLAB_REPO
+  ##########
+  # TASK 5 #
+  ##########
+  elif [ $TASK -eq 5 ]; then
+    echo "running script/check-conflict-repos"
+    script/check-conflict-repos $COLLAB_REPO
+  ##########
+  # TASK 6 #
+  ##########
+  elif [ $TASK -eq 6]; then
+    echo "running script/create-game-repos"
+    script/create-game-repos $COLLAB_REPO
+  ##########
+  # TASK 7 #
+  ##########
+  elif [ $TASK -eq 7 ]; then
     echo "running script/expire-repo"
     script/expire-repo
-  else
-    echo "What is the name of the day 1 repo?"
-    read collabrepo
-    if echo "$task" | grep -iq "1" ;
-    then
-      echo "running script/new-virtual"
-      script/new-virtual $collabrepo
-    fi
-    if echo "$task" | grep -iq "2" ;
-    then
-      echo "running script/create-files"
-      script/create-files $collabrepo
-    fi
-    if echo "$task" | grep -iq "3" ;
-    then
-      echo "running script/check-caption-repo"
-      script/check-caption-repo $collabrepo
-    fi
-    if echo "$task" | grep -iq "4" ;
-    then
-      echo "running script/create-conflict-repos"
-      script/create-conflict-repos $collabrepo
-    fi
-    if echo "$task" | grep -iq "5" ;
-    then
-      echo "running script/check-conflict-repos"
-      script/check-conflict-repos $collabrepo
-    fi
-    if echo "$task" | grep -iq "6" ;
-    then
-      echo "running script/create-game-repos"
-      script/create-game-repos $collabrepo
-    fi
   fi
 }
-    
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+
+#######################
+# Get the task to run #
+#######################
 gettask
