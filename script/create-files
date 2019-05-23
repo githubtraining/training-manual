@@ -6,6 +6,7 @@
 ################
 # Source it up #
 ################
+# shellcheck disable=SC1090
 source "$HOME/.trainingmanualrc"
 
 ###########################################################
@@ -37,7 +38,7 @@ function GetNames ()
   # get names of people who have commented on the issue #
   #######################################################
   COUNTER=2
-  for i in ${COMMENTERS[@]}
+  for i in "${COMMENTERS[@]}"
   do
     j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if
@@ -53,12 +54,12 @@ function GetNames ()
     else
       echo "Skipping adding $j as a collaborator because they are already a collaborator."
     fi
-    if [ $j != $TOKEN_OWNER ]
+    if [ "$j" != "$TOKEN_OWNER" ]
     then
       ###################
       # Create the file #
       ###################
-      createFile $j $COUNTER
+      createFile "$j" "$COUNTER"
       ((COUNTER++))
     else
       echo "Skipping creating another file for $j because they are the instructor."
@@ -68,7 +69,7 @@ function GetNames ()
   ####################
   # Create the issue #
   ####################
-  CreateIssue $COUNTER
+  CreateIssue "$COUNTER"
 }
 ################################################################################
 #### Function AddCollab ########################################################
@@ -99,7 +100,7 @@ function createFile ()
   #####################
   # Check the counter #
   #####################
-  if [ $COUNTER -le 9 ]
+  if [ "$COUNTER" -le 9 ]
   then
     FILE_NUM=0$COUNTER
   else
@@ -110,11 +111,11 @@ function createFile ()
   # Print info #
   ##############
   echo "Time to create file 0000-01-$FILE_NUM-$STUDENT.md in $COLLAB_REPO"
-  echo "---" > 0000-01-$FILE_NUM-$STUDENT.md
-  echo "layout: slide" >> 0000-01-$FILE_NUM-$STUDENT.md
-  echo 'title: "Welcome to our slide deck!"' >> 0000-01-$FILE_NUM-$STUDENT.md
-  echo "---" >> 0000-01-$FILE_NUM-$STUDENT.md
-  echo "" >> 0000-01-$FILE_NUM-$STUDENT.md
+  echo "---" > "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "layout: slide" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo 'title: "Welcome to our slide deck!"' >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "---" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
 
   #####################
   # Array of octocats #
@@ -125,18 +126,18 @@ function createFile ()
   # Get a random #
   ################
   RANDOM_OCTOCAT=${OCTOCATS[$RANDOM % ${#OCTOCATS[@]} ]}
-  echo "Caption here" >> 0000-01-$FILE_NUM-$STUDENT.md
-  echo "" >> 0000-01-$FILE_NUM-$STUDENT.md
-  echo "$RANDOM_OCTOCAT" >> 0000-01-$FILE_NUM-$STUDENT.md
-  echo "{: .center}" >> 0000-01-$FILE_NUM-$STUDENT.md
+  echo "Caption here" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "$RANDOM_OCTOCAT" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "{: .center}" >> "0000-01-$FILE_NUM-$STUDENT.md"
 
   ################
   # Check the OS #
   ################
-  if [ $OSTYPE = "msys" ]; then
-    NEW_FILE=$(cat 0000-01-$FILE_NUM-$STUDENT.md | base64 --wrap=0)
+  if [[ "$OSTYPE" = "msys" ]]; then
+    NEW_FILE=$(cat "0000-01-$FILE_NUM-$STUDENT.md" | base64 --wrap=0)
   else
-    NEW_FILE=$(cat 0000-01-$FILE_NUM-$STUDENT.md | base64)
+    NEW_FILE=$(cat "0000-01-$FILE_NUM-$STUDENT.md" | base64)
   fi
 
   ###################################
@@ -147,7 +148,7 @@ function createFile ()
   #########################
   # Remove the local file #
   #########################
-  rm 0000-01-$FILE_NUM-$STUDENT.md
+  rm "0000-01-$FILE_NUM-$STUDENT.md"
 }
 ################################################################################
 #### Function CreateIssue ######################################################
@@ -167,7 +168,7 @@ function CreateIssue ()
   # create the body of the issue comment #
   ########################################
   TEMP_TEXT="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
-  for i in ${COMMENTERS[@]}
+  for i in "${COMMENTERS[@]}"
   do
     STUDENT=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     TEMP_TEXT=$TEMP_TEXT"- [ ] @$STUDENT\n"
@@ -182,7 +183,7 @@ function CreateIssue ()
     #get the issue number
     echo "Please point me to the correct issue"
     echo "To update the list of students (just type the number)"
-    echo $ISSUES
+    echo "$ISSUES"
     ##############
     # Read input #
     ##############
@@ -201,7 +202,7 @@ function CreateIssue ()
     #####################
     # Run the first run #
     #####################
-    FirstRun $COUNTER
+    FirstRun "$COUNTER"
   fi
 }
 ################################################################################
@@ -244,7 +245,7 @@ function MakePrivate ()
   ############
   # Check it #
   ############
-  if $REPO_STATUS
+  if "$REPO_STATUS"
   then
     echo "This repo is already private."
   else
@@ -297,7 +298,7 @@ function CreateOneOnOnes ()
   ########################################
   echo "$APPT_URL"
   ISS_TEXT="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
-  for i in ${COMMENTERS[@]}
+  for i in "${COMMENTERS[@]}"
   do
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     ISS_TEXT=$ISS_TEXT"@$i "

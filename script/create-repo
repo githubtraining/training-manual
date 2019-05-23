@@ -49,10 +49,10 @@ function CreateRepo ()
 {
   #create the repository on ${INSTANCE_URL}
   echo "Creating Repo:  https://${ROOT_URL}/${CLASS_ORG}/${REPO_NAME}"
-  if [ $ROOT_URL = "github.com" ]; then
-	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+  if [[ "$ROOT_URL" == "github.com" ]]; then
+    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
    else
-	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+     curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
   fi
 
   ######################
@@ -79,7 +79,7 @@ function CloneRepo ()
   ##################
   # Check the root #
   ##################
-  if [ $ROOT_URL = "github.com" ]; then
+  if [[ "$ROOT_URL" == "github.com" ]]; then
     ############
     # Clone it #
     ############
@@ -90,10 +90,16 @@ function CloneRepo ()
     # Clone it #
     ############
     git clone --bare "https://${TOKEN_OWNER}:${TEACHER_PAT}@${ROOT_URL}/${CLASS_ORG}/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
     ##############################
     # Check the shell for errors #
     ##############################
-    if [ $? -ne 0 ]; then
+    if [ $ERROR_CODE -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/${TYPE} and upload it to your GHE instance."
       exit 1
     fi
