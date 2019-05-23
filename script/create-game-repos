@@ -32,7 +32,7 @@ function GetNames ()
   ######################
   # Check the root url #
   ######################
-  if [ $ROOT_URL = "github.com" ]; then
+  if [[ "$ROOT_URL" == "github.com" ]]; then
     ##############
     # Clone repo #
     ##############
@@ -42,10 +42,16 @@ function GetNames ()
     # Clone repo #
     ##############
     git clone --bare "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/github-games" game-template >> log.out 2>&1
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
     #########################
     # Check the shell error #
     #########################
-    if [ $? -ne 0 ]; then
+    if [ $ERROR_CODE -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/github-games and upload it to your GHE instance."
       exit 1
     fi
@@ -70,7 +76,7 @@ function GetNames ()
   ###################
   # Read in the var #
   ###################
-  read CLASS_TIME
+  read -r CLASS_TIME
 
   ###################
   # Check the input #
@@ -84,16 +90,16 @@ function GetNames ()
   fi
 
   OWNERS_ARRAY=( "${OWNERS_ARRAY[@]/"$TEACHER"}" )
-  for i in ${COLLABS[@]}
+  for i in "${COLLABS[@]}"
   do
     if
-      ContainsElement "$i" "$OWNERS_ARRAY"
+      ContainsElement "$i" "${OWNERS_ARRAY[*]}"
       then
         i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
         REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$i" | grep "^Status:") >> log.out 2>&1
         echo "repoStatus for $i is $REPO_STATUS"
         if
-          echo $REPO_STATUS | grep -iq "404"
+          echo "$REPO_STATUS" | grep -iq "404"
         then
           createRepo "$i"
         else
@@ -124,7 +130,7 @@ function CreateRepo ()
   ##################
   # Check the root #
   ##################
-  if [ $ROOT_URL = "github.com" ]; then
+  if [[ "$ROOT_URL" == "github.com" ]]; then
     echo "Creating on GITHUB"
     #############
     # Create it #
@@ -147,13 +153,13 @@ function CreateRepo ()
   #################################
   # Add student as a collaborator #
   #################################
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/collaborators/$STUDENT >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/collaborators/$STUDENT" >> log.out 2>&1
   echo "Push the fresh $STUDENT_REPO back to $CLASS_ORG ..."
 
   ###########
   # Push it #
   ###########
-  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$STUDENT_REPO >> log.out 2>&1
+  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$STUDENT_REPO" >> log.out 2>&1
 
   ##################
   # Wait to finish #
@@ -181,6 +187,7 @@ function CreateRepo ()
 ##################
 # Get the owners #
 ##################
+# shellcheck disable=SC2178
 OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
 
 #################
