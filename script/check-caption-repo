@@ -97,6 +97,7 @@ function SendFiles ()
       echo "---" >> "caption-activity-$i.yml"
       #send graded file to original class repo
       #first, encode file as base64
+      # shellcheck disable=SC2002
       NEW_FILE=$(cat "caption-activity-$i.yml" | base64)
       #does the file already exist?
       STATUS=$(curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | grep "^Status:") >> log.out 2>&1
@@ -109,7 +110,7 @@ function SendFiles ()
         SHA=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | jq .sha) >> log.out 2>&1
         echo "Replacing the file at sha: $SHA"
         #replace the file
-        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml >> log.out 2>&1
+        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >> log.out 2>&1
       fi
 
       #########################################
@@ -126,8 +127,11 @@ function SendFiles ()
 ########################################
 # Get name of collaborators from day 1 #
 ########################################
+# shellcheck disable=SC2129
 COLLABS=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+# shellcheck disable=SC2129
 OWNERS_ARRAY=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
+# shellcheck disable=SC2129
 PULLS_NUMBERS=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls?per_page=100" | jq '.[] | .number') >> log.out 2>&1
 
 ####################
