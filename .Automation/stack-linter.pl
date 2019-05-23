@@ -286,7 +286,7 @@ sub BashLinter
   print "-------------------------------------------------------------------\n";
   print "Running Bash linter now...\n";
   # Need to find all files that end with .sh
-  my $findCommand = "find . -type f -name \"*.sh\" 2>&1";
+  my $findCommand = "find . -type f -name \"*.sh\" -type f -not -path \"*.git*\" -type f -exec awk 'FNR == 1 && /^#!.*sh/{print FILENAME}' {} + 2>&1";
   my @findResults = `$findCommand`;
 
   # Check the shell return
