@@ -26,14 +26,18 @@ function ContainsElement ()
 #### Function GetStudents ######################################################
 function GetStudents ()
 {
-  for i in ${COLLABS[@]}
+  for i in "${COLLABS[@]}"
   do
     if
-      ContainsElement $i $OWNERS_ARRAY
+      ContainsElement "$i" "$OWNERS_ARRAY"
     then
-      CreateStudentFile $i
+      CreateStudentFile "$i"
     fi
   done
+
+  ##################
+  # Check the repo #
+  ##################
   CheckRepo
 }
 ################################################################################
@@ -42,15 +46,15 @@ function CreateStudentFile ()
 {
   STUDENT=$1
   STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
-  echo "---" > caption-activity-$STUDENT.yml
-  echo "githubHandle: $STUDENT" >> caption-activity-$STUDENT.yml
+  echo "---" > "caption-activity-$STUDENT.yml"
+  echo "githubHandle: $STUDENT" >> "caption-activity-$STUDENT.yml"
 }
 ################################################################################
 #### Function CheckRepo ########################################################
 function CheckRepo ()
 {
   #iterate through the PRs and find out who authored each one
-  for i in ${PULLS_NUMBERS[@]}
+  for i in "${PULLS_NUMBERS[@]}"
   do
     #give credit to the author
     PR_AUTHOR=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i" | jq .user.login) >> log.out 2>&1
@@ -58,53 +62,60 @@ function CheckRepo ()
       ContainsElement "$PR_AUTHOR" "$OWNERS_ARRAY"
     then
       PR_AUTHOR=$(echo "$PR_AUTHOR" | (sed -e 's/^"//' -e 's/"$//'))
-      echo "prAuth: https://$INSTANCE_URL/$CLASS_ORG/$COLLAB_REPO/pull/$i" >> caption-activity-$PR_AUTHOR.yml
+      echo "prAuth: https://$INSTANCE_URL/$CLASS_ORG/$COLLAB_REPO/pull/$i" >> "caption-activity-$PR_AUTHOR.yml"
     fi
     #get authors of reviews on this PR
-    reviewAuth=$(curl -s -H "Accept: application/vnd.github.v3+json" -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i/reviews" | jq '.[] | .user.login') >> log.out 2>&1
+    REVIEW_AUTH=$(curl -s -H "Accept: application/vnd.github.v3+json" -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i/reviews" | jq '.[] | .user.login') >> log.out 2>&1
     #iterate through reviewers and give credit
-    for z in ${reviewAuth[@]}
+    for z in "${REVIEW_AUTH[@]}"
     do
       #give credit to the author
       if
-        ContainsElement $z $OWNERS_ARRAY
+        ContainsElement "$z" "$OWNERS_ARRAY"
       then
         z=$(echo "$z" | (sed -e 's/^"//' -e 's/"$//'))
-        echo "reviewAuth: https://$INSTANCE_URL/$CLASS_ORG/$COLLAB_REPO/pull/$i" >> caption-activity-$z.yml
+        echo "REVIEW_AUTH: https://$INSTANCE_URL/$CLASS_ORG/$COLLAB_REPO/pull/$i" >> "caption-activity-$z.yml"
       fi
     done
   done
+
+  ##################
+  # Send the files #
+  ##################
   SendFiles
 }
 ################################################################################
 #### Function SendFiles ########################################################
 function SendFiles ()
 {
-  for i in ${COLLABS[@]}
+  for i in "${COLLABS[@]}"
   do
     if
-      ContainsElement $i $OWNERS_ARRAY
+      ContainsElement "$i" "$OWNERS_ARRAY"
     then
       i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-      echo "---" >> caption-activity-$i.yml
+      echo "---" >> "caption-activity-$i.yml"
       #send graded file to original class repo
       #first, encode file as base64
-      NEW_FILE=$(cat caption-activity-$i.yml | base64)
+      NEW_FILE=$(cat "caption-activity-$i.yml" | base64)
       #does the file already exist?
       STATUS=$(curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | grep "^Status:") >> log.out 2>&1
       if echo "$STATUS" | grep -iq "404" ;
       then
         #create the file on the repo
-        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml >> log.out 2>&1
+        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >> log.out 2>&1
       else
         #get the sha
-        sha=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | jq .sha) >> log.out 2>&1
-        echo "Replacing the file at sha: $sha"
+        SHA=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | jq .sha) >> log.out 2>&1
+        echo "Replacing the file at sha: $SHA"
         #replace the file
-        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\", \"sha\": $sha}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml >> log.out 2>&1
+        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml >> log.out 2>&1
       fi
-      #and delete the temporary grading file
-      rm caption-activity-$i.yml
+
+      #########################################
+      # and delete the temporary grading file #
+      #########################################
+      rm "caption-activity-$i.yml"
     fi
   done
 }
