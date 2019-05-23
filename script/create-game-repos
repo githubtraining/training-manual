@@ -1,58 +1,101 @@
-#!/bin/sh
+#!/bin/bash
+################################################################################
+############################## Create Game Repos ###############################
+################################################################################
 
-#you must have a $TOKEN_OWNER token
-#saved to your ENV variables in order to use this script
-collabrepo=$1
+###########################################################
+# You must have a $TOKEN_OWNER token                      #
+# saved to your ENV variables in order to use this script #
+###########################################################
+COLLAB_REPO=$1
 
-#test array content
-function containsElement () {
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function ContainsElement ##################################################
+function ContainsElement ()
+{
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
-
-function getnames () {
-
+################################################################################
+#### Function GetNames #########################################################
+function GetNames ()
+{
+  ##########
+  # Header #
+  ##########
   echo "Trying to clone a template repo from $ROOT_URL."
 
+  ######################
+  # Check the root url #
+  ######################
   if [ $ROOT_URL = "github.com" ]; then
-    git clone --bare https://github.com/githubtraining/github-games game-template >> log.out 2>&1
+    ##############
+    # Clone repo #
+    ##############
+    git clone --bare "https://github.com/githubtraining/github-games" game-template >> log.out 2>&1
   else
-    git clone --bare https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/github-games game-template >> log.out 2>&1
+    ##############
+    # Clone repo #
+    ##############
+    git clone --bare "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/github-games" game-template >> log.out 2>&1
+    #########################
+    # Check the shell error #
+    #########################
     if [ $? -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/github-games and upload it to your GHE instance."
       exit 1
     fi
   fi
 
+  ###########
+  # Push it #
+  ###########
   pushd game-template
-  collabs=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/collaborators?per_page=100 | jq '.[] | .login') >> log.out 2>&1
 
-  teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
-  echo "A new github-games repo is about to be created for $teacher. If one already exists, it will be deleted."
+  ###############
+  # Get collabs #
+  ###############
+  COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+
+  ###############
+  # Get teacher #
+  ###############
+  TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
+  echo "A new github-games repo is about to be created for $TEACHER. If one already exists, it will be deleted."
   echo "Is that OK? (Y or N)"
-  read classtime
-  if echo "$classtime" | grep -iq "^y" ;
+  ###################
+  # Read in the var #
+  ###################
+  read CLASS_TIME
+
+  ###################
+  # Check the input #
+  ###################
+  if echo "$CLASS_TIME" | grep -iq "^y" ;
   then
-    echo "Deleting $CLASS_ORG/github-games-$teacher repo..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$teacher >> log.out 2>&1
+    echo "Deleting $CLASS_ORG/github-games-$TEACHER repo..."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$TEACHER" >> log.out 2>&1
   else
     echo "A github-games repo wasn't created for the facilitator. Creating for the students..."
   fi
 
-  ownersArray=( "${ownersArray[@]/"$teacher"}" )
-  for i in ${collabs[@]}
+  OWNERS_ARRAY=( "${OWNERS_ARRAY[@]/"$TEACHER"}" )
+  for i in ${COLLABS[@]}
   do
     if
-      containsElement $i $ownersArray
+      ContainsElement "$i" "$OWNERS_ARRAY"
       then
         i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-        repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$i | grep "^Status:") >> log.out 2>&1
-        echo "repoStatus for $i is $repoStatus"
+        REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$i" | grep "^Status:") >> log.out 2>&1
+        echo "repoStatus for $i is $REPO_STATUS"
         if
-          echo $repoStatus | grep -iq "404"
+          echo $REPO_STATUS | grep -iq "404"
         then
-          createRepo $i
+          createRepo "$i"
         else
           echo "Skipping $i because they already have a repo."
         fi
@@ -64,39 +107,83 @@ function getnames () {
   echo "Remove the local (temporary) clone"
   rm -rf game-template
 }
+################################################################################
+#### Function CreateRepo #######################################################
+function CreateRepo ()
+{
+  ####################
+  # Pull in the vars #
+  ####################
+  STUDENT=$1
+  STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
+  STUDENT_REPO="github-games-"$STUDENT
+  echo "Time to create $STUDENT_REPO for $STUDENT"
+  #create a repo named github-games-$STUDENT in $CLASS_ORG org
+  echo "Create server-side location for fresh $CLASS_ORG/$STUDENT_REPO repo..."
 
-function createRepo () {
-  student=$1
-  student=$(echo "$student" | (sed -e 's/^"//' -e 's/"$//'))
-  studentRepo="github-games-"$student
-  echo "Time to create $studentRepo for $student"
-  #create a repo named github-games-$student in $CLASS_ORG org
-  echo "Create server-side location for fresh $CLASS_ORG/$studentRepo repo..."
-
+  ##################
+  # Check the root #
+  ##################
   if [ $ROOT_URL = "github.com" ]; then
     echo "Creating on GITHUB"
-	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${studentRepo}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${CLASS_ORG}.github.io/${studentRepo}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
-   else
-     echo "Creating on Enterprise"
-	  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${studentRepo}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${studentRepo}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+    #############
+    # Create it #
+    #############
+    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${CLASS_ORG}.github.io/${STUDENT_REPO}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+  else
+    echo "Creating on Enterprise"
+    #############
+    # Create it #
+    #############
+    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${STUDENT_REPO}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
   fi
 
+  ##################
+  # Wait to finish #
+  ##################
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
-  #add student as a collaborator
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/collaborators/$student >> log.out 2>&1
-  echo "Push the fresh $studentRepo back to $CLASS_ORG ..."
-  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$studentRepo >> log.out 2>&1
+
+  #################################
+  # Add student as a collaborator #
+  #################################
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/collaborators/$STUDENT >> log.out 2>&1
+  echo "Push the fresh $STUDENT_REPO back to $CLASS_ORG ..."
+
+  ###########
+  # Push it #
+  ###########
+  git push --mirror https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$STUDENT_REPO >> log.out 2>&1
+
+  ##################
+  # Wait to finish #
+  ##################
   echo "Waiting for push to resolve before creating issues."
   sleep 5
-  #create issues for problems
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at https://$CLASS_ORG.github.io/$studentRepo, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$student?\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and the one in the README are pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at https://$CLASS_ORG.github.io/$studentRepo\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues >> log.out 2>&1
-  #assign issues to $student
+
+  ##############################
+  # create issues for problems #
+  ##############################
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at https://$CLASS_ORG.github.io/$STUDENT_REPO, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$STUDENT?\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and the one in the README are pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at https://$CLASS_ORG.github.io/$STUDENT_REPO\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
+
+  #############################
+  # assign issues to $STUDENT #
+  #############################
   for i in {1..2};
-    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$student\"]}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/issues/$i/assignees >> log.out 2>&1;
+    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$i/assignees" >> log.out 2>&1;
   done
 }
+################################################################################
+############################### MAIN ###########################################
+################################################################################
 
-ownersArray=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin | jq '.[] | .login') >> log.out 2>&1
-getnames
+##################
+# Get the owners #
+##################
+OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
+
+#################
+# Get the names #
+#################
+GetNames
