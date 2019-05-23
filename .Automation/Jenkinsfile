@@ -1,0 +1,98 @@
+/***************************************************************************************************
+*  CI
+*  AdmiralAwkbar 2019
+***************************************************************************************************/
+
+/***************************************************************************************************
+* LEGEND:
+* Clone the repo
+* Run Stack preflight
+* Send Status back to GitHub
+***************************************************************************************************/
+///////////////////////////////////// START OF PIPELINE ////////////////////////////////////////////
+node("master")
+{
+  //clean the workspace
+  cleanWs()
+
+  // Globals
+  def gitFlowInfo                 // The flow informatgion
+  def branch = env.BRANCH_NAME    // Branch of code to build
+  def org = 'githubtraining'      // Name of the org
+  def repo = 'training-manual'    // Name of the repo
+
+  // Clone down the repository
+  withCredentials([[
+    $class: 'UsernamePasswordMultiBinding',
+    credentialsId: 'awkbar-api',
+    usernameVariable: 'USERNAME',
+    passwordVariable: 'PASSWORD']])
+    {
+      //sh 'echo uname=$USERNAME pwd=$PASSWORD'
+      // Clone the repo
+      echo "Cloning Down:[${org}/${repo}] on Branch:[${branch}]"
+      git url: "https://$PASSWORD@github.com/${org}/${repo}", branch: "${branch}"
+    }
+
+  // Need to get the current Sha sum on the repo
+  def sha = sh (script: 'git rev-parse --short HEAD',returnStdout: true).trim()
+  echo "Git SHA: ${sha}"
+
+  /***************************************************************************************************
+  ****************************************************************************************************
+  * Preflight Stage
+  ****************************************************************************************************
+  ***************************************************************************************************/
+  stage("Preflight-Linter")
+  {
+    sh "echo '#########################################'"
+    sh "echo 'Preflight Linter'"
+    sh "echo '#########################################'"
+
+    try
+    {
+      // Lint the code base
+      sh "perl .Automation/stack-Linter.pl"
+    }
+    catch(all)
+    {
+      echo "ERROR encountered during Stage: Preflight Linter${all}"
+      throw all
+    }
+  }
+  /***************************************************************************************************
+  ****************************************************************************************************
+  * END OF LOOP
+  ****************************************************************************************************
+  ***************************************************************************************************/
+}
+/***************************************************************************************************
+****************************************************************************************************
+* HELPER FUNCTIONS BELOW
+***************************************************************************************************
+***************************************************************************************************/
+
+// Slurper method, using built in json
+@NonCPS
+def parseText(jsonpayload)
+{
+  jp = new groovy.json.JsonSlurper().parseText(jsonpayload)
+  gfi = new GitFlowInfo()
+  gfi.prUrl=jp.payload.pr_url;
+  gfi.prNumber=jp.payload.pr;
+  gfi.gitHeadUrl=jp.payload.head;
+  gfi.gitBaseUrl=jp.payload.base;
+  gfi.gitRepository=jp.payload.repository;
+  jp=null
+  return gfi
+}
+
+// GIT Information for flowdock labels
+class GitFlowInfo implements Serializable
+{
+  String prUrl;
+  String prNumber;
+  String gitHeadUrl;
+  String gitBaseUrl;
+  String gitRepository;
+}
