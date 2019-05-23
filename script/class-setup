@@ -1,4 +1,4 @@
-DEMO_PAT#!/bin/bash
+#!/bin/bash
 
 ################################################################################
 ############################### Class Setup ####################################
@@ -134,7 +134,7 @@ function InstanceURL ()
 
     echo "Checking if '$NEW_URL' is accessible with authentication..."
 
-    if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" https://$NEW_URL/ | jq .message) = null ]]
+    if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]
       then
         echo "API endpoint + authentication verified"
         echo "export CLIENT_URL='$NEW_URL'" >> $HOME/.trainingclientrc

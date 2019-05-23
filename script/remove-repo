@@ -1,13 +1,47 @@
-#!/bin/sh
+#!/bin/bash
+################################################################################
+############################## Remove Repo #####################################
+################################################################################
 
-#you must have a githubteacher token
-#saved to your ENV variables in order to use this script
-reponame=$1
+###########################################################
+# You must have a githubteacher token                     #
+# saved to your ENV variables in order to use this script #
+###########################################################
+
+###########
+# GLOBALS #
+###########
+REPO_NAME=$1
 
 #set -x
 
-function deleteit () {
-  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$reponame >> log.out 2>&1
-}
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function DeleteIt #########################################################
+function DeleteIt ()
+{
+  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
 
-deleteit
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    echo "ERROR! Failed to Delete it!"
+    exit 1
+  fi
+}
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+
+###################
+# Delete the repo #
+###################
+DeleteIt
