@@ -51,7 +51,7 @@ node("master")
 
     try
     {
-      sh "ls -la"
+      sh "ls -la ; ls -la Automation"
       // Lint the code base
       sh "perl Automation/stack-Linter.pl"
     }
