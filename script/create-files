@@ -111,10 +111,15 @@ function createFile ()
   # Print info #
   ##############
   echo "Time to create file 0000-01-$FILE_NUM-$STUDENT.md in $COLLAB_REPO"
+  # shellcheck disable=SC2129
   echo "---" > "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo "layout: slide" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo 'title: "Welcome to our slide deck!"' >> "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo "---" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
 
   #####################
@@ -126,17 +131,23 @@ function createFile ()
   # Get a random #
   ################
   RANDOM_OCTOCAT=${OCTOCATS[$RANDOM % ${#OCTOCATS[@]} ]}
+  # shellcheck disable=SC2129
   echo "Caption here" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo "$RANDOM_OCTOCAT" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  # shellcheck disable=SC2129
   echo "{: .center}" >> "0000-01-$FILE_NUM-$STUDENT.md"
 
   ################
   # Check the OS #
   ################
   if [[ "$OSTYPE" = "msys" ]]; then
+    # shellcheck disable=SC2002
     NEW_FILE=$(cat "0000-01-$FILE_NUM-$STUDENT.md" | base64 --wrap=0)
   else
+    # shellcheck disable=SC2002
     NEW_FILE=$(cat "0000-01-$FILE_NUM-$STUDENT.md" | base64)
   fi
 
@@ -162,7 +173,7 @@ function CreateIssue ()
   ##############################
   # is there already an issue? #
   ##############################
-  ISSUES=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues | jq '.[] | {issueNum: .number, issueTitle: .title}') >> log.out 2>&1
+  ISSUES=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" | jq '.[] | {issueNum: .number, issueTitle: .title}') >> log.out 2>&1
 
   ########################################
   # create the body of the issue comment #
@@ -187,7 +198,7 @@ function CreateIssue ()
     ##############
     # Read input #
     ##############
-    read CAPTION_ISSUE
+    read -r CAPTION_ISSUE
 
     ############
     # Patch it #
