@@ -29,25 +29,31 @@ function GetDetails ()
   ###################
   # Read in the var #
   ###################
-  read CLASS_DATE
+  read -r CLASS_DATE
+
   echo "Who is teaching? Without the @."
   ###################
   # Read in the var #
   ###################
-  read TEACHER
+  read -r TEACHER
+
   echo "Create a unique name for the survey collector."
   echo "Example: 2017-06-06-open-enrollment."
   ###################
   # Read in the var #
   ###################
-  read SURVEY_NAME
-  #generate the survey link
-  SURVEY_LINK=$((curl -s --request PUT --url "https://restapi.surveygizmo.com/v5/survey/$SURVEY_CAMPAIGN/surveycampaign?api_token=$SURVEY_TOKEN&api_token_secret=$SURVEY_SECRET&_method=PUT&type=link&name=$SURVEY_NAME" | jq .data.uri) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
-  #append teacher and class type to survey link
-  LONG_LINK=$SURVEY_LINK"?type=developers&teacher="$TEACHER
-  #create a google short link
-  SHORT_LINK=$((curl -s https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$LONG_LINK\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
-  script/create-repo caption-this $REPO_NAME $TEACHER
+  read -r SURVEY_NAME
+
+  # generate the survey link
+  # shellcheck disable=SC1102
+  SURVEY_LINK=$((curl -s -k --request PUT --url "https://restapi.surveygizmo.com/v5/survey/$SURVEY_CAMPAIGN/surveycampaign?api_token=$SURVEY_TOKEN&api_token_secret=$SURVEY_SECRET&_method=PUT&type=link&name=$SURVEY_NAME" | jq .data.uri) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
+  # append teacher and class type to survey link
+  LONG_LINK="$SURVEY_LINK?type=developers&teacher=$TEACHER"
+  # create a google short link
+  # shellcheck disable=SC2129
+  SHORT_LINK=$((curl -s "https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU" -H 'Content-Type: application/json' -d "{\"longUrl\": \"$LONG_LINK\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
+  script/create-repo caption-this "$REPO_NAME" "$TEACHER"
+
   #######################
   # Load the error code #
   #######################
@@ -57,35 +63,40 @@ function GetDetails ()
   # Check the shell for errors #
   ##############################
   if [ $ERROR_CODE -eq 0 ]; then
-    git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" $REPO_NAME >> log.out 2>&1
+    git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
     pushd "$REPO_NAME"
+    # shellcheck disable=SC2129
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
-    githubemail=$((curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
-    git config user.email "$githubemail" >> log.out 2>&1
-    if [ $OSTYPE = "msys" ]; then
+    # shellcheck disable=SC1102
+    GITHUB_EMAIL=$((curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
+    git config user.email "$GITHUB_EMAIL" >> log.out 2>&1
+    if [ "$OSTYPE" = "msys" ]; then
+      # shellcheck disable=SC2129
       sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
       sed -i "s|SURVEY-LINK|$SHORT_LINK|g" README.md >> log.out 2>&1
       sed -i "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     else
+      # shellcheck disable=SC2129
       sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
       sed -i "" "s|SURVEY-LINK|$SHORT_LINK|g" README.md >> log.out 2>&1
       sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     fi
+    # shellcheck disable=SC2129
     git add README.md >> log.out 2>&1
     git commit -m "create class README" >> log.out 2>&1
     git add _config.yml >> log.out 2>&1
     git commit -m "update config with class information" >> log.out 2>&1
-    git push https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME >> log.out 2>&1
+    git push "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
     git config --local --unset user.name >> log.out 2>&1
     git config --local --unset user.email >> log.out 2>&1
     popd
-    rm -rf $REPO_NAME >> log.out 2>&1
+    rm -rf "$REPO_NAME" >> log.out 2>&1
     ########################
     # Call the pretty repo #
     ########################
-    PrettyRepo $TEACHER
+    PrettyRepo "$TEACHER"
   elif [ $ERROR_CODE -eq 2 ]; then
     echo "!!! Please try running option 1 again and picking a unique repository name."
   else
@@ -98,14 +109,15 @@ function PrettyRepo ()
 {
   TEACHER=$1
   #set branch protections
+  # shellcheck disable=SC2129
   curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/master/protection" >> log.out 2>&1
-  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/master/protection/required_status_checks >> log.out 2>&1
+  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/master/protection/required_status_checks" >> log.out 2>&1
   #delete labels other than question, duplicate, enhancement, and help wanted
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/bug" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/invalid" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/wontfix" >> log.out 2>&1
   #open the issue to be added as a collaborator
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'Unwatch' button and selecting either the 'Not watching' or 'Ignoring' option.\"}" -X POST https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'Unwatch' button and selecting either the 'Not watching' or 'Ignoring' option.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >> log.out 2>&1
   #add a project to the repo and grab the project id
   projID=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/projects" | jq .id) >> log.out 2>&1
   #add columns to project

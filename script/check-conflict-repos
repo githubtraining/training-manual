@@ -109,6 +109,7 @@ function CheckRepo ()
         #make sure play/manual/manual.html still exists
         CHECK_FILE=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://api.github.com/search/code?q=manual.html+in:path+repo:githubschool/$STUDENT_REPO" | jq .total_count) >> log.out 2>&1
         # echo "search for play/manual/manual.html returned $CHECK_FILE"
+        # shellcheck disable=SC2129
         echo "The answers are represent starting conflict markets, middle conflict markers, ending conflict markers, and if the deleted file is present (null = not present, 0 = present with another unnecessary file, 1 = correct files present)." >> "conflict-activity-$STUDENT.json"
         echo "correct answers would be: 0,0,0,0,0,0,0,0,0,1" >> "conflict-activity-$STUDENT.json"
         echo "checks$i:$START_MARK1,$DIV_MARK1,$END_MARK1,$START_MARK2,$DIV_MARK2,$END_MARK2,$START_MARK3,$DIV_MARK3,$END_MARK3,$CHECK_FILE" >> "conflict-activity-$STUDENT.json"
