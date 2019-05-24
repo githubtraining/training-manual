@@ -29,8 +29,26 @@ function GetNames ()
   ########################################
   # Get name of collaborators from day 1 #
   ########################################
-  COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
-  for i in ${COLLABS[@]}
+  COLLABS=$(curl --fail -s -k -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    echo "ERROR! Failed to get collabs!"
+    echo "ERROR:[$COLLABS]"
+    exit 1
+  fi
+
+  ########################
+  # Loop through collabs #
+  ########################
+  for i in "${COLLABS[@]}"
   do
     if
       #####################
@@ -55,18 +73,18 @@ function CheckRepo ()
   STUDENT=$1
   # Clean it up
   STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
-  STUDENT_REPO="conflict-practice-"$STUDENT
+  STUDENT_REPO="conflict-practice-$STUDENT"
   # start student file
-  echo "---" > conflict-activity-$STUDENT.json
-  echo "githubHandle: $STUDENT" >> conflict-activity-$STUDENT.json
-  #check to see if pull requests created by script have been merged
+  echo "---" > "conflict-activity-$STUDENT.json"
+  echo "githubHandle: $STUDENT" >> "conflict-activity-$STUDENT.json"
+  # check to see if pull requests created by script have been merged
   for i in {1..3};
   do
-    PR_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/pulls/$i/merge) >> log.out 2>&1
+    PR_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/pulls/$i/merge") >> log.out 2>&1
     if echo $PR_STATUS | grep -iq "204"
     then
       echo "PR $i status is 204"
-      echo "pr$i: merged" >> conflict-activity-$STUDENT.json
+      echo "pr$i: merged" >> "conflict-activity-$STUDENT.json"
       if [ "$i" == "1" ]
       then
         #search for conflict markers
@@ -92,8 +110,8 @@ function CheckRepo ()
         CHECK_FILE=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://api.github.com/search/code?q=manual.html+in:path+repo:githubschool/$STUDENT_REPO" | jq .total_count) >> log.out 2>&1
         # echo "search for play/manual/manual.html returned $CHECK_FILE"
         echo "The answers are represent starting conflict markets, middle conflict markers, ending conflict markers, and if the deleted file is present (null = not present, 0 = present with another unnecessary file, 1 = correct files present)." >> conflict-activity-$STUDENT.json
-        echo "correct answers would be: 0,0,0,0,0,0,0,0,0,1" >> conflict-activity-$STUDENT.json
-        echo "checks$i:$START_MARK1,$DIV_MARK1,$END_MARK1,$START_MARK2,$DIV_MARK2,$END_MARK2,$START_MARK3,$DIV_MARK3,$END_MARK3,$CHECK_FILE" >> conflict-activity-$STUDENT.json
+        echo "correct answers would be: 0,0,0,0,0,0,0,0,0,1" >> "conflict-activity-$STUDENT.json"
+        echo "checks$i:$START_MARK1,$DIV_MARK1,$END_MARK1,$START_MARK2,$DIV_MARK2,$END_MARK2,$START_MARK3,$DIV_MARK3,$END_MARK3,$CHECK_FILE" >> "conflict-activity-$STUDENT.json"
       elif [ "$i" == "2" ]
       then
         #search for conflict markers
@@ -103,42 +121,42 @@ function CheckRepo ()
         echo "search for ======= found $DIV_MARK"
         END_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/css/index.css" | grep -c -i '>>>>>>>') >> log.out 2>&1
         echo "search for >>>>>>> found $END_MARK"
-        echo "correct answers would be: 0,0,0" >> conflict-activity-$STUDENT.json
-        echo "checks$i:$START_MARK,$DIV_MARK,$END_MARK" >> conflict-activity-$STUDENT.json
+        echo "correct answers would be: 0,0,0" >> "conflict-activity-$STUDENT.json"
+        echo "checks$i:$START_MARK,$DIV_MARK,$END_MARK" >> "conflict-activity-$STUDENT.json"
       else
-        #search for conflict markers
+        # search for conflict markers
         START_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/README.md" | grep -c -i '<<<<<<<') >> log.out 2>&1
         echo "search for <<<<<<< found $START_MARK"
         DIV_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/README.md" | grep -c -i '=======') >> log.out 2>&1
         echo "search for ======= found $DIV_MARK"
         END_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/README.md" | grep -c -i '>>>>>>>') >> log.out 2>&1
         echo "search for >>>>>>> found $END_MARK"
-        echo "correct answers would be: 0,0,0" >> conflict-activity-$STUDENT.json
-        echo "checks$i:$START_MARK,$DIV_MARK,$END_MARK" >> conflict-activity-$STUDENT.json
+        echo "correct answers would be: 0,0,0" >> "conflict-activity-$STUDENT.json"
+        echo "checks$i:$START_MARK,$DIV_MARK,$END_MARK" >> "conflict-activity-$STUDENT.json"
       fi
     else
       echo "PR $i has not been merged"
-      echo "pr$i: incomplete" >> conflict-activity-$STUDENT.json
+      echo "pr$i: incomplete" >> "conflict-activity-$STUDENT.json"
     fi
   done
-  echo "---" >> conflict-activity-$STUDENT.json
+  echo "---" >> "conflict-activity-$STUDENT.json"
   #send graded file to original class repo
   #first, encode file as base64
-  NEW_FILE=$(cat conflict-activity-$STUDENT.json | base64)
+  NEW_FILE=$(cat "conflict-activity-$STUDENT.json" | base64)
   #does the file already exist?
-  STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json | grep "^Status:") >> log.out 2>&1
+  STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" | grep "^Status:") >> log.out 2>&1
   if echo "$STATUS" | grep -iq "404" ;
   then
     #create the file on the repo
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" >> log.out 2>&1
   else
     #get the sha
-    SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json | jq .sha) >> log.out 2>&1
+    SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" | jq .sha) >> log.out 2>&1
     echo "Replacing the file at SHA: $SHA"
     #replace the file
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" >> log.out 2>&1
   fi
-  rm conflict-activity-$STUDENT.json
+  rm "conflict-activity-$STUDENT.json"
 }
 ################################################################################
 ############################### MAIN ###########################################
