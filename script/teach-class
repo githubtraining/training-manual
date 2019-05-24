@@ -113,30 +113,35 @@ function DoTask ()
   ##########
   elif [ "$TASK" -eq 1 ]; then
     echo "running script/create-files"
+    # Create files
     script/create-files "$COLLAB_REPO"
   ##########
   # TASK 2 #
   ##########
   elif [ "$TASK" -eq 2 ]; then
     echo "running script/check-caption-repo"
+    # Caption the repo
     script/check-caption-repo "$COLLAB_REPO"
   ##########
   # TASK 3 #
   ##########
   elif [ "$TASK" -eq 3 ]; then
     echo "running script/create-conflict-repos"
+    # Create conflicts
     script/create-conflict-repos "$COLLAB_REPO"
   ##########
   # TASK 4 #
   ##########
   elif [ "$TASK" -eq 4 ]; then
     echo "running script/create-game-repos"
+    # Create games repos
     script/create-game-repos "$COLLAB_REPO"
   ##########
   # TASK 5 #
   ##########
   elif [ "$TASK" -eq 5 ]; then
     echo "running script/expire-repo"
+    # Expire the repos
     script/expire-repo
   fi
 }

@@ -57,16 +57,49 @@ function CheckRepo ()
   for i in "${PULLS_NUMBERS[@]}"
   do
     #give credit to the author
-    PR_AUTHOR=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i" | jq .user.login) >> log.out 2>&1
+    PR_AUTHOR=$(curl --fail -k -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i" | jq .user.login) >> log.out 2>&1
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
+    ##############################
+    # Check the shell for errors #
+    ##############################
+    if [ $ERROR_CODE -ne 0 ]; then
+      echo "ERROR! Failed curl!"
+      echo "ERROR:[$PR_AUTHOR]"
+      exit 1
+    fi
+
+    ####################
+    # Check the return #
+    ####################
     if
       ContainsElement "$PR_AUTHOR" "$OWNERS_ARRAY"
     then
       PR_AUTHOR=$(echo "$PR_AUTHOR" | (sed -e 's/^"//' -e 's/"$//'))
       echo "prAuth: https://$INSTANCE_URL/$CLASS_ORG/$COLLAB_REPO/pull/$i" >> "caption-activity-$PR_AUTHOR.yml"
     fi
-    #get authors of reviews on this PR
-    REVIEW_AUTH=$(curl -s -H "Accept: application/vnd.github.v3+json" -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i/reviews" | jq '.[] | .user.login') >> log.out 2>&1
-    #iterate through reviewers and give credit
+    # get authors of reviews on this PR
+    REVIEW_AUTH=$(curl --fail -k -s -H "Accept: application/vnd.github.v3+json" -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i/reviews" | jq '.[] | .user.login') >> log.out 2>&1
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
+    ##############################
+    # Check the shell for errors #
+    ##############################
+    if [ $ERROR_CODE -ne 0 ]; then
+      echo "ERROR! Failed curl!"
+      echo "ERROR:[$REVIEW_AUTH]"
+      exit 1
+    fi
+
+    # iterate through reviewers and give credit
     for z in "${REVIEW_AUTH[@]}"
     do
       #give credit to the author
@@ -103,13 +136,13 @@ function SendFiles ()
       STATUS=$(curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | grep "^Status:") >> log.out 2>&1
       if echo "$STATUS" | grep -iq "404" ;
       then
-        #create the file on the repo
-        curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >> log.out 2>&1
+        # create the file on the repo
+        curl --fail -k -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >> log.out 2>&1
       else
-        #get the sha
+        # get the sha
         SHA=$(curl -s -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | jq .sha) >> log.out 2>&1
         echo "Replacing the file at sha: $SHA"
-        #replace the file
+        # replace the file
         curl -s -i -u "$CLIENT_TOKEN_OWNER:$CLIENT_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >> log.out 2>&1
       fi
 
