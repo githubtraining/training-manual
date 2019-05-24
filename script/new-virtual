@@ -119,14 +119,15 @@ function PrettyRepo ()
   #open the issue to be added as a collaborator
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'Unwatch' button and selecting either the 'Not watching' or 'Ignoring' option.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >> log.out 2>&1
   #add a project to the repo and grab the project id
-  projID=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/projects" | jq .id) >> log.out 2>&1
+  PROJ_ID=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/projects" | jq .id) >> log.out 2>&1
   #add columns to project
-  columnOne=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"To-Do\"}" -X POST "https://$INSTANCE_URL/projects/$projID/columns" | jq .id) >> log.out 2>&1
-  columnTwo=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST "https://$INSTANCE_URL/projects/$projID/columns" | jq .id) >> log.out 2>&1
-  curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"In-Progress\"}" -X POST "https://$INSTANCE_URL/projects/$projID/columns" >> log.out 2>&1
-  curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST "https://$INSTANCE_URL/projects/$projID/columns" >> log.out 2>&1
+  COLUMN_ONE=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"To-Do\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" | jq .id) >> log.out 2>&1
+  # shellcheck disable=SC2034
+  COLUMN_TWO=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" | jq .id) >> log.out 2>&1
+  curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"In-Progress\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" >> log.out 2>&1
+  curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" >> log.out 2>&1
   #add cards to each column
-  curl -s -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST "https://$INSTANCE_URL/projects/columns/$columnOne/cards" >> log.out 2>&1
+  curl -s -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST "https://$INSTANCE_URL/projects/columns/$COLUMN_ONE/cards" >> log.out 2>&1
   FinishStrong
 }
 ################################################################################
