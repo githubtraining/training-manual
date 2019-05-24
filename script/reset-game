@@ -28,7 +28,7 @@ function ResetActivity ()
   ###################
   # Read in the var #
   ###################
-  read CLASS_TIME
+  read -r CLASS_TIME
   if echo "$CLASS_TIME" | grep -iq "^y" ;
   then
     echo "This is not a good time to run this script. Wait until class is over and try again"
@@ -37,11 +37,11 @@ function ResetActivity ()
     ###################
     # Delete the repo #
     ###################
-    DeleteDisposableRepo $REPO_NAME
+    DeleteDisposableRepo "$REPO_NAME"
 
-    #############################
-    # Slewep to allow to finish #
-    #############################
+    ############################
+    # Sleep to allow to finish #
+    ############################
     echo "Resting 5 seconds to all deletions to resolve"
     sleep 5
 
@@ -49,7 +49,7 @@ function ResetActivity ()
     # Duplicate the repo #
     ######################
     echo "Creating a fresh repo for $CLASS_ORG"
-    DuplicateRepo $REPO_NAME $DEFAULT_BRANCH
+    DuplicateRepo "$REPO_NAME" "$DEFAULT_BRANCH"
   fi
 }
 ################################################################################
@@ -99,7 +99,7 @@ function DuplicateRepo ()
   # Remove local repo #
   #####################
   echo "Clone $REPO_NAME template from githubtraining org..."
-  rm -rf $REPO_NAME
+  rm -rf "$REPO_NAME"
 
   ##################
   # Clone the repo #
@@ -107,19 +107,31 @@ function DuplicateRepo ()
   echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
   echo "The timeout may take some time..."
   git clone --bare "https://github.com/githubtraining/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
   ##############################
   # Check the shell for errors #
   ##############################
-  if [ $? -ne 0 ]; then
+  if [ $ERROR_CODE -ne 0 ]; then
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
     ##################
     # Clone the repo #
     ##################
     git clone --bare "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
     ##############################
     # Check the shell for errors #
     ##############################
-    if [ $? -ne 0 ]; then
+    if [ $ERROR_CODE -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/$REPO_NAME and upload it to your GHE instance."
       exit 1
     fi
@@ -129,7 +141,7 @@ function DuplicateRepo ()
   # Push the repo #
   #################
   echo "Push the fresh $REPO_NAME back to $CLASS_ORG's repo..."
-  pushd $REPO_NAME
+  pushd "$REPO_NAME"
   git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
 
   ##################

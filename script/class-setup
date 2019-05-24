@@ -303,6 +303,7 @@ function ShellCheck ()
   ##################
   read -r SHELL
   echo "Adding to your .${SHELL}rc..."
+  # shellcheck disable=SC2028
   echo "\n# added by github/training-manual class setup" >> "$HOME/.${SHELL}rc"
   echo "test -f \"$HOME/.trainingclientrc\" && source \"$HOME/.trainingclientrc\"" >> "$HOME/.${SHELL}rc"
 

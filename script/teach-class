@@ -42,7 +42,7 @@ function GetTask ()
   ################################
   # Read the task that was input #
   ################################
-  read TASK
+  read -r TASK
 
   ############################################
   # Clean any whitespace that may be entered #
@@ -62,7 +62,7 @@ function GetTask ()
   ################
   # If were done #
   ################
-  if [ $TASK -eq 6 ]; then
+  if [ "$TASK" -eq 6 ]; then
     # Exit script
     exit 0
   #######################
@@ -90,12 +90,12 @@ function DoTask ()
   #########################################
   # See if we need to get the collab repo #
   #########################################
-  if [ $TASK -ne 0 ] || [ $TASK -ne 6 ]; then
+  if [ "$TASK" -ne 0 ] || [ "$TASK" -ne 6 ]; then
     echo "What is the name of the day 1 repo?"
     ########################
     # Read the collab repo #
     ########################
-    read COLLAB_REPO
+    read -r COLLAB_REPO
   fi
 
   ##########
@@ -111,31 +111,31 @@ function DoTask ()
   ##########
   # TASK 1 #
   ##########
-  elif [ $TASK -eq 1 ]; then
+  elif [ "$TASK" -eq 1 ]; then
     echo "running script/create-files"
-    script/create-files $COLLAB_REPO
+    script/create-files "$COLLAB_REPO"
   ##########
   # TASK 2 #
   ##########
-  elif [ $TASK -eq 2 ]; then
+  elif [ "$TASK" -eq 2 ]; then
     echo "running script/check-caption-repo"
-    script/check-caption-repo $COLLAB_REPO
+    script/check-caption-repo "$COLLAB_REPO"
   ##########
   # TASK 3 #
   ##########
-  elif [ $TASK -eq 3 ]; then
+  elif [ "$TASK" -eq 3 ]; then
     echo "running script/create-conflict-repos"
-    script/create-conflict-repos $COLLAB_REPO
+    script/create-conflict-repos "$COLLAB_REPO"
   ##########
   # TASK 4 #
   ##########
-  elif [ $TASK -eq 4 ]; then
+  elif [ "$TASK" -eq 4 ]; then
     echo "running script/create-game-repos"
-    script/create-game-repos $COLLAB_REPO
+    script/create-game-repos "$COLLAB_REPO"
   ##########
   # TASK 5 #
   ##########
-  elif [ $TASK -eq 5 ]; then
+  elif [ "$TASK" -eq 5 ]; then
     echo "running script/expire-repo"
     script/expire-repo
   fi
