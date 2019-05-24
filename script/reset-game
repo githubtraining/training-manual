@@ -161,7 +161,7 @@ function DuplicateRepo ()
   # Remove local repo #
   #####################
   echo "Remove the local (temporary) clone"
-  rm -rf $REPO_NAME
+  rm -rf "$REPO_NAME"
 }
 ################################################################################
 ############################### MAIN ###########################################

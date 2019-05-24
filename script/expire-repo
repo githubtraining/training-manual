@@ -20,7 +20,8 @@ function GetPages ()
   ############################
   # Get tyhr number of pages #
   ############################
-  NUM_PAGES=$((curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET https://$INSTANCE_URL/orgs/$CLASS_ORG/repos | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
+  # shellcheck disable=SC1102
+  NUM_PAGES=$((curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
 
   ####################
   # Check the return #
@@ -56,7 +57,7 @@ function GetRepos ()
 
   #get repos in $CLASS_ORG org that start with conflict-practice or github-games
   REPO_LIST=$(curl -s -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos?page=$PAGE_NUM" | jq '.[] | .name')
-  for i in ${REPO_LIST[@]}
+  for i in "${REPO_LIST[@]}"
   do
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if echo "$i" | grep -iq -e "conflict-practice-" -e "github-games-"
@@ -65,7 +66,7 @@ function GetRepos ()
       ################
       # Get the date #
       ################
-      CheckDates $i
+      CheckDates "$i"
     fi
   done
 }
@@ -81,19 +82,20 @@ function CheckDates ()
   ####################
   # Get created time #
   ####################
+  # shellcheck disable=SC1102
   CREATED=$((curl -s -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >> log.out 2>&1
   #if they were created more than 10 days ago, expire them
   if [[ "$COMP_DATE" > "$CREATED" ]];
   then
     echo "EXPIRED: $REPO_NAME was created on $CREATED"
-    benice $REPO_NAME
+    BeNice "$REPO_NAME"
   else
     echo "KEEP: $REPO_NAME was created on $CREATED"
   fi
 }
 ################################################################################
-#### Function benice ###########################################################
-function benice ()
+#### Function BeNice ###########################################################
+function BeNice ()
 {
   ####################
   # Pull in the vars #
@@ -118,7 +120,7 @@ function benice ()
   ###################
   # Delete the repo #
   ###################
-  script/remove-repo $REPO_NAME
+  script/remove-repo "$REPO_NAME"
 }
 ################################################################################
 ############################### MAIN ###########################################
@@ -127,7 +129,7 @@ function benice ()
 ################
 # Check the OS #
 ################
-if [ $OSTYPE = "msys" ]; then
+if [ "$OSTYPE" = "msys" ]; then
    COMP_DATE=$(date --date='10 days ago'  +%Y-%m-%dT%H:%M:%S)
 else
    COMP_DATE=$(date -v-10d +%Y-%m-%dT%H:%M:%S)

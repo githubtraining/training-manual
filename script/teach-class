@@ -101,7 +101,7 @@ function DoTask ()
   ##########
   # TASK 0 #
   ##########
-  if [ $TASK -eq 0 ]; then
+  if [ "$TASK" -eq 0 ]; then
     echo "running script/class-setup"
     script/class-setup
     echo "=============================="
