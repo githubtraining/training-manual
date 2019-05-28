@@ -31,12 +31,14 @@ function GetTask ()
   echo ""
   echo "What would you like to do? (Just the number please)"
   echo "0: Confirm Set-up"
-  echo "1: Add collabs and create files (also makes the repo private)"
-  echo "2: Grade the day 1 repo"
-  echo "3: Create conflict repos for each student"
-  echo "4: Create the github-games repos for each student"
-  echo "5: Expire student repos"
-  echo "6: Done"
+  echo "1: Create a new caption-this class repository"
+  echo "2: Add collabs and create files (also makes the repo private)"
+  echo "3: Grade the day 1 repo"
+  echo "4: Create conflict repos for each student"
+  echo "5: Grade the conflict repos"
+  echo "6: Create the github-games repos for each student"
+  echo "7: Expire student repos"
+  echo "8: Done"
   echo ""
 
   ################################
@@ -90,7 +92,7 @@ function DoTask ()
   #########################################
   # See if we need to get the collab repo #
   #########################################
-  if [ "$TASK" -ne 0 ] || [ "$TASK" -ne 6 ]; then
+  if [ "$TASK" -ne 0 ] || [ "$TASK" -ne 8 ]; then
     echo "What is the name of the day 1 repo?"
     ########################
     # Read the collab repo #
@@ -112,37 +114,50 @@ function DoTask ()
   # TASK 1 #
   ##########
   elif [ "$TASK" -eq 1 ]; then
-    echo "running script/create-files"
-    # Create files
-    script/create-files "$COLLAB_REPO"
+    echo "running script/new-virtual"
+    script/new-virtual "$COLLAB_REPO"
   ##########
   # TASK 2 #
   ##########
   elif [ "$TASK" -eq 2 ]; then
-    echo "running script/check-caption-repo"
-    # Caption the repo
-    script/check-caption-repo "$COLLAB_REPO"
+    echo "running script/create-files"
+    script/create-files "$COLLAB_REPO"
   ##########
   # TASK 3 #
   ##########
   elif [ "$TASK" -eq 3 ]; then
-    echo "running script/create-conflict-repos"
-    # Create conflicts
-    script/create-conflict-repos "$COLLAB_REPO"
+    echo "running script/check-caption-repo"
+    script/check-caption-repo "$COLLAB_REPO"
   ##########
   # TASK 4 #
   ##########
   elif [ "$TASK" -eq 4 ]; then
-    echo "running script/create-game-repos"
-    # Create games repos
-    script/create-game-repos "$COLLAB_REPO"
+    echo "running script/create-conflict-repos"
+    script/create-conflict-repos "$COLLAB_REPO"
   ##########
   # TASK 5 #
   ##########
   elif [ "$TASK" -eq 5 ]; then
+    echo "running script/check-conflict-repos"
+    script/check-conflict-repos "$COLLAB_REPO"
+  ##########
+  # TASk 6 #
+  ##########
+  elif [ "$TASK" -eq 6 ]; then
+    echo "running script/create-game-repos"
+    script/create-game-repos "$COLLAB_REPO"
+  ##########
+  # TASK 7 #
+  ##########
+  elif [ "$TASK" -eq 7]; then
     echo "running script/expire-repo"
-    # Expire the repos
     script/expire-repo
+  ##########
+  # TASK 8 #
+  ##########
+  elif [ "$TASK" -eq 8]; then
+    echo "Nothing to see here... were all done..."
+    exit 0
   fi
 }
 ################################################################################

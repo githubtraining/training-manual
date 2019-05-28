@@ -87,7 +87,7 @@ function CheckRepo ()
       echo "pr$i: merged" >> "conflict-activity-$STUDENT.json"
       if [ "$i" == "1" ]
       then
-        #search for conflict markers
+        # Search for conflict markers
         START_MARK1=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/index.html" | grep -c -i '<<<<<<<') >> log.out 2>&1
         echo "search for <<<<<<< found $START_MARK1"
         DIV_MARK1=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/css/index.html" | grep -c -i '=======') >> log.out 2>&1
@@ -106,7 +106,7 @@ function CheckRepo ()
         echo "search for ======= found $DIV_MARK3"
         END_MARK3=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/css/play/mini/mini_bored.html" | grep -c -i '>>>>>>>') >> log.out 2>&1
         echo "search for >>>>>>> found $END_MARK3"
-        #make sure play/manual/manual.html still exists
+        # Make sure play/manual/manual.html still exists
         CHECK_FILE=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://api.github.com/search/code?q=manual.html+in:path+repo:githubschool/$STUDENT_REPO" | jq .total_count) >> log.out 2>&1
         # echo "search for play/manual/manual.html returned $CHECK_FILE"
         # shellcheck disable=SC2129
@@ -115,7 +115,7 @@ function CheckRepo ()
         echo "checks$i:$START_MARK1,$DIV_MARK1,$END_MARK1,$START_MARK2,$DIV_MARK2,$END_MARK2,$START_MARK3,$DIV_MARK3,$END_MARK3,$CHECK_FILE" >> "conflict-activity-$STUDENT.json"
       elif [ "$i" == "2" ]
       then
-        #search for conflict markers
+        # Search for conflict markers
         START_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/css/index.css" | grep -c -i '<<<<<<<') >> log.out 2>&1
         echo "search for <<<<<<< found $START_MARK"
         DIV_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/css/index.css" | grep -c -i '=======') >> log.out 2>&1
@@ -125,7 +125,7 @@ function CheckRepo ()
         echo "correct answers would be: 0,0,0" >> "conflict-activity-$STUDENT.json"
         echo "checks$i:$START_MARK,$DIV_MARK,$END_MARK" >> "conflict-activity-$STUDENT.json"
       else
-        # search for conflict markers
+        # Search for conflict markers
         START_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/README.md" | grep -c -i '<<<<<<<') >> log.out 2>&1
         echo "search for <<<<<<< found $START_MARK"
         DIV_MARK=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://raw.githubusercontent.com/githubschool/$STUDENT_REPO/master/README.md" | grep -c -i '=======') >> log.out 2>&1
@@ -145,19 +145,29 @@ function CheckRepo ()
   # first, encode file as base64
   # shellcheck disable=SC2002
   NEW_FILE=$(cat "conflict-activity-$STUDENT.json" | base64)
-  # does the file already exist?
+  # Does the file already exist?
   STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" | grep "^Status:") >> log.out 2>&1
   if echo "$STATUS" | grep -iq "404" ;
   then
-    #create the file on the repo
+    ###############################
+    # Create the file on the repo #
+    ###############################
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" >> log.out 2>&1
   else
-    #get the sha
+    ###############
+    # Get the sha #
+    ###############
     SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" | jq .sha) >> log.out 2>&1
     echo "Replacing the file at SHA: $SHA"
-    #replace the file
+    ####################
+    # Replace the file #
+    ####################
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" >> log.out 2>&1
   fi
+
+  #########################
+  # Remove the local file #
+  #########################
   rm "conflict-activity-$STUDENT.json"
 }
 ################################################################################
