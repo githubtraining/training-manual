@@ -23,16 +23,25 @@ function ResetActivity ()
   REPO_NAME=$1
   DEFAULT_BRANCH=$2
 
-  # Make sure no one is teaching class
+  ######################################
+  # Make sure no one is teaching class #
+  ######################################
   echo "Is anyone teaching a class right now using $TOKEN_OWNER? (Y or N)"
   ###################
   # Read in the var #
   ###################
   read -r CLASS_TIME
+
+  ####################
+  # Check the result #
+  ####################
   if echo "$CLASS_TIME" | grep -iq "^y" ;
   then
+    ###################
+    # Try again later #
+    ###################
     echo "This is not a good time to run this script. Wait until class is over and try again"
-    exit
+    exit 0
   else
     ###################
     # Delete the repo #
@@ -65,13 +74,41 @@ function DeleteDisposableRepo ()
   # Delete the repo #
   ###################
   echo "Delete $TOKEN_OWNER $REPO_NAME repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1" >> log.out 2>&1
+  DELETE_CMD=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1" >> log.out 2>&1)
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    echo "ERROR! Failed to delete the repo!"
+    echo "ERROR:[$DELETE_CMD]"
+    exit 1
+  fi
 
   #####################
   # Delete class repo #
   #####################
   echo "Delete $CLASS_ORG $REPO_NAME repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$1" >> log.out 2>&1
+  DELETE_CLASS_CMD=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$1" >> log.out 2>&1)
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    echo "ERROR! Failed to delete the class repo!"
+    echo "ERROR:[$DELETE_CLASS_CMD]"
+    exit 1
+  fi
 }
 ################################################################################
 #### Function DuplicateRepo ####################################################
