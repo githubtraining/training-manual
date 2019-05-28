@@ -149,13 +149,13 @@ function DoTask ()
   ##########
   # TASK 7 #
   ##########
-  elif [ "$TASK" -eq 7]; then
+  elif [ "$TASK" -eq 7 ]; then
     echo "running script/expire-repo"
     script/expire-repo
   ##########
   # TASK 8 #
   ##########
-  elif [ "$TASK" -eq 8]; then
+  elif [ "$TASK" -eq 8 ]; then
     echo "Nothing to see here... were all done..."
     exit 0
   fi
