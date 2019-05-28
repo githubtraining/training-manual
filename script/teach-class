@@ -62,18 +62,9 @@ function GetTask ()
   fi
 
   ################
-  # If were done #
+  # Run the task #
   ################
-  if [ "$TASK" -eq 6 ]; then
-    # Exit script
-    exit 0
-  #######################
-  # Were running a task #
-  #######################
-  else
-    # Run a task
-    DoTask "$TASK"
-  fi
+  DoTask "$TASK"
 }
 ################################################################################
 #### Function DoTask ###########################################################
@@ -104,6 +95,7 @@ function DoTask ()
   # TASK 0 #
   ##########
   if [ "$TASK" -eq 0 ]; then
+    # echo "0: Confirm Set-up"
     echo "running script/class-setup"
     script/class-setup
     echo "=============================="
@@ -114,48 +106,56 @@ function DoTask ()
   # TASK 1 #
   ##########
   elif [ "$TASK" -eq 1 ]; then
+    # echo "1: Create a new caption-this class repository"
     echo "running script/new-virtual"
     script/new-virtual "$COLLAB_REPO"
   ##########
   # TASK 2 #
   ##########
   elif [ "$TASK" -eq 2 ]; then
+    # echo "2: Add collabs and create files (also makes the repo private)"
     echo "running script/create-files"
     script/create-files "$COLLAB_REPO"
   ##########
   # TASK 3 #
   ##########
   elif [ "$TASK" -eq 3 ]; then
+    # echo "3: Grade the day 1 repo"
     echo "running script/check-caption-repo"
     script/check-caption-repo "$COLLAB_REPO"
   ##########
   # TASK 4 #
   ##########
   elif [ "$TASK" -eq 4 ]; then
+    # echo "4: Create conflict repos for each student"
     echo "running script/create-conflict-repos"
     script/create-conflict-repos "$COLLAB_REPO"
   ##########
   # TASK 5 #
   ##########
   elif [ "$TASK" -eq 5 ]; then
+    # echo "5: Grade the conflict repos"
     echo "running script/check-conflict-repos"
     script/check-conflict-repos "$COLLAB_REPO"
   ##########
   # TASk 6 #
   ##########
   elif [ "$TASK" -eq 6 ]; then
+    # echo "6: Create the github-games repos for each student"
     echo "running script/create-game-repos"
     script/create-game-repos "$COLLAB_REPO"
   ##########
   # TASK 7 #
   ##########
   elif [ "$TASK" -eq 7 ]; then
+    # echo "7: Expire student repos"
     echo "running script/expire-repo"
     script/expire-repo
   ##########
   # TASK 8 #
   ##########
   elif [ "$TASK" -eq 8 ]; then
+    # echo "8: Done"
     echo "Nothing to see here... were all done..."
     exit 0
   fi
