@@ -1,0 +1,143 @@
+#!/bin/bash
+################################################################################
+############################ Grade Client Repo ################################
+################################################################################
+
+###########################################################
+# NOTE:                                                   #
+# You must have a githubteacher token                     #
+# saved to your ENV variables in order to use this script #
+###########################################################
+
+###########
+# GLOBALS #
+###########
+COLLAB_REPO=$1
+MASTER_ISSUE='1'  # Issue id on GitHub repo that users should comment on
+OPEN_PR_ARRAY=()  # Array of open PR's
+
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function GetIssueCommenters ###############################################
+function GetIssueCommenters ()
+{
+  ###########################################
+  # Get array of all commentors in an issue #
+  ###########################################
+  COMMENTORS_ARRAY=($(curl --fail -s -k GET --url "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/$MASTER_ISSUE/comments" \
+    -H 'accept: application/vnd.github.v3+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' --data '{}' | jq '.[] | .user.login' )) >> log.out 2>&1
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    #########
+    # Error #
+    #########
+    echo "ERROR! Failed to gain list of commentors!"
+    echo "ERROR:[${COMMENTORS_ARRAY[*]}]"
+    exit 1
+  fi
+
+  ##################################
+  # Clean the arrays of duplicates #
+  ##################################
+  COMMENTORS_ARRAY_CLEAN=(echo "${COMMENTORS_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq)
+  OPEN_PR_ARRAY_CLEAN=(echo "${OPEN_PR_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq)
+
+  ############################
+  # Store Intersection ARRAY #
+  ############################
+  INTERSECTION_ARRAY=$(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | sed 's/ /\n/g' | sort | uniq -d)
+
+  ##########################################
+  # Users who have open PR and a commentor #
+  ##########################################
+  for USER in "${INTERSECTION_ARRAY[@]}"
+  do
+    #########################################
+    # create the success file _grades/_date #
+    #########################################
+    # Remove whitespace
+    USER=$(echo "$USER" | (sed -e 's/^"//' -e 's/"$//'))
+    echo "---" >> "caption-activity-$USER.yml"
+    # Send graded file to original class repo
+    # first, encode file as base64
+    # shellcheck disable=SC2002
+    NEW_FILE=$(cat "caption-activity-$USER.yml" | base64)
+    # Does the file already exist?
+    STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | grep "^Status:") >> log.out 2>&1
+    if echo "$STATUS" | grep -iq "404" ;
+    then
+      ###############################
+      # Create the file on the repo #
+      ###############################
+      curl --fail -k -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >> log.out 2>&1
+    else
+      ###############
+      # Get the sha #
+      ###############
+      SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | jq .sha) >> log.out 2>&1
+      echo "Replacing the file at sha: $SHA"
+      ####################
+      # Replace the file #
+      ####################
+      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >> log.out 2>&1
+    fi
+
+    #########################################
+    # and delete the temporary grading file #
+    #########################################
+    rm "caption-activity-$USER.yml"
+  fi
+  done
+
+}
+################################################################################
+#### Function GetOpenPRS #######################################################
+function GetOpenPRS ()
+{
+  #################################################
+  # Get a list of all open PRs on the master repo #
+  #################################################
+  OPEN_PR_ARRAY=($(curl -X GET --url "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls" \
+    -H 'accept: application/vnd.github.symmetra-preview+json' -H 'authorization: Bearer TOKEN' -H 'content-type: application/json' \
+    --data '{ "state": "open", "sort": "created", "direction": "desc" }' | jq '.[] | .user.login')) >> log.out 2>&1
+
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    #########
+    # Error #
+    #########
+    echo "ERROR! Failed to gain list of open PR's!"
+    echo "ERROR:[${OPEN_PR_ARRAY[*]}]"
+    exit 1
+  fi
+}
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+
+####################
+# Get all open PRs #
+####################
+GetOpenPRS
+
+###########################
+# Get Commenters on Issue #
+###########################
+GetIssueCommenters
