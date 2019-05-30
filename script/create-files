@@ -45,7 +45,7 @@ function GetNames ()
       ######################
       # Check the elements #
       ######################
-      containsElement "$i" "$COLLABS"
+      ContainsElement "$i" "$COLLABS"
     then
       ###############
       # Add collab #
