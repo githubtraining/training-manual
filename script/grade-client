@@ -51,8 +51,8 @@ function GetIssueCommenters ()
   ##################################
   # Clean the arrays of duplicates #
   ##################################
-  COMMENTORS_ARRAY_CLEAN=(echo "${COMMENTORS_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq)
-  OPEN_PR_ARRAY_CLEAN=(echo "${OPEN_PR_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq)
+  COMMENTORS_ARRAY_CLEAN=$(echo "${COMMENTORS_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq)
+  OPEN_PR_ARRAY_CLEAN=$(echo "${OPEN_PR_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq)
 
   ############################
   # Store Intersection ARRAY #
@@ -98,7 +98,6 @@ function GetIssueCommenters ()
     # and delete the temporary grading file #
     #########################################
     rm "caption-activity-$USER.yml"
-  fi
   done
 
 }
