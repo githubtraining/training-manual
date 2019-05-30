@@ -65,7 +65,7 @@ function GetNames ()
   for i in ${collabs[@]}
   do
    if
-     containsElement $i $ownersArray
+     ContainsElement $i $ownersArray
    then
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i" | grep "^Status:") >> log.out 2>&1
