@@ -39,6 +39,7 @@ function GetTask ()
   echo "6: Create the github-games repos for each student"
   echo "7: Expire student repos"
   echo "8: Done"
+  echo "9: Grade client"
   echo ""
 
   ################################
@@ -158,6 +159,13 @@ function DoTask ()
     # echo "8: Done"
     echo "Nothing to see here... were all done..."
     exit 0
+  ##########
+  # TASK 9 #
+  ##########
+  elif [ "$TASK" -eq 9 ]; then
+    # echo "9: Grade client"
+    echo "running script/grade-client"
+    script/grade-client
   fi
 }
 ################################################################################
