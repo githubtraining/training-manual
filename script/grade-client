@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 ################################################################################
 ############################ Grade Client Repo ################################
 ################################################################################
@@ -22,6 +22,52 @@ COMMENTORS_ARRAY=()   # Array of all commentors
 ################################################################################
 ########################## Functions Below #####################################
 ################################################################################
+################################################################################
+#### Function GetInputVars #####################################################
+function GetInputVars ()
+{
+  echo "-----------------------------------"
+  echo "What is the name of the Org?"
+  ########################
+  # Read the collab Org #
+  ########################
+  read -r COLLAB_ORG
+
+  ############################################
+  # Clean any whitespace that may be entered #
+  ############################################
+  COLLAB_ORG_WHITESPACE="$(echo -e "$COLLAB_ORG" | tr -d '[:space:]')"
+  COLLAB_ORG=$COLLAB_ORG_WHITESPACE
+
+  echo "-----------------------------------"
+  echo "What is the name of the REPO?"
+  ########################
+  # Read the collab REPO #
+  ########################
+  read -r COLLAB_REPO
+
+  ############################################
+  # Clean any whitespace that may be entered #
+  ############################################
+  COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
+  COLLAB_REPO=$COLLAB_REPO_WHITESPACE
+
+  echo "-----------------------------------"
+  echo "What is the number of the ISSUE?"
+  #########################
+  # Read the collab ISSUE #
+  #########################
+  read -r MASTER_ISSUE
+
+  ############################
+  # Validate we got a number #
+  ############################
+  REGEX='^[0-9]+$'
+  if ! [[ $MASTER_ISSUE =~ $REGEX ]] ; then
+    echo "ERROR: [$MASTER_ISSUE] is not a number!"
+    exit 1
+  fi
+}
 ################################################################################
 #### Function GetIssueCommenters ###############################################
 function GetIssueCommenters ()
@@ -123,22 +169,88 @@ function CreateObjects()
       # Create the file on the repo #
       ###############################
       curl --fail -k -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >> log.out 2>&1
+
+      #######################
+      # Load the error code #
+      #######################
+      ERROR_CODE=$?
+
+      ##############################
+      # Check the shell for errors #
+      ##############################
+      if [ $ERROR_CODE -ne 0 ]; then
+        #########
+        # Error #
+        #########
+        echo "ERROR! Failed to create file!"
+        exit 1
+      fi
     else
       ###############
       # Get the sha #
       ###############
       SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | jq .sha) >> log.out 2>&1
-      echo "Replacing the file at sha: $SHA"
+
+      #######################
+      # Load the error code #
+      #######################
+      ERROR_CODE=$?
+
+      ##############################
+      # Check the shell for errors #
+      ##############################
+      if [ $ERROR_CODE -ne 0 ]; then
+        #########
+        # Error #
+        #########
+        echo "ERROR! Failed to get SHA!"
+        echo "ERROR:[$SHA]"
+        exit 1
+      else
+        echo "Replacing the file at sha: $SHA"
+      fi
       ####################
       # Replace the file #
       ####################
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >> log.out 2>&1
+
+      #######################
+      # Load the error code #
+      #######################
+      ERROR_CODE=$?
+
+      ##############################
+      # Check the shell for errors #
+      ##############################
+      if [ $ERROR_CODE -ne 0 ]; then
+        #########
+        # Error #
+        #########
+        echo "ERROR! Failed to replace the file!"
+        exit 1
+      fi
     fi
 
     #########################################
     # and delete the temporary grading file #
     #########################################
-    rm "caption-activity-$USER.yml"
+    rm -f "caption-activity-$USER.yml"
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
+    ##############################
+    # Check the shell for errors #
+    ##############################
+    if [ $ERROR_CODE -ne 0 ]; then
+      #########
+      # Error #
+      #########
+      echo "ERROR! Failed to remove the file!"
+      exit 1
+    fi
   done
 }
 ################################################################################
@@ -148,21 +260,7 @@ function CreateObjects()
 ###########################
 # Get the user Input Info #
 ###########################
-echo "What is the name of the Org?"
-########################
-# Read the collab Org #
-########################
-read -r COLLAB_ORG
-echo "What is the name of the REPO?"
-########################
-# Read the collab REPO #
-########################
-read -r COLLAB_REPO
-echo "What is the number of the ISSUE?"
-#########################
-# Read the collab ISSUE #
-#########################
-read -r MASTER_ISSUE
+GetInputVars
 
 ####################
 # Get all open PRs #
