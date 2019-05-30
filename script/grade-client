@@ -90,7 +90,7 @@ function CreateObjects()
   ############################
   # Store Intersection ARRAY #
   ############################
-  INTERSECTION_ARRAY=$(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | sed 's/ /\n/g' | sort | uniq -d)
+  INTERSECTION_ARRAY=($(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | sed 's/ /\n/g' | sort | uniq -d))
 
   echo "DEBUG: COMMENTORS_ARRAY_CLEAN:[${COMMENTORS_ARRAY_CLEAN[*]}]"
   echo "DEBUG: OPEN_PR_ARRAY_CLEAN:[${OPEN_PR_ARRAY_CLEAN[*]}]"
