@@ -96,7 +96,7 @@ function CreateObjects()
 
   CONCAT_ARRAY=("${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}")
 
-  printf '%s\n' "${CONCAT_ARRAY[@]}"|awk '!($0 in seen){seen[$0];next} 1'
+  CONCAT_RESULTS_ARRAY=($(printf '%s\n' "${CONCAT_ARRAY[@]}"|awk '!($0 in seen){seen[$0];next} 1'))
 
   echo "Commenters array:"
   for ITEM in "${COMMENTORS_ARRAY_CLEAN[@]}"
@@ -117,7 +117,7 @@ function CreateObjects()
   ##########################################
   # Users who have open PR and a commentor #
   ##########################################
-  for USER in "${INTERSECTION_ARRAY[@]}"
+  for USER in "${CONCAT_RESULTS_ARRAY[@]}"
   do
     #########################################
     # create the success file _grades/_date #
