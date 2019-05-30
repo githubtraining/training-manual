@@ -12,11 +12,12 @@
 ###########
 # GLOBALS #
 ###########
-COLLAB_ORG=$1
-COLLAB_REPO=$2
-MASTER_ISSUE=$3
-#MASTER_ISSUE='206'  # Issue id on GitHub repo that users should comment on
-OPEN_PR_ARRAY=()  # Array of open PR's
+COLLAB_ORG=$1         # Name of the Org
+COLLAB_REPO=$2        # name of the Repo
+MASTER_ISSUE=$3       # Issue number to check
+#MASTER_ISSUE='206'   # Issue id on GitHub repo that users should comment on
+OPEN_PR_ARRAY=()      # Array of open PR's
+COMMENTORS_ARRAY=()   # Array of all commentors
 
 ################################################################################
 ########################## Functions Below #####################################
@@ -47,7 +48,39 @@ function GetIssueCommenters ()
     echo "ERROR:[${COMMENTORS_ARRAY[*]}]"
     exit 1
   fi
+}
+################################################################################
+#### Function GetOpenPRS #######################################################
+function GetOpenPRS ()
+{
+  #################################################
+  # Get a list of all open PRs on the master repo #
+  #################################################
+  OPEN_PR_ARRAY=($(curl -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \
+    -H 'accept: application/vnd.github.symmetra-preview+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' \
+    --data '{ "state": "open", "sort": "created", "direction": "desc" }' | jq '.[] | .user.login')) >> log.out 2>&1
 
+  #######################
+  # Load the error code #
+  #######################
+  ERROR_CODE=$?
+
+  ##############################
+  # Check the shell for errors #
+  ##############################
+  if [ $ERROR_CODE -ne 0 ]; then
+    #########
+    # Error #
+    #########
+    echo "ERROR! Failed to gain list of open PR's!"
+    echo "ERROR:[${OPEN_PR_ARRAY[*]}]"
+    exit 1
+  fi
+}
+################################################################################
+#### Function CreateObjects ####################################################
+function CreateObjects()
+{
   ##################################
   # Clean the arrays of duplicates #
   ##################################
@@ -59,6 +92,8 @@ function GetIssueCommenters ()
   ############################
   INTERSECTION_ARRAY=$(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | sed 's/ /\n/g' | sort | uniq -d)
 
+  echo "DEBUG: IntersectionArray:[${INTERSECTION_ARRAY[*]}]"
+  
   ##########################################
   # Users who have open PR and a commentor #
   ##########################################
@@ -99,35 +134,6 @@ function GetIssueCommenters ()
     #########################################
     rm "caption-activity-$USER.yml"
   done
-
-}
-################################################################################
-#### Function GetOpenPRS #######################################################
-function GetOpenPRS ()
-{
-  #################################################
-  # Get a list of all open PRs on the master repo #
-  #################################################
-  OPEN_PR_ARRAY=($(curl -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \
-    -H 'accept: application/vnd.github.symmetra-preview+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' \
-    --data '{ "state": "open", "sort": "created", "direction": "desc" }' | jq '.[] | .user.login')) >> log.out 2>&1
-
-  #######################
-  # Load the error code #
-  #######################
-  ERROR_CODE=$?
-
-  ##############################
-  # Check the shell for errors #
-  ##############################
-  if [ $ERROR_CODE -ne 0 ]; then
-    #########
-    # Error #
-    #########
-    echo "ERROR! Failed to gain list of open PR's!"
-    echo "ERROR:[${OPEN_PR_ARRAY[*]}]"
-    exit 1
-  fi
 }
 ################################################################################
 ############################### MAIN ###########################################
@@ -142,3 +148,8 @@ GetOpenPRS
 # Get Commenters on Issue #
 ###########################
 GetIssueCommenters
+
+##################
+# Create Objects #
+##################
+CreateObjects
