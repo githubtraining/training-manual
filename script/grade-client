@@ -94,6 +94,10 @@ function CreateObjects()
   ############################
   INTERSECTION_ARRAY=($(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ' | uniq -d))
 
+  CONCAT_ARRAY=("${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}")
+
+  printf '%s\n' "${CONCAT_ARRAY[@]}"|awk '!($0 in seen){seen[$0];next} 1'
+
   echo "Commenters array:"
   for ITEM in "${COMMENTORS_ARRAY_CLEAN[@]}"
   do
