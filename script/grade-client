@@ -12,9 +12,9 @@
 ###########
 # GLOBALS #
 ###########
-COLLAB_ORG=$1         # Name of the Org
-COLLAB_REPO=$2        # name of the Repo
-MASTER_ISSUE=$3       # Issue number to check
+COLLAB_ORG=''         # Name of the Org
+COLLAB_REPO=''        # name of the Repo
+MASTER_ISSUE=''       # Issue number to check
 #MASTER_ISSUE='206'   # Issue id on GitHub repo that users should comment on
 OPEN_PR_ARRAY=()      # Array of open PR's
 COMMENTORS_ARRAY=()   # Array of all commentors
@@ -85,39 +85,25 @@ function CreateObjects()
   # Clean the arrays of duplicates #
   ##################################
   COMMENTORS_ARRAY_CLEAN=($(echo "${COMMENTORS_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
-  #COMMENTORS_ARRAY_CLEAN=($(echo "${COMMENTORS_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq))
-  #OPEN_PR_ARRAY_CLEAN=($(echo "${OPEN_PR_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq))
   OPEN_PR_ARRAY_CLEAN=($(echo "${OPEN_PR_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+  CONCAT_ARRAY=("${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}")
 
   ############################
   # Store Intersection ARRAY #
   ############################
-  INTERSECTION_ARRAY=($(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ' | uniq -d))
+  INTERSECTION_ARRAY=($(printf '%s\n' "${CONCAT_ARRAY[@]}"|awk '!($0 in seen){seen[$0];next} 1'))
 
-  CONCAT_ARRAY=("${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}")
-
-  CONCAT_RESULTS_ARRAY=($(printf '%s\n' "${CONCAT_ARRAY[@]}"|awk '!($0 in seen){seen[$0];next} 1'))
-
-  echo "Commenters array:"
-  for ITEM in "${COMMENTORS_ARRAY_CLEAN[@]}"
-  do
-    echo "$ITEM"
-  done
-
-  echo "PR array:"
-  for ITEM in "${OPEN_PR_ARRAY_CLEAN[@]}"
-  do
-    echo "$ITEM"
-  done
-
-  echo "DEBUG: COMMENTORS_ARRAY_CLEAN:[${COMMENTORS_ARRAY_CLEAN[*]}]"
-  echo "DEBUG: OPEN_PR_ARRAY_CLEAN:[${OPEN_PR_ARRAY_CLEAN[*]}]"
-  echo "DEBUG: INTERSECTION_ARRAY:[${INTERSECTION_ARRAY[*]}]"
+  ####################
+  # Debug statements #
+  ####################
+  #echo "DEBUG: COMMENTORS_ARRAY_CLEAN:[${COMMENTORS_ARRAY_CLEAN[*]}]"
+  #echo "DEBUG: OPEN_PR_ARRAY_CLEAN:[${OPEN_PR_ARRAY_CLEAN[*]}]"
+  #echo "DEBUG: INTERSECTION_ARRAY:[${INTERSECTION_ARRAY[*]}]"
 
   ##########################################
   # Users who have open PR and a commentor #
   ##########################################
-  for USER in "${CONCAT_RESULTS_ARRAY[@]}"
+  for USER in "${INTERSECTION_ARRAY[@]}"
   do
     #########################################
     # create the success file _grades/_date #
@@ -158,6 +144,25 @@ function CreateObjects()
 ################################################################################
 ############################### MAIN ###########################################
 ################################################################################
+
+###########################
+# Get the user Input Info #
+###########################
+echo "What is the name of the Org?"
+########################
+# Read the collab Org #
+########################
+read -r COLLAB_ORG
+echo "What is the name of the REPO?"
+########################
+# Read the collab REPO #
+########################
+read -r COLLAB_REPO
+echo "What is the number of the ISSUE?"
+#########################
+# Read the collab ISSUE #
+#########################
+read -r MASTER_ISSUE
 
 ####################
 # Get all open PRs #
