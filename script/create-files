@@ -334,4 +334,4 @@ COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_UR
 #################
 # Get the names #
 #################
-getnames
+GetNames
