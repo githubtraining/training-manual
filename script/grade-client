@@ -84,13 +84,15 @@ function CreateObjects()
   ##################################
   # Clean the arrays of duplicates #
   ##################################
-  COMMENTORS_ARRAY_CLEAN=($(echo "${COMMENTORS_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq))
-  OPEN_PR_ARRAY_CLEAN=($(echo "${OPEN_PR_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq))
+  COMMENTORS_ARRAY_CLEAN=($(echo "${COMMENTORS_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+  #COMMENTORS_ARRAY_CLEAN=($(echo "${COMMENTORS_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq))
+  #OPEN_PR_ARRAY_CLEAN=($(echo "${OPEN_PR_ARRAY[@]}" | sed 's/ /\n/g' | sort | uniq))
+  OPEN_PR_ARRAY_CLEAN=($(echo "${OPEN_PR_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
 
   ############################
   # Store Intersection ARRAY #
   ############################
-  INTERSECTION_ARRAY=($(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | sed 's/ /\n/g' | sort | uniq -d))
+  INTERSECTION_ARRAY=($(echo "${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ' | uniq -d))
 
   echo "Commenters array:"
   for ITEM in "${COMMENTORS_ARRAY_CLEAN[@]}"
@@ -103,7 +105,7 @@ function CreateObjects()
   do
     echo "$ITEM"
   done
-  
+
   echo "DEBUG: COMMENTORS_ARRAY_CLEAN:[${COMMENTORS_ARRAY_CLEAN[*]}]"
   echo "DEBUG: OPEN_PR_ARRAY_CLEAN:[${OPEN_PR_ARRAY_CLEAN[*]}]"
   echo "DEBUG: INTERSECTION_ARRAY:[${INTERSECTION_ARRAY[*]}]"
