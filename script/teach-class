@@ -84,7 +84,7 @@ function DoTask ()
   #########################################
   # See if we need to get the collab repo #
   #########################################
-  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 8 ]; then
+  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 8 ] && [ "$TASK" -ne 9 ]; then
     echo "What is the name of the day 1 repo?"
     ########################
     # Read the collab repo #
