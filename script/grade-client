@@ -12,8 +12,10 @@
 ###########
 # GLOBALS #
 ###########
-COLLAB_REPO=$1
-MASTER_ISSUE='1'  # Issue id on GitHub repo that users should comment on
+COLLAB_ORG=$1
+COLLAB_REPO=$2
+MASTER_ISSUE=$3
+#MASTER_ISSUE='206'  # Issue id on GitHub repo that users should comment on
 OPEN_PR_ARRAY=()  # Array of open PR's
 
 ################################################################################

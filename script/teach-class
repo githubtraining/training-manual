@@ -164,8 +164,23 @@ function DoTask ()
   ##########
   elif [ "$TASK" -eq 9 ]; then
     # echo "9: Grade client"
+    echo "What is the name of the Org?"
+    ########################
+    # Read the collab Org #
+    ########################
+    read -r ORG
+    echo "What is the name of the REPO?"
+    ########################
+    # Read the collab REPO #
+    ########################
+    read -r REPO
+    echo "What is the number of the ISSUE?"
+    ########################
+    # Read the collab ISSUE #
+    ########################
+    read -r ISSUE
     echo "running script/grade-client"
-    script/grade-client
+    script/grade-client $ORG $REPO $ISSUE
   fi
 }
 ################################################################################
