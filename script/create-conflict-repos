@@ -74,7 +74,7 @@ function GetNames ()
   fi
 
   pushd conflict-template
-  COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+  COLLABS=($(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login')) >> log.out 2>&1
 
   #get facilitator name from README
   TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
