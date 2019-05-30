@@ -85,35 +85,60 @@ function GetNames ()
   # Read in input #
   #################
   read -r CLASS_TIME
-  if echo "$CLASS_TIME" | grep -iq "^y" ;
-  then
+
+  ###################
+  # Check the input #
+  ###################
+  if echo "$CLASS_TIME" | grep -iq "^y" ; then
+    #####################
+    # Create a new repo #
+    #####################
     echo "Deleting githubschool/conflict-practice-$TEACHER repo..."
     curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$TEACHER"
   else
+    ######################
+    # Dont create a repo #
+    ######################
     echo "A conflict-practice repo wasn't created for the facilitator, creating for the students..."
   fi
 
+  ###############################
+  # Get the array of all owners #
+  ###############################
   OWNERS_ARRAY=( "${OWNERS_ARRAY[@]/"$TEACHER"}" )
   for i in "${COLLABS[@]}"
   do
-   if
+     if
+     ###################
+     # We have a match #
+     ###################
      ContainsElement "$i" "${OWNERS_ARRAY[*]}"
    then
+    ########################
+    # Clear spaces in name #
+    ########################
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i" | grep "^Status:") >> log.out 2>&1
-    echo "repoStatus for $i is $REPO_STATUS"
+    echo "repoStatus for [$i] is [$REPO_STATUS]"
     if
       echo "$REPO_STATUS" | grep -iq "404"
     then
+      ###################
+      # Create the repo #
+      ###################
       CreateRepo "$i"
     else
-      echo "Skipping $i because they already have a repo."
+      echo "Skipping [$i] because they already have a repo."
     fi
    else
-     echo "Skipping $i because they are an owner in this org."
+     echo "Skipping [$i] because they are an owner in this org."
    fi
   done
   popd
+
+  #########################
+  # Remove the local file #
+  #########################
   echo "Remove the local (temporary) clone"
   rm -rf conflict-template
 }
