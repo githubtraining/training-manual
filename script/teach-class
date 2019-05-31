@@ -30,17 +30,17 @@ function GetTask ()
   echo ""
   echo ""
   echo "What would you like to do? (Just the number please)"
-  echo "0: Confirm Set-up"
-  echo "1: Create a new caption-this class repository"
-  echo "2: Add collabs and create files (also makes the repo private)"
-  echo "3: Grade the day 1 repo"
-  echo "4: Create conflict repos for each student"
-  echo "5: Grade the conflict repos"
-  echo "6: Create the github-games repos for each student"
-  echo "7: Expire student repos"
-  echo "8: Done"
-  echo "9: Grade client"
-  echo ""
+  echo "00: Done"
+  echo " 0: Confirm Set-up"
+  echo " 1: Create a new caption-this class repository"
+  echo " 2: Add collabs and create files (also makes the repo private)"
+  echo " 3: Grade the day 1 repo"
+  echo " 4: Create conflict repos for each student"
+  echo " 5: Grade the conflict repos"
+  echo " 6: Create the github-games repos for each student"
+  echo " 7: Expire student repos"
+  echo " 8: Grade client"
+
 
   ################################
   # Read the task that was input #
