@@ -30,7 +30,7 @@ function GetTask ()
   echo ""
   echo ""
   echo "What would you like to do? (Just the number please)"
-  echo "00: Exit"
+  echo "99: Exit"
   echo " 0: Confirm Set-up"
   echo " 1: Create a new caption-this class repository"
   echo " 2: Add collabs and create files (also makes the repo private)"
@@ -85,7 +85,7 @@ function DoTask ()
   # See if we need to get the collab repo #
   #########################################
   # Skip tasks that dont need COLLAB_REPO
-  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 00 ] && [ "$TASK" -ne 9 ]; then
+  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 99 ] && [ "$TASK" -ne 9 ]; then
     echo "What is the name of the day 1 repo?"
     ########################
     # Read the collab repo #
@@ -102,7 +102,7 @@ function DoTask ()
   ###########
   # TASK 00 #
   ###########
-  if [ "$TASK" -eq 00 ]; then
+  if [ "$TASK" -eq 99 ]; then
   # echo 00: Done"
   echo "Were all done..."
   exit 0
