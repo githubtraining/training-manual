@@ -206,7 +206,7 @@ function InstanceURL ()
   # Read the input #
   ##################
   read -r NEW_URL
-  echo "Checking if '$NEW_URL' is accessible... (this may take several minutes)"
+  echo "Checking if '$NEW_URL' is accessible... (this may take several moments)"
   curl -s "$NEW_URL" >> log.out 2>&1
 
   #######################
@@ -219,20 +219,20 @@ function InstanceURL ()
   ##############################
   if [ $ERROR_CODE -eq 0 ]; then
     echo "API endpoint verified"
-  else
-    echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
-  fi
-
-  ###################
-  # Check with Auth #
-  ###################
-  echo "Checking if '$NEW_URL' is accessible with authentication..."
-  if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]; then
-    echo "API endpoint + authentication verified"
     echo "export INSTANCE_URL='$NEW_URL'" >> "$HOME/$RC_FILE"
   else
-    echo "Can't make an authenticated request to the API."
-    exit 1
+    echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
+    ###################
+    # Check with Auth #
+    ###################
+    echo "Checking if '$NEW_URL' is accessible with authentication..."
+    if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]; then
+      echo "API endpoint + authentication verified"
+      echo "export INSTANCE_URL='$NEW_URL'" >> "$HOME/$RC_FILE"
+    else
+      echo "Can't make an authenticated request to the API."
+      exit 1
+    fi
   fi
 
   #######################
@@ -241,11 +241,11 @@ function InstanceURL ()
   if echo "$NEW_URL" | grep -iq "\<api.github.com\>" ;
     then
       echo "export ROOT_URL='github.com'" >> "$HOME/$RC_FILE"
+      echo "export INSTANCE_URL='api.github.com'" >> "$HOME/$RC_FILE"
     else
       #strip the API part
       strippedURL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
       echo "export ROOT_URL='$strippedURL'" >> "$HOME/$RC_FILE"
-      echo "export INSTANCE_URL='$INSTANCE_URL'" >> "$HOME/$RC_FILE"
   fi
 
   ##########
