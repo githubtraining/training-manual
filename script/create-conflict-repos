@@ -70,11 +70,11 @@ function GetNames ()
     echo "A conflict-practice repo wasn't created for the facilitator, creating for the students..."
   fi
 
-  ownersArray=( "${ownersArray[@]/"$teacher"}" )
+  OWNERS_ARRAY=( "${OWNERS_ARRAY[@]/"$teacher"}" )
   for i in "${collabs[@]}"
   do
    if
-     ContainsElement "$i" "$ownersArray"
+     ContainsElement "$i" "${OWNERS_ARRAY[*]}"
    then
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i" | grep "^Status:") >> log.out 2>&1
@@ -113,6 +113,7 @@ function CreateRepo ()
   echo "Waiting for push to resolve before creating pull requests."
   sleep 5
   #create PRs for each branch
+  # shellcheck disable=SC2129
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Updates to game manual\", \"head\": \"manual\", \"base\": \"master\", \"body\": \"This pull request edits the wording of some of the language on the main page. It appears that it has also been edited on master, because there's a merge conflict. Please make sure that all of the words are the ones that you'd like to use, and that there aren't any lines of text missing.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225093022/6c1c6eb72b\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Minor CSS fixes\", \"head\": \"css-changes\", \"base\": \"master\", \"body\": \"This pull request makes some small changes to the CSS. Pick the CSS that you think makes the most sense given the history of the file on both branches and resolve the merge conflict.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225086721/5a00221234\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Update README\", \"head\": \"readme-update\", \"base\": \"master\", \"body\": \"This pull request updates the README.md. Resolve the merge conflicts and make sure the final version of the README.md is accurate and descriptive.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225086807/17d3c84475\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$studentRepo/pulls" >> log.out 2>&1
