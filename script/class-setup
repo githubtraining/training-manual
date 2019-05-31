@@ -677,7 +677,7 @@ else
   #####################
   # Get the class org #
   #####################
-  ClassOrgCLient
+  ClassOrgClient
 
   ########################
   # Get the survey token #
