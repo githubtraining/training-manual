@@ -63,7 +63,7 @@ function CreateRCFile ()
   if [ ! -f "$HOME/$RC_FILE" ]; then
     echo "failed to find $HOME/$RC_FILE"
     echo "Going to create file for you..."
-    CREATE_FILE=$(touch $HOME/$RC_FILE 2>&1)
+    CREATE_FILE=$(touch "$HOME/$RC_FILE" 2>&1)
 
     #######################
     # Load the error code #
@@ -95,7 +95,7 @@ function CreateRCFile ()
       # We have a yes answer #
       ########################
       echo "Deleteting the file to recreate it..."
-      DELETE_AND_CREATE_FILE=$(rm -f $HOME/$RC_FILE; touch $HOME/$RC_FILE 2>&1)
+      DELETE_AND_CREATE_FILE=$(rm -f "$HOME/$RC_FILE"; touch "$HOME/$RC_FILE" 2>&1)
 
       #######################
       # Load the error code #
