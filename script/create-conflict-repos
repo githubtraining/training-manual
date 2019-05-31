@@ -38,7 +38,16 @@ function GetNames ()
     git clone --bare "https://github.com/githubtraining/polygons" conflict-template >> log.out 2>&1
   else
     git clone --bare "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/polygons" conflict-template >> log.out 2>&1
-    if [ $? -ne 0 ]; then
+
+    #######################
+    # Load the error code #
+    #######################
+    ERROR_CODE=$?
+
+    ##############################
+    # Check the shell for errors #
+    ##############################
+    if [ $ERROR_CODE -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/polygons and upload it to your GHE instance."
       exit 1
     fi
@@ -52,8 +61,8 @@ function GetNames ()
   #make sure no one is teaching class
   echo "A new conflict-practice repo is about to be created for $teacher. If one already exists, it will be deleted."
   echo "Is that OK? (Y or N)"
-  read -r classtime
-  if echo "$classtime" | grep -iq "^y" ;
+  read -r CLASS_TIME
+  if echo "$CLASS_TIME" | grep -iq "^y" ;
   then
     echo "Deleting githubschool/conflict-practice-$teacher repo..."
     curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$teacher"
@@ -62,18 +71,18 @@ function GetNames ()
   fi
 
   ownersArray=( "${ownersArray[@]/"$teacher"}" )
-  for i in ${collabs[@]}
+  for i in "${collabs[@]}"
   do
    if
-     ContainsElement $i $ownersArray
+     ContainsElement "$i" "$ownersArray"
    then
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$i" | grep "^Status:") >> log.out 2>&1
     echo "repoStatus for $i is $repoStatus"
     if
-      echo $repoStatus | grep -iq "404"
+      echo "$repoStatus" | grep -iq "404"
     then
-      CreateRepo $i
+      CreateRepo "$i"
     else
       echo "Skipping $i because they already have a repo."
     fi
@@ -90,11 +99,11 @@ function GetNames ()
 function CreateRepo ()
 {
   student=$1
-  studentRepo="conflict-practice-"$student
+  studentRepo="conflict-practice-$student"
   echo "Time to create $studentRepo for $student"
   #create a repo named conflict-practice-$student in $CLASS_ORG org
   echo "Create server-side location for fresh $CLASS_ORG/$studentRepo repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$studentRepo\", \"description\": \"Let's resolve some conflicts.\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST https://$INSTANCE_URL/orgs/$CLASS_ORG/repos >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$studentRepo\", \"description\": \"Let's resolve some conflicts.\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >> log.out 2>&1
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
   #add student as a collaborator
