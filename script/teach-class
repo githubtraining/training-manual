@@ -30,7 +30,7 @@ function GetTask ()
   echo ""
   echo ""
   echo "What would you like to do? (Just the number please)"
-  echo "00: Done"
+  echo "00: Exit"
   echo " 0: Confirm Set-up"
   echo " 1: Create a new caption-this class repository"
   echo " 2: Add collabs and create files (also makes the repo private)"
@@ -104,7 +104,7 @@ function DoTask ()
   ###########
   if [ "$TASK" -eq 00 ]; then
   # echo 00: Done"
-  echo "Nothing to see here... were all done..."
+  echo "Were all done..."
   exit 0
   ##########
   # TASK 0 #
