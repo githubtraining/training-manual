@@ -84,18 +84,32 @@ function DoTask ()
   #########################################
   # See if we need to get the collab repo #
   #########################################
-  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 8 ] && [ "$TASK" -ne 9 ]; then
+  # Skip tasks that dont need COLLAB_REPO
+  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 00 ] && [ "$TASK" -ne 9 ]; then
     echo "What is the name of the day 1 repo?"
     ########################
     # Read the collab repo #
     ########################
     read -r COLLAB_REPO
+
+    ############################################
+    # Clean any whitespace that may be entered #
+    ############################################
+    COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
+    COLLAB_REPO=$COLLAB_REPO_WHITESPACE
   fi
 
+  ###########
+  # TASK 00 #
+  ###########
+  if [ "$TASK" -eq 00 ]; then
+  # echo 00: Done"
+  echo "Nothing to see here... were all done..."
+  exit 0
   ##########
   # TASK 0 #
   ##########
-  if [ "$TASK" -eq 0 ]; then
+  elif [ "$TASK" -eq 0 ]; then
     # echo "0: Confirm Set-up"
     echo "running script/class-setup"
     script/class-setup
@@ -156,13 +170,6 @@ function DoTask ()
   # TASK 8 #
   ##########
   elif [ "$TASK" -eq 8 ]; then
-    # echo "8: Done"
-    echo "Nothing to see here... were all done..."
-    exit 0
-  ##########
-  # TASK 9 #
-  ##########
-  elif [ "$TASK" -eq 9 ]; then
     # echo "9: Grade client"
     echo "running script/grade-client"
     script/grade-client
