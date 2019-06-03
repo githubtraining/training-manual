@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 ################################################################################
 ############################ Grade Client Repo #################################
 ################################################################################
@@ -15,7 +15,6 @@
 COLLAB_ORG=''         # Name of the Org
 COLLAB_REPO=''        # name of the Repo
 MASTER_ISSUE=''       # Issue number to check
-#MASTER_ISSUE='206'   # Issue id on GitHub repo that users should comment on
 OPEN_PR_ARRAY=()      # Array of open PR's
 COMMENTORS_ARRAY=()   # Array of all commentors
 
@@ -94,6 +93,19 @@ function GetIssueCommenters ()
     echo "ERROR:[${COMMENTORS_ARRAY[*]}]"
     exit 1
   fi
+
+  #########################################
+  # Get the length of the commentor array #
+  #########################################
+  COMMENTS_FOUND=${#COMMENTORS_ARRAY[@]}
+  echo "Found:[$COMMENTS_FOUND] comments on issue"
+
+  #######################
+  # Warn on no comments #
+  #######################
+  if [ $COMMENTS_FOUND -eq 0 ]; then
+    echo "WARN! no comments found on issue!"
+  fi
 }
 ################################################################################
 #### Function GetOpenPRS #######################################################
@@ -122,6 +134,12 @@ function GetOpenPRS ()
     echo "ERROR:[${OPEN_PR_ARRAY[*]}]"
     exit 1
   fi
+
+  #######################################
+  # Get the length of the Open-PR array #
+  #######################################
+  COMMENTS_FOUND=${#OPEN_PR_ARRAY[@]}
+  echo "Found:[$OPEN_PR_ARRAY] open PR's"
 }
 ################################################################################
 #### Function CreateObjects ####################################################
