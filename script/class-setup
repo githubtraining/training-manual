@@ -235,17 +235,26 @@ function InstanceURL ()
     fi
   fi
 
+  #########################
+  # Set the vars to empty #
+  #########################
+  ROOT_URL=''
+  INSTANCE_URL=''
+
   #######################
   # Check if github.com #
   #######################
   if echo "$NEW_URL" | grep -iq "\<api.github.com\>" ;
     then
-      echo "export ROOT_URL='github.com'" >> "$HOME/$RC_FILE"
-      echo "export INSTANCE_URL='api.github.com'" >> "$HOME/$RC_FILE"
+      ROOT_URL="github.com"
+      INSTANCE_URL="api.github.com"
+      echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
+      echo "export INSTANCE_URL='$INSTANCE_URL'" >> "$HOME/$RC_FILE"
     else
       #strip the API part
-      strippedURL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
-      echo "export ROOT_URL='$strippedURL'" >> "$HOME/$RC_FILE"
+      ROOT_URL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
+      INSTANCE_URL=$NEW_URL
+      echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
   fi
 
   ##########

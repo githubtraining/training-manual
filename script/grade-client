@@ -261,7 +261,7 @@ function CreateObjects()
 ###########################
 # Get the user Input Info #
 ###########################
-#GetInputVars
+GetInputVars
 
 ####################
 # Get all open PRs #
