@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 ################################################################################
 ############################ Grade Client Repo #################################
 ################################################################################
@@ -12,9 +12,9 @@
 ###########
 # GLOBALS #
 ###########
-COLLAB_ORG=''         # Name of the Org
-COLLAB_REPO=''        # name of the Repo
-MASTER_ISSUE=''       # Issue number to check
+COLLAB_ORG='github'         # Name of the Org
+COLLAB_REPO='services-demo-hubot'        # name of the Repo
+MASTER_ISSUE='206'       # Issue number to check
 #MASTER_ISSUE='206'   # Issue id on GitHub repo that users should comment on
 OPEN_PR_ARRAY=()      # Array of open PR's
 COMMENTORS_ARRAY=()   # Array of all commentors
@@ -261,7 +261,7 @@ function CreateObjects()
 ###########################
 # Get the user Input Info #
 ###########################
-GetInputVars
+#GetInputVars
 
 ####################
 # Get all open PRs #
