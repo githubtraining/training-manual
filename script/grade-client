@@ -26,7 +26,7 @@ COMMENTORS_ARRAY=()   # Array of all commentors
 function GetInputVars ()
 {
   echo "-----------------------------------"
-  echo "What is the name of the Org?"
+  echo "What is the name of the GitHub ORG? (ex. github-training)"
   ########################
   # Read the collab Org #
   ########################
@@ -39,7 +39,7 @@ function GetInputVars ()
   COLLAB_ORG=$COLLAB_ORG_WHITESPACE
 
   echo "-----------------------------------"
-  echo "What is the name of the REPO?"
+  echo "What is the name of the Github REPO? (ex. training-class)"
   ########################
   # Read the collab REPO #
   ########################
@@ -52,7 +52,7 @@ function GetInputVars ()
   COLLAB_REPO=$COLLAB_REPO_WHITESPACE
 
   echo "-----------------------------------"
-  echo "What is the number of the ISSUE?"
+  echo "What is the number of the GitHub ISSUE? (ex. 1)"
   #########################
   # Read the collab ISSUE #
   #########################
@@ -97,7 +97,7 @@ function GetIssueCommenters ()
   #########################################
   # Get the length of the commentor array #
   #########################################
-  COMMENTS_FOUND=${#COMMENTORS_ARRAY[@]}
+  COMMENTS_FOUND="${#COMMENTORS_ARRAY[@]}"
   echo "Found:[$COMMENTS_FOUND] comments on issue"
 
   #######################
@@ -138,8 +138,8 @@ function GetOpenPRS ()
   #######################################
   # Get the length of the Open-PR array #
   #######################################
-  COMMENTS_FOUND=${#OPEN_PR_ARRAY[@]}
-  echo "Found:[$OPEN_PR_ARRAY] open PR's"
+  COMMENTS_FOUND="${#OPEN_PR_ARRAY[@]}"
+  echo "Found:[$COMMENTS_FOUND] open PR's"
 }
 ################################################################################
 #### Function CreateObjects ####################################################
