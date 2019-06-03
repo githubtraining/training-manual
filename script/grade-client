@@ -226,8 +226,12 @@ function CreateObjects()
         echo "ERROR:[$SHA]"
         exit 1
       else
-        echo "Replacing the file at sha: $SHA"
+        ##################################
+        # We need to go replace the file #
+        ##################################
+        echo "Replacing the file:[caption-activity-$USER.yml] at sha:[$SHA]"
       fi
+
       ####################
       # Replace the file #
       ####################
