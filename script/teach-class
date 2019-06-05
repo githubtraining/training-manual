@@ -200,6 +200,7 @@ function Check_Env ()
   if [ -z $TOKEN_OWNER ]; then
     echo "ERROR! TOKEN_OWNER not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
+    exit 1
   fi
 
   ################################
@@ -208,6 +209,7 @@ function Check_Env ()
   if [ -z $INSTANCE_URL ]; then
     echo "ERROR! INSTANCE_URL not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
+    exit 1
   fi
 }
 ################################################################################
