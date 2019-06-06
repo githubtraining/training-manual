@@ -187,8 +187,7 @@ function Check_Env ()
   ###############################
   # Check length of TEACHER_PAT #
   ###############################
-  PAT_LENGTH=${#TEACHER_PAT}
-  if [ $PAT_LENGTH -ne 40 ]; then
+  if [ -z $TEACHER_PAT ]; then 
     echo "ERROR! TEACHER_PAT not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1
