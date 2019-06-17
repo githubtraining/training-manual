@@ -177,7 +177,7 @@ function CreateRepo ()
   ##########################
   # Assign PRs to $STUDENT #
   ##########################
-  for i in {1..3};
+  for OWNER in {1..3};
     do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$OWNER/assignees" >> log.out 2>&1;
   done
 }

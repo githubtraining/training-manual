@@ -187,7 +187,7 @@ function Check_Env ()
   ###############################
   # Check length of TEACHER_PAT #
   ###############################
-  if [ -z $TEACHER_PAT ]; then 
+  if [ -z "$TEACHER_PAT" ]; then
     echo "ERROR! TEACHER_PAT not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1
@@ -196,7 +196,7 @@ function Check_Env ()
   ###############################
   # Check we have a TOKEN_OWNER #
   ###############################
-  if [ -z $TOKEN_OWNER ]; then
+  if [ -z "$TOKEN_OWNER" ]; then
     echo "ERROR! TOKEN_OWNER not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1
@@ -205,7 +205,7 @@ function Check_Env ()
   ################################
   # Check we have a INSTANCE_URL #
   ################################
-  if [ -z $INSTANCE_URL ]; then
+  if [ -z "$INSTANCE_URL" ]; then
     echo "ERROR! INSTANCE_URL not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1

@@ -103,7 +103,7 @@ function GetIssueCommenters ()
   #######################
   # Warn on no comments #
   #######################
-  if [ $COMMENTS_FOUND -eq 0 ]; then
+  if [ "$COMMENTS_FOUND" -eq 0 ]; then
     echo "WARN! no comments found on issue!"
   fi
 }
