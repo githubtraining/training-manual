@@ -14,7 +14,7 @@ function getpages () {
     else
       echo "There are $numPages pages"
   fi
-  while [ $numPages -gt 1 ]; do
+  while [ $numPages -gt 0 ]; do
     echo "Getting results for page $numPages"
     getrepos $numPages
     let numPages=numPages-1
