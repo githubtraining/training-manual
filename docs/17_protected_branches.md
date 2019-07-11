@@ -1,4 +1,4 @@
-## Protected Branches & `CODEOWNERS`
+## Protected Branches & CODEOWNERS
 
 In some workflows, you will want to protect critical branches to ensure the code being merged to those branches has passed the required checks and received appropriate peer review. There are several methods for this, including **Protected Branches** and **Code Owners**.
 
