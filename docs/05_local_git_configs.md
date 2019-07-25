@@ -4,7 +4,7 @@ In this section, we will prepare your local environment to work with Git.
 
 ### Checking Your Git Version
 
-First, let's confirm your [Git Installation](https://git-scm.com/downloads):
+First, let's confirm your [Git Installation](https://github.optum.com/pages/GHE-Training/training-manual/#/01_getting_ready_for_class?id=downloading-and-installing-git):
 
 ```sh
 $ git --version
@@ -13,7 +13,7 @@ $ git version 2.11.0
 
 If you do not see a git version listed or this command returns an error, you may need to install Git.
 
-> To get the latest version of Git, visit [www.git-scm.com](https://www.git-scm.com).
+> To get the latest version of Git, see [Downloading and Installing Git](https://github.optum.com/pages/GHE-Training/training-manual/#/01_getting_ready_for_class?id=downloading-and-installing-git).
 
 ### Git Configuration Levels
 
@@ -22,11 +22,11 @@ If you do not see a git version listed or this command returns an error, you may
 Git allows you to set configuration options at three different levels.
 
 #### --system
-These are system-wide configurations. They apply to all users on this computer.
+These are system-wide configurations. Saving configurations under `--system` on your work computer should be avoided in favor of `--global` and `--local`. These settings apply to all users on this computer and are usually stored in `/etc/gitconfig`.
 #### --global
-These are the user level configurations. They only apply to your user account.
+These are the user level configurations. They only apply to your user account and are persisted to `~/.gitconfig`.
 #### --local
-These are the repository level configurations. They only apply to the specific repository where they are set.
+These are the repository level configurations. They only apply to the specific repository where they are set.  Local git configs are found within the git repo under `.git/config`.
 
 > The default value for git config is `--local`.
 
@@ -47,28 +47,26 @@ $ git config --global --list
 
 ### Configuring Your User Name and Email
 
-Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:
+Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create.  You can't create commits without these settings:
 
 ```sh
-$ git config --global user.name "First Last"
-$ git config --global user.email "you@email.com"
+$ git config --global user.name "Last, First"
+$ git config --global user.email "you@optum.com"
 ```
+> Tip: Your user name and email should match the default account set up in Outlook.  A good trick is to start an email and then copy and paste your email address.  It will look something like `Last, First <you@optum.com>`.
 
-#### Git Config and Your Privacy
+#### Git Config Privacy for Public Repos
 
-The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again. 
+The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. In some cases, you may need to contribute to open source projects on public github. By omitting the `--global` flag in configuration commands, you can set configurations specific to a particular repo.  To obscure your real name and work email, github users often supply their Github handle as `user.name` and their spam email accounts as `user.email`.
 
-> For example:
-> ```sh
-> git config user.email "you@email.com"
->```
-
-Your name and email address will automatically be stored in the commits you make with Git. If you would like your email to remain private, GitHub allows you to generate a no-reply email address for your account. Click the **Keep my email address private** in the [Settings > Emails section](https://github.com/settings/emails). After enabling this feature, you just need to enter the automatically generated `ID+username@users.noreply.github.com` when configuring your email.
+You can configure the email field for all future commits in a specific repo by running the following command in the directory where the repository is located:
 
 > For example:
 > ```sh
-> git config --global user.email 18249274+githubteacher@users.noreply.github.com
+> git config user.email "personal_correspondence@example.com"
 > ```
+
+Your name and email address will automatically be stored in the commits you make with Git.
 
 ### Configuring autocrlf
 
