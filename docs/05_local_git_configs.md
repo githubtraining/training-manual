@@ -4,7 +4,7 @@ In this section, we will prepare your local environment to work with Git.
 
 ### Checking Your Git Version
 
-First, let's confirm your [Git Installation](https://github.optum.com/pages/GHE-Training/training-manual/#/01_getting_ready_for_class?id=downloading-and-installing-git):
+First, let's confirm your [Git Installation](https://git-scm.com/downloads):
 
 ```sh
 $ git --version
@@ -13,7 +13,7 @@ $ git version 2.11.0
 
 If you do not see a git version listed or this command returns an error, you may need to install Git.
 
-> To get the latest version of Git, see [Downloading and Installing Git](https://github.optum.com/pages/GHE-Training/training-manual/#/01_getting_ready_for_class?id=downloading-and-installing-git).
+> To get the latest version of Git, visit [www.git-scm.com](https://www.git-scm.com).
 
 ### Git Configuration Levels
 
@@ -51,13 +51,13 @@ Git uses the config settings for your user name and email address to generate a 
 
 ```sh
 $ git config --global user.name "Last, First"
-$ git config --global user.email "you@optum.com"
+$ git config --global user.email "you@example.com"
 ```
-> Tip: Your user name and email should match the default account set up in Outlook.  A good trick is to start an email and then copy and paste your email address.  It will look something like `Last, First <you@optum.com>`.
+> Tip: Your user name and email should match the default account set up in Outlook.  A good trick is to start an email and then copy and paste your email address.  It will look something like `Last, First <you@example.com>`.
 
-#### Git Config Privacy for Public Repos
+#### Git Config and Your Privacy
 
-The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. In some cases, you may need to contribute to open source projects on public github. By omitting the `--global` flag in configuration commands, you can set configurations specific to a particular repo.  To obscure your real name and work email, github users often supply their Github handle as `user.name` and their spam email accounts as `user.email`.
+The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again. 
 
 You can configure the email field for all future commits in a specific repo by running the following command in the directory where the repository is located:
 

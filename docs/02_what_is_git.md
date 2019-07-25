@@ -1,6 +1,6 @@
 ## Getting Started With Collaboration
 
-Over the next few sections, we'll be introducing you to Git, GitHub Enterprise, and the collaboration features we will use throughout the class. Even if you have used GitHub or GitHub Enterprise in the past, we hope this information will provide a baseline understanding of how to use it to build better software!
+Over the next few sections, we'll be introducing you to Git, GitHub, and the collaboration features we will use throughout the class. Even if you have used GitHub in the past, we hope this information will provide a baseline understanding of how to use it to build better software!
 
 ### What is Git?
 
