@@ -37,12 +37,17 @@
   * [Merge Strategies](22_merge_strategies_rebase.md)
 
 * Appendix
-  * [Day 1 Activity Instructions](app_Day_1_activities.md)
-  * [Day 2 Activity Instructions](app_day2_mergeconflict.md)
-  * [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
-  * [Add Branch to Terminal Prompt](app_git_branch_in_terminal.md)
-  * [Fork and Pull Workflow and Multiple Remotes](app_fork_workflow.md)
-  * [Alias Pro Tips](app_aliases.md)
-  * [Vi Basics](app_vi_basics.md)
-  * [Authentication Troubleshooting Guide](app_authentication.md)
+  * **GitHub Resources**
+    * [Day 1 Activity Instructions](app_Day_1_activities.md)
+    * [Day 2 Activity Instructions](app_day2_mergeconflict.md)
+    * [Fork and Pull Workflow and Multiple Remotes](app_fork_workflow.md)
+  * **Tool tips**
+    * [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
+    * [Add Branch to Terminal Prompt](app_git_branch_in_terminal.md)
+    * [Alias Pro Tips](app_aliases.md)
+    * [Vi Basics](app_vi_basics.md)
+  * **Teaching Resources**
+    * [Teachback: Prepare repositories](app_teachback_repo_prep.md)
+    * [Teacher/Facilitation Tips](app_facilitation_tips.md)
+    * [Authentication Troubleshooting Guide](app_authentication.md)
   * [Additional Instructor Examples](app_additional_instructor_examples.md)
