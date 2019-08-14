@@ -31,3 +31,5 @@ on their commit hashes.  This exact command will not work for everyone since the
 different hashes.
 
 There's a helpful alias for opening the remote directly from your command line. Check out the appendix if you'd like to know more!
+
+For a detailed exercise on this concept, see the [diff appendix item](app_additional_instructor_examples.md)
