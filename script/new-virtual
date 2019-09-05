@@ -12,15 +12,6 @@ function getdetails () {
   read classdate
   echo "Who is teaching? Without the @."
   read teacher
-  echo "Create a unique name for the survey collector."
-  echo "Example: 2017-06-06-open-enrollment."
-  read surveyName
-  #generate the survey link
-  surveyLink=$((curl -s --request PUT --url "https://restapi.surveygizmo.com/v5/survey/$SURVEY_CAMPAIGN/surveycampaign?api_token=$SURVEY_TOKEN&api_token_secret=$SURVEY_SECRET&_method=PUT&type=link&name=$surveyName" | jq .data.uri) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
-  #append teacher and class type to survey link
-  longLink=$surveyLink"?type=developers&teacher="$teacher
-  #create a google short link
-  shortLink=$((curl -s https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU -H 'Content-Type: application/json' -d "{\"longUrl\": \"$longLink\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
   script/create-repo caption-this $reponame $teacher
   returnCode=$?
   if [ $returnCode -eq 0 ]; then
@@ -32,12 +23,10 @@ function getdetails () {
     if [ $OSTYPE = "msys" ]; then
       sed -i "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
-      sed -i "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
       sed -i "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
     else
       sed -i "" "s/THIS-DATE/$classdate/g" README.md >> log.out 2>&1
       sed -i "" "s/TEACHER-HANDLE/$teacher/g" README.md >> log.out 2>&1
-      sed -i "" "s|SURVEY-LINK|$shortLink|g" README.md >> log.out 2>&1
       sed -i "" "s|caption-this|$reponame|g" _config.yml >> log.out 2>&1
     fi
     git add README.md >> log.out 2>&1
