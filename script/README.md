@@ -26,7 +26,6 @@ Here's how to get your local environment up and running:
    - the title of your newly created training organization
    - your username, or the username of a shared teaching account
    - your personal access token (PAT) or the PAT of the shared teaching account
-   - (optional) the API key and secret for Survey Gizmo
    - (optional) the URL for one-on-one appointments
 3. exit your terminal session and start a new one
 4. run `script/teach-class` and choose the option for the task you need
