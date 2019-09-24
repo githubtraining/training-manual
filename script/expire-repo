@@ -37,13 +37,14 @@ function GetPages ()
   ########################
   # Go through the pages #
   ########################
-  while [ $NUM_PAGES -gt 1 ]; do
+  while [ $NUM_PAGES -gt 0 ]; do
     echo "Getting results for page $NUM_PAGES"
     #################
     # Get the repos #
     #################
     GetRepos "$NUM_PAGES"
     let NUM_PAGES=NUM_PAGES-1
+
   done
 }
 ################################################################################
