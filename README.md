@@ -1,4 +1,4 @@
-# GitHub Training Manual: GitHub for Developers
+# GitHub Training Manual: GitHub for Developers 
 
 Welcome to the GitHub Training Manual repo. In this repo, you will find the content used by GitHub trainers during our official training courses and scripts used when teaching.
 
