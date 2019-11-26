@@ -25,17 +25,17 @@ git push
 
 Now that we have created a Pull Request, let's explore a few of the features that make Pull Requests the center of collaboration:
 
-#### Conversation view
+#### Conversation tab
 
 Similar to the discussion thread on an Issue, a Pull Request contains a discussion about the changes being made to the repository. This discussion is found in the Conversation tab and also includes a record of all of the commits made on the branch as well as assignments, labels and reviews that have been applied to the pull request.
 
-#### Commits view
+#### Commits tab
 
-The commits view contains more detailed information about who has made changes to the files. Clicking each commit ID will allow you to see the changes applied in that specific commit.
+The commits tab contains more detailed information about who has made changes to the files. Clicking each commit ID will allow you to see the changes applied in that specific commit.
 
-#### Files changed view
+#### Files changed tab
 
-The Files changed view allows you to see cumulative effect of all the changes made on the branch. We call this the `diff`. Our diff isn't very interesting yet, but as we make changes your diff will become very colorful.
+The Files changed tab allows you to see cumulative effect of all the changes made on the branch. We call this the `diff`. Our diff isn't very interesting yet, but as we make changes your diff will become very colorful.
 
 ### Code Review in Pull Requests
 
@@ -47,7 +47,7 @@ You can provide general comments on the Pull Request within the *Conversation* t
 
 #### Line Comments
 
-In the files changed view, you can hover over a line to see a blue `+` icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the conversation view.
+In the files changed tab, you can hover over a line to see a blue `+` icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the conversation tab.
 
 #### Review
 
@@ -67,4 +67,4 @@ One of the best ways to ensure code quality is to make peer reviews a part of ev
 1. Choose whether to *Approve* or *Request changes*
 1. Enter a general comment for the review.
 1. Click *Submit review*
-1. Click the *Conversation* view to check out your completed review.
+1. Click the *Conversation* tab to check out your completed review.

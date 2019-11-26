@@ -4,7 +4,7 @@ Since you created the pull request, you will be notified when someone adds a com
 
 ### Editing a File on GitHub
 
-To edit a pull request file, you will need to access the ![octicon-diff] **Files Changed** view.
+To edit a pull request file, you will need to access the ![octicon-diff] **Files Changed** tab.
 
 1. Click ![octicon-kebab-horizontal] in the top right corner of the diff.
 1. Click *Edit file* to edit the file using the GitHub file editor.
