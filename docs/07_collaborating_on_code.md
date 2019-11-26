@@ -11,7 +11,7 @@ In this case, our remote is GitHub.com, but this could also be your company's in
 To push your changes to GitHub, you will use the command:
 
 ```sh
-$ git push
+git push
 ```
 
 > When you push, you will be asked to enter your GitHub username and password. If you would like Git to remember your credentials on this computer, you can cache your credentials using:
