@@ -15,6 +15,7 @@ git push
 ```
 
 > When you push, you will be asked to enter your GitHub username and password. If you would like Git to remember your credentials on this computer, you can cache your credentials using:
+
 - Windows: `git config --global credential.helper wincred`
 - Mac: `git config --global credential.helper osxkeychain`
 
