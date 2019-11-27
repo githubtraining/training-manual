@@ -35,7 +35,7 @@ If an operation will change a commit ID that has been pushed to the remote (also
 | `cherry-pick` | Only use on local commits.
 | `rebase` | Only use on local commits.
 
-### Reverting Commits
+### Reverting a Commit
 
 To get your game working, you will need to reverse the commit that incorrectly renames `index.html`.
 
