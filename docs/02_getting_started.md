@@ -85,7 +85,7 @@ Organization accounts provide more granular control over repository permissions.
 
 ### Repository Navigation
 #### Code
-The code tab is where you will find the files included in the repository. These files may contain the project code, documentation, and other important files. We also call this tab the root of the project. Any changes to these files will be tracked via Git version control.
+The **Code** tab is where you will find the files included in the repository. These files may contain the project code, documentation, and other important files. We also call this tab the root of the project. Any changes to these files will be tracked via Git version control.
 #### Issues
 Issues are used to track bugs and feature requests. Issues can be assigned to specific team members and are designed to encourage discussion and collaboration.
 #### Pull Requests

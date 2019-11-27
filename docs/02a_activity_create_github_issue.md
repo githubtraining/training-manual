@@ -2,8 +2,8 @@
 
 Follow these steps to create an issue in the class repository:
 
-1. Click the *Issues* tab.
-1. Click *New Issue*.
+1. Click the **Issues** tab.
+1. Click **New Issue**.
 1. Type the following in the Subject line: `YOUR-USERNAME Workflow`
 1. In the body of the issue, include the text below:
 
