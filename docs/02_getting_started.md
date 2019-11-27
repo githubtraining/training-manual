@@ -27,7 +27,7 @@ In addition to being a place to host and share your Git projects, GitHub provide
 
 ### The GitHub Ecosystem
 
-Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out https://github.com/integrations.
+Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out <https://github.com/integrations>.
 
 ![The GitHub Integrations Directory](./img/github-ecosystem.png)
 

@@ -8,7 +8,7 @@ The process may vary in difficulty based on your operating system, and we've fou
 
 This script uses Ruby. If you don't already have Ruby installed locally, you should follow the [detailed instructions on ruby-lang.org](https://www.ruby-lang.org/en/documentation/installation/). In short:
 
-- On Windows, you can do so from https://rubyinstaller.org, select version `2.3.3`, ensure you select to "Add Ruby executables to your PATH" during setup, and restart your machine.
+- On Windows, you can do so from <https://rubyinstaller.org,> select version `2.3.3`, ensure you select to "Add Ruby executables to your PATH" during setup, and restart your machine.
 - If you need to install Ruby on a Mac, install [homebrew](https://brew.sh) and then run `brew install ruby`.
 
 #### Generating Locally
