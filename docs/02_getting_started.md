@@ -18,10 +18,10 @@ GitHub concentrates on three things:
 
 In addition to being a place to host and share your Git projects, GitHub provides a number of features to help you and your team collaborate more effectively. These features include:
 
-* Issues
-* Pull Requests
-* Projects
-* Organizations and Teams
+- Issues
+- Pull Requests
+- Projects
+- Organizations and Teams
 
 ![GitHub Collaboration Features](./img/collaboration-features.png)
 
