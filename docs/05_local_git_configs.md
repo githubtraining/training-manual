@@ -64,6 +64,7 @@ git config --global user.email "you@email.com"
 The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again.
 
 > For example:
+>
 > ```sh
 > git config user.email "you@email.com"
 >```
@@ -71,6 +72,7 @@ The instructions for this exercise use the `--global` flag when identifying your
 Your name and email address will automatically be stored in the commits you make with Git. If you would like your email to remain private, GitHub allows you to generate a no-reply email address for your account. Click the **Keep my email address private** in the [Settings > Emails section](https://github.com/settings/emails). After enabling this feature, you just need to enter the automatically generated `ID+username@users.noreply.github.com` when configuring your email.
 
 > For example:
+>
 > ```sh
 > git config --global user.email 18249274+githubteacher@users.noreply.github.com
 > ```
@@ -78,10 +80,10 @@ Your name and email address will automatically be stored in the commits you make
 ### Configuring autocrlf
 
 ```sh
-// for Windows users
+//for Windows users
 git config --global core.autocrlf true
 
-// for Mac or Linux users
+//for Mac or Linux users
 git config --global core.autocrlf input
 ```
 

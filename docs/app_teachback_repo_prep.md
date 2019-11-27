@@ -27,6 +27,7 @@ git push -u origin readme-update2
 #### Project 3: GitHub Games
 - Edit the repository description to `https://githubtraining.github.io/github-games/`
 - In your own copy of GitHub Games:
+
 ```sh
 git checkout master
 git reset --hard 73c762c
