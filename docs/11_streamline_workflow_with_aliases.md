@@ -8,19 +8,19 @@ An alias allows you to type a shortened command to represent a long string on th
 
 For example, let's create an alias for the log command we learned earlier.
 
-**Original Command**
+#### Original Command
 
 ```sh
 git log --oneline --graph --decorate --all
 ```
 
-**Creating the Alias**
+#### Creating the Alias
 
 ```sh
 git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
-**Using the Alias**
+#### Using the Alias
 
 ```sh
 git lol
