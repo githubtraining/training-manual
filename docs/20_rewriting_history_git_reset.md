@@ -79,7 +79,7 @@ Last but not least, let's try a hard reset.
 The answer: It depends!
 
 ```sh
-$ git reflog
+git reflog
 ```
 
 The reflog is a record of every place HEAD has been. In a few minutes we will see how the reflog can be helpful in allowing us to restore previously committed changes. But first, we need to be aware of some of the reflog's limitations:

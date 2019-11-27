@@ -7,8 +7,8 @@ In this section, we will prepare your local environment to work with Git.
 First, let's confirm your [Git Installation](https://git-scm.com/downloads):
 
 ```sh
-$ git --version
-$ git version 2.11.0
+git --version
+git version 2.11.0
 ```
 
 If you do not see a git version listed or this command returns an error, you may need to install Git.
@@ -41,13 +41,13 @@ These are the repository level configurations. They only apply to the specific r
 If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the three config files and list the setting they contain.
 
 ```sh
-$ git config --list
+git config --list
 ```
 
 You can also narrow the list to a specific configuration level by including it before the list option.
 
 ```sh
-$ git config --global --list
+git config --global --list
 ```
 
 ### Configuring Your User Name and Email
@@ -55,8 +55,8 @@ $ git config --global --list
 Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:
 
 ```sh
-$ git config --global user.name "First Last"
-$ git config --global user.email "you@email.com"
+git config --global user.name "First Last"
+git config --global user.email "you@email.com"
 ```
 
 #### Git Config and Your Privacy
@@ -78,10 +78,11 @@ Your name and email address will automatically be stored in the commits you make
 ### Configuring autocrlf
 
 ```sh
-$ //for Windows users
-$ git config --global core.autocrlf true
-$ //for Mac or Linux users
-$ git config --global core.autocrlf input
+// for Windows users
+git config --global core.autocrlf true
+
+// for Mac or Linux users
+git config --global core.autocrlf input
 ```
 
 Different systems handle line endings and line breaks differently. If you open a file created on another system and do not have this config option set, git will think you made changes to the file based on the way your system handles this type of file.

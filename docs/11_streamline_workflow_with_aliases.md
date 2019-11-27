@@ -10,17 +10,17 @@ For example, let's create an alias for the log command we learned earlier.
 
 **Original Command**
 ```sh
-$ git log --oneline --graph --decorate --all
+git log --oneline --graph --decorate --all
 ```
 
 **Creating the Alias**
 ```sh
-$ git config --global alias.lol "log --oneline --graph --decorate --all"
+git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
 **Using the Alias**
 ```sh
-$ git lol
+git lol
 ```
 
 #### Explore Other Helpful Aliases
@@ -58,5 +58,5 @@ git config --global alias.s "status -s"
 
 Pro Tip # 5: Clean up branches quickly and easily.
 ```
-$ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 ```

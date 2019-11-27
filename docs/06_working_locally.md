@@ -33,14 +33,14 @@ nothing to commit, working tree clean
 ### Using Branches locally
 
 ```sh
-$ git branch
+git branch
 ```
 
 If you type `git branch` you will see a list of local branches.
 
 ```sh
-$ git branch --all
-$ git branch -a
+git branch --all
+git branch -a
 ```
 
 If you want to see all of the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`.
@@ -50,7 +50,7 @@ If you want to see all of the branches, including the read-only copies of your r
 ### Switching Branches
 
 ```
-$ git checkout <BRANCH-NAME>
+git checkout <BRANCH-NAME>
 ```
 
 To checkout the branch you created online, type git checkout and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.
