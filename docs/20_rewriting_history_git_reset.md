@@ -59,7 +59,6 @@ Next we will try the default mode of reset, `reset --mixed`:
 1. Move the files to the staging area before we can commit them: `git add file5.md file6.md`
 1. Re-commit the files: `git commit -m "re-add file 5 and 6"`
 
-
 > Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.
 
 ### Reset Hard

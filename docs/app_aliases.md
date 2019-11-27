@@ -86,7 +86,6 @@ git config --global alias.amend "commit -a --amend"
 
 - `-a` will add any modifications and deletions of existing files to your commit, but ignore brand new files.
 
-
 **Avoiding Tragedy**
 
 Sometimes, you'll reset --hard too soon, before you've made a commit. If you reset work that you never committed, it's gone for good. Using a command like `git wipe` will commit everything in your working directory, and then do a hard reset to get rid of that commit (but it's still reachable in the reflog). This is a really safe option that allows you to keep yourself from making sad mistakes.

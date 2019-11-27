@@ -7,6 +7,7 @@ These exercises will focus on the technical "how". In real merge conflicts, it's
 ### Local Merge Conflicts
 
 Merge conflicts are a natural and minor side effect of distributed version control. They only happen under very specific circumstances.
+
 - Changes to the same "hunk" of the same file
   - Two different branches
   - Changes on both branches happened since the branches have diverged

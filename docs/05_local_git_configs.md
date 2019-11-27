@@ -35,7 +35,6 @@ These are the repository level configurations. They only apply to the specific r
 
 > The default value for git config is `--local`.
 
-
 ### Viewing Your Configurations
 
 If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the three config files and list the setting they contain.

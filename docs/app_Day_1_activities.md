@@ -37,7 +37,7 @@ Add a caption to an existing slide in someone else's pull request.
     - Look for the name of the branch in the pull request, and check out to that branch locally: `git checkout BRANCHNAME`.
 1. Save the changes, and commit the file.
     - If you are working locally, push the changes up to the remote: `git push`.
-1. Do not merge the pull request, simply `@` mention the user who opened the pull request to let them know about your changes.     
+1. Do not merge the pull request, simply `@` mention the user who opened the pull request to let them know about your changes.
 
 ### Improve the `README.md`
 
@@ -61,7 +61,7 @@ If you'd like a more advanced challenge, and you have an eye for style, change t
     - Lines 12-19 affect colors
     - Lines 33-35 affect font and font size
     - Lines 52-55 affect headers
-1. Save and commit your changes on your branch.  
+1. Save and commit your changes on your branch.
 1. Push your branch to the remote: `git push -u origin NEWBRANCHNAME`.
 1. Open a pull request with `base: master` and `compare: NEWBRANCHNAME`.
 1. `@` mention anyone you'd like to review your changes.

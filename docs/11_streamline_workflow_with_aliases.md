@@ -38,7 +38,6 @@ We also encourage you to read through these three blog posts by GitHub developer
 - [Git Migrate](http://haacked.com/archive/2015/06/29/git-migrate/)
 - [Git Alias Open URL](http://haacked.com/archive/2017/01/04/git-alias-open-url/)
 
-
 Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.
 
 ```sh
