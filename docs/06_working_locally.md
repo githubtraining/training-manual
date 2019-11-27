@@ -49,7 +49,7 @@ If you want to see all of the branches, including the read-only copies of your r
 
 ### Switching Branches
 
-```
+```sh
 git checkout <BRANCH-NAME>
 ```
 

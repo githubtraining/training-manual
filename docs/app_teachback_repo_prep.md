@@ -6,7 +6,7 @@ To practice teaching the first activities, please use the same repository you us
 #### Project 2: Merge conflicts
 To prepare your local repository to be ready for teaching, use the following commands.
 
-```
+```sh
 git checkout master
 git reset --hard 1095c8c
 git push --force
@@ -27,7 +27,7 @@ git push -u origin readme-update2
 #### Project 3: GitHub Games
 - Edit the repository description to `https://githubtraining.github.io/github-games/`
 - In your own copy of GitHub Games:
-```
+```sh
 git checkout master
 git reset --hard 73c762c
 git push --force
