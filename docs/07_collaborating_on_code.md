@@ -25,15 +25,15 @@ git push
 
 Now that we have created a Pull Request, let's explore a few of the features that make Pull Requests the center of collaboration:
 
-#### Conversation tab
+#### ![octicon-comment-discussion] Conversation tab
 
 Similar to the discussion thread on an Issue, a Pull Request contains a discussion about the changes being made to the repository. This discussion is found in the **Conversation** tab and also includes a record of all of the commits made on the branch as well as assignments, labels and reviews that have been applied to the pull request.
 
-#### Commits tab
+#### ![octicon-git-commit] Commits tab
 
 The **Commits** tab contains more detailed information about who has made changes to the files. Clicking each commit ID will allow you to see the changes applied in that specific commit.
 
-#### Files changed tab
+#### ![octicon-diff] Files changed tab
 
 The **Files changed** tab allows you to see cumulative effect of all the changes made on the branch. We call this the `diff`. Our diff isn't very interesting yet, but as we make changes your diff will become very colorful.
 
@@ -47,7 +47,7 @@ You can provide general comments on the Pull Request within the **Conversation**
 
 #### Line Comments
 
-In the **Files changed** tab, you can hover over a line to see a blue `+` icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the **Conversation** tab.
+In the **Files changed** tab, you can hover over a line to see a blue ![`+`][octicon-diff-added] icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the **Conversation** tab.
 
 #### Review
 
@@ -68,3 +68,11 @@ One of the best ways to ensure code quality is to make peer reviews a part of ev
 1. Enter a general comment for the review.
 1. Click **Submit review**
 1. Click the **Conversation** tab to check out your completed review.
+
+[octicon-comment-discussion]:https://unpkg.com/octicons/build/svg/comment-discussion.svg
+
+[octicon-diff]:https://unpkg.com/octicons/build/svg/diff.svg
+
+[octicon-diff-added]: https://unpkg.com/octicons/build/svg/diff-added.svg
+
+[octicon-git-commit]:https://unpkg.com/octicons/build/svg/git-commit.svg
