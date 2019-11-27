@@ -22,10 +22,15 @@ If you do not see a git version listed or this command returns an error, you may
 Git allows you to set configuration options at three different levels.
 
 #### --system
+
 These are system-wide configurations. They apply to all users on this computer.
+
 #### --global
+
 These are the user level configurations. They only apply to your user account.
+
 #### --local
+
 These are the repository level configurations. They only apply to the specific repository where they are set.
 
 > The default value for git config is `--local`.
@@ -56,7 +61,7 @@ $ git config --global user.email "you@email.com"
 
 #### Git Config and Your Privacy
 
-The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again. 
+The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again.
 
 > For example:
 > ```sh

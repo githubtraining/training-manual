@@ -13,11 +13,13 @@ Let's create a local repository that we can use to practice the next set of comm
 Since we will be using this as our practice repository, we need to generate some files and commits. Here are some scripts to make this easier:
 
 #### Bash:
+
 ```
 for d in {1..6}; do touch "file${d}.md"; git add "file${d}.md"; git commit -m "adding file ${d}"; done
 ```
 
 #### PowerShell:
+
 ```
 for ($d=1; $d -le 6; $d++) { Out-File file$d.md; git add file$d.md; git commit -m "adding file$d.md"; }
 ```
