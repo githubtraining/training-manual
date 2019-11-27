@@ -147,7 +147,7 @@ GitHub uses a syntax called **Markdown** to help you add basic text formatting t
 
 #### `# Header`
 
-The `# ` indicates a Header. # = Header 1, ##  = Header 2, etc.
+The `#` indicates a Header. `#` = Header 1, `##`  = Header 2, etc.
 
 #### `* List item`
 
