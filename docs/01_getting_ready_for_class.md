@@ -127,7 +127,7 @@ atom .
 
 ---
 
-##### Exploring
+### Exploring
 
 Congratulations! You should now have a working version of Git and a text editor on your system. If you still have some time before class begins, here are some interesting resources you can check out:
 
