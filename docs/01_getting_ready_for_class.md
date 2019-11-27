@@ -123,7 +123,7 @@ If installed properly, the following command will open the Atom text editor:
 atom .
 ```
 
-> If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+_**Note:** If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows._
 
 ---
 
@@ -131,5 +131,5 @@ atom .
 
 Congratulations! You should now have a working version of Git and a text editor on your system. If you still have some time before class begins, here are some interesting resources you can check out:
 
-- *[github.com/explore](https://www.github.com/explore)* Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.
-- *[lab.github.com](https://lab.github.com)* The Learning Lab bot will guide you through projects and provide feedback right from your GitHub repository, helping you build every step of the way.
+- **[github.com/explore](https://www.github.com/explore)** - Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.
+- **[lab.github.com](https://lab.github.com)** - The Learning Lab bot will guide you through projects and provide feedback right from your GitHub repository, helping you build every step of the way.
