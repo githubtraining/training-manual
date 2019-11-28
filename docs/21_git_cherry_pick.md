@@ -16,7 +16,7 @@ $ git log --oneline
 Let's cherry pick the commit where we added file 4:
 
 1. Find the commit ID where you added file4.md: `git reflog`
-1.  Cherry-pick that commit: `git cherry-pick <SHA>`
+1. Cherry-pick that commit: `git cherry-pick <SHA>`
 
 Now when you view your directory and log, you should see:
 
@@ -33,7 +33,6 @@ Is the commit ID the same as the one you used in the cherry pick command? Why or
 
 > Remember, when using any commands that change history, it's important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
 {: .warning}
-
 
 ### Oops, I Didn't Mean to Reset
 

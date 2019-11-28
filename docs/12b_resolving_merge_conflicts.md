@@ -15,5 +15,4 @@ Let's try to create a merge conflict, and fix it together. You and a partner wil
     1. Push the feature branch up to the remote, and see the resolution in the pull request.
 1. Merge the pull request.
 
-
 > What is a merge message? In this example, we are doing a recursive merge. A recursive merge creates a new commit that permanently records the point in time when these two branches were merged together. We will talk more about Git's merge strategies a little later.

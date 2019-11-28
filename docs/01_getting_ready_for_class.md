@@ -18,7 +18,7 @@ You can set up your free account by following these steps:
 1. You will receive a verification email at the address provided.
 1. Click the link to complete the verification process.
 
-If you already have an account, verify that you can visit github.com within your organization's network. 
+If you already have an account, verify that you can visit github.com within your organization's network.
 
 GitHub is designed to run on the current versions of all major browsers. In particular, if you use Microsoft's Internet Explorer (IE), you must be using the latest version. Take a look at our list of [supported browsers](https://help.github.com/articles/supported-browsers/).
 
@@ -29,7 +29,7 @@ Git is an open source version control application. You will need Git installed f
 You may already have Git installed so let's check! Open Terminal if you are on a Mac, or PowerShell if you are on a Windows machine, and type:
 
 ```sh
-$ git --version
+git --version
 ```
 
 You should see something like this:
@@ -81,7 +81,7 @@ If your organization uses a proxy, you will need to configure the proxy settings
 
 **If your proxy does not require authentication:**
 
-```
+```sh
 git config --global http.proxy https://YOUR.PROXY.SERVER:8080
 ```
 
@@ -89,7 +89,7 @@ Replace `YOUR.PROXY.SERVER` with your proxy's URL.
 
 **If your proxy does require authentication:**
 
-```
+```sh
 git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@YOUR.PROXY.SERVER:8080
 ```
 
@@ -120,16 +120,16 @@ After you have installed an editor, confirm you can open it from the command lin
 If installed properly, the following command will open the Atom text editor:
 
 ```sh
-$ atom .
+atom .
 ```
 
-> If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows.
+_**Note:** If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows._
 
 ---
 
-##### Exploring
+### Exploring
 
 Congratulations! You should now have a working version of Git and a text editor on your system. If you still have some time before class begins, here are some interesting resources you can check out:
 
-- *[github.com/explore](https://www.github.com/explore)* Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.
-- *[lab.github.com](https://lab.github.com)* The Learning Lab bot will guide you through projects and provide feedback right from your GitHub repository, helping you build every step of the way.
+- **[github.com/explore](https://www.github.com/explore)** - Explore is a showcase of interesting projects in the GitHub Universe. See something you want to re-visit? Star the repository to make it easier to find later.
+- **[lab.github.com](https://lab.github.com)** - The Learning Lab bot will guide you through projects and provide feedback right from your GitHub repository, helping you build every step of the way.

@@ -26,6 +26,7 @@ Git's data structure gives it integrity but its distributed nature also requires
 If an operation will change a commit ID that has been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.
 
 #### Guidelines for Common Commands
+
 | Command | Cautions |
 | ------- | -------- |
 | `revert`  | Generally safe since it creates a new commit.|
@@ -34,12 +35,11 @@ If an operation will change a commit ID that has been pushed to the remote (also
 | `cherry-pick` | Only use on local commits.
 | `rebase` | Only use on local commits.
 
-### Reverting Commits
+### Reverting a Commit
 
 To get your game working, you will need to reverse the commit that incorrectly renames `index.html`.
 
 > **Warning**: Before you reverse the commit, it is a good idea to make sure you will not be inadvertently reversing other changes that were lumped into the same commit. To see what was changed in the commit, use `git show SHA`.
-
 
 1. Initialize the revert: `git revert <SHA>`
 1. Type a commit message.
