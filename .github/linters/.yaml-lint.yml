@@ -2,6 +2,9 @@
 ###########################################
 # These are the rules used for            #
 # linting all the yaml files in the stack #
+# NOTE:                                   #
+# You can disble line with:               #
+# # yamllint disable-line                 #
 ###########################################
 rules:
   braces:
@@ -47,10 +50,11 @@ rules:
   key-duplicates: enable
   line-length:
     level: warning
-    max: 80
+    max: 120
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
   new-line-at-end-of-file: disable
   new-lines:
     type: unix
   trailing-spaces: disable
+  truthy: disable
