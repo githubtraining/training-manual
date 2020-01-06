@@ -18,7 +18,7 @@ Another caveat with tags is that they are not automatically pushed up with commi
 
 ### Releases
 
-Releases are a GitHub feature that allow you to add an executable to the tag for easier access by visitors who just want to download and install your software. Releases are tags, because they point to a specific commit and can be named like any other tag. However, releases can also include attached binaries. 
+Releases are a GitHub feature that allow you to add an executable to the tag for easier access by visitors who just want to download and install your software. Releases are tags, because they point to a specific commit and can be named like any other tag. However, releases can also include attached binaries.
 
 ### Add a Release to GitHub-Games
 
