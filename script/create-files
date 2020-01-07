@@ -24,12 +24,17 @@ COLLAB_REPO=$1
 ########################## Functions Below #####################################
 ################################################################################
 ################################################################################
-#### Function ContainsElement ##################################################
-function ContainsElement ()
+#### Function ContainsCollab ##################################################
+function ContainsCollab ()
 {
   local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
-  return 0
+  for e in "${@}"; do
+    if [[ "$e" == "$1" ]]
+    then
+      return 0
+    fi
+  done
+  return 1
 }
 ################################################################################
 #### Function GetNames #########################################################
@@ -38,7 +43,7 @@ function GetNames ()
   #######################################################
   # get names of people who have commented on the issue #
   #######################################################
-  COUNTER=2
+  COUNTER=$(expr ${#COLLABS[@]} + 2)
   for i in "${COMMENTERS[@]}"
   do
     j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
@@ -46,24 +51,21 @@ function GetNames ()
       ######################
       # Check the elements #
       ######################
-      ContainsElement "$i" "$COLLABS"
+      ContainsCollab "$i" "$COLLABS"
     then
       ###############
       # Add collab #
       ##############
       AddCollab "$j"
+      if [ $j != $TOKEN_OWNER ]
+      then
+        CreateFile $j $counter
+        ((counter++))
+      else
+        echo "Skipping creating another file for $j because they are the instructor."
+      fi
     else
       echo "Skipping adding $j as a collaborator because they are already a collaborator."
-    fi
-    if [ "$j" != "$TOKEN_OWNER" ]
-    then
-      ###################
-      # Create the file #
-      ###################
-      createFile "$j" "$COUNTER"
-      ((COUNTER++))
-    else
-      echo "Skipping creating another file for $j because they are the instructor."
     fi
   done
 
@@ -88,14 +90,13 @@ function AddCollab ()
   curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators/$STUDENT"
 }
 ################################################################################
-#### Function GetPages #########################################################
-function createFile ()
+#### Function CreateFile #########################################################
+function CreateFile ()
 {
   ####################
   # Pull in the vars #
   ####################
   STUDENT=$1
-  #STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
   COUNTER=$2
 
   #####################
@@ -124,20 +125,20 @@ function createFile ()
   echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
 
   #####################
-  # Array of octocats #
+  # Array of memes #
   #####################
-  OCTOCATS=("![riddlocat](https://octodex.github.com/images/riddlocat.png)"  "![skitchtocat](https://octodex.github.com/images/skitchtocat.png)"  "![luchadortocat](https://octodex.github.com/images/luchadortocat.png)"  "![codercat](https://octodex.github.com/images/codercat.jpg)"  "![dojocat](https://octodex.github.com/images/dojocat.jpg)"  "![dodgetocat](https://octodex.github.com/images/dodgetocat_v2.png)"  "![steroidtocat](https://octodex.github.com/images/steroidtocat.png)"  "![inflatocat](https://octodex.github.com/images/inflatocat.png)"  "![poptocat](https://octodex.github.com/images/poptocat.png)"  "![Robotocat](https://octodex.github.com/images/Robotocat.png)"  "![saritocat](https://octodex.github.com/images/saritocat.png)"  "![jetpacktocat](https://octodex.github.com/images/jetpacktocat.png)"  "![cooler-octocat](https://octodex.github.com/images/twenty-percent-cooler-octocat.png)" "![octocat-de-los-muertos](https://octodex.github.com/images/octocat-de-los-muertos.jpg)" "![poptocat2](https://octodex.github.com/images/poptocat_v2.png)" "![minertocat](https://octodex.github.com/images/minertocat.png)" "![femalecodertocat](https://octodex.github.com/images/femalecodertocat.png)" "![cherryontop-o-cat](https://octodex.github.com/images/cherryontop-o-cat.png)" "![orderedlistocat](https://octodex.github.com/images/orderedlistocat.png)" "![herme-t-crabb](https://octodex.github.com/images/herme-t-crabb.png)" "![droidtocat](https://octodex.github.com/images/droidtocat.png)" "![snowoctocat](https://octodex.github.com/images/snowoctocat.png)" "![boxertocat](https://octodex.github.com/images/boxertocat_octodex.jpg)" "![skatetocat](https://octodex.github.com/images/skatetocat.png)" "![labtocat](https://octodex.github.com/images/labtocat.png)" "![Mardigrastocat](https://octodex.github.com/images/Mardigrastocat.png)" "![defunktocat](https://octodex.github.com/images/defunktocat.png)" "![catstello](https://octodex.github.com/images/catstello.png)" "![constructocat](https://octodex.github.com/images/constructocat2.jpg)" "![kimonotocat](https://octodex.github.com/images/kimonotocat.png)" "![octofez](https://octodex.github.com/images/octofez.png)" "![dinotocat](https://octodex.github.com/images/dinotocat.png)" )
+  MEMES=("![angry-cat](https://cloud.githubusercontent.com/assets/16547949/25400569/064d7bc6-29c1-11e7-90dc-fef44edd9f0a.jpg)"  "![bad-luck-brian](https://cloud.githubusercontent.com/assets/16547949/25400743/8ae447a2-29c1-11e7-9839-5438d8fcda7b.jpg)"  "![chill-out-lemur](https://cloud.githubusercontent.com/assets/16547949/25400761/9c64ee82-29c1-11e7-8ad3-6886f97634b9.jpg)"  "![dr-evil](https://cloud.githubusercontent.com/assets/16547949/25400776/a776de7a-29c1-11e7-959e-bbad827c2aab.jpg)"  "![evil-raccooon](https://cloud.githubusercontent.com/assets/16547949/25400793/b1104eee-29c1-11e7-89e2-3c99f9ea1941.jpg)"  "![evil-toddler](https://cloud.githubusercontent.com/assets/16547949/25400815/c5847ecc-29c1-11e7-9c5d-05d4a6726545.jpg)"  "![first-day-on-the-internet](https://cloud.githubusercontent.com/assets/16547949/25400874/eca2ebce-29c1-11e7-969d-de87b82a7061.jpg)"  "![fist-bump-puppy](https://cloud.githubusercontent.com/assets/16547949/25400830/d1cd1bb2-29c1-11e7-82bd-27d847701c59.jpg)"  "![fresh-prince](https://cloud.githubusercontent.com/assets/16547949/25400882/f44a7464-29c1-11e7-8f45-327d67cb961a.jpg)"  "![fry](https://cloud.githubusercontent.com/assets/16547949/25400891/fb18941a-29c1-11e7-82b9-35e589443a60.jpg)"  "![homer-agh](https://cloud.githubusercontent.com/assets/16547949/25400895/02672eca-29c2-11e7-87a5-3dc3d3110c29.jpg)"  "![homer-hide](https://cloud.githubusercontent.com/assets/16547949/25400902/0a553f14-29c2-11e7-9a40-8d14136b4fa3.jpg)" "![humpday](https://cloud.githubusercontent.com/assets/16547949/25400910/10641d9e-29c2-11e7-80c8-5c38ea261b22.jpg)" "![leia](https://cloud.githubusercontent.com/assets/16547949/25400918/17c5d2e4-29c2-11e7-92ef-79bacb424ef4.jpg)" "![luke](https://cloud.githubusercontent.com/assets/16547949/25400950/3a263b30-29c2-11e7-8f09-02127726c1e1.jpg)" "![morpheus](https://cloud.githubusercontent.com/assets/16547949/25400958/410316ee-29c2-11e7-9e6d-9d13999e76e3.jpg)" "![most-interesting-man](https://cloud.githubusercontent.com/assets/16547949/25400967/47a9dd52-29c2-11e7-9623-e913672a3eec.jpg)" "![obama](https://cloud.githubusercontent.com/assets/16547949/25400972/4de67090-29c2-11e7-96a6-8631407b6e4f.jpg)" "![one-does-not-simply](https://cloud.githubusercontent.com/assets/16547949/25400982/542b10d2-29c2-11e7-9cd6-f0d07042f1d2.jpg)" "![paddling](https://cloud.githubusercontent.com/assets/16547949/25400987/5bb3c4e8-29c2-11e7-9616-5c9afe759173.jpg)" "![panda-birthday](https://cloud.githubusercontent.com/assets/16547949/25400994/60f64804-29c2-11e7-8a6d-4401d7d294b9.jpg)" "![philosoraptor](https://cloud.githubusercontent.com/assets/16547949/25401001/66d677c6-29c2-11e7-9b12-263e036c236e.jpg)" "![picard-facepalm](https://cloud.githubusercontent.com/assets/16547949/25401008/6f0a5f0c-29c2-11e7-8ade-705cc5e57333.jpg)" "![puss-in-boots](https://cloud.githubusercontent.com/assets/16547949/25401020/740dd682-29c2-11e7-9906-ac5c3a8496c7.jpg)" "![sad-puppy](https://cloud.githubusercontent.com/assets/16547949/25401096/b9e619ee-29c2-11e7-8ee3-74a301737d34.jpg)" "![skeletor-victory](https://cloud.githubusercontent.com/assets/16547949/25401162/f580fadc-29c2-11e7-99c2-0c6cfb5dd1cd.jpg)" "![spongebob-rainbow](https://cloud.githubusercontent.com/assets/16547949/25401179/038f12ee-29c3-11e7-8362-f92422b7da35.jpg)" "![steve-harvey](https://cloud.githubusercontent.com/assets/16547949/25401187/0af0e288-29c3-11e7-9a88-38efd8b375cc.jpg)" "![success-kid](https://cloud.githubusercontent.com/assets/16547949/25401204/136e768c-29c3-11e7-8a7b-8724fee13dd7.jpg)" "![willy-wonka](https://cloud.githubusercontent.com/assets/16547949/25401209/19a78926-29c3-11e7-9dd5-6ccc07e38f54.jpg)" "![winter-is-coming](https://cloud.githubusercontent.com/assets/16547949/25401218/203cc85a-29c3-11e7-8bbf-8c7d4a6b81b2.jpg)"  "![yoda](https://cloud.githubusercontent.com/assets/16547949/25401233/2c9215d8-29c3-11e7-9e9b-d7cbccefb17a.jpg)" )
 
   ################
   # Get a random #
   ################
-  RANDOM_OCTOCAT=${OCTOCATS[$RANDOM % ${#OCTOCATS[@]} ]}
+  RANDOM_MEME=${MEMES[$RANDOM % ${#MEMES[@]} ]}
   # shellcheck disable=SC2129
   echo "Caption here" >> "0000-01-$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
   echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "$RANDOM_OCTOCAT" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "$RANDOM_MEME" >> "0000-01-$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
   echo "{: .center}" >> "0000-01-$FILE_NUM-$STUDENT.md"
 
@@ -179,7 +180,7 @@ function CreateIssue ()
   ########################################
   # create the body of the issue comment #
   ########################################
-  TEMP_TEXT="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
+  TEMP_TEXT="Using the API, I have just created a file with a random meme for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
   for i in "${COMMENTERS[@]}"
   do
     STUDENT=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
@@ -214,23 +215,19 @@ function CreateIssue ()
     #####################
     # Run the first run #
     #####################
-    FirstRun "$COUNTER"
+    FirstRun
   fi
+  MakePrivate
 }
 ################################################################################
 #### Function FirstRun #########################################################
 function FirstRun ()
 {
-  ####################
-  # Pull in the vars #
-  ####################
-  COUNTER=$1
-
   ###################################
   # create extended activity issues #
   ###################################
   # shellcheck disable=SC2129
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Add A New Slide\", \"body\": \"## We Need More Slides\nGrab another octocat and create a new slide from scratch.\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Add A New Slide\", \"body\": \"## We Need More Slides\nGrab another meme and create a new slide from scratch.\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Add a Caption To an Existing Slide\", \"body\": \"## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Improve the README\", \"body\": \"## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Restyle the Slides\", \"body\": \"## Do you have an eye for design?\nHelp us improve the look of the slide deck.\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
@@ -239,7 +236,7 @@ function FirstRun ()
   ##################################
   # create a file for $TOKEN_OWNER #
   ##################################
-  createFile "$TOKEN_OWNER" "$COUNTER"
+  CreateFile "$TOKEN_OWNER" 2
 
   ###################
   # Make it private #
@@ -277,47 +274,12 @@ function MakePrivate ()
       # switch repo to private #
       ##########################
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$COLLAB_REPO\", \"private\": true}" -X PATCH "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO" >> log.out 2>&1
-
-      #########################
-      # ask about adding 1:1s #
-      #########################
-      echo "Does this class get 1:1 sessions? Y or N"
-      ##############
-      # Read input #
-      ##############
-      read -r ONE_ON_ONE
-      ###################
-      # Check the input #
-      ###################
-      if echo "$ONE_ON_ONE" | grep -iq "^y" ;
-      then
-        ######################
-        # Create one on ones #
-        ######################
-        CreateOneOnOnes
-      fi
     else
       echo "Ok, just remember to change the repo to private"
-      echo "and add the info for booking 1:1 appointments to the README."
     fi
   fi
 }
-################################################################################
-#### Function CreateOneOnOnes ##################################################
-function CreateOneOnOnes ()
-{
-  ########################################
-  # create an issue for 1:1 appointments #
-  ########################################
-  echo "$APPT_URL"
-  ISS_TEXT="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
-  for i in "${COMMENTERS[@]}"
-  do
-    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-    ISS_TEXT=$ISS_TEXT"@$i "
-  done
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
-}
+
 ################################################################################
 ############################### MAIN ###########################################
 ################################################################################
@@ -325,7 +287,7 @@ function CreateOneOnOnes ()
 ###################
 # Get the collabs #
 ###################
-COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100 | jq '.[] | .login') >> log.out 2>&1
 
 ######################
 # Get the commenters #

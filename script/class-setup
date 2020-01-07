@@ -333,6 +333,11 @@ function ShellCheck ()
   # shellcheck disable=SC2028
   echo "# added by github/training-manual class setup" >> "$HOME/.${SHELL}rc"
   echo "test -f \"$HOME/$RC_FILE\" && source \"$HOME/$RC_FILE\"" >> "$HOME/.${SHELL}rc"
+  if [ "/bin/bash" = "$SHELL" ] && [ -f "$HOME/.bash_profile" ]; then
+    echo "source $HOME/.trainingmanualrc" >> $HOME/.bash_profile
+  elif [ "/bin/zsh" = "$SHELL" ]; then
+    echo "source $HOME/.trainingmanualrc" >> $HOME/.zshenv
+  fi
 
   ##########
   # Prints #

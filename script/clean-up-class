@@ -1,0 +1,42 @@
+#!/bin/sh
+
+#you must have a githubteacher token
+#saved to your ENV variables in order to use this script
+collabrepo=$1
+
+#test array content
+function containsElement () {
+  local e
+  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
+  return 0
+}
+
+function getnames () {
+
+  # Get teacher from the README along with a list of commenters on the first class issue
+  teacher=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/contents/README.md | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
+  commenters=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$collabrepo/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
+
+  # Create conflict repos based on commenters in the inital class issue plus the teacher
+  userNames=( "${commenters[@]} $teacher" )
+  for i in ${userNames[@]}
+  do
+    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+
+    # Clean up conflict and games repos for the user
+    cleanUpRepo "conflict-practice-$i"
+    cleanUpRepo "github-games-$i"
+  done
+}
+
+function cleanUpRepo () {
+  repo=$1
+  repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$repo | grep "^Status:") >> log.out 2>&1
+  if
+    echo $repoStatus | grep -iq "200"
+  then
+    script/remove-repo $repo
+  fi
+}
+
+getnames

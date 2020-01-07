@@ -65,48 +65,35 @@ function GetNames ()
   ###############
   # Get collabs #
   ###############
-  COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
 
   ###############
   # Get teacher #
   ###############
   TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
-  echo "A new github-games repo is about to be created for $TEACHER. If one already exists, it will be deleted."
-  echo "Is that OK? (Y or N)"
-  ###################
-  # Read in the var #
-  ###################
-  read -r CLASS_TIME
 
-  ###################
-  # Check the input #
-  ###################
-  if echo "$CLASS_TIME" | grep -iq "^y" ;
-  then
-    echo "Deleting $CLASS_ORG/github-games-$TEACHER repo..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$TEACHER" >> log.out 2>&1
-  else
-    echo "A github-games repo wasn't created for the facilitator. Creating for the students..."
-  fi
-
-  OWNERS_ARRAY=( "${OWNERS_ARRAY[@]/"$TEACHER"}" )
-  for i in "${COLLABS[@]}"
+  USER_NAMES=( "${COMMENTERS[@]} $TEACHER" )
+  for USER_NAME in "${USER_NAMES[@]}"
   do
+    USER_NAME=$(echo "$USER_NAME" | (sed -e 's/^"//' -e 's/"$//'))
+    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME | grep "^Status:") >> log.out 2>&1
+    echo "Repo status for $USER_NAME is $REPO_STATUS"
     if
-      ContainsElement "$i" "${OWNERS_ARRAY[*]}"
+      echo $REPO_STATUS | grep -iq "404"
+    then
+      createRepo $USER_NAME
+    else
+      # Check before cleaning up and recreating any duplicate repos
+      echo "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
+      read deleteOk
+      if echo "$deleteOk" | grep -iq "^y" ;
       then
-        i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-        REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$i" | grep "^Status:") >> log.out 2>&1
-        echo "repoStatus for $i is $REPO_STATUS"
-        if
-          echo "$REPO_STATUS" | grep -iq "404"
-        then
-          createRepo "$i"
-        else
-          echo "Skipping $i because they already have a repo."
-        fi
+        echo "Deleting and recreating $CLASS_ORG/github-games-$USER_NAME repo..."
+        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME >> log.out 2>&1
+        createRepo $USER_NAME
       else
-        echo "Skipping $i because they are an owner in this org."
+        echo "A new github-games repo wasn't created for $USER_NAME..."
+      fi
     fi
   done
   popd
@@ -123,6 +110,7 @@ function CreateRepo ()
   STUDENT=$1
   STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
   STUDENT_REPO="github-games-"$STUDENT
+  PAGES_URL=''
   echo "Time to create $STUDENT_REPO for $STUDENT"
   #create a repo named github-games-$STUDENT in $CLASS_ORG org
   echo "Create server-side location for fresh $CLASS_ORG/$STUDENT_REPO repo..."
@@ -132,17 +120,16 @@ function CreateRepo ()
   ##################
   if [[ "$ROOT_URL" == "github.com" ]]; then
     echo "Creating on GITHUB"
-    #############
-    # Create it #
-    #############
-    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${CLASS_ORG}.github.io/${STUDENT_REPO}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+    PAGES_URL="https://${CLASS_ORG}.github.io/${STUDENT_REPO}/"
   else
     echo "Creating on Enterprise"
-    #############
-    # Create it #
-    #############
-    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${STUDENT_REPO}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+    PAGES_URL="https://${ROOT_URL}/pages/${CLASS_ORG}/${STUDENT_REPO}/"
   fi
+
+  #############
+  # Create it #
+  #############
+  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"${PAGES_URL}\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
 
   ##################
   # Wait to finish #
@@ -170,8 +157,8 @@ function CreateRepo ()
   ##############################
   # create issues for problems #
   ##############################
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at https://$CLASS_ORG.github.io/$STUDENT_REPO, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$STUDENT?\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and the one in the README are pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at https://$CLASS_ORG.github.io/$STUDENT_REPO\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${PAGES_URL}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$STUDENT?\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and the one in the README are pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${PAGES_URL}\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
 
   #############################
   # assign issues to $STUDENT #
@@ -183,12 +170,6 @@ function CreateRepo ()
 ################################################################################
 ############################### MAIN ###########################################
 ################################################################################
-
-##################
-# Get the owners #
-##################
-# shellcheck disable=SC2178
-OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
 
 #################
 # Get the names #

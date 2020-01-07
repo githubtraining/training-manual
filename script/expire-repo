@@ -139,4 +139,4 @@ fi
 #################
 # Get the pages #
 #################
-getpages
+GetPages
