@@ -249,7 +249,6 @@ function InstanceURL ()
       ROOT_URL="github.com"
       INSTANCE_URL="api.github.com"
       echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
-      echo "export INSTANCE_URL='$INSTANCE_URL'" >> "$HOME/$RC_FILE"
     else
       #strip the API part
       ROOT_URL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
