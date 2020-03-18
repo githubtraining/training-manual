@@ -37,6 +37,23 @@ function GetDetails ()
   ###################
   read -r TEACHER
 
+  echo "Create a unique name for the survey collector."
+  echo "Example: 2017-06-06-open-enrollment."
+  ###################
+  # Read in the var #
+  ###################
+  read -r SURVEY_NAME
+
+  # generate the survey link
+  # shellcheck disable=SC1102
+  SURVEY_LINK=$((curl -s -k --request PUT --url "https://restapi.surveygizmo.com/v5/survey/$SURVEY_CAMPAIGN/surveycampaign?api_token=$SURVEY_TOKEN&api_token_secret=$SURVEY_SECRET&_method=PUT&type=link&name=$SURVEY_NAME" | jq .data.uri) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
+  # append teacher and class type to survey link
+  LONG_LINK="$SURVEY_LINK?type=developers&teacher=$TEACHER"
+  # create a google short link
+  # shellcheck disable=SC2129
+  SHORT_LINK=$((curl -s "https://www.googleapis.com/urlshortener/v1/url?key=AIzaSyA-eIC_TChnov4pZYaTmRatjYb1KVLJ8FU" -H 'Content-Type: application/json' -d "{\"longUrl\": \"$LONG_LINK\"}" | jq .id) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
+  script/create-repo caption-this "$REPO_NAME" "$TEACHER"
+
   #######################
   # Load the error code #
   #######################
@@ -57,11 +74,13 @@ function GetDetails ()
       # shellcheck disable=SC2129
       sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
+      sed -i "s|SURVEY-LINK|$SHORT_LINK|g" README.md >> log.out 2>&1
       sed -i "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     else
       # shellcheck disable=SC2129
       sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
+      sed -i "" "s|SURVEY-LINK|$SHORT_LINK|g" README.md >> log.out 2>&1
       sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     fi
     # shellcheck disable=SC2129
