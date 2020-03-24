@@ -5,19 +5,20 @@ While starting something new at an organization always has unique challenges, th
 We've put together some resources on the following topics:
 
 - Creating an InnerSource culture
+- Leadership as an internal stakeholder
 - Open Source for Enterprises
 - Teaching Git & GitHub
 - GitHub workflow success stories
-- Leadership as an internal stakeholder
 
 Each topic has a list of resources (articles, white papers, videos, etc.) and a list of discussion questions. As a group, we'll focus on the same topic.
 
 1. First, we'll each get to know the available resources and respond to issue prompts individually. You won't have time to get through every resource, and that's OK.
 2. Then, as a group, we'll discuss the prompts. Most importantly, we'll discuss how the information is useful within your organization.
 
-## Topic Focus: InnerSource
+## Topic Focus: Creating an InnerSource Culture
 
 #### Resources
+- [InnerSource Fundamentals course on GitHub Learning Lab](https://lab.github.com/githubtraining/innersource-fundamentals)
 - [InnerSource commons](https://paypal.github.io/InnerSourceCommons/)
   - Free book, [Getting Started with InnerSource](https://www.oreilly.com/programming/free/getting-started-with-innersource.csp)
 - [An introduction to InnerSource](https://resources.github.com/whitepapers/introduction-to-innersource/) GitHub white paper
