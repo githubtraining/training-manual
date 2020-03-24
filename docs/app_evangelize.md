@@ -25,14 +25,14 @@ As an ambassador, initiating actionable changes within the organization is your 
 
 > Moving teams within the organization to GitHub promotes a larger pool of potential reviewers or developers through a process known as InnerSource. As more and more developers move from their siloed development process to a more open and transparent development method on GitHub, they can request reviews from teams outside of their own to help reduce development time and increase the frequency of ships. 
 
-#### Have a clear understanding of the organization's expectations of you as the SME?
+#### Have a clear understanding of the organization's expectations of you as the ambassador?
 - How can you measure expectations? 
 - What issues do you foresee if you don't meet their expectations?
 - What can be done to have clear expectations from both sides throughout the process?
 
 **Need some extra help with the above questions? See below for some extra content**
 
-> As a GitHub SME, individuals within the organization will have the expectation that you will be able to provide succinct solutions to any problems or roadblocks they encounter as they prepare to move or once they have moved to GitHub. It's extremely important to know what expectations each organization has of you as well as your expectations from them. Make this a priority throughout the process. Having clear milestones or checkpoints is a great way to gauge process for you and the organization. 
+> As a GitHub ambassador, individuals within the organization will have the expectation that you will be able to provide succinct solutions to any problems or roadblocks they encounter as they prepare to move or once they have moved to GitHub. It's extremely important to know what expectations each organization has of you as well as your expectations from them. Make this a priority throughout the process. Having clear milestones or checkpoints is a great way to gauge process for you and the organization. 
 
 #### Overcome reluctant mindsets within the organization?
 - How can you help overcome reluctant mindsets withing the organization?
@@ -41,4 +41,4 @@ As an ambassador, initiating actionable changes within the organization is your 
 
 **Need some extra help with the above questions? See below for some extra content**
 
-> Let's face it, we've all been there. Changing a process can be difficult. As an SME, changing the mindset of, "It isn't broke, why fix it" can be one of your hardest discussions. It's important to start from what has worked with their process and then see where you can add what is missing instead of starting over completely; although sometimes that may be what is needed. You'll often find out that reluctant mindsets are based on previous issues they faced when a process was changed. Understanding the question behind the question is important with helping these individuals see the same vision you have for their organization.
+> Let's face it, we've all been there. Changing a process can be difficult. As an ambassador, changing the mindset of, "It isn't broke, why fix it" can be one of your hardest discussions. It's important to start from what has worked with their process and then see where you can add what is missing instead of starting over completely; although sometimes that may be what is needed. You'll often find out that reluctant mindsets are based on previous issues they faced when a process was changed. Understanding the question behind the question is important with helping these individuals see the same vision you have for their organization.

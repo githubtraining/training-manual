@@ -40,7 +40,7 @@ We recommend starting with "Introduction to GitHub", and moving on from there.
 Yes. If you choose to pause your work or if you'd like to work on another course later, Learning Lab will save your progress. Log in from your GitHub account and you'll be able to pick up where you left off.
 
 ##### Something's wrong, and I can't fix it
-Hopefully, as the SME, you'll be able to figure out what's going on. However, if you have found a bug or the program isn't working as expected, always feel free to do one of the following:
+Hopefully, as the ambassador, you'll be able to figure out what's going on. However, if you have found a bug or the program isn't working as expected, always feel free to do one of the following:
 - Contact us in our shared Slack channel
 - Start a thread in the [Community Forum](https://github.community/t5/GitHub-Learning-Lab/bd-p/learn)
 
