@@ -45,6 +45,14 @@
     * [Add Branch to Terminal Prompt](app_git_branch_in_terminal.md)
     * [Alias Pro Tips](app_aliases.md)
     * [Vi Basics](app_vi_basics.md)
+  * **Community Resources**
+    * [GitHub Events](app_github_events.md)
+    * [Plan an event](app_plan_an_event.md)
+    * [Facilitating workflow conversations](app_facilitating_workflow.md)
+    * [Case studies](app_case_studies.md)
+    * [Prepare for being an ambassador](app_evangelize.md)
+    * [Issue templates](app_issue_template.md)
+    * [Supporting Learning Lab](app_supporting_learning_lab.md)
   * **Teaching Resources**
     * [Teachback: Prepare repositories](app_teachback_repo_prep.md)
     * [Teacher/Facilitation Tips](app_facilitation_tips.md)
