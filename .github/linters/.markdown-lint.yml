@@ -23,6 +23,7 @@ MD013:
 MD026:
   punctuation: ".,;:!。，；:"  # List of not allowed
 MD033: false                  # Allow inline HTML
+MD041: false                  # Don't enforce first line headings
 
 #################
 # Rules by tags #
