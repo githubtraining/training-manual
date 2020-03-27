@@ -1,4 +1,4 @@
-# GitHub Events
+## GitHub Events
 
 As well as spreading organically by colleagues working together, learning spreads by organized events. Not every event is a great fit for every organization. Below, we'll explore some different types of events, and then plan one that might work for your organization.
 

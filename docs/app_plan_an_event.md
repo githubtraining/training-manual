@@ -1,4 +1,4 @@
-# Planning an Event
+## Planning an Event
 
 ### Choosing an event
 

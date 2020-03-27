@@ -1,4 +1,4 @@
-# Case Studies
+## Case Studies
 
 While starting something new at an organization always has unique challenges, there are likely others in similar fields who can offer their expertise. Let's learn from the experience of others.
 
@@ -15,7 +15,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 1. First, we'll each get to know the available resources and respond to issue prompts individually. You won't have time to get through every resource, and that's OK.
 1. Then, as a group, we'll discuss the prompts. Most importantly, we'll discuss how the information is useful within your organization.
 
-## Topic Focus: Creating an InnerSource Culture
+### Topic Focus: Creating an InnerSource Culture
 
 #### Resources
 
@@ -39,7 +39,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 - How do you think InnerSource as cultural change intersects with new tools, like GitHub?
 - What problems do you think many of your colleagues face that could be alleviated by adopting InnerSource collaboration?
 
-## Topic Focus: Leadership as an internal stakeholder
+### Topic Focus: Leadership as an internal stakeholder
 
 #### Resources
 
@@ -71,7 +71,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 - What are some examples of change or transition within your organization? How can you learn from those examples when moving forward change in the future?
 - What are the social aspects involved in transition? How can these social aspects negatively or positively influence a transition or change?
 
-## Topic Focus: Open Source for Enterprises
+### Topic Focus: Open Source for Enterprises
 
 #### Resources
 
@@ -102,7 +102,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 - Do you think your organization has any products which would be good canididates for becoming Open Source software? If not, why not? If so, what are the qualities of those products which make them good candidates?
 - What questions do you have about Open Source software?
 
-## Topic Focus: Teaching Git & GitHub
+### Topic Focus: Teaching Git & GitHub
 
 #### Resources
 
@@ -141,7 +141,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 - What are the biggest challenges when teaching? Are those specific to Git and GitHub? Are they specific to you or your organization?
 - How could you have benefited from more Git and GitHub learning opportunities? How could your colleagues benefit?
 
-## Topic Focus: GitHub Workflow success stories
+### Topic Focus: GitHub Workflow success stories
 
 #### Resources
 

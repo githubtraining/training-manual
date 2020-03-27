@@ -1,4 +1,4 @@
-# Fostering a participative culture
+## Fostering a participative culture
 
 Your project's presence on GitHub signals to others that you're invested in its success and that as a result they, too, can contribute to that success. Simply having your project on GitHub isn't the only way to promote collaboration, GitHub features multiple ways to reduce the "onboarding" for your repository. Even in enterprise situations, providing input on another team's repository can seem like a daunting task for veteran and first-day employees, so, use the power of GitHub to throw down a welcome mat and increase cross-team collaboration.
 

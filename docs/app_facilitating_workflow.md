@@ -6,7 +6,7 @@ When thinking about what content to include in the deck, think back on what drew
 
 Regardless of why you ❤️ GitHub, include it in your deck and share it with other people in the organization to help them get excited about moving from their current solution to GitHub.
 
-#### Activity: Create a conversation starter
+### Activity: Create a conversation starter
 
 1. Fork this repository: <https://github.com/githubtraining/slideshow-on-pages>
 1. Edit the markdown lines of the `index.html` file with the content you'd like to be in your GitHub Pages powered slide deck
