@@ -18,8 +18,6 @@
 ###############
 # Rules by id #
 ###############
-MD007:
-  indent: 2                   # Unordered list indentation
 MD013:
   line_length: 808            # Line length
 MD026:
