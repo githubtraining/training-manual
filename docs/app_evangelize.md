@@ -23,9 +23,11 @@ As an ambassador, initiating actionable changes within the organization is your 
 
 **Need some extra help with the above questions? See below for some extra content:**
 
+<!-- markdownlint-disable no-blanks-blockquote -->
 > Being able to identify where changes need to be made is the first step to making changes within the organization. While solving current problems within an organization is important, it's also important to think how you can reduce friction and issues in the future.
 
 > Moving teams within the organization to GitHub promotes a larger pool of potential reviewers or developers through a process known as InnerSource. As more and more developers move from their siloed development process to a more open and transparent development method on GitHub, they can request reviews from teams outside of their own to help reduce development time and increase the frequency of ships.
+<!-- markdownlint-enable no-blanks-blockquote -->
 
 #### Have a clear understanding of the organization's expectations of you as the ambassador?
 
