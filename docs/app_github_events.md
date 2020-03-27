@@ -3,6 +3,7 @@
 As well as spreading organically by colleagues working together, learning spreads by organized events. Not every event is a great fit for every organization. Below, we'll explore some different types of events, and then plan one that might work for your organization.
 
 ### GitHub Workshop
+
 Workshops are hands-on, GitHub focused gatherings accessible to people of all experience levels. The timing of a workshop may range from 45 minutes to several hours. Workshops can include presentations from those already using GitHub about their experiences, but almost always include Learning Lab.
 
 You may choose to have a workshop that focuses only on Learning Lab, so that participants can go entirely at their own pace. You also might choose to format a workshop in a way that everyone would be following along at the same time. Either format can work, but each will thrive differently in different situations.
@@ -14,6 +15,7 @@ We recommend having a brief presentation at the beginning of the workshop, along
 Since this requires a lot of hardware to be successful, make sure you consider the technical limitations of the space (WiFi, power outlets, tables, etc.).
 
 ### Office hours
+
 Office hours can serve as a drop-in way for anyone within your organization to ask their burning Git and GitHub questions. Office hours can be in person, physically at a particular office, but they can also be remote.
 
 ![office hours on Zoom](https://user-images.githubusercontent.com/16547949/43785117-aaf1b078-9a33-11e8-86fe-294fcfefd1bd.png)
@@ -21,13 +23,15 @@ Office hours can serve as a drop-in way for anyone within your organization to a
 Remote office hours allow people from any location to call in and ask their questions in a low-pressure environment. We find remote office hours to be most successful when they're scheduled in advance, in a time that is aimable to all employees, and communicated thoroughly.
 
 ### Lunch & learn
-A "lunch & learn", or sometimes called "brownbag" event focuses around a presentation at mealtime. Lunch & learns can have an interactive element, but since they normally occur while eating lunch, they're most commonly presentations.
+
+A "lunch & learn," or sometimes called a "brown bag" event focuses around a presentation at mealtime. Lunch & learns can have an interactive element, but since they normally occur while eating lunch, they're most commonly presentations.
 
 ![picture from lunch & learn](http://farm4.staticflickr.com/3771/12246715556_634f69980e_b.jpg)
 
 "Lunch & learn" presentations can range from very specific technical topics to broad, highly approachable topics. Depending on the culture (and lunchroom layout) of your organization, you may find that the broader presentations work better. As with the workshops, lunch & learns are a place to grow excitement and enthusiasm, and to introduce GitHub to those who may not already be familiar.
 
 ### Formal training
+
 Formal training is an immersive way to learn and practice Git and GitHub. However, formal training requires a large investment from all parties involved. We typically recommend a two day training, which can be too much time away from a desk for some teams.
 
 ![training room](https://user-images.githubusercontent.com/16547949/43785665-d3ab7f52-9a34-11e8-96aa-9a16a96194ba.JPG)
