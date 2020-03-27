@@ -24,7 +24,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
   - Free book: [Getting Started with InnerSource](https://www.oreilly.com/programming/free/getting-started-with-innersource.csp)
 - [An introduction to InnerSource](https://resources.github.com/whitepapers/introduction-to-innersource/) GitHub white paper
 - [InnerSource patterns](https://github.com/paypal/InnerSourcePatterns#reviewed-patterns-proven-and-reviewed), especially those which are proven and reviewed
-- [New to InnerSource?](https://blog.github.com/2016-10-13-new-to-innersource-a-panel-of-experts-talk-through-the-corporate-version-of-open-source/) blog and video, 45 minutes  Bloomberg](https://thenewstack.io/github-bloomberg-talk-using-innersource-build-open-source-project-development-behind-company-firewalls/)
+- [New to InnerSource?](https://blog.github.com/2016-10-13-new-to-innersource-a-panel-of-experts-talk-through-the-corporate-version-of-open-source/) blog and video, 45 minutes [Bloomberg](https://thenewstack.io/github-bloomberg-talk-using-innersource-build-open-source-project-development-behind-company-firewalls/)
 - [InnerSource presentation by GitHub at Humana](https://www.youtube.com/watch?v=xYHDw8e3ztw) video, 52 minutes
 - [Tools as a catalyst for culture change](https://www.youtube.com/watch?v=kb2VRTeWG5Y) video, 40 minutes
 - [Global software development with InnerSource](https://www.youtube.com/watch?v=64gaATwzXvE) video, 31 minutes

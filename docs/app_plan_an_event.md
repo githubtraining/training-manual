@@ -34,7 +34,7 @@ Hopefully, you are already aware of some possible spaces to host your event. Ide
 
 #### 4. Check the technology
 
-Any time there's technology involved, there's a good reason to have a plan B. Make sure the space can accomodate the number of people you expect to come, as well as their technology. Some quetions to ask while choosing a space could be:
+Any time there's technology involved, there's a good reason to have a plan B. Make sure the space can accommodate the number of people you expect to come, as well as their technology. Some questions to ask while choosing a space could be:
 
 - Will a microphone be necessary in the space?
 - Is there a projector in the room, and does it connect to the main presenter's computer?

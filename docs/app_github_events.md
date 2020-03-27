@@ -26,7 +26,7 @@ Remote office hours allow people from any location to call in and ask their ques
 
 A "lunch & learn," or sometimes called a "brown bag" event focuses around a presentation at mealtime. Lunch & learns can have an interactive element, but since they normally occur while eating lunch, they're most commonly presentations.
 
-![picture from lunch & learn](http://farm4.staticflickr.com/3771/12246715556_634f69980e_b.jpg)
+![picture from lunch & learn](https://user-images.githubusercontent.com/17183625/77708880-bd062080-6f9f-11ea-9bdf-2f1fd27bfa16.jpg)
 
 "Lunch & learn" presentations can range from very specific technical topics to broad, highly approachable topics. Depending on the culture (and lunchroom layout) of your organization, you may find that the broader presentations work better. As with the workshops, lunch & learns are a place to grow excitement and enthusiasm, and to introduce GitHub to those who may not already be familiar.
 
@@ -46,16 +46,13 @@ The Question and Answer session is one of the easier events to plan as it can be
 
 Your facilitator will partner with you to lead a Q&A session. The question and answer session should be available as both an in-person and remote engagement. An invitation to the event should be forwarded to individuals within the organization to provide them an opportunity to ask any Git and GitHub-related questions they have. The following text can be used in the event invitation:
 
-```
-Organization just moving to Git and GitHub
+**Organization just moving to Git and GitHub:**
 
-Our organization is moving to Git and GitHub as a way to collaboratively work on projects. Join members of the team who can help answer any questions you may have on how to collaborate and use Git and GitHub.
+> Our organization is moving to Git and GitHub as a way to collaboratively work on projects. Join members of the team who can help answer any questions you may have on how to collaborate and use Git and GitHub.
 
-Organization has had GitHub
+**Organization has had GitHub:**
 
-Our organization has been using Git and GitHub for a while now, but we want to mature our development operations and want to provide you resources on how to effectively use GitHub within your team and the organization as a whole. Join us for a question and answer session led by our internal GitHub experts.
-
-```
+> Our organization has been using Git and GitHub for a while now, but we want to mature our development operations and want to provide you resources on how to effectively use GitHub within your team and the organization as a whole. Join us for a question and answer session led by our internal GitHub experts.
 
 ##### Questions to kick off a session
 
