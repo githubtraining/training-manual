@@ -20,8 +20,8 @@
 ###############
 MD013:
   line_length: 808            # Line length
-MD026:
-  punctuation: ".,;:!。，；:"  # List of not allowed
+MD026:                        # Trailing punctuation in heading
+  punctuation: ".,;:!。，；:"  # List of characters not allowed
 MD033: false                  # Allow inline HTML
 MD041: false                  # Don't enforce first line headings
 
