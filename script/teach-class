@@ -1,79 +1,221 @@
-#!/bin/sh
+#!/bin/bash
+################################################################################
+############################ Teach Class #######################################
+################################################################################
+
+############################
+# Set the exit on non zero #
+############################
 set -e
 
-function gettask () {
+###########
+# GLOBALS #
+###########
+
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function GetTask ##########################################################
+function GetTask ()
+{
+  echo ""
   echo "========================================================"
   echo "This script manages the repos and activities"
   echo "for the GitHub for Developers training."
   echo "========================================================"
+  echo ""
+  echo "NOTE: If you have NOT ran: 0 Confirm Set-up, please run this task first"
+  echo "      as it is needed to set all base environment variables!"
+  echo ""
+  echo ""
   echo "What would you like to do? (Just the number please)"
-  echo "0: Confirm Set-up"
-  echo "1: Create a new caption-this class repository"
-  echo "2: Add collabs and create files (also makes the repo private)"
-  echo "3: Grade the day 1 repo"
-  echo "4: Create conflict repos for each student"
-  echo "5: Grade the conflict repos"
-  echo "6: Create the github-games repos for each student"
-  echo "7: Expire student repos"
-  echo "8: Done"
-  read task
-  if echo "$task" | grep -iq "8" ;
-  then
-    exit
-  else
-    dotask $task
-  fi
-}
+  echo "99: Exit"
+  echo " 0: Confirm Set-up"
+  echo " 1: Create a new caption-this class repository"
+  echo " 2: Add collabs and create files (also makes the repo private)"
+  echo " 3: Grade the day 1 repo"
+  echo " 4: Create conflict repos for each student"
+  echo " 5: Grade the conflict repos"
+  echo " 6: Create the github-games repos for each student"
+  echo " 7: Expire student repos"
+  echo " 8: Grade client"
 
-function dotask () {
-  task=$1
-  if echo "$task" | grep -iq "0" ;
-  then
+
+  ################################
+  # Read the task that was input #
+  ################################
+  read -r TASK
+
+  ############################################
+  # Clean any whitespace that may be entered #
+  ############################################
+  TASK_NO_WHITESPACE="$(echo -e "$TASK" | tr -d '[:space:]')"
+  TASK=$TASK_NO_WHITESPACE
+
+  ############################
+  # Validate we got a number #
+  ############################
+  REGEX='^[0-9]+$'
+  if ! [[ $TASK =~ $REGEX ]] ; then
+    echo "ERROR: [$TASK] is not a number!"
+    exit 1
+  fi
+
+  ################
+  # Run the task #
+  ################
+  DoTask "$TASK"
+}
+################################################################################
+#### Function DoTask ###########################################################
+function DoTask ()
+{
+  ####################
+  # Read in the TASK #
+  ####################
+  TASK=$1
+
+  #######################
+  # Set the collab repo #
+  #######################
+  COLLAB_REPO=''
+
+  #########################################
+  # See if we need to get the collab repo #
+  #########################################
+  # Skip tasks that dont need COLLAB_REPO
+  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 99 ] && [ "$TASK" -ne 8 ]; then
+    echo "What is the name of the day 1 repo?"
+    ########################
+    # Read the collab repo #
+    ########################
+    read -r COLLAB_REPO
+
+    ############################################
+    # Clean any whitespace that may be entered #
+    ############################################
+    COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
+    COLLAB_REPO=$COLLAB_REPO_WHITESPACE
+  else
+    ##########################################
+    # Validate we have env variables sourced #
+    ##########################################
+    Check_Env
+  fi
+
+  ###########
+  # TASK 00 #
+  ###########
+  if [ "$TASK" -eq 99 ]; then
+  # echo 00: Done"
+  echo "Were all done..."
+  exit 0
+  ##########
+  # TASK 0 #
+  ##########
+  elif [ "$TASK" -eq 0 ]; then
+    # echo "0: Confirm Set-up"
     echo "running script/class-setup"
     script/class-setup
     echo "=============================="
     echo "Set-up is complete"
     echo "=============================="
     exit
-  fi
-  if echo "$task" | grep -iq "7" ;
-  then
+  ##########
+  # TASK 1 #
+  ##########
+  elif [ "$TASK" -eq 1 ]; then
+    # echo "1: Create a new caption-this class repository"
+    echo "running script/new-virtual"
+    script/new-virtual "$COLLAB_REPO"
+  ##########
+  # TASK 2 #
+  ##########
+  elif [ "$TASK" -eq 2 ]; then
+    # echo "2: Add collabs and create files (also makes the repo private)"
+    echo "running script/create-files"
+    script/create-files "$COLLAB_REPO"
+  ##########
+  # TASK 3 #
+  ##########
+  elif [ "$TASK" -eq 3 ]; then
+    # echo "3: Grade the day 1 repo"
+    echo "running script/check-caption-repo"
+    script/check-caption-repo "$COLLAB_REPO"
+  ##########
+  # TASK 4 #
+  ##########
+  elif [ "$TASK" -eq 4 ]; then
+    # echo "4: Create conflict repos for each student"
+    echo "running script/create-conflict-repos"
+    script/create-conflict-repos "$COLLAB_REPO"
+  ##########
+  # TASK 5 #
+  ##########
+  elif [ "$TASK" -eq 5 ]; then
+    # echo "5: Grade the conflict repos"
+    echo "running script/check-conflict-repos"
+    script/check-conflict-repos "$COLLAB_REPO"
+  ##########
+  # TASk 6 #
+  ##########
+  elif [ "$TASK" -eq 6 ]; then
+    # echo "6: Create the github-games repos for each student"
+    echo "running script/create-game-repos"
+    script/create-game-repos "$COLLAB_REPO"
+  ##########
+  # TASK 7 #
+  ##########
+  elif [ "$TASK" -eq 7 ]; then
+    # echo "7: Expire student repos"
     echo "running script/expire-repo"
     script/expire-repo
-  else
-    echo "What is the name of the day 1 repo?"
-    read collabrepo
-    if echo "$task" | grep -iq "1" ;
-    then
-      echo "running script/new-virtual"
-      script/new-virtual $collabrepo
-    fi
-    if echo "$task" | grep -iq "2" ;
-    then
-      echo "running script/create-files"
-      script/create-files $collabrepo
-    fi
-    if echo "$task" | grep -iq "3" ;
-    then
-      echo "running script/check-caption-repo"
-      script/check-caption-repo $collabrepo
-    fi
-    if echo "$task" | grep -iq "4" ;
-    then
-      echo "running script/create-conflict-repos"
-      script/create-conflict-repos $collabrepo
-    fi
-    if echo "$task" | grep -iq "5" ;
-    then
-      echo "running script/check-conflict-repos"
-      script/check-conflict-repos $collabrepo
-    fi
-    if echo "$task" | grep -iq "6" ;
-    then
-      echo "running script/create-game-repos"
-      script/create-game-repos $collabrepo
-    fi
+  ##########
+  # TASK 8 #
+  ##########
+  elif [ "$TASK" -eq 8 ]; then
+    # echo "9: Grade client"
+    echo "running script/grade-client"
+    script/grade-client
   fi
 }
-    
-gettask
+################################################################################
+#### Function Check_Env ########################################################
+function Check_Env ()
+{
+  ###############################
+  # Check length of TEACHER_PAT #
+  ###############################
+  if [ -z "$TEACHER_PAT" ]; then
+    echo "ERROR! TEACHER_PAT not loaded or not correct length!"
+    echo "Please validate the .trainingmanualrc file!"
+    exit 1
+  fi
+
+  ###############################
+  # Check we have a TOKEN_OWNER #
+  ###############################
+  if [ -z "$TOKEN_OWNER" ]; then
+    echo "ERROR! TOKEN_OWNER not loaded or not correct length!"
+    echo "Please validate the .trainingmanualrc file!"
+    exit 1
+  fi
+
+  ################################
+  # Check we have a INSTANCE_URL #
+  ################################
+  if [ -z "$INSTANCE_URL" ]; then
+    echo "ERROR! INSTANCE_URL not loaded or not correct length!"
+    echo "Please validate the .trainingmanualrc file!"
+    exit 1
+  fi
+}
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+
+#######################
+# Get the task to run #
+#######################
+GetTask

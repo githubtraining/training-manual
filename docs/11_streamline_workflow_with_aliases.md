@@ -8,19 +8,22 @@ An alias allows you to type a shortened command to represent a long string on th
 
 For example, let's create an alias for the log command we learned earlier.
 
-**Original Command**
+#### Original Command
+
 ```sh
-$ git log --oneline --graph --decorate --all
+git log --oneline --graph --decorate --all
 ```
 
-**Creating the Alias**
+#### Creating the Alias
+
 ```sh
-$ git config --global alias.lol "log --oneline --graph --decorate --all"
+git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
-**Using the Alias**
+#### Using the Alias
+
 ```sh
-$ git lol
+git lol
 ```
 
 #### Explore Other Helpful Aliases
@@ -31,32 +34,37 @@ Check out these resources for a list of common aliases:
 - [Bash Power User](app_bash_power_user.md) An appendix item on bash completion and aliasing
 
 We also encourage you to read through these three blog posts by GitHub developer Phil Hack. His tips are referenced throughout the manual.
+
 - [GitHub Flow Aliases](http://haacked.com/archive/2014/07/28/github-flow-aliases/)
 - [Git Migrate](http://haacked.com/archive/2015/06/29/git-migrate/)
 - [Git Alias Open URL](http://haacked.com/archive/2017/01/04/git-alias-open-url/)
 
+Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.
 
-Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.   
-```
+```sh
 git config --global alias.ec "config --global -e"
 ```
 
 Pro Tip # 2: To checkout to another branch, you can make a quick shortcut.
-```
+
+```sh
 git config --global alias.ch "checkout"
 ```
 
 Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.
-```
+
+```sh
 git config --global alias.cob "checkout -b"
 ```
 
 Pro Tip # 4: You can create aliases that only call one command.
-```
+
+```sh
 git config --global alias.s "status -s"
 ```
 
 Pro Tip # 5: Clean up branches quickly and easily.
-```
-$ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+
+```sh
+git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 ```

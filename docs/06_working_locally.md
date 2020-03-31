@@ -12,9 +12,9 @@ When you clone a repository you are creating a copy of everything in that reposi
 
 Let's go ahead and clone the class repository to your local desktop.
 
-1. Navigate to the *Code* tab of the class repository on GitHub.
-1. Click *Clone or download*.
-1. Copy the *clone URL* to your clipboard.
+1. Navigate to the **Code** tab of the class repository on GitHub.
+1. Click **Clone or download**.
+1. Copy the **clone URL** to your clipboard.
 1. Open your command line application.
 1. Retrieve a full copy of the repository from GitHub: `git clone <CLONE-URL>`
 1. Once the clone is complete, cd into the new directory created by the clone operation: `cd <REPOSITORY-NAME>`
@@ -33,14 +33,14 @@ nothing to commit, working tree clean
 ### Using Branches locally
 
 ```sh
-$ git branch
+git branch
 ```
 
 If you type `git branch` you will see a list of local branches.
 
 ```sh
-$ git branch --all
-$ git branch -a
+git branch --all
+git branch -a
 ```
 
 If you want to see all of the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`.
@@ -49,8 +49,8 @@ If you want to see all of the branches, including the read-only copies of your r
 
 ### Switching Branches
 
-```
-$ git checkout <BRANCH-NAME>
+```sh
+git checkout <BRANCH-NAME>
 ```
 
 To checkout the branch you created online, type git checkout and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.
@@ -92,6 +92,7 @@ In order to make a file part of the version controlled directory we will first d
 1. Let's take another look at our repository status: `git status`
 
 > Good commit messages should:
+
 - Be short. ~50 characters is ideal.
 - Describe the change introduced by the commit.
 - Tell the story of how your project has evolved.

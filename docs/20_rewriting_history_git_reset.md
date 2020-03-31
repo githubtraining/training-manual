@@ -21,10 +21,15 @@ It also helps to know what branches technically are: each is a pointer, or refer
 The three modes for git reset are: `--soft`, `--mixed`, and `--hard`. For these examples, assume that we have a "clean" working directory, i.e. there are no uncommited changes.
 
 #### `--soft`
+
 `git reset --soft <SHA>` moves the current branch to point at the `<SHA>`. However, the working directory and staging area remain untouched. Since the snapshot that current branch points to now differs from the index's snapshot, this command effectively stages all differences between those snapshots. This is a good command to use when you have made a large number of small commits and you would like to regroup them into a single commit.
+
 #### `--mixed`
+
 `git reset --mixed <SHA>` makes the current branch *and* the staging area look like the `<SHA>` snapshot. *This is the default mode:* if you don't include a mode flag, Git will assume you want to do a `--mixed` reset. `--mixed` is useful if you want to keep all of your changes in the working directory, but change whether and how you commit those changes.
+
 #### `--hard`
+
 `git reset --hard <SHA>` is the most drastic option. With this, Git will make all 3 snapshots, the current branch, the staging area, *and* your working directory, look like they did at `<other-commit>`. This can be dangerous! We've assumed so far that our working directory is clean. If it is not, and you have uncommitted changes, `git reset --hard` will *delete all of those changes*. Even with a clean working directory, use `--hard` only if you're sure you want to completely undo earlier changes.
 
 ### Reset Soft
@@ -54,7 +59,6 @@ Next we will try the default mode of reset, `reset --mixed`:
 1. Move the files to the staging area before we can commit them: `git add file5.md file6.md`
 1. Re-commit the files: `git commit -m "re-add file 5 and 6"`
 
-
 > Notice that although we have essentially made the exact same commit (adding file 5 and 6 together with the same HEAD and commit message) we still get a new commit ID. This can help us see why the reset command should never be used on commits that have been pushed to the remote.
 
 ### Reset Hard
@@ -74,7 +78,7 @@ Last but not least, let's try a hard reset.
 The answer: It depends!
 
 ```sh
-$ git reflog
+git reflog
 ```
 
 The reflog is a record of every place HEAD has been. In a few minutes we will see how the reflog can be helpful in allowing us to restore previously committed changes. But first, we need to be aware of some of the reflog's limitations:

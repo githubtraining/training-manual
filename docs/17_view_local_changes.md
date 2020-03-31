@@ -11,19 +11,19 @@ Now that you have some files in the staging area and the working directory, let'
 Let's try these commands on the repository:
 
 ```sh
-$ git diff
-$ git diff --staged
-$ git diff HEAD
-$ git diff --color-words
+git diff
+git diff --staged
+git diff HEAD
+git diff --color-words
 ```
 
 `git diff` will also allow you to compare between branches, commits, and tags by simply typing:
 
 ```sh
-$ git diff <REF-1> <REF-2>
-$ git diff master slow-down
-$ git diff origin/master master
-$ git diff 2710 b745
+git diff <REF-1> <REF-2>
+git diff master slow-down
+git diff origin/master master
+git diff 2710 b745
 ```
 
 > Notice that, just like merges, diffs are directional. It is easiest to think of it as "diff back to `<REF-1>` starting at `<REF-2>`" or "see what is *not* in `<REF-1>` but *is* in `<REF-2>`".  The final example shows how to compare two commits based
