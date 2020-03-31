@@ -179,7 +179,6 @@ function DoTask ()
     # echo "8: Grade client"
     echo "running script/grade-client"
     script/grade-client
-  fi
   ##########
   # TASK 9 #
   ##########
