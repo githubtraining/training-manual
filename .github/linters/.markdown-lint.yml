@@ -23,8 +23,3 @@ MD026:                        # Trailing punctuation in heading
   punctuation: ".,;:!。，；:"  # List of characters not allowed
 MD033: false                  # Allow inline HTML
 MD041: false                  # Don't enforce first line headings
-
-#################
-# Rules by tags #
-#################
-blank_lines: false  # Error on blank lines
