@@ -108,7 +108,7 @@ function GetNames ()
       # Check before cleaning up and recreating any duplicate repos #
       ###############################################################
       echo "A conflict-practice repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
-      read DELETE_OK
+      read -r DELETE_OK
       if echo "$DELETE_OK" | grep -iq "^y" ;
       then
         echo "Deleting and recreating $CLASS_ORG/conflict-practice-$USER_NAME repo..."
