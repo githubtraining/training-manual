@@ -43,7 +43,7 @@ function GetPages ()
     # Get the repos #
     #################
     GetRepos "$NUM_PAGES"
-    let NUM_PAGES=NUM_PAGES-1
+    (( NUM_PAGES=NUM_PAGES-1 ))
 
   done
 }
