@@ -230,7 +230,7 @@ function FirstRun ()
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Add a Caption To an Existing Slide\", \"body\": \"## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Improve the README\", \"body\": \"## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Restyle the Slides\", \"body\": \"## Do you have an eye for design?\nHelp us improve the look of the slide deck.\n If you need help, check out the Appendix in the training manual.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Parking Lot\", \"body\": \"## Post any questions you may have here during the training.\"}" -X "POST https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Parking Lot\", \"body\": \"## Post any questions you may have here during the training.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
 
   ##################################
   # create a file for $TOKEN_OWNER #
