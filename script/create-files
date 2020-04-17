@@ -276,11 +276,47 @@ function MakePrivate ()
       # switch repo to private #
       ##########################
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$COLLAB_REPO\", \"private\": true}" -X PATCH "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO" >> log.out 2>&1
+
+      #########################
+       # ask about adding 1:1s #
+       #########################
+       echo "Does this class get 1:1 sessions? Y or N"
+       ##############
+       # Read input #
+       ##############
+       read -r ONE_ON_ONE
+       ###################
+       # Check the input #
+       ###################
+       if echo "$ONE_ON_ONE" | grep -iq "^y" ;
+       then
+         ######################
+         # Create one on ones #
+         ######################
+         CreateOneOnOnes
+       fi
     else
       echo "Ok, just remember to change the repo to private"
+      echo "and add the info for booking 1:1 appointments to the README."
     fi
   fi
 }
+################################################################################
+ #### Function CreateOneOnOnes ##################################################
+ function CreateOneOnOnes ()
+ {
+   ########################################
+   # create an issue for 1:1 appointments #
+   ########################################
+   echo "$APPT_URL"
+   ISS_TEXT="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
+   for i in "${COMMENTERS[@]}"
+   do
+     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+     ISS_TEXT=$ISS_TEXT"@$i "
+   done
+   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
+ }
 
 ################################################################################
 ############################### MAIN ###########################################
