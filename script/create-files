@@ -286,7 +286,7 @@ function MakePrivate ()
 ###################
 # Get the collabs #
 ###################
-COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100 | jq '.[] | .login') >> log.out 2>&1
+COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq '.[] | .login') >> log.out 2>&1
 
 ######################
 # Get the commenters #

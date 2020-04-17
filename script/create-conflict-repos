@@ -83,7 +83,7 @@ function GetNames ()
   ######################
   # Get the commenters #
   ######################
-  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
+  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login') >> log.out 2>&1
 
   ####################################
   # Get facilitator name from README #
@@ -97,12 +97,12 @@ function GetNames ()
   for USER_NAME in "${USER_NAMES[@]}"
   do
     USER_NAME=$(echo "$USER_NAME" | (sed -e 's/^"//' -e 's/"$//'))
-    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME | grep "^Status:") >> log.out 2>&1
+    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" | grep "^Status:") >> log.out 2>&1
     echo "REPO_STATUS for $USER_NAME is $REPO_STATUS"
     if
-      echo $REPO_STATUS | grep -iq "404"
+      echo "$REPO_STATUS" | grep -iq "404"
     then
-      CreateRepo $USER_NAME
+      CreateRepo "$USER_NAME"
     else
       ###############################################################
       # Check before cleaning up and recreating any duplicate repos #
@@ -112,8 +112,8 @@ function GetNames ()
       if echo "$DELETE_OK" | grep -iq "^y" ;
       then
         echo "Deleting and recreating $CLASS_ORG/conflict-practice-$USER_NAME repo..."
-        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME >> log.out 2>&1
-        CreateRepo $USER_NAME
+        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" >> log.out 2>&1
+        CreateRepo "$USER_NAME"
       else
         echo "A new conflict-practice repo wasn't created for $USER_NAME..."
       fi

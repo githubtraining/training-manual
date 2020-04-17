@@ -36,7 +36,7 @@ function getNames ()
 
   # Create conflict repos based on commenters in the inital class issue plus the teacher
   USER_NAMES=( "${COMMENTERS[@]} $TEACHER" )
-  for USER in ${USER_NAMES[@]}
+  for USER in "${USER_NAMES[@]}"
   do
     #####################
     # Cleanup user info #

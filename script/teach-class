@@ -185,7 +185,7 @@ function DoTask ()
   elif [ "$TASK" -eq 9 ]; then
     # echo "9: Clean up student repos for a specific class"
     echo "running script/clean-up-class"
-    script/clean-up-class $COLLAB_REPO
+    script/clean-up-class "$COLLAB_REPO"
   fi
 }
 ################################################################################
