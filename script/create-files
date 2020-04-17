@@ -57,9 +57,9 @@ function GetNames ()
       # Add collab #
       ##############
       AddCollab "$j"
-      if [ $j != $TOKEN_OWNER ]
+      if [ "$j" != "$TOKEN_OWNER" ]
       then
-        CreateFile $j $counter
+        CreateFile "$j" "$COUNTER"
         ((counter++))
       else
         echo "Skipping creating another file for $j because they are the instructor."
