@@ -28,7 +28,7 @@ COLLAB_REPO=$1
 function ContainsCollab ()
 {
   local e
-  for e in "${@}"; do
+  for e in ${@}; do
     if [[ "$e" == "$1" ]]
     then
       return 0
@@ -44,7 +44,7 @@ function GetNames ()
   # get names of people who have commented on the issue #
   #######################################################
   COUNTER=$(expr ${#COLLABS[@]} + 2)
-  for i in "${COMMENTERS[@]}"
+  for i in ${COMMENTERS[@]}
   do
     j=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if
@@ -85,11 +85,12 @@ function AddCollab ()
   # Pull in the vars #
   ####################
   STUDENT=$1
+  COLLABS+=("$STUDENT")
 
   #############
   # Set it up #
   #############
-  #STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
+  STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators/$STUDENT" >> log.out 2>&1
 }
 ################################################################################
