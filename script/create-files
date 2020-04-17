@@ -87,7 +87,7 @@ function AddCollab ()
   # Set it up #
   #############
   #STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
-  curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators/$STUDENT"
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators/$STUDENT" >> log.out 2>&1
 }
 ################################################################################
 #### Function CreateFile #########################################################
