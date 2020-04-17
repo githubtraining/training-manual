@@ -37,6 +37,8 @@ function GetDetails ()
   ###################
   read -r TEACHER
 
+  script/create-repo caption-this "$REPO_NAME" "$TEACHER"
+
   #######################
   # Load the error code #
   #######################
