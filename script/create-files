@@ -28,7 +28,7 @@ COLLAB_REPO=$1
 function ContainsCollab ()
 {
   local e
-  for e in ${@}; do
+  for e in "${@}"; do
     if [[ "$e" == "$1" ]]
     then
       return 0
