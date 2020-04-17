@@ -49,7 +49,7 @@ function GetDetails ()
   ##############################
   if [ $ERROR_CODE -eq 0 ]; then
     git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
-    pushd "$REPO_NAME"
+    pushd "$REPO_NAME" || return
     # shellcheck disable=SC2129
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
     # shellcheck disable=SC1102
@@ -74,7 +74,7 @@ function GetDetails ()
     git push "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
     git config --local --unset user.name >> log.out 2>&1
     git config --local --unset user.email >> log.out 2>&1
-    popd
+    popd || return
     rm -rf "$REPO_NAME" >> log.out 2>&1
     ########################
     # Call the pretty repo #

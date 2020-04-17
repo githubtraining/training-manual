@@ -108,7 +108,7 @@ function CloneRepo ()
   ###########
   # Push it #
   ###########
-  pushd "${REPO_NAME}" >> log.out 2>&1
+  pushd "${REPO_NAME}" >> log.out 2>&1 || return
   git push --mirror "https://${TOKEN_OWNER}:${TEACHER_PAT}@$ROOT_URL/${CLASS_ORG}/${REPO_NAME}" >> log.out 2>&1
 
   ##################
@@ -116,7 +116,7 @@ function CloneRepo ()
   ##################
   echo "Resting 5 more seconds to allow push to resolve"
   sleep 5
-  popd
+  popd || return
 
   #############
   # Remove it #

@@ -178,7 +178,7 @@ function DuplicateRepo ()
   # Push the repo #
   #################
   echo "Push the fresh $REPO_NAME back to $CLASS_ORG's repo..."
-  pushd "$REPO_NAME"
+  pushd "$REPO_NAME" || return
   git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
 
   ##################
@@ -192,7 +192,7 @@ function DuplicateRepo ()
   ######################
   echo "Setting default branch for repo"
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$REPO_NAME\", \"default_branch\": \"$D_BRANCH\"}" "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
-  popd
+  popd || return
 
   #####################
   # Remove local repo #

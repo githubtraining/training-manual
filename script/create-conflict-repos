@@ -78,7 +78,7 @@ function GetNames ()
   #################
   # Push the file #
   #################
-  pushd conflict-template
+  pushd conflict-template || return
 
   ######################
   # Get the commenters #
@@ -119,7 +119,7 @@ function GetNames ()
       fi
      fi
    done
-  popd
+  popd || return
 
   #########################
   # Remove the local file #

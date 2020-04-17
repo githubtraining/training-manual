@@ -60,7 +60,7 @@ function GetNames ()
   ###########
   # Push it #
   ###########
-  pushd game-template
+  pushd game-template || return
 
   ###############
   # Get collabs #
@@ -96,7 +96,7 @@ function GetNames ()
       fi
     fi
   done
-  popd
+  popd || return
   echo "Remove the local (temporary) clone"
   rm -rf game-template
 }
