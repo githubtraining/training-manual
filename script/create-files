@@ -59,6 +59,9 @@ function GetNames ()
       AddCollab "$j"
       if [ "$j" != "$TOKEN_OWNER" ]
       then
+        ###################
+        # Create the file #
+        ###################
         CreateFile "$j" "$COUNTER"
         ((COUNTER++))
       else
