@@ -186,7 +186,7 @@ function CreateIssue ()
     STUDENT=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     TEMP_TEXT=$TEMP_TEXT"- [ ] @$STUDENT\n"
   done
-  echo "Here is the issue text: $TEMP_TEXT"
+  echo -e "Here is the issue text: $TEMP_TEXT"
 
   ###################################
   # decide whether to post or patch #
