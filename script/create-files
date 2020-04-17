@@ -60,7 +60,7 @@ function GetNames ()
       if [ "$j" != "$TOKEN_OWNER" ]
       then
         CreateFile "$j" "$COUNTER"
-        ((counter++))
+        ((COUNTER++))
       else
         echo "Skipping creating another file for $j because they are the instructor."
       fi
