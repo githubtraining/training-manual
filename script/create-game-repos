@@ -65,7 +65,7 @@ function GetNames ()
   ###############
   # Get collabs #
   ###############
-  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100 | jq '.[] | .user.login') >> log.out 2>&1
+  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login') >> log.out 2>&1
 
   ###############
   # Get teacher #
@@ -76,12 +76,12 @@ function GetNames ()
   for USER_NAME in "${USER_NAMES[@]}"
   do
     USER_NAME=$(echo "$USER_NAME" | (sed -e 's/^"//' -e 's/"$//'))
-    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME | grep "^Status:") >> log.out 2>&1
+    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" | grep "^Status:") >> log.out 2>&1
     echo "Repo status for $USER_NAME is $REPO_STATUS"
     if
-      echo $REPO_STATUS | grep -iq "404"
+      echo "$REPO_STATUS" | grep -iq "404"
     then
-      createRepo $USER_NAME
+      createRepo "$USER_NAME"
     else
       # Check before cleaning up and recreating any duplicate repos
       echo "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
@@ -89,8 +89,8 @@ function GetNames ()
       if echo "$deleteOk" | grep -iq "^y" ;
       then
         echo "Deleting and recreating $CLASS_ORG/github-games-$USER_NAME repo..."
-        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME >> log.out 2>&1
-        createRepo $USER_NAME
+        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" >> log.out 2>&1
+        createRepo "$USER_NAME"
       else
         echo "A new github-games repo wasn't created for $USER_NAME..."
       fi
