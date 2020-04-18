@@ -329,7 +329,7 @@ COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/r
 ######################
 # Get the commenters #
 ######################
-COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//') >> log.out 2>&1
+COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
 
 #################
 # Get the names #
