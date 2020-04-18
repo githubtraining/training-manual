@@ -65,7 +65,7 @@ function GetNames ()
   ###############
   # Get collabs #
   ###############
-  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login') >> log.out 2>&1
+COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
 
   ###############
   # Get teacher #
@@ -108,7 +108,6 @@ function CreateRepo ()
   # Pull in the vars #
   ####################
   STUDENT=$1
-  STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
   STUDENT_REPO="github-games-"$STUDENT
   PAGES_URL=''
   echo "Time to create $STUDENT_REPO for $STUDENT"

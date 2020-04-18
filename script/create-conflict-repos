@@ -83,7 +83,7 @@ function GetNames ()
   ######################
   # Get the commenters #
   ######################
-  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login') >> log.out 2>&1
+  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
 
   ####################################
   # Get facilitator name from README #
@@ -96,7 +96,6 @@ function GetNames ()
   USER_NAMES=( "${COMMENTERS[@]} $TEACHER" )
   for USER_NAME in "${USER_NAMES[@]}"
   do
-    USER_NAME=$(echo "$USER_NAME" | (sed -e 's/^"//' -e 's/"$//'))
     REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" | grep "^Status:") >> log.out 2>&1
     echo "REPO_STATUS for $USER_NAME is $REPO_STATUS"
     if
