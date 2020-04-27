@@ -1,7 +1,7 @@
 # Contributing
 
-[fork]: https://github.com/github/REPO/fork
-[pr]: https://github.com/github/REPO/compare
+[fork]: https://github.com/githubtraining/training-manual/fork
+[pr]: https://github.com/githubtraining/training-manual/compare
 [code-of-conduct]: CODE_OF_CONDUCT.md
 
 Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for keeping it great.
@@ -12,11 +12,11 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 
 ## Submitting a pull request
 
-0. [Fork][fork] and clone the repository
+1. [Fork][fork] and clone the repository
 1. Create a new branch: `git checkout -b my-branch-name`
-2. Make your change, add tests, and make sure the tests still pass
-3. Push to your fork and [submit a pull request][pr]
-4. Pat your self on the back and wait for your pull request to be reviewed and merged.
+1. Make your change, add tests, and make sure the tests still pass
+1. Push to your fork and [submit a pull request][pr]
+1. Pat your self on the back and wait for your pull request to be reviewed and merged.
 
 Here are a few things you can do that will increase the likelihood of your pull request being accepted:
 
