@@ -25,13 +25,11 @@ COLLAB_REPO=$1
 ################################################################################
 ################################################################################
 #### Function ContainsCollab ##################################################
-function ContainsCollab ()
-{
+function ContainsCollab() {
   STUDENT=$1
 
   for e in $COLLABS; do
-    if [[ "$e" == "$STUDENT" ]]
-    then
+    if [[ "$e" == "$STUDENT" ]]; then
       return 0
     fi
   done
@@ -39,14 +37,12 @@ function ContainsCollab ()
 }
 ################################################################################
 #### Function GetNames #########################################################
-function GetNames ()
-{
+function GetNames() {
   #######################################################
   # get names of people who have commented on the issue #
   #######################################################
   COUNTER=$(expr ${#COLLABS[@]} + 2)
-  for i in ${COMMENTERS[@]}
-  do
+  for i in ${COMMENTERS[@]}; do
     if
       ######################
       # Check the elements #
@@ -59,8 +55,7 @@ function GetNames ()
       # Add collab #
       ##############
       AddCollab "$i"
-      if [ "$i" != "$TOKEN_OWNER" ]
-      then
+      if [ "$i" != "$TOKEN_OWNER" ]; then
         ###################
         # Create the file #
         ###################
@@ -79,8 +74,7 @@ function GetNames ()
 }
 ################################################################################
 #### Function AddCollab ########################################################
-function AddCollab ()
-{
+function AddCollab() {
   ####################
   # Pull in the vars #
   ####################
@@ -94,8 +88,7 @@ function AddCollab ()
 }
 ################################################################################
 #### Function CreateFile #########################################################
-function CreateFile ()
-{
+function CreateFile() {
   ####################
   # Pull in the vars #
   ####################
@@ -105,8 +98,7 @@ function CreateFile ()
   #####################
   # Check the counter #
   #####################
-  if [ "$COUNTER" -le 9 ]
-  then
+  if [ "$COUNTER" -le 9 ]; then
     FILE_NUM=0$COUNTER
   else
     FILE_NUM=$COUNTER
@@ -130,12 +122,45 @@ function CreateFile ()
   #####################
   # Array of octocats #
   #####################
-  OCTOCATS=("![riddlocat](https://octodex.github.com/images/riddlocat.png)"  "![skitchtocat](https://octodex.github.com/images/skitchtocat.png)"  "![luchadortocat](https://octodex.github.com/images/luchadortocat.png)"  "![codercat](https://octodex.github.com/images/codercat.jpg)"  "![dojocat](https://octodex.github.com/images/dojocat.jpg)"  "![dodgetocat](https://octodex.github.com/images/dodgetocat_v2.png)"  "![steroidtocat](https://octodex.github.com/images/steroidtocat.png)"  "![inflatocat](https://octodex.github.com/images/inflatocat.png)"  "![poptocat](https://octodex.github.com/images/poptocat.png)"  "![Robotocat](https://octodex.github.com/images/Robotocat.png)"  "![saritocat](https://octodex.github.com/images/saritocat.png)"  "![jetpacktocat](https://octodex.github.com/images/jetpacktocat.png)"  "![cooler-octocat](https://octodex.github.com/images/twenty-percent-cooler-octocat.png)" "![octocat-de-los-muertos](https://octodex.github.com/images/octocat-de-los-muertos.jpg)" "![poptocat2](https://octodex.github.com/images/poptocat_v2.png)" "![minertocat](https://octodex.github.com/images/minertocat.png)" "![femalecodertocat](https://octodex.github.com/images/femalecodertocat.png)" "![cherryontop-o-cat](https://octodex.github.com/images/cherryontop-o-cat.png)" "![orderedlistocat](https://octodex.github.com/images/orderedlistocat.png)" "![herme-t-crabb](https://octodex.github.com/images/herme-t-crabb.png)" "![droidtocat](https://octodex.github.com/images/droidtocat.png)" "![snowoctocat](https://octodex.github.com/images/snowoctocat.png)" "![boxertocat](https://octodex.github.com/images/boxertocat_octodex.jpg)" "![skatetocat](https://octodex.github.com/images/skatetocat.png)" "![labtocat](https://octodex.github.com/images/labtocat.png)" "![Mardigrastocat](https://octodex.github.com/images/Mardigrastocat.png)" "![defunktocat](https://octodex.github.com/images/defunktocat.png)" "![catstello](https://octodex.github.com/images/catstello.png)" "![constructocat](https://octodex.github.com/images/constructocat2.jpg)" "![kimonotocat](https://octodex.github.com/images/kimonotocat.png)" "![octofez](https://octodex.github.com/images/octofez.png)" "![dinotocat](https://octodex.github.com/images/dinotocat.png)" )
+  OCTOCATS=(
+    "![riddlocat](https://octodex.github.com/images/riddlocat.png)"
+    "![skitchtocat](https://octodex.github.com/images/skitchtocat.png)"
+    "![luchadortocat](https://octodex.github.com/images/luchadortocat.png)"
+    "![codercat](https://octodex.github.com/images/codercat.jpg)"
+    "![dojocat](https://octodex.github.com/images/dojocat.jpg)"
+    "![dodgetocat](https://octodex.github.com/images/dodgetocat_v2.png)"
+    "![steroidtocat](https://octodex.github.com/images/steroidtocat.png)"
+    "![inflatocat](https://octodex.github.com/images/inflatocat.png)"
+    "![poptocat](https://octodex.github.com/images/poptocat.png)"
+    "![Robotocat](https://octodex.github.com/images/Robotocat.png)"
+    "![saritocat](https://octodex.github.com/images/saritocat.png)"
+    "![jetpacktocat](https://octodex.github.com/images/jetpacktocat.png)"
+    "![cooler-octocat](https://octodex.github.com/images/twenty-percent-cooler-octocat.png)"
+    "![octocat-de-los-muertos](https://octodex.github.com/images/octocat-de-los-muertos.jpg)"
+    "![poptocat2](https://octodex.github.com/images/poptocat_v2.png)"
+    "![minertocat](https://octodex.github.com/images/minertocat.png)"
+    "![femalecodertocat](https://octodex.github.com/images/femalecodertocat.png)"
+    "![cherryontop-o-cat](https://octodex.github.com/images/cherryontop-o-cat.png)"
+    "![orderedlistocat](https://octodex.github.com/images/orderedlistocat.png)"
+    "![herme-t-crabb](https://octodex.github.com/images/herme-t-crabb.png)"
+    "![droidtocat](https://octodex.github.com/images/droidtocat.png)"
+    "![snowoctocat](https://octodex.github.com/images/snowoctocat.png)"
+    "![boxertocat](https://octodex.github.com/images/boxertocat_octodex.jpg)"
+    "![skatetocat](https://octodex.github.com/images/skatetocat.png)"
+    "![labtocat](https://octodex.github.com/images/labtocat.png)"
+    "![Mardigrastocat](https://octodex.github.com/images/Mardigrastocat.png)"
+    "![defunktocat](https://octodex.github.com/images/defunktocat.png)"
+    "![catstello](https://octodex.github.com/images/catstello.png)"
+    "![constructocat](https://octodex.github.com/images/constructocat2.jpg)"
+    "![kimonotocat](https://octodex.github.com/images/kimonotocat.png)"
+    "![octofez](https://octodex.github.com/images/octofez.png)"
+    "![dinotocat](https://octodex.github.com/images/dinotocat.png)"
+    )
 
   ########################
   # Get a random octocat #
   ########################
-  RANDOM_OCTOCAT=${OCTOCATS[$RANDOM % ${#OCTOCATS[@]} ]}
+  RANDOM_OCTOCAT=${OCTOCATS[$RANDOM % ${#OCTOCATS[@]}]}
   # shellcheck disable=SC2129
   echo "Caption here" >> "0000-01-$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
@@ -168,8 +193,7 @@ function CreateFile ()
 }
 ################################################################################
 #### Function CreateIssue ######################################################
-function CreateIssue ()
-{
+function CreateIssue() {
   ################
   # Pull in vars #
   ################
@@ -184,8 +208,7 @@ function CreateIssue ()
   # create the body of the issue comment #
   ########################################
   TEMP_TEXT="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
-  for STUDENT in "${COMMENTERS[@]}"
-  do
+  for STUDENT in "${COMMENTERS[@]}"; do
     TEMP_TEXT="$TEMP_TEXT- [ ] @$STUDENT\n"
   done
   echo -e "Here is the issue text: $TEMP_TEXT"
@@ -193,8 +216,7 @@ function CreateIssue ()
   ###################################
   # decide whether to post or patch #
   ###################################
-  if echo "$ISSUES" | grep -iq "Activity 1"
-  then
+  if echo "$ISSUES" | grep -iq "Activity 1"; then
     #get the issue number
     echo "Please point me to the correct issue"
     echo "To update the list of students (just type the number)"
@@ -222,8 +244,7 @@ function CreateIssue ()
 }
 ################################################################################
 #### Function FirstRun #########################################################
-function FirstRun ()
-{
+function FirstRun() {
   ###################################
   # create extended activity issues #
   ###################################
@@ -246,8 +267,7 @@ function FirstRun ()
 }
 ################################################################################
 #### Function MakePrivate ######################################################
-function MakePrivate ()
-{
+function MakePrivate() {
   ################################
   # is the repo already private? #
   ################################
@@ -256,8 +276,7 @@ function MakePrivate ()
   ############
   # Check it #
   ############
-  if "$REPO_STATUS"
-  then
+  if "$REPO_STATUS"; then
     echo "This repo is already private."
   else
     echo "Are you ready to make this repo private? Y or N"
@@ -269,31 +288,29 @@ function MakePrivate ()
     ###################
     # Check the input #
     ###################
-    if echo "$FLIP_SWITCH" | grep -iq "^y" ;
-    then
+    if echo "$FLIP_SWITCH" | grep -iq "^y"; then
       ##########################
       # switch repo to private #
       ##########################
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$COLLAB_REPO\", \"private\": true}" -X PATCH "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO" >> log.out 2>&1
 
       #########################
-       # ask about adding 1:1s #
-       #########################
-       echo "Does this class get 1:1 sessions? Y or N"
-       ##############
-       # Read input #
-       ##############
-       read -r ONE_ON_ONE
-       ###################
-       # Check the input #
-       ###################
-       if echo "$ONE_ON_ONE" | grep -iq "^y" ;
-       then
-         ######################
-         # Create one on ones #
-         ######################
-         CreateOneOnOnes
-       fi
+      # ask about adding 1:1s #
+      #########################
+      echo "Does this class get 1:1 sessions? Y or N"
+      ##############
+      # Read input #
+      ##############
+      read -r ONE_ON_ONE
+      ###################
+      # Check the input #
+      ###################
+      if echo "$ONE_ON_ONE" | grep -iq "^y"; then
+        ######################
+        # Create one on ones #
+        ######################
+        CreateOneOnOnes
+      fi
     else
       echo "Ok, just remember to change the repo to private"
       echo "and add the info for booking 1:1 appointments to the README."
@@ -301,21 +318,19 @@ function MakePrivate ()
   fi
 }
 ################################################################################
- #### Function CreateOneOnOnes ##################################################
- function CreateOneOnOnes ()
- {
-   ########################################
-   # create an issue for 1:1 appointments #
-   ########################################
-   echo "$APPT_URL"
-   ISS_TEXT="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
-   for i in "${COMMENTERS[@]}"
-   do
-     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
-     ISS_TEXT=$ISS_TEXT"@$i "
-   done
-   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
- }
+#### Function CreateOneOnOnes ##################################################
+function CreateOneOnOnes() {
+  ########################################
+  # create an issue for 1:1 appointments #
+  ########################################
+  echo "$APPT_URL"
+  ISS_TEXT="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
+  for i in "${COMMENTERS[@]}"; do
+    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
+    ISS_TEXT=$ISS_TEXT"@$i "
+  done
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
+}
 
 ################################################################################
 ############################### MAIN ###########################################
