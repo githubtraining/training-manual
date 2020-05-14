@@ -312,7 +312,7 @@ function MakePrivate() {
         CreateOneOnOnes
       fi
     else
-      echo "Ok, just remember to change the repo to private"
+      echo "OK, just remember to change the repo to private"
       echo "and add the info for booking 1:1 appointments to the README."
     fi
   fi
