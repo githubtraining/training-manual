@@ -111,17 +111,17 @@ function createFile ()
   ##############
   # Print info #
   ##############
-  echo "Time to create file 0000-01-$FILE_NUM-$STUDENT.md in $COLLAB_REPO"
+  echo "Time to create file $FILE_NUM-$STUDENT.md in $COLLAB_REPO"
   # shellcheck disable=SC2129
-  echo "---" > "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "---" > "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "layout: slide" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "layout: slide" >> "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo 'title: "Welcome to our slide deck!"' >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo 'title: "Welcome to our slide deck!"' >> "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "---" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "---" >> "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "" >> "$FILE_NUM-$STUDENT.md"
 
   #####################
   # Array of octocats #
@@ -133,34 +133,34 @@ function createFile ()
   ################
   RANDOM_OCTOCAT=${OCTOCATS[$RANDOM % ${#OCTOCATS[@]} ]}
   # shellcheck disable=SC2129
-  echo "Caption here" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "Caption here" >> "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "" >> "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "$RANDOM_OCTOCAT" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "$RANDOM_OCTOCAT" >> "$FILE_NUM-$STUDENT.md"
   # shellcheck disable=SC2129
-  echo "{: .center}" >> "0000-01-$FILE_NUM-$STUDENT.md"
+  echo "{: .center}" >> "$FILE_NUM-$STUDENT.md"
 
   ################
   # Check the OS #
   ################
   if [[ "$OSTYPE" = "msys" ]]; then
     # shellcheck disable=SC2002
-    NEW_FILE=$(cat "0000-01-$FILE_NUM-$STUDENT.md" | base64 --wrap=0)
+    NEW_FILE=$(cat "$FILE_NUM-$STUDENT.md" | base64 --wrap=0)
   else
     # shellcheck disable=SC2002
-    NEW_FILE=$(cat "0000-01-$FILE_NUM-$STUDENT.md" | base64)
+    NEW_FILE=$(cat "$FILE_NUM-$STUDENT.md" | base64)
   fi
 
   ###################################
   # now create the file on the repo #
   ###################################
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/0000-01-$FILE_NUM-$STUDENT.md\", \"message\": \"Activity file for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_posts/0000-01-$FILE_NUM-$STUDENT.md" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/$FILE_NUM-$STUDENT.md\", \"message\": \"Activity file for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_posts/$FILE_NUM-$STUDENT.md" >> log.out 2>&1
 
   #########################
   # Remove the local file #
   #########################
-  rm "0000-01-$FILE_NUM-$STUDENT.md"
+  rm "$FILE_NUM-$STUDENT.md"
 }
 ################################################################################
 #### Function CreateIssue ######################################################
