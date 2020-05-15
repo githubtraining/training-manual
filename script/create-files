@@ -155,7 +155,7 @@ function createFile ()
   ###################################
   # now create the file on the repo #
   ###################################
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_posts/$FILE_NUM-$STUDENT.md\", \"message\": \"Activity file for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_posts/$FILE_NUM-$STUDENT.md" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_slides/$FILE_NUM-$STUDENT.md\", \"message\": \"Activity file for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_slides/$FILE_NUM-$STUDENT.md" >> log.out 2>&1
 
   #########################
   # Remove the local file #
