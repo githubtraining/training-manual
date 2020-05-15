@@ -19,6 +19,7 @@ source "$HOME/.trainingmanualrc"
 # GLOBALS #
 ###########
 COLLAB_REPO=$1
+REPO_URL="https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO"
 
 ################################################################################
 ########################## Functions Below #####################################
@@ -155,7 +156,7 @@ function CreateFile() {
     "![kimonotocat](https://octodex.github.com/images/kimonotocat.png)"
     "![octofez](https://octodex.github.com/images/octofez.png)"
     "![dinotocat](https://octodex.github.com/images/dinotocat.png)"
-    )
+  )
 
   ########################
   # Get a random octocat #
@@ -208,7 +209,6 @@ function CreateIssue() {
   # create the body of the issue comment #
   ########################################
   TEMP_TEXT="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
-  IFS=" " read -ra COMMENTERS <<< "$COMMENTERS"
   for STUDENT in "${COMMENTERS[@]}"; do
     TEMP_TEXT="$TEMP_TEXT- [ ] @$STUDENT\n"
   done
@@ -330,7 +330,7 @@ function CreateOneOnOnes() {
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     ISS_TEXT=$ISS_TEXT"@$i "
   done
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "$REPO_URL/issues" >> log.out 2>&1
 }
 
 ################################################################################
@@ -340,12 +340,16 @@ function CreateOneOnOnes() {
 ###################
 # Get the collabs #
 ###################
-COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq '.[] | .login' | sed -e 's/^"//' -e 's/"$//') >> log.out 2>&1
+IFS=" " read -ra COLLABS <<< "$(
+  curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/collaborators?affiliation=direct&per_page=100" | jq 'map(.login) | unique | @sh' | tr -d \'
+)" >> log.out 2>&1
 
 ######################
 # Get the commenters #
 ######################
-COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq -r 'map(.user.login) | unique | @sh' | tr -d \') >> log.out 2>&1
+IFS=" " read -ra COMMENTERS <<< "$(
+  curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues/1/comments?per_page=100" | jq -r 'map(.user.login) | unique | @sh' | tr -d \'
+)" >> log.out 2>&1
 
 #################
 # Get the names #
