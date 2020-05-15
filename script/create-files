@@ -208,6 +208,7 @@ function CreateIssue() {
   # create the body of the issue comment #
   ########################################
   TEMP_TEXT="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
+  IFS=" " read -ra COMMENTERS <<< "$COMMENTERS"
   for STUDENT in "${COMMENTERS[@]}"; do
     TEMP_TEXT="$TEMP_TEXT- [ ] @$STUDENT\n"
   done
@@ -344,7 +345,7 @@ COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/r
 ######################
 # Get the commenters #
 ######################
-COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
+COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq -r 'map(.user.login) | unique | @sh' | tr -d \') >> log.out 2>&1
 
 #################
 # Get the names #
