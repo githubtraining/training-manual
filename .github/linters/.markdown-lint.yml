@@ -18,6 +18,7 @@
 ###############
 # Rules by id #
 ###############
+
 MD013: false                  # Don't enforce line length
 MD024: false                  # Allow multiple headings with the same content
 MD026:                        # Trailing punctuation in heading
