@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ################################################################################
 ############################ Grade Client Repo #################################
 ################################################################################
@@ -12,19 +13,18 @@
 ###########
 # GLOBALS #
 ###########
-COLLAB_ORG=''         # Name of the Org
-COLLAB_REPO=''        # name of the Repo
-MASTER_ISSUE=''       # Issue number to check
-OPEN_PR_ARRAY=()      # Array of open PR's
-COMMENTORS_ARRAY=()   # Array of all commentors
+COLLAB_ORG=''       # Name of the Org
+COLLAB_REPO=''      # name of the Repo
+MASTER_ISSUE=''     # Issue number to check
+OPEN_PR_ARRAY=()    # Array of open PR's
+COMMENTORS_ARRAY=() # Array of all commentors
 
 ################################################################################
 ########################## Functions Below #####################################
 ################################################################################
 ################################################################################
 #### Function GetInputVars #####################################################
-function GetInputVars ()
-{
+function GetInputVars() {
   echo "-----------------------------------"
   echo "What is the name of the GitHub ORG? (ex. github-training)"
   ########################
@@ -62,20 +62,19 @@ function GetInputVars ()
   # Validate we got a number #
   ############################
   REGEX='^[0-9]+$'
-  if ! [[ $MASTER_ISSUE =~ $REGEX ]] ; then
+  if ! [[ $MASTER_ISSUE =~ $REGEX ]]; then
     echo "ERROR: [$MASTER_ISSUE] is not a number!"
     exit 1
   fi
 }
 ################################################################################
 #### Function GetIssueCommenters ###############################################
-function GetIssueCommenters ()
-{
+function GetIssueCommenters() {
   ###########################################
   # Get array of all commentors in an issue #
   ###########################################
   COMMENTORS_ARRAY=($(curl --fail -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/issues/$MASTER_ISSUE/comments" \
-    -H 'accept: application/vnd.github.v3+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' --data '{}' | jq '.[] | .user.login' )) >> log.out 2>&1
+    -H 'accept: application/vnd.github.v3+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' --data '{}' | jq '.[] | .user.login')) >> log.out 2>&1
 
   #######################
   # Load the error code #
@@ -109,8 +108,7 @@ function GetIssueCommenters ()
 }
 ################################################################################
 #### Function GetOpenPRS #######################################################
-function GetOpenPRS ()
-{
+function GetOpenPRS() {
   #################################################
   # Get a list of all open PRs on the master repo #
   #################################################
@@ -143,8 +141,7 @@ function GetOpenPRS ()
 }
 ################################################################################
 #### Function CreateObjects ####################################################
-function CreateObjects()
-{
+function CreateObjects() {
   ##################################
   # Clean the arrays of duplicates #
   ##################################
@@ -155,7 +152,7 @@ function CreateObjects()
   ############################
   # Store Intersection ARRAY #
   ############################
-  INTERSECTION_ARRAY=($(printf '%s\n' "${CONCAT_ARRAY[@]}"|awk '!($0 in seen){seen[$0];next} 1'))
+  INTERSECTION_ARRAY=($(printf '%s\n' "${CONCAT_ARRAY[@]}" | awk '!($0 in seen){seen[$0];next} 1'))
 
   ####################
   # Debug statements #
@@ -167,8 +164,7 @@ function CreateObjects()
   ##########################################
   # Users who have open PR and a commentor #
   ##########################################
-  for USER in "${INTERSECTION_ARRAY[@]}"
-  do
+  for USER in "${INTERSECTION_ARRAY[@]}"; do
     #########################################
     # create the success file _grades/_date #
     #########################################
@@ -181,8 +177,7 @@ function CreateObjects()
     NEW_FILE=$(cat "caption-activity-$USER.yml" | base64)
     # Does the file already exist?
     STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | grep "^Status:") >> log.out 2>&1
-    if echo "$STATUS" | grep -iq "404" ;
-    then
+    if echo "$STATUS" | grep -iq "404"; then
       ###############################
       # Create the file on the repo #
       ###############################

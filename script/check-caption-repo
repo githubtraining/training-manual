@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ################################################################################
 ############################ Check Caption Repo ################################
 ################################################################################
@@ -16,18 +17,15 @@ COLLAB_REPO=$1
 ################################################################################
 ################################################################################
 #### Function ContainsElement ##################################################
-function ContainsElement ()
-{
+function ContainsElement() {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
 ################################################################################
 #### Function GetStudents ######################################################
-function GetStudents ()
-{
-  for i in "${COLLABS[@]}"
-  do
+function GetStudents() {
+  for i in "${COLLABS[@]}"; do
     if
       ContainsElement "$i" "$OWNERS_ARRAY"
     then
@@ -42,8 +40,7 @@ function GetStudents ()
 }
 ################################################################################
 #### Function CreateStudentFile ################################################
-function CreateStudentFile ()
-{
+function CreateStudentFile() {
   ###################
   # Read in the var #
   ###################
@@ -58,13 +55,11 @@ function CreateStudentFile ()
 }
 ################################################################################
 #### Function CheckRepo ########################################################
-function CheckRepo ()
-{
+function CheckRepo() {
   ##############################################################
   # Iterate through the PRs and find out who authored each one #
   ##############################################################
-  for i in "${PULLS_NUMBERS[@]}"
-  do
+  for i in "${PULLS_NUMBERS[@]}"; do
     # Give credit to the author
     PR_AUTHOR=$(curl --fail -k -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls/$i" | jq .user.login) >> log.out 2>&1
 
@@ -109,8 +104,7 @@ function CheckRepo ()
     fi
 
     # Iterate through reviewers and give credit
-    for z in "${REVIEW_AUTH[@]}"
-    do
+    for z in "${REVIEW_AUTH[@]}"; do
       # Give credit to the author
       if
         ContainsElement "$z" "$OWNERS_ARRAY"
@@ -128,10 +122,8 @@ function CheckRepo ()
 }
 ################################################################################
 #### Function SendFiles ########################################################
-function SendFiles ()
-{
-  for i in "${COLLABS[@]}"
-  do
+function SendFiles() {
+  for i in "${COLLABS[@]}"; do
     if
       ContainsElement "$i" "$OWNERS_ARRAY"
     then
@@ -143,8 +135,7 @@ function SendFiles ()
       NEW_FILE=$(cat "caption-activity-$i.yml" | base64)
       # Does the file already exist?
       STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | grep "^Status:") >> log.out 2>&1
-      if echo "$STATUS" | grep -iq "404" ;
-      then
+      if echo "$STATUS" | grep -iq "404"; then
         ###############################
         # Create the file on the repo #
         ###############################

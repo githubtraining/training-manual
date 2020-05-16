@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ################################################################################
 ############################## Create Repo #####################################
 ################################################################################
@@ -20,8 +21,7 @@ COLLAB=$3
 ################################################################################
 ################################################################################
 #### Function CheckAvail #######################################################
-function CheckAvail ()
-{
+function CheckAvail() {
   #######################
   # Get the repo status #
   #######################
@@ -30,8 +30,7 @@ function CheckAvail ()
   ####################
   # Check the status #
   ####################
-  if echo "${repoStatus}" | grep -iq "404"
-  then
+  if echo "${repoStatus}" | grep -iq "404"; then
     echo "Cool, that name is available."
     ###################
     # Create the repo #
@@ -45,14 +44,13 @@ function CheckAvail ()
 }
 ################################################################################
 #### Function CreateRepo #######################################################
-function CreateRepo ()
-{
+function CreateRepo() {
   #create the repository on ${INSTANCE_URL}
   echo "Creating Repo:  https://${ROOT_URL}/${CLASS_ORG}/${REPO_NAME}"
   if [[ "$ROOT_URL" == "github.com" ]]; then
     curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
-   else
-     curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+  else
+    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
   fi
 
   ######################
@@ -69,8 +67,7 @@ function CreateRepo ()
 }
 ################################################################################
 #### Function CloneRepo ########################################################
-function CloneRepo ()
-{
+function CloneRepo() {
   ###########################
   # create the repo locally #
   ###########################

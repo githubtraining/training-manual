@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ################################################################################
 ############################## Remove Repo #####################################
 ################################################################################
@@ -20,10 +21,9 @@ REPO_NAME=$1
 ################################################################################
 ################################################################################
 #### Function DeleteIt #########################################################
-function DeleteIt ()
-{
+function DeleteIt() {
   echo "Deleting $CLASS_ORG/$REPO_NAME"
-  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
+  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >>log.out 2>&1
 
   #######################
   # Load the error code #

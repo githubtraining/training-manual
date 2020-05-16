@@ -1,4 +1,5 @@
 #!/bin/bash
+
 ################################################################################
 ############################## Create Game Repos ###############################
 ################################################################################
@@ -14,16 +15,14 @@ COLLAB_REPO=$1
 ################################################################################
 ################################################################################
 #### Function ContainsElement ##################################################
-function ContainsElement ()
-{
+function ContainsElement() {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
 ################################################################################
 #### Function GetNames #########################################################
-function GetNames ()
-{
+function GetNames() {
   ##########
   # Header #
   ##########
@@ -65,16 +64,15 @@ function GetNames ()
   ###############
   # Get collabs #
   ###############
-COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
+  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
 
   ###############
   # Get teacher #
   ###############
   TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
 
-  USER_NAMES=( "${COMMENTERS[@]} $TEACHER" )
-  for USER_NAME in "${USER_NAMES[@]}"
-  do
+  USER_NAMES=("${COMMENTERS[@]} $TEACHER")
+  for USER_NAME in "${USER_NAMES[@]}"; do
     USER_NAME=$(echo "$USER_NAME" | (sed -e 's/^"//' -e 's/"$//'))
     REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" | grep "^Status:") >> log.out 2>&1
     echo "Repo status for $USER_NAME is $REPO_STATUS"
@@ -86,8 +84,7 @@ COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_UR
       # Check before cleaning up and recreating any duplicate repos
       echo "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
       read -r DELETE_OK
-      if echo "$DELETE_OK" | grep -iq "^y" ;
-      then
+      if echo "$DELETE_OK" | grep -iq "^y"; then
         echo "Deleting and recreating $CLASS_ORG/github-games-$USER_NAME repo..."
         curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" >> log.out 2>&1
         createRepo "$USER_NAME"
@@ -102,8 +99,7 @@ COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_UR
 }
 ################################################################################
 #### Function CreateRepo #######################################################
-function CreateRepo ()
-{
+function CreateRepo() {
   ####################
   # Pull in the vars #
   ####################
@@ -162,8 +158,8 @@ function CreateRepo ()
   #############################
   # assign issues to $STUDENT #
   #############################
-  for i in {1..2};
-    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$i/assignees" >> log.out 2>&1;
+  for i in {1..2}; do
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$i/assignees" >> log.out 2>&1
   done
 }
 ################################################################################

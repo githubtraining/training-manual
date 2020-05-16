@@ -20,16 +20,14 @@ COLLAB_REPO=$1
 ################################################################################
 ################################################################################
 #### Function ContainsElement ##################################################
-function ContainsElement ()
-{
+function ContainsElement() {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
 ################################################################################
 #### Function GetNames #########################################################
-function GetNames ()
-{
+function GetNames() {
   #grab template repo
 
   echo "Trying to clone a template repo from $ROOT_URL."
@@ -93,9 +91,8 @@ function GetNames ()
   ########################################################################################
   # Create conflict repos based on commenters in the inital class issue plus the teacher #
   ########################################################################################
-  USER_NAMES=( "${COMMENTERS[@]} $TEACHER" )
-  for USER_NAME in "${USER_NAMES[@]}"
-  do
+  USER_NAMES=("${COMMENTERS[@]} $TEACHER")
+  for USER_NAME in "${USER_NAMES[@]}"; do
     REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" | grep "^Status:") >> log.out 2>&1
     echo "REPO_STATUS for $USER_NAME is $REPO_STATUS"
     if
@@ -108,16 +105,15 @@ function GetNames ()
       ###############################################################
       echo "A conflict-practice repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
       read -r DELETE_OK
-      if echo "$DELETE_OK" | grep -iq "^y" ;
-      then
+      if echo "$DELETE_OK" | grep -iq "^y"; then
         echo "Deleting and recreating $CLASS_ORG/conflict-practice-$USER_NAME repo..."
         curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" >> log.out 2>&1
         CreateRepo "$USER_NAME"
       else
         echo "A new conflict-practice repo wasn't created for $USER_NAME..."
       fi
-     fi
-   done
+    fi
+  done
   popd || return
 
   #########################
@@ -128,8 +124,7 @@ function GetNames ()
 }
 ################################################################################
 #### function CreateRepo #######################################################
-function CreateRepo ()
-{
+function CreateRepo() {
   STUDENT=$1
   STUDENT_REPO="conflict-practice-$STUDENT"
   echo "Time to create $STUDENT_REPO for $STUDENT"
@@ -168,8 +163,8 @@ function CreateRepo ()
   ##########################
   # Assign PRs to $STUDENT #
   ##########################
-  for OWNER in {1..3};
-    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$OWNER/assignees" >> log.out 2>&1;
+  for OWNER in {1..3}; do
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$OWNER/assignees" >> log.out 2>&1
   done
 }
 ################################################################################
