@@ -24,7 +24,7 @@ function ValidateJQ() {
   #########################
   # Validate jq installed #
   #########################
-  VALIDATE_JQ_CMD=$(which jq 2>&1)
+  VALIDATE_JQ_CMD=$(command -v jq 2>&1)
 
   #######################
   # Load the error code #
