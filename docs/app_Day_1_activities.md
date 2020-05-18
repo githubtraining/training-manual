@@ -4,23 +4,43 @@
 
 Just like we did in class, open a new pull request adding a new slide to the deck.
 
-1. Create a new branch, and checkout to that branch: `git checkout -b NEWBRANCHNAME`.
-1. Create a new file in the `_posts` directory, named by date and description like YYYY-MM-DD-username-description.md. (The date has to be in the past - future dates won't show up.)
-1. Follow the directions for the same activity we created together, where it says "[Activity: Edit Your File](https://githubtraining.github.io/training-manual/#/06_working_locally)".
+1. Create a new branch, and checkout to that branch:
+
+   ```sh
+   git checkout -b $branch
+   ```
+
+   <sup>Replace `$branch` with your branch name.</sup>
+
+1. Create a new file in the `_slides` directory:
+
+   ```sh
+   touch 00-$username.md
+   ```
+
+   <sup>Replace `$username` with your GitHub username.</sup>
+
+1. Follow the directions for the same activity we created together, where it says "[Activity: Edit Your File](06_working_locally)".
 1. Instead of just adding the caption, you will need to find a new image from the image list and use that to fill in this template:
-        ```
-        ---
-        layout: slide
-        ---
 
-        IMAGEURL
-        {: .center}
+   ```markdown
+   ---
+   layout: slide
+   ---
 
-        CAPTION-HERE
-        {: .fragment}
-        ```
+   SLIDE-CAPTION
+
+   IMAGE-URL
+   {: .center}
+   ```
+
 1. Save and commit your changes on your new branch.
-1. If working locally, push your changes up to the remote: `git push -u origin NEWBRANCHNAME`.
+1. If working locally, push your changes up to the remote:
+
+   ```sh
+   git push -u origin $branch
+   ```
+
 1. Open a pull request
 In the body of the pull request, @ mention anyone you'd like to review your changes.
 1. Once the tests pass on your pull request, merge the pull request.
