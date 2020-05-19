@@ -34,8 +34,8 @@ function GetNames ()
     ##################################################
     # Clean up conflict and games repos for the user #
     ##################################################
-    CleanUpRepo "conflict-practice-$USER"
-    CleanUpRepo "github-games-$USER"
+    CleanUpRepo "conflict-practice-$USER_NAME"
+    CleanUpRepo "github-games-$USER_NAME"
   done
 }
 ################################################################################
