@@ -28,7 +28,7 @@ function containsElement ()
 }
 ################################################################################
 #### Function getNames #########################################################
-function getNames ()
+function GetNames ()
 {
   ######################
   # Get the collabs #
