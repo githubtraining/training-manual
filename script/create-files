@@ -28,11 +28,8 @@ REPO_URL="https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO"
 #### Function ContainsCollab ##################################################
 function ContainsCollab() {
   STUDENT=$1
-  echo "COLLABS= $COLLABS"
 
   for e in "${COLLABS[@]}"; do
-    e=$(echo "$e" | (sed -e 's/^"//' -e 's/"$//'))
-    echo "Checking $e"
     if [[ "$e" == "$STUDENT" ]]; then
       return 0
     fi
@@ -330,7 +327,6 @@ function CreateOneOnOnes() {
   echo "$APPT_URL"
   ISS_TEXT="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL\n\nThese appointments will be available for 4 weeks after the end of this class.\n\nFYI: "
   for i in "${COMMENTERS[@]}"; do
-    i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     ISS_TEXT=$ISS_TEXT"@$i "
   done
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Booking 1:1 Appointments\", \"body\": \"$ISS_TEXT\"}" -X POST "$REPO_URL/issues" >> log.out 2>&1
