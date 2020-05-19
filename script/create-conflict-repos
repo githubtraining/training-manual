@@ -79,20 +79,16 @@ function GetNames() {
   pushd conflict-template || return
 
   ######################
-  # Get the commenters #
+  # Get the colabs #
   ######################
-  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
+  IFS=" " read -ra COLLABS <<< "$(
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >> log.out 2>&1
 
-  ####################################
-  # Get facilitator name from README #
-  ####################################
-  TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
-
-  ########################################################################################
-  # Create conflict repos based on commenters in the inital class issue plus the teacher #
-  ########################################################################################
-  USER_NAMES=("${COMMENTERS[@]} $TEACHER")
-  for USER_NAME in "${USER_NAMES[@]}"; do
+  ####################################################################
+  # Create conflict repos based on COLLABS in the inital class issue #
+  ####################################################################
+  for USER_NAME in "${COLLABS[@]}"; do
     REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" | grep "^Status:") >> log.out 2>&1
     echo "REPO_STATUS for $USER_NAME is $REPO_STATUS"
     if
