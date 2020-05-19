@@ -43,7 +43,7 @@ function GetNames() {
   # get names of people who have commented on the issue #
   #######################################################
   COUNTER=$(( ${#COLLABS[@]} + 2))
-  for i in ${COMMENTERS[@]}; do
+  for i in "${COMMENTERS[@]}"; do
     if
       ######################
       # Check the elements #
