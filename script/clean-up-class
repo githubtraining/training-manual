@@ -30,19 +30,16 @@ function containsElement ()
 #### Function getNames #########################################################
 function getNames ()
 {
-  # Get teacher from the README along with a list of commenters on the first class issue
-  TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
-  COMMENTERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/issues/1/comments?per_page=100" | jq '.[] | .user.login' | sed -e 's/^"//' -e 's/"$//' | sort -u | uniq) >> log.out 2>&1
+  ######################
+  # Get the collabs #
+  ######################
+  IFS=" " read -ra COLLABS <<< "$(
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >> log.out 2>&1
 
-  # Create conflict repos based on commenters in the inital class issue plus the teacher
-  USER_NAMES=( "${COMMENTERS[@]} $TEACHER" )
-  for USER in "${USER_NAMES[@]}"
+  # Create conflict repos based on collaborators in the inital class repo
+  for USER_NAME in "${COLLABS[@]}"; do
   do
-    #####################
-    # Cleanup user info #
-    #####################
-    USER=$(echo "$USER" | (sed -e 's/^"//' -e 's/"$//'))
-
     ##################################################
     # Clean up conflict and games repos for the user #
     ##################################################

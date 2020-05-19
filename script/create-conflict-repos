@@ -79,14 +79,14 @@ function GetNames() {
   pushd conflict-template || return
 
   ######################
-  # Get the colabs #
+  # Get the collabs #
   ######################
   IFS=" " read -ra COLLABS <<< "$(
     curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >> log.out 2>&1
 
   ####################################################################
-  # Create conflict repos based on COLLABS in the inital class issue #
+  # Create conflict repos based on COLLABS in the inital class repo #
   ####################################################################
   for USER_NAME in "${COLLABS[@]}"; do
     REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" | grep "^Status:") >> log.out 2>&1
