@@ -19,14 +19,6 @@ COLLAB_REPO=$1
 ########################## Functions Below #####################################
 ################################################################################
 ################################################################################
-#### Function containsElement ##################################################
-function containsElement ()
-{
-  local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
-  return 0
-}
-################################################################################
 #### Function getNames #########################################################
 function GetNames ()
 {
@@ -37,7 +29,7 @@ function GetNames ()
     curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >> log.out 2>&1
 
-  # Create conflict repos based on collaborators in the inital class repo
+  # Clean up conflict repos based on collaborators in the inital class repo
   for USER_NAME in "${COLLABS[@]}"; do
     ##################################################
     # Clean up conflict and games repos for the user #
