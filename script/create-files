@@ -28,8 +28,11 @@ REPO_URL="https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO"
 #### Function ContainsCollab ##################################################
 function ContainsCollab() {
   STUDENT=$1
+  echo "COLLABS= $COLLABS"
 
-  for e in $COLLABS; do
+  for e in "${COLLABS[@]}"; do
+    e=$(echo "$e" | (sed -e 's/^"//' -e 's/"$//'))
+    echo "Checking $e"
     if [[ "$e" == "$STUDENT" ]]; then
       return 0
     fi
