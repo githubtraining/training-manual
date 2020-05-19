@@ -39,7 +39,6 @@ function getNames ()
 
   # Create conflict repos based on collaborators in the inital class repo
   for USER_NAME in "${COLLABS[@]}"; do
-  do
     ##################################################
     # Clean up conflict and games repos for the user #
     ##################################################
