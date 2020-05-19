@@ -341,7 +341,7 @@ function CreateOneOnOnes() {
 # Get the collabs #
 ###################
 IFS=" " read -ra COLLABS <<< "$(
-  curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/collaborators?affiliation=direct&per_page=100" | jq 'map(.login) | unique | @sh' | tr -d \'
+  curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
 )" >> log.out 2>&1
 
 ######################
