@@ -113,7 +113,7 @@ function GetOpenPRS() {
   # Get a list of all open PRs on the master repo #
   #################################################
   OPEN_PR_ARRAY="$(curl -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \
-    -H 'accept: application/vnd.github.symmetra-preview+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' \
+    -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' \
     --data '{ "state": "open", "sort": "created", "direction": "desc" }' | jq '.[] | .user.login')" >> log.out 2>&1
 
   #######################
