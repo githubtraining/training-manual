@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+################################################################################
+############################### Cleanup Class ##################################
+################################################################################
+
+###########################################################
+# NOTE:                                                   #
+# You must have a githubteacher token                     #
+# saved to your ENV variables in order to use this script #
+###########################################################
+
+###########
+# GLOBALS #
+###########
+COLLAB_REPO=$1
+
+################################################################################
+########################## Functions Below #####################################
+################################################################################
+################################################################################
+#### Function getNames #########################################################
+function GetNames ()
+{
+  ######################
+  # Get the collabs #
+  ######################
+  IFS=" " read -ra COLLABS <<< "$(
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >> log.out 2>&1
+
+  # Clean up conflict repos based on collaborators in the inital class repo
+  for USER_NAME in "${COLLABS[@]}"; do
+    ##################################################
+    # Clean up conflict and games repos for the user #
+    ##################################################
+    CleanUpRepo "conflict-practice-$USER_NAME"
+    CleanUpRepo "github-games-$USER_NAME"
+  done
+}
+################################################################################
+#### Function CleanUpRepo ######################################################
+function CleanUpRepo ()
+{
+  ################
+  # Get the Repo #
+  ################
+  REPO=$1
+
+  ###################
+  # Get repo status #
+  ###################
+  REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO" | grep "^Status:") >> log.out 2>&1
+
+  ####################
+  # Check the return #
+  ####################
+  if
+    echo "$REPO_STATUS" | grep -iq "200"
+  then
+    ###################
+    # Remove the repo #
+    ###################
+    script/remove-repo "$REPO"
+  fi
+}
+################################################################################
+############################### MAIN ###########################################
+################################################################################
+
+##################
+# Get User names #
+##################
+GetNames
