@@ -38,9 +38,8 @@ function GetTask() {
   echo " 4: Create conflict repos for each student"
   echo " 5: Grade the conflict repos"
   echo " 6: Create the github-games repos for each student"
-  echo " 7: Expire student repos"
+  echo " 7: Delete student repos for a specific class"
   echo " 8: Grade client"
-  echo " 9: Clean up student repos for a specific class"
 
   ################################
   # Read the task that was input #
@@ -168,8 +167,8 @@ function DoTask() {
   ##########
   elif [ "$TASK" -eq 7 ]; then
     # echo "7: Expire student repos"
-    echo "running script/expire-repo"
-    script/expire-repo
+    echo "running script/clean-up-class"
+    script/clean-up-class "$COLLAB_REPO"
   ##########
   # TASK 8 #
   ##########
@@ -177,13 +176,6 @@ function DoTask() {
     # echo "8: Grade client"
     echo "running script/grade-client"
     script/grade-client
-  ##########
-  # TASK 9 #
-  ##########
-  elif [ "$TASK" -eq 9 ]; then
-    # echo "9: Clean up student repos for a specific class"
-    echo "running script/clean-up-class"
-    script/clean-up-class "$COLLAB_REPO"
   fi
 }
 ################################################################################
