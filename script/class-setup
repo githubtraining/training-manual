@@ -289,6 +289,27 @@ function ClassOrg() {
   echo "==============================================="
 }
 ################################################################################
+#### Function SurveyURL ##########################################################
+function SurveyURL() {
+  #################################
+  # See if we have the survey URL #
+  #################################
+  echo "If you'd your students to take a survey after the class,"
+  echo "add the survey URL for the class README to your ~/$RC_FILE"
+  echo "by pasting it below:"
+  ##################
+  # Read the input #
+  ##################
+  read -r SURVEY_URL
+  echo "export SURVEY_URL='$SURVEY_URL'" >> "$HOME/$RC_FILE"
+
+  ##########
+  # Prints #
+  ##########
+  echo "SURVEY_URL=[$SURVEY_URL]"
+  echo "==============================================="
+}
+################################################################################
 #### Function ApptURL ##########################################################
 function ApptURL() {
   ###############################
@@ -365,6 +386,11 @@ InstanceURL
 # Get the class org #
 #####################
 ClassOrg
+
+######################
+# Get the survey URL #
+######################
+SurveyURL
 
 ####################
 # Get the appt url #
