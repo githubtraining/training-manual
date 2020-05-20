@@ -121,7 +121,7 @@ function CreateRCFile() {
       echo "INSTANCE_URL=[$INSTANCE_URL]"
       echo "ROOT_URL=[$ROOT_URL]"
       echo "CLASS_ORG=[$CLASS_ORG]"
-      echo "SURVEY_LINK=[$SURVEY_LINK]"
+      echo "SURVEY_URL=[$SURVEY_URL]"
       echo "APPT_URL=[$APPT_URL]"
       echo "==============================================="
       echo ""
