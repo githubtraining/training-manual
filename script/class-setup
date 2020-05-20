@@ -236,7 +236,7 @@ function InstanceURL() {
   #######################
   # Check if github.com #
   #######################
-  if echo "$NEW_URL" | grep -iq "\<api.github.com\> "; then
+  if echo "$NEW_URL" | grep -iq "\<api.github.com\>"; then
     ROOT_URL="github.com"
     INSTANCE_URL="api.github.com"
     echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
