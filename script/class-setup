@@ -45,7 +45,7 @@ function ValidateJQ() {
 #### Function CreateRCFile #####################################################
 function CreateRCFile() {
   ###########################
-  # Create training rc file #
+  # Create training RC file #
   ###########################
   echo "==============================================="
   echo "We'll create a file to store all training related configs."
@@ -124,13 +124,13 @@ function CreateRCFile() {
       echo "APPT_URL=[$APPT_URL]"
       echo "==============================================="
       echo ""
-      echo "NOTE: if any of these appear wrong,"
-      echo "  please destroy the file and refresh your shell window"
+      echo "NOTE: If any of these appear to be incorrect,"
+      echo "please destroy the file and restart your shell."
       echo ""
 
-      #################################
-      # Exit the shell were done here #
-      #################################
+      ####################################
+      # Exit the shell - we're done here #
+      ####################################
       exit 0
     fi
   fi
@@ -165,7 +165,7 @@ function TokenOwner() {
 #### Function DemoPAT ##########################################################
 function DemoPAT() {
   ##############################
-  # See if we have teacher pat #
+  # See if we have teacher PAT #
   ##############################
   echo "It looks like we need to add the"
   echo "TEACHER_PAT var to your ~/$RC_FILE."
@@ -188,7 +188,7 @@ function DemoPAT() {
 #### Function InstanceURL ######################################################
 function InstanceURL() {
   ###############################
-  # See if we have instance url #
+  # See if we have instance URL #
   ###############################
   echo "It looks like you need to add the"
   echo "INSTANCE_URL var to your ~/$RC_FILE. Please type the"
@@ -312,7 +312,7 @@ function SurveyURL() {
 #### Function ApptURL ##########################################################
 function ApptURL() {
   ###############################
-  # See if we have the appt url #
+  # See if we have the appt URL #
   ###############################
   echo "If you will offer 1:1 appointments with your students,"
   echo "you will need to add the booking URL to your ~/$RC_FILE"
@@ -324,7 +324,7 @@ function ApptURL() {
   echo "export APPT_URL='$APPT_URL'" >> "$HOME/$RC_FILE"
 
   ##########
-  # prints #
+  # Prints #
   ##########
   echo "APPT_URL=[$APPT_URL]"
   echo "==============================================="
@@ -372,12 +372,12 @@ CreateRCFile
 TokenOwner
 
 #######################
-# Get the teacher pat #
+# Get the teacher PAT #
 #######################
 DemoPAT
 
 ########################
-# Get the instance url #
+# Get the instance URL #
 ########################
 InstanceURL
 
@@ -392,7 +392,7 @@ ClassOrg
 SurveyURL
 
 ####################
-# Get the appt url #
+# Get the appt URL #
 ####################
 ApptURL
 
