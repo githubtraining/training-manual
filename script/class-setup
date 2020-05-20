@@ -293,9 +293,8 @@ function SurveyURL() {
   #################################
   # See if we have the survey URL #
   #################################
-  echo "If you'd your students to take a survey after the class,"
-  echo "add the survey URL for the class README to your ~/$RC_FILE"
-  echo "by pasting it below:"
+  echo "To include a link to a survey in your class repository,"
+  echo "add the survey URL to your ~/$RC_FILE by pasting it below:"
   ##################
   # Read the input #
   ##################
