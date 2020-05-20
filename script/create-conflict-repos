@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ################################################################################
 ############################### Class Setup ####################################
@@ -20,16 +20,14 @@ COLLAB_REPO=$1
 ################################################################################
 ################################################################################
 #### Function ContainsElement ##################################################
-function ContainsElement ()
-{
+function ContainsElement() {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
 ################################################################################
 #### Function GetNames #########################################################
-function GetNames ()
-{
+function GetNames() {
   #grab template repo
 
   echo "Trying to clone a template repo from $ROOT_URL."
@@ -78,56 +76,41 @@ function GetNames ()
   #################
   # Push the file #
   #################
-  pushd conflict-template
+  pushd conflict-template || return
 
-  ###################
-  # Get the COLLABS #
-  ###################
-  COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
+  ######################
+  # Get the collabs #
+  ######################
+  IFS=" " read -ra COLLABS <<< "$(
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >> log.out 2>&1
 
-  ####################################
-  # Get facilitator name from README #
-  ####################################
-  TEACHER=$(curl -H "Accept: application/vnd.github.VERSION.raw" -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/README.md" | grep "^- Facilitator: @" | sed 's/- Facilitator: @//') >> log.out 2>&1
-
-  ######################################
-  # make sure no one is teaching class #
-  ######################################
-  echo "A new conflict-practice repo is about to be created for $TEACHER. If one already exists, it will be deleted."
-  echo "Is that OK? (Y or N)"
-  read -r CLASS_TIME
-  if echo "$CLASS_TIME" | grep -iq "^y" ;
-  then
-    echo "Deleting githubschool/conflict-practice-$TEACHER repo..."
-    curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$TEACHER"
-  else
-    echo "A conflict-practice repo wasn't created for the facilitator, creating for the students..."
-  fi
-
-  ########################
-  # Get the owners array #
-  ########################
-  OWNERS_ARRAY=( "${OWNERS_ARRAY[@]/"$TEACHER"}" )
-  for OWNER in "${COLLABS[@]}"
-  do
-   if
-     ContainsElement "$OWNER" "${OWNERS_ARRAY[*]}"
-   then
-    OWNER=$(echo "$OWNER" | (sed -e 's/^"//' -e 's/"$//'))
-    repoStatus=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$OWNER" | grep "^Status:") >> log.out 2>&1
-    echo "repoStatus for $OWNER is $repoStatus"
+  ####################################################################
+  # Create conflict repos based on COLLABS in the inital class repo #
+  ####################################################################
+  for USER_NAME in "${COLLABS[@]}"; do
+    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" | grep "^Status:") >> log.out 2>&1
+    echo "REPO_STATUS for $USER_NAME is $REPO_STATUS"
     if
-      echo "$repoStatus" | grep -iq "404"
+      echo "$REPO_STATUS" | grep -iq "404"
     then
-      CreateRepo "$OWNER"
+      CreateRepo "$USER_NAME"
     else
-      echo "Skipping $OWNER because they already have a repo."
+      ###############################################################
+      # Check before cleaning up and recreating any duplicate repos #
+      ###############################################################
+      echo "A conflict-practice repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
+      read -r DELETE_OK
+      if echo "$DELETE_OK" | grep -iq "^y"; then
+        echo "Deleting and recreating $CLASS_ORG/conflict-practice-$USER_NAME repo..."
+        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" >> log.out 2>&1
+        CreateRepo "$USER_NAME"
+      else
+        echo "A new conflict-practice repo wasn't created for $USER_NAME..."
+      fi
     fi
-   else
-     echo "Skipping $OWNER because they are an owner in this org."
-   fi
   done
-  popd
+  popd || return
 
   #########################
   # Remove the local file #
@@ -137,8 +120,7 @@ function GetNames ()
 }
 ################################################################################
 #### function CreateRepo #######################################################
-function CreateRepo ()
-{
+function CreateRepo() {
   STUDENT=$1
   STUDENT_REPO="conflict-practice-$STUDENT"
   echo "Time to create $STUDENT_REPO for $STUDENT"
@@ -177,19 +159,13 @@ function CreateRepo ()
   ##########################
   # Assign PRs to $STUDENT #
   ##########################
-  for OWNER in {1..3};
-    do curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$OWNER/assignees" >> log.out 2>&1;
+  for OWNER in {1..3}; do
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$OWNER/assignees" >> log.out 2>&1
   done
 }
 ################################################################################
 ############################### MAIN ###########################################
 ################################################################################
-
-########################################
-# Get name of collaborators from day 1 #
-########################################
-# shellcheck disable=SC2178
-OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
 
 ##################
 # Get User names #
