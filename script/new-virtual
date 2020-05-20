@@ -59,13 +59,13 @@ function GetDetails ()
       # shellcheck disable=SC2129
       sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
-      sed -i "s|SURVEY-LINK|$SURVEY_URL|g" README.md >> log.out 2>&1
+      sed -i "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md >> log.out 2>&1
       sed -i "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     else
       # shellcheck disable=SC2129
       sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
-      sed -i "" "s|SURVEY-LINK|$SURVEY_URL|g" README.md >> log.out 2>&1
+      sed -i "" "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md >> log.out 2>&1
       sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     fi
     # shellcheck disable=SC2129
