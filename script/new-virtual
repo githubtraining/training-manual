@@ -37,12 +37,6 @@ function GetDetails ()
   ###################
   read -r TEACHER
 
-  echo "Enter survey link:"
-  ###################
-  # Read in the var #
-  ###################
-  read -r SURVEY_LINK
-
   script/create-repo caption-this "$REPO_NAME" "$TEACHER"
 
   #######################
