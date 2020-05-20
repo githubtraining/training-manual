@@ -12,7 +12,7 @@ This manual is served using GitHub Pages and [docsify](https://docsify.js.org), 
 
 ## Goals and scope
 
-The goal of this project is to serve as a content source for in person trainings on Git and GitHub. While GitHub, select GitHub Partners, and select customers may have their own use case directly with GitHub, the content is open source so we can share and improve as a community. You can find more information on contributing in the [contributing guide](CONTRIBUTING.md).
+The goal of this project is to serve as a content source for training on Git and GitHub. While GitHub, select GitHub Partners, and select customers may have their own use case directly with GitHub, the content is open source so we can share and improve as a community. You can find more information on contributing in the [contributing guide](CONTRIBUTING.md).
 
 The topic scope is limited to GitHub's core product features, on GitHub.com and also for GitHub Enterprise users.
 
