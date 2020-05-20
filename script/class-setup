@@ -11,7 +11,6 @@ NEW_NAME=''                 # Token owners name
 NEW_TOKEN=''                # Token owners PAT
 NEW_URL=''                  # Instance URL to GHE
 NEW_ORG=''                  # New instance GHE Organization
-APPT_URL=''                 # URL for appointment
 SHELL=''                    # What shell the user is using
 RC_FILE='.trainingmanualrc' # RC file to load/pull data
 
