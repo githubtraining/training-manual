@@ -4,7 +4,7 @@
 
 Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by GitHub trainers during our official GitHub training courses and the scripts used when teaching.
 
-The content is all written in markdown, and the scripts are shell scripts.
+The content is all written in [markdown](https://github.github.com/gfm/), and the scripts are shell scripts.
 
 ## Technologies used
 
