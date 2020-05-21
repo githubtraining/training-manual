@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ################################################################################
 ############################### Class Setup ####################################
@@ -7,12 +7,12 @@
 ###########
 # GLOBALS #
 ###########
-NEW_NAME=''         # Token owners name
-NEW_TOKEN=''        # Token owners PAT
-NEW_URL=''          # Instance url to GHE
-NEW_ORG=''          # New instance GHE Organization
-APPT_URL=''         # Url for appointment
-SHELL=''            # What shell the user is using
+NEW_NAME=''                 # Token owners name
+NEW_TOKEN=''                # Token owners PAT
+NEW_URL=''                  # Instance URL to GHE
+NEW_ORG=''                  # New instance GHE Organization
+APPT_URL=''                 # URL for appointment
+SHELL=''                    # What shell the user is using
 RC_FILE='.trainingmanualrc' # RC file to load/pull data
 
 ################################################################################
@@ -20,12 +20,11 @@ RC_FILE='.trainingmanualrc' # RC file to load/pull data
 ################################################################################
 ################################################################################
 #### Function ValidateJQ #######################################################
-function ValidateJQ ()
-{
+function ValidateJQ() {
   #########################
   # Validate jq installed #
   #########################
-  VALIDATE_JQ_CMD=$(which jq 2>&1)
+  VALIDATE_JQ_CMD=$(command -v jq 2>&1)
 
   #######################
   # Load the error code #
@@ -45,8 +44,7 @@ function ValidateJQ ()
 }
 ################################################################################
 #### Function CreateRCFile #####################################################
-function CreateRCFile ()
-{
+function CreateRCFile() {
   ###########################
   # Create training rc file #
   ###########################
@@ -92,7 +90,10 @@ function CreateRCFile ()
       # We have a yes answer #
       ########################
       echo "Deleteting the file to recreate it..."
-      DELETE_AND_CREATE_FILE=$(rm -f "$HOME/$RC_FILE"; touch "$HOME/$RC_FILE" 2>&1)
+      DELETE_AND_CREATE_FILE=$(
+        rm -f "$HOME/$RC_FILE"
+        touch "$HOME/$RC_FILE" 2>&1
+      )
 
       #######################
       # Load the error code #
@@ -120,9 +121,7 @@ function CreateRCFile ()
       echo "INSTANCE_URL=[$INSTANCE_URL]"
       echo "ROOT_URL=[$ROOT_URL]"
       echo "CLASS_ORG=[$CLASS_ORG]"
-      echo "SURVEY_TOKEN=[NOT DISPLAYED]"
-      echo "SURVEY_SECRET=[NOT DISPLAYED]"
-      echo "SURVEY_CAMPAIGN=[$SURVEY_CAMPAIGN]"
+      echo "SURVEY_LINK=[$SURVEY_LINK]"
       echo "APPT_URL=[$APPT_URL]"
       echo "==============================================="
       echo ""
@@ -143,8 +142,7 @@ function CreateRCFile ()
 }
 ################################################################################
 #### Function TokenOwner #######################################################
-function TokenOwner ()
-{
+function TokenOwner() {
   #######################
   # Get the token Owner #
   #######################
@@ -166,8 +164,7 @@ function TokenOwner ()
 }
 ################################################################################
 #### Function DemoPAT ##########################################################
-function DemoPAT ()
-{
+function DemoPAT() {
   ##############################
   # See if we have teacher pat #
   ##############################
@@ -190,8 +187,7 @@ function DemoPAT ()
 }
 ################################################################################
 #### Function InstanceURL ######################################################
-function InstanceURL ()
-{
+function InstanceURL() {
   ###############################
   # See if we have instance url #
   ###############################
@@ -241,16 +237,15 @@ function InstanceURL ()
   #######################
   # Check if github.com #
   #######################
-  if echo "$NEW_URL" | grep -iq "\<api.github.com\>" ;
-    then
-      ROOT_URL="github.com"
-      INSTANCE_URL="api.github.com"
-      echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
-    else
-      #strip the API part
-      ROOT_URL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
-      INSTANCE_URL=$NEW_URL
-      echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
+  if echo "$NEW_URL" | grep -iq "\<api.github.com\>"; then
+    ROOT_URL="github.com"
+    INSTANCE_URL="api.github.com"
+    echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
+  else
+    #strip the API part
+    ROOT_URL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
+    INSTANCE_URL=$NEW_URL
+    echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
   fi
 
   ##########
@@ -262,8 +257,7 @@ function InstanceURL ()
 }
 ################################################################################
 #### Function ClassOrg #########################################################
-function ClassOrg ()
-{
+function ClassOrg() {
   ##########################
   # See if we have the Org #
   ##########################
@@ -296,8 +290,7 @@ function ClassOrg ()
 }
 ################################################################################
 #### Function ApptURL ##########################################################
-function ApptURL ()
-{
+function ApptURL() {
   ###############################
   # See if we have the appt url #
   ###############################
@@ -318,8 +311,7 @@ function ApptURL ()
 }
 ################################################################################
 #### Function ShellCheck #######################################################
-function ShellCheck ()
-{
+function ShellCheck() {
   #########################
   # Check the users shell #
   #########################

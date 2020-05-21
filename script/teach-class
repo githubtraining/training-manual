@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 ################################################################################
 ############################ Teach Class #######################################
 ################################################################################
@@ -17,8 +18,7 @@ set -e
 ################################################################################
 ################################################################################
 #### Function GetTask ##########################################################
-function GetTask ()
-{
+function GetTask() {
   echo ""
   echo "========================================================"
   echo "This script manages the repos and activities"
@@ -38,9 +38,8 @@ function GetTask ()
   echo " 4: Create conflict repos for each student"
   echo " 5: Grade the conflict repos"
   echo " 6: Create the github-games repos for each student"
-  echo " 7: Expire student repos"
+  echo " 7: Delete student repos for a specific class"
   echo " 8: Grade client"
-
 
   ################################
   # Read the task that was input #
@@ -57,7 +56,7 @@ function GetTask ()
   # Validate we got a number #
   ############################
   REGEX='^[0-9]+$'
-  if ! [[ $TASK =~ $REGEX ]] ; then
+  if ! [[ $TASK =~ $REGEX ]]; then
     echo "ERROR: [$TASK] is not a number!"
     exit 1
   fi
@@ -69,8 +68,7 @@ function GetTask ()
 }
 ################################################################################
 #### Function DoTask ###########################################################
-function DoTask ()
-{
+function DoTask() {
   ####################
   # Read in the TASK #
   ####################
@@ -108,9 +106,9 @@ function DoTask ()
   # TASK 00 #
   ###########
   if [ "$TASK" -eq 99 ]; then
-  # echo 00: Done"
-  echo "Were all done..."
-  exit 0
+    # echo 00: Done"
+    echo "We're all done..."
+    exit 0
   ##########
   # TASK 0 #
   ##########
@@ -158,7 +156,7 @@ function DoTask ()
     echo "running script/check-conflict-repos"
     script/check-conflict-repos "$COLLAB_REPO"
   ##########
-  # TASk 6 #
+  # TASK 6 #
   ##########
   elif [ "$TASK" -eq 6 ]; then
     # echo "6: Create the github-games repos for each student"
@@ -169,21 +167,20 @@ function DoTask ()
   ##########
   elif [ "$TASK" -eq 7 ]; then
     # echo "7: Expire student repos"
-    echo "running script/expire-repo"
-    script/expire-repo
+    echo "running script/clean-up-class"
+    script/clean-up-class "$COLLAB_REPO"
   ##########
   # TASK 8 #
   ##########
   elif [ "$TASK" -eq 8 ]; then
-    # echo "9: Grade client"
+    # echo "8: Grade client"
     echo "running script/grade-client"
     script/grade-client
   fi
 }
 ################################################################################
 #### Function Check_Env ########################################################
-function Check_Env ()
-{
+function Check_Env() {
   ###############################
   # Check length of TEACHER_PAT #
   ###############################

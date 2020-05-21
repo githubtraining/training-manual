@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ################################################################################
 ############################## New Virtual #####################################
 ################################################################################
@@ -37,6 +37,12 @@ function GetDetails ()
   ###################
   read -r TEACHER
 
+  echo "Enter survey link:"
+  ###################
+  # Read in the var #
+  ###################
+  read -r SURVEY_LINK
+
   script/create-repo caption-this "$REPO_NAME" "$TEACHER"
 
   #######################
@@ -49,7 +55,7 @@ function GetDetails ()
   ##############################
   if [ $ERROR_CODE -eq 0 ]; then
     git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
-    pushd "$REPO_NAME"
+    pushd "$REPO_NAME" || return
     # shellcheck disable=SC2129
     git config user.name "$TOKEN_OWNER" >> log.out 2>&1
     # shellcheck disable=SC1102
@@ -59,11 +65,13 @@ function GetDetails ()
       # shellcheck disable=SC2129
       sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
+      sed -i "s|SURVEY-LINK|$SURVEY_LINK|g" README.md >> log.out 2>&1
       sed -i "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     else
       # shellcheck disable=SC2129
       sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
       sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
+      sed -i "" "s|SURVEY-LINK|$SURVEY_LINK|g" README.md >> log.out 2>&1
       sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
     fi
     # shellcheck disable=SC2129
@@ -74,7 +82,7 @@ function GetDetails ()
     git push "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
     git config --local --unset user.name >> log.out 2>&1
     git config --local --unset user.email >> log.out 2>&1
-    popd
+    popd || return
     rm -rf "$REPO_NAME" >> log.out 2>&1
     ########################
     # Call the pretty repo #
