@@ -50,19 +50,23 @@ function create_files() {
       cat "slide_template.md" >>"$new_file"
       # Pick a random image for slide
       random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
-      # Insert slide image into slide
-      sed -i "s/IMAGE/$random_image/g" "$new_file" >>log.out 2>&1
-      # Check the operating system to determine how to encode the file
+      # Check the operating system to determine which commands to run
       if [[ "$OSTYPE" = "msys" ]]; then
-        base64 <"$new_file" --wrap=0
+        # Insert slide image into slide
+        sed -i "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
+        # Encode the file
+        new_file=$(base64 <"$new_file" --wrap=0)
       else
-        base64 <"$new_file"
+        # Insert slide image into slide
+        sed -i "" "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
+        # Encode the file
+        new_file=$(base64 <"$new_file")
       fi
       echo "Creating file for $collaborator: $new_file"
       # Put the file in the repository
       path="_posts/$new_file"
       message="Activity file for $collaborator"
-      content="$(cat "$new_file")"
+      content="$new_file"
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
         -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
       # Remove the local file
