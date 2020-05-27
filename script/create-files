@@ -30,13 +30,7 @@ add_collaborators() {
 }
 
 create_files() {
-  get_existing_files() {
-    # Get existing file names
-    IFS=" " read -ra existing_files <<<"$(
-      curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_posts" | jq -r 'map(.name) | @sh'
-    )"
-  }
-
+  get_existing_files # Get list of existing files
   # Iterate through the list of collaborators
   for collaborator in "${collaborators[@]}"; do
     get_existing_files # Update list of existing files
@@ -86,12 +80,8 @@ create_files() {
   fi
 }
 
-create_initial_issues() {
-  # Get list of issues from the repository (formatted as '$NUM. $TITLE')
-  IFS=$'\n' read -d "" -ra issues <<<"$(
-    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
-  )" >>log.out 2>&1
-
+create_issues() {
+  get_issues # Get a list of issues in the repository
   issue_body="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
   for collaborator in "${collaborators[@]}"; do
     issue_body="$issue_body- [ ] @$collaborator\n"
@@ -100,7 +90,7 @@ create_initial_issues() {
   echo -e "Here is the issue text: $issue_body"
 
   issue_title="Activity 1: Your First Caption"
-  # Check if any of the existing issue titles contain issue_title
+  # Check if any of the existing issue titles contain $issue_title
   if [[ ${issues[*]} == *"$issue_title"* ]]; then
     # Find the issue that contains issue_title so it can be patched
     for issue in "${issues[@]}"; do
@@ -112,39 +102,32 @@ create_initial_issues() {
     done
   else
     # This is the first run
-    # create new issue
-    # TODO: Consider putting this in the create_activity_issues
+    # Create activity issues
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-    # Run the first run
-    create_activity_issues
+
+    issue_title="Add A New Slide"
+    issue_body="## We Need More Slides\nGrab another octocat and create a new slide from scratch.\nIf you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Add a Caption To an Existing Slide"
+    issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\nIf you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Improve the README"
+    issue_body="## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Restyle the Slides"
+    issue_body="## Do you have an eye for design?\nHelp us improve the look of the slide deck.\nIf you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Parking Lot"
+    issue_body="## Post any questions you may have here during the training."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    # Make it private
+    make_repo_private
   fi
-}
-
-create_activity_issues() {
-  # create activity issues
-
-  issue_title="Add A New Slide"
-  issue_body="## We Need More Slides\nGrab another octocat and create a new slide from scratch.\nIf you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-
-  issue_title="Add a Caption To an Existing Slide"
-  issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\nIf you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-
-  issue_title="Improve the README"
-  issue_body="## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-
-  issue_title="Restyle the Slides"
-  issue_body="## Do you have an eye for design?\nHelp us improve the look of the slide deck.\nIf you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-
-  issue_title="Parking Lot"
-  issue_body="## Post any questions you may have here during the training."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-
-  # Make it private
-  make_repo_private
 }
 
 make_repo_private() {
@@ -211,6 +194,28 @@ get_commenters() {
   )" >>log.out 2>&1
 }
 
+get_existing_files() {
+  # Get existing file names
+  IFS=" " read -ra existing_files <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_posts" | jq -r 'map(.name) | @sh'
+  )"
+}
+
+get_issues() {
+  # Get list of issues from the repository (formatted as '$NUM. $TITLE')
+  IFS=$'\n' read -d "" -ra issues <<<"$(
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
+  )" >>log.out 2>&1
+}
+
+# Make sure repo exists
+repo_status=$(curl -s -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "$REPO_URL") >>log.out 2>&1
+# Exit the script if the repo cannot be found
+[[ $repo_status == *"Not Found"* ]] && {
+  echo "Repo not found. Please try again."
+  exit
+}
+
 # Array of slide images from file
 IFS=$'\n' read -d "" -ra slide_images <"slide_images.md"
 
@@ -225,4 +230,4 @@ add_collaborators
 create_files
 
 # Create issues
-create_initial_issues
+create_issues
