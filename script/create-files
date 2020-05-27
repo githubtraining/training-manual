@@ -18,13 +18,13 @@ REPO_URL="https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO"
 
 function add_collaborators() {
   for commenter in "${commenters[@]}"; do
-    # TODO: test this
     # Check if commenter is already a collaborator
     if [[ ${collaborators[*]} == *"${commenter}"* ]]; then
       echo "$commenter is already a collaborator."
     else # Add collaborator
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-        -X PUT "$REPO_URL/collaborators/$STUDENT" >> log.out 2>&1
+        -X PUT "$REPO_URL/collaborators/$commenter" >>log.out 2>&1
+      get_collaborators # Update list of collaborators
     fi
   done
 }
@@ -44,17 +44,15 @@ function create_files() {
       # Get the file number from the last file in existing files
       LAST_FILE_NUM="${existing_files[-1]:9:2}" # ${VAR:OFFSET:LENGTH}
       # New file number (one greater than the last file number)
-      FILE_NUM=$(printf '%02d\n' $((LAST_FILE_NUM + 1)))
+      FILE_NUM=$(printf '%02d\n' $((LAST_FILE_NUM + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
       new_file="0000-01-$FILE_NUM-$collaborator.md"
-      echo "Creating file $new_file in $COLLAB_REPO"
-      cat "slide_template.md" >> "$new_file"
+      cat "slide_template.md" >>"$new_file"
       # Pick a random image for slide
-      random_image=${images[$RANDOM % ${#images[@]}]}
+      random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
       # Insert slide image into slide
-      sed -i "s/IMAGE/$random_image/g" README.md >> log.out 2>&1
-      # Check the operating system
-      # TODO: Check if --wrap=0 is compatiple on non 'mysys' operating systems
+      sed -i "s/IMAGE/$random_image/g" "$new_file" >>log.out 2>&1
+      # Check the operating system to determine how to encode the file
       if [[ "$OSTYPE" = "msys" ]]; then
         base64 <"$new_file" --wrap=0
       else
@@ -62,11 +60,13 @@ function create_files() {
       fi
       echo "Creating file for $collaborator: $new_file"
       # Put the file in the repository
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d \
-        "{ \"path\": \"_posts/$new_file\", \"message\": \"Activity file for $collaborator\", \"content\": \"$new_file\" }" \
-        -X PUT "$REPO_URL/contents/_posts/$new_file" >> log.out 2>&1
+      path="_posts/$new_file"
+      message="Activity file for $collaborator"
+      content="$(cat "$new_file")"
+      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
+        -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
       # Remove the local file
-      rm "$new_file"
+      # rm "$new_file"
     fi
   done
   # Check if there are any collaborators that already had files
@@ -81,10 +81,10 @@ function create_files() {
 }
 
 function create_initial_issues() {
-  # Get list of issues from the repository (formatted like '$NUM. $TITLE')
+  # Get list of issues from the repository (formatted as '$NUM. $TITLE')
   IFS=$'\n' read -d "" -ra issues <<<"$(
     curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
-  )" >> log.out 2>&1
+  )" >>log.out 2>&1
 
   issue_body="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
   for collaborator in "${collaborators[@]}"; do
@@ -93,22 +93,22 @@ function create_initial_issues() {
   # TODO: Consider removing this (or make the list work like collaborators_with_files)
   echo -e "Here is the issue text: $issue_body"
 
-  substring="Activity 1" # Beginning of issue title
-  # Check if any of the issue titles begins with substring
-  if [[ ${issues[*]} == *"$substring" ]]; then
-    # Find the issue that begins with substring so it can be patched
+  issue_title="Activity 1: Your First Caption"
+  # Check if any of the existing issue titles contain issue_title
+  if [[ ${issues[*]} == *"$issue_title"* ]]; then
+    # Find the issue that contains issue_title so it can be patched
     for issue in "${issues[@]}"; do
-      if [[ $issue == *"$substring" ]]; then
+      if [[ $issue == *"$issue_title"* ]]; then
         caption_issue_number="$issue | cut -d. -f1"
         # Update the issue text since it already exists
-        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\"}" -X PATCH "$REPO_URL/issues/$caption_issue_number/comments/1" >> log.out 2>&1
+        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$REPO_URL/issues/$caption_issue_number/comments/1" >>log.out 2>&1
       fi
     done
   else
     # This is the first run
     # create new issue
     # TODO: Consider putting this in the create_activity_issues
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Activity 1: Your First Caption\", \"body\": \"$issue_body\"}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
     # Run the first run
     create_activity_issues
   fi
@@ -121,27 +121,27 @@ function create_activity_issues() {
   issue_body="## We Need More Slides
   Grab another octocat and create a new slide from scratch.
   If you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"title\": $issue_title, \"body\": $issue_body}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Add a Caption To an Existing Slide"
   issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).
   If you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"title\": $issue_title, \"body\": $issue_body}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Improve the README"
   issue_body="## Do you have a favorite Git Resource?
   Add it to the README!\n If you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"title\": $issue_title, \"body\": $issue_body}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Restyle the Slides"
   issue_body="## Do you have an eye for design?
   Help us improve the look of the slide deck.
   If you need help, check out the Appendix in the training manual."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"title\": $issue_title, \"body\": $issue_body}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Parking Lot"
   issue_body="## Post any questions you may have here during the training."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"title\": $issue_title, \"body\": $issue_body}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   # Make it private
   make_repo_private
@@ -149,7 +149,7 @@ function create_activity_issues() {
 
 function make_repo_private() {
   # Check if the repo is private
-  repo_is_private=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL" | jq .private) >> log.out 2>&1
+  repo_is_private=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL" | jq .private) >>log.out 2>&1
 
   # If the repo is private
   if "$repo_is_private"; then
@@ -160,7 +160,7 @@ function make_repo_private() {
   # Default to 'yes' if no answer is given
   if ask "Are you ready to make this repo private?" Y; then
     # Make the repo private
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$COLLAB_REPO\", \"private\": true}" -X PATCH "$REPO_URL" >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$COLLAB_REPO\", \"private\": true }" -X PATCH "$REPO_URL" >>log.out 2>&1
     if ask "Does this class get 1:1 sessions?" N; then
       create_one_on_one_issue
     fi
@@ -183,32 +183,40 @@ function create_one_on_one_issue() {
     issue_body=$issue_body"@$i "
   done
 
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": $issue_title, \"body\": $issue_body}" -X POST "$REPO_URL/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": $issue_body }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 }
 
-# Get array of repository collaborators
-IFS=" " read -ra collaborators <<<"$(
-  curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/collaborators?affiliation=direct&per_page=100" |
-    jq -r 'map(.login) | unique | @sh' | tr -d \'
-)" >> log.out 2>&1
+get_collaborators() {
+  # Get array of repository collaborators
+  IFS=" " read -ra collaborators <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/collaborators?affiliation=direct&per_page=100" |
+      jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
 
-# Get array of repository invitees
-IFS=" " read -ra invitees <<<"$(
-  curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/invitations" |
-    jq -r 'map(.invitee.login) | unique | @sh' | tr -d \'
-)" >> log.out 2>&1
+  # Get array of repository invitees
+  IFS=" " read -ra invitees <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/invitations" |
+      jq -r 'map(.invitee.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
 
-# Invitees are collaborators too
-collaborators+=("${invitees[@]}")
+  # Invitees are collaborators too
+  collaborators+=("${invitees[@]}")
+}
 
-# Array of commenters
-IFS=" " read -ra commenters <<<"$(
-  curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues/1/comments?per_page=100" |
-    jq -r 'map(.user.login) | unique | @sh' | tr -d \'
-)" >> log.out 2>&1
+get_commenters() {
+  # Array of commenters
+  IFS=" " read -ra commenters <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues/1/comments?per_page=100" |
+      jq -r 'map(.user.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
+}
 
 # Array of slide images from file
-IFS=$'\n' read -d "" -ra images <"slide_images.md"
+IFS=$'\n' read -d "" -ra slide_images <"slide_images.md"
+
+# Get a list of collaborators and commenters
+get_collaborators
+get_commenters
 
 # Add collaborators
 add_collaborators
