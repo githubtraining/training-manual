@@ -16,7 +16,7 @@ source "$(dirname "$0")/ask"
 COLLAB_REPO=$1
 REPO_URL="https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO"
 
-function add_collaborators() {
+add_collaborators() {
   for commenter in "${commenters[@]}"; do
     # Check if commenter is already a collaborator
     if [[ ${collaborators[*]} == *"${commenter}"* ]]; then
@@ -29,7 +29,7 @@ function add_collaborators() {
   done
 }
 
-function create_files() {
+create_files() {
   # Get existing file names
   IFS=" " read -ra existing_files <<<"$(
     curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_posts" | jq -r 'map(.name) | @sh'
@@ -83,7 +83,7 @@ function create_files() {
   fi
 }
 
-function create_initial_issues() {
+create_initial_issues() {
   # Get list of issues from the repository (formatted as '$NUM. $TITLE')
   IFS=$'\n' read -d "" -ra issues <<<"$(
     curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
@@ -117,7 +117,7 @@ function create_initial_issues() {
   fi
 }
 
-function create_activity_issues() {
+create_activity_issues() {
   # create activity issues
 
   issue_title="Add A New Slide"
@@ -144,7 +144,7 @@ function create_activity_issues() {
   make_repo_private
 }
 
-function make_repo_private() {
+make_repo_private() {
   # Check if the repo is private
   repo_is_private=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL" | jq .private) >>log.out 2>&1
 
@@ -166,7 +166,7 @@ function make_repo_private() {
   fi
 }
 
-function create_one_on_one_issue() {
+create_one_on_one_issue() {
   # Create an issue for 1:1 appointments
   echo "$APPT_URL"
   issue_title="Booking 1:1 Appointments"
