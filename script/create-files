@@ -118,25 +118,19 @@ function create_activity_issues() {
   # create activity issues
 
   issue_title="Add A New Slide"
-  issue_body="## We Need More Slides
-  Grab another octocat and create a new slide from scratch.
-  If you need help, check out the Appendix in the training manual."
+  issue_body="## We Need More Slides\nGrab another octocat and create a new slide from scratch.\nIf you need help, check out the Appendix in the training manual."
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Add a Caption To an Existing Slide"
-  issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).
-  If you need help, check out the Appendix in the training manual."
+  issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\nIf you need help, check out the Appendix in the training manual."
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Improve the README"
-  issue_body="## Do you have a favorite Git Resource?
-  Add it to the README!\n If you need help, check out the Appendix in the training manual."
+  issue_body="## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual."
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Restyle the Slides"
-  issue_body="## Do you have an eye for design?
-  Help us improve the look of the slide deck.
-  If you need help, check out the Appendix in the training manual."
+  issue_body="## Do you have an eye for design?\nHelp us improve the look of the slide deck.\nIf you need help, check out the Appendix in the training manual."
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
   issue_title="Parking Lot"
