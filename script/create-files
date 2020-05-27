@@ -30,13 +30,16 @@ add_collaborators() {
 }
 
 create_files() {
-  # Get existing file names
-  IFS=" " read -ra existing_files <<<"$(
-    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_posts" | jq -r 'map(.name) | @sh'
-  )"
+  get_existing_files() {
+    # Get existing file names
+    IFS=" " read -ra existing_files <<<"$(
+      curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_posts" | jq -r 'map(.name) | @sh'
+    )"
+  }
 
   # Iterate through the list of collaborators
   for collaborator in "${collaborators[@]}"; do
+    get_existing_files # Update list of existing files
     # Check a file has already been created for this collaborator
     if [[ ${existing_files[*]} == *"-${collaborator}.md"* ]]; then
       collaborators_with_files+=("$collaborator")
