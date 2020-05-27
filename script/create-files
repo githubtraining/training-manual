@@ -105,9 +105,9 @@ create_initial_issues() {
     # Find the issue that contains issue_title so it can be patched
     for issue in "${issues[@]}"; do
       if [[ $issue == *"$issue_title"* ]]; then
-        caption_issue_number="$issue | cut -d. -f1"
+        caption_issue_number=$(echo "$issue" | cut -d. -f1)
         # Update the issue text since it already exists
-        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$REPO_URL/issues/$caption_issue_number/comments/1" >>log.out 2>&1
+        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$REPO_URL/issues/$caption_issue_number" >>log.out 2>&1
       fi
     done
   else
