@@ -20,13 +20,15 @@ add_collaborators() {
   for commenter in "${commenters[@]}"; do
     # Check if commenter is already a collaborator
     if [[ ${collaborators[*]} == *"${commenter}"* ]]; then
-      echo "$commenter is already a collaborator."
+      existing_collaborators+=("$commenter")
     else # Add collaborator
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -X PUT "$REPO_URL/collaborators/$commenter" >>log.out 2>&1
       get_collaborators # Update list of collaborators
     fi
   done
+  # Check if any commenters are already collaborators
+  print_list "The following commenters are already collaborators" "${existing_collaborators[@]}"
 }
 
 create_files() {
@@ -70,14 +72,7 @@ create_files() {
     fi
   done
   # Check if there are any collaborators that already had files
-  if [ "${#collaborators_with_files[@]}" -ne 0 ]; then
-    echo -e "\nThe following collaborators already had files:"
-    # Prefix each collaborator with '- '
-    collaborators_with_files=("${collaborators_with_files[@]/#/- }")
-    # Print list of collaborators that already have files
-    printf '%s\n' "${collaborators_with_files[@]}"
-    echo # line break
-  fi
+  print_list "The following collaborators already had files" "${collaborators_with_files[@]}"
 }
 
 create_issues() {
@@ -86,8 +81,7 @@ create_issues() {
   for collaborator in "${collaborators[@]}"; do
     issue_body="$issue_body- [ ] @$collaborator\n"
   done
-  # TODO: Consider removing this (or make the list work like collaborators_with_files)
-  echo -e "Here is the issue text: $issue_body"
+  echo -e "Here is the issue text:\n$issue_body"
 
   issue_title="Activity 1: Your First Caption"
   # Check if any of the existing issue titles contain $issue_title
@@ -208,13 +202,28 @@ get_issues() {
   )" >>log.out 2>&1
 }
 
-# Make sure repo exists
+print_list() {
+  list_title=$1     # Save first argument in a variable
+  shift             # shift all arguments to the left (original $1 gets lost)
+  list_items=("$@") # Rebuild the array with rest of arguments
+  # Check if any commenters are already collaborators
+  if [ "${#list_items[@]}" -ne 0 ]; then
+    echo -e "\n$list_title:"
+    # Prefix each collaborator with '- '
+    list_items=("${list_items[@]/#/- }")
+    # Print list of collaborators that are already collaborators
+    printf '%s\n' "${list_items[@]}"
+    echo # line break
+  fi
+}
+
+# Make sure repo exists before attempting to interact with it
 repo_status=$(curl -s -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "$REPO_URL") >>log.out 2>&1
 # Exit the script if the repo cannot be found
-[[ $repo_status == *"Not Found"* ]] && {
+if [[ $repo_status == *"Not Found"* ]]; then
   echo "Repo not found. Please try again."
   exit
-}
+fi
 
 # Array of slide images from file
 IFS=$'\n' read -d "" -ra slide_images <"slide_images.md"
