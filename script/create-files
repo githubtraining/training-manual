@@ -55,22 +55,21 @@ function create_files() {
         # Insert slide image into slide
         sed -i "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
         # Encode the file
-        new_file=$(base64 <"$new_file" --wrap=0)
+        content=$(base64 <"$new_file" --wrap=0)
       else
         # Insert slide image into slide
         sed -i "" "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
         # Encode the file
-        new_file=$(base64 <"$new_file")
+        content=$(base64 <"$new_file")
       fi
       echo "Creating file for $collaborator: $new_file"
       # Put the file in the repository
       path="_posts/$new_file"
       message="Activity file for $collaborator"
-      content="$new_file"
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
         -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
       # Remove the local file
-      # rm "$new_file"
+      rm "$new_file"
     fi
   done
   # Check if there are any collaborators that already had files
