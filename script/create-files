@@ -38,7 +38,7 @@ create_files() {
     get_existing_files # Update list of existing files
     # Check a file has already been created for this collaborator
     if [[ ${existing_files[*]} == *"-${collaborator}.md"* ]]; then
-      collaborators_with_files+=("$collaborator")
+      collaborators_with_existing_files+=("$collaborator")
     else
       # Get the last element of the $existing_files array
       last__file=${existing_files[*]: -1}
@@ -63,7 +63,6 @@ create_files() {
         # Encode the file
         content=$(base64 <"$new_file")
       fi
-      echo "Creating file for $collaborator: $new_file"
       # Put the file in the repository
       path="_posts/$new_file"
       message="Activity file for $collaborator"
@@ -71,10 +70,14 @@ create_files() {
         -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
       # Remove the local file
       rm "$new_file"
+      # List of collaborators that new files are being created for
+      collaborators_with_new_files+=("$collaborator")
     fi
   done
-  # Check if there are any collaborators that already had files
-  print_list "The following collaborators already had files" "${collaborators_with_files[@]}"
+  # Print list of collaborators that new files were created for
+  print_list "New files were created for the following collaborators" "${collaborators_with_new_files[@]}"
+  # Print list of collaborators that already had files
+  print_list "The following collaborators already had files" "${collaborators_with_existing_files[@]}"
 }
 
 create_issues() {
@@ -83,7 +86,6 @@ create_issues() {
   for collaborator in "${collaborators[@]}"; do
     issue_body="$issue_body- [ ] @$collaborator\n"
   done
-  echo -e "Here is the issue text:\n$issue_body"
 
   issue_title="Activity 1: Your First Caption"
   # Check if any of the existing issue titles contain $issue_title
@@ -94,11 +96,12 @@ create_issues() {
         caption_issue_number=$(echo "$issue" | cut -d. -f1)
         # Update the issue text since it already exists
         curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$REPO_URL/issues/$caption_issue_number" >>log.out 2>&1
+        # Print the updated issue text
+        echo -e "The activity issue has been updated:\n$issue_body"
       fi
     done
   else
-    # This is the first run
-    # Create activity issues
+    # This is the first run - create activity issues
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
 
     issue_title="Add A New Slide"
