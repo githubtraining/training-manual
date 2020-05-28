@@ -40,10 +40,12 @@ create_files() {
     if [[ ${existing_files[*]} == *"-${collaborator}.md"* ]]; then
       collaborators_with_files+=("$collaborator")
     else
-      # Get the file number from the last file in existing files
-      LAST_FILE_NUM="${existing_files[-1]:9:2}" # ${VAR:OFFSET:LENGTH}
+      # Get the last element of the $existing_files array
+      last__file=${existing_files[*]: -1}
+      # Get the file number from the last file in $existing_files
+      last_file_num="${last__file:9:2}" # ${VAR:OFFSET:LENGTH}
       # New file number (one greater than the last file number)
-      FILE_NUM=$(printf '%02d\n' $((LAST_FILE_NUM + 1))) # two digits (pad with zero if < 10)
+      FILE_NUM=$(printf '%02d\n' $((last_file_num + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
       new_file="0000-01-$FILE_NUM-$collaborator.md"
       cat "slide_template.md" >>"$new_file"
