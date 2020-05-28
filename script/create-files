@@ -120,9 +120,6 @@ create_issues() {
     issue_title="Parking Lot"
     issue_body="## Post any questions you may have here during the training."
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
-
-    # Make it private
-    make_repo_private
   fi
 }
 
@@ -242,3 +239,6 @@ create_files
 
 # Create issues
 create_issues
+
+# Make it private
+make_repo_private
