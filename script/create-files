@@ -40,9 +40,10 @@ create_files() {
       collaborators_with_existing_files+=("$collaborator")
     else
       # Get the last element of the $existing_files array
-      last__file=${existing_files[*]: -1}
+      last_file=${existing_files[*]: -1}
       # Get the file number from the last file in $existing_files
-      last_file_num="${last__file:9:2}" # ${VAR:OFFSET:LENGTH}
+      # Assumes the file number is eactly two digits long
+      last_file_num="${last_file:0:2}" # ${VAR:OFFSET:LENGTH}
       # New file number (one greater than the last file number)
       FILE_NUM=$(printf '%02d\n' $((last_file_num + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
