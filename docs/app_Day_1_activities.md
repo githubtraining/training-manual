@@ -10,7 +10,6 @@ Just like we did in class, open a new pull request adding a new slide to the dec
    git checkout -b NEWBRANCHNAME
    ```
 
-
 1. Create a new file in the `_slides` directory:
 
    ```sh
