@@ -32,7 +32,6 @@ add_collaborators() {
 }
 
 create_files() {
-  get_existing_files # Get list of existing files
   # Iterate through the list of collaborators
   for collaborator in "${collaborators[@]}"; do
     get_existing_files # Update list of existing files
@@ -41,13 +40,14 @@ create_files() {
       collaborators_with_existing_files+=("$collaborator")
     else
       # Get the last element of the $existing_files array
-      last__file=${existing_files[*]: -1}
+      last_file=${existing_files[*]: -1}
       # Get the file number from the last file in $existing_files
-      last_file_num="${last__file:9:2}" # ${VAR:OFFSET:LENGTH}
+      # Assumes the file number is eactly two digits long
+      last_file_num="${last_file:0:2}" # ${VAR:OFFSET:LENGTH}
       # New file number (one greater than the last file number)
-      FILE_NUM=$(printf '%02d\n' $((last_file_num + 1))) # two digits (pad with zero if < 10)
+      file_num=$(printf '%02d\n' $((last_file_num + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
-      new_file="0000-01-$FILE_NUM-$collaborator.md"
+      new_file="$file_num-$collaborator.md"
       cat "slide_template.md" >>"$new_file"
       # Pick a random image for slide
       random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
@@ -64,12 +64,12 @@ create_files() {
         content=$(base64 <"$new_file")
       fi
       # Put the file in the repository
-      path="_posts/$new_file"
+      path="_slides/$new_file"
       message="Activity file for $collaborator"
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
         -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
       # Remove the local file
-      rm "$new_file"
+      rm "./$new_file"
       # List of collaborators that new files are being created for
       collaborators_with_new_files+=("$collaborator")
     fi
@@ -193,7 +193,7 @@ get_commenters() {
 get_existing_files() {
   # Get existing file names
   IFS=" " read -ra existing_files <<<"$(
-    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_posts" | jq -r 'map(.name) | @sh'
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_slides" | jq -r 'map(.name) | @sh' | tr -d \'
   )"
 }
 
