@@ -45,9 +45,9 @@ create_files() {
       # Assumes the file number is eactly two digits long
       last_file_num="${last_file:0:2}" # ${VAR:OFFSET:LENGTH}
       # New file number (one greater than the last file number)
-      FILE_NUM=$(printf '%02d\n' $((last_file_num + 1))) # two digits (pad with zero if < 10)
+      file_num=$(printf '%02d\n' $((last_file_num + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
-      new_file="$FILE_NUM-$collaborator.md"
+      new_file="$file_num-$collaborator.md"
       cat "slide_template.md" >>"$new_file"
       # Pick a random image for slide
       random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
