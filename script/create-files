@@ -32,7 +32,6 @@ add_collaborators() {
 }
 
 create_files() {
-  get_existing_files # Get list of existing files
   # Iterate through the list of collaborators
   for collaborator in "${collaborators[@]}"; do
     get_existing_files # Update list of existing files
