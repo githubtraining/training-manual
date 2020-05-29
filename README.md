@@ -2,7 +2,7 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
-Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by GitHub trainers during our official GitHub training courses and the scripts used when teaching.
+Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by the [GitHub Professional Services](https://services.github.com/) team during our official GitHub training courses and the scripts used when teaching.
 
 The content is all written in [markdown](https://github.github.com/gfm/), and the scripts are shell scripts.
 
@@ -67,4 +67,4 @@ Scripts that accompany the manual, and their documentation can be found in the [
 
 ## License
 
-Please see the [license](LICENSE) for detailed information. When using the GitHub logos, be sure to follow the [GitHub logo guidelines](https://github.com/logos).
+Please see the [license](LICENSE) for detailed information. When using the GitHub logos, be sure to follow the [GitHub Logos and Usage](https://github.com/logos) guidelines.
