@@ -192,7 +192,7 @@ get_commenters() {
 get_existing_files() {
   # Get existing file names
   IFS=" " read -ra existing_files <<<"$(
-    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_slides" | jq -r 'map(.name) | @sh'
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_slides" | jq -r 'map(.name) | @sh' | tr -d \'
   )"
 }
 
