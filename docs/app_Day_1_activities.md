@@ -7,18 +7,15 @@ Just like we did in class, open a new pull request adding a new slide to the dec
 1. Create a new branch, and checkout to that branch:
 
    ```sh
-   git checkout -b $branch
+   git checkout -b NEWBRANCHNAME
    ```
 
-   <sup>Replace `$branch` with your branch name.</sup>
 
 1. Create a new file in the `_slides` directory:
 
    ```sh
-   touch 00-$username.md
+   touch 00-USERNAME.md
    ```
-
-   <sup>Replace `$username` with your GitHub username.</sup>
 
 1. Follow the directions for the same activity we created together, where it says "[Activity: Edit Your File](06_working_locally)".
 1. Instead of just adding the caption, you will need to find a new image from the image list and use that to fill in this template:
@@ -38,7 +35,7 @@ Just like we did in class, open a new pull request adding a new slide to the dec
 1. If working locally, push your changes up to the remote:
 
    ```sh
-   git push -u origin $branch
+   git push -u origin NEWBRANCHNAME
    ```
 
 1. Open a pull request
