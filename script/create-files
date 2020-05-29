@@ -68,7 +68,7 @@ create_files() {
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
         -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
       # Remove the local file
-      rm "$new_file"
+      rm "./$new_file"
       # List of collaborators that new files are being created for
       collaborators_with_new_files+=("$collaborator")
     fi
