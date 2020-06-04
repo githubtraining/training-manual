@@ -1,4 +1,4 @@
-## Oops, I forgot to create a branch!
+## Oops, I forgot to create a branch
 
 If you begin working, but you are still on `master`, don't panic! Changes aren't "on" a branch until they are committed. Your working directory and staging area are attached to `HEAD`, _not_ a branch. So, you can change branches, and any changes that are not committed will come with you.
 
@@ -10,6 +10,6 @@ If you begin working, but you are still on `master`, don't panic! Changes aren't
 3. Create a new branch with `git checkout -b BRANCH-NAME`
 4. Type `git status` again, to notice which branch you are on, and your working directory
 
-## What would happen if...
+## Non-committed conflicts
 
 What do you think would happen if you made changes to a file, then tried to switch to another branch, but that branch had committed changes that conflict with your new, uncommitted changes? Why?
