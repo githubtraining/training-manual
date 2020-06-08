@@ -1,6 +1,6 @@
 ## Oops, I forgot to create a branch
 
-If you begin working, but you are still on `master`, don't panic! Changes aren't "on" a branch until they are committed. Your working directory and staging area are attached to `HEAD`, _not_ a branch. So, you can change branches, and any changes that are not committed will come with you.
+If you begin working, but you are still on `master`, don’t panic! Changes aren't “on” a branch until they are committed. Your working directory and staging area are attached to `HEAD`, _not_ a branch. So, you can change branches, and any changes that are not committed will come with you.
 
 ### Activity: Create a branch after making changes
 
