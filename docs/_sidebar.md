@@ -30,6 +30,7 @@
 - Project 4: Local Repository
   - [Create a Local Repo](18_create_local_repo.md)
   - [Fixing Commit Mistakes](19_fixing_commit_mistakes.md)
+  - [Forgot to branch?](19_forgot_to_branch.md)
   - [Rewriting History with Git Reset](20_rewriting_history_git_reset.md)
   - [Cherry Picking](21_git_cherry_pick.md)
   - [Merge Strategies](22_merge_strategies_rebase.md)
