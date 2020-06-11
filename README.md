@@ -1,8 +1,20 @@
-# GitHub Training Manual: GitHub for Developers
+# GitHub Training Manual
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
-Welcome to the GitHub Training Manual repo. In this repo, you will find the content used by GitHub trainers during our official training courses and scripts used when teaching.
+Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by the [GitHub Professional Services](https://services.github.com/) team during our official GitHub training courses and the scripts used when teaching.
+
+The content is all written in [Markdown](https://guides.github.com/features/mastering-markdown/), and the scripts are shell scripts.
+
+## Technologies used
+
+This manual is served using GitHub Pages and [docsify](https://docsify.js.org), and can be found at [githubtraining.github.io/training-manual](https://githubtraining.github.io/training-manual/#/).
+
+## Goals and scope
+
+The goal of this project is to serve as a content source for training on Git and GitHub. While GitHub, select GitHub Partners, and select customers may have their own use case directly with GitHub, the content is open source so we can share and improve as a community. You can find more information on contributing in the [contributing guide](CONTRIBUTING.md).
+
+The topic scope is limited to GitHub's core product features, on GitHub.com and also for GitHub Enterprise users.
 
 ## Deploy the manual
 
@@ -52,3 +64,7 @@ Docsify doesn't currently support creating PDFs, but you can generate one using 
 ## Teaching scripts
 
 Scripts that accompany the manual, and their documentation can be found in the [`script/`](script/) directory.
+
+## License
+
+Please see the [license](LICENSE) for detailed information. When using the GitHub logos, be sure to follow the [GitHub Logos and Usage](https://github.com/logos) guidelines.
