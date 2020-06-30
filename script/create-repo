@@ -80,7 +80,7 @@ function CloneRepo() {
     ############
     # Clone it #
     ############
-    git clone --bare "https://github.com/githubtraining/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
+    git clone --bare "$ROOT_URL/$CLASS_ORG/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
   else
     echo "Cloning from Enterprise Instance"
     ############
@@ -97,7 +97,7 @@ function CloneRepo() {
     # Check the shell for errors #
     ##############################
     if [ $ERROR_CODE -ne 0 ]; then
-      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/${TYPE} and upload it to your GHE instance."
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from $ROOT_URL/$CLASS_ORG/${TYPE} and upload it to your GHE instance."
       exit 1
     fi
   fi
