@@ -1,0 +1,247 @@
+#!/usr/bin/env bash
+#
+# Create Files
+
+# Source it up
+# shellcheck disable=SC1090
+source "$HOME/.trainingmanualrc"
+source "$(dirname "$0")/ask"
+
+##################################################
+# You must have a githubteacher token saved to   #
+# your ENV variables in order to use this script #
+##################################################
+
+# GLOBALS
+COLLAB_REPO=$1
+REPO_URL="https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO"
+
+add_collaborators() {
+  for commenter in "${commenters[@]}"; do
+    # Check if commenter is already a collaborator
+    if [[ ${collaborators[*]} == *"${commenter}"* ]]; then
+      existing_collaborators+=("$commenter")
+    else # Add collaborator
+      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        -X PUT "$REPO_URL/collaborators/$commenter" >>log.out 2>&1
+      get_collaborators # Update list of collaborators
+    fi
+  done
+  # Check if any commenters are already collaborators
+  print_list "The following commenters are already collaborators" "${existing_collaborators[@]}"
+}
+
+create_files() {
+  # Iterate through the list of collaborators
+  for collaborator in "${collaborators[@]}"; do
+    get_existing_files # Update list of existing files
+    # Check a file has already been created for this collaborator
+    if [[ ${existing_files[*]} == *"-${collaborator}.md"* ]]; then
+      collaborators_with_existing_files+=("$collaborator")
+    else
+      # Get the last element of the $existing_files array
+      last_file=${existing_files[*]: -1}
+      # Get the file number from the last file in $existing_files
+      # Assumes the file number is eactly two digits long
+      last_file_num="${last_file:0:2}" # ${VAR:OFFSET:LENGTH}
+      # New file number (one greater than the last file number)
+      new_file_num=$(printf '%02d\n' $((10#$last_file_num + 1))) # two digits (pad with zero if < 10)
+      # create file for collaborator
+      new_file="$new_file_num-$collaborator.md"
+      cat "slide_template.md" >>"$new_file"
+      # Pick a random image for slide
+      random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
+      # Check the operating system to determine which commands to run
+      if [[ "$OSTYPE" = "msys" ]]; then
+        # Insert slide image into slide
+        sed -i "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
+        # Encode the file
+        content=$(base64 <"$new_file" --wrap=0)
+      else
+        # Insert slide image into slide
+        sed -i "" "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
+        # Encode the file
+        content=$(base64 <"$new_file")
+      fi
+      # Put the file in the repository
+      path="_slides/$new_file"
+      message="Activity file for $collaborator"
+      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
+        -X PUT "$REPO_URL/contents/$path" >>log.out 2>&1
+      # Remove the local file
+      rm "./$new_file"
+      # List of collaborators that new files are being created for
+      collaborators_with_new_files+=("$collaborator")
+    fi
+  done
+  # Print list of collaborators that new files were created for
+  print_list "New files were created for the following collaborators" "${collaborators_with_new_files[@]}"
+  # Print list of collaborators that already had files
+  print_list "The following collaborators already had files" "${collaborators_with_existing_files[@]}"
+}
+
+create_issues() {
+  get_issues # Get a list of issues in the repository
+  issue_body="Using the API, I have just created a file with a random octocat for you to caption. In this activity, we will learn how to make changes to files in our GitHub repository.\n\n"
+  for collaborator in "${collaborators[@]}"; do
+    issue_body="$issue_body- [ ] @$collaborator\n"
+  done
+
+  issue_title="Activity 1: Your First Caption"
+  # Check if any of the existing issue titles contain $issue_title
+  if [[ ${issues[*]} == *"$issue_title"* ]]; then
+    # Find the issue that contains issue_title so it can be patched
+    for issue in "${issues[@]}"; do
+      if [[ $issue == *"$issue_title"* ]]; then
+        caption_issue_number=$(echo "$issue" | cut -d. -f1)
+        # Update the issue text since it already exists
+        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$REPO_URL/issues/$caption_issue_number" >>log.out 2>&1
+        # Print the updated issue text
+        echo -e "The activity issue has been updated:\n$issue_body"
+      fi
+    done
+  else
+    # This is the first run - create activity issues
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Add A New Slide"
+    issue_body="## We Need More Slides\nGrab another octocat and create a new slide from scratch.\nIf you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Add a Caption To an Existing Slide"
+    issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\nIf you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Improve the README"
+    issue_body="## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Restyle the Slides"
+    issue_body="## Do you have an eye for design?\nHelp us improve the look of the slide deck.\nIf you need help, check out the Appendix in the training manual."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+
+    issue_title="Parking Lot"
+    issue_body="## Post any questions you may have here during the training."
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+  fi
+}
+
+make_repo_private() {
+  # Check if the repo is private
+  repo_is_private=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL" | jq .private) >>log.out 2>&1
+
+  # If the repo is private
+  if "$repo_is_private"; then
+    echo "This repo is already private."
+    return # exit the function
+  fi
+
+  # Default to 'yes' if no answer is given
+  if ask "Are you ready to make this repo private?" Y; then
+    # Make the repo private
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$COLLAB_REPO\", \"private\": true }" -X PATCH "$REPO_URL" >>log.out 2>&1
+    if ask "Does this class get 1:1 sessions?" N; then
+      create_one_on_one_issue
+    fi
+  else
+    echo "OK, just remember to make the repo private and add the info for booking 1:1 appointments to the README."
+  fi
+}
+
+create_one_on_one_issue() {
+  # Create an issue for 1:1 appointments
+  echo "$APPT_URL"
+  issue_title="Booking 1:1 Appointments"
+  issue_body="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL
+
+  These appointments will be available for 4 weeks after the end of this class.
+
+  FYI: "
+
+  for i in "${collaborators[@]}"; do
+    issue_body=$issue_body"@$i "
+  done
+
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": $issue_body }" -X POST "$REPO_URL/issues" >>log.out 2>&1
+}
+
+get_collaborators() {
+  # Get array of repository collaborators
+  IFS=" " read -ra collaborators <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/collaborators?affiliation=direct&per_page=100" |
+      jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
+
+  # Get array of repository invitees
+  IFS=" " read -ra invitees <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/invitations" |
+      jq -r 'map(.invitee.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
+
+  # Invitees are collaborators too
+  collaborators+=("${invitees[@]}")
+}
+
+get_commenters() {
+  # Array of commenters
+  IFS=" " read -ra commenters <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues/1/comments?per_page=100" |
+      jq -r 'map(.user.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
+}
+
+get_existing_files() {
+  # Get existing file names
+  IFS=" " read -ra existing_files <<<"$(
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/contents/_slides" | jq -r 'map(.name) | @sh' | tr -d \'
+  )"
+}
+
+get_issues() {
+  # Get list of issues from the repository (formatted as '$NUM. $TITLE')
+  IFS=$'\n' read -d "" -ra issues <<<"$(
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
+  )" >>log.out 2>&1
+}
+
+print_list() {
+  list_title=$1     # Save first argument in a variable
+  shift             # shift all arguments to the left (original $1 gets lost)
+  list_items=("$@") # Rebuild the array with rest of arguments
+  # Check if any commenters are already collaborators
+  if [ "${#list_items[@]}" -ne 0 ]; then
+    echo -e "\n$list_title:"
+    # Prefix each collaborator with '- '
+    list_items=("${list_items[@]/#/- }")
+    # Print list of collaborators that are already collaborators
+    printf '%s\n' "${list_items[@]}"
+    echo # line break
+  fi
+}
+
+# Make sure repo exists before attempting to interact with it
+repo_status=$(curl -s -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "$REPO_URL") >>log.out 2>&1
+# Exit the script if the repo cannot be found
+if [[ $repo_status == *"Not Found"* ]]; then
+  echo "Repo not found. Please try again."
+  exit
+fi
+
+# Array of slide images from file
+IFS=$'\n' read -d "" -ra slide_images <"slide_images.md"
+
+# Get a list of collaborators and commenters
+get_collaborators
+get_commenters
+
+# Add collaborators
+add_collaborators
+
+# Create files
+create_files
+
+# Create issues
+create_issues
+
+# Make it private
+make_repo_private

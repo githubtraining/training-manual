@@ -40,6 +40,7 @@ function GetTask() {
   echo " 6: Create the github-games repos for each student"
   echo " 7: Delete student repos for a specific class"
   echo " 8: Grade client"
+  echo " 10: For partner bootcamp: Add collabs and create files (also makes repo private)"
 
   ################################
   # Read the task that was input #
@@ -176,6 +177,13 @@ function DoTask() {
     # echo "8: Grade client"
     echo "running script/grade-client"
     script/grade-client
+  ##########
+  # TASK 10 #
+  ##########
+  elif [ "$TASK" -eq 10 ]; then
+    # echo "10: For partner bootcamp: Add collabs and create files (also makes repo private)"
+    echo "running script/create-settings-files"
+    script/create-settings-files
   fi
 }
 ################################################################################
