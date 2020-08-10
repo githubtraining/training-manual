@@ -71,8 +71,15 @@ jobs:
     - `config-name` - Here, we call out the configuration file we added previously.
     - `GITHUB_TOKEN` - This action utilizes your Personal Access Token which is stored in the Actions Secret store.
 
+> NOTE: Before triggering the action, ensure you already have an existing release in your repository. 
+
 ### Trigger the Action
-1. Edit a file, make a commit and open a Pull Request
+1. Create a new branch named, `new-colors`
+1. While on the `new-colors` branch, edit the `index.html` file
+1. Modify the code on lines 116 through 122 by replacing the existing colors with new colors, as an example: 
+      var i = { size: 4, blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: 'purple'   };
+      var i = { size: 4, blocks: [0x0F00, 0x2222, 0x00F0, 0x4444], color: 'blue'   };
+1. Create a commit and open a Pull Request
 1. In your Pull Request, add a label defined in the **Configuration file**.
     - `enhancement`
     - `bug`
