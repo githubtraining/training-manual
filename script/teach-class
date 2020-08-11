@@ -95,7 +95,7 @@ function DoTask() {
     ############################################
     COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
     COLLAB_REPO=$COLLAB_REPO_WHITESPACE
-  else
+  elif [ "$TASK" -ne 0 ]; then
     ##########################################
     # Validate we have env variables sourced #
     ##########################################
