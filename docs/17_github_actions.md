@@ -6,6 +6,7 @@ Actions are sharable individual tasks that perform units of work; they allow you
 - Build a container and deploy a web service 
 - Automatically merge an approved pull request
 - Welcome new users to your repository during onboarding
+- Run unit tests against pull requests
 
 **Actions can be defined in multiple places:**
 
