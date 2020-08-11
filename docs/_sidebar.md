@@ -35,6 +35,8 @@
   - [Cherry Picking](21_git_cherry_pick.md)
   - [Merge Strategies](22_merge_strategies_rebase.md)
 
+- Advanced Topics
+
 - Appendix
   - **GitHub Resources**
     - [Day 1 Activity Instructions](app_Day_1_activities.md)
