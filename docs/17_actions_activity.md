@@ -1,4 +1,6 @@
-### Add an Action to your repository from the Marketplace
+### Activity: Use GitHub Actions to Automate Releases  
+
+#### Add an Action to your repository from the Marketplace
 
 ![actions-workflow-image](https://user-images.githubusercontent.com/6351798/82076100-8b096480-969a-11ea-95bc-ad25920867d9.png)
 
@@ -73,10 +75,10 @@ jobs:
 
 > NOTE: Before triggering the action, ensure you already have an existing release in your repository. 
 
-### Trigger the Action
+#### Trigger the Action
 
 1. Let's add a Release before we introduce new changes, we can name this Release `v0.0.1`.
-1. Add a label called `chore`.
+1. Since the **Configuration file** contains `chore` as a label in your releases, let's go ahead and add a label called `chore`.
     - Under the `Issue` or `Pull Request` tab, click `New Label` to create a new label.
 1. Create a new branch named, `new-colors`
 1. While on the `new-colors` branch, edit the `index.html` file
@@ -96,12 +98,12 @@ jobs:
 1. Check on your Actions by clicking the **Actions** tab.
 ![actions-run](img/actions-run.png)
 
-### Congratulations! 
+#### Congratulations! 
 Head over to **Releases** and marvel at the outcome:
 
 ![release](img/release-actions.png ':size=60%')
 
-### Keep on practicing
+#### Keep on practicing
 -  Edit the Configuration file to your liking and run your Action again 
 - Try out other Actions in the [Marketplace](https://github.com/marketplace?type=actions)
 - Learn more about Actions via the [GitHub Learning Lab](https://lab.github.com/search?q=actions)
