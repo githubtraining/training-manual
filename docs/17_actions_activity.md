@@ -54,7 +54,7 @@ jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
-      # Drafts your next Release notes as Pull Requests are merged into "master"
+      # Drafts your next Release notes as Pull Requests are merged into ${{ branches }} from above.
       - uses: release-drafter/release-drafter@v5
         with:
         # Specify config name to use, relative to .github/.  
@@ -105,4 +105,3 @@ Head over to **Releases** and marvel at the outcome:
 -  Edit the Configuration file to your liking and run your Action again 
 - Try out other Actions in the [Marketplace](https://github.com/marketplace?type=actions)
 - Learn more about Actions via the [GitHub Learning Lab](https://lab.github.com/search?q=actions)
-
