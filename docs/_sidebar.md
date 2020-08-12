@@ -36,6 +36,7 @@
   - [Merge Strategies](22_merge_strategies_rebase.md)
 
 - Advanced Topics
+  - [Personal Access Tokens](20_personal_access_token.md)
 
 - Appendix
   - **GitHub Resources**
