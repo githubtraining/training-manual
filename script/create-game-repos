@@ -148,7 +148,7 @@ function CreateRepo() {
   # create issues for problems #
   ##############################
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${PAGES_URL}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$STUDENT?\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the README is pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${PAGES_URL}\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in README broken\", \"body\": \"The URL in the README is pointing to $CLASS_ORG's copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${PAGES_URL}\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
 
   #############################
   # assign issues to $STUDENT #
