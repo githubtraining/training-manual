@@ -26,6 +26,8 @@
   - [Viewing Local Changes](17_view_local_changes.md)
   - [Tags & Releases](17_tags_and_releases.md)
   - [Workflow Discussion](17_workflow_discussion.md)
+  - [GitHub Actions](17_github_actions.md)
+  - [Automate Releases](17_actions_activity.md)
 
 - Project 4: Local Repository
   - [Create a Local Repo](18_create_local_repo.md)
