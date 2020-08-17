@@ -4,6 +4,10 @@
 ############################## Create Game Repos ###############################
 ################################################################################
 
+# Source it up
+# shellcheck disable=SC1090
+source "$(dirname "$0")/ask"
+
 ###########################################################
 # You must have a $TOKEN_OWNER token                      #
 # saved to your ENV variables in order to use this script #
@@ -79,10 +83,8 @@ function GetNames() {
     then
       CreateRepo "$USER_NAME"
     else
-      # Check before cleaning up and recreating any duplicate repos
-      echo "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
-      read -r DELETE_OK
-      if echo "$DELETE_OK" | grep -iq "^y"; then
+      # Check before cleaning up and recreating any duplicate repos; default to 'yes' if no answer is given
+      if ask "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate?" Y; then
         echo "Deleting and recreating $CLASS_ORG/github-games-$USER_NAME repo..."
         curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" >> log.out 2>&1
         CreateRepo "$USER_NAME"
@@ -95,6 +97,7 @@ function GetNames() {
   echo "Remove the local (temporary) clone"
   rm -rf game-template
 }
+
 ################################################################################
 #### Function CreateRepo #######################################################
 function CreateRepo() {
