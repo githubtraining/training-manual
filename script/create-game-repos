@@ -116,11 +116,11 @@ function CreateRepo() {
   if [[ "$ROOT_URL" == "github.com" ]]; then
     echo "Creating on GitHub"
     STUDENT_PAGES_URL="https://${CLASS_ORG}.github.io/${STUDENT_REPO}/"
-    TEMPLATE_PAGES_URL="https://${CLASS_ORG}.github.io/${STUDENT_REPO}/"
+    TEMPLATE_PAGES_URL="https://${CLASS_ORG}.github.io/${TEMPLATE_REPO}/"
   else
     echo "Creating on GitHub Enterprise Server"
     STUDENT_PAGES_URL="https://${ROOT_URL}/pages/${CLASS_ORG}/${STUDENT_REPO}/"
-    TEMPLATE_PAGES_URL="https://${ROOT_URL}/pages/${CLASS_ORG}/${STUDENT_REPO}/"
+    TEMPLATE_PAGES_URL="https://${ROOT_URL}/pages/${CLASS_ORG}/${TEMPLATE_REPO}/"
   fi
 
   #############
