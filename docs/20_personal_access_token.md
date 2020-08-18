@@ -1,8 +1,8 @@
 ## Interacting with SSO enabled organizations
 
-If the repositories you interact with daily are contained in an organization that enforces SSO you might encounter difficulty working with those repositories when trying to perform git operations like `clone`, `pull`, and `push`. This issue can be remedied by creating a personal access token (PAT) for use with your GitHub account. 
+If the repositories you interact with daily are contained in an organization that enforces SSO you might encounter difficulty working with those repositories when trying to perform Git operations like `clone`, `pull`, and `push`. This issue can be remedied by creating a personal access token (PAT) for use with your GitHub account. 
 
-> NOTE: While the personal access token has multiple use, this is often times the reason most users need to create one. 
+> **Note:** While personal access tokens have multiple uses, this is the most common reason to create one. 
 
 ### To create a PAT on GitHub.com, perform the following steps:
 
@@ -15,10 +15,9 @@ If the repositories you interact with daily are contained in an organization tha
 1. Click **Generate token**.
 1. Copy your new PAT, you won't be able to see the token again. 
 
-> NOTE: Read this for more information about [Oauth scopes](https://docs.github.com/apps/building-oauth-apps/scopes-for-oauth-apps/).
+> **Note:** Read this for more information about [Oauth scopes](https://docs.github.com/apps/building-oauth-apps/scopes-for-oauth-apps/).
 
 ### To use your new PAT, perform the following steps:
 
 1. Interact with a repository that belongs to an organization with SSO enabled.
-1. After performing a git operation that prompts you to sign-in, such as `git push`, sign in with your username and instead of entering your normal password, use the PAT value from the PAT you created above.
-
+1. After performing a Git operation that prompts you to sign in, such as `git push`, sign in with your username and instead of entering your normal password, use the PAT value from the PAT you created above.
