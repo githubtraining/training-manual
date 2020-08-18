@@ -37,6 +37,9 @@
   - [Cherry Picking](21_git_cherry_pick.md)
   - [Merge Strategies](22_merge_strategies_rebase.md)
 
+- Advanced Topics
+  - [Personal Access Tokens](20_personal_access_token.md)
+
 - Appendix
   - **GitHub Resources**
     - [Day 1 Activity Instructions](app_Day_1_activities.md)
