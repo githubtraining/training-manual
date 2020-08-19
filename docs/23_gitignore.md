@@ -100,7 +100,7 @@ Thumbs.db
 
 3. Configure `git` to use this file: 
 
-For Max Users:
+For Mac Users:
 ```sh
 git config --global core.excludesfile ~/.gitignore_global
 ```
