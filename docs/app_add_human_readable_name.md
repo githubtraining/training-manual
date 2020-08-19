@@ -10,10 +10,10 @@ An @mention is when you mention a GitHub username in an issue or pull request. T
 
 1. In the upper-right corner of any page, click your profile picture dropdown, then click **Settings**.
 
-![Profile picture dropdown screenshot](./img/userbar-account-settings.png)
+  ![Profile picture dropdown screenshot](./img/userbar-account-settings.png)
 
-2. Under "Name", type the name you want to be displayed on your profile
+1. Under "Name", type the name you want to be displayed on your profile
 
-![Profile name screenshot](./img/name-field.png)
+  ![Profile name screenshot](./img/name-field.png)
 
-3. Click the "Update profile" button at the bottom of the page.
+1. Click the "Update profile" button at the bottom of the page.
