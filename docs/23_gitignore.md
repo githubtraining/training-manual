@@ -11,7 +11,7 @@ While working within your repository, you might notice files that your preferred
 
 ### Creating a `.gitignore` file
 
-#### Ignore files  locally
+#### Ignore files for a single repository
 
 In your Terminal or Git Bash, `cd` to the repository of interest and create a `.gitignore` file
 
