@@ -19,6 +19,8 @@ In your Terminal or Git Bash, `cd` to the repository of interest and create a `.
 touch .gitignore
 ```
 
+To share the ignore rules with other users who clone the repository, commit the `.gitignore` file in to your repository.
+
 #### Ignore files for all repositories on your local machine
 
 You can also create a global `.gitignore` file to define a list of rules for ignoring files in every local Git repository
