@@ -1,0 +1,6 @@
+# pack-refs with: peeled fully-peeled sorted 
+6b50ac7e98a43288737bfd3503af97315fe4de8e refs/heads/css-changes
+cb8731acb5f5e1903c188a2ad41be802b94305df refs/heads/manual
+1095c8c8e4eb14cbcd68e7302818e5c8e1b2c107 refs/heads/master
+945ca602808378546af658ab91d8f3c019b5f5ba refs/heads/readme-update
+1095c8c8e4eb14cbcd68e7302818e5c8e1b2c107 refs/tags/release
