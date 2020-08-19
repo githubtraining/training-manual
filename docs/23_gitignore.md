@@ -5,7 +5,7 @@ While working within your repository, you might notice files that your preferred
 **Files that you might want Git to ignore:**
 
 1. Secrets, e.g. `*.pem`, `*.key`
-1. Binary files, e.g. `*.pdf*`, `*.docx`
+1. Binary files, e.g. `*.pdf`, `*.docx`
 1. Log files, e.g. `*.log`
 1. Build files, e.g. `Build/*`
 
