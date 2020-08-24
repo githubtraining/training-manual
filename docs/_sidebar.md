@@ -39,6 +39,7 @@
   - [Personal Access Tokens](20_personal_access_token.md)
   - [GitHub Actions](17_github_actions.md)
   - [Automate Releases](17_actions_activity.md)
+  - [.gitignore File](23_gitignore.md)
 
 - Appendix
   - **GitHub Resources**
@@ -47,6 +48,7 @@
     - [Fork and Pull Workflow and Multiple Remotes](app_fork_workflow.md)
     - [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
   - **Tool tips**
+    - [Add your human-readable name](app_add_human_readable_name.md)
     - [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
     - [Add Branch to Terminal Prompt](app_git_branch_in_terminal.md)
     - [Alias Pro Tips](app_aliases.md)
