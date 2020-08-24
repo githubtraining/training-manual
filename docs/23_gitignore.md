@@ -107,11 +107,13 @@ Thumbs.db
 3. Configure `git` to use this file: 
 
 For Mac Users:
+
 ```sh
 git config --global core.excludesfile ~/.gitignore_global
 ```
 
 For Windows Users:
+
 ```sh
 git config --global core.excludesfile %USERPROFILE%\.gitignore_global
 ```
