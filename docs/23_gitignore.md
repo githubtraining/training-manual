@@ -37,6 +37,11 @@ These templates are also available when you create a new repository:
 touch .gitignore
 ```
 
+For Windows users who are not using a bash-based terminal:
+```
+echo >> .gitignore
+```
+
 2. Go to `github/gitignore` and choose a template of your choice and paste it in the file.
 
 3. To share the ignore rules with other users who clone the repository, commit the `.gitignore` file in to your repository.
