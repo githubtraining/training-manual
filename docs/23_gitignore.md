@@ -39,7 +39,7 @@ touch .gitignore
 
 For Windows users who are not using a bash-based terminal:
 
-```
+```sh
 echo >> .gitignore
 ```
 
