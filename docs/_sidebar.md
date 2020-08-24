@@ -39,6 +39,7 @@
 
 - Advanced Topics
   - [Personal Access Tokens](20_personal_access_token.md)
+  - [.gitignore File](23_gitignore.md)
 
 - Appendix
   - **GitHub Resources**
