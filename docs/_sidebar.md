@@ -26,6 +26,8 @@
   - [Viewing Local Changes](17_view_local_changes.md)
   - [Tags & Releases](17_tags_and_releases.md)
   - [Workflow Discussion](17_workflow_discussion.md)
+  - [GitHub Actions](17_github_actions.md)
+  - [Automate Releases](17_actions_activity.md)
 
 - Project 4: Local Repository
   - [Create a Local Repo](18_create_local_repo.md)
@@ -35,6 +37,10 @@
   - [Cherry Picking](21_git_cherry_pick.md)
   - [Merge Strategies](22_merge_strategies_rebase.md)
 
+- Advanced Topics
+  - [Personal Access Tokens](20_personal_access_token.md)
+  - [.gitignore File](23_gitignore.md)
+
 - Appendix
   - **GitHub Resources**
     - [Day 1 Activity Instructions](app_Day_1_activities.md)
@@ -42,6 +48,7 @@
     - [Fork and Pull Workflow and Multiple Remotes](app_fork_workflow.md)
     - [End of Training: Cleaning Loaner PCs](App_clean_loaner_pc.md)
   - **Tool tips**
+    - [Add your human-readable name](app_add_human_readable_name.md)
     - [How to Generate Jekyll Sites Locally](app_how_to_generate_locally.md)
     - [Add Branch to Terminal Prompt](app_git_branch_in_terminal.md)
     - [Alias Pro Tips](app_aliases.md)
