@@ -5,7 +5,7 @@
 # Source it up
 # shellcheck disable=SC1090
 source "$HOME/.trainingmanualrc"
-source "$(dirname "$0")/ask"
+source ask
 
 ##################################################
 # You must have a githubteacher token saved to   #
@@ -228,7 +228,7 @@ if [[ $repo_status == *"Not Found"* ]]; then
 fi
 
 # Array of slide images from file
-IFS=$'\n' read -d "" -ra slide_images <"slide_images.md"
+IFS=$'\n' read -d "" -ra slide_images <"../slide_images.md"
 
 # Get a list of collaborators and commenters
 get_collaborators
