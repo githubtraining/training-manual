@@ -48,7 +48,7 @@ create_files() {
       new_file_num=$(printf '%02d\n' $((10#$last_file_num + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
       new_file="$new_file_num-$collaborator.md"
-      cat "slide_template.md" >>"$new_file"
+      cat "../slide_template.md" >>"$new_file"
       # Pick a random image for slide
       random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
       # Check the operating system to determine which commands to run
