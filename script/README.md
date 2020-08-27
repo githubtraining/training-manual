@@ -21,7 +21,7 @@ To use these scripts, please follow these steps **first**:
 
 Generally speaking, we'll create a `.trainingmanualrc` in your home directory, and source that file from your Bash or ZSH profile. The scripts take care of doing that for you. When performing an operation using the training scripts, the variables specified in your `~/.trainingmanualrc` file will be used.
 
-Here's how to get your local environment up and running: 
+Here's how to get your local environment up and running:
 
 1. install [jq](https://stedolan.github.io/jq/download/)
 2. run `script/teach-class` and choose option 0 to set up your environment variables. You'll need the following pieces of information from [above](#remote-configuration):
@@ -41,9 +41,8 @@ This script is used to run an entire class and is comprised of some of the scrip
 
 **Usage:** `script/teach-class`
 
-> Note: 
+> Note:
 > This requires [jq](https://stedolan.github.io/jq/) to be installed. Installation instructions are provided [here](https://github.com/stedolan/jq/wiki/Installation). The first time you execute `script/teach-class`, choose option `**0**` to configure the script within your organization.
-
 
 ### script/new-virtual
 
@@ -90,10 +89,9 @@ This script is used to reset the github-games repository in githubschool using t
 **Usage:** `script/reset-game`
 
 ## Troubleshoot
+
   1. `jq not found`
-  
   If you are on Windows and download the .exe (instead of using Chocolatey), you will get a file named `jq-win64` or similar. You would need to add the folder where you store the `.exe` to the PATH and rename the `.exe` to just `jq`.
   
-  2. `new-virtual line 52 error "No such file or directory"`
-  
+  1. `new-virtual line 52 error "No such file or directory"`
    Make sure your PAT includes the scopes of **repo** and **delete_repo**. If you edited the scopes, it might automatically remove the SSO authorization and you would need to re-authorize it again.
