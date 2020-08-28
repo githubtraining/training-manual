@@ -40,6 +40,8 @@
 - Advanced Topics
   - [Personal Access Tokens](20_personal_access_token.md)
   - [.gitignore File](23_gitignore.md)
+  - [Git submodules](26_git_submodules.md)
+  - [Git subtrees](27_git_subtrees.md)
 
 - Appendix
   - **GitHub Resources**
