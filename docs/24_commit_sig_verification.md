@@ -1,4 +1,4 @@
-# Commit Signature Verification
+## Commit Signature Verification
 
 Verifying the authenticity of the source of commits submitted to your repository might be important to you and your team. GitHub supports methods of ensuring that the author of the commit in a pull request was actually created from a trusted source. Commit signature verification is a cryptographically verifiable method of ensuring that commits coming from Mona Lisa are in fact coming from Mona Lisa.
 
