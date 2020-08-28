@@ -76,7 +76,7 @@ Before we tell Git LFS what files to track, we should identify what files are ta
 1. Run `git lfs migrate info`, your output should look similar to:
 
     ```sh
-    migrate: Fetching remote refs: ..., done.                           
+    migrate: Fetching remote refs: ..., done.
     migrate: Sorting commits: ..., done.
     migrate: Examining commits: 100% (0/0), done.
     ```
