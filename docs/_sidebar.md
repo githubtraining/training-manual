@@ -40,6 +40,7 @@
 - Advanced Topics
   - [Personal Access Tokens](20_personal_access_token.md)
   - [.gitignore File](23_gitignore.md)
+  - [Commit signature verification](24_commit_sig_verification.md)
 
 - Appendix
   - **GitHub Resources**
