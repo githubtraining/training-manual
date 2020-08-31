@@ -25,13 +25,13 @@ function GetTask() {
   echo "for the GitHub for Developers training."
   echo "========================================================"
   echo ""
-  echo "NOTE: If you have NOT ran: 0 Confirm Set-up, please run this task first"
+  echo "NOTE: If you have NOT run: 0 Confirm setup, please run this task first"
   echo "      as it is needed to set all base environment variables!"
   echo ""
   echo ""
   echo "What would you like to do? (Just the number please)"
   echo "99: Exit"
-  echo " 0: Confirm Set-up"
+  echo " 0: Confirm setup"
   echo " 1: Create a new caption-this class repository"
   echo " 2: Add collabs and create files (also makes the repo private)"
   echo " 3: Grade the day 1 repo"
@@ -115,7 +115,7 @@ function DoTask() {
   elif [ "$TASK" -eq 0 ]; then
     # echo "0: Confirm Set-up"
     echo "running script/class-setup"
-    script/class-setup
+    ./class-setup
     echo "=============================="
     echo "Set-up is complete"
     echo "=============================="
@@ -126,56 +126,56 @@ function DoTask() {
   elif [ "$TASK" -eq 1 ]; then
     # echo "1: Create a new caption-this class repository"
     echo "running script/new-virtual"
-    script/new-virtual "$COLLAB_REPO"
+    ./new-virtual "$COLLAB_REPO"
   ##########
   # TASK 2 #
   ##########
   elif [ "$TASK" -eq 2 ]; then
     # echo "2: Add collabs and create files (also makes the repo private)"
     echo "running script/create-files"
-    script/create-files "$COLLAB_REPO"
+    ./create-files "$COLLAB_REPO"
   ##########
   # TASK 3 #
   ##########
   elif [ "$TASK" -eq 3 ]; then
     # echo "3: Grade the day 1 repo"
     echo "running script/check-caption-repo"
-    script/check-caption-repo "$COLLAB_REPO"
+    ./check-caption-repo "$COLLAB_REPO"
   ##########
   # TASK 4 #
   ##########
   elif [ "$TASK" -eq 4 ]; then
     # echo "4: Create conflict repos for each student"
     echo "running script/create-conflict-repos"
-    script/create-conflict-repos "$COLLAB_REPO"
+    ./create-conflict-repos "$COLLAB_REPO"
   ##########
   # TASK 5 #
   ##########
   elif [ "$TASK" -eq 5 ]; then
     # echo "5: Grade the conflict repos"
     echo "running script/check-conflict-repos"
-    script/check-conflict-repos "$COLLAB_REPO"
+    ./check-conflict-repos "$COLLAB_REPO"
   ##########
   # TASK 6 #
   ##########
   elif [ "$TASK" -eq 6 ]; then
     # echo "6: Create the github-games repos for each student"
     echo "running script/create-game-repos"
-    script/create-game-repos "$COLLAB_REPO"
+    ./create-game-repos "$COLLAB_REPO"
   ##########
   # TASK 7 #
   ##########
   elif [ "$TASK" -eq 7 ]; then
     # echo "7: Expire student repos"
     echo "running script/clean-up-class"
-    script/clean-up-class "$COLLAB_REPO"
+    ./clean-up-class "$COLLAB_REPO"
   ##########
   # TASK 8 #
   ##########
   elif [ "$TASK" -eq 8 ]; then
     # echo "8: Grade client"
     echo "running script/grade-client"
-    script/grade-client
+    ./grade-client
   fi
 }
 ################################################################################
@@ -211,6 +211,10 @@ function Check_Env() {
 ################################################################################
 ############################### MAIN ###########################################
 ################################################################################
+
+# cd into the script directory so relative
+# paths can be used in the functions above
+cd "${BASH_SOURCE%/*}/" || exit
 
 #######################
 # Get the task to run #
