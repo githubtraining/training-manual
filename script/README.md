@@ -91,18 +91,10 @@ This script is used to reset the github-games repository in githubschool using t
 
 ## Troubleshooting
 
-<<<<<<< Updated upstream
 - `jq not found`
-  
-     If you are on Windows and download the .exe (instead of using Chocolatey), you will get a file named `jq-win64` or similar. You would need to add the folder where you store the `.exe` to the PATH and rename the `.exe` to just `jq`.
-  
-- `new-virtual line 52 error "No such file or directory"`
-  
-     Make sure your PAT includes the scopes of **repo** and **delete_repo**. If you edited the scopes, it might automatically remove the SSO authorization and you would need to re-authorize it again.
-=======
-  1. `jq not found`
-  If you are on Windows and download the .exe (instead of using Chocolatey), you will get a file named `jq-win64` or similar. You would need to add the folder where you store the `.exe` to the PATH and rename the `.exe` to just `jq`.
 
-  1. `new-virtual line 52 error "No such file or directory"`
-   Make sure your PAT includes the scopes of **repo** and **delete_repo**. If you edited the scopes, it might automatically remove the SSO authorization and you would need to re-authorize it again.
->>>>>>> Stashed changes
+     If you are on Windows and download the .exe (instead of using Chocolatey), you will get a file named `jq-win64` or similar. You would need to add the folder where you store the `.exe` to the PATH and rename the `.exe` to just `jq`.
+
+- `new-virtual line 52 error "No such file or directory"`
+
+     Make sure your PAT includes the scopes of **repo** and **delete_repo**. If you edited the scopes, it might automatically remove the SSO authorization and you would need to re-authorize it again.
