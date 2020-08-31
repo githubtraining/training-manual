@@ -5,7 +5,7 @@
 # Source it up
 # shellcheck disable=SC1090
 source "$HOME/.trainingmanualrc"
-source ask
+source ./ask
 
 ##################################################
 # You must have a githubteacher token saved to   #
