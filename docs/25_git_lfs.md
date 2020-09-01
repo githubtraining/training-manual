@@ -103,12 +103,7 @@ Now that we have identified the file that needs to be tracked with Git LFS it is
 
     This is going to modify the history of the project to include the object that is now tracked in Git LFS.
     
-> Note: You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`.
-
-eg. 
-
-```bash
-$ git lfs migrate import --no-rewrite test.zip *.mp3 *.psd
+> Note: You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd` 
 
 1. To push the changed history run, `git push --force`.
 
