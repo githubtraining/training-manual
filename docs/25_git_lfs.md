@@ -60,10 +60,10 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
 1. Open Git Bash.
 1. Verify that the installation was successful:
 
-```sh
-$ git lfs install
-> Git LFS initialized.
-```
+    ```sh
+    $ git lfs install
+    > Git LFS initialized.
+    ```
 
 ## Tracking files with Git LFS
 
@@ -101,10 +101,10 @@ Now that we have identified the file that needs to be tracked with Git LFS it is
 
 1. In your command line application run, `git lfs migrate import --everything --include="*.dmg"`.
 
-    This is going to modify the history of the project to include the object that is now tracked in Git LFS.
-    
-> Note: You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd` 
+    >! WARNING: This is going to modify the history of the project to include the object that is now tracked in Git LFS.
+
+    > NOTE: You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd`
 
 1. To push the changed history run, `git push --force`.
 
-    This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
+    > NOTE: This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
