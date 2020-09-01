@@ -1,6 +1,6 @@
 ## Git LFS (Large File Storage)
 
-While Git is a great version control system when used for non-binary files, it can sometimes struggle with binary files. One of the best ways to store binary files with the rest of your repository files is by using Git Large File Storage (LFS). Git LFS replaces large files such as audio samples, videos, datasets, and graphics with text pointers inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.
+While Git is a great version control system when used for non-binary files, it can sometimes struggle with binary files. One of the best ways to store binary files with the rest of your repository files is by using Git Large File Storage (LFS). Git LFS replaces large files such as audio samples, videos, datasets, and graphics with a SHA-256 hash pointer known as OID, short for Object ID inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.
 
 > NOTE: The following activities utilize a the [githubschool/lfs-example](https://github.com/githubschool/lfs-example) repository, to follow along with the activities, you will need to Fork the repository to your account.
 
