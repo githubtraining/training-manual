@@ -74,7 +74,7 @@ An unsigned commit on the local downstream repo will not display the "Verified" 
 
 ### Activity: Signing commits with your signing key
 
-1. On your computer, access the `github-games` repository you cloned before.
+1. On your computer, navigate to the `github-games` repository you cloned before.
 1. Create a new branch named `add-author` by entering:
 
     ```bash
