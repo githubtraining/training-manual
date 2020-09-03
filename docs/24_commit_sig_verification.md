@@ -2,11 +2,11 @@
 
 Verifying the authenticity of the source of commits submitted to your repository might be important to you and your team. GitHub supports methods of ensuring that the author of the commit in a pull request was actually created from a trusted source. Commit signature verification is a cryptographically verifiable method of ensuring that commits coming from Mona Lisa are in fact coming from Mona Lisa.
 
-Signed commits can be created by implementing GPG or S/MIME signature that is attached to every commit that you make. Once you have integrated GPG or S/MIME on your machine and account, commits you create will appear like this in the GitHub UI:
+Signed commits can be created by implementing a GPG or S/MIME signature that is attached to every commit that you make on your local machine (downstream repository). Once you have integrated GPG or S/MIME on your machine and account, commits you create locally and push to the upstream will appear like this in the GitHub UI:
 
 ![Signed commit example](https://docs.github.com/assets/images/help/commits/verified-commit.png)
 
-An unverified commit will not display the "Verified" tag in the GitHub interface.
+An unsigned commit on the local downstream repo will not display the "Verified" tag in the GitHub interface. Any commits made directly on the GitHub interface will automatically include the "Verified" tag.
 
 ### Activity: Generate a new GPG key
 
@@ -98,3 +98,5 @@ An unverified commit will not display the "Verified" tag in the GitHub interface
     ```
 
 1. Create a pull request and in the **Commits** tab you will see the **Verified** tag next to your commit.
+
+> **Note:** If you've enforced branch protections in your repository, you can set up required commit signing. When you enable required commit signing on a branch, contributors can only push local commits to the branch if they are signed and verified. Contributors can merge signed and verified commits using the GitHub Enterprise web interface. For more information, see [Configuring protected branches.](https://docs.github.com/enterprise/user/articles/configuring-protected-branches)
