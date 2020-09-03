@@ -10,7 +10,7 @@ An unsigned commit on the local downstream repo will not display the "Verified" 
 
 ### Activity: Generate a new GPG key
 
-> NOTE: Before generating a new GPG key, make sure you have verified your email address. If you haven't verified your email address, you won't be able to sign commits and tags with GPG.
+> **Note:** Before generating a new GPG key, make sure you have verified your email address. If you haven't verified your email address, you won't be able to sign commits and tags with GPG.
 
 1. Download and install the [GPG command line tools](https://www.gnupg.org/download/).
 1. Open your preferred command line application.
@@ -26,7 +26,7 @@ An unsigned commit on the local downstream repo will not display the "Verified" 
 1. Verify your selections are correct.
 1. Enter your user ID information.
 
-> NOTE: When entering your email address, ensure that you enter the verified email address for your GitHub account. To keep your email private, use your GitHub provided `no-reply` email address.
+> **Note:** When entering your email address, ensure that you enter the verified email address for your GitHub account. To keep your email private, use your GitHub-provided private email address.
 
 1. Type a secure passphrase.
 1. Enter the following command to list the GPG key you just created.
