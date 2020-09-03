@@ -20,9 +20,9 @@ An unsigned commit on the local downstream repo will not display the "Verified" 
    gpg --full-generate-key
    ```
 
-1. When prompted, select the type of key you want, press `Enter` to accept the default "RSA and DSA".
+1. When prompted, select the type of key you want, press <kbd>Enter</kbd> to accept the default "RSA and DSA".
 1. Enter the desired key size, your key must be at least `4096` bits.
-1. Enter the length of time the key should be valid, press `Enter` to select the default of "No expiration".
+1. Enter the length of time the key should be valid, press <kbd>Enter</kbd> to select the default of "No expiration".
 1. Verify your selections are correct.
 1. Enter your user ID information.
 
