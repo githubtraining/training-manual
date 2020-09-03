@@ -130,8 +130,8 @@ Now that we have identified the file that needs to be tracked with Git LFS it is
 
 1. Since we modified the local history of our project, we will need to force push our changes to the remote repository:
 
+   !> This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
+
    ```sh
    git push --force
    ```
-
-    !> This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
