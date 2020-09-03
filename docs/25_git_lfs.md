@@ -2,7 +2,7 @@
 
 While Git is a great version control system when used for non-binary files, it can sometimes struggle with binary files. One of the best ways to store binary files with the rest of your repository files is by using Git Large File Storage (LFS). Git LFS replaces large files such as audio samples, videos, datasets, and graphics with a SHA-256 hash pointer known as OID, short for Object ID inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.
 
-> NOTE: The following activities utilize a the [githubschool/lfs-example](https://github.com/githubschool/lfs-example) repository, to follow along with the activities, you will need to Fork the repository to your account.
+> **Note:** The following activities utilize a the [githubschool/lfs-example](https://github.com/githubschool/lfs-example) repository, to follow along with the activities, you will need to Fork the repository to your account.
 
 ### Background story
 
@@ -31,7 +31,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
     cd ~/Downloads/git-lfs-1.X.X
     ```
 
-    > Note: The file path you use after `cd` depends on your operating system, Git LFS version you downloaded, and where you saved the Git LFS download.
+    > **Note:** The file path you use after `cd` depends on your operating system, Git LFS version you downloaded, and where you saved the Git LFS download.
 
 1. To install the file, run this command:
 
@@ -40,7 +40,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
     > Git LFS initialized.
     ```
 
-    > Note: You may have to use `sudo ./install.sh` to install the file.
+    > **Note:** You may have to use `sudo ./install.sh` to install the file.
 
 1. Verify that the installation was successful:
 
@@ -93,7 +93,7 @@ Before we tell Git LFS what files to track, we should identify what files are ta
     *.html 2.5 KB 4/4 files(s) 100%
     ```
 
-> Note: If we only wanted to include files above a specific size, we could modify the previous command with `--above=1mb`
+> **Note:** If we only wanted to include files above a specific size, we could modify the previous command with `--above=1mb`
 
 Now that we have identified the file that needs to be tracked with Git LFS it is time to import it into Git LFS and automatically fix the existing history of the project.
 
@@ -103,8 +103,8 @@ Now that we have identified the file that needs to be tracked with Git LFS it is
 
     !> WARNING: This is going to modify the history of the project to include the object that is now tracked in Git LFS.
 
-    > NOTE: You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd`
+    > **Note:** You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd`
 
 1. To push the changed history run, `git push --force`.
 
-    > NOTE: This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
+    > **Note:** This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
