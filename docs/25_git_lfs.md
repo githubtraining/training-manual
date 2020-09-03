@@ -101,7 +101,7 @@ Now that we have identified the file that needs to be tracked with Git LFS it is
 
 1. In your command line application run, `git lfs migrate import --everything --include="*.dmg"`.
 
-    > WARNING: This is going to modify the history of the project to include the object that is now tracked in Git LFS.
+    !> WARNING: This is going to modify the history of the project to include the object that is now tracked in Git LFS.
 
     > NOTE: You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd`
 
