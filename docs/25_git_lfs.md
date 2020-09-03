@@ -18,10 +18,11 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
 
 1. Navigate to [git-lfs.github.com](https://git-lfs.github.com/) and click **Download**. Alternatively, you can install Git LFS using a package manager:
 
-    - To use [Homebrew](Homebrew), run `brew install git-lfs`.
-    - To use [MacPorts](https://www.macports.org/), run `port install git-lfs`.
+    - [Homebrew](https://brew.sh/): `brew install git-lfs`
 
-    > If you install Git LFS with Homebrew or MacPorts, skip to step six.
+    - [MacPorts](https://www.macports.org/): `port install git-lfs`
+
+    ?> If you install Git LFS with Homebrew or MacPorts, skip to step six.
 
 1. On your computer, locate and unzip the downloaded file.
 1. Open Terminal.
@@ -36,8 +37,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
 1. To install the file, run this command:
 
     ```sh
-    $ ./install.sh
-    > Git LFS initialized.
+    ./install.sh
     ```
 
     > **Note:** You may have to use `sudo ./install.sh` to install the file.
@@ -45,8 +45,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
 1. Verify that the installation was successful:
 
     ```sh
-    $ git lfs install
-    > Git LFS initialized.
+    git lfs install
     ```
 
 #### Windows
@@ -61,8 +60,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
 1. Verify that the installation was successful:
 
     ```sh
-    $ git lfs install
-    > Git LFS initialized.
+    git lfs install
     ```
 
 ## Tracking files with Git LFS
@@ -73,9 +71,20 @@ Before we tell Git LFS what files to track, we should identify what files are ta
 
 1. Open your command line application.
 1. Change your current working directory to the `lfs-example` repository.
-1. Run `git lfs migrate info`, your output should look similar to:
 
-    ```sh
+   ```sh
+   cd lfs-example/
+   ```
+
+1. List the file types taking up the most space in your repository:
+
+   ```sh
+   git lfs migrate info
+   ```
+
+   Your output should look similar to:
+
+    ```shell-session
     migrate: Fetching remote refs: ..., done.
     migrate: Sorting commits: ..., done.
     migrate: Examining commits: 100% (0/0), done.
@@ -83,9 +92,15 @@ Before we tell Git LFS what files to track, we should identify what files are ta
 
     By default, `git lfs migrate info` only displays files that don't exist within commits on the remote repository.
 
-1. Run `git lfs migrate info --everything`, your output should look similar to:
+1. Check for large files in every branch:
 
-    ```sh
+   ```sh
+   git lfs migrate info --everything
+   ```
+
+   Your output should look similar to this:
+
+    ```shell-session
     migrate: Sorting commits: ..., done.
     migrate: Examining commits: 100% (8/8), done.
     *.dmg 18 MB  1/1 files(s) 100%
@@ -93,18 +108,30 @@ Before we tell Git LFS what files to track, we should identify what files are ta
     *.html 2.5 KB 4/4 files(s) 100%
     ```
 
-> **Note:** If we only wanted to include files above a specific size, we could modify the previous command with `--above=1mb`
+   ?> If we only wanted to include files above a specific size, we could modify the previous command with `--above=1mb`
 
 Now that we have identified the file that needs to be tracked with Git LFS it is time to import it into Git LFS and automatically fix the existing history of the project.
 
 ### Activity: Migrating the file to Git LFS
 
-1. In your command line application run, `git lfs migrate import --everything --include="*.dmg"`.
+1. Convert all dmg files in every local branch:
 
-    !> WARNING: This is going to modify the history of the project to include the object that is now tracked in Git LFS.
+   ```sh
+   git lfs migrate import --everything --include="*.dmg"
+   ```
 
-    > **Note:** You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. As an example `git lfs migrate import --no-rewrite test.zip *.mp3 *.psd`
+    !> This is going to modify the history of the project to include the object that is now tracked in Git LFS.
 
-1. To push the changed history run, `git push --force`.
+    > **Note:** You can also migrate files without modifying the existing history of your repository by passing an additional attribute `--no-rewrite`. For example:
+    >
+    > ```sh
+    > git lfs migrate import --no-rewrite test.zip *.mp3 *.psd
+    > ```
 
-    > **Note:** This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
+1. Since we modified the local history of our project, we will need to force push our changes to the remote repository:
+
+   ```sh
+   git push --force
+   ```
+
+    !> This is going to rewrite the commit history of the project. Keep in mind all people working on the project should be made aware that this needs to occur.
