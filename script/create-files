@@ -5,7 +5,7 @@
 # Source it up
 # shellcheck disable=SC1090
 source "$HOME/.trainingmanualrc"
-source "$(dirname "$0")/ask"
+source ./ask
 
 ##################################################
 # You must have a githubteacher token saved to   #
@@ -48,7 +48,7 @@ create_files() {
       new_file_num=$(printf '%02d\n' $((10#$last_file_num + 1))) # two digits (pad with zero if < 10)
       # create file for collaborator
       new_file="$new_file_num-$collaborator.md"
-      cat "slide_template.md" >>"$new_file"
+      cat "../slide_template.md" >>"$new_file"
       # Pick a random image for slide
       random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
       # Check the operating system to determine which commands to run
@@ -228,7 +228,7 @@ if [[ $repo_status == *"Not Found"* ]]; then
 fi
 
 # Array of slide images from file
-IFS=$'\n' read -d "" -ra slide_images <"slide_images.md"
+IFS=$'\n' read -d "" -ra slide_images <"../slide_images.md"
 
 # Get a list of collaborators and commenters
 get_collaborators

@@ -61,7 +61,7 @@ function CleanUpRepo ()
     ###################
     # Remove the repo #
     ###################
-    script/remove-repo "$REPO"
+    ./remove-repo "$REPO"
   fi
 }
 ################################################################################
