@@ -51,7 +51,7 @@ An unsigned commit on the local downstream repo will not display the "Verified" 
 1. Click **New GPG key**.
 1. In the "Key" field, paste the GPG key you copied when you generated your GPG key.
 
-![GPG key entry field](https://docs.github.com/assets/images/help/settings/gpg-key-paste.png)
+   ![GPG key entry field](https://docs.github.com/assets/images/help/settings/gpg-key-paste.png)
 
 1. Click **Add GPG key**.
 1. To confirm the action, enter your GitHub password.
