@@ -40,6 +40,7 @@
   - [GitHub Actions](17_github_actions.md)
   - [Automate Releases](17_actions_activity.md)
   - [.gitignore File](23_gitignore.md)
+  - [Commit signature verification](24_commit_sig_verification.md)
 
 - Appendix
   - **GitHub Resources**
