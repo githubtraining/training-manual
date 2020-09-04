@@ -16,7 +16,7 @@ name: Super Linter
 #############################
 on:
   push:
-    branches-ignore: [master]
+    branches-ignore: [ $default-branch ]
 
 ###############
 # Set the Job #
@@ -45,5 +45,5 @@ jobs:
         uses: github/super-linter@v3
         env:
           VALIDATE_ALL_CODEBASE: false
-          DEFAULT_BRANCH: master
+          DEFAULT_BRANCH: $default-branch
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
