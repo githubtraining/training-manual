@@ -1,4 +1,4 @@
-## Git submodules 
+## Git submodules
 
 In some instances, you might want to store the contents of another repository within your repository based on a specific commit in that other repository's history. Git provides a functionality to cover this need in the form of git submodules. 
 
