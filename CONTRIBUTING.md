@@ -1,7 +1,7 @@
 # Contributing
 
-[fork]: https://github.com/githubtraining/training-manual/fork
-[pr]: https://github.com/githubtraining/training-manual/compare
+[fork]: https://github.com/github/github-training-manual/fork
+[pr]: https://github.com/github/github-training-manual/compare
 [code-of-conduct]: CODE_OF_CONDUCT.md
 
 Hi there! We're thrilled that you'd like to contribute to this project. Your help is essential for keeping it great.

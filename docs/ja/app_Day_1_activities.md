@@ -6,7 +6,7 @@
 
 1. 新しいブランチを作成し、そのブランチにチェックアウトします。`git checkout -b NEWBRANCHNAME（新規ブランチ名）`
 2. `_posts`ディレクトリに新しいファイルを作成する。そのファイル名は、YYYY-MM-DD-username-description.md （年-月-日-ユーザ名-ファイル内容）のようにする。 (日付は、過去の日付でなければならず、将来の日付は表示されません。)
-3. "[Activity: Edit Your File](https://githubtraining.github.io/training-manual/#/ja/06_working_locally)"にある、一緒に作成した同じ実習の指示に従います。
+3. "[Activity: Edit Your File](https://github.github.io/github-training-manual/#/ja/06_working_locally)"にある、一緒に作成した同じ実習の指示に従います。
 4. キャプションをただ追加するのではなく、イメージリストから新しいイメージを見つけ、テンプレートへの入力に使用します。 ``` \--- layout: slide \---
     
         IMAGEURL

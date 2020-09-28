@@ -131,7 +131,7 @@ function DuplicateRepo() {
   #####################
   # Remove local repo #
   #####################
-  echo "Clone $REPO_NAME template from githubtraining org..."
+  echo "Clone $REPO_NAME template from $CLASS_ORG org..."
   rm -rf "$REPO_NAME"
 
   ##################
@@ -139,7 +139,7 @@ function DuplicateRepo() {
   ##################
   echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
   echo "The timeout may take some time..."
-  git clone --bare "https://github.com/githubtraining/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+  git clone --bare "$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
 
   #######################
   # Load the error code #
@@ -165,7 +165,7 @@ function DuplicateRepo() {
     # Check the shell for errors #
     ##############################
     if [ $ERROR_CODE -ne 0 ]; then
-      echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/$REPO_NAME and upload it to your GHE instance."
+      echo "!!! Couldn't clone template repo at all. Please grab a copy from $ROOT_URL/$CLASS_ORG/$REPO_NAME and upload it to your GHE instance."
       exit 1
     fi
   fi
