@@ -3,6 +3,7 @@
 Git stash takes the changes you have made to your working tree ("dirty") and puts them in a holding pattern until you are ready to re-apply them so you have a fresh working directory ("clean").
 
 Common use cases for using git stash are
+
 - Needing to change focus from the task you are currently working on to a new task
 - Forgetting to switch working branches
 - Needing to apply changes to multiple branches
@@ -18,6 +19,7 @@ The `git stash` command enables you to store changes that live in the working di
 You can have multiple stashes, and they can be referenced by specifying the stash index or they can be named using `reflog` syntax (example: `stash@{2.hours.ago}`). You can also add a descriptive message to stashes with `git stash save "message"`. Once you are ready to retrieve those changes, you can apply and delete them with `git pop` or apply and continue to store them with `git stash apply`.
 
 #### Commands
+
 - `git stash`
   - Use this when you want to record the current working state, but want a clean working directory
   - This will "stash" your local modifications and revert the working directory to match the `HEAD` commit
