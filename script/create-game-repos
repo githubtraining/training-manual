@@ -82,7 +82,7 @@ function GetNames() {
       CreateRepo "$USER_NAME"
     else
       # Check before cleaning up and recreating any duplicate repos; default to 'yes' if no answer is given
-      if ask "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate?" Y; then
+      if ask "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate?" N; then
         echo "Deleting and recreating $CLASS_ORG/github-games-$USER_NAME repo..."
         curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" >> log.out 2>&1
         CreateRepo "$USER_NAME"
