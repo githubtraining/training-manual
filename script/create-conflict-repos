@@ -8,6 +8,8 @@
 # saved to your ENV variables in order to use this script #
 ###########################################################
 
+source ./ask
+
 # GLOBALS
 COLLAB_REPO=$1
 
@@ -66,9 +68,7 @@ function GetNames() {
       CreateRepo "$USER_NAME"
     else
       # Check before cleaning up and recreating any duplicate repos
-      echo "A conflict-practice repo already exists for $USER_NAME. Is OK to delete and recreate? (Y or N)"
-      read -r DELETE_OK
-      if echo "$DELETE_OK" | grep -iq "^y"; then
+      if ask "A conflict-practice repo already exists for $USER_NAME. Is OK to delete and recreate?" N; then
         echo "Deleting and recreating $CLASS_ORG/conflict-practice-$USER_NAME repo..."
         curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/conflict-practice-$USER_NAME" >> log.out 2>&1
         CreateRepo "$USER_NAME"

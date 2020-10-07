@@ -8,21 +8,21 @@
 # Your token must have DELETE permissions.                #
 ###########################################################
 
+# cd into the script directory so relative
+# paths can be used in the functions above
+cd "${BASH_SOURCE%/*}/" || exit
+
+source ./ask
+
 function ResetActivity() {
   # Pull in the vars
   REPO_NAME=$1
   DEFAULT_BRANCH=$2
 
   # Make sure no one is teaching class
-  echo "Is anyone teaching a class right now using $TOKEN_OWNER? (Y or N)"
-
-  # Read in the var
-  read -r CLASS_TIME
-
-  # Check the result
-  if echo "$CLASS_TIME" | grep -iq "^y"; then
+  if ask "Is anyone teaching a class right now using $TOKEN_OWNER?"; then
     # Try again later
-    echo "This is not a good time to run this script. Wait until class is over and try again"
+    echo "This is not a good time to run this script. Wait until class is over and try again."
     exit 0
   else
     # Delete the repo
