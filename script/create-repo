@@ -1,40 +1,25 @@
 #!/usr/bin/env bash
-
-################################################################################
-############################## Create Repo #####################################
-################################################################################
+#
+# Create Repo
 
 ###########################################################
 # You must have a githubteacher token                     #
 # saved to your ENV variables in order to use this script #
 ###########################################################
 
-###########
-# GLOBALS #
-###########
+# GLOBALS
 TYPE=$1
 REPO_NAME=$2
 COLLAB=$3
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function CheckAvail #######################################################
 function CheckAvail() {
-  #######################
-  # Get the repo status #
-  #######################
+  # Get the repo status
   repoStatus=$(curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}") >> log.out 2>&1
 
-  ####################
-  # Check the status #
-  ####################
+  # Check the status
   if echo "${repoStatus}" | grep -iq "404"; then
     echo "Cool, that name is available."
-    ###################
-    # Create the repo #
-    ###################
+    # Create the repo
     CreateRepo
   else
     echo "Oops, that repository name is already taken."
@@ -42,8 +27,7 @@ function CheckAvail() {
     exit 2
   fi
 }
-################################################################################
-#### Function CreateRepo #######################################################
+
 function CreateRepo() {
   #create the repository on ${INSTANCE_URL}
   echo "Creating Repo:  https://${ROOT_URL}/${CLASS_ORG}/${REPO_NAME}"
@@ -53,78 +37,50 @@ function CreateRepo() {
     curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
   fi
 
-  ######################
-  # Wait to let finish #
-  ######################
+  # Wait to let finish
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
 
-  #####################
-  # add collaborators #
-  #####################
+  # add collaborators
   curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X PUT "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}/collaborators/${COLLAB}" >> log.out 2>&1
   CloneRepo
 }
-################################################################################
-#### Function CloneRepo ########################################################
+
 function CloneRepo() {
-  ###########################
-  # create the repo locally #
-  ###########################
+  # create the repo locally
   echo "Trying to clone a template repo from $ROOT_URL."
 
-  ##################
-  # Check the root #
-  ##################
+  # Check the root
   if [[ "$ROOT_URL" == "github.com" ]]; then
-    ############
-    # Clone it #
-    ############
+    # Clone it
     git clone --bare "https://github.com/githubtraining/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
   else
     echo "Cloning from Enterprise Instance"
-    ############
-    # Clone it #
-    ############
+    # Clone it
     git clone --bare "https://${TOKEN_OWNER}:${TEACHER_PAT}@${ROOT_URL}/${CLASS_ORG}/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
 
-    #######################
-    # Load the error code #
-    #######################
+    # Load the error code
     ERROR_CODE=$?
 
-    ##############################
-    # Check the shell for errors #
-    ##############################
+    # Check the shell for errors
     if [ $ERROR_CODE -ne 0 ]; then
       echo "!!! Couldn't clone template repo at all. Please grab a copy from https://github.com/githubtraining/${TYPE} and upload it to your GHE instance."
       exit 1
     fi
   fi
 
-  ###########
-  # Push it #
-  ###########
+  # Push it
   pushd "${REPO_NAME}" >> log.out 2>&1 || return
   git push --mirror "https://${TOKEN_OWNER}:${TEACHER_PAT}@$ROOT_URL/${CLASS_ORG}/${REPO_NAME}" >> log.out 2>&1
 
-  ##################
-  # Wait to finish #
-  ##################
+  # Wait to finish
   echo "Resting 5 more seconds to allow push to resolve"
   sleep 5
   popd || return
 
-  #############
-  # Remove it #
-  #############
+  # Remove it
   rm -rf "${REPO_NAME}"
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-########################
-# Check the avilablity #
-########################
+# Check the avilablity
 CheckAvail
