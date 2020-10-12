@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-
-################################################################################
-############################ Grade Client Repo #################################
-################################################################################
+#
+# Grade Client Repo
 
 ###########################################################
 # NOTE:                                                   #
@@ -19,159 +17,112 @@ MASTER_ISSUE=''     # Issue number to check
 OPEN_PR_ARRAY=()    # Array of open PR's
 COMMENTORS_ARRAY=() # Array of all commentors
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function GetInputVars #####################################################
 function GetInputVars() {
   echo "-----------------------------------"
   echo "What is the name of the GitHub ORG? (ex. github-training)"
-  ########################
-  # Read the collab Org #
-  ########################
+
+  # Read the collab Org
   read -r COLLAB_ORG
 
-  ############################################
-  # Clean any whitespace that may be entered #
-  ############################################
+  # Clean any whitespace that may be entered
   COLLAB_ORG_WHITESPACE="$(echo -e "$COLLAB_ORG" | tr -d '[:space:]')"
   COLLAB_ORG=$COLLAB_ORG_WHITESPACE
 
   echo "-----------------------------------"
   echo "What is the name of the Github REPO? (ex. training-class)"
-  ########################
-  # Read the collab REPO #
-  ########################
+
+  # Read the collab REPO
   read -r COLLAB_REPO
 
-  ############################################
-  # Clean any whitespace that may be entered #
-  ############################################
+  # Clean any whitespace that may be entered
   COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
   COLLAB_REPO=$COLLAB_REPO_WHITESPACE
 
   echo "-----------------------------------"
   echo "What is the number of the GitHub ISSUE? (ex. 1)"
-  #########################
-  # Read the collab ISSUE #
-  #########################
+
+  # Read the collab ISSUE
   read -r MASTER_ISSUE
 
-  ############################
-  # Validate we got a number #
-  ############################
+  # Validate we got a number
   REGEX='^[0-9]+$'
   if ! [[ $MASTER_ISSUE =~ $REGEX ]]; then
     echo "ERROR: [$MASTER_ISSUE] is not a number!"
     exit 1
   fi
 }
-################################################################################
-#### Function GetIssueCommenters ###############################################
+
 function GetIssueCommenters() {
-  ###########################################
-  # Get array of all commentors in an issue #
-  ###########################################
+  # Get array of all commentors in an issue
   IFS=" " read -ra COMMENTORS_ARRAY <<<"$(
     curl --fail -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/issues/$MASTER_ISSUE/comments" \
       -H 'accept: application/vnd.github.v3+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' --data '{}' | jq '.[] | .user.login'
   )" >> log.out 2>&1
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -ne 0 ]; then
-    #########
-    # Error #
-    #########
+    # Error
     echo "ERROR! Failed to gain list of commentors!"
     echo "ERROR:[${COMMENTORS_ARRAY[*]}]"
     exit 1
   fi
 
-  #########################################
-  # Get the length of the commentor array #
-  #########################################
+  # Get the length of the commentor array
   COMMENTS_FOUND="${#COMMENTORS_ARRAY[@]}"
   echo "Found:[$COMMENTS_FOUND] comments on issue"
 
-  #######################
-  # Warn on no comments #
-  #######################
+  # Warn on no comments
   if [ "$COMMENTS_FOUND" -eq 0 ]; then
     echo "WARN! no comments found on issue!"
   fi
 }
-################################################################################
-#### Function GetOpenPRS #######################################################
+
 function GetOpenPRS() {
-  #################################################
-  # Get a list of all open PRs on the master repo #
-  #################################################
+  # Get a list of all open PRs on the master repo
   IFS=" " read -ra OPEN_PR_ARRAY <<<"$(
     curl -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \
       -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' \
       --data '{ "state": "open", "sort": "created", "direction": "desc" }' | jq '.[] | .user.login'
   )" >> log.out 2>&1
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -ne 0 ]; then
-    #########
-    # Error #
-    #########
+    # Error
     echo "ERROR! Failed to gain list of open PR's!"
     echo "ERROR:[${OPEN_PR_ARRAY[*]}]"
     exit 1
   fi
 
-  #######################################
-  # Get the length of the Open-PR array #
-  #######################################
+  # Get the length of the Open-PR array
   COMMENTS_FOUND="${#OPEN_PR_ARRAY[@]}"
   echo "Found:[$COMMENTS_FOUND] open PR's"
 }
-################################################################################
-#### Function CreateObjects ####################################################
+
 function CreateObjects() {
-  ##################################
-  # Clean the arrays of duplicates #
-  ##################################
+  # Clean the arrays of duplicates
   COMMENTORS_ARRAY_CLEAN="$(echo "${COMMENTORS_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')"
   OPEN_PR_ARRAY_CLEAN="$(echo "${OPEN_PR_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' ')"
   CONCAT_ARRAY=("${COMMENTORS_ARRAY_CLEAN[@]}" "${OPEN_PR_ARRAY_CLEAN[@]}")
 
-  ############################
-  # Store Intersection ARRAY #
-  ############################
+  # Store Intersection ARRAY
   INTERSECTION_ARRAY="$(printf '%s\n' "${CONCAT_ARRAY[@]}" | awk '!($0 in seen){seen[$0];next} 1')"
 
   ####################
   # Debug statements #
   ####################
-  #echo "DEBUG: COMMENTORS_ARRAY_CLEAN:[${COMMENTORS_ARRAY_CLEAN[*]}]"
-  #echo "DEBUG: OPEN_PR_ARRAY_CLEAN:[${OPEN_PR_ARRAY_CLEAN[*]}]"
-  #echo "DEBUG: INTERSECTION_ARRAY:[${INTERSECTION_ARRAY[*]}]"
+  # echo "DEBUG: COMMENTORS_ARRAY_CLEAN:[${COMMENTORS_ARRAY_CLEAN[*]}]"
+  # echo "DEBUG: OPEN_PR_ARRAY_CLEAN:[${OPEN_PR_ARRAY_CLEAN[*]}]"
+  # echo "DEBUG: INTERSECTION_ARRAY:[${INTERSECTION_ARRAY[*]}]"
 
-  ##########################################
-  # Users who have open PR and a commentor #
-  ##########################################
+  # Users who have open PR and a commentor
   for USER in "${INTERSECTION_ARRAY[@]}"; do
-    #########################################
-    # create the success file _grades/_date #
-    #########################################
+    # create the success file _grades/_date
     # Remove whitespace
     USER=$(echo "$USER" | (sed -e 's/^"//' -e 's/"$//'))
     echo "---" >> "caption-activity-$USER.yml"
@@ -182,119 +133,74 @@ function CreateObjects() {
     # Does the file already exist?
     STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | grep "^Status:") >> log.out 2>&1
     if echo "$STATUS" | grep -iq "404"; then
-      ###############################
-      # Create the file on the repo #
-      ###############################
+      # Create the file on the repo
       echo "Creating file for:[$USER]"
       curl --fail -k -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >> log.out 2>&1
 
-      #######################
-      # Load the error code #
-      #######################
+      # Load the error code
       ERROR_CODE=$?
 
-      ##############################
-      # Check the shell for errors #
-      ##############################
+      # Check the shell for errors
       if [ $ERROR_CODE -ne 0 ]; then
-        #########
-        # Error #
-        #########
+        # Error
         echo "ERROR! Failed to create file!"
         exit 1
       fi
     else
-      ###############
-      # Get the sha #
-      ###############
+      # Get the sha
       SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | jq .sha) >> log.out 2>&1
 
-      #######################
-      # Load the error code #
-      #######################
+      # Load the error code
       ERROR_CODE=$?
 
-      ##############################
-      # Check the shell for errors #
-      ##############################
+      # Check the shell for errors
       if [ $ERROR_CODE -ne 0 ]; then
-        #########
-        # Error #
-        #########
+        # Error
         echo "ERROR! Failed to get SHA!"
         echo "ERROR:[$SHA]"
         exit 1
       else
-        ##################################
-        # We need to go replace the file #
-        ##################################
+        # We need to go replace the file
         echo "Replacing the file:[caption-activity-$USER.yml] at sha:[$SHA]"
       fi
 
-      ####################
-      # Replace the file #
-      ####################
+      # Replace the file
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >> log.out 2>&1
 
-      #######################
-      # Load the error code #
-      #######################
+      # Load the error code
       ERROR_CODE=$?
 
-      ##############################
-      # Check the shell for errors #
-      ##############################
+      # Check the shell for errors
       if [ $ERROR_CODE -ne 0 ]; then
-        #########
-        # Error #
-        #########
+        # Error
         echo "ERROR! Failed to replace the file!"
         exit 1
       fi
     fi
 
-    #########################################
-    # and delete the temporary grading file #
-    #########################################
+    # and delete the temporary grading file
     rm -f "caption-activity-$USER.yml"
 
-    #######################
-    # Load the error code #
-    #######################
+    # Load the error code
     ERROR_CODE=$?
 
-    ##############################
-    # Check the shell for errors #
-    ##############################
+    # Check the shell for errors
     if [ $ERROR_CODE -ne 0 ]; then
-      #########
-      # Error #
-      #########
+      # Error
       echo "ERROR! Failed to remove the file!"
       exit 1
     fi
   done
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-###########################
-# Get the user Input Info #
-###########################
+# Get the user Input Info
 GetInputVars
 
-####################
-# Get all open PRs #
-####################
+# Get all open PRs
 GetOpenPRS
 
-###########################
-# Get Commenters on Issue #
-###########################
+# Get Commenters on Issue
 GetIssueCommenters
 
-##################
-# Create Objects #
-##################
+# Create Objects
 CreateObjects
