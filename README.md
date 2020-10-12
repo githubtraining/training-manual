@@ -2,7 +2,7 @@
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
 
-Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by the [GitHub Professional Services](https://services.github.com/) team during our official GitHub training courses and the scripts used when teaching.
+Hi there! Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by the [GitHub Professional Services](https://services.github.com/) team during our official GitHub training courses and the scripts used when teaching.
 
 The content is all written in [Markdown](https://guides.github.com/features/mastering-markdown/), and the scripts are shell scripts.
 
