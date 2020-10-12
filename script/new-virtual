@@ -1,52 +1,34 @@
 #!/usr/bin/env bash
-################################################################################
-############################## New Virtual #####################################
-################################################################################
+#
+# New Virtual
 
 ###########################################################
 # You must have a githubteacher token                     #
 # saved to your ENV variables in order to use this script #
 ###########################################################
 
-###########
-# GLOBALS #
-###########
+# GLOBALS
 REPO_NAME=$1
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function GetDetails #######################################################
 function GetDetails ()
 {
-  ####################
-  # Get them details #
-  ####################
+  # Get them details
   echo "Let's add the class details to the README:"
   echo "List the class dates."
   echo "Example: March 10 - 13, 2017."
-  ###################
-  # Read in the var #
-  ###################
+  # Read in the var
   read -r CLASS_DATE
 
   echo "Who is teaching? Without the @."
-  ###################
-  # Read in the var #
-  ###################
+  # Read in the var
   read -r TEACHER
 
   ./create-repo caption-this "$REPO_NAME" "$TEACHER"
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -eq 0 ]; then
     git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
     pushd "$REPO_NAME" || return
@@ -78,9 +60,7 @@ function GetDetails ()
     git config --local --unset user.email >> log.out 2>&1
     popd || return
     rm -rf "$REPO_NAME" >> log.out 2>&1
-    ########################
-    # Call the pretty repo #
-    ########################
+    # Call the pretty repo
     PrettyRepo "$TEACHER"
   elif [ $ERROR_CODE -eq 2 ]; then
     echo "!!! Please try running option 1 again and picking a unique repository name."
@@ -88,8 +68,7 @@ function GetDetails ()
     echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
   fi
 }
-################################################################################
-#### Function PrettyRepo #######################################################
+
 function PrettyRepo ()
 {
   TEACHER=$1
@@ -115,23 +94,15 @@ function PrettyRepo ()
   curl -s -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST "https://$INSTANCE_URL/projects/columns/$COLUMN_ONE/cards" >> log.out 2>&1
   FinishStrong
 }
-################################################################################
-#### Function FinishStrong #####################################################
+
 function FinishStrong ()
 {
   echo "ALL DONE: Remember to enable GitHub Pages on master."
   echo "Good luck with class!"
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-##########
-# Header #
-##########
+# Header
 echo "This script creates a new caption-this repository"
 
-###################
-# Get the details #
-###################
+# Get the details
 GetDetails
