@@ -1,71 +1,49 @@
 #!/usr/bin/env bash
-
-################################################################################
-########################## Check Conflicts Repo ################################
-################################################################################
+#
+# Check Conflicts Repo
 
 ###########################################################
 # NOTE:                                                   #
 # You must have a githubteacher token                     #
 # saved to your ENV variables in order to use this script #
 ###########################################################
+
 COLLAB_REPO=$1
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function ContainsElement ##################################################
 function ContainsElement() {
   local e
   for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
   return 0
 }
-################################################################################
-#### Function GetNames #########################################################
+
 function GetNames() {
-  ########################################
-  # Get name of collaborators from day 1 #
-  ########################################
+  # Get name of collaborators from day 1
   COLLABS=$(curl --fail -s -k -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -ne 0 ]; then
     echo "ERROR! Failed to get collabs!"
     echo "ERROR:[$COLLABS]"
     exit 1
   fi
 
-  ########################
-  # Loop through collabs #
-  ########################
+  # Loop through collabs
   for i in "${COLLABS[@]}"; do
     if
-      #####################
-      # Check for element #
-      #####################
+      # Check for element
       ContainsElement "$i" "$OWNERS_ARRAY"
     then
-      ##################
-      # Check the repo #
-      ##################
+      # Check the repo
       CheckRepo "$i"
     fi
   done
 }
-################################################################################
-#### Function CheckRepo ########################################################
+
 function CheckRepo() {
-  ############################
-  # Name of the student repo #
-  ############################
+  # Name of the student repo
   STUDENT=$1
   # Clean it up
   STUDENT=$(echo "$STUDENT" | (sed -e 's/^"//' -e 's/"$//'))
@@ -140,37 +118,22 @@ function CheckRepo() {
   # Does the file already exist?
   STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" | grep "^Status:") >> log.out 2>&1
   if echo "$STATUS" | grep -iq "404"; then
-    ###############################
-    # Create the file on the repo #
-    ###############################
+    # Create the file on the repo
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" >> log.out 2>&1
   else
-    ###############
-    # Get the sha #
-    ###############
+    # Get the sha
     SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" | jq .sha) >> log.out 2>&1
     echo "Replacing the file at SHA: $SHA"
-    ####################
-    # Replace the file #
-    ####################
+    # Replace the file
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/conflict-activity-$STUDENT.json\", \"message\": \"Graded conflict activity for $STUDENT\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/conflict-activity-$STUDENT.json" >> log.out 2>&1
   fi
 
-  #########################
-  # Remove the local file #
-  #########################
+  # Remove the local file
   rm "conflict-activity-$STUDENT.json"
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-########################################
-# Get name of collaborators from day 1 #
-########################################
+# Get name of collaborators from day 1
 OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
 
-######################
-# Get the user names #
-######################
+# Get the user names
 GetNames
