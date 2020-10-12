@@ -8,6 +8,7 @@
 # saved to your ENV variables in order to use this script #
 ###########################################################
 
+# shellcheck source=script/ask
 source ./ask
 
 # GLOBALS

@@ -12,6 +12,7 @@
 # paths can be used in the functions above
 cd "${BASH_SOURCE%/*}/" || exit
 
+# shellcheck source=script/ask
 source ./ask
 
 function ResetActivity() {

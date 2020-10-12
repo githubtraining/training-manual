@@ -5,6 +5,7 @@
 # Source it up
 # shellcheck disable=SC1090
 source "$HOME/.trainingmanualrc"
+# shellcheck source=script/ask
 source ./ask
 
 ##################################################
