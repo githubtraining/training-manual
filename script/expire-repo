@@ -1,32 +1,19 @@
 #!/usr/bin/env bash
-
-################################################################################
-############################## Expire Repo #####################################
-################################################################################
-
-#set -x
+#
+# Expire Repo
 
 ###########################################################
 # you must have a GITHUBTEACHER_TOKEN                     #
 # saved to your ENV variables in order to use this script #
 ###########################################################
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function GetPages #########################################################
 function GetPages ()
 {
-  ############################
-  # Get tyhr number of pages #
-  ############################
+  # Get tyhr number of pages
   # shellcheck disable=SC1102
   NUM_PAGES=$((curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
 
-  ####################
-  # Check the return #
-  ####################
+  # Check the return
   if [ -z "$NUM_PAGES" ]
     then
       NUM_PAGES=1
@@ -35,29 +22,22 @@ function GetPages ()
       echo "There are $NUM_PAGES pages"
   fi
 
-  ########################
-  # Go through the pages #
-  ########################
+  # Go through the pages
   while [ $NUM_PAGES -gt 0 ]; do
     echo "Getting results for page $NUM_PAGES"
-    #################
-    # Get the repos #
-    #################
+    # Get the repos
     GetRepos "$NUM_PAGES"
     (( NUM_PAGES=NUM_PAGES-1 ))
 
   done
 }
-################################################################################
-#### Function GetRepos #########################################################
+
 function GetRepos ()
 {
-  ###########################
-  # Read in the page number #
-  ###########################
+  # Read in the page number
   PAGE_NUM=$1
 
-  #get repos in $CLASS_ORG org that start with conflict-practice or github-games
+  # get repos in $CLASS_ORG org that start with conflict-practice or github-games
   REPO_LIST=$(curl -s -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos?page=$PAGE_NUM" | jq '.[] | .name')
   for i in "${REPO_LIST[@]}"
   do
@@ -65,28 +45,21 @@ function GetRepos ()
     if echo "$i" | grep -iq -e "conflict-practice-" -e "github-games-"
     then
       echo "Let's see when $i was created"
-      ################
-      # Get the date #
-      ################
+      # Get the date
       CheckDates "$i"
     fi
   done
 }
-################################################################################
-#### Function CheckDates #######################################################
+
 function CheckDates ()
 {
-  ####################
-  # Pull in the vars #
-  ####################
+  # Pull in the vars
   REPO_NAME=$1
 
-  ####################
-  # Get created time #
-  ####################
+  # Get created time
   # shellcheck disable=SC1102
   CREATED=$((curl -s -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >> log.out 2>&1
-  #if they were created more than 10 days ago, expire them
+  # if they were created more than 10 days ago, expire them
   if [[ "$COMP_DATE" > "$CREATED" ]];
   then
     echo "EXPIRED: $REPO_NAME was created on $CREATED"
@@ -95,23 +68,16 @@ function CheckDates ()
     echo "KEEP: $REPO_NAME was created on $CREATED"
   fi
 }
-################################################################################
-#### Function BeNice ###########################################################
+
 function BeNice ()
 {
-  ####################
-  # Pull in the vars #
-  ####################
+  # Pull in the vars
   REPO_NAME=$1
 
-  ################
-  # Get the user #
-  ################
+  # Get the user
   USER=$(echo "$REPO_NAME" | (sed -n -e 's/.*-//p'))
 
-  ##################
-  # Check the name #
-  ##################
+  # Check the name
   if echo "$REPO_NAME" | grep -iq -e "github-games-"
   then
     TEMPLATE="github-games [here](https://github.com/githubtraining/github-games)"
@@ -119,25 +85,16 @@ function BeNice ()
     TEMPLATE="polygons (our conflict practice activity) [here](https://github.com/githubtraining/polygons)"
   fi
   curl -s -i -H "Authorization: token $TEACHER_PAT" -d "{ \"title\": \"Thank you for attending GitHub Training\", \"body\": \"@$USER We hope you enjoyed the :octocat: class and we look forward to seeing you in another [class or webinar](https://services.github.com/training/#public) soon. To keep things tidy in the githubschool organization, we are going to remove your practice repository.\n\nIf you would like to revisit these activities in the future, you can access the template repository for $TEMPLATE.\n\nStop by and see us sometime at [services.github.com](https://services.github.com), or take our newest self-paced courses at [lab.github.com](https://lab.github.com). :wave: Until we see you again, good luck in your GitHub adventures :rocket:.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >> log.out 2>&1
-  ###################
-  # Delete the repo #
-  ###################
+  # Delete the repo
   ./remove-repo "$REPO_NAME"
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-################
-# Check the OS #
-################
+# Check the OS
 if [ "$OSTYPE" = "msys" ]; then
    COMP_DATE=$(date --date='10 days ago'  +%Y-%m-%dT%H:%M:%S)
 else
    COMP_DATE=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
 fi
 
-#################
-# Get the pages #
-#################
+# Get the pages
 GetPages
