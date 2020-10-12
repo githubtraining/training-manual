@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
+#
+# Class Setup
 
-################################################################################
-############################### Class Setup ####################################
-################################################################################
-
-###########
-# GLOBALS #
-###########
+# GLOBALS
 NEW_NAME=''                 # Token owners name
 NEW_TOKEN=''                # Token owners PAT
 NEW_URL=''                  # Instance URL to GHE
@@ -14,25 +10,14 @@ NEW_ORG=''                  # New instance GHE Organization
 SHELL=''                    # What shell the user is using
 RC_FILE='.trainingmanualrc' # RC file to load/pull data
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function ValidateJQ #######################################################
 function ValidateJQ() {
-  #########################
-  # Validate jq installed #
-  #########################
+  # Validate jq installed
   VALIDATE_JQ_CMD=$(command -v jq 2>&1)
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -ne 0 ]; then
     echo "ERROR! Failed to find [jq] installed on system!"
     echo "ERROR:[$VALIDATE_JQ_CMD]"
@@ -41,76 +26,58 @@ function ValidateJQ() {
     exit 1
   fi
 }
-################################################################################
-#### Function CreateRCFile #####################################################
+
 function CreateRCFile() {
-  ###########################
-  # Create training RC file #
-  ###########################
+  # Create training RC file
   echo "==============================================="
   echo "We'll create a file to store all training related configs."
   echo "Checking for and creating [$HOME/$RC_FILE]"
 
-  ######################
-  # See if file exists #
-  ######################
+  # See if file exists
   if [ ! -f "$HOME/$RC_FILE" ]; then
     echo "failed to find $HOME/$RC_FILE"
     echo "Going to create file for you..."
     CREATE_FILE=$(touch "$HOME/$RC_FILE" 2>&1)
 
-    #######################
-    # Load the error code #
-    #######################
+    # Load the error code
     ERROR_CODE=$?
 
-    ##############################
-    # Check the shell for errors #
-    ##############################
+    # Check the shell for errors
     if [ $ERROR_CODE -ne 0 ]; then
       echo "ERROR! Failed to create file!"
       echo "ERROR:[$CREATE_FILE]"
       exit 1
     fi
-  ###########################
-  # The file already exists #
-  ###########################
+
+  # The file already exists
   else
     echo "The file:[$HOME/$RC_FILE] exists in the system."
     echo "Would you like to recreate the file?"
     echo "(Y)es or (N)o, followed by [ENTER]"
-    ##################
-    # Read the input #
-    ##################
+
+    # Read the input
     read -r CREATE_FILE
 
     if [[ "$CREATE_FILE" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-      ########################
-      # We have a yes answer #
-      ########################
+      # We have a yes answer
       echo "Deleteting the file to recreate it..."
       DELETE_AND_CREATE_FILE=$(
         rm -f "$HOME/$RC_FILE"
         touch "$HOME/$RC_FILE" 2>&1
       )
 
-      #######################
-      # Load the error code #
-      #######################
+      # Load the error code
       ERROR_CODE=$?
 
-      ##############################
-      # Check the shell for errors #
-      ##############################
+      # Check the shell for errors
       if [ $ERROR_CODE -ne 0 ]; then
         echo "ERROR! Failed to delete and recreate file!"
         echo "ERROR:[$DELETE_AND_CREATE_FILE]"
         exit 1
       fi
+
     else
-      #################################
-      # Leaving current file in place #
-      #################################
+      # Leaving current file in place
       echo "Leaving current file in place..."
       echo ""
       echo "Current Env Vars:"
@@ -128,9 +95,7 @@ function CreateRCFile() {
       echo "please destroy the file and restart your shell."
       echo ""
 
-      ####################################
-      # Exit the shell - we're done here #
-      ####################################
+      # Exit the shell - we're done here
       exit 0
     fi
   fi
@@ -139,84 +104,62 @@ function CreateRCFile() {
   echo ""
   echo "==============================================="
 }
-################################################################################
-#### Function TokenOwner #######################################################
+
 function TokenOwner() {
-  #######################
-  # Get the token Owner #
-  #######################
+  # Get the token Owner
   echo "It looks like we'll need to add the TOKEN_OWNER var"
   echo "to your ~/$RC_FILE. Please type the github username"
   echo "you'll be using today and we'll add this automatically. Remember, this"
   echo "user will need to have full admin access to the teaching organization."
-  #####################
-  # Read in the input #
-  #####################
+
+  # Read in the input
   read -r NEW_NAME
 
-  #############################
-  # Write the var to the file #
-  #############################
+  # Write the var to the file
   echo "export TOKEN_OWNER='$NEW_NAME'" >> "$HOME/$RC_FILE"
   echo "TOKEN_OWNER = $TOKEN_OWNER"
   echo "==============================================="
 }
-################################################################################
-#### Function DemoPAT ##########################################################
+
 function DemoPAT() {
-  ##############################
-  # See if we have teacher PAT #
-  ##############################
+  # See if we have teacher PAT
   echo "It looks like we need to add the"
   echo "TEACHER_PAT var to your ~/$RC_FILE."
   echo "Please generate a Personal Access token on the"
   echo "account you'll be teaching from and paste it here."
   echo "(Note: the token will not be displayed when entered)"
-  #####################
-  # Read in the token #
-  #####################
+
+  # Read in the token
   read -r -s NEW_TOKEN
 
-  #############################
-  # Write the var to the file #
-  #############################
+  # Write the var to the file
   echo "export TEACHER_PAT='$NEW_TOKEN'" >> "$HOME/$RC_FILE"
   echo "TEACHER_PAT=[NOT DISPLAYED]"
   echo "==============================================="
 }
-################################################################################
-#### Function InstanceURL ######################################################
+
 function InstanceURL() {
-  ###############################
-  # See if we have instance URL #
-  ###############################
+  # See if we have instance URL
   echo "It looks like you need to add the"
   echo "INSTANCE_URL var to your ~/$RC_FILE. Please type the"
   echo "root endpoint for your github instance."
   echo "For example: api.github.com OR github.mycompany.com/api/v3"
-  ##################
-  # Read the input #
-  ##################
+
+  # Read the input
   read -r NEW_URL
   echo "Checking if '$NEW_URL' is accessible... (this may take several moments)"
   curl -s "$NEW_URL" >> log.out 2>&1
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -eq 0 ]; then
     echo "API endpoint verified"
     echo "export INSTANCE_URL='$NEW_URL'" >> "$HOME/$RC_FILE"
   else
     echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
-    ###################
-    # Check with Auth #
-    ###################
+    # Check with Auth
     echo "Checking if '$NEW_URL' is accessible with authentication..."
     if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]; then
       echo "API endpoint + authentication verified"
@@ -227,15 +170,11 @@ function InstanceURL() {
     fi
   fi
 
-  #########################
-  # Set the vars to empty #
-  #########################
+  # Set the vars to empty
   ROOT_URL=''
   INSTANCE_URL=''
 
-  #######################
-  # Check if github.com #
-  #######################
+  # Check if github.com
   if echo "$NEW_URL" | grep -iq "\<api.github.com\>"; then
     ROOT_URL="github.com"
     INSTANCE_URL="api.github.com"
@@ -247,31 +186,23 @@ function InstanceURL() {
     echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
   fi
 
-  ##########
-  # Prints #
-  ##########
+  # Prints
   echo "INSTANCE_URL=[$INSTANCE_URL]"
   echo "ROOT_URL=[$ROOT_URL]"
   echo "==============================================="
 }
-################################################################################
-#### Function ClassOrg #########################################################
+
 function ClassOrg() {
-  ##########################
-  # See if we have the Org #
-  ##########################
+  # See if we have the Org
   echo "It looks like you need to add the CLASS_ORG var"
   echo "to your ~/$RC_FILE. Please type the organization name"
   echo "used for github training on your instance."
   echo "For example: githubschool"
-  ##################
-  # Read the input #
-  ##################
+
+  # Read the input
   read -r NEW_ORG
 
-  ###################
-  # Validate access #
-  ###################
+  # Validate access
   echo "Checking if $NEW_ORG is accessible via the API..."
   if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/orgs/$NEW_ORG" | jq .message) = null ]]; then
     echo "That organization was verified."
@@ -281,121 +212,81 @@ function ClassOrg() {
     exit 1
   fi
 
-  ##########
-  # Prints #
-  ##########
+  # Prints
   echo "CLASS_ORG=[$CLASS_ORG]"
   echo "==============================================="
 }
-################################################################################
-#### Function SurveyURL ##########################################################
+
 function SurveyURL() {
-  #################################
-  # See if we have the survey URL #
-  #################################
+  # See if we have the survey URL
   echo "To include a link to a survey in your class repository,"
   echo "add the survey URL to your ~/$RC_FILE by pasting it below:"
-  ##################
-  # Read the input #
-  ##################
+
+  # Read the input
   read -r SURVEY_URL
   echo "export SURVEY_URL='$SURVEY_URL'" >> "$HOME/$RC_FILE"
 
-  ##########
-  # Prints #
-  ##########
+  # Prints
   echo "SURVEY_URL=[$SURVEY_URL]"
   echo "==============================================="
 }
-################################################################################
-#### Function ApptURL ##########################################################
+
 function ApptURL() {
-  ###############################
-  # See if we have the appt URL #
-  ###############################
+  # See if we have the appt URL
   echo "If you will offer 1:1 appointments with your students,"
   echo "you will need to add the booking URL to your ~/$RC_FILE"
   echo "by pasting it below:"
-  ##################
-  # Read the input #
-  ##################
+
+  # Read the input
   read -r APPT_URL
   echo "export APPT_URL='$APPT_URL'" >> "$HOME/$RC_FILE"
 
-  ##########
-  # Prints #
-  ##########
+  # Prints
   echo "APPT_URL=[$APPT_URL]"
   echo "==============================================="
 }
-################################################################################
-#### Function ShellCheck #######################################################
+
 function ShellCheck() {
-  #########################
-  # Check the users shell #
-  #########################
+  # Check the users shell
   echo "What kind of shell are you using?"
   echo "acceptable options: bash, zsh"
-  ##################
-  # Read the input #
-  ##################
+
+  # Read the input
   read -r SHELL
   echo "Adding to your .${SHELL}rc..."
+
   # shellcheck disable=SC2028
   echo "# added by github/training-manual class setup" >> "$HOME/.${SHELL}rc"
   echo "test -f \"$HOME/$RC_FILE\" && source \"$HOME/$RC_FILE\"" >> "$HOME/.${SHELL}rc"
 
-  ##########
-  # Prints #
-  ##########
+  # Prints
   echo "ATTENTION: You must restart your open terminal sessions"
   echo "for changes to take effect."
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-###############
-# Validate jq #
-###############
+# Validate jq
 ValidateJQ
 
-##################
-# Create rc file #
-##################
+# Create rc file
 CreateRCFile
 
-#######################
-# Get the token owner #
-#######################
+# Get the token owner
 TokenOwner
 
-#######################
-# Get the teacher PAT #
-#######################
+# Get the teacher PAT
 DemoPAT
 
-########################
-# Get the instance URL #
-########################
+# Get the instance URL
 InstanceURL
 
-#####################
-# Get the class org #
-#####################
+# Get the class org
 ClassOrg
 
-######################
-# Get the survey URL #
-######################
+# Get the survey URL
 SurveyURL
 
-####################
-# Get the appt URL #
-####################
+# Get the appt URL
 ApptURL
 
-#########################
-# Check the users shell #
-#########################
+# Check the users shell
 ShellCheck
