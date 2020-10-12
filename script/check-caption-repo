@@ -121,12 +121,11 @@ function SendFiles() {
 }
 
 # Get name of collaborators from day 1
-# shellcheck disable=SC2129
-COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login') >> log.out 2>&1
-# shellcheck disable=SC2129
-OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login') >> log.out 2>&1
-# shellcheck disable=SC2129
-PULLS_NUMBERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls?per_page=100" | jq '.[] | .number') >> log.out 2>&1
+{
+  COLLABS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?per_page=100" | jq '.[] | .login')
+  OWNERS_ARRAY=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/members?role=admin" | jq '.[] | .login')
+  PULLS_NUMBERS=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/pulls?per_page=100" | jq '.[] | .number')
+} >> log.out 2>&1
 
 # Get the students
 GetStudents
