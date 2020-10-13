@@ -10,8 +10,7 @@
 # GLOBALS
 REPO_NAME=$1
 
-function GetDetails ()
-{
+function GetDetails() {
   # Get them details
   echo "Let's add the class details to the README:"
   echo "List the class dates."
@@ -30,28 +29,28 @@ function GetDetails ()
 
   # Check the shell for errors
   if [ $ERROR_CODE -eq 0 ]; then
-    git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+    git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >>log.out 2>&1
     pushd "$REPO_NAME" || return
     {
       git config user.name "$TOKEN_OWNER"
       # shellcheck disable=SC1102
-      GITHUB_EMAIL=$((curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
+      GITHUB_EMAIL=$( (curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
       git config user.email "$GITHUB_EMAIL"
-    } >> log.out 2>&1
+    } >>log.out 2>&1
     if [ "$OSTYPE" = "msys" ]; then
       {
         sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md
         sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md
         sed -i "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md
         sed -i "s|caption-this|$REPO_NAME|g" _config.yml
-      } >> log.out 2>&1
+      } >>log.out 2>&1
     else
       {
         sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md
         sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md
         sed -i "" "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md
         sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml
-      } >> log.out 2>&1
+      } >>log.out 2>&1
     fi
     {
       git add README.md
@@ -61,9 +60,9 @@ function GetDetails ()
       git push "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME"
       git config --local --unset user.name
       git config --local --unset user.email
-    } >> log.out 2>&1
+    } >>log.out 2>&1
     popd || return
-    rm -rf "$REPO_NAME" >> log.out 2>&1
+    rm -rf "$REPO_NAME" >>log.out 2>&1
     # Call the pretty repo
     PrettyRepo "$TEACHER"
   elif [ $ERROR_CODE -eq 2 ]; then
@@ -73,8 +72,7 @@ function GetDetails ()
   fi
 }
 
-function PrettyRepo ()
-{
+function PrettyRepo() {
   TEACHER=$1
   #set branch protections
   {
@@ -96,12 +94,11 @@ function PrettyRepo ()
     curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns"
     #add cards to each column
     curl -s -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST "https://$INSTANCE_URL/projects/columns/$COLUMN_ONE/cards"
-  } >> log.out 2>&1
+  } >>log.out 2>&1
   FinishStrong
 }
 
-function FinishStrong ()
-{
+function FinishStrong() {
   echo "ALL DONE: Remember to enable GitHub Pages on master."
   echo "Good luck with class!"
 }
