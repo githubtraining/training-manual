@@ -99,22 +99,22 @@ function SendFiles() {
       i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
       echo "---" >>"caption-activity-$i.yml"
       # Send graded file to original class repo
-      # first, encode file as base64
+      # First, encode file as base64
       # shellcheck disable=SC2002
       NEW_FILE=$(cat "caption-activity-$i.yml" | base64)
       # Does the file already exist?
       STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | grep "^Status:") >>log.out 2>&1
       if echo "$STATUS" | grep -iq "404"; then
-        # Create the file on the repo #
+        # Create the file on the repo
         curl --fail -k -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >>log.out 2>&1
       else
-        # Get the sha
+        # Get the SHA
         SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" | jq .sha) >>log.out 2>&1
         echo "Replacing the file at sha: $SHA"
         # Replace the file
         curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$i.yml\", \"message\": \"Graded caption activity for $i\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$i.yml" >>log.out 2>&1
       fi
-      # and delete the temporary grading file
+      # Delete the temporary grading file
       rm "caption-activity-$i.yml"
     fi
   done

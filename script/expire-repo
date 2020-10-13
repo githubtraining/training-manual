@@ -9,7 +9,7 @@
 #################################################################
 
 function GetPages() {
-  # Get tyhr number of pages
+  # Get the number of pages
   # shellcheck disable=SC1102
   NUM_PAGES=$( (curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
 
