@@ -2,10 +2,11 @@
 #
 # Expire Repo
 
-###########################################################
-# you must have a GITHUBTEACHER_TOKEN                     #
-# saved to your ENV variables in order to use this script #
-###########################################################
+#################################################################
+# NOTE: You must have a personal access token (PAT)             #
+# saved to your environment variables to use this script.       #
+# We recommend a dedicated service account (e.g. githubteacher) #
+#################################################################
 
 function GetPages() {
   # Get tyhr number of pages

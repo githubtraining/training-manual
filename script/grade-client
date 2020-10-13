@@ -2,15 +2,13 @@
 #
 # Grade Client Repo
 
-###########################################################
-# NOTE:                                                   #
-# You must have a githubteacher token                     #
-# saved to your ENV variables in order to use this script #
-###########################################################
+#################################################################
+# NOTE: You must have a personal access token (PAT)             #
+# saved to your environment variables to use this script.       #
+# We recommend a dedicated service account (e.g. githubteacher) #
+#################################################################
 
-###########
-# GLOBALS #
-###########
+# GLOBALS
 COLLAB_ORG=''       # Name of the Org
 COLLAB_REPO=''      # name of the Repo
 MASTER_ISSUE=''     # Issue number to check
