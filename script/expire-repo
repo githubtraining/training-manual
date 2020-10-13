@@ -91,9 +91,9 @@ function BeNice ()
 
 # Check the OS
 if [ "$OSTYPE" = "msys" ]; then
-   COMP_DATE=$(date --date='10 days ago'  +%Y-%m-%dT%H:%M:%S)
+  COMP_DATE=$(date --date='10 days ago'  +%Y-%m-%dT%H:%M:%S)
 else
-   COMP_DATE=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
+  COMP_DATE=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
 fi
 
 # Get the pages
