@@ -31,7 +31,7 @@ function GetNames() {
   fi
 
   # Clone repo
-  git clone --bare "$TEMPLATE_REPO_URL" game-template >> log.out 2>&1
+  git clone --bare "$TEMPLATE_REPO_URL" game-template >>log.out 2>&1
 
   # Load the error code
   ERROR_CODE=$?
@@ -49,12 +49,12 @@ function GetNames() {
   pushd game-template || return
 
   # Get collabs
-  IFS=" " read -ra COLLABS <<< "$(
+  IFS=" " read -ra COLLABS <<<"$(
     curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
-  )" >> log.out 2>&1
+  )" >>log.out 2>&1
 
   for USER_NAME in "${COLLABS[@]}"; do
-    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" | grep "^Status:") >> log.out 2>&1
+    REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" | grep "^Status:") >>log.out 2>&1
     echo "Repo status for $USER_NAME is $REPO_STATUS"
     if
       echo "$REPO_STATUS" | grep -iq "404"
@@ -64,7 +64,7 @@ function GetNames() {
       # Check before cleaning up and recreating any duplicate repos; default to 'yes' if no answer is given
       if ask "A github-games repo already exists for $USER_NAME. Is OK to delete and recreate?" N; then
         echo "Deleting and recreating $CLASS_ORG/github-games-$USER_NAME repo..."
-        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" >> log.out 2>&1
+        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/github-games-$USER_NAME" >>log.out 2>&1
         CreateRepo "$USER_NAME"
       else
         echo "A new github-games repo wasn't created for $USER_NAME..."
@@ -99,30 +99,30 @@ function CreateRepo() {
   fi
 
   # Create it
-  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"${TEMPLATE_PAGES_URL}\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${STUDENT_REPO}\", \"description\": \"A fun way to learn about git troubleshooting.\", \"homepage\": \"${TEMPLATE_PAGES_URL}\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
 
   # Wait to finish
   echo "Resting 5 seconds to allow repo creation to resolve"
   sleep 5
 
   # Add student as a collaborator
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/collaborators/$STUDENT" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"permission\": \"admin\"}" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/collaborators/$STUDENT" >>log.out 2>&1
   echo "Push the fresh $STUDENT_REPO back to $CLASS_ORG ..."
 
   # Push it
-  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$STUDENT_REPO" >> log.out 2>&1
+  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$STUDENT_REPO" >>log.out 2>&1
 
   # Wait to finish
   echo "Waiting for push to resolve before creating issues."
   sleep 5
 
   # create issues for problems
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${STUDENT_PAGES_URL}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$STUDENT?\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and README are pointing to ${CLASS_ORG}'s copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${STUDENT_PAGES_URL}\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${STUDENT_PAGES_URL}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on master. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$STUDENT?\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >>log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and README are pointing to ${CLASS_ORG}'s copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${STUDENT_PAGES_URL}\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues" >>log.out 2>&1
 
   # assign issues to $STUDENT
   for i in {1..2}; do
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$i/assignees" >> log.out 2>&1
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"assignees\": [\"$STUDENT\"]}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/issues/$i/assignees" >>log.out 2>&1
   done
 }
 

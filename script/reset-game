@@ -45,7 +45,7 @@ function DeleteDisposableRepo() {
 
   # Delete the repo
   echo "Delete $TOKEN_OWNER $REPO_NAME repo..."
-  DELETE_CMD=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1" >> log.out 2>&1)
+  DELETE_CMD=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$TOKEN_OWNER/$1" >>log.out 2>&1)
 
   # Load the error code
   ERROR_CODE=$?
@@ -59,7 +59,7 @@ function DeleteDisposableRepo() {
 
   # Delete class repo
   echo "Delete $CLASS_ORG $REPO_NAME repo..."
-  DELETE_CLASS_CMD=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$1" >> log.out 2>&1)
+  DELETE_CLASS_CMD=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$1" >>log.out 2>&1)
 
   # Load the error code
   ERROR_CODE=$?
@@ -79,7 +79,7 @@ function DuplicateRepo() {
 
   # Create duplicate repo
   echo "Create server-side location for fresh $CLASS_ORG/$REPO_NAME repo..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$REPO_NAME\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$REPO_NAME\", \"description\": \"A fun way to learn about Git and GitHub\", \"homepage\": \"https://$CLASS_ORG.github.io/github-games\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >>log.out 2>&1
 
   # Wait to finish
   echo "Resting 5 more seconds to allow repo creation to resolve"
@@ -92,7 +92,7 @@ function DuplicateRepo() {
   # Clone the repo
   echo "Trying to clone a template repo from github.com. If you're behind a firewall, this command may time out and we'll try to clone from your instance, instead."
   echo "The timeout may take some time..."
-  git clone --bare "https://github.com/githubtraining/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+  git clone --bare "https://github.com/githubtraining/$REPO_NAME" "$REPO_NAME" >>log.out 2>&1
 
   # Load the error code
   ERROR_CODE=$?
@@ -102,7 +102,7 @@ function DuplicateRepo() {
     echo "!!! Wasn't able to clone the template repo from github.com. Trying to clone from your own instance."
 
     # Clone the repo
-    git clone --bare "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+    git clone --bare "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >>log.out 2>&1
 
     # Load the error code
     ERROR_CODE=$?
@@ -117,7 +117,7 @@ function DuplicateRepo() {
   # Push the repo
   echo "Push the fresh $REPO_NAME back to $CLASS_ORG's repo..."
   pushd "$REPO_NAME" || return
-  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
+  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >>log.out 2>&1
 
   # Wait to finish
   echo "Resting 5 more seconds to allow push to resolve"
@@ -125,7 +125,7 @@ function DuplicateRepo() {
 
   # Set default branch
   echo "Setting default branch for repo"
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$REPO_NAME\", \"default_branch\": \"$D_BRANCH\"}" "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"name\": \"$REPO_NAME\", \"default_branch\": \"$D_BRANCH\"}" "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >>log.out 2>&1
   popd || return
 
   # Remove local repo

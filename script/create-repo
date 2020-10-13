@@ -14,7 +14,7 @@ COLLAB=$3
 
 function CheckAvail() {
   # Get the repo status
-  repoStatus=$(curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}") >> log.out 2>&1
+  repoStatus=$(curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}") >>log.out 2>&1
 
   # Check the status
   if echo "${repoStatus}" | grep -iq "404"; then
@@ -32,9 +32,9 @@ function CreateRepo() {
   #create the repository on ${INSTANCE_URL}
   echo "Creating Repo:  https://${ROOT_URL}/${CLASS_ORG}/${REPO_NAME}"
   if [[ "$ROOT_URL" == "github.com" ]]; then
-    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
   else
-    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >> log.out 2>&1
+    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
   fi
 
   # Wait to let finish
@@ -42,7 +42,7 @@ function CreateRepo() {
   sleep 5
 
   # add collaborators
-  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X PUT "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}/collaborators/${COLLAB}" >> log.out 2>&1
+  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X PUT "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}/collaborators/${COLLAB}" >>log.out 2>&1
   CloneRepo
 }
 
@@ -53,11 +53,11 @@ function CloneRepo() {
   # Check the root
   if [[ "$ROOT_URL" == "github.com" ]]; then
     # Clone it
-    git clone --bare "https://github.com/githubtraining/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
+    git clone --bare "https://github.com/githubtraining/${TYPE}" "${REPO_NAME}" >>log.out 2>&1
   else
     echo "Cloning from Enterprise Instance"
     # Clone it
-    git clone --bare "https://${TOKEN_OWNER}:${TEACHER_PAT}@${ROOT_URL}/${CLASS_ORG}/${TYPE}" "${REPO_NAME}" >> log.out 2>&1
+    git clone --bare "https://${TOKEN_OWNER}:${TEACHER_PAT}@${ROOT_URL}/${CLASS_ORG}/${TYPE}" "${REPO_NAME}" >>log.out 2>&1
 
     # Load the error code
     ERROR_CODE=$?
@@ -70,8 +70,8 @@ function CloneRepo() {
   fi
 
   # Push it
-  pushd "${REPO_NAME}" >> log.out 2>&1 || return
-  git push --mirror "https://${TOKEN_OWNER}:${TEACHER_PAT}@$ROOT_URL/${CLASS_ORG}/${REPO_NAME}" >> log.out 2>&1
+  pushd "${REPO_NAME}" >>log.out 2>&1 || return
+  git push --mirror "https://${TOKEN_OWNER}:${TEACHER_PAT}@$ROOT_URL/${CLASS_ORG}/${REPO_NAME}" >>log.out 2>&1
 
   # Wait to finish
   echo "Resting 5 more seconds to allow push to resolve"

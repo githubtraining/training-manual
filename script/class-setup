@@ -116,7 +116,7 @@ function TokenOwner() {
   read -r NEW_NAME
 
   # Write the var to the file
-  echo "export TOKEN_OWNER='$NEW_NAME'" >> "$HOME/$RC_FILE"
+  echo "export TOKEN_OWNER='$NEW_NAME'" >>"$HOME/$RC_FILE"
   echo "TOKEN_OWNER = $TOKEN_OWNER"
   echo "==============================================="
 }
@@ -133,7 +133,7 @@ function DemoPAT() {
   read -r -s NEW_TOKEN
 
   # Write the var to the file
-  echo "export TEACHER_PAT='$NEW_TOKEN'" >> "$HOME/$RC_FILE"
+  echo "export TEACHER_PAT='$NEW_TOKEN'" >>"$HOME/$RC_FILE"
   echo "TEACHER_PAT=[NOT DISPLAYED]"
   echo "==============================================="
 }
@@ -148,7 +148,7 @@ function InstanceURL() {
   # Read the input
   read -r NEW_URL
   echo "Checking if '$NEW_URL' is accessible... (this may take several moments)"
-  curl -s "$NEW_URL" >> log.out 2>&1
+  curl -s "$NEW_URL" >>log.out 2>&1
 
   # Load the error code
   ERROR_CODE=$?
@@ -156,14 +156,14 @@ function InstanceURL() {
   # Check the shell for errors
   if [ $ERROR_CODE -eq 0 ]; then
     echo "API endpoint verified"
-    echo "export INSTANCE_URL='$NEW_URL'" >> "$HOME/$RC_FILE"
+    echo "export INSTANCE_URL='$NEW_URL'" >>"$HOME/$RC_FILE"
   else
     echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
     # Check with Auth
     echo "Checking if '$NEW_URL' is accessible with authentication..."
     if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]; then
       echo "API endpoint + authentication verified"
-      echo "export INSTANCE_URL='$NEW_URL'" >> "$HOME/$RC_FILE"
+      echo "export INSTANCE_URL='$NEW_URL'" >>"$HOME/$RC_FILE"
     else
       echo "Can't make an authenticated request to the API."
       exit 1
@@ -178,12 +178,12 @@ function InstanceURL() {
   if echo "$NEW_URL" | grep -iq "\<api.github.com\>"; then
     ROOT_URL="github.com"
     INSTANCE_URL="api.github.com"
-    echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
+    echo "export ROOT_URL='$ROOT_URL'" >>"$HOME/$RC_FILE"
   else
     #strip the API part
     ROOT_URL=$(echo "$NEW_URL" | sed -E 's/\/api\/v3//')
     INSTANCE_URL=$NEW_URL
-    echo "export ROOT_URL='$ROOT_URL'" >> "$HOME/$RC_FILE"
+    echo "export ROOT_URL='$ROOT_URL'" >>"$HOME/$RC_FILE"
   fi
 
   # Prints
@@ -206,7 +206,7 @@ function ClassOrg() {
   echo "Checking if $NEW_ORG is accessible via the API..."
   if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/orgs/$NEW_ORG" | jq .message) = null ]]; then
     echo "That organization was verified."
-    echo "export CLASS_ORG='$NEW_ORG'" >> "$HOME/$RC_FILE"
+    echo "export CLASS_ORG='$NEW_ORG'" >>"$HOME/$RC_FILE"
   else
     echo "Can't access the organization via the API."
     exit 1
@@ -224,7 +224,7 @@ function SurveyURL() {
 
   # Read the input
   read -r SURVEY_URL
-  echo "export SURVEY_URL='$SURVEY_URL'" >> "$HOME/$RC_FILE"
+  echo "export SURVEY_URL='$SURVEY_URL'" >>"$HOME/$RC_FILE"
 
   # Prints
   echo "SURVEY_URL=[$SURVEY_URL]"
@@ -239,7 +239,7 @@ function ApptURL() {
 
   # Read the input
   read -r APPT_URL
-  echo "export APPT_URL='$APPT_URL'" >> "$HOME/$RC_FILE"
+  echo "export APPT_URL='$APPT_URL'" >>"$HOME/$RC_FILE"
 
   # Prints
   echo "APPT_URL=[$APPT_URL]"
@@ -256,8 +256,8 @@ function ShellCheck() {
   echo "Adding to your .${SHELL}rc..."
 
   # shellcheck disable=SC2028
-  echo "# added by github/training-manual class setup" >> "$HOME/.${SHELL}rc"
-  echo "test -f \"$HOME/$RC_FILE\" && source \"$HOME/$RC_FILE\"" >> "$HOME/.${SHELL}rc"
+  echo "# added by github/training-manual class setup" >>"$HOME/.${SHELL}rc"
+  echo "test -f \"$HOME/$RC_FILE\" && source \"$HOME/$RC_FILE\"" >>"$HOME/.${SHELL}rc"
 
   # Prints
   echo "ATTENTION: You must restart your open terminal sessions"
