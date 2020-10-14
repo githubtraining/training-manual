@@ -51,15 +51,15 @@ Docsify doesn't currently support creating PDFs, but you can generate one using 
 
 1. Install the GitBook CLI via NPM.
 
-   ```shell
-   npm install gitbook-cli -g
-   ```
+    ```shell
+    npm install gitbook-cli -g
+    ```
 
 1. Install additional dependencies via NPM.
 
-   ```shell
-   npm install svgexport -g
-   ```
+    ```shell
+    npm install svgexport -g
+    ```
 
 1. Download and install [Calibre](https://calibre-ebook.com/download).
 
