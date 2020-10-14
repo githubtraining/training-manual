@@ -21,7 +21,7 @@ Let's go ahead and clone the class repository to your local desktop.
 
 ### Our Favorite Git command: `git status`
 
-```sh
+```shell-session
 $ git status
 On branch master
 Your branch is up-to-date with 'origin/master'.
