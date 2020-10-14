@@ -8,7 +8,7 @@
 1. Some Actions use a configuration file and `Release Drafter` is one of them. Go ahead and create a configuration file in your repository in the following directory: `.github/release-drafter.yml`
 1. In this file, add the following:
 
-   ```
+   ```yml
    name-template: 'v$RESOLVED_VERSION 🌈'
    tag-template: 'v$RESOLVED_VERSION'
    categories:
@@ -46,7 +46,7 @@
 1. Next, add your workflow file to the following directory: `.github/workflows/release-drafter.yml`
 1. In this file, paste the following:
 
-   ```
+   ```yml
    name: Release Drafter
 
    on:
