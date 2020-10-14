@@ -112,7 +112,7 @@ function GetIssueCommenters() {
 #### Function GetOpenPRS #######################################################
 function GetOpenPRS() {
   #################################################
-  # Get a list of all open PRs on the master repo #
+  # Get a list of all open PRs on the main repo #
   #################################################
   IFS=" " read -ra OPEN_PR_ARRAY <<<"$(
     curl -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \

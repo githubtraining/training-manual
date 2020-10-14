@@ -203,4 +203,4 @@ function DuplicateRepo() {
 #####################################################
 # usage list the repository name and default branch #
 #####################################################
-ResetActivity "github-games" "master"
+ResetActivity "github-games" "main"

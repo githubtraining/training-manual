@@ -95,8 +95,8 @@ function PrettyRepo ()
   TEACHER=$1
   #set branch protections
   # shellcheck disable=SC2129
-  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/master/protection" >> log.out 2>&1
-  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/master/protection/required_status_checks" >> log.out 2>&1
+  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection" >> log.out 2>&1
+  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection/required_status_checks" >> log.out 2>&1
   #delete labels other than question, duplicate, enhancement, and help wanted
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/bug" >> log.out 2>&1
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/invalid" >> log.out 2>&1
@@ -119,7 +119,7 @@ function PrettyRepo ()
 #### Function FinishStrong #####################################################
 function FinishStrong ()
 {
-  echo "ALL DONE: Remember to enable GitHub Pages on master."
+  echo "ALL DONE: Remember to enable GitHub Pages on main."
   echo "Good luck with class!"
 }
 ################################################################################
