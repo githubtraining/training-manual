@@ -155,7 +155,7 @@ A single `*` or `-` followed by a space will create a bulleted list.
 
 #### `**Bold item**`
 
-Two asterix `**` on either side of a string will make that text bold.
+Two asterisks `**` on either side of a string will make that text bold.
 
 #### `- [ ] Checklist`
 
