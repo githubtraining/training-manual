@@ -44,7 +44,7 @@ You may even find some new, indispensable tools to help with continuous integrat
 
 Git features cheap local branching, convenient staging areas, and multiple workflows.
 
-As we begin to discuss Git (and what makes it special) it would be helpful if you could forget everything you know about other version control systems (VCS's) for just a moment. Git stores and thinks about information very differently than other VCS's.
+As we begin to discuss Git (and what makes it special) it would be helpful if you could forget everything you know about other version control systems (VCSs) for just a moment. Git stores and thinks about information very differently than other VCSs.
 
 We will learn more about how Git stores your code as we go through this class, but the first thing you will need to understand is how Git works with your content.
 
