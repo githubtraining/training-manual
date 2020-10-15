@@ -1,86 +1,70 @@
 #!/usr/bin/env bash
-################################################################################
-############################## New Virtual #####################################
-################################################################################
+#
+# New Virtual
 
-###########################################################
-# You must have a githubteacher token                     #
-# saved to your ENV variables in order to use this script #
-###########################################################
+#################################################################
+# NOTE: You must have a personal access token (PAT)             #
+# saved to your environment variables to use this script.       #
+# We recommend a dedicated service account (e.g. githubteacher) #
+#################################################################
 
-###########
-# GLOBALS #
-###########
+# GLOBALS
 REPO_NAME=$1
 
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function GetDetails #######################################################
-function GetDetails ()
-{
-  ####################
-  # Get them details #
-  ####################
+function GetDetails() {
+  # Get them details
   echo "Let's add the class details to the README:"
   echo "List the class dates."
   echo "Example: March 10 - 13, 2017."
-  ###################
-  # Read in the var #
-  ###################
+  # Read in the var
   read -r CLASS_DATE
 
   echo "Who is teaching? Without the @."
-  ###################
-  # Read in the var #
-  ###################
+  # Read in the var
   read -r TEACHER
 
   ./create-repo caption-this "$REPO_NAME" "$TEACHER"
 
-  #######################
-  # Load the error code #
-  #######################
+  # Load the error code
   ERROR_CODE=$?
 
-  ##############################
-  # Check the shell for errors #
-  ##############################
+  # Check the shell for errors
   if [ $ERROR_CODE -eq 0 ]; then
-    git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >> log.out 2>&1
+    git clone "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" "$REPO_NAME" >>log.out 2>&1
     pushd "$REPO_NAME" || return
-    # shellcheck disable=SC2129
-    git config user.name "$TOKEN_OWNER" >> log.out 2>&1
-    # shellcheck disable=SC1102
-    GITHUB_EMAIL=$((curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//')) >> log.out 2>&1
-    git config user.email "$GITHUB_EMAIL" >> log.out 2>&1
+    {
+      git config user.name "$TOKEN_OWNER"
+      # shellcheck disable=SC1102
+      GITHUB_EMAIL=$( (curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
+      git config user.email "$GITHUB_EMAIL"
+    } >>log.out 2>&1
     if [ "$OSTYPE" = "msys" ]; then
-      # shellcheck disable=SC2129
-      sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
-      sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
-      sed -i "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md >> log.out 2>&1
-      sed -i "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
+      {
+        sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md
+        sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md
+        sed -i "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md
+        sed -i "s|caption-this|$REPO_NAME|g" _config.yml
+      } >>log.out 2>&1
     else
-      # shellcheck disable=SC2129
-      sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md >> log.out 2>&1
-      sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md >> log.out 2>&1
-      sed -i "" "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md >> log.out 2>&1
-      sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml >> log.out 2>&1
+      {
+        sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md
+        sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md
+        sed -i "" "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md
+        sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml
+      } >>log.out 2>&1
     fi
-    # shellcheck disable=SC2129
-    git add README.md >> log.out 2>&1
-    git commit -m "create class README" >> log.out 2>&1
-    git add _config.yml >> log.out 2>&1
-    git commit -m "update config with class information" >> log.out 2>&1
-    git push "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME" >> log.out 2>&1
-    git config --local --unset user.name >> log.out 2>&1
-    git config --local --unset user.email >> log.out 2>&1
+    {
+      git add README.md
+      git commit -m "create class README"
+      git add _config.yml
+      git commit -m "update config with class information"
+      git push "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$REPO_NAME"
+      git config --local --unset user.name
+      git config --local --unset user.email
+    } >>log.out 2>&1
     popd || return
-    rm -rf "$REPO_NAME" >> log.out 2>&1
-    ########################
-    # Call the pretty repo #
-    ########################
+    rm -rf "$REPO_NAME" >>log.out 2>&1
+    # Call the pretty repo
     PrettyRepo "$TEACHER"
   elif [ $ERROR_CODE -eq 2 ]; then
     echo "!!! Please try running option 1 again and picking a unique repository name."
@@ -88,50 +72,40 @@ function GetDetails ()
     echo "!!! Wasn't able to clone the template repo from github.com. Are you behind a firewall?"
   fi
 }
-################################################################################
-#### Function PrettyRepo #######################################################
-function PrettyRepo ()
-{
+
+function PrettyRepo() {
   TEACHER=$1
   #set branch protections
-  # shellcheck disable=SC2129
-  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection" >> log.out 2>&1
-  curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection/required_status_checks" >> log.out 2>&1
-  #delete labels other than question, duplicate, enhancement, and help wanted
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/bug" >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/invalid" >> log.out 2>&1
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/wontfix" >> log.out 2>&1
-  #open the issue to be added as a collaborator
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'Unwatch' button and selecting either the 'Not watching' or 'Ignoring' option.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >> log.out 2>&1
-  #add a project to the repo and grab the project id
-  PROJ_ID=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/projects" | jq .id) >> log.out 2>&1
-  #add columns to project
-  COLUMN_ONE=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"To-Do\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" | jq .id) >> log.out 2>&1
-  # shellcheck disable=SC2034
-  COLUMN_TWO=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" | jq .id) >> log.out 2>&1
-  curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"In-Progress\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" >> log.out 2>&1
-  curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" >> log.out 2>&1
-  #add cards to each column
-  curl -s -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST "https://$INSTANCE_URL/projects/columns/$COLUMN_ONE/cards" >> log.out 2>&1
+  {
+    curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection"
+    curl -s -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection/required_status_checks"
+    #delete labels other than question, duplicate, enhancement, and help wanted
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/bug"
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/invalid"
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/wontfix"
+    #open the issue to be added as a collaborator
+    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Comment here to be added as a collaborator\", \"body\": \"### Comment below - you can say anything \n We will all be using this repository today. Even though it's public right now, you will not be able to make changes until you're given the correct permissions. We've automated this process via the GitHub API and some fancy chatops. Once you comment, we will add you as a collaborator. \n\n  You'll also start to receive a lot of emails. (:exclamation:) You can slow these down immediately by clicking the 'Unwatch' button and selecting either the 'Not watching' or 'Ignoring' option.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues"
+    #add a project to the repo and grab the project id
+    PROJ_ID=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Class Activity: Caption Contest\", \"body\": \"Let's see who can create the best captions for our collection of memes.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/projects" | jq .id)
+    #add columns to project
+    COLUMN_ONE=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"To-Do\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" | jq .id)
+    # shellcheck disable=SC2034
+    COLUMN_TWO=$(curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Extended Projects\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns" | jq .id)
+    curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"In-Progress\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns"
+    curl -s -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"Done\"}" -X POST "https://$INSTANCE_URL/projects/$PROJ_ID/columns"
+    #add cards to each column
+    curl -s -i -H "Accept: application/vnd.github.inertia-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"note\": \"Each student will update their file in the _posts directory with an image and a caption.\"}" -X POST "https://$INSTANCE_URL/projects/columns/$COLUMN_ONE/cards"
+  } >>log.out 2>&1
   FinishStrong
 }
-################################################################################
-#### Function FinishStrong #####################################################
-function FinishStrong ()
-{
+
+function FinishStrong() {
   echo "ALL DONE: Remember to enable GitHub Pages on main."
   echo "Good luck with class!"
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
-##########
-# Header #
-##########
+# Header
 echo "This script creates a new caption-this repository"
 
-###################
-# Get the details #
-###################
+# Get the details
 GetDetails

@@ -1,23 +1,10 @@
 #!/usr/bin/env bash
+#
+# Teach Class
 
-################################################################################
-############################ Teach Class #######################################
-################################################################################
-
-############################
-# Set the exit on non zero #
-############################
+# Set the exit on non zero
 set -e
 
-###########
-# GLOBALS #
-###########
-
-################################################################################
-########################## Functions Below #####################################
-################################################################################
-################################################################################
-#### Function GetTask ##########################################################
 function GetTask() {
   echo ""
   echo "========================================================"
@@ -41,77 +28,53 @@ function GetTask() {
   echo " 7: Delete student repos for a specific class"
   echo " 8: Grade client"
 
-  ################################
-  # Read the task that was input #
-  ################################
+  # Read the task that was input
   read -r TASK
 
-  ############################################
-  # Clean any whitespace that may be entered #
-  ############################################
+  # Clean any whitespace that may be entered
   TASK_NO_WHITESPACE="$(echo -e "$TASK" | tr -d '[:space:]')"
   TASK=$TASK_NO_WHITESPACE
 
-  ############################
-  # Validate we got a number #
-  ############################
+  # Validate we got a number
   REGEX='^[0-9]+$'
   if ! [[ $TASK =~ $REGEX ]]; then
     echo "ERROR: [$TASK] is not a number!"
     exit 1
   fi
 
-  ################
-  # Run the task #
-  ################
+  # Run the task
   DoTask "$TASK"
 }
-################################################################################
-#### Function DoTask ###########################################################
+
 function DoTask() {
-  ####################
-  # Read in the TASK #
-  ####################
+  # Read in the TASK
   TASK=$1
 
-  #######################
-  # Set the collab repo #
-  #######################
+  # Set the collab repo
   COLLAB_REPO=''
 
-  #########################################
-  # See if we need to get the collab repo #
-  #########################################
-  # Skip tasks that dont need COLLAB_REPO
+  # See if we need to get the collab repo
+  # Skip tasks that don't need COLLAB_REPO
   if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 99 ] && [ "$TASK" -ne 8 ]; then
     echo "What is the name of the day 1 repo?"
-    ########################
-    # Read the collab repo #
-    ########################
+    # Read the collab repo
     read -r COLLAB_REPO
 
-    ############################################
-    # Clean any whitespace that may be entered #
-    ############################################
+    # Clean any whitespace that may be entered
     COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
     COLLAB_REPO=$COLLAB_REPO_WHITESPACE
   elif [ "$TASK" -ne 0 ]; then
-    ##########################################
-    # Validate we have env variables sourced #
-    ##########################################
+    # Validate we have env variables sourced
     Check_Env
   fi
 
-  ###########
-  # TASK 00 #
-  ###########
+  # TASK 00
   if [ "$TASK" -eq 99 ]; then
     # echo 00: Done"
     echo "We're all done..."
     exit 0
-  ##########
-  # TASK 0 #
-  ##########
+
+  # TASK 0
   elif [ "$TASK" -eq 0 ]; then
     # echo "0: Confirm Set-up"
     echo "running script/class-setup"
@@ -120,103 +83,83 @@ function DoTask() {
     echo "Set-up is complete"
     echo "=============================="
     exit
-  ##########
-  # TASK 1 #
-  ##########
+
+  # TASK 1
   elif [ "$TASK" -eq 1 ]; then
     # echo "1: Create a new caption-this class repository"
     echo "running script/new-virtual"
     ./new-virtual "$COLLAB_REPO"
-  ##########
-  # TASK 2 #
-  ##########
+
+  # TASK 2
   elif [ "$TASK" -eq 2 ]; then
     # echo "2: Add collabs and create files (also makes the repo private)"
     echo "running script/create-files"
     ./create-files "$COLLAB_REPO"
-  ##########
-  # TASK 3 #
-  ##########
+
+  # TASK 3
   elif [ "$TASK" -eq 3 ]; then
     # echo "3: Grade the day 1 repo"
     echo "running script/check-caption-repo"
     ./check-caption-repo "$COLLAB_REPO"
-  ##########
-  # TASK 4 #
-  ##########
+
+  # TASK 4
   elif [ "$TASK" -eq 4 ]; then
     # echo "4: Create conflict repos for each student"
     echo "running script/create-conflict-repos"
     ./create-conflict-repos "$COLLAB_REPO"
-  ##########
-  # TASK 5 #
-  ##########
+
+  # TASK 5
   elif [ "$TASK" -eq 5 ]; then
     # echo "5: Grade the conflict repos"
     echo "running script/check-conflict-repos"
     ./check-conflict-repos "$COLLAB_REPO"
-  ##########
-  # TASK 6 #
-  ##########
+
+  # TASK 6
   elif [ "$TASK" -eq 6 ]; then
     # echo "6: Create the github-games repos for each student"
     echo "running script/create-game-repos"
     ./create-game-repos "$COLLAB_REPO"
-  ##########
-  # TASK 7 #
-  ##########
+
+  # TASK 7
   elif [ "$TASK" -eq 7 ]; then
     # echo "7: Expire student repos"
     echo "running script/clean-up-class"
     ./clean-up-class "$COLLAB_REPO"
-  ##########
-  # TASK 8 #
-  ##########
+
+  # TASK 8
   elif [ "$TASK" -eq 8 ]; then
     # echo "8: Grade client"
     echo "running script/grade-client"
     ./grade-client
   fi
 }
-################################################################################
-#### Function Check_Env ########################################################
+
 function Check_Env() {
-  ###############################
-  # Check length of TEACHER_PAT #
-  ###############################
+  # Check length of TEACHER_PAT
   if [ -z "$TEACHER_PAT" ]; then
     echo "ERROR! TEACHER_PAT not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1
   fi
 
-  ###############################
-  # Check we have a TOKEN_OWNER #
-  ###############################
+  # Check we have a TOKEN_OWNER
   if [ -z "$TOKEN_OWNER" ]; then
     echo "ERROR! TOKEN_OWNER not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1
   fi
 
-  ################################
-  # Check we have a INSTANCE_URL #
-  ################################
+  # Check we have a INSTANCE_URL
   if [ -z "$INSTANCE_URL" ]; then
     echo "ERROR! INSTANCE_URL not loaded or not correct length!"
     echo "Please validate the .trainingmanualrc file!"
     exit 1
   fi
 }
-################################################################################
-############################### MAIN ###########################################
-################################################################################
 
 # cd into the script directory so relative
 # paths can be used in the functions above
 cd "${BASH_SOURCE%/*}/" || exit
 
-#######################
-# Get the task to run #
-#######################
+# Get the task to run
 GetTask
