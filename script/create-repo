@@ -45,6 +45,9 @@ function CreateRepo() {
   # add collaborators
   curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X PUT "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}/collaborators/${COLLAB}" >>log.out 2>&1
   CloneRepo
+
+  # set default branch to main
+  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" --data "{\"default_branch\":\"main\"}" -X PATCH "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}" >>log.out 2>&1
 }
 
 function CloneRepo() {

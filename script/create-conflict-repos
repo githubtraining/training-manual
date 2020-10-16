@@ -107,6 +107,9 @@ function CreateRepo() {
   echo "Waiting for push to resolve before creating pull requests."
   sleep 5
 
+  # set default branch to main
+  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" --data "{\"default_branch\":\"main\"}" -X PATCH "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${STUDENT_REPO}" >>log.out 2>&1
+
   # Create PRs for each branch
   {
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"Updates to game manual\", \"head\": \"manual\", \"base\": \"main\", \"body\": \"This pull request edits the wording of some of the language on the main page. It appears that it has also been edited on main, because there's a merge conflict. Please make sure that all of the words are the ones that you'd like to use, and that there aren't any lines of text missing.\n\nIf you need any help resolving this conflict, check out this video: https://vimeo.com/225093022/6c1c6eb72b\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO/pulls"
