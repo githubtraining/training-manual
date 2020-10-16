@@ -63,7 +63,7 @@ Improve our `README.md` by adding some of your favorite resources.
 1. Edit the README.md to be better in some way. This could mean adding a new resource, or making the existing descriptions more clear. Save and commit your changes.
 1. If working locally, push your changes up to the remote: `git push -u origin NEWBRANCHNAME`.
 1. Open a pull request
-In the body of the pull request, with `base: master` and `compare: NEWBRANCHNAME`.
+In the body of the pull request, with `base: main` and `compare: NEWBRANCHNAME`.
 1. `@` mention anyone you'd like to review your changes.
 1. Once the tests pass on your pull request, merge the pull request.
 
@@ -79,6 +79,6 @@ If you'd like a more advanced challenge, and you have an eye for style, change t
     - Lines 52-55 affect headers
 1. Save and commit your changes on your branch.
 1. Push your branch to the remote: `git push -u origin NEWBRANCHNAME`.
-1. Open a pull request with `base: master` and `compare: NEWBRANCHNAME`.
+1. Open a pull request with `base: main` and `compare: NEWBRANCHNAME`.
 1. `@` mention anyone you'd like to review your changes.
 1. Once the tests pass on your pull request, merge the pull request.
