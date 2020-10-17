@@ -107,8 +107,8 @@ function CreateRepo() {
   echo "Waiting for push to resolve before creating pull requests."
   sleep 5
 
-  # set default branch to main
-  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" --data "{\"default_branch\":\"main\"}" -X PATCH "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${STUDENT_REPO}" >>log.out 2>&1
+  # Set default branch to main
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"default_branch\":\"main\"}" -X PATCH "https://$INSTANCE_URL/repos/$CLASS_ORG/$STUDENT_REPO" >>log.out 2>&1
 
   # Create PRs for each branch
   {
