@@ -18,7 +18,7 @@ With an issue template, you take emptiness out of the equation and guide your us
 
 ### Group activity: make an issue template
 
-GitHub supports multiple issue templates, so within our groups we are going to create a `bug`, `issue`, and `custom` template for issues created in our repository. While creating these issue templates, it is important to remember the GitHub Flow, so the template should be created on a branch, submitted as a pull request to receive feedback from the team, and merged into the `master` branch.
+GitHub supports multiple issue templates, so within our groups we are going to create a `bug`, `issue`, and `custom` template for issues created in our repository. While creating these issue templates, it is important to remember the GitHub Flow, so the template should be created on a branch, submitted as a pull request to receive feedback from the team, and merged into the `main` branch.
 
 Before creating the template, it might be helpful to find existing issue templates on other open source projects on GitHub to get some inspiration. Below are some of examples of issue templates found on GitHub:
 

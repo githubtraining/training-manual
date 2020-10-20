@@ -1,9 +1,10 @@
-## ![actions](img/actions.png ':size=5%') GitHub Actions 
+## ![actions](img/actions.png ':size=5%') GitHub Actions
 
 Actions are sharable individual tasks that perform units of work; they allow you to automate and execute your software development workflows right in your repository.
 
 **Example use cases of GitHub Actions:**
-- Build a container and deploy a web service 
+
+- Build a container and deploy a web service
 - Automatically merge an approved pull request
 - Welcome new users to your repository during onboarding
 - Run unit tests against pull requests
