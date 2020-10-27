@@ -21,8 +21,8 @@ git diff --color-words
 
 ```sh
 git diff <REF-1> <REF-2>
-git diff master slow-down
-git diff origin/master master
+git diff main slow-down
+git diff origin/main main
 git diff 2710 b745
 ```
 

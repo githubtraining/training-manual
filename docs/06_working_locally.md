@@ -21,14 +21,14 @@ Let's go ahead and clone the class repository to your local desktop.
 
 ### Our Favorite Git command: `git status`
 
-```sh
+```shell-session
 $ git status
-On branch master
-Your branch is up-to-date with 'origin/master'.
+On branch main
+Your branch is up-to-date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-`git status` is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch master, everything is up to date with origin/master and our working tree is clean.
+`git status` is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch main, everything is up to date with origin/main and our working tree is clean.
 
 ### Using Branches locally
 

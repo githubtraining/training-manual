@@ -9,7 +9,7 @@ To practice teaching the first activities, please use the same repository you us
 To prepare your local repository to be ready for teaching, use the following commands.
 
 ```sh
-git checkout master
+git checkout main
 git reset --hard 1095c8c
 git push --force
 git checkout cb8731a
@@ -32,7 +32,7 @@ git push -u origin readme-update2
 - In your own copy of GitHub Games:
 
 ```sh
-git checkout master
+git checkout main
 git reset --hard 73c762c
 git push --force
 ```

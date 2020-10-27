@@ -1,22 +1,14 @@
 #!/usr/bin/env bash
+#
+# Docsify them documents
 
-################################################################################
-########################## Docsify them documents ##############################
-################################################################################
-
-###############
-# Run command #
-###############
+# Run command
 docsify serve docs
 
-#######################
-# Load the error code #
-#######################
+# Load the error code
 ERROR_CODE=$?
 
-##############################
-# Check the shell for errors #
-##############################
+# Check the shell for errors
 if [ $ERROR_CODE -ne 0 ]; then
   echo "ERROR! Failed to create docs!"
   exit 1

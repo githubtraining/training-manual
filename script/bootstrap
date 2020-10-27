@@ -1,22 +1,14 @@
 #!/usr/bin/env bash
+#
+# Bootstrap GitHub Training Manual
 
-####################################
-# Bootstrap GitHub Training Manual #
-####################################
-
-###############
-# NPM install #
-###############
+# NPM install
 npm i docsify-cli -g
 
-#######################
-# Load the error code #
-#######################
+# Load the error code
 ERROR_CODE=$?
 
-##############################
-# Check the shell for errors #
-##############################
+# Check the shell for errors
 if [ $ERROR_CODE -eq 0 ]; then
   # Success
   echo "Bootstrap successful"

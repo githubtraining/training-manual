@@ -23,7 +23,7 @@ Since this is a review, we have written these steps at a high level. As we compl
 1. Edit the URL in the README.md.
 1. Commit the changes to your branch.
 1. Push your branch to GitHub: `git push -u origin readme-update`
-1. Create a Pull Request *in your repository* (base: `master`, compare: `readme-update`)
+1. Create a Pull Request *in your repository* (base: `main`, compare: `readme-update`)
 1. Merge your Pull Request.
 1. Delete the branch on GitHub.
 1. Update your local copy of the repository: `git pull --prune`
@@ -36,4 +36,4 @@ Since this is a review, we have written these steps at a high level. As we compl
 >
 > You only need to use this long command the first time you push a new branch. After that, you can simply use `git push`.
 
-`git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-master} | grep -v " ${1-master}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"` could be helpful here. **Take a peek in the appendix to learn how!**
+`git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-main} | grep -v " ${1-main}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"` could be helpful here. **Take a peek in the appendix to learn how!**
