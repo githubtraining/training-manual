@@ -202,7 +202,7 @@ get_existing_files() {
 get_issues() {
   # Get list of issues from the repository (formatted as '$NUM. $TITLE')
   IFS=$'\n' read -d "" -ra issues <<<"$(
-    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
+    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$REPO_URL/issues?state=all" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
   )" >>log.out 2>&1
 }
 
