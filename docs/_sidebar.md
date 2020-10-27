@@ -26,8 +26,6 @@
   - [Viewing Local Changes](17_view_local_changes.md)
   - [Tags & Releases](17_tags_and_releases.md)
   - [Workflow Discussion](17_workflow_discussion.md)
-  - [GitHub Actions](17_github_actions.md)
-  - [Automate Releases](17_actions_activity.md)
 
 - Project 4: Local Repository
   - [Create a Local Repo](18_create_local_repo.md)
@@ -39,7 +37,10 @@
 
 - Advanced Topics
   - [Personal Access Tokens](20_personal_access_token.md)
+  - [GitHub Actions](17_github_actions.md)
+  - [Automate Releases](17_actions_activity.md)
   - [.gitignore File](23_gitignore.md)
+  - [Commit signature verification](24_commit_sig_verification.md)
   - [Git submodules](26_git_submodules.md)
   - [Git subtrees](27_git_subtrees.md)
 

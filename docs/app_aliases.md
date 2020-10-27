@@ -2,18 +2,18 @@
 
 ### Tidying Up Locally
 
-There are shortcuts that allow you to do a deep clean if you've neglected the state of your local repository. The following TWO configs (both need to be added) will: switch to master, update master from the origin, and delete all local branches already merged into master.
+There are shortcuts that allow you to do a deep clean if you've neglected the state of your local repository. The following TWO configs (both need to be added) will: switch to main, update main from the origin, and delete all local branches already merged into main.
 
 **Note:** Depending on your shell, you might have to add these aliases directly to your git config file, which you can open by typing `git config --global -e`.
 
 ```sh
-git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-master} | grep -v " ${1-master}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"
+git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-main} | grep -v " ${1-main}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"
 ```
 
 **Warning:** You might want to edit this to avoid local deletions of important branches like `gh-pages` or `production`.
 
 ```sh
-git config --global alias.bdone "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+git config --global alias.bdone "!f() { git checkout ${1-main} && git up && git bclean ${1-main}; }; f"
 ```
 
 - This alias won't work until we add `git up`, which is shared at the end of this course.

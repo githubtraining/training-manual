@@ -34,7 +34,7 @@ git --version
 
 You should see something like this:
 
-```sh
+```shell-session
 $ git --version
 git version 2.11.0
 ```
@@ -64,7 +64,7 @@ git clone https://github.com/githubschool/scratch
 
 If the clone is successful you'll see:
 
-```sh
+```shell-session
 $ git clone https://github.com/githubschool/scratch
 Cloning into 'scratch'...
 remote: Counting objects: 6, done.
