@@ -41,7 +41,7 @@
   - [Automate Releases](17_actions_activity.md)
   - [.gitignore File](23_gitignore.md)
   - [Commit signature verification](24_commit_sig_verification.md)
-  - [Git LFS](25_git_lfs.md)
+  - [Git LFS](26_git_lfs.md)
 
 - Appendix
   - **GitHub Resources**
