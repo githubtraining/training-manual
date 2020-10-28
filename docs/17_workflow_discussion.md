@@ -3,7 +3,7 @@
 Now is a good time to discuss workflows - what works for you and your team, what might work, and what you've been doing in the past. Here are some topics you will want to discuss with your team as you establish your ideal process.  Have a conversation either synchronously or in issues in the class repository about different workflows.
 
 1. Which branching strategy will we use?
-1. Which branch will serve as our "master" or deployed code?
+1. Which branch will serve as our "main" or deployed code?
 1. How will you protect your code?
 1. Will we use naming conventions for our branches?
 1. How will we use labels and assignees?
