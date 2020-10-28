@@ -6,7 +6,7 @@
 echo "Creating a PDF... if this fails check out the documentation at: https://toolchain.gitbook.com/ebook.html"
 
 # NPM Install
-npm install -g gitbook-cli
+npm install -g gitbook-cli svgexport
 
 # Load the error code
 ERROR_CODE=$?

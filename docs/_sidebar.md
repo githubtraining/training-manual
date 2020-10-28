@@ -41,6 +41,7 @@
   - [Automate Releases](17_actions_activity.md)
   - [.gitignore File](23_gitignore.md)
   - [Commit signature verification](24_commit_sig_verification.md)
+  - [Git Stash](25_git_stash.md)
   - [Git LFS](26_git_lfs.md)
 
 - Appendix
