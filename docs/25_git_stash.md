@@ -26,7 +26,7 @@ You can have multiple stashes, and they can be referenced by specifying the stas
   - `git stash push`
     - Saves local changes to the stash and then rolls back to `HEAD` in the working tree and index
       - `git stash push -m <message>` gives the message along with the stashed state
-      - Options include `-m|--message <message>`, `-p|--patch`, `-`
+      - Options include `-m|--message <message>`, `-p|--patch`, `--`
 - `git stash list`
   - This will list all of the stashes you have available
 - `git stash show`
