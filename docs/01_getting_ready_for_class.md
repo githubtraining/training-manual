@@ -77,7 +77,7 @@ If your clone is unsuccessful, read about [authenticating with GitHub from Git](
 
 #### Proxy configuration
 
-If your organization uses a proxy, you will need to configure the proxy settings in Git. Open Git Bash (on Windows) or Terminal (on Mac or *nix) and complete the appropriate steps below:
+If your organization uses a proxy, you will need to configure the proxy settings in Git. Open Git Bash (on Windows) or Terminal (on Mac or \*nix) and complete the appropriate steps below:
 
 **If your proxy does not require authentication:**
 
