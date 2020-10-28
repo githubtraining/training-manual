@@ -45,7 +45,7 @@ Anything over 2.0 will work for this class!
 
 If you don't already have Git installed, you can download Git at www.git-scm.com.
 
-If you need additional assistance installing Git, you can find more information in the ProGit chapter on installing Git: `http://git-scm.com/book/en/v2/Getting-Started-Installing-Git`.
+If you need additional assistance installing Git, you can find more information in [the ProGit chapter on installing Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 #### Where is Your Shell?
 
