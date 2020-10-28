@@ -42,7 +42,7 @@
   - [.gitignore File](23_gitignore.md)
   - [Commit signature verification](24_commit_sig_verification.md)
   - [Git LFS](25_git_lfs.md)
- 
+
 - Appendix
   - **GitHub Resources**
     - [Day 1 Activity Instructions](app_Day_1_activities.md)
