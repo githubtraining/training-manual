@@ -11,9 +11,9 @@ name: Super Linter
 # https://help.github.com/en/articles/workflow-syntax-for-github-actions
 #
 
-#############################
-# Start the job on all push #
-#############################
+#################################
+# Start the job on pull request #
+#################################
 on:
   pull_request_target:
     branches: [master]
