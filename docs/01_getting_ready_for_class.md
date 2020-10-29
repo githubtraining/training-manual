@@ -20,7 +20,7 @@ You can set up your free account by following these steps:
 
 If you already have an account, verify that you can visit github.com within your organization's network.
 
-GitHub is designed to run on the current versions of all major browsers. Take a look at our list of [supported browsers](https://help.github.com/articles/supported-browsers/).
+GitHub is designed to run on the current versions of all major browsers. Take a look at our list of [supported browsers](https://docs.github.com/github/getting-started-with-github/supported-browsers).
 
 ### Step 2: Install Git
 
@@ -73,7 +73,7 @@ remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (6/6), done.
 ```
 
-If your clone is unsuccessful, read about [authenticating with GitHub from Git](https://help.github.com/articles/set-up-git/#next-steps-authenticating-with-github-from-git). Please note: many corporate networks restrict SSH traffic, so we highly recommend using HTTPS and verifying the clone works before class. Also, if you have two-factor authentication enabled and wish to use HTTPS, you will need to [set up a personal access token](https://help.github.com/articles/https-cloning-errors/#provide-access-token-if-2fa-enabled).
+If your clone is unsuccessful, read about [authenticating with GitHub from Git](https://docs.github.com/github/getting-started-with-github/set-up-git#next-steps-authenticating-with-github-from-git). Please note: many corporate networks restrict SSH traffic, so we highly recommend using HTTPS and verifying the clone works before class. Also, if you have two-factor authentication enabled and wish to use HTTPS, you will need to [set up a personal access token](https://docs.github.com/github/authenticating-to-github/accessing-github-using-two-factor-authentication#using-two-factor-authentication-with-the-command-line).
 
 #### Proxy configuration
 
@@ -111,7 +111,7 @@ You can use almost any text editor, but we have the best success with the follow
 - Notepad++
 - GitPad
 
-If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at help.github.com](https://help.github.com/articles/associating-text-editors-with-git/).
+If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
 
 #### Your Editor on the Command Line
 
