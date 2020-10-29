@@ -15,8 +15,8 @@ name: Super Linter
 # Start the job on all push #
 #############################
 on:
-  push:
-    branches-ignore: [master]
+  pull_request_target:
+    branches: [master]
 
 ###############
 # Set the Job #
