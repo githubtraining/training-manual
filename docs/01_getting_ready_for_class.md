@@ -20,7 +20,7 @@ You can set up your free account by following these steps:
 
 If you already have an account, verify that you can visit github.com within your organization's network.
 
-GitHub is designed to run on the current versions of all major browsers. In particular, if you use Microsoft's Internet Explorer (IE), you must be using the latest version. Take a look at our list of [supported browsers](https://help.github.com/articles/supported-browsers/).
+GitHub is designed to run on the current versions of all major browsers. Take a look at our list of [supported browsers](https://docs.github.com/github/getting-started-with-github/supported-browsers).
 
 ### Step 2: Install Git
 
@@ -45,14 +45,14 @@ Anything over 2.0 will work for this class!
 
 If you don't already have Git installed, you can download Git at www.git-scm.com.
 
-If you need additional assistance installing Git, you can find more information in the ProGit chapter on installing Git: `http://git-scm.com/book/en/v2/Getting-Started-Installing-Git`.
+If you need additional assistance installing Git, you can find more information in [the ProGit chapter on installing Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
 #### Where is Your Shell?
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
 - If you are working on Windows, we recommend `Git Bash` which is installed with the Git package, so that you can follow along with the facilitator who will be using Bash.
-- If you are working on a Mac or other Unix-based system, you can use the built-in Terminal application.
+- If you are working on macOS or another Unix-like system, you can use the built-in Terminal application.
 
 ### Step 3: Try cloning with HTTPS
 
@@ -73,11 +73,11 @@ remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
 Unpacking objects: 100% (6/6), done.
 ```
 
-If your clone is unsuccessful, read about [authenticating with GitHub from Git](https://help.github.com/articles/set-up-git/#next-steps-authenticating-with-github-from-git). Please note: many corporate networks restrict SSH traffic, so we highly recommend using HTTPS and verifying the clone works before class. Also, if you have two-factor authentication enabled and wish to use HTTPS, you will need to [set up a personal access token](https://help.github.com/articles/https-cloning-errors/#provide-access-token-if-2fa-enabled).
+If your clone is unsuccessful, read about [authenticating with GitHub from Git](https://docs.github.com/github/getting-started-with-github/set-up-git#next-steps-authenticating-with-github-from-git). Please note: many corporate networks restrict SSH traffic, so we highly recommend using HTTPS and verifying the clone works before class. Also, if you have two-factor authentication enabled and wish to use HTTPS, you will need to [set up a personal access token](https://docs.github.com/github/authenticating-to-github/accessing-github-using-two-factor-authentication#using-two-factor-authentication-with-the-command-line).
 
 #### Proxy configuration
 
-If your organization uses a proxy, you will need to configure the proxy settings in Git. Open Git Bash (on Windows) or Terminal (on Mac or *nix) and complete the appropriate steps below:
+If your organization uses a proxy, you will need to configure the proxy settings in Git. Open Git Bash (on Windows) or Terminal (on Mac or \*nix) and complete the appropriate steps below:
 
 **If your proxy does not require authentication:**
 
@@ -111,7 +111,7 @@ You can use almost any text editor, but we have the best success with the follow
 - Notepad++
 - GitPad
 
-If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at help.github.com](https://help.github.com/articles/associating-text-editors-with-git/).
+If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
 
 #### Your Editor on the Command Line
 
