@@ -15,6 +15,8 @@ name: Super Linter
 # Start the job on pull request #
 #################################
 on:
+  pull_request:
+    branches: [master]
   pull_request_target:
     branches: [master]
 
