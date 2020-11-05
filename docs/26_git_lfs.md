@@ -58,7 +58,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
 1. Double click on the file called _git-lfs-windows-1.X.X.exe_, where 1.X.X is replaced with the Git LFS version you downloaded. When you open this file Windows will run a setup wizard to install Git LFS.
 
     ?> When using Git LFS on windows, ensure you have version 2.29.2.windows.2 of Git or later.
-    
+
 1. Open Git Bash.
 1. Verify that the installation was successful:
 
