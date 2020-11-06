@@ -39,7 +39,7 @@ $ git --version
 git version 2.11.0
 ```
 
-Anything over 2.0 will work for this class!
+Anything over 2.9.2 will work for this class!
 
 #### Downloading and Installing Git
 
