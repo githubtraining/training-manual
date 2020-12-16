@@ -14,12 +14,6 @@ source ./ask
 # GLOBALS
 COLLAB_REPO=$1
 
-function ContainsElement() {
-  local e
-  for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 1; done
-  return 0
-}
-
 function GetNames() {
   #grab template repo
   echo "Trying to clone a template repo from $ROOT_URL."
