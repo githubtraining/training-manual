@@ -23,3 +23,8 @@ get_collaborators() {
   # Invitees are collaborators too
   collaborators+=("${invitees[@]}")
 }
+
+repo_is_reachable() {
+  # Returns exit code 0 (success) if $1 is a reachable git remote url (https://superuser.com/a/1415376)
+  git ls-remote "$1" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
+}
