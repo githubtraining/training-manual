@@ -94,7 +94,7 @@ create_repo() {
 
   echo "Pushing commits to $CLASS_ORG/$repo_name..."
   git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" >>log.out 2>&1 || {
-    # if git clone command failed
+    # if git push command failed
     print_error "Failed to push."
     exit 1
   }
