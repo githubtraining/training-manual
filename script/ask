@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 #
-# Ask
+# Ask (https://djm.me/ask)
 
 # This is a general-purpose function to ask yes/no questions in Bash, either
 # with or without a default answer. It keeps repeating the question until it
 # gets a valid answer.
 
 function ask() {
-  # https://djm.me/ask
   local prompt default reply
 
   if [ "${2:-}" = "Y" ]; then
