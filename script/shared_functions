@@ -5,6 +5,12 @@
 # shellcheck source=script/ask
 source ./ask
 
+# color variables
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+blue=$(tput setaf 4)
+reset=$(tput sgr0)
+
 get_collaborators() {
   class_repo=$1
   local repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$class_repo"
@@ -30,4 +36,16 @@ get_collaborators() {
 repo_is_reachable() {
   repo_url=$1
   git ls-remote "$repo_url" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
+}
+
+print_error() {
+  echo "${red}Error! $1${reset}"
+}
+
+print_success() {
+  echo "${green}Success! $1${reset}"
+}
+
+print_done() {
+  echo "${blue}Done! $1${reset}"
 }
