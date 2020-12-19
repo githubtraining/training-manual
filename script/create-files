@@ -14,9 +14,10 @@ source ./shared_functions
 # We recommend a dedicated service account (e.g. githubteacher) #
 #################################################################
 
-# GLOBALS
+# Shell variables
 collab_repo=$1
 repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$collab_repo"
+repo_url="https://$ROOT_URL/$CLASS_ORG/$collab_repo"
 
 add_collaborators() {
   for commenter in "${commenters[@]}"; do
@@ -99,7 +100,7 @@ create_issues() {
         # Update the issue text since it already exists
         curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$repo_endpoint/issues/$caption_issue_number" >>log.out 2>&1
         # Print the updated issue text
-        echo -e "The activity issue has been updated:\n$issue_body"
+        echo -e "The activity issue has been updated: $repo_url/issues/$caption_issue_number\n"
       fi
     done
   else
