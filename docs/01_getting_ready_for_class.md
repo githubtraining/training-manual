@@ -41,7 +41,7 @@ git version 2.11.0
 
 In general, we recommend you stay within two minor versions of the [latest version](https://git-scm.com/downloads) of Git. The minor version is the second number in the series `x.x.x`.
 
-We suggest having version [2.29.x](https://raw.githubusercontent.com/git/git/master/Documentation/RelNotes/2.29.1.txt) or more recent if you're using Git for Windows or Git Bash.
+We suggest having version [2.29.2](https://github.com/git-for-windows/git/releases/tag/v2.29.2.windows.2) or more recent if you're using Git for Windows or Git Bash.
 
 #### Downloading and Installing Git
 
