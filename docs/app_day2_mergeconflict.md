@@ -25,9 +25,9 @@ We've learned a lot! Try resolving the conflicts yourself first. If you need ext
 
     `git clone https://github.com/githubschool/conflict-practice-username.git`
 
-1. Find and check out to the conflict branch using the `git checkout <branch>` command. For example:
+1. Find and check out to the conflict branch using the `git switch <branch>` command. For example:
 
-    `git checkout my-branch`
+    `git switch my-branch`
 
 1. Merge `main` into the conflict branch: `git merge main`. The merge will be halted because a conflict exists.
 1. Read the response from Git. It will identify the file(s) with a conflict. Open the file(s) in your favorite text editor.

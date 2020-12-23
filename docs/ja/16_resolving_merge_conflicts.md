@@ -6,7 +6,7 @@
 
 マージコンフリクトの練習として、2つの異なるブランチで、同じファイルの同じ行を変更しました。 この2つのブランチをマージし、結果を見てみましょう。
 
-1. 既存の `remotes/origin/stats-update` のブランチからブランチを作成します。`git checkout stats-update`
+1. 既存の `remotes/origin/stats-update` のブランチからブランチを作成します。`git switch stats-update`
 2. 作成したstats-updateブランチにmasterブランチをマージします。`git merge master`
 
     以下のようなコンフリクトメッセージが表示されます。
