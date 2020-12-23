@@ -41,16 +41,16 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 
 1. Find the SHA of the initial commit: `git log --oneline`
 1. Reset to the SHA of the initial commit: `git reset --hard SHA`
-1. Create a new branch and check out to it: `git checkout -b rebase-me`
+1. Create a new branch and check out to it: `git switch -c rebase-me`
 1. Cherry-pick files 4-6 onto the `rebase-me` branch using the reflog.
-1. Checkout to main: `git checkout main`
+1. Switch to main: `git switch main`
 1. Cherry-pick files 1-3 onto the `main` branch using the reflog.
 1. Look at your history: `git log --oneline --graph --decorate --all`
 1. If you merged now, it would be a recursive merge.
 
 #### Begin the Rebase
 
-1. Checkout to the `rebase-me` branch: `git checkout rebase-me`
+1. Switch to the `rebase-me` branch: `git switch rebase-me`
 1. Start the merge: `git rebase -i main`
 1. Your text editor will open, allowing you to see the commits to be rebased.
 1. Save and close the `rebase-todo`.
@@ -60,7 +60,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 
 #### Finish the Merge
 
-1. Checkout to main, the branch you will merge into: `git checkout main`
+1. Switch to main, the branch you will merge into: `git switch main`
 1. Merge your changes in to main: `git merge rebase-me`
 
 If you'd like some help keeping everything clean with an alias, don't forget to check the appendix!
