@@ -48,7 +48,7 @@ You can have multiple stashes, and they can be referenced by specifying the stas
   - Can be useful for applying changes to multiple branches
 - `git stash branch`
   - `git stash branch <branchname>` creates and checks out a new branch named `<branchname>` starting from the point the stash was created and applies the stash; if it is successful, it drops the stash
-  - Can be useful if you forgot to checkout a new branch before starting working
+  - Can be useful if you forgot to switch a new branch before starting working
 - `git stash create`
   - Create a stash entry and return the object name without storing it in the ref namespace
     - Useful for scripts

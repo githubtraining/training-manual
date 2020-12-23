@@ -45,7 +45,7 @@
 1. 上流のフォークから新しいリモートを追加します。`git remote add upstream https://github.com/githubschool/github-games.git`
 2. リモートの設定を確認します。`git remote -v`
 3. 上流のフォークからリモートの追跡ブランチをフェッチします。`git fetch upstream`
-4. リポジトリのリモートフォークにある `shape-colors` に基づき、`shape-colors` というローカルブランチを作成します。`git checkout -b shape-colors origin/shape-colors`
+4. リポジトリのリモートフォークにある `shape-colors` に基づき、`shape-colors` というローカルブランチを作成します。`git switch -c shape-colors origin/shape-colors`
 5. 自分のブランチと上流ブランチの違いを確認します。`git diff shape-colors upstream/shape-colors`
 6. 上流のフォークの `shape-colors` ブランチから変更をマージします。`git merge upstream/shape-colors`
 7. リモートフォークをローカル変更で更新します。`git push`

@@ -7,7 +7,7 @@ Just like we did in class, open a new pull request adding a new slide to the dec
 1. Create a new branch, and checkout to that branch:
 
    ```sh
-   git checkout -b NEWBRANCHNAME
+   git switch -c NEWBRANCHNAME
    ```
 
 1. Create a new file in the `_slides` directory:
@@ -59,7 +59,7 @@ Add a caption to an existing slide in someone else's pull request.
 
 Improve our `README.md` by adding some of your favorite resources.
 
-1. Create branch, and checkout to that branch: `git checkout -b NEWBRANCHNAME`.
+1. Create branch, and checkout to that branch: `git switch -c NEWBRANCHNAME`.
 1. Edit the README.md to be better in some way. This could mean adding a new resource, or making the existing descriptions more clear. Save and commit your changes.
 1. If working locally, push your changes up to the remote: `git push -u origin NEWBRANCHNAME`.
 1. Open a pull request
@@ -71,7 +71,7 @@ In the body of the pull request, with `base: main` and `compare: NEWBRANCHNAME`.
 
 If you'd like a more advanced challenge, and you have an eye for style, change the colors, font, and other aspects of the class slide deck. **Note: If multiple participants attempt this, there may be merge conflicts.**
 
-1. Create a new branch and check out to it: `git checkout -b NEWBRANCHNAME`.
+1. Create a new branch and check out to it: `git switch -c NEWBRANCHNAME`.
 1. Find the file `_sass/solarized/solarized.scss`.
 1. Make changes in the file.
     - Lines 12-19 affect colors

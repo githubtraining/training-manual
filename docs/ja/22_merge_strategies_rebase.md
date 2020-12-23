@@ -41,7 +41,7 @@ fast forwardのマージは、フィーチャブランチが作成された後�
 
 1. 最初のコミットのSHAを見つけます。`git log --oneline`
 2. 最初のコミットのSHAにリセットします。`git reset --hard SHA`
-3. 新しいブランチを作成し、そのブランチにチェックアウトします。`git checkout -b rebase-me`
+3. 新しいブランチを作成し、そのブランチにチェックアウトします。`git switch -c rebase-me`
 4. reflogを使用し、ファイル4-6を `rebase-me` のブランチにチェリーピックします。
 5. masterにチェックアウトします。`git checkout master`
 6. reflogを使用し、ファイル1-3を `master` のブランチにチェリーピックします。
