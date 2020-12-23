@@ -50,10 +50,10 @@ If you want to see all of the branches, including the read-only copies of your r
 ### Switching Branches
 
 ```sh
-git checkout <BRANCH-NAME>
+git switch <BRANCH-NAME>
 ```
 
-To checkout the branch you created online, type git checkout and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.
+To switch the branch you created online, type `git switch` and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.
 
 > You do not need to type `remotes/origin` in front of the branch - only the branch name. Typing `remotes/origin` in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.
 
