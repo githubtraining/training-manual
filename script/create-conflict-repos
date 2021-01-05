@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Class Setup
+# Create conflict repos
 
 #################################################################
 # NOTE: You must have a personal access token (PAT)             #
@@ -11,7 +11,7 @@
 # shellcheck source=script/shared_functions
 source ./shared_functions
 
-# variables
+# shell variables
 collab_repo=$1
 org_url="https://$ROOT_URL/$CLASS_ORG"
 org_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
@@ -55,7 +55,7 @@ clone_template() {
 }
 
 generate_repos() {
-  # Create conflict repos based on collaborators in the inital class repo
+  # Create conflict-practice repos based on collaborators in the inital class repo
   # :? will display an error if $collaborators is empty or unset
   for username in "${collaborators[@]:?}"; do
     # if a conflict-practice repo has already been created for the user
@@ -102,8 +102,7 @@ create_repo() {
   }
 
   # Set default branch to main
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-    -d "{\"default_branch\":\"main\"}" \
+  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"default_branch\":\"main\"}" \
     -X PATCH "$org_endpoint/$repo_name" >>log.out 2>&1
 
   # Create PRs for each branch
