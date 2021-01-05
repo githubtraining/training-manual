@@ -15,8 +15,10 @@ source ./shared_functions
 collab_repo=$1
 org_url="https://$ROOT_URL/$CLASS_ORG"
 org_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
-template_url="https://github.com/githubtraining/polygons"
-template_url_ghes="https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/polygons"
+template_name="polygons"
+template_url="https://github.com/githubtraining/$template_name"
+template_url_ghes="https://$ROOT_URL/$CLASS_ORG/$template_name"
+
 
 check_template_url() {
   # if root url is not github.com
@@ -138,4 +140,4 @@ generate_repos
 # switch back to original directory
 popd >>log.out 2>&1 || return
 
-print_success "All practice-conflict repos can be found here: $org_url"
+print_success "All $template_name repos can be found here: $org_url"
