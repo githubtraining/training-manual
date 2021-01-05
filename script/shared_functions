@@ -12,7 +12,7 @@ blue=$(tput setaf 4)
 reset=$(tput sgr0)
 
 get_collaborators() {
-  class_repo=$1
+  local class_repo=$1
   local repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$class_repo"
 
   # Get array of repository collaborators
@@ -34,7 +34,7 @@ get_collaborators() {
 # https://superuser.com/a/1415376
 # Returns exit code 0 (success) if $1 is a reachable git remote url
 repo_is_reachable() {
-  repo_url=$1
+  local repo_url=$1
   git ls-remote "$repo_url" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
 }
 
