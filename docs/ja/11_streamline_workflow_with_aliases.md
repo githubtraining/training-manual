@@ -11,26 +11,26 @@
 **オリジナルコマンド**
 
 ```sh
-$ git log --oneline --graph --decorate --all
+git log --oneline --graph --decorate --all
 ```
 
 **エイリアスの作成**
 
 ```sh
-$ git config --global alias.lol "log --oneline --graph --decorate --all"
+git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
 **エイリアスの使い方**
 
 ```sh
-$ git lol
+git lol
 ```
 
 #### 役に立つエイリアス
 
 ```sh
-$ git config --global alias.swc "switch -c"
-$ git config --global alias.s "status -s"
+git config --global alias.swc "switch -c"
+git config --global alias.s "status -s"
 ```
 
 #### リサーチ
