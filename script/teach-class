@@ -105,8 +105,8 @@ function DoTask() {
   # TASK 4
   elif [ "$TASK" -eq 4 ]; then
     # echo "4: Create conflict repos for each student"
-    echo "running script/create-conflict-repos"
-    ./create-conflict-repos "$COLLAB_REPO"
+    echo "running script/create-practice-repos"
+    ./create-practice-repos "$COLLAB_REPO" "polygons" "conflict-practice"
 
   # TASK 5
   elif [ "$TASK" -eq 5 ]; then
@@ -117,8 +117,8 @@ function DoTask() {
   # TASK 6
   elif [ "$TASK" -eq 6 ]; then
     # echo "6: Create the github-games repos for each student"
-    echo "running script/create-game-repos"
-    ./create-game-repos "$COLLAB_REPO"
+    echo "running script/create-practice-repos"
+    ./create-practice-repos "$COLLAB_REPO" "github-games" "github-games"
 
   # TASK 7
   elif [ "$TASK" -eq 7 ]; then
