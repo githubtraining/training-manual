@@ -49,7 +49,9 @@ git branch -a
 
 ### ブランチの切り替え
 
-    git switch <BRANCH-NAME>
+```sh
+git switch <BRANCH-NAME>
+```
 
 オンラインで作成したブランチをチェックアウトするには、git switchとブランチの名前を入力します。 Gitは、そのブランチが切り替わったことを伝えるメッセージを表示し、かつ、同じoriginからのリモートブランチを追跡するように設定されます。
 

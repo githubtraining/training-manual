@@ -8,19 +8,19 @@
 
 例として、前回学習したlogのコマンドにエイリアスを作成してみましょう。
 
-**オリジナルコマンド**
+#### オリジナルコマンド
 
 ```sh
 git log --oneline --graph --decorate --all
 ```
 
-**エイリアスの作成**
+#### エイリアスの作成
 
 ```sh
 git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
-**エイリアスの使い方**
+#### エイリアスの使い方
 
 ```sh
 git lol
