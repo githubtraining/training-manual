@@ -12,12 +12,13 @@ blue=$(tput setaf 4)
 reset=$(tput sgr0)
 
 get_collaborators() {
-  local class_repo=$1
-  local repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$class_repo"
+  local repo_name=$1
+  local repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name"
 
   # Get array of repository collaborators
   IFS=" " read -ra collaborators <<<"$(
-    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
+    curl -su "$TOKEN_OWNER:$TEACHER_PAT" \
+    -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
       jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
