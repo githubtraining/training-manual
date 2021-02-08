@@ -13,7 +13,7 @@ git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-main
 **Warning:** You might want to edit this to avoid local deletions of important branches like `gh-pages` or `production`.
 
 ```sh
-git config --global alias.bdone "!f() { git checkout ${1-main} && git up && git bclean ${1-main}; }; f"
+git config --global alias.bdone "!f() { git switch ${1-main} && git up && git bclean ${1-main}; }; f"
 ```
 
 - This alias won't work until we add `git up`, which is shared at the end of this course.
