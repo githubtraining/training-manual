@@ -20,6 +20,7 @@ repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$collab_repo"
 repo_url="https://$ROOT_URL/$CLASS_ORG/$collab_repo"
 
 add_collaborators() {
+  echo -e "\nAdding collaborators..."
   for commenter in "${commenters[@]}"; do
     # Check if commenter is already a collaborator
     if [[ ${collaborators[*]:?} == *"${commenter}"* ]]; then
@@ -35,6 +36,7 @@ add_collaborators() {
 }
 
 create_files() {
+  echo -e "\nCreating files for collaborators..."
   # Iterate through the list of collaborators
   for collaborator in "${collaborators[@]}"; do
     get_existing_files # Update list of existing files
@@ -196,7 +198,7 @@ print_list() {
   list_items=("$@") # Rebuild the array with rest of arguments
   # Check if any commenters are already collaborators
   if [ "${#list_items[@]}" -ne 0 ]; then
-    echo -e "\n$list_title:"
+    echo -e "$list_title:"
     # Prefix each collaborator with '- '
     list_items=("${list_items[@]/#/- }")
     # Print list of collaborators that are already collaborators
