@@ -27,7 +27,7 @@ add_collaborators() {
     else # Add collaborator
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -X PUT "$repo_endpoint/collaborators/$commenter" >>log.out 2>&1
-      get_collaborators # Update list of collaborators
+      get_collaborators "$collab_repo" # Update list of collaborators
     fi
   done
   # Check if any commenters are already collaborators
