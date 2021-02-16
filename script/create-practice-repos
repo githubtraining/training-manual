@@ -88,6 +88,16 @@ generate_repos() {
   done
 }
 
+git_push() {
+  # Push to remote repository
+  echo "Pushing to $CLASS_ORG/$repo_name..."
+  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" >>log.out 2>&1 || {
+    # if git push command failed
+    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
+    exit 1
+  }
+}
+
 create_repo() {
   student=$1
   local repo_name="$practice_repo_name-$student"
@@ -107,6 +117,8 @@ create_repo() {
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
       -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >>log.out 2>&1
+
+    git_push
 
     # Create PRs for each branch
     {
@@ -130,6 +142,8 @@ create_repo() {
       "{ \"name\": \"${repo_name}\", \"description\": \"$repo_description\", \"homepage\": \"${template_pages_url}\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
 
+    git_push
+
     # Create issues for problems
     {
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
@@ -152,13 +166,6 @@ create_repo() {
   # Add student as a collaborator
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
     -X PUT "$org_endpoint/$repo_name/collaborators/$student" >>log.out 2>&1
-
-  echo "Pushing commits to $CLASS_ORG/$repo_name..."
-  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" >>log.out 2>&1 || {
-    # if git push command failed
-    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
-    exit 1
-  }
 
   # Set default branch to main
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"default_branch\":\"main\"}" \
