@@ -19,7 +19,7 @@ Now you will practice the GitHub Flow from beginning to end by updating the link
 Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
 
 1. Clone your copy of the repository: `git clone https://github.com/githubschool/github-games-USERNAME.git`
-1. Create a new branch called `readme-update`: `git checkout -b readme-update`
+1. Create a new branch called `readme-update`: `git switch -c readme-update`
 1. Edit the URL in the README.md.
 1. Commit the changes to your branch.
 1. Push your branch to GitHub: `git push -u origin readme-update`
@@ -28,7 +28,7 @@ Since this is a review, we have written these steps at a high level. As we compl
 1. Delete the branch on GitHub.
 1. Update your local copy of the repository: `git pull --prune`
 
-`git checkout -b readme-update` is a shortcut command that allows you to combine the creation of the branch (`git branch readme-update`) and checking out to that branch (`git checkout readme-update`). The `-b` tells Git to create a new branch.
+`git switch -c readme-update` is a shortcut command that allows you to combine the creation of the branch and switching to that branch. The `-c` tells Git to create a new branch.
 
 > `git push -u origin readme-update` is the slightly longer version of the push command that should be used when you push a new branch for the first time.
 >

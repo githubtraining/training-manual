@@ -41,16 +41,16 @@ fast forwardのマージは、フィーチャブランチが作成された後�
 
 1. 最初のコミットのSHAを見つけます。`git log --oneline`
 2. 最初のコミットのSHAにリセットします。`git reset --hard SHA`
-3. 新しいブランチを作成し、そのブランチにチェックアウトします。`git checkout -b rebase-me`
+3. 新しいブランチを作成し、そのブランチにチェックアウトします。`git switch -c rebase-me`
 4. reflogを使用し、ファイル4-6を `rebase-me` のブランチにチェリーピックします。
-5. masterにチェックアウトします。`git checkout master`
+5. masterにチェックアウトします。`git switch master`
 6. reflogを使用し、ファイル1-3を `master` のブランチにチェリーピックします。
 7. 履歴を確認します。`git log --oneline --graph --decorate --all`
 8. この時点で仮にマージすると、再帰的なマージとなります。
 
 #### リベースを開始
 
-1. `rebase-me` のブランチにチェックアウトします。`git checkout rebase-me`
+1. `rebase-me` のブランチにチェックアウトします。`git switch rebase-me`
 2. マージを開始します。`git rebase -i master`
 3. テキストエディタが開き、リベースされるコミットが表示されます。
 4. `rebase-todo` を保存し、閉じます。
@@ -60,5 +60,5 @@ fast forwardのマージは、フィーチャブランチが作成された後�
 
 #### マージの完了
 
-1. マージするmasterのブランチにチェックアウトします。`git checkout master`
+1. マージするmasterのブランチにチェックアウトします。`git switch master`
 2. 変更をmasterにマージします。`git merge rebase-me`

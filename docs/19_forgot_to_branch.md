@@ -7,7 +7,7 @@ If you begin working, but you are still on `main`, don’t panic! Changes aren't
 1. Modify file before creating branch
    - _Notice that the working directory and staging area are portable - files sitting in each area will remain there when you switch branches!_
 2. Type `git status`, and notice changes in your working directory
-3. Create a new branch with `git checkout -b BRANCH-NAME`
+3. Create a new branch with `git switch -c BRANCH-NAME`
 4. Type `git status` again, to notice which branch you are on, and your working directory
 
 ## Non-committed conflicts
