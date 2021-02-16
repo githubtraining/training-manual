@@ -114,6 +114,7 @@ create_repo() {
     local repo_description="Let's resolve some conflicts."
 
     # Create a new repo named $repo_name in $CLASS_ORG
+    echo "Creating $CLASS_ORG/$repo_name for $student..."
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
       -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >>log.out 2>&1
@@ -121,6 +122,7 @@ create_repo() {
     git_push
 
     # Create PRs for each branch
+    echo "Creating practice pull requests for $CLASS_ORG/$repo_name..."
     {
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"Updates to game manual\", \"head\": \"manual\", \"base\": \"main\", \"body\": \"This pull request edits the wording of some of the language on the main page. It appears that it has also been edited on main, because there's a merge conflict. Please make sure that all of the words are the ones that you'd like to use, and that there aren't any lines of text missing.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972130-1a611700-6705-11eb-8858-a9ef429e2a60.mp4\"}" \
@@ -138,6 +140,7 @@ create_repo() {
     local repo_description="A fun way to learn about git troubleshooting."
 
     # Create a new practice repo named $repo_name in $CLASS_ORG
+    echo "Creating $CLASS_ORG/$repo_name for $student..."
     curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
       "{ \"name\": \"${repo_name}\", \"description\": \"$repo_description\", \"homepage\": \"${template_pages_url}\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
@@ -145,6 +148,7 @@ create_repo() {
     git_push
 
     # Create issues for problems
+    echo "Creating practice issues for $CLASS_ORG/$repo_name..."
     {
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${pages_url}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on main. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$student?\"}" \
@@ -161,9 +165,8 @@ create_repo() {
     ;;
   esac
 
-  echo "Creating $CLASS_ORG/$repo_name for $student..."
-
-  # Add student as a collaborator
+  # Invite student as a collaborator
+  echo "Inviting $student as a collaborator to $CLASS_ORG/$repo_name..."
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
     -X PUT "$org_endpoint/$repo_name/collaborators/$student" >>log.out 2>&1
 
