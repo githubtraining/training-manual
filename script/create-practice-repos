@@ -71,7 +71,7 @@ generate_repos() {
     # if a practice repo has already been created for the user
     if repo_is_reachable "$org_url/$practice_repo_name-$username"; then
       # ask if the repository should be deleted and recreated
-      if ask "A $practice_repo_name repo already exists for $username. Is it OK to delete and recreate?" N; then
+      if ask "A $practice_repo_name repo already exists for $username.\nIs it OK to delete and recreate?" N; then
         echo "Deleting $CLASS_ORG/$practice_repo_name-$username..."
         # delete the existing practice repo
         curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
