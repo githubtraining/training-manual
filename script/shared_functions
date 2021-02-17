@@ -30,7 +30,7 @@ get_collaborators() {
   # Get array of repository collaborators
   IFS=" " read -ra collaborators <<<"$(
     curl -su "$TOKEN_OWNER:$TEACHER_PAT" \
-    -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
+      -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
       jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
