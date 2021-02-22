@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 #
-# Ask
+# Ask (https://djm.me/ask)
 
 # This is a general-purpose function to ask yes/no questions in Bash, either
 # with or without a default answer. It keeps repeating the question until it
 # gets a valid answer.
 
+# color variables
+yellow=$(tput setaf 3)
+reset=$(tput sgr0)
+
 function ask() {
-  # https://djm.me/ask
   local prompt default reply
 
   if [ "${2:-}" = "Y" ]; then
@@ -24,7 +27,7 @@ function ask() {
   while true; do
 
     # Ask the question (not using "read -p" as it uses stderr not stdout)
-    echo -n "$1 [$prompt] "
+    echo -ne "${yellow}$1 [$prompt] ${reset}"
 
     # Read the answer (use /dev/tty in case stdin is redirected from somewhere else)
     read -r reply </dev/tty
