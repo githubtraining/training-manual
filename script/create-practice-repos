@@ -168,6 +168,7 @@ create_repo() {
   # Invite student as a collaborator
   echo "Inviting $student as a collaborator to $CLASS_ORG/$repo_name..."
   curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+    -d "{ \"permission\": \"admin\"}" \
     -X PUT "$org_endpoint/$repo_name/collaborators/$student" >>log.out 2>&1
 
   # Set default branch to main
