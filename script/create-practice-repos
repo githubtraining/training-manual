@@ -151,7 +151,7 @@ create_repo() {
     echo "Creating practice issues for $CLASS_ORG/$repo_name..."
     {
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-        -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${pages_url}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on main. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet @$student?\"}" \
+        -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${pages_url}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on main. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet?\"}" \
         -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name/issues"
       curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and README are pointing to ${CLASS_ORG}'s copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${pages_url}\"}" \
