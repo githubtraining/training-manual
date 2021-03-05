@@ -13,7 +13,7 @@ REPO_NAME=$1
 
 function DeleteIt() {
   echo "Deleting $CLASS_ORG/$REPO_NAME"
-  curl -s -i -H "Authorization: token $TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >>log.out 2>&1
+  curl -s -S -i -H "Authorization: token $TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" >>log.out 2>&1
 
   # Load the error code
   ERROR_CODE=$?

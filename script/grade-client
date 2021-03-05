@@ -53,7 +53,7 @@ function GetInputVars() {
 function GetIssueCommenters() {
   # Get array of all commentors in an issue
   IFS=" " read -ra COMMENTORS_ARRAY <<<"$(
-    curl --fail -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/issues/$MASTER_ISSUE/comments" \
+    curl --fail -s -S -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/issues/$MASTER_ISSUE/comments" \
       -H 'accept: application/vnd.github.v3+json' -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' --data '{}' | jq '.[] | .user.login'
   )" >>log.out 2>&1
 
@@ -81,7 +81,7 @@ function GetIssueCommenters() {
 function GetOpenPRS() {
   # Get a list of all open PRs on the main repo
   IFS=" " read -ra OPEN_PR_ARRAY <<<"$(
-    curl -s -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \
+    curl -s -S -k -X GET --url "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/pulls" \
       -H "authorization: Bearer $TEACHER_PAT" -H 'content-type: application/json' \
       --data '{ "state": "open", "sort": "created", "direction": "desc" }' | jq '.[] | .user.login'
   )" >>log.out 2>&1
@@ -129,11 +129,11 @@ function CreateObjects() {
     # shellcheck disable=SC2002
     NEW_FILE=$(cat "caption-activity-$USER.yml" | base64)
     # Does the file already exist?
-    STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | grep "^Status:") >>log.out 2>&1
+    STATUS=$(curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | grep "^Status:") >>log.out 2>&1
     if echo "$STATUS" | grep -iq "404"; then
       # Create the file on the repo
       echo "Creating file for:[$USER]"
-      curl --fail -k -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >>log.out 2>&1
+      curl --fail -k -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\"}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >>log.out 2>&1
 
       # Load the error code
       ERROR_CODE=$?
@@ -146,7 +146,7 @@ function CreateObjects() {
       fi
     else
       # Get the sha
-      SHA=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | jq .sha) >>log.out 2>&1
+      SHA=$(curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" | jq .sha) >>log.out 2>&1
 
       # Load the error code
       ERROR_CODE=$?
@@ -163,7 +163,7 @@ function CreateObjects() {
       fi
 
       # Replace the file
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >>log.out 2>&1
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"_grades/caption-activity-$USER.yml\", \"message\": \"Graded caption activity for $USER\", \"content\": \"$NEW_FILE\", \"sha\": $SHA}" -X PUT "https://$INSTANCE_URL/repos/$COLLAB_ORG/$COLLAB_REPO/contents/_grades/caption-activity-$USER.yml" >>log.out 2>&1
 
       # Load the error code
       ERROR_CODE=$?
