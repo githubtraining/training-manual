@@ -74,7 +74,7 @@ generate_repos() {
       if ask "A $practice_repo_name repo already exists for $username.\nIs it OK to delete and recreate?" N; then
         echo "Deleting $CLASS_ORG/$practice_repo_name-$username..."
         # delete the existing practice repo
-        curl -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
           -X DELETE "$org_endpoint/$practice_repo_name-$username" >>log.out 2>&1
         # create a new practice repo
         create_repo "$username"
@@ -115,7 +115,7 @@ create_repo() {
 
     # Create a new repo named $repo_name in $CLASS_ORG
     echo "Creating $CLASS_ORG/$repo_name for $student..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
       -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >>log.out 2>&1
 
@@ -124,13 +124,13 @@ create_repo() {
     # Create PRs for each branch
     echo "Creating practice pull requests for $CLASS_ORG/$repo_name..."
     {
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"Updates to game manual\", \"head\": \"manual\", \"base\": \"main\", \"body\": \"This pull request edits the wording of some of the language on the main page. It appears that it has also been edited on main, because there's a merge conflict. Please make sure that all of the words are the ones that you'd like to use, and that there aren't any lines of text missing.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972130-1a611700-6705-11eb-8858-a9ef429e2a60.mp4\"}" \
         -X POST "$org_endpoint/$repo_name/pulls"
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"Minor CSS fixes\", \"head\": \"css-changes\", \"base\": \"main\", \"body\": \"This pull request makes some small changes to the CSS. Pick the CSS that you think makes the most sense given the history of the file on both branches and resolve the merge conflict.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972084-06b5b080-6705-11eb-8f57-d81559307822.mp4\"}" \
         -X POST "$org_endpoint/$repo_name/pulls"
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"Update README\", \"head\": \"readme-update\", \"base\": \"main\", \"body\": \"This pull request updates the README.md. Resolve the merge conflicts and make sure the final version of the README.md is accurate and descriptive.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972095-0ddcbe80-6705-11eb-9cc8-6df603e22910.mp4\"}" \
         -X POST "$org_endpoint/$repo_name/pulls"
     } >>log.out 2>&1
@@ -141,7 +141,7 @@ create_repo() {
 
     # Create a new practice repo named $repo_name in $CLASS_ORG
     echo "Creating $CLASS_ORG/$repo_name for $student..."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
       -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"homepage\": \"$template_pages_url\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
 
@@ -150,10 +150,10 @@ create_repo() {
     # Create issues for problems
     echo "Creating practice issues for $CLASS_ORG/$repo_name..."
     {
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${pages_url}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on main. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet, please?\"}" \
         -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name/issues"
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and README are pointing to ${CLASS_ORG}'s copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${pages_url}\"}" \
         -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name/issues"
     } >>log.out 2>&1
@@ -167,12 +167,12 @@ create_repo() {
 
   # Invite student as a collaborator
   echo "Inviting $student as a collaborator to $CLASS_ORG/$repo_name..."
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
     -d "{ \"permission\": \"admin\"}" \
     -X PUT "$org_endpoint/$repo_name/collaborators/$student" >>log.out 2>&1
 
   # Set default branch to main
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"default_branch\":\"main\"}" \
+  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"default_branch\":\"main\"}" \
     -X PATCH "$org_endpoint/$repo_name" >>log.out 2>&1
 
   print_done "Repo URL: $repo_url"

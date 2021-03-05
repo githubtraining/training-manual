@@ -26,7 +26,7 @@ add_collaborators() {
     if [[ ${collaborators[*]:?} == *"${commenter}"* ]]; then
       existing_collaborators+=("$commenter")
     else # Add collaborator
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
         -X PUT "$repo_endpoint/collaborators/$commenter" >>log.out 2>&1
       get_collaborators "$collab_repo" # Update list of collaborators
     fi
@@ -71,7 +71,7 @@ create_files() {
       # Put the file in the repository
       path="_slides/$new_file"
       message="Activity file for $collaborator"
-      curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
         -X PUT "$repo_endpoint/contents/$path" >>log.out 2>&1
       # Remove the local file
       rm "./$new_file"
@@ -100,40 +100,40 @@ create_issues() {
       if [[ $issue == *"$issue_title"* ]]; then
         caption_issue_number=$(echo "$issue" | cut -d. -f1)
         # Update the issue text since it already exists
-        curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$repo_endpoint/issues/$caption_issue_number" >>log.out 2>&1
+        curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"body\": \"$issue_body\" }" -X PATCH "$repo_endpoint/issues/$caption_issue_number" >>log.out 2>&1
         # Print the updated issue text
         echo -e "The activity issue has been updated: $repo_url/issues/$caption_issue_number\n"
       fi
     done
   else
     # This is the first run - create activity issues
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 
     issue_title="Add A New Slide"
     issue_body="## We Need More Slides\nGrab another octocat and create a new slide from scratch.\nIf you need help, check out the Appendix in the training manual."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 
     issue_title="Add a Caption To an Existing Slide"
     issue_body="## Can you think of a better caption?\nEach slide can have more than one caption. Check out the current slide show and add a caption (or two).\nIf you need help, check out the Appendix in the training manual."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 
     issue_title="Improve the README"
     issue_body="## Do you have a favorite Git Resource?\nAdd it to the README!\n If you need help, check out the Appendix in the training manual."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 
     issue_title="Restyle the Slides"
     issue_body="## Do you have an eye for design?\nHelp us improve the look of the slide deck.\nIf you need help, check out the Appendix in the training manual."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 
     issue_title="Parking Lot"
     issue_body="## Post any questions you may have here during the training."
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": \"$issue_body\" }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
   fi
 }
 
 make_repo_private() {
   # Check if the repo is private
-  repo_is_private=$(curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint" | jq .private) >>log.out 2>&1
+  repo_is_private=$(curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint" | jq .private) >>log.out 2>&1
 
   # If the repo is private
   if "$repo_is_private"; then
@@ -144,7 +144,7 @@ make_repo_private() {
   # Default to 'yes' if no answer is given
   if ask "Are you ready to make this repo private?" Y; then
     # Make the repo private
-    curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$collab_repo\", \"private\": true }" -X PATCH "$repo_endpoint" >>log.out 2>&1
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$collab_repo\", \"private\": true }" -X PATCH "$repo_endpoint" >>log.out 2>&1
     if ask "Does this class get 1:1 sessions?" N; then
       create_one_on_one_issue
     fi
@@ -167,13 +167,13 @@ create_one_on_one_issue() {
     issue_body=$issue_body"@$i "
   done
 
-  curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": $issue_body }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
+  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": $issue_body }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 }
 
 get_commenters() {
   # Array of commenters
   IFS=" " read -ra commenters <<<"$(
-    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/issues/1/comments?per_page=100" |
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/issues/1/comments?per_page=100" |
       jq -r 'map(.user.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 }
@@ -181,14 +181,14 @@ get_commenters() {
 get_existing_files() {
   # Get existing file names
   IFS=" " read -ra existing_files <<<"$(
-    curl -su "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/contents/_slides" | jq -r 'map(.name) | @sh' | tr -d \'
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/contents/_slides" | jq -r 'map(.name) | @sh' | tr -d \'
   )"
 }
 
 get_issues() {
   # Get list of issues from the repository (formatted as '$NUM. $TITLE')
   IFS=$'\n' read -d "" -ra issues <<<"$(
-    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/issues?state=all" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/issues?state=all" | jq -r 'reverse | .[] | "\(.number). \(.title)" | @sh' | tr -d \'
   )" >>log.out 2>&1
 }
 
@@ -208,7 +208,7 @@ print_list() {
 }
 
 # Make sure repo exists before attempting to interact with it
-repo_status=$(curl -s -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "$repo_endpoint") >>log.out 2>&1
+repo_status=$(curl -s -S -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "$repo_endpoint") >>log.out 2>&1
 # Exit the script if the repo cannot be found
 if [[ $repo_status == *"Not Found"* ]]; then
   echo "Repo not found. Please try again."

@@ -148,7 +148,7 @@ function InstanceURL() {
   # Read the input
   read -r NEW_URL
   echo "Checking if '$NEW_URL' is accessible... (this may take several moments)"
-  curl -s "$NEW_URL" >>log.out 2>&1
+  curl -s -S "$NEW_URL" >>log.out 2>&1
 
   # Load the error code
   ERROR_CODE=$?
@@ -161,7 +161,7 @@ function InstanceURL() {
     echo "Can't access your API via that URL, perhaps it needs authentication, checking..."
     # Check with Auth
     echo "Checking if '$NEW_URL' is accessible with authentication..."
-    if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]; then
+    if [[ $(curl -s -S -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/" | jq .message) = null ]]; then
       echo "API endpoint + authentication verified"
       echo "export INSTANCE_URL='$NEW_URL'" >>"$HOME/$RC_FILE"
     else
@@ -204,7 +204,7 @@ function ClassOrg() {
 
   # Validate access
   echo "Checking if $NEW_ORG is accessible via the API..."
-  if [[ $(curl -s -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/orgs/$NEW_ORG" | jq .message) = null ]]; then
+  if [[ $(curl -s -S -u "$NEW_NAME:$NEW_TOKEN" "https://$NEW_URL/orgs/$NEW_ORG" | jq .message) = null ]]; then
     echo "That organization was verified."
     echo "export CLASS_ORG='$NEW_ORG'" >>"$HOME/$RC_FILE"
   else
