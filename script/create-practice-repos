@@ -116,7 +116,7 @@ create_repo() {
     # Create a new repo named $repo_name in $CLASS_ORG
     echo "Creating $CLASS_ORG/$repo_name for $student..."
     curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-      -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
+      -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"private\": true, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >>log.out 2>&1
 
     git_push
@@ -142,7 +142,7 @@ create_repo() {
     # Create a new practice repo named $repo_name in $CLASS_ORG
     echo "Creating $CLASS_ORG/$repo_name for $student..."
     curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-      -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"homepage\": \"$template_pages_url\", \"private\": false, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
+      -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"homepage\": \"$template_pages_url\", \"private\": true, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
       -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
 
     git_push
