@@ -61,3 +61,9 @@ Pro Tip # 4: You can create aliases that only call one command.
 ```sh
 git config --global alias.s "status -s"
 ```
+
+Pro Tip # 5: Clean up branches quickly and easily.
+
+```sh
+git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+```
