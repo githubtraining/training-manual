@@ -80,7 +80,7 @@ Subtrees are a git tool for including the content of another repository as a dep
 
 Although we've only added one subproject, any number of subprojects can be incorporated into a Git repository.
 
-**Tip**: If you create a fresh clone of the repository in the future,  the remotes you've added will not be created for you. You will have to add them again using [the `git remote add` command](/articles/adding-a-remote).
+?> **Tip**: If you create a fresh clone of the repository in the future, the remotes you've added will not be created for you. You will have to add them again using [the `git remote add` command](https://docs.github.com/github/using-git/adding-a-remote).
 
 #### Synchronizing with updates and changes
 
