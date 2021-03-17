@@ -87,12 +87,11 @@ Although we've only added one subproject, any number of subprojects can be incor
 When a subproject is added, it is not automatically kept in sync with the upstream changes. You will need to update the subproject with the following command:
 
 ```shell
-$ git pull -s subtree <em>remotename</em> <em>branchname</em>
+git pull -s subtree <em>remotename</em> <em>branchname</em>
 ```
 
 For the example above, this would be:
 
 ```shell
-$ git pull -s subtree spoon-knife main
+git pull -s subtree spoon-knife main
 ```
-
