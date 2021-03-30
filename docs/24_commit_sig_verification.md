@@ -78,8 +78,7 @@ An unsigned commit on the local downstream repo will not display the "Verified" 
 1. Create a new branch named `add-author` by entering:
 
     ```bash
-    git checkout main
-    git checkout -b add-author
+    git switch -b add-author
     ```
 
 1. Open the `README.md` file in your favorite text editor.

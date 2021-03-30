@@ -15,7 +15,7 @@ COLLAB=$3
 
 function CheckAvail() {
   # Get the repo status
-  repoStatus=$(curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}") >>log.out 2>&1
+  repoStatus=$(curl -s -S -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X GET "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}") >>log.out 2>&1
 
   # Check the status
   if echo "${repoStatus}" | grep -iq "404"; then
@@ -33,9 +33,9 @@ function CreateRepo() {
   #create the repository on ${INSTANCE_URL}
   echo "Creating Repo:  https://${ROOT_URL}/${CLASS_ORG}/${REPO_NAME}"
   if [[ "$ROOT_URL" == "github.com" ]]; then
-    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
+    curl -s -S -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub\", \"homepage\": \"https://${CLASS_ORG}.github.io/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
   else
-    curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
+    curl -s -S -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{ \"name\": \"${REPO_NAME}\", \"description\": \"Let's learn about Git and GitHub Enterprise\", \"homepage\": \"https://${ROOT_URL}/pages/${CLASS_ORG}/${REPO_NAME}/\", \"private\": false, \"has_issues\": true, \"has_wiki\": true, \"has_downloads\": true}" -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
   fi
 
   # Wait to let finish
@@ -43,11 +43,11 @@ function CreateRepo() {
   sleep 5
 
   # add collaborators
-  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X PUT "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}/collaborators/${COLLAB}" >>log.out 2>&1
+  curl -s -S -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -X PUT "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}/collaborators/${COLLAB}" >>log.out 2>&1
   CloneRepo
 
   # Set default branch to main
-  curl -s -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{\"default_branch\":\"main\"}" -X PATCH "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}" >>log.out 2>&1
+  curl -s -S -i -u "${TOKEN_OWNER}:${TEACHER_PAT}" -d "{\"default_branch\":\"main\"}" -X PATCH "https://${INSTANCE_URL}/repos/${CLASS_ORG}/${REPO_NAME}" >>log.out 2>&1
 }
 
 function CloneRepo() {

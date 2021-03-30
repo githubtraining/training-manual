@@ -9,19 +9,19 @@ To practice teaching the first activities, please use the same repository you us
 To prepare your local repository to be ready for teaching, use the following commands.
 
 ```sh
-git checkout main
+git switch main
 git reset --hard 1095c8c
 git push --force
 git checkout cb8731a
-git checkout -b manual2
+git switch -c manual2
 git push -u origin manual2
 (open pull request)
 git checkout 6b50ac7
-git checkout -b css-changes2
+git switch -c css-changes2
 git push -u origin css-changes2
 (open pull request)
 git checkout 945ca60
-git checkout -b readme-update2
+git switch -c readme-update2
 git push -u origin readme-update2
 (open pull request)
 ```
@@ -32,7 +32,7 @@ git push -u origin readme-update2
 - In your own copy of GitHub Games:
 
 ```sh
-git checkout main
+git switch main
 git reset --hard 73c762c
 git push --force
 ```

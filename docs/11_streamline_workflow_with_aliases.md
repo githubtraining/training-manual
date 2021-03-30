@@ -44,16 +44,16 @@ Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your
 git config --global alias.ec "config --global -e"
 ```
 
-Pro Tip # 2: To checkout to another branch, you can make a quick shortcut.
+Pro Tip # 2: To switch to another branch, you can make a quick shortcut.
 
 ```sh
-git config --global alias.ch "checkout"
+git config --global alias.sw "switch"
 ```
 
-Pro Tip # 3: To checkout to a brand new branch, you can easily extend your existing shortcut.
+Pro Tip # 3: To create and switch to a brand new branch, you can easily extend your existing shortcut.
 
 ```sh
-git config --global alias.cob "checkout -b"
+git config --global alias.swc "switch -c"
 ```
 
 Pro Tip # 4: You can create aliases that only call one command.

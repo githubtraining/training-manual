@@ -39,7 +39,7 @@ When you merged your Pull Request, you deleted the branch on GitHub, but this wi
 
 First, we need to get the changes we made on GitHub into our local copy of the repository:
 
-1. Start by switching back to your default branch: `git checkout main`
+1. Start by switching back to your default branch: `git switch main`
 1. Retrieve all of the changes from GitHub: `git pull`
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`

@@ -11,7 +11,7 @@
 function GetPages() {
   # Get the number of pages
   # shellcheck disable=SC1102
-  NUM_PAGES=$( (curl -s -I -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
+  NUM_PAGES=$( (curl -s -S -I -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" | grep "^Link:") | (sed -n 's/.*=\([0-9]*\)>; rel=\"last\".*/\1/p'))
 
   # Check the return
   if [ -z "$NUM_PAGES" ]; then
@@ -36,7 +36,7 @@ function GetRepos() {
   PAGE_NUM=$1
 
   # get repos in $CLASS_ORG org that start with conflict-practice or github-games
-  REPO_LIST=$(curl -s -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos?page=$PAGE_NUM" | jq '.[] | .name')
+  REPO_LIST=$(curl -s -S -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos?page=$PAGE_NUM" | jq '.[] | .name')
   for i in "${REPO_LIST[@]}"; do
     i=$(echo "$i" | (sed -e 's/^"//' -e 's/"$//'))
     if echo "$i" | grep -iq -e "conflict-practice-" -e "github-games-"; then
@@ -53,7 +53,7 @@ function CheckDates() {
 
   # Get created time
   # shellcheck disable=SC1102
-  CREATED=$( (curl -s -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >>log.out 2>&1
+  CREATED=$( (curl -s -S -H "Authorization: token $TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME" | jq .created_at) | (sed -e 's/^"//' -e 's/Z"$//')) >>log.out 2>&1
 
   # if they were created more than 10 days ago, expire them
   if [[ "$COMP_DATE" > "$CREATED" ]]; then
@@ -77,7 +77,7 @@ function BeNice() {
   else
     TEMPLATE="polygons (our conflict practice activity) [here](https://github.com/githubtraining/polygons)"
   fi
-  curl -s -i -H "Authorization: token $TEACHER_PAT" -d "{ \"title\": \"Thank you for attending GitHub Training\", \"body\": \"@$USER We hope you enjoyed the :octocat: class and we look forward to seeing you in another [class or webinar](https://services.github.com/training/#public) soon. To keep things tidy in the githubschool organization, we are going to remove your practice repository.\n\nIf you would like to revisit these activities in the future, you can access the template repository for $TEMPLATE.\n\nStop by and see us sometime at [services.github.com](https://services.github.com), or take our newest self-paced courses at [lab.github.com](https://lab.github.com). :wave: Until we see you again, good luck in your GitHub adventures :rocket:.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >>log.out 2>&1
+  curl -s -S -i -H "Authorization: token $TEACHER_PAT" -d "{ \"title\": \"Thank you for attending GitHub Training\", \"body\": \"@$USER We hope you enjoyed the :octocat: class and we look forward to seeing you in another [class or webinar](https://services.github.com/training/#public) soon. To keep things tidy in the githubschool organization, we are going to remove your practice repository.\n\nIf you would like to revisit these activities in the future, you can access the template repository for $TEMPLATE.\n\nStop by and see us sometime at [services.github.com](https://services.github.com), or take our newest self-paced courses at [lab.github.com](https://lab.github.com). :wave: Until we see you again, good luck in your GitHub adventures :rocket:.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >>log.out 2>&1
   # Delete the repo
   ./remove-repo "$REPO_NAME"
 }

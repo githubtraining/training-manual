@@ -1,0 +1,199 @@
+#!/usr/bin/env bash
+#
+# Create practice repos
+
+#################################################################
+# NOTE: You must have a personal access token (PAT)             #
+# saved to your environment variables to use this script.       #
+# We recommend a dedicated service account (e.g. githubteacher) #
+#################################################################
+
+# shellcheck source=script/shared_functions
+source ./shared_functions
+
+# shell variables
+collab_repo=$1
+template_name=$2
+practice_repo_name=$3
+org_url="https://$ROOT_URL/$CLASS_ORG"
+org_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
+template_url="https://github.com/githubtraining/$template_name"
+template_url_ghes="https://$ROOT_URL/$CLASS_ORG/$template_name"
+template_pages_url="https://$CLASS_ORG.github.io/$template_name"
+template_pages_url_ghes="https://$ROOT_URL/pages/$CLASS_ORG/$template_name"
+
+# https://superuser.com/a/1415376
+# Returns exit code 0 (success) if $1 is a reachable git remote url
+repo_is_reachable() {
+  local repo_url=$1
+  git ls-remote "$repo_url" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
+}
+
+check_template_url() {
+  # if root url is not github.com
+  if [ "$ROOT_URL" != "github.com" ]; then
+    # if template can be found on GHES
+    if repo_is_reachable "$template_url_ghes"; then
+      # use template and GitHub Pages URL from GHES instead of the public template
+      template_url="$template_url_ghes"
+      template_pages_url="$template_pages_url_ghes"
+    # otherwise check if public template can be reached
+    elif repo_is_reachable "$template_url"; then
+      echo "Template not found on $ROOT_URL. Using public template instead: $template_url"
+    else # template could not be reached
+      print_error "Could not reach template repo. Please grab a copy from $template_url and upload it to your GHES instance."
+    fi
+  # if template cannot be reached
+  elif ! repo_is_reachable "$template_url"; then
+    print_error "Unable to reach template repo: $template_url"
+  fi
+}
+
+clone_template() {
+  # create a temporary directory for temporary files
+  temp_dir=$(mktemp -d)
+
+  # delete the temporary directory on script exit
+  trap 'rm -rf "$temp_dir"' EXIT
+
+  # attempt to clone template repo
+  git clone --bare "$template_url" "$temp_dir" >>log.out 2>&1 || {
+    # if git clone command failed
+    print_error "Failed to clone template repository."
+    exit 1
+  }
+}
+
+generate_repos() {
+  # Create practice repos based on collaborators in the inital class repo
+  # :? will display an error if $collaborators is empty or unset
+  for username in "${collaborators[@]:?}"; do
+    # if a practice repo has already been created for the user
+    if repo_is_reachable "$org_url/$practice_repo_name-$username"; then
+      # ask if the repository should be deleted and recreated
+      if ask "A $practice_repo_name repo already exists for $username.\nIs it OK to delete and recreate?" N; then
+        echo "Deleting $CLASS_ORG/$practice_repo_name-$username..."
+        # delete the existing practice repo
+        curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+          -X DELETE "$org_endpoint/$practice_repo_name-$username" >>log.out 2>&1
+        # create a new practice repo
+        create_repo "$username"
+      else
+        echo "OK. Skipping $username..."
+      fi
+    else
+      # create a new practice repository
+      create_repo "$username"
+    fi
+  done
+}
+
+git_push() {
+  # Push to remote repository
+  echo "Pushing to $CLASS_ORG/$repo_name..."
+  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" >>log.out 2>&1 || {
+    # if git push command failed
+    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
+    exit 1
+  }
+}
+
+create_repo() {
+  student=$1
+  local repo_name="$practice_repo_name-$student"
+  local repo_url="https://$ROOT_URL/$CLASS_ORG/$repo_name"
+  if [[ "$ROOT_URL" == "github.com" ]]; then
+    local pages_url="https://$CLASS_ORG.github.io/$repo_name"
+  else
+    local pages_url="https://$ROOT_URL/pages/$CLASS_ORG/$repo_name"
+  fi
+
+  case $practice_repo_name in
+
+  conflict-practice)
+    local repo_description="Let's resolve some conflicts."
+
+    # Create a new repo named $repo_name in $CLASS_ORG
+    echo "Creating $CLASS_ORG/$repo_name for $student..."
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"private\": true, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
+      -X POST "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" >>log.out 2>&1
+
+    git_push
+
+    # Create PRs for each branch
+    echo "Creating practice pull requests for $CLASS_ORG/$repo_name..."
+    {
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        -d "{ \"title\": \"Updates to game manual\", \"head\": \"manual\", \"base\": \"main\", \"body\": \"This pull request edits the wording of some of the language on the main page. It appears that it has also been edited on main, because there's a merge conflict. Please make sure that all of the words are the ones that you'd like to use, and that there aren't any lines of text missing.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972130-1a611700-6705-11eb-8858-a9ef429e2a60.mp4\"}" \
+        -X POST "$org_endpoint/$repo_name/pulls"
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        -d "{ \"title\": \"Minor CSS fixes\", \"head\": \"css-changes\", \"base\": \"main\", \"body\": \"This pull request makes some small changes to the CSS. Pick the CSS that you think makes the most sense given the history of the file on both branches and resolve the merge conflict.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972084-06b5b080-6705-11eb-8f57-d81559307822.mp4\"}" \
+        -X POST "$org_endpoint/$repo_name/pulls"
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        -d "{ \"title\": \"Update README\", \"head\": \"readme-update\", \"base\": \"main\", \"body\": \"This pull request updates the README.md. Resolve the merge conflicts and make sure the final version of the README.md is accurate and descriptive.\n\nIf you need any help resolving this conflict, check out this video:\n\nhttps://user-images.githubusercontent.com/17183625/106972095-0ddcbe80-6705-11eb-9cc8-6df603e22910.mp4\"}" \
+        -X POST "$org_endpoint/$repo_name/pulls"
+    } >>log.out 2>&1
+    ;;
+
+  github-games)
+    local repo_description="A fun way to learn about git troubleshooting."
+
+    # Create a new practice repo named $repo_name in $CLASS_ORG
+    echo "Creating $CLASS_ORG/$repo_name for $student..."
+    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      -d "{ \"name\": \"$repo_name\", \"description\": \"$repo_description\", \"homepage\": \"$template_pages_url\", \"private\": true, \"has_issues\": true, \"has_wiki\": false, \"has_downloads\": true}" \
+      -X POST "https://${INSTANCE_URL}/orgs/${CLASS_ORG}/repos" >>log.out 2>&1
+
+    git_push
+
+    # Create issues for problems
+    echo "Creating practice issues for $CLASS_ORG/$repo_name..."
+    {
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        -d "{ \"title\": \"Game broken\", \"body\": \"When attempting to access this at ${pages_url}, I am getting a 404. This could be caused by a couple things:\n\n - GitHub pages needs to be enabled on main. You can fix this in the repository settings.\n- the index.html file is incorrectly named inde.html. We will fix this together in class.\n\n Can you please fix the first bullet, please?\"}" \
+        -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name/issues"
+      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+        -d "{ \"title\": \"URL in description and README broken\", \"body\": \"The URL in the repository description and README are pointing to ${CLASS_ORG}'s copy of the game instead of yours. \n\n Please fix both so they point to your copy of the game at ${pages_url}\"}" \
+        -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name/issues"
+    } >>log.out 2>&1
+    ;;
+
+  *)
+    print_error "Practice repo name \'$practice_repo_name\' not recognized."
+    exit 1
+    ;;
+  esac
+
+  # Invite student as a collaborator
+  echo "Inviting $student as a collaborator to $CLASS_ORG/$repo_name..."
+  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
+    -d "{ \"permission\": \"admin\"}" \
+    -X PUT "$org_endpoint/$repo_name/collaborators/$student" >>log.out 2>&1
+
+  # Set default branch to main
+  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{\"default_branch\":\"main\"}" \
+    -X PATCH "$org_endpoint/$repo_name" >>log.out 2>&1
+
+  print_done "Repo URL: $repo_url"
+}
+
+# get list of repo collaborators
+get_collaborators "$collab_repo"
+
+# check template url
+check_template_url
+
+# clone template repository
+clone_template
+
+# switch to temp directory and push it on the stack
+pushd "$temp_dir" >>log.out 2>&1 || return
+
+# generate a repo for each collaborator
+generate_repos
+
+# switch back to original directory
+popd >>log.out 2>&1 || return
+
+print_success "All $practice_repo_name repos can be found here: $org_url"

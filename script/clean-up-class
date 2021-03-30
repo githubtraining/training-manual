@@ -14,7 +14,7 @@ COLLAB_REPO=$1
 function GetNames() {
   # Get the collabs
   IFS=" " read -ra COLLABS <<<"$(
-    curl -s -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
   # Clean up conflict repos based on collaborators in the inital class repo
@@ -30,7 +30,7 @@ function CleanUpRepo() {
   REPO=$1
 
   # Get repo status
-  REPO_STATUS=$(curl -s -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO" | grep "^Status:") >>log.out 2>&1
+  REPO_STATUS=$(curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO" | grep "^Status:") >>log.out 2>&1
 
   # Check the return
   if
