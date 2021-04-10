@@ -37,6 +37,9 @@ create_issue() {
   curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
     -d "{ \"title\": \"$title\", \"body\": \"$body\"}" \
     -X POST "$org_endpoint/$repo/issues" >>log.out 2>&1
+
+  echo "Waiting 5 seconds..."
+  sleep 5
 }
 
 create_pr() {
@@ -54,6 +57,9 @@ create_pr() {
   curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
     -d "{ \"title\": \"$title\", \"body\": \"$body\", \"head\": \"$head\", \"base\": \"$base\"}" \
     -X POST "$org_endpoint/$repo/pulls" >>log.out 2>&1
+
+  echo "Waiting 5 seconds..."
+  sleep 5
 }
 
 get_collaborators() {
