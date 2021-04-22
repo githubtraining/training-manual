@@ -34,13 +34,16 @@ create_issue() {
     shift
   done
 
-  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-    -d "{ \"title\": \"$title\", \"body\": \"$body\"}" \
-    -X POST "$org_endpoint/$repo/issues" >>log.out 2>&1 &&
-    echo "Created issue: $title" || echo "Failed to create issue: $title"
+  echo -n "Creating issue: $title... "
+
+  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/issues" \
+    title="$title" \
+    body="$body"; then
+    echo "Done."
+  fi
 }
 
-create_pr() {
+create_pull_request() {
   while (($#)); do
     case $1 in
     --title) local title=$2 ;;
@@ -52,10 +55,15 @@ create_pr() {
     shift
   done
 
-  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-    -d "{ \"title\": \"$title\", \"body\": \"$body\", \"head\": \"$head\", \"base\": \"$base\"}" \
-    -X POST "$org_endpoint/$repo/pulls" >>log.out 2>&1 &&
-    echo "Created PR: $title" || echo "Failed to create PR: $title"
+  echo -n "Creating pull request: $title... "
+
+  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/pulls" \
+    title="$title" \
+    head="$head" \
+    base="$base" \
+    body="$body"; then
+    echo "Done."
+  fi
 }
 
 get_collaborators() {
@@ -64,14 +72,13 @@ get_collaborators() {
 
   # Get array of repository collaborators
   IFS=" " read -ra collaborators <<<"$(
-    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" \
-      -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
-      jq -r 'map(.login) | unique | @sh' | tr -d \'
+    http -a "$TOKEN_OWNER:$TEACHER_PAT" GET "$repo_endpoint/collaborators" \
+      affiliation==direct per_page==100 | jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
   # Get array of repository invitees
   IFS=" " read -ra invitees <<<"$(
-    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/invitations" |
+    http -a "$TOKEN_OWNER:$TEACHER_PAT" GET "$repo_endpoint/invitations" |
       jq -r 'map(.invitee.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
