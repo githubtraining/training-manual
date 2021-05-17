@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Bootstrap GitHub Training Manual
+# Install dependencies for the training manual and scripts
 
 # NPM install
 npm i docsify-cli -g
