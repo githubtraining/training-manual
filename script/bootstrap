@@ -2,8 +2,26 @@
 #
 # Install dependencies for the training manual and scripts
 
+determine_package_manager() {
+  # If script is running on macOS
+  if [[ $OSTYPE == darwin* ]]; then
+    # If Homebrew is not installed
+    if ! type brew &>/dev/null; then
+      echo "Installing Homebrew..."
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    package_manager="Homebrew"
+  elif type apt &>/dev/null; then
+    package_manager="APT"
+  else
+    package_manager="Unknown"
+  fi
+}
+
 # NPM install
 npm i docsify-cli -g
+
+determine_package_manager
 
 # Load the error code
 ERROR_CODE=$?
