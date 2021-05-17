@@ -45,9 +45,9 @@ ERROR_CODE=$?
 # Check the shell for errors
 if [ $ERROR_CODE -eq 0 ]; then
   # Success
-  echo "Bootstrap successful"
+  echo "Bootstrap successful!"
 else
   # Failure
-  echo "ERROR! Failed to run bootstrap!"
+  echo "Error! Failed to bootstrap."
   exit 1
 fi
