@@ -23,6 +23,22 @@ npm i docsify-cli -g
 
 determine_package_manager
 
+# Check if HTTPie is installed
+if ! type -p http &>/dev/null; then
+  echo "Installing HTTPie..."
+  case $package_manager in
+  "Homebrew") brew install httpie ;;
+  "APT") apt install httpie ;;
+  "Unknown") # Use the universal installation method (https://httpie.io/docs#installation)
+    # Make sure we have an up-to-date version of pip and setuptools
+    python -m pip install --upgrade pip setuptools
+    # Install HTTPie
+    python -m pip install --upgrade httpie
+    ;;
+  *) echo "Unable to install HTTPie. Please install and try again." && exit 1 ;;
+  esac
+fi
+
 # Load the error code
 ERROR_CODE=$?
 
