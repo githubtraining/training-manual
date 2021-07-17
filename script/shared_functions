@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#
+# Shared functions
+
+# shellcheck source=script/ask
+source ./ask
+
+# color variables
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+blue=$(tput setaf 4)
+reset=$(tput sgr0)
+
+print_error() {
+  echo "${red}Error! $1${reset}"
+}
+
+print_success() {
+  echo "${green}Success! $1${reset}"
+}
+
+print_done() {
+  echo "${blue}Done! $1${reset}"
+}
+
+get_collaborators() {
+  local repo_name=$1
+  local repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name"
+
+  # Get array of repository collaborators
+  IFS=" " read -ra collaborators <<<"$(
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" \
+      -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
+      jq -r 'map(.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
+
+  # Get array of repository invitees
+  IFS=" " read -ra invitees <<<"$(
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/invitations" |
+      jq -r 'map(.invitee.login) | unique | @sh' | tr -d \'
+  )" >>log.out 2>&1
+
+  # Invitees are collaborators too
+  collaborators+=("${invitees[@]}")
+}

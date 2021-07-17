@@ -1,0 +1,27 @@
+---
+###########################
+###########################
+## Markdown Linter rules ##
+###########################
+###########################
+
+# Linter rules doc:
+# - https://github.com/DavidAnson/markdownlint
+#
+# Note:
+# To comment out a single error:
+#   <!-- markdownlint-disable -->
+#   any violations you want
+#   <!-- markdownlint-restore -->
+#
+
+###############
+# Rules by id #
+###############
+
+MD013: false                  # Don't enforce line length
+MD024: false                  # Allow multiple headings with the same content
+MD026:                        # Trailing punctuation in heading
+  punctuation: ".,;:!。，；:"  # List of characters not allowed
+MD033: false                  # Allow inline HTML
+MD041: false                  # Don't enforce first line headings

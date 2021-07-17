@@ -14,7 +14,7 @@ If you borrowed a laptop or used a virtual machine for this class, you will want
 
 ### Step 3: Clear the credential manager
 
-**For Windows**
+**For Windows:**
 
 1. From the **Start** menu, select **Control Panel**.
 1. Click **User Accounts**.
@@ -22,7 +22,7 @@ If you borrowed a laptop or used a virtual machine for this class, you will want
 1. Click **Credential Manager**.
 1. In the Windows Credentials and Generic Credentials section, remove any stored credentials referencing Git or GitHub.
 
-**For Mac**
+**For Mac:**
 
 1. Open the **Keychain Access** app.
 1. Delete anything with GitHub.

@@ -21,9 +21,9 @@ $ git diff --color-words
 
 ```sh
 $ git diff <REF-1> <REF-2>
-$ git diff gh-pages slow-down
-$ git diff origin/gh-pages gh-pages
+$ git diff master slow-down
+$ git diff origin/master master
 $ git diff 2710 b745
 ```
 
-> diffは、マージと同様、方向性があることに気をつけましょう。 diffは、後述時点から前述時点に戻る、もしくは、後述時点で入っていて前述時点で入っていない、というように考えると分かりやすいです。 <ref-1> <ref-2> <ref-1> <ref-2>
+> diffは、マージと同様、方向性があることに気をつけましょう。 diffは、後述時点から前述時点に戻る、もしくは、後述時点で入っていて前述時点で入っていない、というように考えると分かりやすいです。 `<REF-1>` `<REF-2>` `<REF-1>` `<REF-2>`

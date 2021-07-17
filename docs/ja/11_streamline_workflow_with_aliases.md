@@ -8,30 +8,29 @@
 
 例として、前回学習したlogのコマンドにエイリアスを作成してみましょう。
 
-**オリジナルコマンド**
+#### オリジナルコマンド
 
 ```sh
-$ git log --oneline --graph --decorate --all
+git log --oneline --graph --decorate --all
 ```
 
-**エイリアスの作成**
+#### エイリアスの作成
 
 ```sh
-$ git config --global alias.lol "log --oneline --graph --decorate --all"
+git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
-**エイリアスの使い方**
+#### エイリアスの使い方
 
 ```sh
-$ git lol
+git lol
 ```
 
 #### 役に立つエイリアス
 
 ```sh
-$ git config --global alias.co "checkout -b"
-$ git config --global alias.s "status -s"
-$ git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
+git config --global alias.swc "switch -c"
+git config --global alias.s "status -s"
 ```
 
 #### リサーチ

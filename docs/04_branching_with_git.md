@@ -16,4 +16,4 @@ Let's learn how you can create a new branch.
 
 Here are some interesting things you can check out later:
 
-- *https://youtu.be/H5GJfcp3p4Q* A GitHub Training Video on branching.
+- [A GitHub Training Video on branching](https://youtu.be/H5GJfcp3p4Q)

@@ -3,11 +3,13 @@
 ### Merge Conflict Practice
 
 Depending on how you're interacting with this manual, you may be in a class. The instructor may have set up a repository for you to practice merge conflicts. If this is the case:
-- _Every person_ has their own repository. Each person should fix the merge conflicts in their own repo. It will be called `github.com/githubschool/conflict-practice-username`, with username being your actual username.
+
+- _Every person_ has their own repository. Each person should fix the merge conflicts in their own repo. It will be called `github.com/githubschool/conflict-practice-USERNAME`, with username being your actual username.
 - We won't make you turn in your homework, but we will run a script to see if the activities are completed later. :wink:
 
-### Work to resolve the merge conflicts in the conflicts repository.
-1. Find your repository. It will be at `github.com/githubschool/USERNAME`, where your username is replacing the word USERNAME.
+### Work to resolve the merge conflicts in the conflicts repository
+
+1. Find your repository. It will be at `github.com/githubschool/conflict-practice-USERNAME`, where your username is replacing the word USERNAME.
 1. In your repository, navigate to the **Pull Requests** tab.
 1. There are three open pull requests, and all of them have merge conflicts to fix. We recommend fixing them in this order:
     - Update README
@@ -19,27 +21,27 @@ Depending on how you're interacting with this manual, you may be in a class. The
 
 We've learned a lot! Try resolving the conflicts yourself first. If you need extra assistance, use these instructions.
 
-1. Clone the repository to your local machine: 
-    
+1. Clone the repository to your local machine:
+
     `git clone https://github.com/githubschool/conflict-practice-username.git`
 
-1. Find and check out to the conflict branch, for example: 
+1. Find and check out to the conflict branch using the `git switch <branch>` command. For example:
 
-    `git checkout my-branch`
+    `git switch my-branch`
 
-1. Merge `master` into the conflict branch: `git merge master`. The merge will be halted because a conflict exists.
+1. Merge `main` into the conflict branch: `git merge main`. The merge will be halted because a conflict exists.
 1. Read the response from Git. It will identify the file(s) with a conflict. Open the file(s) in your favorite text editor.
 1. Remove the conflict markers: `<<<<<<<`, `=======`, `>>>>>>>`
 1. Review the code, edit to keep the version you'd like.
-1. Stage the conflicting files you've now resolve, for example: 
+1. Stage the conflicting files you've now resolve, for example:
 
     `git add conflict-file.txt`
 
-1. Finish the merge commit that was halted in #3 with: 
+1. Finish the merge commit that was halted in #3 with:
 
-    `git commit -m "merge master into my-branch"`
+    `git commit -m "merge main into my-branch"`
 
-1. Push your nonconflicted branch to GitHub: 
+1. Push your nonconflicted branch to GitHub:
 
     `git push`
 
@@ -52,7 +54,7 @@ In some cases, you may notice multiple conflict markers. When these appear, it i
 
 Regardless of the reason, it's up to you to resolve it as a steward of this project! Here's an example of how this might work from the pull request titled "Minor CSS fixes":
 
-1. Merge the master branch into your conflict branch. The multiple markers may look something like this.
+1. Merge the main branch into your conflict branch. The multiple markers may look something like this.
 
     ```css
     <<<<<<< HEAD
@@ -63,7 +65,7 @@ Regardless of the reason, it's up to you to resolve it as a steward of this proj
 
     /**a{
         color: #999999;
-    >>>>>>> master
+    >>>>>>> main
     }
 
     a:hover{
@@ -75,9 +77,9 @@ Regardless of the reason, it's up to you to resolve it as a steward of this proj
     a:hover{
         color: #dddddd;
     <<<<<<< HEAD
-    >>>>>>> master
+    >>>>>>> main
     =======
-    >>>>>>> master
+    >>>>>>> main
     }
     **/
     ```
@@ -118,13 +120,12 @@ Not every conflict deals with content. For example, in the pull request "Updates
 ```shell
 Auto-merging play/mini/mini_bored.html
 CONFLICT (content): Merge conflict in play/mini/mini_bored.html
-CONFLICT (modify/delete): play/manual/manual.html deleted in HEAD and modified in master. Version master of play/manual/manual.html left in tree.
+CONFLICT (modify/delete): play/manual/manual.html deleted in HEAD and modified in main. Version main of play/manual/manual.html left in tree.
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-In this example, the file `play/manual/manual.html` has been deleted in our currently checked out branch (`HEAD`), and modified in `master`. You, as the developer in charge of resolving this conflict, must decide whether to remove the file (as has been decided on this branch), or to bring the file back with some modifications (as was started in `master`).
+In this example, the file `play/manual/manual.html` has been deleted in our currently checked out branch (`HEAD`), and modified in `main`. You, as the developer in charge of resolving this conflict, must decide whether to remove the file (as has been decided on this branch), or to bring the file back with some modifications (as was started in `main`).
 
 You'll find the file has automatically been put in your working directory (identified by the message from Git). If you choose to keep the file with modifications, just bring up the file in your favorite text editor, make the changes you'd like, stage the file with `git add play/manual/manual.html` and finish your merge commit.
 
 To remove the file altogether, tell Git you'd like to remove the file with `git rm play/manual/manual.html`, and then finish your merge commit.
-
