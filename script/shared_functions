@@ -36,7 +36,8 @@ create_issue() {
 
   echo -n "Creating issue: $title... "
 
-  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/issues" \
+  if http --check-status --ignore-stdin --quiet --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/issues" \
     title="$title" \
     body="$body"; then
     echo "Done."
@@ -57,7 +58,8 @@ create_pull_request() {
 
   echo -n "Creating pull request: $title... "
 
-  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/pulls" \
+  if http --check-status --ignore-stdin --quiet --auth \
+  "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/pulls" \
     title="$title" \
     head="$head" \
     base="$base" \
