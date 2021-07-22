@@ -161,5 +161,8 @@ function Check_Env() {
 # paths can be used in the functions above
 cd "${BASH_SOURCE%/*}/" || exit
 
+# Resolve dependencies
+./bootstrap
+
 # Get the task to run
 GetTask
