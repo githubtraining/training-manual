@@ -106,7 +106,7 @@ do_task() {
   elif [ "$TASK" -eq 4 ]; then
     # echo "4: Create conflict repos for each student"
     echo "running script/create-practice-repos"
-    ./create-practice-repos "$COLLAB_REPO" "polygons" "conflict-practice"
+    ./create-practice-repos "$COLLAB_REPO" "conflict-practice" "conflict-practice"
 
   # TASK 5
   elif [ "$TASK" -eq 5 ]; then
