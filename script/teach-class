@@ -5,14 +5,14 @@
 # Set the exit on non zero
 set -e
 
-function GetTask() {
+get_task() {
   echo ""
   echo "========================================================"
   echo "This script manages the repos and activities"
   echo "for the GitHub for Developers training."
   echo "========================================================"
   echo ""
-  echo "NOTE: If you have NOT run: 0 Confirm setup, please run this task first"
+  echo "NOTE: If you have NOT run 0: Confirm setup, please run this task first"
   echo "      as it is needed to set all base environment variables!"
   echo ""
   echo ""
@@ -43,10 +43,10 @@ function GetTask() {
   fi
 
   # Run the task
-  DoTask "$TASK"
+  do_task "$TASK"
 }
 
-function DoTask() {
+do_task() {
   # Read in the TASK
   TASK=$1
 
@@ -65,7 +65,7 @@ function DoTask() {
     COLLAB_REPO=$COLLAB_REPO_WHITESPACE
   elif [ "$TASK" -ne 0 ]; then
     # Validate we have env variables sourced
-    Check_Env
+    check_env
   fi
 
   # TASK 00
@@ -134,7 +134,7 @@ function DoTask() {
   fi
 }
 
-function Check_Env() {
+check_env() {
   # Check length of TEACHER_PAT
   if [ -z "$TEACHER_PAT" ]; then
     echo "ERROR! TEACHER_PAT not loaded or not correct length!"
@@ -157,12 +157,11 @@ function Check_Env() {
   fi
 }
 
-# cd into the script directory so relative
-# paths can be used in the functions above
+# cd into the script directory so relative paths can be used
 cd "${BASH_SOURCE%/*}/" || exit
 
 # Resolve dependencies
 ./bootstrap
 
 # Get the task to run
-GetTask
+get_task
