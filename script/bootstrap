@@ -18,12 +18,15 @@ determine_package_manager() {
   fi
 }
 
-# NPM install
-npm i docsify-cli -g
-
 determine_package_manager
 
-# Check if HTTPie is installed
+# Check if docsify-cli is installed globally (and install it if not)
+if ! npm list -g docsify-cli &>/dev/null; then
+  echo "Installing docsify-cli..."
+  npm install -g docsify-cli
+fi
+
+# Check if HTTPie is installed (and install it if not)
 if ! type -p http &>/dev/null; then
   echo "Installing HTTPie..."
   case $package_manager in
