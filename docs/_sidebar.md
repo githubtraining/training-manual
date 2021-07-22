@@ -43,6 +43,8 @@
   - [Commit signature verification](24_commit_sig_verification.md)
   - [Git Stash](25_git_stash.md)
   - [Git LFS](26_git_lfs.md)
+  - [Git submodules](27_git_submodules.md)
+  - [Git subtrees](28_git_subtrees.md)
 
 - Appendix
   - **GitHub Resources**
