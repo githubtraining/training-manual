@@ -26,6 +26,16 @@ if ! npm list -g docsify-cli &>/dev/null; then
   npm install -g docsify-cli
 fi
 
+# Check if jq is installed (and install it if not)
+if ! type -p jq &>/dev/null; then
+  echo "Installing jq..."
+  case $package_manager in
+  "Homebrew") brew install jq ;;
+  "APT") apt install jq ;;
+  *) echo "Unable to install jq. Please install and try again." && exit 1 ;;
+  esac
+fi
+
 # Check if HTTPie is installed (and install it if not)
 if ! type -p http &>/dev/null; then
   echo "Installing HTTPie..."
