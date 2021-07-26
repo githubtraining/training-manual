@@ -42,14 +42,12 @@ function GetDetails() {
       {
         sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md
         sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md
-        sed -i "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md
         sed -i "s|caption-this|$REPO_NAME|g" _config.yml
       } >>log.out 2>&1
     else
       {
         sed -i "" "s/THIS-DATE/$CLASS_DATE/g" README.md
         sed -i "" "s/TEACHER-HANDLE/$TEACHER/g" README.md
-        sed -i "" "s|SURVEY-LINK|<$SURVEY_URL>|g" README.md
         sed -i "" "s|caption-this|$REPO_NAME|g" _config.yml
       } >>log.out 2>&1
     fi
