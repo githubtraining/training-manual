@@ -87,8 +87,6 @@ function CreateRCFile() {
       echo "INSTANCE_URL=[$INSTANCE_URL]"
       echo "ROOT_URL=[$ROOT_URL]"
       echo "CLASS_ORG=[$CLASS_ORG]"
-      echo "SURVEY_URL=[$SURVEY_URL]"
-      echo "APPT_URL=[$APPT_URL]"
       echo "==============================================="
       echo ""
       echo "NOTE: If any of these appear to be incorrect,"
@@ -217,35 +215,6 @@ function ClassOrg() {
   echo "==============================================="
 }
 
-function SurveyURL() {
-  # See if we have the survey URL
-  echo "To include a link to a survey in your class repository,"
-  echo "add the survey URL to your ~/$RC_FILE by pasting it below:"
-
-  # Read the input
-  read -r SURVEY_URL
-  echo "export SURVEY_URL='$SURVEY_URL'" >>"$HOME/$RC_FILE"
-
-  # Prints
-  echo "SURVEY_URL=[$SURVEY_URL]"
-  echo "==============================================="
-}
-
-function ApptURL() {
-  # See if we have the appt URL
-  echo "If you will offer 1:1 appointments with your students,"
-  echo "you will need to add the booking URL to your ~/$RC_FILE"
-  echo "by pasting it below:"
-
-  # Read the input
-  read -r APPT_URL
-  echo "export APPT_URL='$APPT_URL'" >>"$HOME/$RC_FILE"
-
-  # Prints
-  echo "APPT_URL=[$APPT_URL]"
-  echo "==============================================="
-}
-
 function ShellCheck() {
   # Check the users shell
   echo "What kind of shell are you using?"
@@ -281,12 +250,6 @@ InstanceURL
 
 # Get the class org
 ClassOrg
-
-# Get the survey URL
-SurveyURL
-
-# Get the appt URL
-ApptURL
 
 # Check the users shell
 ShellCheck
