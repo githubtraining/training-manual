@@ -46,7 +46,7 @@ Subtrees are a git tool for including the content of another repository as a dep
    Receiving objects: 100% (1732/1732), 528.19 KiB | 621 KiB/s, done.
    Resolving deltas: 100% (1086/1086), done.
    From git://github.com/octocat/Spoon-Knife
-    * [new branch]      master     -> Spoon-Knife/master
+    * [new branch]      main     -> Spoon-Knife/main
    ```
 
 1. Merge the `Spoon-Knife` project into the local Git project. This doesn't change any of your files locally, but it does prepare Git for the next step.
@@ -54,28 +54,28 @@ Subtrees are a git tool for including the content of another repository as a dep
    If you're using Git 2.9 or above:
 
    ```sh-session
-   $ git merge -s ours --no-commit --allow-unrelated-histories spoon-knife/master
+   $ git merge -s ours --no-commit --allow-unrelated-histories spoon-knife/main
    Automatic merge went well; stopped before committing as requested
    ```
 
    If you're using Git 2.8 or below:
 
    ```sh-session
-   $ git merge -s ours --no-commit spoon-knife/master
+   $ git merge -s ours --no-commit spoon-knife/main
    Automatic merge went well; stopped before committing as requested
    ```
 
 1. Create a new directory called **spoon-knife**, and copy the Git history of the `Spoon-Knife` project into it.
 
    ```sh
-   git read-tree --prefix=spoon-knife/ -u spoon-knife/master
+   git read-tree --prefix=spoon-knife/ -u spoon-knife/main
    ```
 
 1. Commit the changes to keep them safe.
 
    ```sh-session
    $ git commit -m "Subtree merged in spoon-knife"
-   [master fe0ca25] Subtree merged in spoon-knife
+   [main fe0ca25] Subtree merged in spoon-knife
    ```
 
 Although we've only added one subproject, any number of subprojects can be incorporated into a Git repository.
