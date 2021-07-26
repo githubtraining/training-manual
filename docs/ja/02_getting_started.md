@@ -19,7 +19,7 @@ GitHubは、Gitプロジェクトをホストし共有する場所です。加�
 
 ### GitHub Ecosystemについて
 
-GitHubは、あなたに「画一的な」ecosystem（体系）を強制するのではなく、あなた好みのツールが揃っている場所になろうと努力しています。 インテグレーションの詳細については、https://github.com/integrationsを参照してください。
+GitHubは、あなたに「画一的な」ecosystem（体系）を強制するのではなく、あなた好みのツールが揃っている場所になろうと努力しています。 インテグレーションの詳細については、<https://github.com/integrations>を参照してください。
 
 ![GitHubのインテグレーションディレクトリ](../img/github-ecosystem.png)
 
@@ -27,7 +27,7 @@ GitHubは、あなたに「画一的な」ecosystem（体系）を強制する�
 
 ### Gitとは何か
 
-**Gitとは**
+#### Gitとは
 
 - 分散型バージョン管理システムまたは DVCSと呼ばれている
 - 無料かつオープンソース
@@ -133,7 +133,7 @@ Githubでは、アイデア、改善策、課題やバグを記録し、これ�
 
 ### Markdownの使用
 
-GitHubは** Markdown**という記法を使用しており、Issue、Pull Requestや`.md` の拡張子のファイルに、基本的なテキストフォーマットを追加するのに役立ちます。
+GitHubは**Markdown**という記法を使用しており、Issue、Pull Requestや`.md` の拡張子のファイルに、基本的なテキストフォーマットを追加するのに役立ちます。
 
 ### よく使用するMarkdown構文
 
@@ -170,5 +170,5 @@ Issueで他のユーザに@メンションすると、そのユーザがたと�
 GitHub Pagesによって、静的なホームページをGitHubのリポジトリから無料で直接ホストすることができます。 クラスで使用するいくつかのプロジェクトでは、デプロイの手段としてGitHub Pagesを使用します。 このクラスではGitHub Pagesについてほとんど触れませんが、次の２点は知っておくべきです。
 
 - ユーザは、２種類のサイトを作成できます。User/Organizationサイト、または、Projectサイトです。 私たちは、Projectサイトで作業します。
-- Projectサイトについては、GitHubは、特定のブランチについてのみ、コンテンツを提供します。 なお、リポジトリの設定に応じて、`master` もしくは `gh-pages` ブランチ、または `master` ブランチの`/docs` フォルダから提供します。
+- Projectサイトについては、GitHubは、特定のブランチについてのみ、コンテンツを提供します。 なお、リポジトリの設定に応じて、`main` もしくは `gh-pages` ブランチ、または `main` ブランチの`/docs` フォルダから提供します。
 - プロジェクトのためのレンダリングされたサイトは、`githubschool.github.io/repo-name`に表示されます。
