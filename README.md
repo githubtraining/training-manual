@@ -22,7 +22,7 @@ These manuals are designed to be generated using [docsify](https://docsify.js.or
 
 1. Fork this repository
 2. In your fork, click on **Settings**
-3. Scroll down to the GitHub Pages section, and set **Source:** to `master branch /docs folder`.
+3. Scroll down to the GitHub Pages section, and set **Source:** to `main branch /docs folder`.
 4. Click **Save**.
 5. Return to the GitHub Pages section of Settings, and you'll receive the URL of your published manual.
 

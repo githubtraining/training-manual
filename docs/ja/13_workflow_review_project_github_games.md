@@ -23,7 +23,7 @@ READMEにあるリンクを、自分のリポジトリのフォークへ飛ぶ�
 3. README.mdにあるURLを編集します。
 4. 変更を自分のブランチにコミットします。
 5. ブランチをGitHubにプッシュします。`git push -u origin readme-update`
-6. *自分のリポジトリで* Pull Request を作成します。 (base: `master`, compare: `readme-update`)
+6. *自分のリポジトリで* Pull Request を作成します。 (base: `main`, compare: `readme-update`)
 7. 自分の Pull Request をマージします。
 8. GitHubのブランチを削除します。
 9. リポジトリのローカルコピーを更新します。`git pull --prune`

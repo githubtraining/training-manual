@@ -6,7 +6,7 @@ Pull Requestは、プロジェクトのファイルに対する変更を提案�
 
 1. *Pull Request*タブをクリックする。
 2. *New Pull Request*をクリックする。
-3. *base*ドロップダウンで、`master`を選択する。
+3. *base*ドロップダウンで、`main`を選択する。
 4. *compare*ドロップダウンで、あなたのブランチを選択する。
 5. Subject lineとコメントを入力する。
 6. Markdown記法を使用して、Pull Requestにヘッダとチェックリストを追加する。

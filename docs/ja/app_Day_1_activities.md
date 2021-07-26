@@ -43,7 +43,7 @@
 1. 新しいブランチを作成し、そのブランチにチェックアウトします。`git switch -c NEWBRANCHNAME（新規ブランチ名）`
 2. 何らかの方法で、README.mdを改善します。 改善方法は、新しいリソースの追加や、既存の説明内容の明確化などです。 変更を保存してコミットします。
 3. ローカルで作業している場合は、リモートに変更をプッシュします。`git push -u origin NEWBRANCHNAME（新規ブランチ名）`.
-4. Pull Requestを作成します。Pull Requestの本文には、`base: master` と `compare: NEWBRANCHNAME（新規ブランチ名）`　を記載します。
+4. Pull Requestを作成します。Pull Requestの本文には、`base: main` と `compare: NEWBRANCHNAME（新規ブランチ名）`　を記載します。
 5. `@` mention（メンション）を使って、変更をレビューしてもらいたい人に知らせます。
 6. Pull Requestの内容がテストに合格したら、そのPull Requestをマージします。
 
@@ -59,6 +59,6 @@
     - 52〜55行目は、ヘッダの色に影響します
 4. ブランチに変更を保存してコミットします。
 5. ブランチをリモートにプッシュします。` git push -u origin NEWBRANCHNAME（新規ブランチ名） `
-6. `base: master`と`compare: NEWBRANCHNAME（新規ブランチ名）`で、Pull Requestを開きます。
+6. `base: main`と`compare: NEWBRANCHNAME（新規ブランチ名）`で、Pull Requestを開きます。
 7. `@` mention（メンション）を使って、変更をレビューしてもらいたい人に知らせます。
 8. Pull Requestの内容がテストに合格したら、そのPull Requestをマージします。
