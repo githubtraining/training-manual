@@ -22,4 +22,4 @@ Pull Requestに含まれる変更が承認されると、フィーチャブラ�
 
 後で参照できる興味深い資料です。
 
-- *[ guides.github.com/introduction/flow/ ](https://guides.github.com/introduction/flow/)* GitHubのワークフローのインタラクティブなレビュー
+- *[guides.github.com/introduction/flow/](https://guides.github.com/introduction/flow/)* GitHubのワークフローのインタラクティブなレビュー

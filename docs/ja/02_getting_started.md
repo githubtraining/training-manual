@@ -19,7 +19,7 @@ GitHubは、Gitプロジェクトをホストし共有する場所です。加�
 
 ### GitHub Ecosystemについて
 
-GitHubは、あなたに「画一的な」ecosystem（体系）を強制するのではなく、あなた好みのツールが揃っている場所になろうと努力しています。 インテグレーションの詳細については、https://github.com/integrationsを参照してください。
+GitHubは、あなたに「画一的な」ecosystem（体系）を強制するのではなく、あなた好みのツールが揃っている場所になろうと努力しています。 インテグレーションの詳細については、<https://github.com/integrations>を参照してください。
 
 ![GitHubのインテグレーションディレクトリ](../img/github-ecosystem.png)
 
@@ -133,7 +133,7 @@ Githubでは、アイデア、改善策、課題やバグを記録し、これ�
 
 ### Markdownの使用
 
-GitHubは** Markdown**という記法を使用しており、Issue、Pull Requestや`.md` の拡張子のファイルに、基本的なテキストフォーマットを追加するのに役立ちます。
+GitHubは**Markdown**という記法を使用しており、Issue、Pull Requestや`.md` の拡張子のファイルに、基本的なテキストフォーマットを追加するのに役立ちます。
 
 ### よく使用するMarkdown構文
 
