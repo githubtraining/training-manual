@@ -1,9 +1,56 @@
 #!/usr/bin/env bash
 #
-# Bootstrap GitHub Training Manual
+# Install dependencies for the training manual and scripts
 
-# NPM install
-npm i docsify-cli -g
+determine_package_manager() {
+  # If script is running on macOS
+  if [[ $OSTYPE == darwin* ]]; then
+    # If Homebrew is not installed
+    if ! type brew &>/dev/null; then
+      echo "Installing Homebrew..."
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    package_manager="Homebrew"
+  elif type apt &>/dev/null; then
+    package_manager="APT"
+  else
+    package_manager="Unknown"
+  fi
+}
+
+determine_package_manager
+
+# Check if docsify-cli is installed globally (and install it if not)
+if ! npm list -g docsify-cli &>/dev/null; then
+  echo "Installing docsify-cli..."
+  npm install -g docsify-cli
+fi
+
+# Check if jq is installed (and install it if not)
+if ! type -p jq &>/dev/null; then
+  echo "Installing jq..."
+  case $package_manager in
+  "Homebrew") brew install jq ;;
+  "APT") apt install jq ;;
+  *) echo "Unable to install jq. Please install and try again." && exit 1 ;;
+  esac
+fi
+
+# Check if HTTPie is installed (and install it if not)
+if ! type -p http &>/dev/null; then
+  echo "Installing HTTPie..."
+  case $package_manager in
+  "Homebrew") brew install httpie ;;
+  "APT") apt install httpie ;;
+  "Unknown") # Use the universal installation method (https://httpie.io/docs#installation)
+    # Make sure we have an up-to-date version of pip and setuptools
+    python -m pip install --upgrade pip setuptools
+    # Install HTTPie
+    python -m pip install --upgrade httpie
+    ;;
+  *) echo "Unable to install HTTPie. Please install and try again." && exit 1 ;;
+  esac
+fi
 
 # Load the error code
 ERROR_CODE=$?
@@ -11,9 +58,9 @@ ERROR_CODE=$?
 # Check the shell for errors
 if [ $ERROR_CODE -eq 0 ]; then
   # Success
-  echo "Bootstrap successful"
+  echo "Bootstrap successful!"
 else
   # Failure
-  echo "ERROR! Failed to run bootstrap!"
+  echo "Error! Failed to bootstrap."
   exit 1
 fi

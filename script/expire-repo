@@ -75,7 +75,7 @@ function BeNice() {
   if echo "$REPO_NAME" | grep -iq -e "github-games-"; then
     TEMPLATE="github-games [here](https://github.com/githubtraining/github-games)"
   else
-    TEMPLATE="polygons (our conflict practice activity) [here](https://github.com/githubtraining/polygons)"
+    TEMPLATE="conflict-practice (our conflict practice activity) [here](https://github.com/githubtraining/conflict-practice)"
   fi
   curl -s -S -i -H "Authorization: token $TEACHER_PAT" -d "{ \"title\": \"Thank you for attending GitHub Training\", \"body\": \"@$USER We hope you enjoyed the :octocat: class and we look forward to seeing you in another [class or webinar](https://services.github.com/training/#public) soon. To keep things tidy in the githubschool organization, we are going to remove your practice repository.\n\nIf you would like to revisit these activities in the future, you can access the template repository for $TEMPLATE.\n\nStop by and see us sometime at [services.github.com](https://services.github.com), or take our newest self-paced courses at [lab.github.com](https://lab.github.com). :wave: Until we see you again, good luck in your GitHub adventures :rocket:.\"}" -X POST "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/issues" >>log.out 2>&1
   # Delete the repo

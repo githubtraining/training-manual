@@ -5,7 +5,8 @@
 # shellcheck source=script/ask
 source ./ask
 
-# color variables
+# script variables
+org_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 red=$(tput setaf 1)
 green=$(tput setaf 2)
 blue=$(tput setaf 4)
@@ -23,20 +24,63 @@ print_done() {
   echo "${blue}Done! $1${reset}"
 }
 
+create_issue() {
+  while (($#)); do
+    case $1 in
+    --repo) local repo=$2 ;;
+    --title) local title=$2 ;;
+    --body) local body=$2 ;;
+    esac
+    shift
+  done
+
+  echo -n "Creating issue: $title... "
+
+  if http --check-status --ignore-stdin --quiet --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/issues" \
+    title="$title" \
+    body="$body"; then
+    echo "Done."
+  fi
+}
+
+create_pull_request() {
+  while (($#)); do
+    case $1 in
+    --title) local title=$2 ;;
+    --body) local body=$2 ;;
+    --head) local head=$2 ;;
+    --base) local base=$2 ;;
+    --repo) local repo=$2 ;;
+    esac
+    shift
+  done
+
+  echo -n "Creating pull request: $title... "
+
+  if http --check-status --ignore-stdin --quiet --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/pulls" \
+    title="$title" \
+    head="$head" \
+    base="$base" \
+    body="$body"; then
+    echo "Done."
+  fi
+}
+
 get_collaborators() {
   local repo_name=$1
   local repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name"
 
   # Get array of repository collaborators
   IFS=" " read -ra collaborators <<<"$(
-    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" \
-      -X GET "$repo_endpoint/collaborators?affiliation=direct&per_page=100" |
-      jq -r 'map(.login) | unique | @sh' | tr -d \'
+    http -a "$TOKEN_OWNER:$TEACHER_PAT" GET "$repo_endpoint/collaborators" \
+      affiliation==direct per_page==100 | jq -r 'map(.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
   # Get array of repository invitees
   IFS=" " read -ra invitees <<<"$(
-    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/invitations" |
+    http -a "$TOKEN_OWNER:$TEACHER_PAT" GET "$repo_endpoint/invitations" |
       jq -r 'map(.invitee.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 
