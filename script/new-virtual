@@ -38,7 +38,7 @@ function GetDetails() {
       GITHUB_EMAIL=$( (curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/users/$TOKEN_OWNER" | jq .email) | (sed -e 's/^"//' -e 's/"$//'))
       git config user.email "$GITHUB_EMAIL"
     } >>log.out 2>&1
-    if [ "$OSTYPE" = "msys" ]; then
+    if [ "$OSTYPE" = "msys" -o "$OSTYPE" = "linux-gnu" ]; then
       {
         sed -i "s/THIS-DATE/$CLASS_DATE/g" README.md
         sed -i "s/TEACHER-HANDLE/$TEACHER/g" README.md
