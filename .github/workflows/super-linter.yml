@@ -17,6 +17,8 @@ name: Super Linter
 on:
   pull_request:
     branches: [main]
+  push:
+    branches-ignore: [main]
 
 ###############
 # Set the Job #
