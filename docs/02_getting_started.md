@@ -37,10 +37,10 @@ You may even find some new, indispensable tools to help with continuous integrat
 
 **Git is:**
 
-- A distributed version control system (DVCS).
-- Free and open source.
-- Designed to handle everything from small to very large projects with speed and efficiency.
-- Small in size and fast.
+- A distributed version control system (DVCS)
+- Free and open source
+- Designed to handle everything from small to very large projects with speed and efficiency
+- Small in size and fast
 
 Git features cheap local branching, convenient staging areas, and multiple workflows.
 
