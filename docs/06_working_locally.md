@@ -22,7 +22,7 @@ Let's go ahead and clone the class repository to your local desktop.
 ### Our favorite Git command: `git status`
 
 ```shell-session
-$ git status
+git status
 On branch main
 Your branch is up-to-date with 'origin/main'.
 nothing to commit, working tree clean
