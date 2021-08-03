@@ -23,6 +23,4 @@ Once you have made some changes to your file, you will need to create a new comm
 
 Go back to your Pull Request and make the edits requested by your collaborators.
 
-[octicon-diff]: https://unpkg.com/octicons/build/svg/diff.svg
-
 [octicon-kebab-horizontal]: https://unpkg.com/octicons/build/svg/kebab-horizontal.svg

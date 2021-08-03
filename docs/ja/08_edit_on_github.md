@@ -22,3 +22,5 @@ Pull Requestのファイルを編集するには、*Files Changed* タブにア�
 ### 実習：Pull Requestでファイルを編集する
 
 Pull Requestに戻って、コラボレータが要求した編集を行いましょう。
+
+[octicon-kebab-horizontal]: https://unpkg.com/octicons/build/svg/kebab-horizontal.svg

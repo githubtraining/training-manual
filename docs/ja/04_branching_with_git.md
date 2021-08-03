@@ -16,4 +16,4 @@ GitHub作業フローの最初のステップは、ブランチの作成です�
 
 後で参照できる興味深い資料です。
 
-- ブランチ作成についてのGitHubトレーニングビデオ　*https://youtu.be/H5GJfcp3p4Q*
+- [ブランチ作成についてのGitHubトレーニングビデオ](https://youtu.be/H5GJfcp3p4Q)

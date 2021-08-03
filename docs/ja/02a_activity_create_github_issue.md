@@ -4,11 +4,11 @@
 
 1. *Issues*タブをクリック
 2. *New Issue*をクリック
-3. 次のとおりSubject lineに入力　`YOUR-USERNAME Workflow`
+3. タイトルに次のとおりに入力　`YOUR-USERNAME Workflow`
 4. Issueの本文に、次のテキストを含める
 
-```sh
-YOUR-USERNAMEは画像を選択し、キャプションを追加し、両方をファイルに追加します。
+```md
+YOUR-USERNAME はキャプションを変更し、ファイルを更新します。
 
 - [ ] ブランチの作成
 - [ ] ファイルの変更

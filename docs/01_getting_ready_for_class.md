@@ -113,7 +113,7 @@ You can use almost any text editor, but we have the best success with the follow
 - Notepad++
 - GitPad
 
-If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
+If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom or Visual Studio Code as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
 
 #### Your editor on the command line
 
@@ -123,6 +123,12 @@ If installed properly, the following command will open the Atom text editor:
 
 ```sh
 atom .
+```
+
+Or the following command can also open the current directory with Visual Studio Code:
+
+```sh
+code .
 ```
 
 _**Note:** If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows._
