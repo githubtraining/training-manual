@@ -25,15 +25,15 @@ $ git push
 
 Pull Requestを作成したので、コラボレーションの中心的な要素となっているPull Requestの機能を、いくつか学習しましょう。
 
-#### Conversation view
+#### Conversation タブ
 
 Issueのディスカッションスレッドと同様に、Pull Requestには、リポジトリに対する変更に関する議論が含まれています。 このディスカッションはCoversationタブにあり、ブランチに対するすべてのコミットやPull Requestに適用された割り当て、ラベル、およびレビューの履歴も含まれています。
 
-#### Commits view
+#### Commits タブ
 
 Commits viewには、ファイルを変更したユーザに関する詳細情報が含まれています。 それぞれのコミットIDをクリックすることで、その特定のコミットに適用された変更が表示されます。
 
-#### Files changed view
+#### Files changed タブ
 
 Files changed viewでは、ブランチで行われたすべての変更の累積的な結果を確認することができます。 これを`diff`（差分）と呼びます 。 私たちのdiffはまだあまり目を引くものではありませんが、変更を重ねると、diffはとてもカラフルになります。
 

@@ -2,7 +2,7 @@
 
 > 注：本書は更新版のマニュアルであり、新しいカリキュラムにおける学習内容が記載されています。 [旧版のトレーニングマニュアル](https://githubtraining.github.io/training-manual/legacy-manual.pdf)はこちらです。
 
-本マニュアルのPDFは、[こちら](https://githubtraining.github.io/training-manual/GH4D.pdf)からダウンロードできます。
+本マニュアルのPDF（英語）は、[こちら](../book.pdf)からダウンロードできます。
 
 今日は、GitとGitHubの使い方を学習する、エキサイティングな新しいアドベンチャーに取り組みます。
 
