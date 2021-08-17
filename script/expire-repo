@@ -83,7 +83,7 @@ function BeNice() {
 }
 
 # Check the OS
-if [ "$OSTYPE" = "msys" -o "$OSTYPE" = "linux-gnu" ]; then
+if [ "$OSTYPE" = "msys" ] || [ "$OSTYPE" = "linux-gnu" ]; then
   COMP_DATE=$(date --date='10 days ago' +%Y-%m-%dT%H:%M:%S)
 else
   COMP_DATE=$(date -v-10d +%Y-%m-%dT%H:%M:%S)
