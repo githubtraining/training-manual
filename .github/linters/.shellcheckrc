@@ -1,2 +1,0 @@
-# Disable SC1091: Not following: ./.trainingmanualrc: openBinaryFile: does not exist (No such file or directory)
-disable=SC1091
