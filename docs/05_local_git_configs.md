@@ -60,6 +60,7 @@ git config --global user.email "you@email.com"
 ```
 
 Example:
+
 ```sh
 git config --global user.name "Mona Octocat"
 git config --global user.email "mona@github.com"
