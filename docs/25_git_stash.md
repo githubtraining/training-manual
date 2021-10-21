@@ -1,6 +1,6 @@
-## Git Stash
+## Git stash
 
-Git stash takes the changes you have made to your working tree ("dirty") and puts them in a holding pattern until you are ready to re-apply them so you have a fresh working directory ("clean").
+Git stash takes the changes you have made to your working tree ("dirty") and puts them in a holding pattern until you are ready to re-apply them, so you have a fresh working directory ("clean").
 
 Common use cases for using git stash are
 
@@ -16,7 +16,7 @@ There are different solutions to these problems, but this section is going to re
 
 The `git stash` command enables you to store changes that live in the working directory (unstaged changes) and staging area (staged changes) for later use. These stored changes, like the `reflog`, are only reflected on your *local copy* of the repository. The latest stash is stored in `refs/stash` and older stashes are found in the `reflog` of that reference.
 
-You can have multiple stashes, and they can be referenced by specifying the stash index or they can be named using `reflog` syntax (example: `stash@{2.hours.ago}`). You can also add a descriptive message to stashes with `git stash save "message"`. Once you are ready to retrieve those changes, you can apply and delete them with `git pop` or apply and continue to store them with `git stash apply`.
+You can have multiple stashes, and they can be referenced by specifying the stash index, or they can be named using `reflog` syntax (example: `stash@{2.hours.ago}`). You can also add a descriptive message to stashes with `git stash save "message"`. Once you are ready to retrieve those changes, you can apply and delete them with `git pop` or apply and continue to store them with `git stash apply`.
 
 #### Commands
 
@@ -28,7 +28,7 @@ You can have multiple stashes, and they can be referenced by specifying the stas
       - `git stash push -m <message>` gives the message along with the stashed state
       - Options include `-m|--message <message>`, `-p|--patch`, `--`
 - `git stash list`
-  - This will list all of the stashes you have available
+  - This will list all the stashes you have available
 - `git stash show`
   - Adds verbosity to `git stash list` and allows you to inspect the stashes
   - `stash@{0}` will always be the most recent stash available

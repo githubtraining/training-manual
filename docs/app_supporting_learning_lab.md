@@ -1,6 +1,6 @@
 ## Supporting Learning Lab
 
-We recommend [Learning Lab](https://lab.github.com/) as a hands on activity in many settings. It's self paced, and highly involved, which means that users can get to work in a way that will work for them.
+We recommend [Learning Lab](https://lab.github.com/) as a hands-on activity in many settings. It's self-paced, and highly involved, which means that users can get to work in a way that will work for them.
 
 ### Tips for success
 
@@ -8,9 +8,9 @@ Facilitating [Learning Lab](https://lab.github.com/) in groups is a slightly dif
 
 #### Equipment
 
-Things can get very boring very quickly if everyone will be expected to follow along on their own computer, but someone forgot theirs. Make sure it's clear to everyone participating that they should bring a computer to the event.
+Things can get very boring, very quickly if everyone will be expected to follow along on their own computer, but someone forgot theirs. Make sure it's clear to everyone participating that they should bring a computer to the event.
 
-Even if everyone has their computer, a shortage of WiFi or power outlets can be a real downer. If it's a short event, the outlets might not be necessary, but it's always best to plan to have plenty of network connection and power connection.
+Even if everyone has their computer, a shortage of Wi-Fi or power outlets can be a real downer. If it's a short event, the outlets might not be necessary, but it's always best to plan to have plenty of network connection and power connection.
 
 #### Visibility
 
@@ -28,7 +28,7 @@ Since everyone will be working on their own, it's usually best if it's a quieter
 
 Plan to have several "mentors" or "helpers" walking around the room during the hands on time. Frequently, people have questions or are stuck, but don't want to call attention to themselves. Having a helper quietly walking by and asking them how they're doing gives them a low-pressure opportunity to ask for the help they need.
 
-Anyone helping should be introduced to the group, and differentiated, so others feel comfortable talking with them. At GitHub Workshop events, we typically have all "mentors" wear a GitHub sticker on their nametag.
+Anyone helping should be introduced to the group, and differentiated, so others feel comfortable talking with them. At GitHub Workshop events, we typically have all "mentors" wear a GitHub sticker on their name tag.
 
 ### FAQ
 
@@ -48,7 +48,7 @@ We recommend starting with "Introduction to GitHub", and moving on from there.
 
 #### Can I keep working on this later?
 
-Yes. If you choose to pause your work or if you'd like to work on another course later, Learning Lab will save your progress. Log in from your GitHub account and you'll be able to pick up where you left off.
+Yes. If you choose to pause your work or if you'd like to work on another course later, Learning Lab will save your progress. Log in from your GitHub account, and you'll be able to pick up where you left off.
 
 #### Something's wrong, and I can't fix it
 

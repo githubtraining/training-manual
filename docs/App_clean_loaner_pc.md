@@ -1,4 +1,4 @@
-## Cleaning Out Your Loaner PC
+## Cleaning out your loaner PC
 
 If you borrowed a laptop or used a virtual machine for this class, you will want to clear out your configs and credentials before you give it back. Here's how:
 

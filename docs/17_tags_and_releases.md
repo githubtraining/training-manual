@@ -1,4 +1,4 @@
-## Tags and Releases
+## Tags and releases
 
 You may want to put tags or releases on certain commits in your code's history to mark specific states or places in time. To do this, you could use Git's **tag** feature, or you could use GitHub's **release** feature.
 
@@ -20,7 +20,7 @@ Another caveat with tags is that they are not automatically pushed up with commi
 
 Releases are a GitHub feature that allow you to add an executable to the tag for easier access by visitors who just want to download and install your software. Releases are tags, because they point to a specific commit and can be named like any other tag. However, releases can also include attached binaries.
 
-### Add a Release to GitHub-Games
+### Add a release to GitHub Games
 
 1. On GitHub, navigate to the **Code** tab of the repository.
 1. Under your repository name, click Releases.

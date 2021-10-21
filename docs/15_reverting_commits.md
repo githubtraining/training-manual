@@ -1,8 +1,8 @@
-## Reverting Commits
+## Reverting commits
 
 In this section, we will learn about commands that re-write history and understand when you should or shouldn't use them.
 
-### How Commits Are Made
+### How commits are made
 
 Every commit in Git is a unique snapshot of the project at that point in time. It contains the following information:
 
@@ -19,13 +19,13 @@ Each commit also contains the commit ID of its parent commit.
 
 Image source: ProGit v2 by Scott Chacon
 
-### Safe Operations
+### Safe operations
 
-Git's data structure gives it integrity but its distributed nature also requires us to be aware of how certain operations will impact the commits that have already been shared.
+Git's data structure gives it integrity, but its distributed nature also requires us to be aware of how certain operations will impact the commits that have already been shared.
 
 If an operation will change a commit ID that has been pushed to the remote (also known as a public commit), we must be careful in choosing the operations to perform.
 
-#### Guidelines for Common Commands
+#### Guidelines for common commands
 
 | Command | Cautions |
 | ------- | -------- |
@@ -35,7 +35,7 @@ If an operation will change a commit ID that has been pushed to the remote (also
 | `cherry-pick` | Only use on local commits.
 | `rebase` | Only use on local commits.
 
-### Reverting a Commit
+### Reverting a commit
 
 To get your game working, you will need to reverse the commit that incorrectly renames `index.html`.
 

@@ -4,7 +4,7 @@ When you work with a team (and even sometimes when you are working alone) you wi
 
 These exercises will focus on the technical "how". In real merge conflicts, it's important to know who to ask in case you aren't sure how to resolve the conflict on your own. Usually it's a good idea to ask the person who made the conflicting changes, or someone who referenced in the CODEOWNERS file.
 
-### Local Merge Conflicts
+### Local merge conflicts
 
 Merge conflicts are a natural and minor side effect of distributed version control. They only happen under very specific circumstances.
 

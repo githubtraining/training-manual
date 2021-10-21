@@ -10,7 +10,7 @@ In this first example, the development team hasn't implemented an issue template
 
 While a blank canvas can be great in an artistic sense, it creates deficiencies in the issue and pull request process. If you don't provide guidelines that your team needs, you lose clarity and needlessly increase context-seeking communication. For example, when someone reports a bug, you might want them to include their operating system, the version of the application, or other environment variables that will help you pinpoint the problem. For new feature requests, you might need the issue author to identify specific use case information that they may or may not describe when starting from scratch.
 
-In this next example, a team was frustrated by the inconsistent way contributors were reporting bugs and requesting features, so they created issue templates. The most important effect these templates have is it improves the consistency in which the the team receives the information they **need**.
+In this next example, a team was frustrated by the inconsistent way contributors were reporting bugs and requesting features, so they created issue templates. The most important effect these templates have is it improves the consistency in which the team receives the information they **need**.
 
 With an issue template, you take emptiness out of the equation and guide your users towards the kind of participation you're looking for.
 
@@ -20,12 +20,12 @@ With an issue template, you take emptiness out of the equation and guide your us
 
 GitHub supports multiple issue templates, so within our groups we are going to create a `bug`, `issue`, and `custom` template for issues created in our repository. While creating these issue templates, it is important to remember the GitHub Flow, so the template should be created on a branch, submitted as a pull request to receive feedback from the team, and merged into the `main` branch.
 
-Before creating the template, it might be helpful to find existing issue templates on other open source projects on GitHub to get some inspiration. Below are some of examples of issue templates found on GitHub:
+Before creating the template, it might be helpful to find existing issue templates on other open source projects on GitHub to get some inspiration. Below are some examples of issue templates found on GitHub:
 
-- [Atom](https://github.com/atom/atom/issues/new/choose)
-- [Electron](https://github.com/electron/electron/issues/new/choose)
-- [VisualStudio](https://github.com/github/VisualStudio/issues/new/choose)
-- [Training Kit](https://github.com/github/training-kit/blob/master/.github/ISSUE_TEMPLATE.md)
+- [atom/atom](https://github.com/atom/atom/issues/new/choose)
+- [electron/electron](https://github.com/electron/electron/issues/new/choose)
+- [github/VisualStudio](https://github.com/github/VisualStudio/issues/new/choose)
+- [github/training-kit](https://github.com/github/training-kit/blob/master/.github/ISSUE_TEMPLATE.md)
 
 To create an issue template, perform the following:
 

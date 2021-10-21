@@ -1,4 +1,4 @@
-### Activity: Use GitHub Actions to Automate Releases
+### Activity: Use GitHub Actions to automate releases
 
 #### Add an Action to your repository from the Marketplace
 
