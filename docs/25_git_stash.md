@@ -16,7 +16,7 @@ There are different solutions to these problems, but this section is going to re
 
 The `git stash` command enables you to store changes that live in the working directory (unstaged changes) and staging area (staged changes) for later use. These stored changes, like the `reflog`, are only reflected on your *local copy* of the repository. The latest stash is stored in `refs/stash` and older stashes are found in the `reflog` of that reference.
 
-You can have multiple stashes, and they can be referenced by specifying the stash index or they can be named using `reflog` syntax (example: `stash@{2.hours.ago}`). You can also add a descriptive message to stashes with `git stash save "message"`. Once you are ready to retrieve those changes, you can apply and delete them with `git pop` or apply and continue to store them with `git stash apply`.
+You can have multiple stashes, and they can be referenced by specifying the stash index, or they can be named using `reflog` syntax (example: `stash@{2.hours.ago}`). You can also add a descriptive message to stashes with `git stash save "message"`. Once you are ready to retrieve those changes, you can apply and delete them with `git pop` or apply and continue to store them with `git stash apply`.
 
 #### Commands
 

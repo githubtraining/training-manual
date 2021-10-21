@@ -9,7 +9,7 @@ While you are waiting for class to begin, please take a few minutes to set up yo
 For this class, we will use a public account on GitHub.com. We do this for a few reasons:
 
 - We don't want you to "practice" in repositories that contain real code
-- We are going to break some things so we can teach you how to fix them (therefore, refer to the bullet above)
+- We are going to break some things, so we can teach you how to fix them (therefore, refer to the bullet above)
 
 You can set up your free account by following these steps:
 

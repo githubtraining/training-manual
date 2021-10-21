@@ -1,6 +1,6 @@
 ## Fixing commit mistakes
 
-In this activity, we will begin to explore some of the ways Git and GitHub can help us shape our project history.
+In this activity, we will begin to explore some ways Git and GitHub can help us shape our project history.
 
 ### Revising your last commit
 

@@ -84,7 +84,7 @@ If the only thing that you needed to change was the commit message, you can upda
 git config --global alias.amend "commit -a --amend"
 ```
 
-- `-a` will add any modifications and deletions of existing files to your commit, but ignore brand new files.
+- `-a` will add any modifications and deletions of existing files to your commit, but ignore brand-new files.
 
 ### Avoiding tragedy
 

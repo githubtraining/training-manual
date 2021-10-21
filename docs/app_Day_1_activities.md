@@ -67,7 +67,7 @@ In the body of the pull request, with `base: main` and `compare: NEWBRANCHNAME`.
 1. `@` mention anyone you'd like to review your changes.
 1. Once the tests pass on your pull request, merge the pull request.
 
-### Restyle Slides
+### Restyle slides
 
 If you'd like a more advanced challenge, and you have an eye for style, change the colors, font, and other aspects of the class slide deck. **Note: If multiple participants attempt this, there may be merge conflicts.**
 

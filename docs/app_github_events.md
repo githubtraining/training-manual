@@ -32,11 +32,11 @@ A "lunch & learn," or sometimes called a "brown bag" event focuses around a pres
 
 ### Formal training
 
-Formal training is an immersive way to learn and practice Git and GitHub. However, formal training requires a large investment from all parties involved. We typically recommend a two day training, which can be too much time away from a desk for some teams.
+Formal training is an immersive way to learn and practice Git and GitHub. However, formal training requires a large investment from all parties involved. We typically recommend a two-day training, which can be too much time away from a desk for some teams.
 
 ![training room](https://user-images.githubusercontent.com/16547949/43785665-d3ab7f52-9a34-11e8-96aa-9a16a96194ba.JPG)
 
-If you think that formal training would be a good option for some of the teams within your organization, you may want to reach out to us for help on delivering the training or helping you learn how to deliver training.
+If you think that formal training would be a good option for some teams within your organization, you may want to reach out to us for help on delivering the training or helping you learn how to deliver training.
 
 #### Question and answer session
 
