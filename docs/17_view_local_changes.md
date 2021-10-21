@@ -1,8 +1,8 @@
-## Viewing Local Changes
+## Viewing local changes
 
 Now that you have some files in the staging area and the working directory, let's explore how you can compare different points in your repository.
 
-### Comparing Changes within the Repository
+### Comparing changes within the repository
 
 `git diff` allows you to see the difference between any two refs in the repository. The diagram below shows how you can compare the content of your working area, staging, and HEAD (or the most recent commit):
 

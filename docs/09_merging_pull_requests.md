@@ -1,8 +1,8 @@
-## Merging Pull Requests
+## Merging pull requests
 
 Now that you have made the requested changes, your pull request should be ready to merge.
 
-### Merge Explained
+### Merge explained
 
 When you merge your branch, you are taking the content and history from your feature branch and adding it to the content and history of the `main` branch.
 
@@ -16,7 +16,7 @@ Many project teams have established rules about who should merge a pull request.
 
 This is a discussion you should have with the other members of your team.
 
-### Merging Your Pull Request
+### Merging your pull request
 
 Let's take a look at how you can merge the pull request.
 
@@ -33,7 +33,7 @@ Let's take a look at how you can merge the pull request.
 - **Squash and merge:** This option will take all of the commits on your branch and compress them into a single commit. The commit messages will be preserved in the extended commit message for the commit, but the individual commits will be lost.
 - **Rebase and merge:** This option will take all of the commits and replay them as if they just happened. This allows GitHub to perform a fast forward merge (and avoids the addition of the merge commit).
 
-### Updating Your Local Repository
+### Updating your local repository
 
 When you merged your Pull Request, you deleted the branch on GitHub, but this will not automatically update your local copy of the repository. Let's go back to our command line application and get everything in sync.
 
@@ -44,7 +44,7 @@ First, we need to get the changes we made on GitHub into our local copy of the r
 
 `git pull` is a combination command that retrieves all of the changes from GitHub and then updates the branch you are currently on to include the changes from the remote. The two separate commands being run are `git fetch` and `git merge`
 
-### Cleaning Up the Unneeded Branches
+### Cleaning up the unneeded branches
 
 If you type `git branch --all` you will probably see that, even though you deleted your branch on the remote, it is still listed in your local copy of the repository, both as a local branch and as a read-only remote tracking branch. Let's get rid of those extra branches.
 

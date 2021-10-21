@@ -1,6 +1,6 @@
-## Day 2 Activities
+## Day 2 activities
 
-### Merge Conflict Practice
+### Merge conflict practice
 
 Depending on how you're interacting with this manual, you may be in a class. The instructor may have set up a repository for you to practice merge conflicts. If this is the case:
 

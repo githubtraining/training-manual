@@ -1,8 +1,8 @@
-## Working Locally with Git
+## Working locally with Git
 
 Using the command line, you can easily integrate Git into your current workflow.
 
-### Creating a Local Copy of the repo
+### Creating a local copy of the repo
 
 ![Cloning a repository](./img/clone-diagram.png)
 
@@ -19,7 +19,7 @@ Let's go ahead and clone the class repository to your local desktop.
 1. Retrieve a full copy of the repository from GitHub: `git clone <CLONE-URL>`
 1. Once the clone is complete, cd into the new directory created by the clone operation: `cd <REPOSITORY-NAME>`
 
-### Our Favorite Git command: `git status`
+### Our favorite Git command: `git status`
 
 ```shell-session
 $ git status
@@ -30,7 +30,7 @@ nothing to commit, working tree clean
 
 `git status` is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch main, everything is up to date with origin/main and our working tree is clean.
 
-### Using Branches locally
+### Using branches locally
 
 ```sh
 git branch
@@ -47,7 +47,7 @@ If you want to see all of the branches, including the read-only copies of your r
 
 > The `--all` and `-a` are actually synonyms for the branch command. Git often provides a verbose and a short option.
 
-### Switching Branches
+### Switching branches
 
 ```sh
 git switch <BRANCH-NAME>
@@ -59,7 +59,7 @@ To switch the branch you created online, type `git switch` and the name of your 
 
 [include](06a_activity_create_file.md ':include')
 
-### The Two Stage Commit
+### The two stage commit
 
 After you have created your file, it is time to create your first snapshot of the repository. When working from the command line, you will need to be familiar with the idea of the two stage commit.
 

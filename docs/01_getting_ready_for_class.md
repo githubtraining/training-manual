@@ -1,10 +1,10 @@
-## Getting Ready for Class
+## Getting ready for class
 
 While you are waiting for class to begin, please take a few minutes to set up your local work environment.
 
 <!-- toc -->
 
-### Step 1: Set Up Your GitHub.com Account
+### Step 1: Set up your GitHub.com account
 
 For this class, we will use a public account on GitHub.com. We do this for a few reasons:
 
@@ -43,13 +43,13 @@ In general, we recommend you stay within two minor versions of the [latest versi
 
 We suggest having version [2.29.2](https://github.com/git-for-windows/git/releases/tag/v2.29.2.windows.2) or more recent if you're using Git for Windows or Git Bash.
 
-#### Downloading and Installing Git
+#### Downloading and installing Git
 
 If you don't already have Git installed, you can download Git at www.git-scm.com.
 
 If you need additional assistance installing Git, you can find more information in [the ProGit chapter on installing Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-#### Where is Your Shell?
+#### Where is your shell?
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
@@ -97,11 +97,11 @@ git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@Y
 
 Replace `YOUR_PROXY_USERNAME` with the username used to authenticate into your proxy, `YOUR_PROXY_PASSWORD` with the password used to authenticate into your proxy, and `YOUR.PROXY.SERVER` with your proxy's URL.
 
-### Step 4: Set Up Your Text Editor
+### Step 4: Set up your text editor
 
 For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command line.
 
-#### Pick Your Editor
+#### Pick your editor
 
 You can use almost any text editor, but we have the best success with the following:
 
@@ -115,7 +115,7 @@ You can use almost any text editor, but we have the best success with the follow
 
 If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
 
-#### Your Editor on the Command Line
+#### Your editor on the command line
 
 After you have installed an editor, confirm you can open it from the command line.
 

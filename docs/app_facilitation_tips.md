@@ -1,4 +1,4 @@
-## Facilitation Tips
+## Facilitation tips
 
 ### Time management
 
@@ -6,7 +6,7 @@ During class you'll want to let folks take breaks (the attention span only last 
 
 Additionally, to help manage your time, make sure to stay on topic. Tangents are ok once in a while, but too much and not only are you starting to lose time, but it becomes distracting to your audience - they are now trying to learn about more than one topic at once.
 
-### Addressing Logistics
+### Addressing logistics
 
 In the beginning of class, let everyone know where the following exists:
 

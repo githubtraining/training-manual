@@ -1,4 +1,4 @@
-### Activity: Creating A GitHub Issue
+### Activity: Creating a GitHub issue
 
 Follow these steps to create an issue in the class repository:
 

@@ -1,10 +1,10 @@
-## Preparing repositories for Teachbacks
+## Preparing repositories for teach-backs
 
 ### Project 1: Caption This
 
 To practice teaching the first activities, please use the same repository you used in class. You will not need to alter this repository in any way to go through the activities.
 
-### Project 2: Merge conflicts
+### Project 2: Merge Conflicts
 
 To prepare your local repository to be ready for teaching, use the following commands.
 

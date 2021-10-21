@@ -1,4 +1,4 @@
-## Git Stash
+## Git stash
 
 Git stash takes the changes you have made to your working tree ("dirty") and puts them in a holding pattern until you are ready to re-apply them so you have a fresh working directory ("clean").
 

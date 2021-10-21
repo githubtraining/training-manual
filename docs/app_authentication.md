@@ -1,4 +1,4 @@
-## Authentication Troubleshooting Guide
+## Authentication troubleshooting guide
 
 The following are reasons you may be having trouble performing network operations, these include: `clone`, `push`, `pull`, and `fetch`. Try diagnosing each problem and solution in the order we've presented them.
 

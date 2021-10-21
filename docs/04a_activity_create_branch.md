@@ -1,4 +1,4 @@
-### Activity: Creating A Branch with GitHub
+### Activity: Creating a branch with GitHub
 
 Earlier you created an issue about the file you would like to edit. Let's create the branch you will use to edit your file.
 

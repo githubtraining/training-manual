@@ -14,7 +14,7 @@ Unfortunately, the `.dmg` file was added to the Git repository without using Git
 
 Before we can begin using Git LFS, we need to install it on our local machine. Below are the steps for installing Git LFS on your machine based on your operating system.
 
-#### MacOS
+#### macOS
 
 1. Navigate to [git-lfs.github.com](https://git-lfs.github.com/) and click **Download**. Alternatively, you can install Git LFS using a package manager:
 

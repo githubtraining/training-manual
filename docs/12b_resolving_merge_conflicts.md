@@ -1,4 +1,4 @@
-### Resolving a Merge Conflict
+### Resolving a merge conflict
 
 Let's try to create a merge conflict, and fix it together. You and a partner will each create separate branches, create a file with the same name, and then try to merge. The first will merge cleanly, the second will have a merge conflict. Work together to resolve the merge conflict.
 

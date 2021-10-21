@@ -1,6 +1,6 @@
-## Alias Pro Tips
+## Alias pro-tips
 
-### Tidying Up Locally
+### Tidying up locally
 
 There are shortcuts that allow you to do a deep clean if you've neglected the state of your local repository. The following TWO configs (both need to be added) will: switch to main, update main from the origin, and delete all local branches already merged into main.
 
@@ -30,7 +30,7 @@ git config --global alias.cm "!git add -A && git commit -m"
 
 - The `-A` flag adds all changes, including untracked files, to the index.
 
-### Returning to the Remote
+### Returning to the remote
 
 After finishing up locally, you might determine that you want to head back to your remote repository to make sure that everything looks right.
 
@@ -54,7 +54,7 @@ And just in case you're prone to forget your word choices, you can link multiple
 git config --global alias.browse "!git open"
 ```
 
-### Alternatives to Stashing -- Check Points
+### Alternatives to stashing -- check points
 
 Sometimes, you'll want to save your work in a commit without having to think of a commit message, or before you're ready to organize your changes. If that's the case, you can create aliases to create "save points".
 
@@ -86,7 +86,7 @@ git config --global alias.amend "commit -a --amend"
 
 - `-a` will add any modifications and deletions of existing files to your commit, but ignore brand new files.
 
-### Avoiding Tragedy
+### Avoiding tragedy
 
 Sometimes, you'll reset --hard too soon, before you've made a commit. If you reset work that you never committed, it's gone for good. Using a command like `git wipe` will commit everything in your working directory, and then do a hard reset to get rid of that commit (but it's still reachable in the reflog). This is a really safe option that allows you to keep yourself from making sad mistakes.
 
@@ -96,7 +96,7 @@ git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' &
 
 - `-q` stands for `--quiet`, which suppresses the commit summary message.
 
-### Getting Your Working Directory Up to Date
+### Getting your working directory up to date
 
 ```sh
 git pull --rebase --prune

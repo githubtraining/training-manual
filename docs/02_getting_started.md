@@ -1,4 +1,4 @@
-## Getting Started With Collaboration
+## Getting started with collaboration
 
 We will start by introducing you to Git, GitHub, and the collaboration features we will use throughout the class. Even if you have used GitHub in the past, we hope this information will provide a baseline understanding of how to use it to build better software!
 
@@ -25,7 +25,7 @@ In addition to being a place to host and share your Git projects, GitHub provide
 
 ![GitHub Collaboration Features](./img/collaboration-features.png)
 
-### The GitHub Ecosystem
+### The GitHub ecosystem
 
 Rather than force you into a "one size fits all" ecosystem, GitHub strives to be the place that brings all of your favorite tools together. For more information on integrations, check out <https://github.com/integrations>.
 
@@ -48,25 +48,25 @@ As we begin to discuss Git (and what makes it special) it would be helpful if yo
 
 We will learn more about how Git stores your code as we go through this class, but the first thing you will need to understand is how Git works with your content.
 
-#### Snapshots, not Deltas
+#### Snapshots, not deltas
 
 One of the first ideas you will need understand is that Git does not store your information as series of changes. Instead Git takes a snapshot of your repository at a given point in time. This snapshot is called a commit.
 
-#### Optimized for Local Operations
+#### Optimized for local operations
 
 Git is optimized for local operation. When you clone a copy of a repository to your local machine, you receive a copy of the entire repository and its history. This means you can work on the plane, on the train, or anywhere else your adventures find you!
 
-#### Branches are Lightweight and Cheap
+#### Branches are lightweight and cheap
 
 Branches are an essential concept in Git.
 
 When you create a new branch in Git, you are actually just creating a pointer that corresponds to the most recent commit in a line of work. Git keeps the commits for each branch separate until you explicitly tell it to merge those commits into the main line of work.
 
-#### Git is Explicit
+#### Git is explicit
 
 Which brings us to our final point for now; Git is very explicit. It does not do anything until you tell it to. No auto-saves or auto-syncing with the remote, Git waits for you to tell it when to take a snapshot and when to send that snapshot to the remote.
 
-### Exploring a GitHub Repository
+### Exploring a GitHub repository
 
 A repository is the most basic element of GitHub. It is easiest to imagine as a project's folder. However, unlike an ordinary folder on your laptop, a GitHub repository offers simple yet powerful tools for collaborating with others.
 
@@ -74,19 +74,19 @@ A repository contains all of the project files (including documentation), and st
 
 ![GitHub Repositories](./img/repository-intro.png)
 
-### User Accounts vs. Organization Accounts
+### User accounts vs. organization accounts
 
 There are two account types in GitHub, user accounts and organization accounts. While there are many differences in these account types, one of the more notable differences is how you handle permissions.
 
-#### User Accounts
+#### User accounts
 
 When you signed up for GitHub, you were automatically given a user account. Permissions for a user account are simple, you add people as collaborators to specific repositories to give them full read-write access to the project.
 
-#### Organization Accounts
+#### Organization accounts
 
 Organization accounts provide more granular control over repository permissions. In an organization account you create teams of people and then give those teams access to specific repositories. Permissions can be assigned at the team level (e.g, read, write, or admin).
 
-### Repository Navigation
+### Repository navigation
 
 #### Code
 
@@ -135,7 +135,7 @@ In GitHub, you will use issues to record and discuss ideas, enhancements, tasks,
 
 GitHub uses a syntax called **Markdown** to help you add basic text formatting to Issues, Pull Requests, and files with the `.md` extension.
 
-### Commonly Used Markdown Syntax
+### Commonly used Markdown syntax
 
 #### `# Header`
 

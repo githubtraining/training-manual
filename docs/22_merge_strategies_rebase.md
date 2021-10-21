@@ -1,12 +1,12 @@
-## Merge Strategies: Rebase
+## Merge strategies: Rebase
 
 In this section, we will discuss another popular merge strategy, rebasing.
 
-### Understanding Git Merge Strategies
+### Understanding Git merge strategies
 
 Git uses three primary merge strategies:
 
-#### Fast Forward
+#### Fast forward
 
 A fast forward merge assumes that no changes have been made on the base branch since the feature branch was created. This means that the branch pointer for base can simply be "fast forwarded" to point to the same commit as the feature branch.
 
@@ -18,7 +18,7 @@ A recursive merge means that changes have been made on both the base branch and 
 
 A merge of 3 or more branches is an octopus merge. This will also create a merge commit with multiple parents.
 
-### About Git Rebase
+### About Git rebase
 
 `git rebase` enables you to modify your commit history in a variety of ways. For example, you can use it to reorder commits, edit them, squash multiple commits into one, and much more.
 
@@ -31,13 +31,13 @@ Typically, you would use `git rebase -i` to:
 - Combine multiple commits into one
 - Delete or revert commits that are no longer necessary
 
-### Creating a Linear History
+### Creating a linear history
 
 One of the most common uses of rebase is to eliminate recursive merges and create a more linear history. In this activity, we will learn how it is done.
 
 ![Git Rebase](./img/git-rebase.png)
 
-#### Set Up
+#### Setup
 
 1. Find the SHA of the initial commit: `git log --oneline`
 1. Reset to the SHA of the initial commit: `git reset --hard SHA`
@@ -48,7 +48,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 1. Look at your history: `git log --oneline --graph --decorate --all`
 1. If you merged now, it would be a recursive merge.
 
-#### Begin the Rebase
+#### Begin the rebase
 
 1. Switch to the `rebase-me` branch: `git switch rebase-me`
 1. Start the merge: `git rebase -i main`
@@ -58,7 +58,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 1. Take another look at your history: `git log --oneline --graph --decorate --all`
 1. If you merged now, it would be a fast-forward merge.
 
-#### Finish the Merge
+#### Finish the merge
 
 1. Switch to main, the branch you will merge into: `git switch main`
 1. Merge your changes in to main: `git merge rebase-me`

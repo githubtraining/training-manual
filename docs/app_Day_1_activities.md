@@ -1,6 +1,6 @@
 ## Day 1 Activities
 
-### Add a New Slide
+### Add a new slide
 
 Just like we did in class, open a new pull request adding a new slide to the deck.
 
@@ -41,7 +41,7 @@ Just like we did in class, open a new pull request adding a new slide to the dec
 In the body of the pull request, @ mention anyone you'd like to review your changes.
 1. Once the tests pass on your pull request, merge the pull request.
 
-### Add a Caption To an Existing Slide
+### Add a caption to an existing slide
 
 Add a caption to an existing slide in someone else's pull request.
 

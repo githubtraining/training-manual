@@ -1,8 +1,8 @@
-## Getting it Back: `git cherry-pick`
+## Getting it back: `git cherry-pick`
 
 We just learned how reflog can help us find local changes that have been discarded. So what if:
 
-### You Just Want That One Commit
+### You just want that one commit
 
 Cherry picking allows you to pick up a commit from your reflog or another branch of your project and move it to your current branch. Right now, your file directory and log should look like this:
 
@@ -34,7 +34,7 @@ Is the commit ID the same as the one you used in the cherry pick command? Why or
 > Remember, when using any commands that change history, it's important to make these changes before pushing to GitHub. When you change a commit ID that has been pushed to the remote, you risk creating problems for your collaborators.
 {: .warning}
 
-### Oops, I Didn't Mean to Reset
+### Oops, I didn't mean to reset
 
 Sometimes, you `git reset --hard` a little further than intended and want to restore that work. The good news is, that `git reset --hard` doesn't just work by going back in time, it can also go forward:
 

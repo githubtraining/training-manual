@@ -1,4 +1,4 @@
-## GitHub Training Scripts
+## GitHub training scripts
 
 We use [scripts](https://github.com/githubtraining/training-manual/tree/main/script) to set up repositories with these class activities. They're located in the same repository as this [training manual](https://github.com/githubtraining/training-manual), inside `/script`.
 

@@ -1,8 +1,8 @@
-## GitHub Events
+## GitHub events
 
 As well as spreading organically by colleagues working together, learning spreads by organized events. Not every event is a great fit for every organization. Below, we'll explore some different types of events, and then plan one that might work for your organization.
 
-### GitHub Workshop
+### GitHub workshop
 
 Workshops are hands-on, GitHub focused gatherings accessible to people of all experience levels. The timing of a workshop may range from 45 minutes to several hours. Workshops can include presentations from those already using GitHub about their experiences, but almost always include Learning Lab.
 
@@ -38,11 +38,11 @@ Formal training is an immersive way to learn and practice Git and GitHub. Howeve
 
 If you think that formal training would be a good option for some of the teams within your organization, you may want to reach out to us for help on delivering the training or helping you learn how to deliver training.
 
-#### Question and Answer Session
+#### Question and answer session
 
 The Question and Answer session is one of the easier events to plan as it can be provided as a regularly scheduled event where members across the organization can "call in" and ask Git and GitHub questions. Additionally, the Q&A session brings awareness within the organization on whom to go to when there is a question relating to Git and GitHub.
 
-##### Event Preparation
+##### Event preparation
 
 Your facilitator will partner with you to lead a Q&A session. The question and answer session should be available as both an in-person and remote engagement. An invitation to the event should be forwarded to individuals within the organization to provide them an opportunity to ask any Git and GitHub-related questions they have. The following text can be used in the event invitation:
 

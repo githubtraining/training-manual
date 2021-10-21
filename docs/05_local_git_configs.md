@@ -1,8 +1,8 @@
-## Local Git Configuration
+## Local Git configuration
 
 In this section, we will prepare your local environment to work with Git.
 
-### Checking Your Git Version
+### Checking your Git version
 
 First, let's confirm your [Git Installation](https://git-scm.com/downloads):
 
@@ -16,7 +16,7 @@ If you do not see a Git version listed or this command returns an error, you may
 
 > To get the latest version of Git, visit [www.git-scm.com](https://www.git-scm.com).
 
-### Git Configuration Levels
+### Git configuration levels
 
 ![Git Configuration Levels](./img/config-levels.png)
 
@@ -36,7 +36,7 @@ These are the repository level configurations. They only apply to the specific r
 
 > The default value for git config is `--local`.
 
-### Viewing Your Configurations
+### Viewing your configurations
 
 If you would like to see which config settings have been added automatically, you can type `git config --list`. This will automatically read from each of the three config files and list the setting they contain.
 
@@ -50,7 +50,7 @@ You can also narrow the list to a specific configuration level by including it b
 git config --global --list
 ```
 
-### Configuring Your User Name and Email
+### Configuring your name and email address
 
 Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:
 
@@ -59,14 +59,14 @@ git config --global user.name "First-name Surname"
 git config --global user.email "you@email.com"
 ```
 
-Example:
+**Example:**
 
 ```sh
 git config --global user.name "Mona Octocat"
 git config --global user.email "mona@github.com"
 ```
 
-#### Git Config and Your Privacy
+#### Git config and your privacy
 
 The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again.
 

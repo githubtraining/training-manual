@@ -9,7 +9,7 @@ While working within your repository, you might notice system or configuration f
 1. Log files, e.g. `*.log`
 1. Build files, e.g. `Build/*`
 
-### Readily Available `.gitignore` Templates
+### Readily available `.gitignore` templates
 
 #### github/gitignore
 

@@ -1,4 +1,4 @@
-## Case Studies
+## Case studies
 
 While starting something new at an organization always has unique challenges, there are likely others in similar fields who can offer their expertise. Let's learn from the experience of others.
 
@@ -71,7 +71,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 - What are some examples of change or transition within your organization? How can you learn from those examples when moving forward change in the future?
 - What are the social aspects involved in transition? How can these social aspects negatively or positively influence a transition or change?
 
-### Topic Focus: Open Source for Enterprises
+### Topic Focus: Open source for enterprises
 
 #### Resources
 
@@ -141,7 +141,7 @@ Each topic has a list of resources (articles, white papers, videos, etc.) and a 
 - What are the biggest challenges when teaching? Are those specific to Git and GitHub? Are they specific to you or your organization?
 - How could you have benefited from more Git and GitHub learning opportunities? How could your colleagues benefit?
 
-### Topic Focus: GitHub Workflow success stories
+### Topic Focus: GitHub workflow success stories
 
 #### Resources
 

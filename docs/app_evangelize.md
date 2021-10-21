@@ -1,8 +1,8 @@
-## Adopting the Dream
+## Adopting the dream
 
 As an ambassador, initiating actionable changes within the organization is your main priority. You'll need to evangelize Git's version control benefits and GitHub's collaboration and platform features within the the organization. Knowing how and where to spread your Git and GitHub knowledge is one thing, but knowing how to tackle issues, deal with reluctant mindsets, or providing clear expectations is a situation you need to be ready for. Take some time to think about and answer the following questions in the next section.
 
-### Discussion Activity: Understand your role as an Ambassador
+### Discussion activity: Understand your role as an Ambassador
 
 #### Be a Git and GitHub evangelist
 

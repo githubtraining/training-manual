@@ -1,4 +1,4 @@
-## Interacting with SSO enabled organizations
+## Interacting with SSO-enabled organizations
 
 If the repositories you interact with daily are contained in an organization that enforces SSO you might encounter difficulty working with those repositories when trying to perform Git operations like `clone`, `pull`, and `push`. This issue can be remedied by creating a personal access token (PAT) for use with your GitHub account.
 

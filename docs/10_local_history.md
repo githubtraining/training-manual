@@ -1,8 +1,8 @@
-## Viewing Local Project History
+## Viewing local project history
 
 In this section, you will discover commands for viewing the history of your project.
 
-### Using Git Log
+### Using Git log
 
 When you clone a repository, you receive the history of all of the commits made in that repository. The log command allows us to view that history on our local machine.
 

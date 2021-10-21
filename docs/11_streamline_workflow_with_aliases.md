@@ -26,7 +26,7 @@ git config --global alias.lol "log --oneline --graph --decorate --all"
 git lol
 ```
 
-#### Explore Other Helpful Aliases
+#### Explore other helpful aliases
 
 Check out these resources for a list of common aliases:
 
@@ -38,7 +38,7 @@ We also encourage you to read through these three blog posts by GitHub developer
 - [Git Migrate](http://haacked.com/archive/2015/06/29/git-migrate/)
 - [Git Alias Open URL](http://haacked.com/archive/2017/01/04/git-alias-open-url/)
 
-Pro Tip # 1:  To edit aliases by hand, you can open the gitconfig file with your default editor.
+Pro Tip # 1: To edit global aliases by hand, you can open the `.gitconfig` file with your default editor.
 
 ```sh
 git config --global alias.ec "config --global -e"

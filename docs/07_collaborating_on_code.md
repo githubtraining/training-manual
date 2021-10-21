@@ -1,8 +1,8 @@
-## Collaborating on Your Code
+## Collaborating on your code
 
 Now that you have made some changes in the project locally, let's learn how to push your changes back to the shared class repository for collaboration.
 
-### Pushing Your Changes to GitHub
+### Pushing your changes to GitHub
 
 ![Pushing to GitHub](./img/push-pull.png)
 
@@ -21,7 +21,7 @@ git push
 
 [include](07a_activity_create_pull_request.md ':include')
 
-### Exploring a Pull Request
+### Exploring a pull request
 
 Now that we have created a Pull Request, let's explore a few of the features that make Pull Requests the center of collaboration:
 
@@ -37,15 +37,15 @@ The **Commits** tab contains more detailed information about who has made change
 
 The **Files changed** tab allows you to see cumulative effect of all the changes made on the branch. We call this the `diff`. Our diff isn't very interesting yet, but as we make changes your diff will become very colorful.
 
-### Code Review in Pull Requests
+### Code review in pull requests
 
 To provide feedback on proposed changes, GitHub offers three levels of commenting:
 
-#### General Conversation
+#### General conversation
 
 You can provide general comments on the Pull Request within the **Conversation** tab.
 
-#### Line Comments
+#### Line comments
 
 In the **Files changed** tab, you can hover over a line to see a blue ![`+`][octicon-diff-added] icon. Clicking this icon will allow you to enter a comment on a specific line. These line level comments are a great way to give additional context on recommended changes. They will also be displayed in the **Conversation** tab.
 
@@ -53,7 +53,7 @@ In the **Files changed** tab, you can hover over a line to see a blue ![`+`][oct
 
 When you are making line comments, you can also choose to **Start a Review**. When you create a review, you can group many line comments together with a general message: Comments, Approve, or Request Changes. Reviews have special power in GitHub when used in conjunction with protected branches.
 
-### Activity: Code Review
+### Activity: Code review
 
 One of the best ways to ensure code quality is to make peer reviews a part of every Pull Request. Let's review your partner's code now:
 

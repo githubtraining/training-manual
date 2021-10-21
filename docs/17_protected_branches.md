@@ -1,8 +1,8 @@
-## Protected Branches & CODEOWNERS
+## Protected branches & code owners
 
 In some workflows, you will want to protect critical branches to ensure the code being merged to those branches has passed the required checks and received appropriate peer review. There are several methods for this, including **Protected Branches** and **Code Owners**.
 
-### Protected Branches
+### Protected branches
 
 Repository maintainers can prevent merges to specific branches that have not met pre-defined criteria. This criteria can include peer reviews, tests run by integrations such as a Continuous Integration services or code quality, or until a specific code owner has reviewed and approved changes.
 
@@ -18,7 +18,7 @@ Without checking any other options, basic branch protection prevents force-pushe
 
 > Pro tip: You can use wildcards (`*`, `?`) and regular expressions to make a branch protection rule apply to multiple branches.  Check out the [branch protection documentation](https://help.github.com/en/articles/configuring-protected-branches) for more information on how wildcards and regular expression matching work.
 
-### CODEOWNERS
+### Code owners
 
 Repository maintainers can define exactly which people and teams need to review sets of changes by creating a **CODEOWNERS** file. For example, you could use CODEOWNERS to ensure:
 
