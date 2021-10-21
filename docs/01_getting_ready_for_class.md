@@ -36,7 +36,7 @@ You should see something like this:
 
 ```shell-session
 $ git --version
-git version 2.11.0
+git version 2.33.1
 ```
 
 In general, we recommend you stay within two minor versions of the [latest version](https://git-scm.com/downloads) of Git. The minor version is the second number in the series `x.x.x`.
