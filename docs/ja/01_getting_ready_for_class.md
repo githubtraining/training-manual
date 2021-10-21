@@ -23,7 +23,7 @@ Gitは、オープンソースのバージョン管理アプリケーション�
 すでにGitをインストールしているかもしれませんね。確認してみましょう！ Macを使用している場合はターミナル、Windowsマシンの場合はPowerShellを開き、次のように入力します。
 
 ```sh
-$ git version
+git version
 ```
 
 次のように表示されます。
@@ -39,7 +39,7 @@ git version 2.11.0
 
 Gitをまだインストールしていない場合は、www.git-scm.comからGitをダウンロードできます。
 
-Gitのインストールについてさらに資料が必要な場合は、ProGitの章にあるGitのインストールに関する追加情報を参照してください。` http://git-scm.com/book/en/v2/Getting-Started-Installing-Git ` 
+Gitのインストールについてさらに資料が必要な場合は、ProGitの章にあるGitのインストールに関する追加情報を参照してください。` http://git-scm.com/book/en/v2/Getting-Started-Installing-Git `
 
 #### シェルはどこにあるのか
 
@@ -73,7 +73,7 @@ Gitで使いたいコマンドラインアプリケーションへのショー�
 適切にインストールされている場合、次のコマンドで、Atomテキストエディタを開くことができます。
 
 ```sh
-$ atom .
+atom .
 ```
 
 > Macで作業している場合は、Atomのメニューからシェルコマンドをインストールする必要があります。これは、Windowsのインストールプロセスの一部として行われます。
@@ -82,5 +82,5 @@ $ atom .
 
 おめでとうございます。 これで、あなたのシステムに、作業できるバージョンのGitとテキストエディタがあるはずです。 クラス開始前にまだ時間がある場合は、以下の興味深い資料をご覧ください。
 
-- *[ github.com/explore ](https://www.github.com/explore)* Exploreでは、GitHub Universeにおける興味深いプロジェクトを展示しています。 後で再度見てみたいプロジェクトはありましたか？ 後で見つけやすくするために、リポジトリにStarを付けましょう。
-- *[ services.github.com/on-demand ](https://services.github.com/on-demand/)*　オンデマンドトレーニングコースは、GitHubのオープンソーストレーニング資料です。 このサイトには、授業で学んだ内容を復習する際に、参考になる追加情報が含まれています。 より詳細な説明をご希望の場合、contributionsを投稿したり、Issuesを作成することもできます。 ここでオープンソースのリポジトリを見てみましょう。　[` https://github.com/github/training-kit `](https://github.com/github/training-kit)
+- *[github.com/explore](https://www.github.com/explore)* Exploreでは、GitHub Universeにおける興味深いプロジェクトを展示しています。 後で再度見てみたいプロジェクトはありましたか？ 後で見つけやすくするために、リポジトリにStarを付けましょう。
+- *[services.github.com/on-demand](https://services.github.com/on-demand/)*　オンデマンドトレーニングコースは、GitHubのオープンソーストレーニング資料です。 このサイトには、授業で学んだ内容を復習する際に、参考になる追加情報が含まれています。 より詳細な説明をご希望の場合、contributionsを投稿したり、Issuesを作成することもできます。 ここでオープンソースのリポジトリを見てみましょう。　[` https://github.com/github/training-kit `](https://github.com/github/training-kit)
