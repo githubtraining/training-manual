@@ -2,7 +2,7 @@
 
 Now it is time to put an image and a caption into your file:
 
-1. Find your file, `2010-02-##-USERNAME.md`.
+1. Find your file, `##-USERNAME.md`.
 1. Open your file in your favorite text editor.
 1. On line 6, replace the text with your caption.
 1. *Save* your file.

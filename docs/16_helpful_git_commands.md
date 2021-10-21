@@ -5,7 +5,7 @@ In this section, we will explore some helpful Git commands.
 ### Moving and renaming files with Git
 
 1. Create a new branch named `slow-down`.
-1. On *line 9* of the `index.html` file, change the background url to `images/texture.jpg`.
+1. On *line 9* of the `index.html` file, change the background URL to `images/texture.jpg`.
 1. On *line 78*, change the timing for the game to speed it up or slow it down.
 1. Save your changes.
 1. See what git is tracking:

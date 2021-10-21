@@ -17,7 +17,7 @@ Let's go ahead and clone the class repository to your local desktop.
 1. Copy the **clone URL** to your clipboard.
 1. Open your command line application.
 1. Retrieve a full copy of the repository from GitHub: `git clone <CLONE-URL>`
-1. Once the clone is complete, cd into the new directory created by the clone operation: `cd <REPOSITORY-NAME>`
+1. Once the clone is complete, navigate to the new directory created by the clone operation: `cd <REPOSITORY-NAME>`
 
 ### Our favorite Git command: `git status`
 
@@ -28,7 +28,7 @@ Your branch is up-to-date with 'origin/main'.
 nothing to commit, working tree clean
 ```
 
-`git status` is a command you will use often to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch main, everything is up to date with origin/main and our working tree is clean.
+`git status` is a command to verify the current state of your repository and the files it contains. Right now, we can see that we are on branch main, everything is up-to-date with origin/main and our working tree is clean.
 
 ### Using branches locally
 
@@ -43,7 +43,7 @@ git branch --all
 git branch -a
 ```
 
-If you want to see all of the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`.
+If you want to see all the branches, including the read-only copies of your remote branches, you can add the `--all` option or just `-a`.
 
 > The `--all` and `-a` are actually synonyms for the branch command. Git often provides a verbose and a short option.
 
@@ -53,7 +53,7 @@ If you want to see all of the branches, including the read-only copies of your r
 git switch <BRANCH-NAME>
 ```
 
-To switch the branch you created online, type `git switch` and the name of your branch. Git will provide a message that says you have been switched to the branch and it has been set up to track the same remote branch from origin.
+To switch the branch you created online, type `git switch` and the name of your branch. Git will provide a message that says you have been switched to the branch, and it has been set up to track the same remote branch from origin.
 
 > You do not need to type `remotes/origin` in front of the branch - only the branch name. Typing `remotes/origin` in front of the branch name will put you in a detached HEAD state. We will learn more about that later, but for now just remember this is not a state we want to be in.
 
@@ -81,7 +81,7 @@ When we are satisfied with the unit of work we have assembled, we will take a sn
 
 ![The Two Stage Commit - Part 4](./img/two-stage-commit-d.png)
 
-In order to make a file part of the version controlled directory we will first do a git add and then we will do a git commit. Let's do it now.
+In order to make a file part of the version controlled directory we will first do a `git add`, and then we will do a `git commit`. Let's do it now.
 
 1. First, let's check the status of our working tree: `git status`
 1. Move the file from the working tree to the staging area: `git add my-file.md`

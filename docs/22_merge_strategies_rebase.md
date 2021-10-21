@@ -6,9 +6,9 @@ In this section, we will discuss another popular merge strategy, rebasing.
 
 Git uses three primary merge strategies:
 
-#### Fast forward
+#### Fast-forward
 
-A fast forward merge assumes that no changes have been made on the base branch since the feature branch was created. This means that the branch pointer for base can simply be "fast forwarded" to point to the same commit as the feature branch.
+A fast-forward merge assumes that no changes have been made on the base branch since the feature branch was created. This means that the branch pointer for base can simply be "fast forwarded" to point to the same commit as the feature branch.
 
 #### Recursive
 

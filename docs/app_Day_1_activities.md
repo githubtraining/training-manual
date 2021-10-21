@@ -49,7 +49,7 @@ Add a caption to an existing slide in someone else's pull request.
 1. See what image they have chosen by clicking 'files changed', and then 'view'.
 1. Edit the file, either in the browser or locally, to add a line with your caption. (Please do not erase work that others have added to this file.)
     - If you are working locally, you will need to check out to the branch.
-    - Make sure you have all of the remote changes updated in your local repository: `git pull`.
+    - Make sure you have all the remote changes updated in your local repository: `git pull`.
     - Look for the name of the branch in the pull request, and check out to that branch locally: `git switch BRANCHNAME`.
 1. Save the changes, and commit the file.
     - If you are working locally, push the changes up to the remote: `git push`.

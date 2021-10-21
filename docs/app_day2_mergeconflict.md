@@ -33,7 +33,7 @@ We've learned a lot! Try resolving the conflicts yourself first. If you need ext
 1. Read the response from Git. It will identify the file(s) with a conflict. Open the file(s) in your favorite text editor.
 1. Remove the conflict markers: `<<<<<<<`, `=======`, `>>>>>>>`
 1. Review the code, edit to keep the version you'd like.
-1. Stage the conflicting files you've now resolve, for example:
+1. Stage the conflicting files you've now resolved, for example:
 
     `git add conflict-file.txt`
 
@@ -41,7 +41,7 @@ We've learned a lot! Try resolving the conflicts yourself first. If you need ext
 
     `git commit -m "merge main into my-branch"`
 
-1. Push your nonconflicted branch to GitHub:
+1. Push your conflict-free branch to GitHub:
 
     `git push`
 

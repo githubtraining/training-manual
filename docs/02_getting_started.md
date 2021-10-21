@@ -50,7 +50,7 @@ We will learn more about how Git stores your code as we go through this class, b
 
 #### Snapshots, not deltas
 
-One of the first ideas you will need understand is that Git does not store your information as series of changes. Instead Git takes a snapshot of your repository at a given point in time. This snapshot is called a commit.
+One of the first ideas you will need understand is that Git does not store your information as series of changes. Instead, Git takes a snapshot of your repository at a given point in time. This snapshot is called a commit.
 
 #### Optimized for local operations
 
@@ -70,7 +70,7 @@ Which brings us to our final point for now; Git is very explicit. It does not do
 
 A repository is the most basic element of GitHub. It is easiest to imagine as a project's folder. However, unlike an ordinary folder on your laptop, a GitHub repository offers simple yet powerful tools for collaborating with others.
 
-A repository contains all of the project files (including documentation), and stores each file's revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!
+A repository contains all the project files (including documentation), and stores each file's revision history. Whether you are just curious or you are a major contributor, knowing your way around a repository is essential!
 
 ![GitHub Repositories](./img/repository-intro.png)
 
@@ -96,7 +96,7 @@ The **Code** tab is where you will find the files included in the repository. Th
 
 Issues are used to track bugs and feature requests. Issues can be assigned to specific team members and are designed to encourage discussion and collaboration.
 
-#### Pull Requests
+#### Pull requests
 
 A Pull Request represents a change, such as adding, modifying, or deleting files, which the author would like to make to the repository. Pull Requests help you write better software by facilitating code review and showing the status of any automated tests.
 
@@ -139,7 +139,7 @@ GitHub uses a syntax called **Markdown** to help you add basic text formatting t
 
 #### `# Header`
 
-The `#` indicates a Header. `#` = Header 1, `##`  = Header 2, etc.
+The `#` indicates a Header. `#` = Header 1, `##` = Header 2, etc.
 
 #### `* List item`
 
@@ -163,7 +163,7 @@ A `#` followed by the number of an issue or pull request (without a space) in th
 
 #### `:smiley:`
 
-Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji id with `:`.
+Tone is easily lost in written communication. To help, GitHub allows you to drop emoji into your comments. Simply surround the emoji ID with `:`.
 
 ### Introduction to GitHub Pages
 

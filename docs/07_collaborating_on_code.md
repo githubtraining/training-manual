@@ -27,7 +27,7 @@ Now that we have created a Pull Request, let's explore a few of the features tha
 
 #### ![octicon-comment-discussion] Conversation tab
 
-Similar to the discussion thread on an Issue, a Pull Request contains a discussion about the changes being made to the repository. This discussion is found in the **Conversation** tab and also includes a record of all of the commits made on the branch as well as assignments, labels and reviews that have been applied to the pull request.
+Similar to the discussion thread on an Issue, a Pull Request contains a discussion about the changes being made to the repository. This discussion is found in the **Conversation** tab and also includes a record of all the commits made on the branch as well as assignments, labels and reviews that have been applied to the pull request.
 
 #### ![octicon-git-commit] Commits tab
 

@@ -1,6 +1,6 @@
 ## Git stash
 
-Git stash takes the changes you have made to your working tree ("dirty") and puts them in a holding pattern until you are ready to re-apply them so you have a fresh working directory ("clean").
+Git stash takes the changes you have made to your working tree ("dirty") and puts them in a holding pattern until you are ready to re-apply them, so you have a fresh working directory ("clean").
 
 Common use cases for using git stash are
 
@@ -28,7 +28,7 @@ You can have multiple stashes, and they can be referenced by specifying the stas
       - `git stash push -m <message>` gives the message along with the stashed state
       - Options include `-m|--message <message>`, `-p|--patch`, `--`
 - `git stash list`
-  - This will list all of the stashes you have available
+  - This will list all the stashes you have available
 - `git stash show`
   - Adds verbosity to `git stash list` and allows you to inspect the stashes
   - `stash@{0}` will always be the most recent stash available

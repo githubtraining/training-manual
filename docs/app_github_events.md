@@ -12,7 +12,7 @@ You may choose to have a workshop that focuses only on Learning Lab, so that par
 
 We recommend having a brief presentation at the beginning of the workshop, along with ways to build excitement (like GitHub stickers and cheat sheets!). It's important to introduce enough other organizers at the beginning to help if participants get stuck.
 
-Since this requires a lot of hardware to be successful, make sure you consider the technical limitations of the space (WiFi, power outlets, tables, etc.).
+Since this requires a lot of hardware to be successful, make sure you consider the technical limitations of the space (Wi-Fi, power outlets, tables, etc.).
 
 ### Office hours
 
@@ -20,7 +20,7 @@ Office hours can serve as a drop-in way for anyone within your organization to a
 
 ![office hours on Zoom](https://user-images.githubusercontent.com/16547949/43785117-aaf1b078-9a33-11e8-86fe-294fcfefd1bd.png)
 
-Remote office hours allow people from any location to call in and ask their questions in a low-pressure environment. We find remote office hours to be most successful when they're scheduled in advance, in a time that is aimable to all employees, and communicated thoroughly.
+Remote office hours allow people from any location to call in and ask their questions in a low-pressure environment. We find remote office hours to be most successful when they're scheduled in advance, in a time that is amiable to all employees, and communicated thoroughly.
 
 ### Lunch & learn
 

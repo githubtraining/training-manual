@@ -7,7 +7,7 @@ Follow these steps to create an issue in the class repository:
 1. Type the following in the Subject line: `YOUR-USERNAME Workflow`
 1. In the body of the issue, include the text below:
 
-```sh
+```md
 YOUR-USERNAME will choose an image, add a caption, and add both to a file.
 
 - [ ] Create a branch

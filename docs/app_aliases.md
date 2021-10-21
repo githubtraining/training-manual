@@ -26,7 +26,7 @@ Sometimes, you'll want to do the opposite of granular commits and move quickly. 
 git config --global alias.cm "!git add -A && git commit -m"
 ```
 
-- Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
+- Using the `!` prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
 
 - The `-A` flag adds all changes, including untracked files, to the index.
 
@@ -68,11 +68,11 @@ or
 git config --global alias.wip "commit -am 'WIP'"
 ```
 
-- Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
+- Using the `!` prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
 - In `save`, the `-A` flag adds all changes, including untracked files, to the index.
 - In `wip`, only tracked changes are committed.
 
-When you're ready to return to work, you can use `git undo` to reset your prior commit and keep all of the changes from that commit in the working directory.
+When you're ready to return to work, you can use `git undo` to reset your prior commit and keep all the changes from that commit in the working directory.
 
 ```sh
 git config --global alias.undo "reset HEAD~1 --mixed"
@@ -102,7 +102,7 @@ git config --global alias.wipe "!git add -A && git commit -qm 'WIPE SAVEPOINT' &
 git pull --rebase --prune
 ```
 
-is a helpful command that allows you to pull changes down from the remote and place local commits to follow the remote updates.
+This helpful command allows you to pull changes down from the remote and place local commits to follow the remote updates.
 
 If you'd like to combine this with another advanced workflow tip and update your submodules, that command might look like this:
 
@@ -110,4 +110,4 @@ If you'd like to combine this with another advanced workflow tip and update your
 git config --global alias.up "!git pull --rebase --prune $@ && git submodule update --init --recursive"
 ```
 
-- Using the ! prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.
+- Using the `!` prefix allows you to use any command and not just git commands in the alias. It also allows you to string two commands together.

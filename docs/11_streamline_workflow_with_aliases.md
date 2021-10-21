@@ -1,32 +1,32 @@
-## Streamlining Your Workflow with Aliases
+# Streamlining your workflow with aliases
 
 So far we have learned quite a few commands. Some, like the log commands, can be long and tedious to type. In this section, you will learn how to create custom shortcuts for Git commands.
 
-### Creating Custom Aliases
+## Creating custom aliases
 
 An alias allows you to type a shortened command to represent a long string on the command line.
 
 For example, let's create an alias for the log command we learned earlier.
 
-#### Original Command
+### Original command
 
 ```sh
 git log --oneline --graph --decorate --all
 ```
 
-#### Creating the Alias
+### Creating the alias
 
 ```sh
 git config --global alias.lol "log --oneline --graph --decorate --all"
 ```
 
-#### Using the Alias
+### Using the alias
 
 ```sh
 git lol
 ```
 
-#### Explore other helpful aliases
+## Explore other helpful aliases
 
 Check out these resources for a list of common aliases:
 
@@ -38,31 +38,33 @@ We also encourage you to read through these three blog posts by GitHub developer
 - [Git Migrate](http://haacked.com/archive/2015/06/29/git-migrate/)
 - [Git Alias Open URL](http://haacked.com/archive/2017/01/04/git-alias-open-url/)
 
-Pro Tip # 1: To edit global aliases by hand, you can open the `.gitconfig` file with your default editor.
+### Example aliases
+
+To edit your global aliases manually, you can open the `.gitconfig` file with your default editor:
 
 ```sh
 git config --global alias.ec "config --global -e"
 ```
 
-Pro Tip # 2: To switch to another branch, you can make a quick shortcut.
+To switch to another branch, you can make a quick shortcut:
 
 ```sh
 git config --global alias.sw "switch"
 ```
 
-Pro Tip # 3: To create and switch to a brand new branch, you can easily extend your existing shortcut.
+To create and switch to a brand-new branch, you can easily extend your existing shortcut:
 
 ```sh
 git config --global alias.swc "switch -c"
 ```
 
-Pro Tip # 4: You can create aliases that only call one command.
+You can create aliases that only call one command:
 
 ```sh
 git config --global alias.s "status -s"
 ```
 
-Pro Tip # 5: Clean up branches quickly and easily.
+Clean up branches quickly and easily:
 
 ```sh
 git config alias.dlb '!git checkout <DEFAULT-BRANCH> && git pull --prune && git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
