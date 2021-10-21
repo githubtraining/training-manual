@@ -7,7 +7,7 @@ In this section, we will prepare your local environment to work with Git.
 First, let's confirm your [Git Installation](https://git-scm.com/downloads):
 
 ```sh
-git --version
+git version
 ```
 
 If Git is installed, it will return your version: `git version 2.33.1`.

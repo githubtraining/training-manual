@@ -6,9 +6,9 @@
 
 まず、[Git Installation](https://git-scm.com/downloads)を確認しましょう。
 
-```sh
-$ git --version
-$ git version 2.11.0
+```shell-session
+$ git version
+git version 2.33.1
 ```
 
 掲載されているGitバージョンが表示されていない場合や、このコマンドでエラーが返された場合は、Gitをインストールする必要があるかもしれません。
@@ -40,13 +40,13 @@ Gitでは、3つの異なるレベルで設定オプションを設定できま�
 どの設定が自動的に追加されたのかを確認する場合、`git config --list`と入力します。 これにより、３つの設定ファイルそれぞれを自動的に読み込み、設定ファイルの設定をリスト表示します。
 
 ```sh
-$ git config --list
+git config --list
 ```
 
 また、リストオプションの前に含めることで、リストを特定の設定レベルに絞り込むこともできます。
 
 ```sh
-$ git config --global --list
+git config --global --list
 ```
 
 ### ユーザ名とメールの設定
@@ -54,8 +54,8 @@ $ git config --global --list
 Gitは、ユーザ名とメールアドレスの設定を使用して、作成されるコミットのそれぞれに一意のフィンガープリント（識別情報）を生成します。 この設定なしでは、コミットを作成できません。
 
 ```sh
-$ git config --global user.name "First Last"
-$ git config --global user.email "you@email.com"
+git config --global user.name "First Last"
+git config --global user.email "you@email.com"
 ```
 
 #### Gitの設定とプライバシー
@@ -65,24 +65,24 @@ $ git config --global user.email "you@email.com"
 > 例えば
 >
 > ```sh
-git config user.email "you@email.com"
-```
+> git config user.email "you@email.com"
+> ```
 
 ユーザの名前とメールアドレスは、Gitでユーザが作成したコミットに自動的に保存されます。 メールを非公開にしたい場合は、GitHubによって、そのユーザアカウント用の返信受付不可のメールアドレスを生成することができます。 [Settings > Emails セクション](https://github.com/settings/emails)の**Keep my email address private**をクリックしてください。 この機能を有効にしたら、自動的に生成された` ID +username@users.noreply.github.com `をメールを設定するときに入力するだけです。
 
 > 例えば
 >
 > ```sh
-git config --global user.email 18249274+githubteacher@users.noreply.github.com
-```
+> git config --global user.email 18249274+githubteacher@users.noreply.github.com
+> ```
 
 ### Autocrlfの設定
 
 ```sh
-$ //for Windows users
-$ git config --global core.autocrlf true
-$ //for Mac or Linux users
-$ git config --global core.autocrlf input
+//for Windows users
+git config --global core.autocrlf true
+//for Mac or Linux users
+git config --global core.autocrlf input
 ```
 
 異なるシステムでは、行末と行区切りについて異なった扱いがされます。 他のシステムで作成されたファイルを開き、この一連の設定をしていない場合、Gitは、ファイルを開いたあなたが、その種類のファイルを扱うあなたのシステムの設定に基き、変更を加えたものとみなします。

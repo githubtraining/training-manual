@@ -29,13 +29,13 @@ Git is an open source version control application. You will need Git installed f
 You may already have Git installed so let's check! Open Terminal if you are on a Mac, or PowerShell if you are on a Windows machine, and type:
 
 ```sh
-git --version
+git version
 ```
 
 You should see something like this:
 
 ```shell-session
-$ git --version
+$ git version
 git version 2.33.1
 ```
 
