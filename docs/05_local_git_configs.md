@@ -12,7 +12,7 @@ git --version
 
 If Git is installed, it will return your version: `git version 2.33.1`.
 
-If you do not see a git version listed or this command returns an error, you may need to install Git.
+If you do not see a Git version listed or this command returns an error, you may need to install Git.
 
 > To get the latest version of Git, visit [www.git-scm.com](https://www.git-scm.com).
 
@@ -87,6 +87,6 @@ git config --global core.autocrlf true
 git config --global core.autocrlf input
 ```
 
-Different systems handle line endings and line breaks differently. If you open a file created on another system and do not have this config option set, git will think you made changes to the file based on the way your system handles this type of file.
+Different systems handle line endings and line breaks differently. If you open a file created on another system and do not have this config option set, Git will think you made changes to the file based on the way your system handles this type of file.
 
 > Memory Tip: `autocrlf` stands for auto carriage return line feed.
