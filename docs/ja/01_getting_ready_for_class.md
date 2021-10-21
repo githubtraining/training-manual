@@ -23,13 +23,13 @@ Gitは、オープンソースのバージョン管理アプリケーション�
 すでにGitをインストールしているかもしれませんね。確認してみましょう！ Macを使用している場合はターミナル、Windowsマシンの場合はPowerShellを開き、次のように入力します。
 
 ```sh
-$ git --version
+$ git version
 ```
 
 次のように表示されます。
 
 ```sh
-$ git --version
+$ git version
 git version 2.11.0
 ```
 

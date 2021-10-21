@@ -6,9 +6,9 @@
 
 まず、[Git Installation](https://git-scm.com/downloads)を確認しましょう。
 
-```sh
-$ git --version
-$ git version 2.11.0
+```shell-session
+$ git version
+git version 2.33.1
 ```
 
 掲載されているGitバージョンが表示されていない場合や、このコマンドでエラーが返された場合は、Gitをインストールする必要があるかもしれません。
