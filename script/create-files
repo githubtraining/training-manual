@@ -3,7 +3,7 @@
 # Create Files
 
 # Source it up
-# shellcheck disable=SC1090
+# shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
 # shellcheck source=script/shared_functions
 source ./shared_functions

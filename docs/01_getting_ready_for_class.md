@@ -8,15 +8,15 @@ While you are waiting for class to begin, please take a few minutes to set up yo
 
 For this class, we will use a public account on GitHub.com. We do this for a few reasons:
 
-- We don't want you to "practice" in repositories that contain real code.
-- We are going to break some things so we can teach you how to fix them. (therefore, refer to the bullet above)
+- We don't want you to "practice" in repositories that contain real code
+- We are going to break some things so we can teach you how to fix them (therefore, refer to the bullet above)
 
 You can set up your free account by following these steps:
 
-1. Access GitHub.com and click Sign up.
-1. Choose the free account.
-1. You will receive a verification email at the address provided.
-1. Click the link to complete the verification process.
+1. Access GitHub.com and click Sign up
+1. Choose the free account
+1. You will receive a verification email at the address provided
+1. Click the link to complete the verification process
 
 If you already have an account, verify that you can visit github.com within your organization's network.
 
@@ -36,7 +36,7 @@ You should see something like this:
 
 ```shell-session
 $ git --version
-git version 2.11.0
+git version 2.33.1
 ```
 
 In general, we recommend you stay within two minor versions of the [latest version](https://git-scm.com/downloads) of Git. The minor version is the second number in the series `x.x.x`.
@@ -53,15 +53,15 @@ If you need additional assistance installing Git, you can find more information 
 
 Now is a good time to create a shortcut to the command line application you will want to use with Git:
 
-- If you are working on Windows, we recommend `Git Bash` which is installed with the Git package, so that you can follow along with the facilitator who will be using Bash.
-- If you are working on macOS or another Unix-like system, you can use the built-in Terminal application.
+- If you are working on Windows, we recommend `Git Bash` which is installed with the Git package, so that you can follow along with the facilitator who will be using Bash
+- If you are working on macOS or another Unix-like system, you can use the built-in Terminal application
 
 ### Step 3: Try cloning with HTTPS
 
 Open your chosen shell, and type:
 
 ```sh
-git clone https://github.com/githubschool/scratch
+git clone https://github.com/githubschool/scratch.git
 ```
 
 If the clone is successful you'll see:

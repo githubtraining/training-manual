@@ -8,10 +8,11 @@ First, let's confirm your [Git Installation](https://git-scm.com/downloads):
 
 ```sh
 git --version
-git version 2.11.0
 ```
 
-If you do not see a git version listed or this command returns an error, you may need to install Git.
+If Git is installed, it will return your version: `git version 2.33.1`.
+
+If you do not see a Git version listed or this command returns an error, you may need to install Git.
 
 > To get the latest version of Git, visit [www.git-scm.com](https://www.git-scm.com).
 
@@ -54,8 +55,15 @@ git config --global --list
 Git uses the config settings for your user name and email address to generate a unique fingerprint for each of the commits you create. You can't create commits without these settings:
 
 ```sh
-git config --global user.name "First Last"
+git config --global user.name "First-name Surname"
 git config --global user.email "you@email.com"
+```
+
+Example:
+
+```sh
+git config --global user.name "Mona Octocat"
+git config --global user.email "mona@github.com"
 ```
 
 #### Git Config and Your Privacy
@@ -86,6 +94,6 @@ git config --global core.autocrlf true
 git config --global core.autocrlf input
 ```
 
-Different systems handle line endings and line breaks differently. If you open a file created on another system and do not have this config option set, git will think you made changes to the file based on the way your system handles this type of file.
+Different systems handle line endings and line breaks differently. If you open a file created on another system and do not have this config option set, Git will think you made changes to the file based on the way your system handles this type of file.
 
 > Memory Tip: `autocrlf` stands for auto carriage return line feed.
