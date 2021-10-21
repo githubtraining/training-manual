@@ -108,10 +108,6 @@ Projects allow you to visualize your work with Kanban style boards. Projects can
 
 Wikis in GitHub can be used to communicate project details, display user documentation, or almost anything your heart desires. And of course, GitHub helps you keep track of the edits to your Wiki!
 
-#### Pulse
-
-Pulse is your project's dash board. It contains information on the work that has been completed and the work in progress.
-
 #### Graphs
 
 Graphs provide a more granular view into the repository activity, including who has contributed, when the work is being done, and who has forked the repository.
