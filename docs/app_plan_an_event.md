@@ -8,7 +8,7 @@ Maybe all of these events would make sense for your organization. But, how to ch
 - Is there time for people to drop out of their regular workday to attend a workshop? If not, a lunch & learn might be a way to get more people's attention.
 - Is there a high interest in learning about GitHub, but not really any idea of how to get started? Workshops can be built to give everyone a positive, hands-on experience in a short amount of time.
 - How will people find out about the event?
-- Are there any similar event structures in place already that you could piggy-back on?
+- Are there any similar event structures in place already that you could piggyback on?
 - What have been some memorable, casual learning experiences in your experience?
 - What are some specific nuances of your organization that could impact success of learning events?
 
@@ -18,7 +18,7 @@ When planning an event, the details become very important.
 
 #### 1. Choosing the topic
 
-It's important that everyone leaves feeling like they've learned something. This is made easier by having a well defined goal. "When they leave, they should have learned ________" is a good place to start, even though it's fair to assume that everyone will take something slightly different away.
+It's important that everyone leaves feeling like they've learned something. This is made easier by having a well-defined goal. "When they leave, they should have learned ________" is a good place to start, even though it's fair to assume that everyone will take something slightly different away.
 
 #### 2. Decide on a schedule
 
@@ -47,11 +47,11 @@ As the event organizer, it's your responsibility to make sure that during the ev
 
 #### 6. Finding attendees
 
-Having a space and a schedule is good, but it's only worth the time if people show up. Defining a specific audience will help you format your learning goals, as well as advertise the event internally. If you need to track who attends, consider a sign-in sheet. You might also have some existing internal promotions that you can use to spread the word. Perhaps you'd benefit from people to signing up ahead of time so you knew who may come, or from participants filling out a survey after the event so you can gauge how useful it was to them or what to do in the future.
+Having a space and a schedule is good, but it's only worth the time if people show up. Defining a specific audience will help you format your learning goals, as well as advertise the event internally. If you need to track who attends, consider a sign-in sheet. You might also have some existing internal promotions that you can use to spread the word. Perhaps you'd benefit from people to signing up ahead of time, so you knew who may come, or from participants filling out a survey after the event, so you can gauge how useful it was to them or what to do in the future.
 
 #### 7. Growing excitement
 
-These short events are meant to be supercharges to help attendees continue their learning and curiosity. How can you grow excitement in this short amount of time, and make the memory special? Is there a post-event space where people can talk about any further Git or GitHub questions they  might have? Consider ways that you can add energy and special differences to make this event something fun that people will want to attend again.
+These short events are meant to be supercharges to help attendees continue their learning and curiosity. How can you grow excitement in this short amount of time, and make the memory special? Is there a post-event space where people can talk about any further Git or GitHub questions they might have? Consider ways that you can add energy and special differences to make this event something fun that people will want to attend again.
 
 #### 8. Finding a cadence
 

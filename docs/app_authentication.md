@@ -1,4 +1,4 @@
-## Authentication Troubleshooting Guide
+## Authentication troubleshooting guide
 
 The following are reasons you may be having trouble performing network operations, these include: `clone`, `push`, `pull`, and `fetch`. Try diagnosing each problem and solution in the order we've presented them.
 
@@ -17,7 +17,7 @@ The following are reasons you may be having trouble performing network operation
 
 ### 3. Are you behind a firewall?
 
-- **Yes** - The company firewall may be blocking access to GitHub, ask your employer or network adminstrator to [whitelist GitHub.com](https://help.github.com/articles/troubleshooting-connectivity-problems/). If a proxy is necessary, that can be configured [with Git](https://git-scm.com/docs/git-config#git-config-httpproxy).
+- **Yes** - The company firewall may be blocking access to GitHub, ask your employer or network administrator to [whitelist GitHub.com](https://help.github.com/articles/troubleshooting-connectivity-problems/). If a proxy is necessary, that can be configured [with Git](https://git-scm.com/docs/git-config#git-config-httpproxy).
 
   If the server you are cloning your repository from is anything other than GitHub.com, there might be something wrong with the SSL certificate. You could allow Git to accept a self-signed certificate with `git config --global http.verify false`
 

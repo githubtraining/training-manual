@@ -1,8 +1,8 @@
-## Adopting the Dream
+## Adopting the dream
 
-As an ambassador, initiating actionable changes within the organization is your main priority. You'll need to evangelize Git's version control benefits and GitHub's collaboration and platform features within the the organization. Knowing how and where to spread your Git and GitHub knowledge is one thing, but knowing how to tackle issues, deal with reluctant mindsets, or providing clear expectations is a situation you need to be ready for. Take some time to think about and answer the following questions in the next section.
+As an ambassador, initiating actionable changes within the organization is your main priority. You'll need to evangelize Git's version control benefits and GitHub's collaboration and platform features within the organization. Knowing how and where to spread your Git and GitHub knowledge is one thing, but knowing how to tackle issues, deal with reluctant mindsets, or providing clear expectations is a situation you need to be ready for. Take some time to think about and answer the following questions in the next section.
 
-### Discussion Activity: Understand your role as an Ambassador
+### Discussion activity: Understand your role as an Ambassador
 
 #### Be a Git and GitHub evangelist
 
@@ -26,7 +26,7 @@ As an ambassador, initiating actionable changes within the organization is your 
 <!-- markdownlint-disable no-blanks-blockquote -->
 > Being able to identify where changes need to be made is the first step to making changes within the organization. While solving current problems within an organization is important, it's also important to think how you can reduce friction and issues in the future.
 
-> Moving teams within the organization to GitHub promotes a larger pool of potential reviewers or developers through a process known as InnerSource. As more and more developers move from their siloed development process to a more open and transparent development method on GitHub, they can request reviews from teams outside of their own to help reduce development time and increase the frequency of ships.
+> Moving teams within the organization to GitHub promotes a larger pool of potential reviewers or developers through a process known as Innersource. As more and more developers move from their siloed development process to a more open and transparent development method on GitHub, they can request reviews from teams outside their own to help reduce development time and increase the frequency of ships.
 <!-- markdownlint-enable no-blanks-blockquote -->
 
 #### Have a clear understanding of the organization's expectations of you as the ambassador?

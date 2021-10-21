@@ -12,9 +12,9 @@ Now you will practice the GitHub Flow from beginning to end by updating the link
 
 > Remember, your copy of the website will be rendered at `https://githubschool.github.io/github-games-USERNAME`.
 >
-> This link also appears in the repository description. It is a good idea to edit the website URL in the description so you can easily access your game.
+> This link also appears in the repository description. It is a good idea to edit the website URL in the description, so you can easily access your game.
 >
-> If you click the link, you will see the text in the `README.md`. We have intentionally broken this repository so we can fix it together.
+> If you click the link, you will see the text in the `README.md`. We have intentionally broken this repository, so we can fix it together.
 
 Since this is a review, we have written these steps at a high level. As we complete the review, we will show you a few shortcuts for the commands you learned in the previous activity:
 

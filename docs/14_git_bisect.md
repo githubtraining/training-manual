@@ -1,4 +1,4 @@
-## Searching for Events in Your Code
+## Searching for events in your code
 
 In this section, we will learn how we can use `git bisect` to find the commit that introduced a bug into our repository.
 
@@ -18,9 +18,9 @@ Using a binary search, `git bisect` can help us detect specific events in our co
 
 > When you are doing a bisect, you are essentially in a detached head state. It is important to remember to end the bisect with `git bisect reset` before attempting to perform other operations with Git.
 
-### Finding the Bug in Our Project
+### Finding the bug in our project
 
-#### The Long Way
+#### The long way
 
 1. Initiate the binary search: `git bisect start`.
 1. Specify the commit where you noticed the code was broken: `git bisect bad <SHA>`.
@@ -33,7 +33,7 @@ Using a binary search, `git bisect` can help us detect specific events in our co
 1. When Git has detected the error, it will provide a message that `SHA is the first bad commit.`
 1. Exit the bisect process: `git bisect reset`.
 
-#### The Short Way
+#### The short way
 
 Bisect can also run the tests on your code automatically. Let's try it again using a shortcut command and a test:
 

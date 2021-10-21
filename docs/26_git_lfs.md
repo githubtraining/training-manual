@@ -1,20 +1,20 @@
 ## Git LFS (Large File Storage)
 
-While Git is a great version control system when used for non-binary files, it can sometimes struggle with binary files. One of the best ways to store binary files with the rest of your repository files is by using Git Large File Storage (LFS). Git LFS replaces large files such as audio samples, videos, datasets, and graphics with a SHA-256 hash pointer known as OID, short for Object ID inside Git, while storing the file contents on a remote server like GitHub.com or GitHub Enterprise.
+While Git is a great version control system when used for non-binary files, it can sometimes struggle with binary files. One of the best ways to store binary files with the rest of your repository files is by using Git Large File Storage (LFS). Git LFS replaces large files such as audio samples, videos, datasets, and graphics with a SHA-256 hash pointer known as OID, short for Object ID inside Git, while storing the file contents on a remote server like GitHub.com or a GitHub Enterprise Server instance.
 
-> **Note:** The following activities utilize a the [githubschool/lfs-example](https://github.com/githubschool/lfs-example) repository, to follow along with the activities, you will need to Fork the repository to your account.
+> **Note:** The following activities utilize the [githubschool/lfs-example](https://github.com/githubschool/lfs-example) repository, to follow along with the activities, you will need to Fork the repository to your account.
 
 ### Background story
 
 ACME Incorporated is planning on using Toggl for time tracking and are using this repository to provide information on how to use Toggl and download the desktop application that has passed the IT Security team's audit.
 
-Unfortunately, the `.dmg` file was added to the Git repository without using Git LFS and we need to fix that mistake. Perform the steps found in the upcoming sections to successfully retain the `.dmg` file in the project but utilizing Git LFS to maintain it in the project.
+Unfortunately, the `.dmg` file was added to the Git repository without using Git LFS, and we need to fix that mistake. Perform the steps found in the upcoming sections to successfully retain the `.dmg` file in the project but utilizing Git LFS to maintain it in the project.
 
 ### Activity: Install Git LFS
 
 Before we can begin using Git LFS, we need to install it on our local machine. Below are the steps for installing Git LFS on your machine based on your operating system.
 
-#### MacOS
+#### macOS
 
 1. Navigate to [git-lfs.github.com](https://git-lfs.github.com/) and click **Download**. Alternatively, you can install Git LFS using a package manager:
 
@@ -55,7 +55,7 @@ Before we can begin using Git LFS, we need to install it on our local machine. B
    ?> For more information about alternative ways to install Git LFS for Windows, see this [Getting started guide](https://github.com/github/git-lfs#getting-started).
 
 1. On your computer, locate the downloaded file.
-1. Double click on the file called _git-lfs-windows-1.X.X.exe_, where 1.X.X is replaced with the Git LFS version you downloaded. When you open this file Windows will run a setup wizard to install Git LFS.
+1. Double-click on the file called _git-lfs-windows-1.X.X.exe_, where _1.X.X_ is replaced with the Git LFS version you downloaded. When you open this file Windows will run a setup wizard to install Git LFS.
 
     ?> When using Git LFS on Windows, ensure you have Git version `2.29.2.windows.2` or later.
 
@@ -117,7 +117,7 @@ Now that we have identified the file that needs to be tracked with Git LFS it is
 
 ### Activity: Migrating the file to Git LFS
 
-1. Convert all dmg files in every local branch:
+1. Convert all DMG files in every local branch:
 
    ```sh
    git lfs migrate import --everything --include="*.dmg"

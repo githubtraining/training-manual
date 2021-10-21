@@ -2,7 +2,7 @@
 
 In this section, we discuss the collaborative workflow enabled by GitHub.
 
-### The Essential GitHub Workflow
+### The essential GitHub workflow
 
 ![GitHub Workflow](./img/github-workflow.png)
 

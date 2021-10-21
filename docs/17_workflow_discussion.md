@@ -1,4 +1,4 @@
-## Discussion Guide: Team Workflows and Branching Strategies
+## Discussion Guide: Team workflows and branching strategies
 
 Now is a good time to discuss workflows - what works for you and your team, what might work, and what you've been doing in the past. Here are some topics you will want to discuss with your team as you establish your ideal process.  Have a conversation either synchronously or in issues in the class repository about different workflows.
 

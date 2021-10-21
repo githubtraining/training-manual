@@ -1,8 +1,8 @@
-## GitHub Events
+## GitHub events
 
 As well as spreading organically by colleagues working together, learning spreads by organized events. Not every event is a great fit for every organization. Below, we'll explore some different types of events, and then plan one that might work for your organization.
 
-### GitHub Workshop
+### GitHub workshop
 
 Workshops are hands-on, GitHub focused gatherings accessible to people of all experience levels. The timing of a workshop may range from 45 minutes to several hours. Workshops can include presentations from those already using GitHub about their experiences, but almost always include Learning Lab.
 
@@ -12,7 +12,7 @@ You may choose to have a workshop that focuses only on Learning Lab, so that par
 
 We recommend having a brief presentation at the beginning of the workshop, along with ways to build excitement (like GitHub stickers and cheat sheets!). It's important to introduce enough other organizers at the beginning to help if participants get stuck.
 
-Since this requires a lot of hardware to be successful, make sure you consider the technical limitations of the space (WiFi, power outlets, tables, etc.).
+Since this requires a lot of hardware to be successful, make sure you consider the technical limitations of the space (Wi-Fi, power outlets, tables, etc.).
 
 ### Office hours
 
@@ -20,7 +20,7 @@ Office hours can serve as a drop-in way for anyone within your organization to a
 
 ![office hours on Zoom](https://user-images.githubusercontent.com/16547949/43785117-aaf1b078-9a33-11e8-86fe-294fcfefd1bd.png)
 
-Remote office hours allow people from any location to call in and ask their questions in a low-pressure environment. We find remote office hours to be most successful when they're scheduled in advance, in a time that is aimable to all employees, and communicated thoroughly.
+Remote office hours allow people from any location to call in and ask their questions in a low-pressure environment. We find remote office hours to be most successful when they're scheduled in advance, in a time that is amiable to all employees, and communicated thoroughly.
 
 ### Lunch & learn
 
@@ -32,17 +32,17 @@ A "lunch & learn," or sometimes called a "brown bag" event focuses around a pres
 
 ### Formal training
 
-Formal training is an immersive way to learn and practice Git and GitHub. However, formal training requires a large investment from all parties involved. We typically recommend a two day training, which can be too much time away from a desk for some teams.
+Formal training is an immersive way to learn and practice Git and GitHub. However, formal training requires a large investment from all parties involved. We typically recommend a two-day training, which can be too much time away from a desk for some teams.
 
 ![training room](https://user-images.githubusercontent.com/16547949/43785665-d3ab7f52-9a34-11e8-96aa-9a16a96194ba.JPG)
 
-If you think that formal training would be a good option for some of the teams within your organization, you may want to reach out to us for help on delivering the training or helping you learn how to deliver training.
+If you think that formal training would be a good option for some teams within your organization, you may want to reach out to us for help on delivering the training or helping you learn how to deliver training.
 
-#### Question and Answer Session
+#### Question and answer session
 
 The Question and Answer session is one of the easier events to plan as it can be provided as a regularly scheduled event where members across the organization can "call in" and ask Git and GitHub questions. Additionally, the Q&A session brings awareness within the organization on whom to go to when there is a question relating to Git and GitHub.
 
-##### Event Preparation
+##### Event preparation
 
 Your facilitator will partner with you to lead a Q&A session. The question and answer session should be available as both an in-person and remote engagement. An invitation to the event should be forwarded to individuals within the organization to provide them an opportunity to ask any Git and GitHub-related questions they have. The following text can be used in the event invitation:
 
