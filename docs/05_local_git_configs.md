@@ -8,8 +8,9 @@ First, let's confirm your [Git Installation](https://git-scm.com/downloads):
 
 ```sh
 git --version
-git version 2.33.1
 ```
+
+If Git is installed, it will return your version: `git version 2.33.1`.
 
 If you do not see a git version listed or this command returns an error, you may need to install Git.
 
