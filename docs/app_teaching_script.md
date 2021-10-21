@@ -5,7 +5,7 @@ We use [scripts](https://github.com/githubtraining/training-manual/tree/main/scr
 ### Prerequisites
 
 - Note that these scripts are meant to interact with an organization on GitHub.com
-- If you're using GitHub Enterprise, and access to GitHub.com is limited within your organization, import the following repos and all their branches in your newly created organization (you'll need access to GitHub.com to perform this one-time operation):
+- If you're using GitHub Enterprise Server, and access to GitHub.com is limited within your organization, import the following repos and all their branches to your GitHub organization (you'll need access to GitHub.com to perform this one-time operation):
   - [caption-this](https://github.com/githubtraining/caption-this)
   - [conflict-practice](https://github.com/githubtraining/conflict-practice)
   - [github-games](https://github.com/githubtraining/github-games)
