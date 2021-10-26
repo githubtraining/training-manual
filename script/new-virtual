@@ -76,10 +76,11 @@ function GetDetails() {
 
 function PrettyRepo() {
   TEACHER=$1
+  default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
   #set branch protections
   {
-    curl -s -S -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection"
-    curl -s -S -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/main/protection/required_status_checks"
+    curl -s -S -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"required_status_checks\": { \"strict\": false, \"contexts\": [ \"null\" ] }, \"required_pull_request_reviews\": { \"dismissal_restrictions\": { \"users\": [ \"$TEACHER\" ], \"teams\": [ \"null\" ] }, \"dismiss_stale_reviews\": false }, \"enforce_admins\": false, \"restrictions\": { \"users\": [ \"$TEACHER\", \"$TOKEN_OWNER\" ], \"teams\": [ \"null\" ] } }" -X PUT "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/$default_branch/protection"
+    curl -s -S -i -H "Accept: application/vnd.github.loki-preview+json" -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/branches/$default_branch/protection/required_status_checks"
     #delete labels other than question, duplicate, enhancement, and help wanted
     curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/bug"
     curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X DELETE "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO_NAME/labels/invalid"
@@ -101,7 +102,7 @@ function PrettyRepo() {
 }
 
 function FinishStrong() {
-  echo "ALL DONE: Remember to enable GitHub Pages on main."
+  echo "ALL DONE: Remember to enable GitHub Pages on $default_branch."
   echo "Good luck with class!"
 }
 
