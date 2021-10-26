@@ -8,6 +8,9 @@
 # We recommend a dedicated service account (e.g. githubteacher) #
 #################################################################
 
+# shellcheck disable=SC1091
+source "$HOME/.trainingmanualrc"
+
 # shellcheck source=script/shared_functions
 source ./shared_functions
 
