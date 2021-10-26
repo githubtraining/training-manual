@@ -2,6 +2,8 @@
 #
 # New Virtual
 
+source "$HOME/.trainingmanualrc"
+
 #################################################################
 # NOTE: You must have a personal access token (PAT)             #
 # saved to your environment variables to use this script.       #

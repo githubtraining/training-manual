@@ -8,6 +8,8 @@
 # We recommend a dedicated service account (e.g. githubteacher) #
 #################################################################
 
+source "$HOME/.trainingmanualrc"
+
 # shellcheck source=script/shared_functions
 source ./shared_functions
 

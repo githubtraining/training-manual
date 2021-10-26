@@ -2,6 +2,8 @@
 #
 # Shared functions
 
+source "$HOME/.trainingmanualrc"
+
 # shellcheck source=script/ask
 source ./ask
 
