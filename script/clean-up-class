@@ -2,6 +2,7 @@
 #
 # Cleanup Class
 
+# shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
 
 #################################################################

@@ -2,6 +2,7 @@
 #
 # Grade Client Repo
 
+# shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
 
 #################################################################

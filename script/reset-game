@@ -2,6 +2,7 @@
 #
 # Reset Game
 
+# shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
 
 #################################################################
