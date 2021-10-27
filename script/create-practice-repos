@@ -65,6 +65,8 @@ clone_template() {
     print_error "Failed to clone template repository."
     exit 1
   }
+
+  default_branch=$(sed 's@^ref: refs/heads/@@' "$temp_dir"/HEAD)
 }
 
 generate_repos() {
@@ -131,13 +133,13 @@ create_repo() {
 
     # Create PRs for each branch
     echo "Creating practice pull requests for $CLASS_ORG/$repo_name..."
-    create_pull_request --repo "$repo_name" --head 'manual' --base 'main' \
+    create_pull_request --repo "$repo_name" --head 'manual' --base "$default_branch" \
       --title "Updates to game manual" \
       --body "$(<"$practice_repos_dir/conflict-practice/pull_request_1.md")"
-    create_pull_request --repo "$repo_name" --head 'css-changes' --base 'main' \
+    create_pull_request --repo "$repo_name" --head 'css-changes' --base "$default_branch" \
       --title "Minor CSS fixes" \
       --body "$(<"$practice_repos_dir/conflict-practice/pull_request_2.md")"
-    create_pull_request --repo "$repo_name" --head 'readme-update' --base 'main' \
+    create_pull_request --repo "$repo_name" --head 'readme-update' --base "$default_branch" \
       --title "Update README" \
       --body "$(<"$practice_repos_dir/conflict-practice/pull_request_3.md")"
     ;;
@@ -180,10 +182,6 @@ create_repo() {
   http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
     PUT "$org_endpoint/$repo_name/collaborators/$student" \
     permission=admin >>log.out 2>&1
-
-  # Set default branch to main
-  http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-    PATCH "$org_endpoint/$repo_name" default_branch=main >>log.out 2>&1
 
   print_done "Repo URL: $repo_url"
 }

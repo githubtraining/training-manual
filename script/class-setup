@@ -77,6 +77,8 @@ function CreateRCFile() {
       fi
 
     else
+      # shellcheck disable=SC1091
+      source "$HOME/.trainingmanualrc"
       # Leaving current file in place
       echo "Leaving current file in place..."
       echo ""
