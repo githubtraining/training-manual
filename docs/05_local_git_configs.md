@@ -67,7 +67,7 @@ git config --global user.email "mona@github.com"
 ```
 
 > **Tip:** If you make a typo when setting one of your config properties, don't worry.  You can rerun the same `git config` command with different values between the double quotes to update the property to a new value.  If you typo a property name, you can delete the property with the following command:
-> 
+>
 > ```sh
 > git config --global --unset <property_name>
 > ```
