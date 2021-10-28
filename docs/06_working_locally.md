@@ -92,7 +92,7 @@ In order to make a file part of the version controlled directory we will first d
 1. Let's take another look at our repository status: `git status`
 
 > Good commit messages should:
-
-- Be short. ~50 characters is ideal.
-- Describe the change introduced by the commit.
-- Tell the story of how your project has evolved.
+>
+> - Be short. ~50 characters is ideal.
+> - Describe the change introduced by the commit.
+> - Tell the story of how your project has evolved.
