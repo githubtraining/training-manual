@@ -13,7 +13,7 @@ When you clone a repository you are creating a copy of everything in that reposi
 Let's go ahead and clone the class repository to your local desktop.
 
 1. Navigate to the **Code** tab of the class repository on GitHub.
-1. Click **Clone or download**.
+1. Click the green **Code** button.
 1. Copy the **clone URL** to your clipboard.
 1. Open your command line application.
 1. Retrieve a full copy of the repository from GitHub: `git clone <CLONE-URL>`
@@ -92,7 +92,7 @@ In order to make a file part of the version controlled directory we will first d
 1. Let's take another look at our repository status: `git status`
 
 > Good commit messages should:
-
-- Be short. ~50 characters is ideal.
-- Describe the change introduced by the commit.
-- Tell the story of how your project has evolved.
+>
+> - Be short. ~50 characters is ideal.
+> - Describe the change introduced by the commit.
+> - Tell the story of how your project has evolved.
