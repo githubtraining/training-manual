@@ -66,6 +66,12 @@ git config --global user.name "Mona Octocat"
 git config --global user.email "mona@github.com"
 ```
 
+> **Tip:** If you make a typo when setting one of your config properties, don't worry.  You can rerun the same `git config` command with different values between the double quotes to update the property to a new value.  If you typo a property name, you can delete the property with the following command:
+>
+> ```sh
+> git config --global --unset <property_name>
+> ```
+
 #### Git config and your privacy
 
 The instructions for this exercise use the `--global` flag when identifying your `user.name` and `user.email` configuration settings. If you are currently using a computer without a private, personal account, don't apply the `--global` flag. This way, the settings will only be stored in our assignment repository. If you work in another repository on this same computer, you will need to set these configuration options again.
