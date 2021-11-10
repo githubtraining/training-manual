@@ -93,43 +93,43 @@ do_task() {
   # TASK 2
   elif [ "$TASK" -eq 2 ]; then
     # echo "2: Add collabs and create files (also makes the repo private)"
-    echo "running script/create-files"
+    echo "Running script/create-files"
     ./create-files "$COLLAB_REPO"
 
   # TASK 3
   elif [ "$TASK" -eq 3 ]; then
     # echo "3: Grade the day 1 repo"
-    echo "running script/check-caption-repo"
+    echo "Running script/check-caption-repo"
     ./check-caption-repo "$COLLAB_REPO"
 
   # TASK 4
   elif [ "$TASK" -eq 4 ]; then
     # echo "4: Create conflict repos for each student"
-    echo "running script/create-practice-repos"
+    echo "Running script/create-practice-repos"
     ./create-practice-repos "$COLLAB_REPO" "conflict-practice" "conflict-practice"
 
   # TASK 5
   elif [ "$TASK" -eq 5 ]; then
     # echo "5: Grade the conflict repos"
-    echo "running script/check-conflict-repos"
+    echo "Running script/check-conflict-repos"
     ./check-conflict-repos "$COLLAB_REPO"
 
   # TASK 6
   elif [ "$TASK" -eq 6 ]; then
     # echo "6: Create the github-games repos for each student"
-    echo "running script/create-practice-repos"
+    echo "Running script/create-practice-repos"
     ./create-practice-repos "$COLLAB_REPO" "github-games" "github-games"
 
   # TASK 7
   elif [ "$TASK" -eq 7 ]; then
     # echo "7: Expire student repos"
-    echo "running script/clean-up-class"
+    echo "Running script/clean-up-class"
     ./clean-up-class "$COLLAB_REPO"
 
   # TASK 8
   elif [ "$TASK" -eq 8 ]; then
     # echo "8: Grade client"
-    echo "running script/grade-client"
+    echo "Running script/grade-client"
     ./grade-client
   fi
 }
