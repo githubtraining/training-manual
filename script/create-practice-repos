@@ -153,10 +153,10 @@ create_practice_repo() {
   esac
 
   # Invite student as a collaborator
-  echo "Inviting $student as a collaborator to $CLASS_ORG/$repo_name... "
-  http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-    PUT "$org_repos_endpoint/$repo_name/collaborators/$student" \
-    permission=admin >>log.out 2>&1
+  add_repo_collaborator \
+    --repo "$repo_name" \
+    --user "$student" \
+    --permission "admin"
 
   print_done "Repo URL: $repo_url"
 }
