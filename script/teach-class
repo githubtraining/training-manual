@@ -55,7 +55,7 @@ do_task() {
 
   # See if we need to get the collab repo
   # Skip tasks that don't need COLLAB_REPO
-  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 99 ] && [ "$TASK" -ne 8 ]; then
+  if [ "$TASK" -ne 0 ] && [ "$TASK" -ne 1 ] && [ "$TASK" -ne 99 ] && [ "$TASK" -ne 8 ]; then
     echo "What is the name of the day 1 repo?"
     # Read the collab repo
     read -r COLLAB_REPO
@@ -87,8 +87,8 @@ do_task() {
   # TASK 1
   elif [ "$TASK" -eq 1 ]; then
     # echo "1: Create a new caption-this class repository"
-    echo "running script/new-virtual"
-    ./new-virtual "$COLLAB_REPO"
+    echo "Running script/create-initial-repo"
+    ./create-initial-repo
 
   # TASK 2
   elif [ "$TASK" -eq 2 ]; then
