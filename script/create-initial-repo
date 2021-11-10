@@ -49,7 +49,7 @@ create_initial_repo() {
     --name "$repo_name" \
     --description "Let's learn about Git and GitHub" \
     --homepage "$homepage" \
-    --private true \
+    --private false \
     --has_wiki false
 
   # Create a temporary directory for the template repo
