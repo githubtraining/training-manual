@@ -34,6 +34,21 @@ repo_is_reachable() {
   git ls-remote "$repo_url" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
 }
 
+git_push() {
+  local repo_name=$1
+
+  echo -n "Pushing to $CLASS_ORG/$repo_name... "
+
+  if git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" \
+    >>log.out 2>&1; then
+    echo "Done."
+  else
+    # If the git push command failed
+    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
+    exit 1
+  fi
+}
+
 create_repo() {
   while (($#)); do
     case $1 in

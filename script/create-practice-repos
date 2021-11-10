@@ -86,16 +86,6 @@ generate_repos() {
   done
 }
 
-git_push() {
-  # Push to remote repository
-  echo "Pushing to $CLASS_ORG/$repo_name... "
-  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" >>log.out 2>&1 || {
-    # if git push command failed
-    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
-    exit 1
-  }
-}
-
 create_practice_repo() {
   student=$1
   local repo_name="$practice_repo_name-$student"
@@ -112,13 +102,13 @@ create_practice_repo() {
     local repo_description="Let's resolve some conflicts."
 
     # Create a new repo named $repo_name in $CLASS_ORG
-    git_push
     create_repo \
       --name "$repo_name" \
       --description "$repo_description" \
       --private true \
       --has_wiki false
 
+    git_push "$repo_name"
 
     # Create PRs for each branch
     echo "Creating practice pull requests for $CLASS_ORG/$repo_name... "
@@ -137,7 +127,6 @@ create_practice_repo() {
     local repo_description="A fun way to learn about git troubleshooting."
 
     # Create a new practice repo named $repo_name in $CLASS_ORG
-    git_push
     create_repo \
       --name "$repo_name" \
       --description "$repo_description" \
@@ -145,6 +134,7 @@ create_practice_repo() {
       --private true \
       --has_wiki false
 
+    git_push "$repo_name"
 
     # Create issues for problems
     echo "Creating practice issues for $CLASS_ORG/$repo_name... "
