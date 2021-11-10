@@ -251,6 +251,9 @@ create_issue() {
 
   echo -n "Creating issue: $title... "
 
+  # Wait for 1 second to avoid secondary rate limiting
+  sleep 1
+
   if http --check-status --ignore-stdin --quiet --auth \
     "$TOKEN_OWNER:$TEACHER_PAT" "$org_repos_endpoint/$repo/issues" \
     title="$title" \
@@ -272,6 +275,9 @@ create_pull_request() {
   done
 
   echo -n "Creating pull request: $title... "
+
+  # Wait for 1 second to avoid secondary rate limiting
+  sleep 1
 
   if http --check-status --ignore-stdin --quiet --auth \
     "$TOKEN_OWNER:$TEACHER_PAT" "$org_repos_endpoint/$repo/pulls" \
