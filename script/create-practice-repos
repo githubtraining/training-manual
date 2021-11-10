@@ -112,17 +112,13 @@ create_practice_repo() {
     local repo_description="Let's resolve some conflicts."
 
     # Create a new repo named $repo_name in $CLASS_ORG
-    echo "Creating $CLASS_ORG/$repo_name for $student... "
-    http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-      "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" \
-      name="$repo_name" \
-      description="$repo_description" \
-      private:=true \
-      has_issues:=true \
-      has_wiki:=false \
-      has_downloads:=true >>log.out 2>&1
-
     git_push
+    create_repo \
+      --name "$repo_name" \
+      --description "$repo_description" \
+      --private true \
+      --has_wiki false
+
 
     # Create PRs for each branch
     echo "Creating practice pull requests for $CLASS_ORG/$repo_name... "
@@ -141,18 +137,14 @@ create_practice_repo() {
     local repo_description="A fun way to learn about git troubleshooting."
 
     # Create a new practice repo named $repo_name in $CLASS_ORG
-    echo "Creating $CLASS_ORG/$repo_name for $student... "
-    http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-      "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" \
-      name="$repo_name" \
-      description="$repo_description" \
-      homepage="$template_pages_url" \
-      private:=true \
-      has_issues:=true \
-      has_wiki:=false \
-      has_downloads:=true >>log.out 2>&1
-
     git_push
+    create_repo \
+      --name "$repo_name" \
+      --description "$repo_description" \
+      --homepage "$template_pages_url" \
+      --private true \
+      --has_wiki false
+
 
     # Create issues for problems
     echo "Creating practice issues for $CLASS_ORG/$repo_name... "

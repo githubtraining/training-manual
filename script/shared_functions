@@ -228,7 +228,7 @@ add_repo_collaborator() {
 
   local collaborators_endpoint="$org_repos_endpoint/$repo/collaborators/$user"
 
-  echo -n "Adding collaborator $user to $repo... "
+  echo -n "Inviting $user as a collaborator to $repo... "
 
   if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" \
     PUT "$collaborators_endpoint" \
