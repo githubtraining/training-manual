@@ -156,7 +156,7 @@ update_branch_protections() {
       "users": ["'"$TEACHER"'", "'"$TOKEN_OWNER"'"],
       "teams": []
     }
-  }' PUT "$org_repos_endpoint/$initial_repo_name/branches/$default_branch/protection"; then
+  }' PUT "$org_repos_endpoint/$initial_repo_name/branches/$default_branch/protection" "Accept:application/vnd.github.luke-cage-preview+json"; then
     echo "Branch protection rules updated."
   else
     print_error "Failed to update branch protection rules."
@@ -183,7 +183,7 @@ enable_github_pages() {
     "source": {
       "branch": "'"$default_branch"'"
     }
-  }' POST "$org_repos_endpoint/$initial_repo_name/pages"; then
+  }' POST "$org_repos_endpoint/$initial_repo_name/pages" "Accept:application/vnd.github.switcheroo-preview+json"; then
     echo "GitHub Pages enabled."
   else
     print_error "Failed to enable GitHub Pages."

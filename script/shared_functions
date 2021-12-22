@@ -98,6 +98,7 @@ create_repo_project() {
   # Create the project and get the project ID
   REPO_PROJECT_ID=$(http --check-status --ignore-stdin --auth \
     "$TOKEN_OWNER:$TEACHER_PAT" "$projects_endpoint" \
+    "Accept:application/vnd.github.inertia-preview+json" \
     name="$name" \
     body="$body" |
     jq .id)
@@ -132,6 +133,7 @@ create_project_column() {
   # Create the project column and get the column ID
   COLUMN_ID=$(http --check-status --ignore-stdin --auth \
     "$TOKEN_OWNER:$TEACHER_PAT" "$project_column_endpoint" \
+    "Accept:application/vnd.github.inertia-preview+json" \
     project_id="$project_id" \
     name="$name" |
     jq .id)
@@ -163,6 +165,7 @@ create_project_card() {
 
   if http --check-status --ignore-stdin --quiet --auth \
     "$TOKEN_OWNER:$TEACHER_PAT" "$project_card_endpoint" \
+    "Accept:application/vnd.github.inertia-preview+json" \
     project_id="$project_id" \
     column_id="$column_id" \
     note="$note"; then
