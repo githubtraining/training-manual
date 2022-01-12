@@ -148,7 +148,7 @@ update_branch_protections() {
   # Update branch protection rules for the default branch
   if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" --raw '{
     "required_status_checks": null,
-    "enforce_admins": true,
+    "enforce_admins": false,
     "required_pull_request_reviews": {
       "required_approving_review_count": 1
     },
