@@ -19,18 +19,11 @@ collab_repo=$1
 template_name=$2
 practice_repo_name=$3
 org_url="https://$ROOT_URL/$CLASS_ORG"
-org_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
+org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 template_url="https://github.com/githubtraining/$template_name"
 template_url_ghes="https://$ROOT_URL/$CLASS_ORG/$template_name"
 template_pages_url="https://$CLASS_ORG.github.io/$template_name"
 template_pages_url_ghes="https://$ROOT_URL/pages/$CLASS_ORG/$template_name"
-
-# https://superuser.com/a/1415376
-# Returns exit code 0 (success) if $1 is a reachable git remote url
-repo_is_reachable() {
-  local repo_url=$1
-  git ls-remote "$repo_url" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
-}
 
 check_template_url() {
   # if root url is not github.com
@@ -77,33 +70,23 @@ generate_repos() {
     if repo_is_reachable "$org_url/$practice_repo_name-$username"; then
       # ask if the repository should be deleted and recreated
       if ask "A $practice_repo_name repo already exists for $username.\nIs it OK to delete and recreate?" N; then
-        echo "Deleting $CLASS_ORG/$practice_repo_name-$username..."
+        echo "Deleting $CLASS_ORG/$practice_repo_name-$username... "
         # delete the existing practice repo
         http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-          DELETE "$org_endpoint/$practice_repo_name-$username" >>log.out 2>&1
+          DELETE "$org_repos_endpoint/$practice_repo_name-$username" >>log.out 2>&1
         # create a new practice repo
-        create_repo "$username"
+        create_practice_repo "$username"
       else
-        echo "OK. Skipping $username..."
+        echo "OK. Skipping $username... "
       fi
     else
       # create a new practice repository
-      create_repo "$username"
+      create_practice_repo "$username"
     fi
   done
 }
 
-git_push() {
-  # Push to remote repository
-  echo "Pushing to $CLASS_ORG/$repo_name..."
-  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" >>log.out 2>&1 || {
-    # if git push command failed
-    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
-    exit 1
-  }
-}
-
-create_repo() {
+create_practice_repo() {
   student=$1
   local repo_name="$practice_repo_name-$student"
   local repo_url="https://$ROOT_URL/$CLASS_ORG/$repo_name"
@@ -119,20 +102,16 @@ create_repo() {
     local repo_description="Let's resolve some conflicts."
 
     # Create a new repo named $repo_name in $CLASS_ORG
-    echo "Creating $CLASS_ORG/$repo_name for $student..."
-    http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-      "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" \
-      name="$repo_name" \
-      description="$repo_description" \
-      private:=true \
-      has_issues:=true \
-      has_wiki:=false \
-      has_downloads:=true >>log.out 2>&1
+    create_repo \
+      --name "$repo_name" \
+      --description "$repo_description" \
+      --private true \
+      --has_wiki false
 
-    git_push
+    git_push "$repo_name"
 
     # Create PRs for each branch
-    echo "Creating practice pull requests for $CLASS_ORG/$repo_name..."
+    echo "Creating practice pull requests for $CLASS_ORG/$repo_name... "
     create_pull_request --repo "$repo_name" --head 'manual' --base "$default_branch" \
       --title "Updates to game manual" \
       --body "$(<"$practice_repos_dir/conflict-practice/pull_request_1.md")"
@@ -148,21 +127,17 @@ create_repo() {
     local repo_description="A fun way to learn about git troubleshooting."
 
     # Create a new practice repo named $repo_name in $CLASS_ORG
-    echo "Creating $CLASS_ORG/$repo_name for $student..."
-    http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-      "https://$INSTANCE_URL/orgs/$CLASS_ORG/repos" \
-      name="$repo_name" \
-      description="$repo_description" \
-      homepage="$template_pages_url" \
-      private:=true \
-      has_issues:=true \
-      has_wiki:=false \
-      has_downloads:=true >>log.out 2>&1
+    create_repo \
+      --name "$repo_name" \
+      --description "$repo_description" \
+      --homepage "$template_pages_url" \
+      --private true \
+      --has_wiki false
 
-    git_push
+    git_push "$repo_name"
 
     # Create issues for problems
-    echo "Creating practice issues for $CLASS_ORG/$repo_name..."
+    echo "Creating practice issues for $CLASS_ORG/$repo_name... "
     create_issue --repo "$repo_name" \
       --title "Game broken" \
       --body "$(envsubst <"$practice_repos_dir/github-games/issue_1.md")"
@@ -178,10 +153,10 @@ create_repo() {
   esac
 
   # Invite student as a collaborator
-  echo "Inviting $student as a collaborator to $CLASS_ORG/$repo_name..."
-  http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
-    PUT "$org_endpoint/$repo_name/collaborators/$student" \
-    permission=admin >>log.out 2>&1
+  add_repo_collaborator \
+    --repo "$repo_name" \
+    --user "$student" \
+    --permission "admin"
 
   print_done "Repo URL: $repo_url"
 }

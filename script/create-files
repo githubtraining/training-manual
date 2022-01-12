@@ -70,7 +70,7 @@ create_files() {
       fi
       # Put the file in the repository
       path="_slides/$new_file"
-      message="Activity file for $collaborator"
+      message="Create activity file for $collaborator"
       curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"path\": \"$path\", \"message\": \"$message\", \"content\": \"$content\" }" \
         -X PUT "$repo_endpoint/contents/$path" >>log.out 2>&1
       # Remove the local file

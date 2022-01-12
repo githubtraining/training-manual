@@ -1,0 +1,210 @@
+#!/usr/bin/env bash
+#
+# Create initial repo
+
+# shellcheck disable=SC1091
+source "$HOME/.trainingmanualrc"
+
+# shellcheck source=script/shared_functions
+source ./shared_functions
+
+template_name="caption-this"
+org_url="https://$ROOT_URL/$CLASS_ORG"
+org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
+template_url="https://github.com/githubtraining/$template_name"
+template_url_ghes="https://$ROOT_URL/$CLASS_ORG/$template_name"
+
+get_initial_repo_name() {
+  # Get the repo name
+  read -r -p "What would you like to name the repo? " initial_repo_name
+
+  repo_url="$org_url/$initial_repo_name"
+
+  echo "Checking if that repo name is available..."
+  if repo_is_reachable "$repo_url"; then
+    echo "A repo with that name already exists. Please choose another name."
+    get_initial_repo_name
+  fi
+}
+
+create_initial_repo() {
+  local repo_name="$initial_repo_name"
+
+  # Set the homepage based on the root URL
+  case "$ROOT_URL" in
+  github.com) : "https://$CLASS_ORG.github.io/$initial_repo_name/" ;;
+  *) : "https://$ROOT_URL/pages/$CLASS_ORG/$initial_repo_name/" ;;
+  esac
+  local homepage="$_"
+
+  # Set the template URL based on the root URL
+  case "$ROOT_URL" in
+  github.com) : "$template_url" ;;
+  *) : "$template_url_ghes" ;;
+  esac
+  local template_repo_url="$_"
+
+  # Create a new empty repo
+  create_repo \
+    --name "$repo_name" \
+    --description "Let's learn about Git and GitHub" \
+    --homepage "$homepage" \
+    --private false \
+    --has_wiki false
+
+  # Create a temporary directory for the template repo
+  temp_repo_dir=$(mktemp -d)
+
+  # Delete the temporary directory on script exit
+  trap 'rm -rf "$temp_repo_dir"' EXIT
+
+  # Attempt to clone template repo into the temporary directory
+  git clone --bare "$template_repo_url" "$temp_repo_dir" >>log.out 2>&1 || {
+    print_error "Failed to clone template repository."
+    exit 1
+  }
+
+  # Switch to the temporary directory and push it on the stack
+  pushd "$temp_repo_dir" >>log.out 2>&1 || return
+
+  # Push the template repo to the new empty repo
+  git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" \
+    >>log.out 2>&1
+
+  # Switch back to original directory
+  popd >>log.out 2>&1 || return
+
+  # Add the token owner as a collaborator
+  add_repo_collaborator --repo "$repo_name" --user "$TOKEN_OWNER" --permission "admin"
+
+  # Find the default branch and store its value
+  default_branch=$(http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
+    --json GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$repo_name" |
+    jq '.default_branch' | sed -e 's/^"//' -e 's/"$//')
+}
+
+clone_initial_repo() {
+  local initial_repo_url="https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$initial_repo_name"
+
+  # Create a temporary directory
+  temp_initial_repo_dir=$(mktemp -d)
+
+  # Delete the temporary directory on script exit
+  trap 'rm -rf "$temp_initial_repo_dir"' EXIT
+
+  # Attempt to clone template repo into the temporary directory
+  git clone "$initial_repo_url" "$temp_initial_repo_dir" >>log.out 2>&1 || {
+    print_error "Failed to clone template repository."
+    exit 1
+  }
+}
+
+update_readme() {
+  # Ask for class dates
+  echo "What are the class dates? (e.g. May 4 – 7, 2021)"
+  read -r CLASS_DATE
+  echo "Who is teaching? (Without the @)"
+  read -r TEACHER
+
+  # Get raw contents of README.md and _config.yml
+  readme_contents=$(get_repo_file_contents --repo "$initial_repo_name" --path "README.md")
+  config_contents=$(get_repo_file_contents --repo "$initial_repo_name" --path "_config.yml")
+
+  # Replace the placeholder text with the actual values
+  readme_contents="${readme_contents//THIS-DATE/$CLASS_DATE}"
+  readme_contents="${readme_contents//TEACHER-HANDLE/$TEACHER}"
+  config_contents="${config_contents//caption-this/$initial_repo_name}"
+
+  # Update README.md and _config.yml in the repo
+  update_file_contents --repo "$initial_repo_name" \
+    --path "README.md" \
+    --content "$readme_contents" \
+    --message "Update README.md"
+
+  update_file_contents --repo "$initial_repo_name" \
+    --path "_config.yml" \
+    --content "$config_contents" \
+    --message "Update _config.yml"
+}
+
+create_initial_project() {
+  # Create project and save the project ID so we can use it to create project columns and cards
+  create_repo_project --repo "$initial_repo_name" \
+    --name "Caption Contest" \
+    --body "Let's see who can create the best captions for our collection of memes."
+  local project_id="$REPO_PROJECT_ID"
+
+  # Create project columns and save the ID of the first colum so we can add a card to it
+  create_project_column --project_id "$project_id" --name "To do" && local column_one="$COLUMN_ID"
+  create_project_column --project_id "$project_id" --name "In progress"
+  create_project_column --project_id "$project_id" --name "Done"
+
+  # Add a note to column one
+  create_project_card --project_id "$project_id" --column_id "$column_one" \
+    --note "Each student will update their file in the _slides directory with an image and a caption."
+}
+
+update_branch_protections() {
+  # Update branch protection rules for the default branch
+  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" --raw '{
+    "required_status_checks": null,
+    "enforce_admins": false,
+    "required_pull_request_reviews": {
+      "required_approving_review_count": 1
+    },
+    "restrictions": {
+      "users": ["'"$TEACHER"'", "'"$TOKEN_OWNER"'"],
+      "teams": []
+    }
+  }' PUT "$org_repos_endpoint/$initial_repo_name/branches/$default_branch/protection" "Accept:application/vnd.github.luke-cage-preview+json"; then
+    echo "Branch protection rules updated."
+  else
+    print_error "Failed to update branch protection rules."
+  fi
+}
+
+create_initial_issue() {
+  # Navigate to the practice-repos directory
+  cd "$(dirname "$0")/../practice-repos" || exit
+
+  # Set $practice_repos_dir to the "physical" path of the working directory
+  practice_repos_dir=$(pwd -P)
+
+  # Switch back to the previous directory
+  cd - >/dev/null || exit
+
+  # Create the issue
+  create_issue --repo "$initial_repo_name" --title "Add collaborators to this repo" \
+    --body "$(<"$practice_repos_dir/caption-this/issue_1.md")"
+}
+
+enable_github_pages() {
+  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" --raw '{
+    "source": {
+      "branch": "'"$default_branch"'"
+    }
+  }' POST "$org_repos_endpoint/$initial_repo_name/pages" "Accept:application/vnd.github.switcheroo-preview+json"; then
+    echo "GitHub Pages enabled."
+  else
+    print_error "Failed to enable GitHub Pages."
+  fi
+}
+
+# Get the repo name
+get_initial_repo_name
+
+# Create the initial repo
+create_initial_repo
+
+# Clone initial repo
+clone_initial_repo
+
+# Prepare initial repo
+update_readme
+update_branch_protections
+create_initial_issue
+create_initial_project
+enable_github_pages
+
+print_done "Here's a link to the repo: $repo_url"
+print_success "Good luck with class!"

@@ -1,0 +1,14 @@
+{
+  "filters": {
+    "comments": true
+  },
+  "rules": {
+    "terminology": {
+      "defaultTerms": true,
+      "exclude": [
+        // Workaround until https://github.com/sapegin/textlint-rule-terminology/issues/38 is fixed
+        "HTML"
+      ]
+    }
+  }
+}

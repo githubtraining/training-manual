@@ -9,7 +9,7 @@ source "$HOME/.trainingmanualrc"
 source ./ask
 
 # script variables
-org_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
+org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 red=$(tput setaf 1)
 green=$(tput setaf 2)
 blue=$(tput setaf 4)
@@ -27,6 +27,236 @@ print_done() {
   echo "${blue}Done! $1${reset}"
 }
 
+# https://superuser.com/a/1415376
+# Returns exit code 0 (success) if $1 is a reachable git remote url
+repo_is_reachable() {
+  local repo_url=$1
+  git ls-remote "$repo_url" CHECK_GIT_REMOTE_URL_REACHABILITY &>/dev/null
+}
+
+git_push() {
+  local repo_name=$1
+
+  echo -n "Pushing to $CLASS_ORG/$repo_name... "
+
+  if git push --mirror "https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG/$repo_name" \
+    >>log.out 2>&1; then
+    echo "Done."
+  else
+    # If the git push command failed
+    print_error "Failed to push commits to $CLASS_ORG/$repo_name."
+    exit 1
+  fi
+}
+
+create_repo() {
+  while (($#)); do
+    case $1 in
+    --name) local name=$2 ;;
+    --description) local description=$2 ;;
+    --homepage) local homepage=$2 ;;
+    --private) local private=$2 ;;
+    --has-wiki) local has_wiki=$2 ;;
+    esac
+    shift
+  done
+
+  local repos_endpoint="https://$INSTANCE_URL/orgs/$CLASS_ORG/repos"
+
+  echo -n "Creating repository: $name... "
+
+  if http --check-status --ignore-stdin --quiet --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$repos_endpoint" \
+    name="$name" \
+    description="$description" \
+    homepage="$homepage" \
+    private:="$private" \
+    has_wiki="$has_wiki"; then
+    echo "Done."
+  else
+    print_error "Failed to create repository."
+  fi
+}
+
+create_repo_project() {
+  while (($#)); do
+    case $1 in
+    --repo) local repo=$2 ;;
+    --name) local name=$2 ;;
+    --body) local body=$2 ;;
+    esac
+    shift
+  done
+
+  local projects_endpoint="$org_repos_endpoint/$repo/projects"
+
+  echo -n "Creating project: $name... "
+
+  # Unset $REPO_PROJECT_ID in case it was set previously
+  unset REPO_PROJECT_ID
+
+  # Create the project and get the project ID
+  REPO_PROJECT_ID=$(http --check-status --ignore-stdin --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$projects_endpoint" \
+    "Accept:application/vnd.github.inertia-preview+json" \
+    name="$name" \
+    body="$body" |
+    jq .id)
+
+  # Export $REPO_PROJECT_ID so it can be used in other scripts
+  export REPO_PROJECT_ID
+
+  # Check if $REPO_PROJECT_ID has a value
+  if [[ -n "$REPO_PROJECT_ID" ]] || [[ "$REPO_PROJECT_ID" = null ]]; then
+    echo "Done."
+  else
+    print_error "Failed to create project."
+  fi
+}
+
+create_project_column() {
+  while (($#)); do
+    case $1 in
+    --project_id) local project_id=$2 ;;
+    --name) local name=$2 ;;
+    esac
+    shift
+  done
+
+  local project_column_endpoint="https://$INSTANCE_URL/projects/$project_id/columns"
+
+  echo -n "Creating project column: $name... "
+
+  # Unset $COLUMN_ID in case it was set previously
+  unset COLUMN_ID
+
+  # Create the project column and get the column ID
+  COLUMN_ID=$(http --check-status --ignore-stdin --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$project_column_endpoint" \
+    "Accept:application/vnd.github.inertia-preview+json" \
+    project_id="$project_id" \
+    name="$name" |
+    jq .id)
+
+  # Export $COLUMN_ID so it can be used in other scripts
+  export COLUMN_ID
+
+  # Check if $COLUMN_ID has a value
+  if [[ -n "$COLUMN_ID" ]] || [[ "$COLUMN_ID" = null ]]; then
+    echo "Done."
+  else
+    print_error "Failed to create project column."
+  fi
+}
+
+create_project_card() {
+  while (($#)); do
+    case $1 in
+    --project_id) local project_id=$2 ;;
+    --column_id) local column_id=$2 ;;
+    --note) local note=$2 ;;
+    esac
+    shift
+  done
+
+  local project_card_endpoint="https://$INSTANCE_URL/projects/columns/$column_id/cards"
+
+  echo -n "Creating project card: $name... "
+
+  if http --check-status --ignore-stdin --quiet --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$project_card_endpoint" \
+    "Accept:application/vnd.github.inertia-preview+json" \
+    project_id="$project_id" \
+    column_id="$column_id" \
+    note="$note"; then
+    echo "Done."
+  fi
+}
+
+get_repo_content() {
+  while (($#)); do
+    case $1 in
+    --repo) local repo=$2 ;;
+    --path) local file_path=$2 ;;
+    esac
+    shift
+  done
+
+  local contents_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$repo/contents/$file_path"
+
+  if ! http --check-status --ignore-stdin --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$contents_endpoint"; then
+    print_error "Failed to get content of $file_path."
+  fi
+}
+
+get_repo_file_contents() {
+  while (($#)); do
+    case $1 in
+    --repo) local repo=$2 ;;
+    --path) local file_path=$2 ;;
+    esac
+    shift
+  done
+
+  local contents_endpoint="$org_repos_endpoint/$repo/contents/$file_path"
+
+  if ! http --check-status --ignore-stdin --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$contents_endpoint" "Accept:application/vnd.github.v3.raw"; then
+    print_error "Failed to get contents of $file_path."
+  fi
+}
+
+update_file_contents() {
+  while (($#)); do
+    case $1 in
+    --repo) local repo=$2 ;;
+    --path) local file_path=$2 ;;
+    --content) local content=$2 ;;
+    --message) local message=$2 ;;
+
+    esac
+    shift
+  done
+
+  local contents_endpoint="$org_repos_endpoint/$repo/contents/$file_path"
+
+  echo -n "Updating contents of $file_path... "
+
+  if http --check-status --ignore-stdin --quiet --auth \
+    "$TOKEN_OWNER:$TEACHER_PAT" PUT "$contents_endpoint" \
+    content="$(echo "$content" | base64)" \
+    message="$message" \
+    sha="$(get_repo_content --repo "$repo" --path "$file_path" | jq -r '.sha')"; then
+    echo "Done."
+  else
+    print_error "Failed to update contents of $file_path."
+  fi
+}
+
+add_repo_collaborator() {
+  while (($#)); do
+    case $1 in
+    --repo) local repo=$2 ;;
+    --user) local user=$2 ;;
+    --permission) local permission=$2 ;;
+    esac
+    shift
+  done
+
+  local collaborators_endpoint="$org_repos_endpoint/$repo/collaborators/$user"
+
+  echo -n "Inviting $user as a collaborator to $repo... "
+
+  if http --check-status --ignore-stdin --quiet --auth "$TOKEN_OWNER:$TEACHER_PAT" \
+    PUT "$collaborators_endpoint" \
+    permission="$permission"; then
+    echo "Done."
+  else
+    print_error "Failed to add collaborator $user to $repo."
+  fi
+}
+
 create_issue() {
   while (($#)); do
     case $1 in
@@ -39,8 +269,11 @@ create_issue() {
 
   echo -n "Creating issue: $title... "
 
+  # Wait for 1 second to avoid secondary rate limiting
+  sleep 1
+
   if http --check-status --ignore-stdin --quiet --auth \
-    "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/issues" \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$org_repos_endpoint/$repo/issues" \
     title="$title" \
     body="$body"; then
     echo "Done."
@@ -61,8 +294,11 @@ create_pull_request() {
 
   echo -n "Creating pull request: $title... "
 
+  # Wait for 1 second to avoid secondary rate limiting
+  sleep 1
+
   if http --check-status --ignore-stdin --quiet --auth \
-    "$TOKEN_OWNER:$TEACHER_PAT" "$org_endpoint/$repo/pulls" \
+    "$TOKEN_OWNER:$TEACHER_PAT" "$org_repos_endpoint/$repo/pulls" \
     title="$title" \
     head="$head" \
     base="$base" \
