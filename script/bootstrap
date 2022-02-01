@@ -47,6 +47,13 @@ if ! type -p http &>/dev/null; then
     python -m pip install --upgrade pip setuptools
     # Install HTTPie
     python -m pip install --upgrade httpie
+    # If not HTTPie is not installed above, lets try:
+    # Attempt #1: install without multidict compilation
+    [[ -z $(pip show httpie 2>/dev/null) ]] && MULTIDICT_NO_EXTENSIONS=1 python -m pip install --no-cache-dir httpie
+    # Attempt #2: install older version that does not require multidict
+    [[ -z $(pip show httpie 2>/dev/null) ]] && python -m pip install httpie==2.6.0
+    # Return code for $ERROR_CODE
+    python -m pip show httpie >/dev/null 2>&1
     ;;
   *) echo "Unable to install HTTPie. Please install and try again." && exit 1 ;;
   esac
