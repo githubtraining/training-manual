@@ -57,7 +57,7 @@ create_files() {
       # Pick a random image for slide
       random_image=${slide_images[$RANDOM % ${#slide_images[@]}]}
       # Check the operating system to determine which commands to run
-      if [[ "$OSTYPE" = "msys" ]]; then
+      if [[ "$OSTYPE" = "msys" || "$OSTYPE" = "linux-gnu" ]]; then
         # Insert slide image into slide
         sed -i "s|IMAGE|$random_image|g" "$new_file" >>log.out 2>&1
         # Encode the file
