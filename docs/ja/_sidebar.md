@@ -72,6 +72,7 @@
     - [Issue templates](app_issue_template.md)
     - [Supporting Learning Lab](app_supporting_learning_lab.md)
   - **Teaching Resources**
+    - [GitHub Training Scripts](app_teaching_script.md)
     - [Teachback: Prepare repositories](app_teachback_repo_prep.md)
     - [Teacher/Facilitation Tips](app_facilitation_tips.md)
     - [Authentication Troubleshooting Guide](app_authentication.md)

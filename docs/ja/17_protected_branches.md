@@ -16,9 +16,9 @@
 
 他のオプションにチェックを付けない場合の基本的なブランチ保護は、フォースプッシュとそのブランチの削除を防ぎます。 利用可能なオプションの詳細については、[この機能のドキュメント](https://help.github.com/articles/defining-the-mergeability-of-pull-requests/) を参照してください。
 
-> Pro tip: Branch protection rule を複数のブランチに適用させるには、ワイルドカード (`*`, `?`) や正規表現を利用することができます。ワイドカードや正規表現がどうマッチングするかについての詳細は [branch protection documentation](https://help.github.com/en/articles/configuring-protected-branches) をご参照ください。
+> **Pro-tip:** Branch protection rule を複数のブランチに適用させるには、ワイルドカード (`*`, `?`) や正規表現を利用することができます。ワイドカードや正規表現がどうマッチングするかについての詳細は [branch protection documentation](https://help.github.com/en/articles/configuring-protected-branches) をご参照ください。
 
-### CODEOWNERS
+### Code owners
 
 リポジトリメンテナは、**CODEOWNERS** を作成することで、変更を確認する必要のある人やチームを細かく決めることができます。 例えば、CODEOWNERSは以下のように使用できます。
 

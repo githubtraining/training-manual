@@ -28,9 +28,9 @@ git version
 
 次のように表示されます。
 
-```sh
+```shell-session
 $ git version
-git version 2.11.0
+git version 2.33.1
 ```
 
 このクラスは、2.0以上のどのバージョンでも受講できます。
@@ -39,7 +39,7 @@ git version 2.11.0
 
 Gitをまだインストールしていない場合は、 www.git-scm.com からGitをダウンロードできます。
 
-Gitのインストールについてさらに資料が必要な場合は、ProGitの章にあるGitのインストールに関する追加情報を参照してください。` http://git-scm.com/book/en/v2/Getting-Started-Installing-Git `
+Gitのインストールについてさらに資料が必要な場合は、ProGitの章にあるGitのインストールに関する追加情報を参照してください。`http://git-scm.com/book/en/v2/Getting-Started-Installing-Git`
 
 #### シェルはどこにあるのか
 
@@ -55,7 +55,7 @@ Gitで使いたいコマンドラインアプリケーションへのショー�
 選択したシェルを開き、下記を入力します。
 
 ```sh
-git clone https://github.com/githubschool/scratch
+git clone https://github.com/githubschool/scratch.git
 ```
 
 クローンが成功する場合は、下記のように表示されます。
