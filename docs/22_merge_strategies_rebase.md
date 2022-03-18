@@ -39,13 +39,13 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 
 #### Setup
 
-1. First, switch back to `master` branch: `git switch master`
+1. First, switch back to `main` branch: `git switch main`
 1. Find the SHA of the initial commit: `git log --oneline`
 1. Reset to the SHA of the initial commit: `git reset --hard SHA`
 1. Create a new branch and check out to it: `git switch -c rebase-me`
 1. Cherry-pick files 4-6 onto the `rebase-me` branch using the reflog.
-1. Switch to master: `git switch master`
-1. Cherry-pick files 1-3 onto the `master` branch using the reflog.
+1. Switch to main: `git switch main`
+1. Cherry-pick files 1-3 onto the `main` branch using the reflog.
 1. Look at your history: `git log --oneline --graph --decorate --all`
 1. If you merged now, it would be a recursive merge.
 
