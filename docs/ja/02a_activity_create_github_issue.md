@@ -3,9 +3,9 @@
 次の手順に従って、クラスのリポジトリでIssueを作成します。
 
 1. *Issues*タブをクリック
-2. *New Issue*をクリック
-3. タイトルに次のとおりに入力　`YOUR-USERNAME Workflow`
-4. Issueの本文に、次のテキストを含める
+1. *New Issue*をクリック
+1. タイトルに次のとおりに入力　`YOUR-USERNAME Workflow`
+1. Issueの本文に、次のテキストを含める
 
 ```md
 YOUR-USERNAME はキャプションを変更し、ファイルを更新します。
@@ -19,3 +19,5 @@ YOUR-USERNAME はキャプションを変更し、ファイルを更新します
 - [ ] 承認を受ける
 - [ ] Pull Requestをマージ
 ```
+
+1. *Submit new issue* ボタンをクリックし、issueを開きます。
