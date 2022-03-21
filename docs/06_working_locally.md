@@ -2,7 +2,7 @@
 
 Using the command line, you can easily integrate Git into your current workflow.
 
-### Creating a local copy of the repo
+### Creating a local copy of the repository
 
 ![Cloning a repository](./img/clone-diagram.png)
 
@@ -15,7 +15,7 @@ Let's go ahead and clone the class repository to your local desktop.
 1. Navigate to the **Code** tab of the class repository on GitHub.
 1. Click the green **Code** button.
 1. Copy the **clone URL** to your clipboard.
-1. Open your command line application.
+1. Open your command-line application.
 1. Retrieve a full copy of the repository from GitHub: `git clone <CLONE-URL>`
 1. Once the clone is complete, navigate to the new directory created by the clone operation: `cd <REPOSITORY-NAME>`
 

@@ -12,7 +12,7 @@
 1. 画面の左側のメニューから **Branches** を選択します。
 1. **Branch protection rules** の隣にある **Add rule** ボタンをクリックします。
 1. **Branch name pattern** のテキストボックスに保護したいブランチの名前を入力します。例えば、 `main`。
-4. **Create** ボタンをクリックします。
+1. **Create** ボタンをクリックします。
 
 他のオプションにチェックを付けない場合の基本的なブランチ保護は、フォースプッシュとそのブランチの削除を防ぎます。 利用可能なオプションの詳細については、[この機能のドキュメント](https://help.github.com/articles/defining-the-mergeability-of-pull-requests/) を参照してください。
 

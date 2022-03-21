@@ -9,13 +9,13 @@
 プロジェクト履歴の表示をカスタマイズできるオプションを見てみましょう。これらのオプションの詳細については、[git-scm.com](https://git-scm.com/docs/git-log) をご参照ください。 _(Note: `--graph` オプションは、Windows ターミナルにおけるほとんどの Git Bash でデフォルトで指定されています。)_
 
 ```sh
-$ git log
-$ git log --oneline
-$ git log --oneline --graph
-$ git log --oneline --graph --decorate
-$ git log --oneline --graph --decorate --all
-$ git log --stat
-$ git log --patch
+git log
+git log --oneline
+git log --oneline --graph
+git log --oneline --graph --decorate
+git log --oneline --graph --decorate --all
+git log --stat
+git log --patch
 ```
 
 > ↑↓のボタンやエンターキーを使うことで、ログ項目の続きを確認できます。 `q`を入力すると、ログの確認を終了し、コマンドプロンプトに戻ります。

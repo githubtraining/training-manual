@@ -4,7 +4,7 @@ In some workflows, you will want to protect critical branches to ensure the code
 
 ### Protected branches
 
-Repository maintainers can prevent merges to specific branches that have not met pre-defined criteria. These criteria can include peer reviews, tests run by integrations such as a Continuous Integration services or code quality, or until a specific code owner has reviewed and approved changes.
+Repository maintainers can prevent merges to specific branches that have not met predefined criteria. These criteria can include peer reviews, tests run by integrations such as a Continuous Integration services or code quality, or until a specific code owner has reviewed and approved changes.
 
 Let's enable protected branches:
 
