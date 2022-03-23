@@ -7,8 +7,8 @@ Follow these steps to create an issue in the class repository:
 1. Type the following in the Subject line: `YOUR-USERNAME Workflow`
 1. In the body of the issue, include the text below:
 
-```md
-YOUR-USERNAME will update a file by replacing a caption.
+   ```md
+   YOUR-USERNAME will update a file by replacing a caption.
 
    - [ ] Create a branch
    - [ ] Edit the file
