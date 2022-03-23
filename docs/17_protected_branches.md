@@ -29,7 +29,7 @@ Repository maintainers can define exactly which people and teams need to review 
 Let's create a CODEOWNERS file:
 
 1. Go out to the **Code** tab of your repository.
-1. Click the **Add file** drop down and Click the **Create new file**.
+1. Click the **Add file** drop down and then **Create new file**.
 1. In the **Name your file...** text box enter `CODEOWNERS` (no extension necessary). You can add this to a `.github/` directory if desired by entering `.github/CODEOWNERS`.
 1. On the first line, type `*          @YOUR_USERNAME`
    - This means that you will be the default owner for everything in the repo, unless a later match takes preference.
