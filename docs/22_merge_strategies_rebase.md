@@ -39,7 +39,7 @@ One of the most common uses of rebase is to eliminate recursive merges and creat
 
 #### Setup
 
-1. First, switch back to `main` branch: `git switch main`
+1. First, switch back to the `main` branch: `git switch main`
 1. Find the SHA of the initial commit: `git log --oneline`
 1. Reset to the SHA of the initial commit: `git reset --hard SHA`
 1. Create a new branch and check out to it: `git switch -c rebase-me`
