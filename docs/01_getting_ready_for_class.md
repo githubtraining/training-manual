@@ -125,13 +125,13 @@ If installed properly, the following command will open the Atom text editor:
 atom .
 ```
 
+_**Note:** If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows._
+
 Or the following command can also open the current directory with Visual Studio Code:
 
 ```sh
 code .
 ```
-
-_**Note:** If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows._
 
 ---
 

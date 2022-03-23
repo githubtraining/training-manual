@@ -31,50 +31,50 @@
 1. `USERNAME resolve conflict` の Pull Request でマージコンフリクトが発生していることを確認し、マージコンフリクトを解消しましょう。
    1. ローカル環境で、下記の操作を行い、 `main` ブランチの更新取込みを行います。
 
-   ```sh
-   git switch main
-   git pull
-   ```
+      ```sh
+      git switch main
+      git pull
+      ```
 
    1. `git fetch` でリモート（ GitHub 上）の情報を取込み、リモートで作成した `USERNAME-modify-conflict` ブランチをアップストリームに設定した上で、ローカルのブランチを切り替えます。
 
-   ```sh
-   git fetch
-   git switch USER-modify-conflict
-   ```
+      ```sh
+      git fetch
+      git switch USER-modify-conflict
+      ```
 
    1. `main` ブランチをフィーチャーブランチにマージします。
 
-   ```sh
-   git merge main
-   ```
+      ```sh
+      git merge main
+      ```
 
    1. マージコンフリクトが発生しても大丈夫！コンフリクトがあるファイルは `Unmerged Paths` に表示されます。 `git status` を実行して、どのファイルにコンフリクトがあるかを確認します。
 
-   ```sh
-   git status
-   ```
+      ```sh
+      git status
+      ```
 
    1. そのファイルをテキストエディタで開き、マージコンフリクトのマーカーを探します。 (`<<<<<<<`, `=======`, `>>>>>>>`)
 
-   ```sh
-   # Visual Studio Code で開く場合
-   code _slides/##-USERNAME.md
-   ```
+      ```sh
+      # Visual Studio Code で開く場合
+      code _slides/##-USERNAME.md
+      ```
 
    1. マーカーに囲まれた両ブランチのコードのうち、残したい方を残し、変更を保存します。
    1. マージコンフリクトを解決するために、保存した変更をステージに追加しコミットします。
 
-   ```sh
-   git add _slides/##-USERNAME.md
-   git commit
-   ```
+      ```sh
+      git add _slides/##-USERNAME.md
+      git commit
+      ```
 
    1. そのフィーチャーブランチをリモートにプッシュします。
 
-   ```sh
-   git push
-   ```
+      ```sh
+      git push
+      ```
 
 1. `USERNAME resolve conflict` の Pull Request で解決したことを確認し、マージします。
 

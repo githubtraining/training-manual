@@ -31,50 +31,50 @@ If it's difficult to practice with a partner, you can do that by alone by follow
 1. When you see the merge conflict in the _second_ pull request titled `USERNAME resolve conflict`, work by yourself to resolve the merge conflict.
    1. Working locally, switch to `main` branch and pull updates from remote.
 
-   ```sh
-   git switch main
-   git pull
-   ```
+      ```sh
+      git switch main
+      git pull
+      ```
 
    1. Fetch the `USERNAME-modify-conflict` branch from remote and switch to the same branch locally.
 
-   ```sh
-   git fetch
-   git switch USER-modify-conflict
-   ```
+      ```sh
+      git fetch
+      git switch USER-modify-conflict
+      ```
 
    1. Merge `main` into the feature branch.
 
-   ```sh
-   git merge main
-   ```
+      ```sh
+      git merge main
+      ```
 
    1. When you see there's a conflict, that's OK! The files that have conflicts are listed under `Unmerged Paths`. Type `git status` to verify which file has the conflict.
 
-   ```sh
-   git status
-   ```
+      ```sh
+      git status
+      ```
 
    1. Open that file in your text editor, and look for the merge conflict markers. (`<<<<<<<`, `=======`, `>>>>>>>`)
 
-   ```sh
-   # Open the file on Visual Studio Code
-   code _slides/##-USERNAME.md
-   ```
+      ```sh
+      # Open the file on Visual Studio Code
+      code _slides/##-USERNAME.md
+      ```
 
    1. Both branches' versions of code are present - pick which one you want to keep, and save the changes.
    1. Add and commit the saved changes to resolve the merge conflict.
 
-   ```sh
-   git add _slides/##-USERNAME.md
-   git commit
-   ```
+      ```sh
+      git add _slides/##-USERNAME.md
+      git commit
+      ```
 
    1. Push the feature branch up to the remote, and see the resolution in the pull request.
 
-   ```sh
-   git push
-   ```
+      ```sh
+      git push
+      ```
 
 1. Confirm that the merge conflict in the branch titled `USERNAME resolve conflict` was resolved and merge the pull request.
 
