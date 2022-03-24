@@ -3,12 +3,12 @@
 次の手順に従って、クラスのリポジトリでIssueを作成します。
 
 1. *Issues*タブをクリック
-2. *New Issue*をクリック
-3. 次のとおりSubject lineに入力　`YOUR-USERNAME Workflow`
-4. Issueの本文に、次のテキストを含める
+1. *New Issue*をクリック
+1. タイトルに次のとおりに入力　`YOUR-USERNAME Workflow`
+1. Issueの本文に、次のテキストを含める
 
-```sh
-YOUR-USERNAMEは画像を選択し、キャプションを追加し、両方をファイルに追加します。
+```md
+YOUR-USERNAME はキャプションを変更し、ファイルを更新します。
 
 - [ ] ブランチの作成
 - [ ] ファイルの変更
@@ -19,3 +19,5 @@ YOUR-USERNAMEは画像を選択し、キャプションを追加し、両方を�
 - [ ] 承認を受ける
 - [ ] Pull Requestをマージ
 ```
+
+1. *Submit new issue* ボタンをクリックし、issueを開きます。

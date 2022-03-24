@@ -38,4 +38,5 @@
 Bisectは、コードに対し自動的にテストを実行することもできます。 ショートカットのコマンドとテストを使って、もう一度やってみましょう。
 
 1. `git bisect start <bad-SHA> <good-SHA>`
-2. `git bisect run ls index.html`
+1. `git bisect run ls index.html`
+1. `git bisect reset`

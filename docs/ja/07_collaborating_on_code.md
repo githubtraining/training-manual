@@ -11,7 +11,7 @@
 変更をGitHubにプッシュするには、次のコマンドを使います。
 
 ```sh
-$ git push
+git push
 ```
 
 > プッシュすると、GitHubのユーザ名とパスワードを入力するよう求められます。 Gitにこのコンピュータの資格情報を記憶させたい場合は、次の方法で資格情報をキャッシュすることができます。
@@ -25,15 +25,15 @@ $ git push
 
 Pull Requestを作成したので、コラボレーションの中心的な要素となっているPull Requestの機能を、いくつか学習しましょう。
 
-#### Conversation view
+#### ![octicon-comment-discussion] Conversation タブ
 
 Issueのディスカッションスレッドと同様に、Pull Requestには、リポジトリに対する変更に関する議論が含まれています。 このディスカッションはCoversationタブにあり、ブランチに対するすべてのコミットやPull Requestに適用された割り当て、ラベル、およびレビューの履歴も含まれています。
 
-#### Commits view
+#### ![octicon-git-commit] Commits タブ
 
 Commits viewには、ファイルを変更したユーザに関する詳細情報が含まれています。 それぞれのコミットIDをクリックすることで、その特定のコミットに適用された変更が表示されます。
 
-#### Files changed view
+#### ![octicon-diff] Files changed タブ
 
 Files changed viewでは、ブランチで行われたすべての変更の累積的な結果を確認することができます。 これを`diff`（差分）と呼びます 。 私たちのdiffはまだあまり目を引くものではありませんが、変更を重ねると、diffはとてもカラフルになります。
 
@@ -47,7 +47,7 @@ Files changed viewでは、ブランチで行われたすべての変更の累�
 
 #### 行コメント
 
-Files changed viewでは、青色の`+`アイコンを表示させるために、行の上にマウスを合わせます。 このアイコンをクリックすると、特定の行にコメントを入力できます。 この行レベルのコメントは、提案された変更についての追加情報を伝えるのに最適な方法です。 Conversation viewにも表示されます。
+Files changed viewでは、青色の ![`+`][octicon-diff-added] アイコンを表示させるために、行の上にマウスを合わせます。 このアイコンをクリックすると、特定の行にコメントを入力できます。 この行レベルのコメントは、提案された変更についての追加情報を伝えるのに最適な方法です。 Conversation viewにも表示されます。
 
 #### レビュー
 
@@ -68,3 +68,11 @@ Files changed viewでは、青色の`+`アイコンを表示させるために�
 9. レビューの一般的なコメントを入力する。
 10. *Submit review*をクリックする。
 11. 完了したレビューを確認するために、*Conversation* viewをクリックする。
+
+[octicon-comment-discussion]:https://unpkg.com/octicons/build/svg/comment-discussion.svg
+
+[octicon-diff]:https://unpkg.com/octicons/build/svg/diff.svg
+
+[octicon-diff-added]: https://unpkg.com/octicons/build/svg/diff-added.svg
+
+[octicon-git-commit]:https://unpkg.com/octicons/build/svg/git-commit.svg
