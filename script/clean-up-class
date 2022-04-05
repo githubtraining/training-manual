@@ -22,8 +22,8 @@ org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 function delete_repos() {
   for username in "${collaborators[@]:?}"; do
     # Clean up conflict and games repos for the user
-    delete_repo "conflict-practice" $username
-    delete_repo "github-games" $username
+    delete_repo "conflict-practice" "$username"
+    delete_repo "github-games" "$username"
   done
 }
 
