@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Cleans up student repos associated with a particular GitHub class
+# Deletes practice repos associated with a given day 1 repo
 
 # shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
