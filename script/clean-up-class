@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Cleanup Class
+# Cleans up student repos associated with a particular GitHub class
 
 # shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
