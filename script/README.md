@@ -20,6 +20,20 @@ To use these scripts, please follow these steps **first**:
 - OPTIONAL: If you want to collect feedback from the class, have a URL ready. You can use services such as SurveyMonkey or Google Forms.
 - OPTIONAL: If you're going to offer participants one-on-one appointments, determine the URL participants will use to schedule those. We use [YouCanBook.me](http://youcanbook.me). You'll need the URL later.
 
+### OPTIONAL: Run scripts on a development container or GitHub Codespaces environment
+
+This repository has Visual Studio Code's development container configuration, so you can run these scripts on Remote-Container or GitHub Codespaces. For details, see:
+
+- [Developing inside a Container using Visual Studio Code Remote Development](https://code.visualstudio.com/docs/remote/containers)
+- [GitHub Codespaces Documentation - GitHub Docs](https://docs.github.com/en/codespaces)
+
+The environment is based on Ubuntu 21.04 and includes below.
+
+- Python 3.10
+- Node.js 16.x
+- `envsubst`
+- `http` (by HTTPie)
+
 ### Local Configuration
 
 Generally speaking, we'll create a `.trainingmanualrc` in your home directory, and source that file from your Bash or ZSH profile. The scripts take care of doing that for you. When performing an operation using the training scripts, the variables specified in your `~/.trainingmanualrc` file will be used.
