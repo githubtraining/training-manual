@@ -35,8 +35,10 @@ This repository has Visual Studio Code's development container configuration, so
 
 The environment is based on Ubuntu 21.04 and includes below.
 
+- Bash
 - Python 3.10
 - Node.js 16.x
+- `jq`
 - `envsubst`
 - `http` (by HTTPie)
 
