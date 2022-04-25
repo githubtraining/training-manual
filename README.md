@@ -49,11 +49,15 @@ Docsify doesn't currently support creating PDFs, but you can generate one using 
 
 ## GitBook dependency
 
+<!-- textlint-disable terminology -->
+
 1. Download and install [Calibre](https://calibre-ebook.com/download).
 
 1. Run Calibre once to set up the application.
 
 1. Make sure that the [Calibre command line interface](https://manual.calibre-ebook.com/generated/en/cli-index.html) is available on your path.  This is located at `/Applications/calibre.app/Contents/MacOS/` on macOS if you are running the application from the default location.
+
+<!-- textlint-enable terminology -->
 
 ## Teaching scripts
 
