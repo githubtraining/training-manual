@@ -5,6 +5,9 @@
   "rules": {
     "terminology": {
       "defaultTerms": true,
+      "terms": [
+        " HTML"
+      ],
       "exclude": [
         // Workaround until https://github.com/sapegin/textlint-rule-terminology/issues/38 is fixed
         "HTML"
