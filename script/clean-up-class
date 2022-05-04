@@ -19,7 +19,7 @@ collab_repo=$1
 org_url="https://$ROOT_URL/$CLASS_ORG"
 org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 
-function delete_repos() {
+delete_repos() {
   for username in "${collaborators[@]:?}"; do
     # Clean up conflict and games repos for the user
     delete_repo "conflict-practice" "$username"
@@ -27,7 +27,7 @@ function delete_repos() {
   done
 }
 
-function delete_repo() {
+delete_repo() {
   practice_repo_name=$1
   student=$2
 
