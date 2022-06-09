@@ -33,7 +33,7 @@ This repository has Visual Studio Code's development container configuration, so
 - [Developing inside a Container using Visual Studio Code Remote Development](https://code.visualstudio.com/docs/remote/containers)
 - [GitHub Codespaces Documentation - GitHub Docs](https://docs.github.com/codespaces)
 
-The environment is based on Ubuntu 21.04 and includes below.
+The environment is based on Ubuntu 21.04 and includes:
 
 - Bash
 - Python 3.10
