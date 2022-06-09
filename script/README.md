@@ -31,7 +31,7 @@ To use these scripts, please follow these steps **first**:
 This repository has Visual Studio Code's development container configuration, so you can run these scripts on Remote-Container or GitHub Codespaces. For details, see:
 
 - [Developing inside a Container using Visual Studio Code Remote Development](https://code.visualstudio.com/docs/remote/containers)
-- [GitHub Codespaces Documentation - GitHub Docs](https://docs.github.com/en/codespaces)
+- [GitHub Codespaces Documentation - GitHub Docs](https://docs.github.com/codespaces)
 
 The environment is based on Ubuntu 21.04 and includes below.
 
