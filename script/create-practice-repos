@@ -18,7 +18,7 @@ source ./shared_functions
 collab_repo=$1
 template_name=$2
 practice_repo_name=$3
-org_url="https://$ROOT_URL/$CLASS_ORG"
+org_url="https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG"
 org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 template_url="https://github.com/githubtraining/$template_name"
 template_url_ghes="https://$ROOT_URL/$CLASS_ORG/$template_name"

@@ -20,10 +20,12 @@ get_initial_repo_name() {
 
   repo_url="$org_url/$initial_repo_name"
 
-  echo "Checking if that repo name is available..."
+  echo "Checking if that repo name is available... [$repo_url]"
   if repo_is_reachable "$repo_url"; then
     echo "A repo with that name already exists. Please choose another name."
     get_initial_repo_name
+  else
+    echo "Repo name is available!"
   fi
 }
 
