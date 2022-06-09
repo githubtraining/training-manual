@@ -40,7 +40,7 @@ The environment is based on Ubuntu 21.04 and includes:
 - Node.js 16.x
 - `jq`
 - `envsubst`
-- `http` (by HTTPie)
+- `http` ([HTTPie](https://github.com/httpie/httpie))
 
 ### Local Configuration
 
