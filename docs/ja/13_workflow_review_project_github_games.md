@@ -2,15 +2,15 @@
 
 このセクションでは、`github-games`というプロジェクトのリポジトリで作業します。
 
-`github-games`のリポジトリはすでにgithubschool organizationにて作成してあります。 `https://github.com/githubschool/github-games-username`　でアクセスできます。
+`github-games`のリポジトリはすでに githubschool organization にて作成してあります。 `https://github.com/githubschool/github-games-USERNAME` でアクセスできます。
 
-フォークとプルのワークフローを使っている場合は、[付録で詳しい説明を読んでください。](app_fork_workflow.md)
+フォークとプルの作業フローを使っている場合は、[付録で詳しい説明を読んでください。](app_fork_workflow.md)
 
-### ワークフローレビュー: README.mdの更新
+### 作業フローレビュー: README.mdの更新
 
 READMEにあるリンクを、自分のリポジトリのフォークへ飛ぶように更新し、GitHubのフローを一通り練習してみましょう。
 
-> あなたのウェブサイトは `https://githubschool.github.io/github-games-username` にあります。
+> あなたのウェブサイトは `https://githubschool.github.io/github-games-USERNAME` にあります。
 >
 > このリンクはリポジトリの説明欄にも記載されています。 簡単に自分のゲームにアクセスできるよう、説明欄にあるウェブサイトのURLを編集しておくと良いです。
 >
@@ -35,3 +35,5 @@ READMEにあるリンクを、自分のリポジトリのフォークへ飛ぶ�
 > `-u` は `--set-upstream` というオプションの短いバージョンです。 このオプションは、ローカルブランチと同一名のリモート追跡ブランチを繋げるようGitに伝えます。
 >
 > 初めて新しいブランチをプッシュするときのみ、この長いコマンドを使用する必要があります。 その後は、 `git push` だけで可能になります。
+
+`git config --global alias.bclean "!f() { branches=$(git branch --merged ${1-main} | grep -v " ${1-main}$"); [ -z \"$branches\" ] || git branch -d $branches; }; f"` このコマンドが便利です。**詳しくは appendix をご参照ください。**

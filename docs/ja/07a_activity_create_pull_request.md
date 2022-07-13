@@ -8,7 +8,7 @@ Pull Requestは、プロジェクトのファイルに対する変更を提案�
 2. *New Pull Request*をクリックする。
 3. *base*ドロップダウンで、`main`を選択する。
 4. *compare*ドロップダウンで、あなたのブランチを選択する。
-5. Subject lineとコメントを入力する。
+5. タイトルと説明を入力する。
 6. Markdown記法を使用して、Pull Requestにヘッダとチェックリストを追加する。
 7. `closes`、`fixes`、`resolves`のいずれかのキーワード１つを入力し、続いて、このPull RequestがどのIssueをクローズするものかを記載するために、以前作成したIssueの番号を記載する。 （例）`This resolves #3`
 8. Pull Requestがどのように表示されるのかを確認するために、*Preview*をクリックする。

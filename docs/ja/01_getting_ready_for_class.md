@@ -28,18 +28,18 @@ git version
 
 次のように表示されます。
 
-```sh
+```shell-session
 $ git version
-git version 2.11.0
+git version 2.33.1
 ```
 
 このクラスは、2.0以上のどのバージョンでも受講できます。
 
 #### Gitのダウンロードとインストール
 
-Gitをまだインストールしていない場合は、www.git-scm.comからGitをダウンロードできます。
+Gitをまだインストールしていない場合は、 www.git-scm.com からGitをダウンロードできます。
 
-Gitのインストールについてさらに資料が必要な場合は、ProGitの章にあるGitのインストールに関する追加情報を参照してください。` http://git-scm.com/book/en/v2/Getting-Started-Installing-Git `
+Gitのインストールについてさらに資料が必要な場合は、ProGitの章にあるGitのインストールに関する追加情報を参照してください。`http://git-scm.com/book/en/v2/Getting-Started-Installing-Git`
 
 #### シェルはどこにあるのか
 
@@ -50,7 +50,48 @@ Gitで使いたいコマンドラインアプリケーションへのショー�
 
 それでは、コマンドラインアプリケーションを開いてください。
 
-### ステップ3：テキストエディタの設定
+### Step 3: HTTPS でクローンしてみる
+
+選択したシェルを開き、下記を入力します。
+
+```sh
+git clone https://github.com/githubschool/scratch.git
+```
+
+クローンが成功する場合は、下記のように表示されます。
+
+```shell-session
+$ git clone https://github.com/githubschool/scratch
+Cloning into 'scratch'...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+```
+
+もしクローンが失敗する場合、[authenticating with GitHub from Git](https://docs.github.com/github/getting-started-with-github/set-up-git#next-steps-authenticating-with-github-from-git) をご参照ください。留意点: 企業のネットワークでは SSH のトラフィックを遮断している場合もあるので、HTTPS での利用を推奨しています。クラスの受講前にクローンが可能かどうかご確認ください。また、2段階認証を有効にしていて HTTPS を利用する場合は、[パーソナルアクセストークンのセットアップ](https://docs.github.com/github/authenticating-to-github/accessing-github-using-two-factor-authentication#using-two-factor-authentication-with-the-command-line)が必要になります。
+
+#### プロキシの設定
+
+もし、所属する組織でプロキシを利用している場合は、Git でプロキシの設定を行う必要があります。 Git Bash (Windowsの場合) またはターミナル (Mac または \*nux の場合) を開き、下記の手順を実行してください。
+
+**プロキシが認証不要の場合:**
+
+```sh
+git config --global http.proxy https://YOUR.PROXY.SERVER:8080
+```
+
+`YOUR.PROXY.SERVER` はご利用のプロキシのURLに置き換えてください。
+
+**プロキシが認証を要求する場合:**
+
+```sh
+git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@YOUR.PROXY.SERVER:8080
+```
+
+`YOUR_PROXY_USERNAME` および `YOUR_PROXY_PASSWORD` を、それぞれプロキシの認証で利用するユーザー名とパスワードに置き換え、`YOUR.PROXY.SERVER` をご利用のプロキシのURLに置き換えてください。
+
+### ステップ4：テキストエディタの設定
 
 このクラスでは、コードの取り扱いにおいて、ベーシックなテキストエディタを使用します。 何らかのテキストエディタをインストール済で、コマンドラインから作業できる状態になっていることを確認しましょう。
 
@@ -59,12 +100,14 @@ Gitで使いたいコマンドラインアプリケーションへのショー�
 ほぼすべてのテキストエディタを使用できますが、最適なエディタは次のとおりです。
 
 - [Atom](https://atom.io/)
-- GitPad
-- ViまたはVim
+- [Visual Studio Code](https://code.visualstudio.com)
+- Notepad
+- Vi or Vim
 - Sublime
-- NotepadまたはNotepad++
+- Notepad++
+- GitPad
 
-まだテキストエディタをインストールしていない場合は、上記のエディタを１つダウンロードしてインストールしてください。
+まだテキストエディタをインストールしていない場合は、上記のエディタを１つダウンロードしてインストールしてください。また、Atom や Visual Studio Code を Git コマンドで利用するデフォルトのテキストエディタとして設定するには、[docs.github.com のこちらの手順](https://docs.github.com/github/using-git/associating-text-editors-with-git)をご参考ください。
 
 #### コマンドラインでのエディタ
 
@@ -76,11 +119,17 @@ Gitで使いたいコマンドラインアプリケーションへのショー�
 atom .
 ```
 
+もしくは、下記のコマンドで、カレントディレクトリを Visual Studio Code で開くこともできます。
+
+```sh
+code .
+```
+
 > Macで作業している場合は、Atomのメニューからシェルコマンドをインストールする必要があります。これは、Windowsのインストールプロセスの一部として行われます。
 
 ### リサーチ
 
 おめでとうございます。 これで、あなたのシステムに、作業できるバージョンのGitとテキストエディタがあるはずです。 クラス開始前にまだ時間がある場合は、以下の興味深い資料をご覧ください。
 
-- *[github.com/explore](https://www.github.com/explore)* Exploreでは、GitHub Universeにおける興味深いプロジェクトを展示しています。 後で再度見てみたいプロジェクトはありましたか？ 後で見つけやすくするために、リポジトリにStarを付けましょう。
-- *[services.github.com/on-demand](https://services.github.com/on-demand/)*　オンデマンドトレーニングコースは、GitHubのオープンソーストレーニング資料です。 このサイトには、授業で学んだ内容を復習する際に、参考になる追加情報が含まれています。 より詳細な説明をご希望の場合、contributionsを投稿したり、Issuesを作成することもできます。 ここでオープンソースのリポジトリを見てみましょう。　[` https://github.com/github/training-kit `](https://github.com/github/training-kit)
+- **[github.com/explore](https://www.github.com/explore)** - Exploreでは、GitHub Universeにおける興味深いプロジェクトを展示しています。 後で再度見てみたいプロジェクトはありましたか？ 後で見つけやすくするために、リポジトリにStarを付けましょう。
+- **[lab.github.com](https://lab.github.com)** - GitHub Learning Lab では、ボットがプロジェクトを案内してくれ、各手順を実践できるように、即座に GitHub リポジトリからのフィードバックを与えてくれます。

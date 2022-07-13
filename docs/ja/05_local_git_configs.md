@@ -6,10 +6,11 @@
 
 まず、[Git Installation](https://git-scm.com/downloads)を確認しましょう。
 
-```shell-session
-$ git version
-git version 2.33.1
+```sh
+git version
 ```
+
+Gitがインストールされている場合、`git version 2.33.1` とバージョンが返却されます。
 
 掲載されているGitバージョンが表示されていない場合や、このコマンドでエラーが返された場合は、Gitをインストールする必要があるかもしれません。
 
@@ -54,9 +55,22 @@ git config --global --list
 Gitは、ユーザ名とメールアドレスの設定を使用して、作成されるコミットのそれぞれに一意のフィンガープリント（識別情報）を生成します。 この設定なしでは、コミットを作成できません。
 
 ```sh
-git config --global user.name "First Last"
+git config --global user.name "First-name Surname"
 git config --global user.email "you@email.com"
 ```
+
+**例:**
+
+```sh
+git config --global user.name "Mona Octocat"
+git config --global user.email "mona@github.com"
+```
+
+> **Tip:** もし config プロパティの設定を間違えた場合も心配はいりません。ダブルクオートで囲んだ値で同じ `git config` コマンドを再実行することで、プロパティを新しい値で更新することができます。 もし、プロパティの名前を間違えた場合は、下記のコマンドでプロパティを削除することができます:
+>
+> ```sh
+> git config --global --unset <property_name>
+> ```
 
 #### Gitの設定とプライバシー
 

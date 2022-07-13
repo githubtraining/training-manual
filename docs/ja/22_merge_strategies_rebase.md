@@ -1,14 +1,14 @@
 ## マージの活用：リベース
 
-このセクションでは、もう一つの一般的なマージの活用について説明します。
+このセクションでは、もう一つの一般的なマージである rebase の活用について説明します。
 
 ### Gitマージの活用方法
 
 Gitには3つの主なマージの活用方法があります。
 
-#### Fast forward
+#### Fast-forward
 
-fast forwardのマージは、フィーチャブランチが作成された後に、ベースブランチに変更がないことが前提です。 つまり、ベースブランチのポインタを、単にフィーチャブランチが指しているコミットと同じコミットを指すよう、「fast forward」（早送り）することができます。
+fast-forwardのマージは、フィーチャブランチが作成された後に、ベースブランチに変更がないことが前提です。 つまり、ベースブランチのポインタを、単にフィーチャブランチが指しているコミットと同じコミットを指すよう、「fast forward」（早送り）することができます。
 
 #### 再帰的
 
@@ -39,26 +39,29 @@ fast forwardのマージは、フィーチャブランチが作成された後�
 
 #### 準備
 
+1. はじめに、 `main` ブランチに切替えておきます。 `git switch main`
 1. 最初のコミットのSHAを見つけます。`git log --oneline`
-2. 最初のコミットのSHAにリセットします。`git reset --hard SHA`
-3. 新しいブランチを作成し、そのブランチにチェックアウトします。`git switch -c rebase-me`
-4. reflogを使用し、ファイル4-6を `rebase-me` のブランチにチェリーピックします。
-5. masterにチェックアウトします。`git switch main`
-6. reflogを使用し、ファイル1-3を `main` のブランチにチェリーピックします。
-7. 履歴を確認します。`git log --oneline --graph --decorate --all`
-8. この時点で仮にマージすると、再帰的なマージとなります。
+1. 最初のコミットのSHAにリセットします。`git reset --hard SHA`
+1. 新しいブランチを作成し、そのブランチにチェックアウトします。`git switch -c rebase-me`
+1. reflogを使用し、ファイル4-6を `rebase-me` のブランチにチェリーピックします。
+1. mainブランチに切替えます。`git switch main`
+1. reflogを使用し、ファイル1-3を `main` のブランチにチェリーピックします。
+1. 履歴を確認します。`git log --oneline --graph --decorate --all`
+1. この時点で仮にマージすると、再帰的なマージとなります。
 
 #### リベースを開始
 
-1. `rebase-me` のブランチにチェックアウトします。`git switch rebase-me`
-2. マージを開始します。`git rebase -i main`
-3. テキストエディタが開き、リベースされるコミットが表示されます。
-4. `rebase-todo` を保存し、閉じます。
-5. リベースがコマンドラインで実行されます。
-6. 再度、履歴を確認します。`git log --oneline --graph --decorate --all`
-7. この時点で仮にマージすると、fast-forwardマージとなります。
+1. `rebase-me` のブランチに切替えます。`git switch rebase-me`
+1. マージを開始します。`git rebase -i main`
+1. テキストエディタが開き、リベースされるコミットが表示されます。
+1. `rebase-todo` を保存し、閉じます。
+1. リベースがコマンドラインで実行されます。
+1. 再度、履歴を確認します。`git log --oneline --graph --decorate --all`
+1. この時点で仮にマージすると、fast-forwardマージとなります。
 
 #### マージの完了
 
-1. マージするmasterのブランチにチェックアウトします。`git switch main`
-2. 変更をmasterにマージします。`git merge rebase-me`
+1. マージ先であるmainブランチに切替えます。`git switch main`
+1. 変更をmainにマージします。`git merge rebase-me`
+
+エイリアスを利用してすべてをクリーンに保つ方法を探しているなら、 Appendix をチェックすることを忘れないで！

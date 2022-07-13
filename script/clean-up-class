@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 #
-# Cleanup Class
+# Deletes practice repos associated with a given day 1 repo
 
 # shellcheck disable=SC1091
 source "$HOME/.trainingmanualrc"
+
+# shellcheck source=script/shared_functions
+source ./shared_functions
 
 #################################################################
 # NOTE: You must have a personal access token (PAT)             #
@@ -11,38 +14,31 @@ source "$HOME/.trainingmanualrc"
 # We recommend a dedicated service account (e.g. githubteacher) #
 #################################################################
 
-# GLOBALS
-COLLAB_REPO=$1
+# shell variables
+collab_repo=$1
+org_url="https://$ROOT_URL/$CLASS_ORG"
+org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 
-function GetNames() {
-  # Get the collabs
-  IFS=" " read -ra COLLABS <<<"$(
-    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$COLLAB_REPO/collaborators?affiliation=direct&per_page=100" | jq -r 'map(.login) | unique | @sh' | tr -d \'
-  )" >>log.out 2>&1
-
-  # Clean up conflict repos based on collaborators in the inital class repo
-  for USER_NAME in "${COLLABS[@]}"; do
+delete_repos() {
+  for username in "${collaborators[@]:?}"; do
     # Clean up conflict and games repos for the user
-    CleanUpRepo "conflict-practice-$USER_NAME"
-    CleanUpRepo "github-games-$USER_NAME"
+    delete_repo "conflict-practice" "$username"
+    delete_repo "github-games" "$username"
   done
 }
 
-function CleanUpRepo() {
-  # Get the Repo
-  REPO=$1
+delete_repo() {
+  practice_repo_name=$1
+  student=$2
 
-  # Get repo status
-  REPO_STATUS=$(curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "https://$INSTANCE_URL/repos/$CLASS_ORG/$REPO" | grep "^Status:") >>log.out 2>&1
-
-  # Check the return
-  if
-    echo "$REPO_STATUS" | grep -iq "200"
-  then
-    # Remove the repo
-    ./remove-repo "$REPO"
+  if repo_is_reachable "$org_url/$practice_repo_name-$student"; then
+    echo "Deleting $practice_repo_name-$student... "
+    # delete the existing practice repo
+    http --auth "$TOKEN_OWNER:$TEACHER_PAT" \
+      DELETE "$org_repos_endpoint/$practice_repo_name-$student" >>log.out 2>&1
   fi
 }
 
-# Get User names
-GetNames
+get_collaborators "$collab_repo"
+
+delete_repos

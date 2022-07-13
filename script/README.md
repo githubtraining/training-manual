@@ -16,9 +16,31 @@ To use these scripts, please follow these steps **first**:
 - [ ] Ensure your user account is an owner of the newly created training org, and add any other trainers as owners of the org. Alternatively, you can create a separate teaching account that all trainers have access to, and make that teaching account an owner of the org.
 - [ ] Create a [Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) for your user account, or the shared teaching account. You'll need this for the [local configuration](#local-configuration).
   - _Important note: If your organization has SAML SSO enabled, you would need to [authorize your personal access token for use with SAML SSO](https://docs.github.com/en/github/authenticating-to-github/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on)._
+
+  <!-- textlint-disable terminology -->
+
   - _Important note: You must have repository creation privileges. Additionally, your personal access token must include the scopes **repo** and **delete_repo**._
+
+  <!-- textlint-enable terminology -->
+
 - OPTIONAL: If you want to collect feedback from the class, have a URL ready. You can use services such as SurveyMonkey or Google Forms.
 - OPTIONAL: If you're going to offer participants one-on-one appointments, determine the URL participants will use to schedule those. We use [YouCanBook.me](http://youcanbook.me). You'll need the URL later.
+
+### OPTIONAL: Run scripts on a development container or GitHub Codespaces environment
+
+This repository has Visual Studio Code's development container configuration, so you can run these scripts on Remote-Container or GitHub Codespaces. For details, see:
+
+- [Developing inside a Container using Visual Studio Code Remote Development](https://code.visualstudio.com/docs/remote/containers)
+- [GitHub Codespaces Documentation - GitHub Docs](https://docs.github.com/codespaces)
+
+The environment is based on Ubuntu 21.04 and includes:
+
+- Bash
+- Python 3.10
+- Node.js 16.x
+- `jq`
+- `envsubst`
+- `http` ([HTTPie](https://github.com/httpie/httpie))
 
 ### Local Configuration
 
@@ -30,8 +52,14 @@ Here's how to get your local environment up and running:
 2. run `script/teach-class` and choose option 0 to set up your environment variables. You'll need the following pieces of information from [above](#remote-configuration):
    - the title of your newly created training organization
    - your username, or the username of a shared teaching account
+
+   <!-- textlint-disable terminology -->
+
    - your personal access token (PAT) or the PAT of the shared teaching account that includes the scopes **repo** and **delete_repo**.
    _Note: If your organization has SAML SSO enabled, you would need to [authorize your personal access token for use with SAML SSO](https://docs.github.com/en/github/authenticating-to-github/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on)._
+
+   <!-- textlint-enable terminology -->
+
    - (optional) the URL to surveys to collect feedback
    - (optional) the URL for one-on-one appointments
 3. exit your terminal session and start a new one
@@ -68,7 +96,7 @@ This script is used to create a unique repository for each user to practice reso
 
 _This is contained within the `teach-class` script._
 
-This script is used to check whether students have resolved the merge conflicts in their individual repos and writes those results back to the day 1 repo.
+This script is used to check whether students have resolved the merge conflicts in their individual repos and writes those results back to the day 1 repository.
 
 **Usage:** `script/check-conflict-repos`
 
@@ -76,13 +104,13 @@ This script is used to check whether students have resolved the merge conflicts 
 
 _This is contained within the `teach-class` script._
 
-This script is used to create an individual game repository for each student where they will learn how troubleshoot using log, show, diff, bisect, etc. It pulls the names from the repository used on day 1 and will also create a repo for githubteacher.
+This script is used to create an individual game repository for each student where they will learn how troubleshoot using log, show, diff, bisect, etc. It pulls the names from the repository used on day 1 and will also create a repository for githubteacher.
 
 **Usage:** `script/create-game-repos`
 
 ### check-game-repos
 
-This script is used to determine whether the students successfully fixed their game and writes those results back to the day 1 repo.
+This script is used to determine whether the students successfully fixed their game and writes those results back to the day 1 repository.
 
 **Usage:** `script/check-game-repos`
 
@@ -100,4 +128,8 @@ This script is used to reset the github-games repository in githubschool using t
 
 - `new-virtual line 52 error "No such file or directory"`
 
+  <!-- textlint-disable terminology -->
+
   Make sure your PAT includes the scopes of **repo** and **delete_repo**. If you edited the scopes, it might automatically remove the SSO authorization and you would need to re-authorize it again.
+
+  <!-- textlint-enable terminology -->

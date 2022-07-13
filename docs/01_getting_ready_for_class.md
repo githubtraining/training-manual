@@ -51,7 +51,7 @@ If you need additional assistance installing Git, you can find more information 
 
 #### Where is your shell?
 
-Now is a good time to create a shortcut to the command line application you will want to use with Git:
+Now is a good time to create a shortcut to the command-line application you will want to use with Git:
 
 - If you are working on Windows, we recommend `Git Bash` which is installed with the Git package, so that you can follow along with the facilitator who will be using Bash
 - If you are working on macOS or another Unix-like system, you can use the built-in Terminal application
@@ -99,7 +99,7 @@ Replace `YOUR_PROXY_USERNAME` with the username used to authenticate into your p
 
 ### Step 4: Set up your text editor
 
-For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command line.
+For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command-line.
 
 #### Pick your editor
 
@@ -113,11 +113,11 @@ You can use almost any text editor, but we have the best success with the follow
 - Notepad++
 - GitPad
 
-If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
+If you do not already have a text editor installed, go ahead and download and install one of the above editors now! You can also configure Atom or Visual Studio Code as your default text editor for Git commands using the [instructions at docs.github.com](https://docs.github.com/github/using-git/associating-text-editors-with-git).
 
-#### Your editor on the command line
+#### Your editor on the command-line
 
-After you have installed an editor, confirm you can open it from the command line.
+After you have installed an editor, confirm you can open it from the command-line.
 
 If installed properly, the following command will open the Atom text editor:
 
@@ -126,6 +126,12 @@ atom .
 ```
 
 _**Note:** If you are working on a Mac, you will need to Install Shell Commands from the Atom menu, this happens as part of the installation process for Windows._
+
+Or the following command can also open the current directory with Visual Studio Code:
+
+```sh
+code .
+```
 
 ---
 
