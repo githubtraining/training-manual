@@ -145,29 +145,9 @@ make_repo_private() {
   if ask "Are you ready to make this repo private?" Y; then
     # Make the repo private
     curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$collab_repo\", \"private\": true }" -X PATCH "$repo_endpoint" >>log.out 2>&1
-    if ask "Does this class get 1:1 sessions?" N; then
-      create_one_on_one_issue
-    fi
   else
     echo "OK, just remember to make the repo private and add the info for booking 1:1 appointments to the README."
   fi
-}
-
-create_one_on_one_issue() {
-  # Create an issue for 1:1 appointments
-  echo "$APPT_URL"
-  issue_title="Booking 1:1 Appointments"
-  issue_body="As part of this class, you will have the opportunity to book one-on-one time with a member of our training team to ask questions, review specific class topics, or get help with a scenario. Each student can book one appointment using the following link: $APPT_URL
-
-  These appointments will be available for 4 weeks after the end of this class.
-
-  FYI: "
-
-  for i in "${collaborators[@]}"; do
-    issue_body=$issue_body"@$i "
-  done
-
-  curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"title\": \"$issue_title\", \"body\": $issue_body }" -X POST "$repo_endpoint/issues" >>log.out 2>&1
 }
 
 get_commenters() {
