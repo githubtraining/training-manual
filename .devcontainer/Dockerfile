@@ -6,4 +6,6 @@ FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 # Install additional OS packages
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends httpie
+    && apt-get -y install --no-install-recommends httpie=3.2.1 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
