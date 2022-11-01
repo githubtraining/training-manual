@@ -16,7 +16,7 @@ source ./shared_functions
 
 # shell variables
 collab_repo=$1
-org_url="https://$ROOT_URL/$CLASS_ORG"
+org_url="https://$TOKEN_OWNER:$TEACHER_PAT@$ROOT_URL/$CLASS_ORG"
 org_repos_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG"
 
 delete_repos() {
