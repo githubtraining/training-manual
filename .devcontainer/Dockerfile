@@ -9,6 +9,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl -SsL https://packages.httpie.io/deb/KEY.gpg | apt-key add - \
     && curl -SsL -o /etc/apt/sources.list.d/httpie.list https://packages.httpie.io/deb/httpie.list \
     && apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends httpie=3.2.1 \
+    && apt-get -y install --no-install-recommends httpie \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
