@@ -25,10 +25,11 @@ add_collaborators() {
     # Check if commenter is already a collaborator
     if [[ ${collaborators[*]:?} == *"${commenter}"* ]]; then
       existing_collaborators+=("$commenter")
-    else # Add collaborator
-      curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" \
-        -X PUT "$repo_endpoint/collaborators/$commenter" >>log.out 2>&1
-      get_collaborators "$collab_repo" # Update list of collaborators
+    else
+      # Add collaborator
+      add_repo_collaborator --repo "$collab_repo" --user "$commenter"
+      # Update list of collaborators
+      get_collaborators "$collab_repo"
     fi
   done
   # Check if any commenters are already collaborators
