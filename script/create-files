@@ -199,9 +199,9 @@ fi
 # Array of slide images from file
 IFS=$'\n' read -d "" -ra slide_images <"../slide_images.md"
 
-# Get a list of collaborators and commenters
-get_collaborators "$collab_repo"
+# Get a list of commenters and collaborators
 get_commenters
+get_collaborators "$collab_repo"
 
 # Add collaborators
 add_collaborators
