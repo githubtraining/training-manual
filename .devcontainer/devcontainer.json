@@ -1,20 +1,17 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.222.0/containers/ubuntu
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
   "name": "Ubuntu",
   "build": {
-    "dockerfile": "Dockerfile",
-    // Update 'VARIANT' to pick an Ubuntu version: hirsute, focal, bionic
-    // Use hirsute or bionic on local arm64/Apple Silicon.
-    "args": { "VARIANT": "hirsute" }
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
   },
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {},
-
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [],
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
@@ -23,11 +20,9 @@
   // "postCreateCommand": "uname -a",
   "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
 
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode",
-  "features": {
-    "git": "latest",
-    "node": "16",
-    "python": "3.10"
-  }
+  // Configure tool-specific properties.
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }
