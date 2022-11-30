@@ -6,5 +6,5 @@ FROM mcr.microsoft.com/devcontainers/base:jammy
 
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
   && apt-get -y install --no-install-recommends \
-    gettext-base \
+    gettext-base=0.21-4ubuntu4 \
   && rm -rf /var/lib/apt/lists/*
