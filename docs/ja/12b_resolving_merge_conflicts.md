@@ -23,7 +23,7 @@
 1. `USERNAME-modify-first` ブランチを作成します。
 1. `USERNAME-modify-first` ブランチのまま、自分のスライドファイル `_slides/##-USERNAME.md` の 6行目を変更し、コミットします。
 1. **一度 `main` ブランチを開きなおして**から、2つ目として `USERNAME-modify-conflict` ブランチを作成します。
-1. `USERNAME-modify-first` ブランチのまま、先ほど変更した同じファイルの同じ位置（ `_slides/##-USERNAME.md` の 6行目）を別の文字列に変更し、コミットします。
+1. `USERNAME-modify-conflict` ブランチのまま、先ほど変更した同じファイルの同じ位置（ `_slides/##-USERNAME.md` の 6行目）を別の文字列に変更し、コミットします。
    - ここでのポイントは、変更する対象が、"同じファイル", "変更箇所が同じハンクで変更内容が異なる", "ファイルが空でない" 場合にコンフリクトが発生するという点です。
 1. `base: main` と `compare: USERNAME-modify-first` で Pull Request を作成します（タイトル: `USERNAME merge first`）
 1. `base: main` と `compare: USERNAME-modify-conflict` で Pull Request を作成します（タイトル: `USERNAME resolve conflict`）
