@@ -101,10 +101,11 @@ create_repo_project() {
   GH_TOKEN=$TEACHER_PAT
 
   # Get the organization's ID
-  ORG_ID=$(gh api -H "Accept: application/vnd.github+json" /users/$CLASS_ORG --jq '.node_id')
+  ORG_ID=$(gh api -H "Accept: application/vnd.github+json" "/users/$CLASS_ORG" --jq '.node_id')
 
   # Get the repository's ID
-  REPO_ID=$(gh api graphql --paginate -f org_name=$CLASS_ORG -f repo_name=$repo -f query='
+  # shellcheck disable=SC2016
+  REPO_ID=$(gh api graphql --paginate -f org_name="$CLASS_ORG" -f repo_name="$repo" -f query='
         query GetRepo($org_name:String!, $repo_name:String!) {
             repository(name: $repo_name, owner: $org_name ) {
                 id
@@ -113,7 +114,8 @@ create_repo_project() {
 ' --jq '.data.repository.id')
 
   # Create the project and get the project ID
-  REPO_PROJECT_ID=$(gh api graphql -f owner_id=$ORG_ID -f repo_id=$REPO_ID -f name="$name" -f query='
+  # shellcheck disable=SC2016
+  REPO_PROJECT_ID=$(gh api graphql -f owner_id="$ORG_ID" -f repo_id="$REPO_ID" -f name="$name" -f query='
   mutation CreateProject($owner_id:ID!, $repo_id:ID!, $name:String!){
     createProjectV2(
       input: {
