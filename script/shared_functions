@@ -121,7 +121,7 @@ create_repo_project() {
       projectV2 {
         id
       }
-     }
+    }
   }
 ' --jq '.data[].projectV2.id')
 
