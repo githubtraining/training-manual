@@ -93,14 +93,6 @@ create_repo_project() {
   # Unset $REPO_PROJECT_ID in case it was set previously
   unset REPO_PROJECT_ID
 
-  # Set GH_TOKEN here for gh api. This should be handled more generally once
-  # all API calls are converted to GraphQL. Disable the shellcheck warning here
-  # since this variable is not directly used in this script but read by the
-  # gh api command.
-
-  # shellcheck disable=SC2034
-  export GH_TOKEN=$TEACHER_PAT
-
   # Get the organization's ID
   ORG_ID=$(gh api -H "Accept: application/vnd.github+json" "/users/$CLASS_ORG" --jq '.node_id')
 
@@ -138,6 +130,7 @@ create_repo_project() {
   # Check if $REPO_PROJECT_ID has a value
   if [[ -n "$REPO_PROJECT_ID" ]] || [[ "$REPO_PROJECT_ID" = null ]]; then
     # After it's been created, update the project with the short description
+    # shellcheck disable=SC2016
     gh api graphql -f proj_id="$REPO_PROJECT_ID" -f desc="$body" -f query='
         mutation UpdateProjectWithDescription($proj_id:ID!, $desc:String) {
             updateProjectV2(
@@ -167,21 +160,27 @@ create_project_column() {
     esac
     shift
   done
-
-  local project_column_endpoint="https://$INSTANCE_URL/projects/$project_id/columns"
-
+ 
   echo -n "Creating project column: $name... "
 
   # Unset $COLUMN_ID in case it was set previously
   unset COLUMN_ID
 
   # Create the project column and get the column ID
-  COLUMN_ID=$(http --check-status --ignore-stdin --auth \
-    "$TOKEN_OWNER:$TEACHER_PAT" "$project_column_endpoint" \
-    "Accept:application/vnd.github.inertia-preview+json" \
-    project_id="$project_id" \
-    name="$name" |
-    jq .id)
+  COLUMN_ID=$(gh api graphql -f proj_id="$project_id" -f name="$name" -f query='
+      mutation CreateProjectColumn($proj_id:ID!, $name:String!) {
+          createProjectColumn(
+              input: {
+                  project_id: $proj_id,
+                  name: $name
+              }
+          ){
+              project_column {
+                  id
+              }
+          }
+      }
+      ' --jq '.data[].project_column.id')
 
   # Export $COLUMN_ID so it can be used in other scripts
   export COLUMN_ID
