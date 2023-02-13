@@ -132,7 +132,8 @@ update_readme() {
 create_initial_project() {
   # Create project and save the project ID so we can use it to create project columns and cards
   create_repo_project --repo "$initial_repo_name" \
-    --name "Caption Contest"
+    --name "Caption Contest" \
+    --body "Let's see who can create the best captions for our collection of memes."
   local project_id="$REPO_PROJECT_ID"
 
   # Create project columns and save the ID of the first colum so we can add a card to it

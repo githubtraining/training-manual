@@ -83,6 +83,7 @@ create_repo_project() {
     case $1 in
     --repo) local repo=$2 ;;
     --name) local name=$2 ;;
+    --body) local body=$2 ;;
     esac
     shift
   done
@@ -98,7 +99,7 @@ create_repo_project() {
   # gh api command.
 
   # shellcheck disable=SC2034
-  GH_TOKEN=$TEACHER_PAT
+  export GH_TOKEN=$TEACHER_PAT
 
   # Get the organization's ID
   ORG_ID=$(gh api -H "Accept: application/vnd.github+json" "/users/$CLASS_ORG" --jq '.node_id')
@@ -111,31 +112,47 @@ create_repo_project() {
                 id
             }
         }
-' --jq '.data.repository.id')
+        ' --jq '.data.repository.id')
 
   # Create the project and get the project ID
   # shellcheck disable=SC2016
   REPO_PROJECT_ID=$(gh api graphql -f owner_id="$ORG_ID" -f repo_id="$REPO_ID" -f name="$name" -f query='
-  mutation CreateProject($owner_id:ID!, $repo_id:ID!, $name:String!){
-    createProjectV2(
-      input: {
-        ownerId: $owner_id,
-        repositoryId: $repo_id,
-        title: $name
-      }
-    ){
-      projectV2 {
-        id
-      }
-    }
-  }
-' --jq '.data[].projectV2.id')
+        mutation CreateProject($owner_id:ID!, $repo_id:ID!, $name:String!){
+            createProjectV2(
+                input: {
+                    ownerId: $owner_id,
+                    repositoryId: $repo_id,
+                    title: $name
+                }
+            ){
+                projectV2 {
+                    id
+                }
+            }
+        }
+        ' --jq '.data[].projectV2.id')
 
   # Export $REPO_PROJECT_ID so it can be used in other scripts
   export REPO_PROJECT_ID
 
   # Check if $REPO_PROJECT_ID has a value
   if [[ -n "$REPO_PROJECT_ID" ]] || [[ "$REPO_PROJECT_ID" = null ]]; then
+    # After it's been created, update the project with the short description
+    gh api graphql -f proj_id="$REPO_PROJECT_ID" -f desc="$body" -f query='
+        mutation UpdateProjectWithDescription($proj_id:ID!, $desc:String) {
+            updateProjectV2(
+                input: {
+                    projectId: $proj_id,
+                    shortDescription: $desc
+                }
+            ){
+                projectV2 {
+                    id
+                }
+            }
+        }
+        '
+
     echo "Done."
   else
     print_error "Failed to create project."
