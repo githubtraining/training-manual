@@ -167,6 +167,7 @@ create_project_column() {
   unset COLUMN_ID
 
   # Create the project column and get the column ID
+  # shellcheck disable=SC2016
   COLUMN_ID=$(gh api graphql -f proj_id="$project_id" -f name="$name" -f query='
       mutation CreateProjectColumn($proj_id:ID!, $name:String!) {
           createProjectColumn(
