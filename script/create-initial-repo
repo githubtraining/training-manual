@@ -192,6 +192,9 @@ enable_github_pages() {
   fi
 }
 
+# Set GH_TOKEN here for gh api
+export GH_TOKEN=$TEACHER_PAT
+
 # Get the repo name
 get_initial_repo_name
 

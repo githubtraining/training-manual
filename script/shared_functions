@@ -93,14 +93,6 @@ create_repo_project() {
   # Unset $REPO_PROJECT_ID in case it was set previously
   unset REPO_PROJECT_ID
 
-  # Set GH_TOKEN here for gh api. This should be handled more generally once
-  # all API calls are converted to GraphQL. Disable the shellcheck warning here
-  # since this variable is not directly used in this script but read by the
-  # gh api command.
-
-  # shellcheck disable=SC2034
-  export GH_TOKEN=$TEACHER_PAT
-
   # Get the organization's ID
   ORG_ID=$(gh api -H "Accept: application/vnd.github+json" "/users/$CLASS_ORG" --jq '.node_id')
 
