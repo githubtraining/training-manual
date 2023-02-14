@@ -144,7 +144,7 @@ create_repo_project() {
                 }
             }
         }
-        ' >> log.out 2>&1
+        ' >>log.out 2>&1
 
     echo "Done."
   else
