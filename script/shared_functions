@@ -160,7 +160,7 @@ create_project_column() {
     esac
     shift
   done
- 
+
   echo -n "Creating project column: $name... "
 
   # Unset $COLUMN_ID in case it was set previously
