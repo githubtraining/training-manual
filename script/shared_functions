@@ -138,6 +138,7 @@ create_repo_project() {
   # Check if $REPO_PROJECT_ID has a value
   if [[ -n "$REPO_PROJECT_ID" ]] || [[ "$REPO_PROJECT_ID" = null ]]; then
     # After it's been created, update the project with the short description
+    # shellcheck disable=SC2016
     gh api graphql -f proj_id="$REPO_PROJECT_ID" -f desc="$body" -f query='
         mutation UpdateProjectWithDescription($proj_id:ID!, $desc:String) {
             updateProjectV2(

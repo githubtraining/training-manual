@@ -142,8 +142,8 @@ create_initial_project() {
   # create_project_column --project_id "$project_id" --name "Done"
 
   # Add a note to column one
-  create_project_card --project_id "$project_id" --column_id "$column_one" \
-    --note "Each student will update their file in the _slides directory with an image and a caption."
+  # create_project_card --project_id "$project_id" --column_id "$column_one" \
+  #  --note "Each student will update their file in the _slides directory with an image and a caption."
 }
 
 update_branch_protections() {
