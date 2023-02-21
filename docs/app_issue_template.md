@@ -22,7 +22,6 @@ GitHub supports multiple issue templates, so within our groups we are going to c
 
 Before creating the template, it might be helpful to find existing issue templates on other open source projects on GitHub to get some inspiration. Below are some examples of issue templates found on GitHub:
 
-- [atom/atom](https://github.com/atom/atom/issues/new/choose)
 - [electron/electron](https://github.com/electron/electron/issues/new/choose)
 - [github/VisualStudio](https://github.com/github/VisualStudio/issues/new/choose)
 - [github/training-kit](https://github.com/github/training-kit/blob/master/.github/ISSUE_TEMPLATE.md)
