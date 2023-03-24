@@ -131,24 +131,6 @@ create_issues() {
   fi
 }
 
-make_repo_private() {
-  # Check if the repo is private
-  repo_is_private=$(curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint" | jq .private) >>log.out 2>&1
-
-  # If the repo is private
-  if "$repo_is_private"; then
-    echo "This repo is already private."
-    return # exit the function
-  fi
-
-  # Default to 'yes' if no answer is given
-  if ask "Are you ready to make this repo private?" Y; then
-    # Make the repo private
-    curl -s -S -i -u "$TOKEN_OWNER:$TEACHER_PAT" -d "{ \"name\": \"$collab_repo\", \"private\": true }" -X PATCH "$repo_endpoint" >>log.out 2>&1
-  else
-    echo "OK, just remember to make the repo private and add the info for booking 1:1 appointments to the README."
-  fi
-}
 
 get_commenters() {
   # Array of commenters
@@ -211,5 +193,3 @@ create_files
 # Create issues
 create_issues
 
-# Make it private
-make_repo_private
