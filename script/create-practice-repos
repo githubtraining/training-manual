@@ -83,6 +83,7 @@ generate_repos() {
     else
       # create a new practice repository
       create_practice_repo "$username"
+      sleep 5
     fi
   done
 }

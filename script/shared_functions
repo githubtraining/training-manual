@@ -270,7 +270,7 @@ create_issue() {
   echo -n "Creating issue: $title... "
 
   # Wait for 2 second to avoid secondary rate limiting, 1 second was nog enough
-  sleep 2
+  sleep 5
 
   if http --check-status --ignore-stdin --quiet --auth \
     "$TOKEN_OWNER:$TEACHER_PAT" "$org_repos_endpoint/$repo/issues" \
