@@ -83,6 +83,7 @@ generate_repos() {
     else
       # create a new practice repository
       create_practice_repo "$username"
+      sleep 5
     fi
   done
 }
@@ -106,7 +107,7 @@ create_practice_repo() {
     create_repo \
       --name "$repo_name" \
       --description "$repo_description" \
-      --private true \
+      --private false \
       --has_wiki false
 
     git_push "$repo_name"
@@ -132,7 +133,7 @@ create_practice_repo() {
       --name "$repo_name" \
       --description "$repo_description" \
       --homepage "$template_pages_url" \
-      --private true \
+      --private false \
       --has_wiki false
 
     git_push "$repo_name"

@@ -129,22 +129,7 @@ update_readme() {
     --message "Update _config.yml"
 }
 
-create_initial_project() {
-  # Create project and save the project ID so we can use it to create project columns and cards
-  create_repo_project --repo "$initial_repo_name" \
-    --name "Caption Contest" \
-    --body "Let's see who can create the best captions for our collection of memes."
-  local project_id="$REPO_PROJECT_ID"
 
-  # Create project columns and save the ID of the first colum so we can add a card to it
-  create_project_column --project_id "$project_id" --name "To do" && local column_one="$COLUMN_ID"
-  create_project_column --project_id "$project_id" --name "In progress"
-  create_project_column --project_id "$project_id" --name "Done"
-
-  # Add a note to column one
-  create_project_card --project_id "$project_id" --column_id "$column_one" \
-    --note "Each student will update their file in the _slides directory with an image and a caption."
-}
 
 update_branch_protections() {
   # Update branch protection rules for the default branch
@@ -205,7 +190,7 @@ clone_initial_repo
 update_readme
 update_branch_protections
 create_initial_issue
-create_initial_project
+#create_initial_project
 enable_github_pages
 
 print_done "Here's a link to the repo: $repo_url"
