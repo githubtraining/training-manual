@@ -64,7 +64,9 @@ do_task() {
     COLLAB_REPO_WHITESPACE="$(echo -e "$COLLAB_REPO" | tr -d '[:space:]')"
     COLLAB_REPO=$COLLAB_REPO_WHITESPACE
   elif [ "$TASK" -ne 0 ]; then
-    # Validate we have env variables sourced
+    # shellcheck disable=SC1091
+    source "$HOME/.trainingmanualrc"
+    # Validate env variables
     check_env
   fi
 
