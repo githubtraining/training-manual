@@ -2,6 +2,8 @@
 
 授業開始を待っている間、数分間で、ローカルの作業環境を設定してください。
 
+<!-- toc -->
+
 ### ステップ1：GitHub.comアカウントの作成
 
 このクラスでは、GitHub.comのパブリックアカウントを使用します。 それには、いくつかの理由があります。
@@ -9,12 +11,16 @@
 - 実際のコードを含むリポジトリで、「練習」して欲しくはないため
 - コードなどの修正方法を教えるために、そのいくつかを変更するため （ついては、上記の箇条書きを参照してください）
 
-既にgithub.comアカウントをお持ちの場合は、このステップを省略できます。 お持ちでない場合は、次のステップで無料アカウントを作成できます。
+お持ちでない場合は、次のステップで無料アカウントを作成できます。
 
 1. GitHub.comにアクセスし、「Sign up」をクリックします。
 2. 無料のアカウントを選択します。
 3. 指定したメールアドレスに、確認メールが届きます。
 4. リンクをクリックして、認証手続きを完了します。
+
+もし、すでにアカウントをお持ちの場合は、組織のネットワーク内からgithub.comに接続できるかご確認ください。
+
+GitHubは、主要なブラウザの現在のバージョンで動作するようデザインされています。[サポートされているブラウザ](https://docs.github.com/github/getting-started-with-github/supported-browsers)については、こちらをご参照ください。
 
 ### ステップ2：Gitのインストール
 
@@ -33,7 +39,9 @@ $ git version
 git version 2.33.1
 ```
 
-このクラスは、2.0以上のどのバージョンでも受講できます。
+一般的には、Git の [最新バージョン](https://git-scm.com/downloads) から2つのマイナーバージョンの範囲を利用することを推奨します。このマイナーバージョンは、 `x.x.x` の並びのうちの2番目の数字です。
+
+Git for Windows または Git Bash を利用している場合、[2.29.2](https://github.com/git-for-windows/git/releases/tag/v2.29.2.windows.2)以上のバージョンをお勧めします。
 
 #### Gitのダウンロードとインストール
 
@@ -47,8 +55,6 @@ Gitで使いたいコマンドラインアプリケーションへのショー�
 
 - Windowsで作業している場合は、Gitパッケージでインストールされた` Git Bash ` 、または、[Posh-git](http://dahlbyk.github.io/posh-git/)でPowershellを使用します。
 - Macやその他のUnixベースのシステムで作業している場合は、ターミナルアプリケーションを使用します。
-
-それでは、コマンドラインアプリケーションを開いてください。
 
 ### Step 3: HTTPS でクローンしてみる
 
@@ -99,7 +105,6 @@ git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@Y
 
 ほぼすべてのテキストエディタを使用できますが、最適なエディタは次のとおりです。
 
-- [Atom](https://atom.io/)
 - [Visual Studio Code](https://code.visualstudio.com)
 - Notepad
 - Vi or Vim
@@ -107,25 +112,19 @@ git config --global http.proxy https://YOUR_PROXY_USERNAME:YOUR_PROXY_PASSWORD@Y
 - Notepad++
 - GitPad
 
-まだテキストエディタをインストールしていない場合は、上記のエディタを１つダウンロードしてインストールしてください。また、Atom や Visual Studio Code を Git コマンドで利用するデフォルトのテキストエディタとして設定するには、[docs.github.com のこちらの手順](https://docs.github.com/github/using-git/associating-text-editors-with-git)をご参考ください。
+まだテキストエディタをインストールしていない場合は、上記のエディタを１つダウンロードしてインストールしてください。また、Visual Studio Code を Git コマンドで利用するデフォルトのテキストエディタとして設定するには、[docs.github.com のこちらの手順](https://docs.github.com/github/using-git/associating-text-editors-with-git)をご参考ください。
 
 #### コマンドラインでのエディタ
 
 エディタをインストールしたら、コマンドラインから開けるかどうかを確認します。
 
-適切にインストールされている場合、次のコマンドで、Atomテキストエディタを開くことができます。
-
-```sh
-atom .
-```
-
-もしくは、下記のコマンドで、カレントディレクトリを Visual Studio Code で開くこともできます。
+適切にインストールされている場合、次のコマンドでカレントディレクトリを Visual Studio Code で開くことができます。
 
 ```sh
 code .
 ```
 
-> Macで作業している場合は、Atomのメニューからシェルコマンドをインストールする必要があります。これは、Windowsのインストールプロセスの一部として行われます。
+---
 
 ### リサーチ
 
