@@ -9,6 +9,6 @@ RUN curl -SsL https://packages.httpie.io/deb/KEY.gpg | gpg --dearmor -o /usr/sha
   && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./" > /etc/apt/sources.list.d/httpie.list \
   && apt-get update && export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y --no-install-recommends \
-    httpie \
+    httpie=3.2.1 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
