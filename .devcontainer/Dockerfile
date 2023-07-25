@@ -5,7 +5,8 @@ FROM mcr.microsoft.com/devcontainers/base:jammy
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 # Install httpie
-RUN curl -SsL https://packages.httpie.io/deb/KEY.gpg | gpg --dearmor --output /usr/share/keyrings/httpie.gpg \
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -SsL https://packages.httpie.io/deb/KEY.gpg | gpg --dearmor -o /usr/share/keyrings/httpie.gpg \
   && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./" > /etc/apt/sources.list.d/httpie.list \
   && apt-get update && export DEBIAN_FRONTEND=noninteractive \
   && apt-get install -y --no-install-recommends \
