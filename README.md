@@ -10,7 +10,7 @@ The content is all written in [Markdown](https://guides.github.com/features/mast
 
 This manual is served using GitHub Pages and [docsify](https://docsify.js.org), and can be found at [githubtraining.github.io/training-manual](https://githubtraining.github.io/training-manual/#/).
 
-## Goals and scope
+## Goals and scope -- this is my change
 
 The goal of this project is to serve as a content source for training on Git and GitHub. While GitHub, select GitHub Partners, and select customers may have their own use case directly with GitHub, the content is open source so we can share and improve as a community. You can find more information on contributing in the [contributing guide](CONTRIBUTING.md).
 
