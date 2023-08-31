@@ -4,7 +4,8 @@
     "dockerfile": "Dockerfile"
   },
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {}
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/sshd:1": {}
   },
   "postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh"
 }
