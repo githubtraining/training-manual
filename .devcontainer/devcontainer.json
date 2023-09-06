@@ -15,8 +15,9 @@
   	// Configure properties specific to Codespaces.
   	"codespaces": {
   		"repositories": {
-  			"github/gh-valet": {
+  			"github/gh-actions-importer": {
   				"permissions": {
+            "metadata": "read",
   					"contents": "read",
             "packages": "read"
   				}
