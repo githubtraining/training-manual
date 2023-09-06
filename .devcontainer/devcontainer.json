@@ -11,7 +11,19 @@
 
   // Set *default* container specific settings.json values on container create.
   "settings": {},
-
+  "customizations": {
+  	// Configure properties specific to Codespaces.
+  	"codespaces": {
+  		"repositories": {
+  			"github/gh-valet": {
+  				"permissions": {
+  					"contents": "read",
+            "packages": "read"
+  				}
+  			}
+  		}
+  	}
+  },
 
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [],
