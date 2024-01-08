@@ -1,6 +1,6 @@
 # Manual
 
-[githubtraining.github.io/training-manual](https://trefigit.github.io/training-manual/).
+[githubtraining.github.io/training-manual](https://trefigit.github.io/training-manual/)
 
 # GitHub Training Manual
 
