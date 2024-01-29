@@ -2,7 +2,8 @@
 ## masodik sor
 **bold**
 *italic*
-***bold italic***git 
+***bold italic***
+git 
 
 
 asd
