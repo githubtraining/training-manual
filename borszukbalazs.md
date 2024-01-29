@@ -3,6 +3,3 @@ github-borszukbalazs-asd
 ## masodik sor
 **vastag**
 :smily:
-
-adad
-main
