@@ -2,6 +2,7 @@
 **szupika szöveg** 
 (nagyon titkos)
 ## sebike titkos üzenete 
+<<<<<<< HEAD
 
 _   _         _  _          _   __ _
 | | | |  ___  | || |  ___   | | / /(_)  _     _
@@ -22,3 +23,6 @@ _   _         _  _          _   __ _
                    \__(  o     o  )__/
 
                    
+=======
+el nem tudod hinni, hogy mennyire titkos
+>>>>>>> 67c2353c950873449456e7ba2c1f28d4b4287aba
