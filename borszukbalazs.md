@@ -1,8 +1,5 @@
 github-borszukbalazs-asd
-# elso sor
+# elso sordxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxsxs
 ## masodik sor
 **vastag**
 :smily:
-
-adad
-main
