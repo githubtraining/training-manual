@@ -2,6 +2,10 @@
 
 [githubtraining.github.io/training-manual](https://trefigit.github.io/training-manual/)
 
+# Git játék
+
+https://learngitbranching.js.org/
+
 # GitHub Training Manual
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
