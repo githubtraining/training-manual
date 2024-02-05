@@ -10,5 +10,4 @@ github-borszukbalazs-asd
                           じしˍ,)ノ
 nagyon komoly------------>
 
-
 dsflheajfljkdfaksfdkfdkjanjgdsnkgdkgdsknldgsgdsgdsfgfgfmnfkhnlxkdynvgaeygvbnaíqé
