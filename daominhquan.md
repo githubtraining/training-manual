@@ -42,3 +42,10 @@ asdf
 =======
 conflict :)
 
+      ╱|、
+    (˚ˎ 。7  
+     |、˜〵          
+    じしˍ,)ノ
+    sadasd
+    T= a*b*sin a°
+    sin a°/sin b° = a/b
