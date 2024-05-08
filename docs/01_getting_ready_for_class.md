@@ -109,6 +109,7 @@ Install GitHub CLI from [here](https://github.com/cli/cli#installation) and conf
 ```sh
 gh --version
 ```
+
 #### Pick your editor
 
 You can use almost any text editor, but we have the best success with the following:
