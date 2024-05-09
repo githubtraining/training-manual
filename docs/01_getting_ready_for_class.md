@@ -103,7 +103,7 @@ For this class, we will use a basic text editor to interact with our code. Let's
 
 ### Step 5: Install GitHub CLI (optional)
 
-The GitHub command-line tool has funtionality that may be useful during the labs setup. 
+The GitHub command-line tool has funtionality that may be useful during the labs setup.
 
 Install GitHub CLI from [here](https://github.com/cli/cli#installation), then confirm it is available on your console:
 
