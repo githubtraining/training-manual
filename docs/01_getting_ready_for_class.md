@@ -101,10 +101,11 @@ Replace `YOUR_PROXY_USERNAME` with the username used to authenticate into your p
 
 For this class, we will use a basic text editor to interact with our code. Let's make sure you have one installed and ready to work from the command-line.
 
-### Step 5: Intstall GitHub Cli
+### Step 5: Install GitHub CLI (optional)
 
-GitHub command-line tool has several funtionality that may be very useful during the labs setup. 
-Install GitHub CLI from [here](https://github.com/cli/cli#installation) and confirm that is available on your console.
+The GitHub command-line tool has funtionality that may be useful during the labs setup. 
+
+Install GitHub CLI from [here](https://github.com/cli/cli#installation), then confirm it is available on your console:
 
 ```sh
 gh --version
