@@ -88,26 +88,64 @@ create_repo_project() {
     shift
   done
 
-  local projects_endpoint="$org_repos_endpoint/$repo/projects"
-
   echo -n "Creating project: $name... "
 
   # Unset $REPO_PROJECT_ID in case it was set previously
   unset REPO_PROJECT_ID
 
+  # Get the organization's ID
+  ORG_ID=$(gh api -H "Accept: application/vnd.github+json" "/users/$CLASS_ORG" --jq '.node_id')
+
+  # Get the repository's ID
+  # shellcheck disable=SC2016
+  REPO_ID=$(gh api graphql --paginate -f org_name="$CLASS_ORG" -f repo_name="$repo" -f query='
+        query GetRepo($org_name:String!, $repo_name:String!) {
+            repository(name: $repo_name, owner: $org_name ) {
+                id
+            }
+        }
+        ' --jq '.data.repository.id')
+
   # Create the project and get the project ID
-  REPO_PROJECT_ID=$(http --check-status --ignore-stdin --auth \
-    "$TOKEN_OWNER:$TEACHER_PAT" "$projects_endpoint" \
-    "Accept:application/vnd.github.inertia-preview+json" \
-    name="$name" \
-    body="$body" |
-    jq .id)
+  # shellcheck disable=SC2016
+  REPO_PROJECT_ID=$(gh api graphql -f owner_id="$ORG_ID" -f repo_id="$REPO_ID" -f name="$name" -f query='
+        mutation CreateProject($owner_id:ID!, $repo_id:ID!, $name:String!){
+            createProjectV2(
+                input: {
+                    ownerId: $owner_id,
+                    repositoryId: $repo_id,
+                    title: $name
+                }
+            ){
+                projectV2 {
+                    id
+                }
+            }
+        }
+        ' --jq '.data[].projectV2.id')
 
   # Export $REPO_PROJECT_ID so it can be used in other scripts
   export REPO_PROJECT_ID
 
   # Check if $REPO_PROJECT_ID has a value
   if [[ -n "$REPO_PROJECT_ID" ]] || [[ "$REPO_PROJECT_ID" = null ]]; then
+    # After it's been created, update the project with the short description
+    # shellcheck disable=SC2016
+    gh api graphql -f proj_id="$REPO_PROJECT_ID" -f desc="$body" -f query='
+        mutation UpdateProjectWithDescription($proj_id:ID!, $desc:String) {
+            updateProjectV2(
+                input: {
+                    projectId: $proj_id,
+                    shortDescription: $desc
+                }
+            ){
+                projectV2 {
+                    id
+                }
+            }
+        }
+        ' >>log.out 2>&1
+
     echo "Done."
   else
     print_error "Failed to create project."

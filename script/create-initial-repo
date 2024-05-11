@@ -137,13 +137,13 @@ create_initial_project() {
   local project_id="$REPO_PROJECT_ID"
 
   # Create project columns and save the ID of the first colum so we can add a card to it
-  create_project_column --project_id "$project_id" --name "To do" && local column_one="$COLUMN_ID"
-  create_project_column --project_id "$project_id" --name "In progress"
-  create_project_column --project_id "$project_id" --name "Done"
+  # create_project_column --project_id "$project_id" --name "To do" && local column_one="$COLUMN_ID"
+  # create_project_column --project_id "$project_id" --name "In progress"
+  # create_project_column --project_id "$project_id" --name "Done"
 
   # Add a note to column one
-  create_project_card --project_id "$project_id" --column_id "$column_one" \
-    --note "Each student will update their file in the _slides directory with an image and a caption."
+  # create_project_card --project_id "$project_id" --column_id "$column_one" \
+  #  --note "Each student will update their file in the _slides directory with an image and a caption."
 }
 
 update_branch_protections() {
@@ -191,6 +191,9 @@ enable_github_pages() {
     print_error "Failed to enable GitHub Pages."
   fi
 }
+
+# Set GH_TOKEN here for gh api
+export GH_TOKEN=$TEACHER_PAT
 
 # Get the repo name
 get_initial_repo_name
