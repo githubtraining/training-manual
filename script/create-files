@@ -151,9 +151,18 @@ make_repo_private() {
 }
 
 get_commenters() {
-  # Array of commenters
+  get_issues # Get a list of issues in the repository
+
+# find issue where participants should be commenting
+  for issue in "${issues[@]}"; do
+    if [[ $issue == *"Add collaborators to this repo"* ]]; then
+      caption_issue_number=$(echo "$issue" | cut -d. -f1)
+    fi
+  done
+
+  # Array of commenters from the issue
   IFS=" " read -ra commenters <<<"$(
-    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/issues/1/comments?per_page=100" |
+    curl -s -S -u "$TOKEN_OWNER:$TEACHER_PAT" -X GET "$repo_endpoint/issues/$caption_issue_number/comments?per_page=100" |
       jq -r 'map(.user.login) | unique | @sh' | tr -d \'
   )" >>log.out 2>&1
 }
