@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#
+# Create feedback issues
+
+# shellcheck disable=SC1091
+source "$HOME/.trainingmanualrc"
+
+# shellcheck source=script/shared_functions
+source ./shared_functions
+
+# Shell variables
+collab_repo=$1
+repo_endpoint="https://$INSTANCE_URL/repos/$CLASS_ORG/$collab_repo"
+repo_url="https://$ROOT_URL/$CLASS_ORG/$collab_repo"
+
+create_feedback_issues() {
+  # Navigate to the practice-repos directory
+  cd "$(dirname "$0")/../practice-repos" || exit
+
+  # Set $practice_repos_dir to the "physical" path of the working directory
+  practice_repos_dir=$(pwd -P)
+
+  # Switch back to the previous directory
+  cd - >/dev/null || exit
+
+  # Create the participant baseline issue
+  create_issue --repo "$collab_repo" --title "❓What is your experience with git and GitHub?" \
+    --body "$(<"$practice_repos_dir/caption-this/participant_baseline.md")"
+
+  # Create the day 1 retro issue
+  create_issue --repo "$collab_repo" --title "🔍 Retro day 1" \
+    --body "$(<"$practice_repos_dir/caption-this/retro_day1.md")"
+
+    # Create the day 2 retro issue
+  create_issue --repo "$collab_repo" --title "🔍 Retro day 2" \
+    --body "$(<"$practice_repos_dir/caption-this/retro_day2.md")"
+}
+
+create_feedback_issues
+
+print_done "Created 3 feedback issues!"

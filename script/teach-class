@@ -27,6 +27,7 @@ get_task() {
   echo " 6: Create the github-games repos for each student"
   echo " 7: Delete student repos for a specific class"
   echo " 8: Grade client"
+  echo " 9: Create feedback issues"
 
   # Read the task that was input
   read -r TASK
@@ -133,6 +134,12 @@ do_task() {
     # echo "8: Grade client"
     echo "Running script/grade-client"
     ./grade-client
+
+  # TASK 9
+  elif [ "$TASK" -eq 9 ]; then
+    # echo "9: Create feedback issues"
+    echo "Running script/create-feedback-issues"
+    ./create-feedback-issues "$COLLAB_REPO"
   fi
 }
 
