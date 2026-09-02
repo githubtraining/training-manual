@@ -3,7 +3,7 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 Welcome to the GitHub Training Manual repository. In this repository, you will find the content used by the [GitHub Professional Services](https://services.github.com/) team during our official GitHub training courses and the scripts used when teaching.
-Git doesn't care how you work with your files locally. You can work in your favorite IDE or text editor, or you can use VIM through the command line.
+Git doesn't care how you work with your files locally. You can work in your favorite IDE or text editor, or you can use VIM through the command line  .
 
 To open your file from the command line, many IDEs and text editors offer shortcuts. For example, use code . to open it in Visual Studio Code.
 The content is all written in [Markdown](https://guides.github.com/features/mastering-markdown/), and the scripts are shell scripts.
