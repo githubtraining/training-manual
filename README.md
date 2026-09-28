@@ -1,4 +1,5 @@
-# GitHub Training Manual
+# GitHub Training Manual - First conflict vsoman1-conflict! Second comment to trigger merge conflict!
+
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
@@ -26,7 +27,7 @@ These manuals are designed to be generated using [docsify](https://docsify.js.or
 4. Click **Save**.
 5. Return to the GitHub Pages section of Settings, and you'll receive the URL of your published manual.
 
-## Make changes
+## This is the first trial attempt. Looks good!
 
 The official [docsify documentation](https://docsify.js.org/#/?id=docsify) is your best bet for getting up to speed with the tool.
 
