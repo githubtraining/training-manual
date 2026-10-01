@@ -3,7 +3,7 @@ layout: slide
 title: "Welcome to our slide deck!"
 ---
 
-Caption here
+testing merge conflicts
 
 IMAGE
 {: .center}
