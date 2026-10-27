@@ -1,9 +1,9 @@
 ---
 layout: slide
-title: "Welcome to our slide deck!"
+title: "This is Our Slide Deck!"
 ---
 
-Caption here
+_slids/##-darnelllogan8.md
 
 IMAGE
 {: .center}
